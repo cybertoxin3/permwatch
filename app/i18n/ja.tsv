@@ -125,11 +125,10 @@ sort.name	名前順
 sort.recent	最終変更
 sort.risk	リスク順
 status.badLines	%ld 行を読み取れませんでした
-status.checked	確認: %@
 status.demo	デモデータ
 status.file	ログ: %@
 status.lastEvent	最終イベント: %@
-status.scanning	スキャン中…
+status.live	リアルタイム監視中
 status.system	この Mac
 sub.addedBy	追加元: %@
 sub.launchedBy	起動元: %@

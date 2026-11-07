@@ -125,11 +125,10 @@ sort.name	Nach Name
 sort.recent	Zuletzt geändert
 sort.risk	Nach Risiko
 status.badLines	%ld Zeilen nicht lesbar
-status.checked	Geprüft %@
 status.demo	Demodaten
 status.file	Protokoll: %@
 status.lastEvent	Letztes Ereignis: %@
-status.scanning	Wird geprüft …
+status.live	live
 status.system	Dieser Mac
 sub.addedBy	von: %@
 sub.launchedBy	durch %@

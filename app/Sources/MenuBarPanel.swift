@@ -66,7 +66,7 @@ struct MenuBarPanel: View {
 
     private var sourceLabel: String {
         switch store.source {
-        case .system: return store.needsFullDiskAccess ? L("fda.title") : L("status.system")
+        case .system: return store.needsFullDiskAccess ? L("fda.title") : L("status.live")
         case .demo: return L("status.demo")
         case .file: return L("menu.watching")
         }

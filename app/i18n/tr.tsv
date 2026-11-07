@@ -125,11 +125,10 @@ sort.name	Ada göre
 sort.recent	Son değişiklik
 sort.risk	Riske göre
 status.badLines	%ld satır okunamadı
-status.checked	Kontrol: %@
 status.demo	Demo verisi
 status.file	Kayıt: %@
 status.lastEvent	Son olay: %@
-status.scanning	Taranıyor…
+status.live	canlı izleniyor
 status.system	Bu Mac
 sub.addedBy	ekleyen: %@
 sub.launchedBy	başlatan: %@

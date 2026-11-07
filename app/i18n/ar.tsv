@@ -125,11 +125,10 @@ sort.name	حسب الاسم
 sort.recent	آخر تغيير
 sort.risk	حسب الخطورة
 status.badLines	تعذّرت قراءة %ld من الأسطر
-status.checked	فُحص %@
 status.demo	بيانات تجريبية
 status.file	السجل: %@
 status.lastEvent	آخر حدث: %@
-status.scanning	جارٍ الفحص…
+status.live	مراقبة مباشرة
 status.system	جهاز Mac هذا
 sub.addedBy	أضافه: %@
 sub.launchedBy	بواسطة %@

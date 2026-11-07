@@ -125,11 +125,10 @@ sort.name	За назвою
 sort.recent	За зміною
 sort.risk	За ризиком
 status.badLines	Не вдалося прочитати рядків: %ld
-status.checked	Перевірено %@
 status.demo	Демо-дані
 status.file	Журнал: %@
 status.lastEvent	Остання подія: %@
-status.scanning	Сканування…
+status.live	у реальному часі
 status.system	Цей Mac
 sub.addedBy	додав: %@
 sub.launchedBy	запустив: %@

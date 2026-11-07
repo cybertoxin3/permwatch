@@ -125,11 +125,10 @@ sort.name	By name
 sort.recent	Last changed
 sort.risk	By risk
 status.badLines	%ld lines could not be read
-status.checked	Checked %@
 status.demo	Demo data
 status.file	Log: %@
 status.lastEvent	Last event: %@
-status.scanning	Scanning…
+status.live	live
 status.system	This Mac
 sub.addedBy	added by: %@
 sub.launchedBy	by %@

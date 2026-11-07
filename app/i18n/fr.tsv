@@ -125,11 +125,10 @@ sort.name	Par nom
 sort.recent	Dernière modif.
 sort.risk	Par risque
 status.badLines	%ld lignes illisibles
-status.checked	Vérifié %@
 status.demo	Données de démo
 status.file	Journal : %@
 status.lastEvent	Dernier événement : %@
-status.scanning	Analyse…
+status.live	en direct
 status.system	Ce Mac
 sub.addedBy	ajouté par : %@
 sub.launchedBy	par %@

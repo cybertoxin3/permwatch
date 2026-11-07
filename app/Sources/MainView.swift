@@ -148,9 +148,7 @@ struct Sidebar: View {
                 Circle().fill(statusColor).frame(width: 7, height: 7)
                 Text(sourceText).lineLimit(1).truncationMode(.middle)
             }
-            if store.source == .system, let d = store.lastScan {
-                Text(store.scanning ? L("status.scanning") : L("status.checked", Fmt.relative(d)))
-            } else if let d = store.lastEvent {
+            if store.source != .system, let d = store.lastEvent {
                 Text(L("status.lastEvent", Fmt.relative(d)))
             }
             if store.badLines > 0 {
@@ -172,7 +170,7 @@ struct Sidebar: View {
 
     private var sourceText: String {
         switch store.source {
-        case .system: return L("status.system")
+        case .system: return store.needsFullDiskAccess ? L("fda.title") : "\(L("status.system")) · \(L("status.live"))"
         case .demo: return L("status.demo")
         case .file(let u): return L("status.file", u.lastPathComponent)
         }

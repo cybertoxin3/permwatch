@@ -24,10 +24,15 @@ final class Store: ObservableObject {
     private var tailHandle: FileHandle?
     private var tailBuffer = Data()
     private var timer: Timer?
+    private var watchers: [DispatchSourceFileSystemObject] = []
+    private var pendingScan: DispatchWorkItem?
+    private var rescanRequested = false
+    private(set) var scanCount = 0
     private var activeObserver: NSObjectProtocol?
 
     private static let trustedKey = "trustedApps"
-    private static let scanInterval: TimeInterval = 30
+    /// Asıl tetikleyici dosya izleyicileridir; zamanlayıcı yalnızca yedek.
+    private static let fallbackInterval: TimeInterval = 60
 
     init() {
         trusted = Set(UserDefaults.standard.stringArray(forKey: Self.trustedKey) ?? [])
@@ -55,7 +60,7 @@ final class Store: ObservableObject {
         badLines = 0
         scanSystem()
         timer?.invalidate()
-        timer = Timer.scheduledTimer(withTimeInterval: Self.scanInterval, repeats: true) { [weak self] _ in
+        timer = Timer.scheduledTimer(withTimeInterval: Self.fallbackInterval, repeats: true) { [weak self] _ in
             MainActor.assumeIsolated { self?.scanSystem() }
         }
     }
@@ -97,6 +102,42 @@ final class Store: ObservableObject {
     private func stopTimer() {
         timer?.invalidate()
         timer = nil
+        watchers.forEach { $0.cancel() }
+        watchers = []
+        pendingScan?.cancel()
+    }
+
+    // MARK: Canlı izleme
+
+    /// TCC veritabanlarını ve başlangıç klasörlerini dosya sistemi olaylarıyla dinler.
+    /// Dosya yeniden oluşturulabileceği için her taramadan sonra yeniden kurulur.
+    private func armWatchers() {
+        watchers.forEach { $0.cancel() }
+        watchers = []
+        var paths = [SystemScanner.userTCC, SystemScanner.systemTCC] + SystemScanner.launchDirs
+        if let extra = ProcessInfo.processInfo.environment["PERMWATCH_WATCH_TEST"] { paths.append(extra) }
+        for p in paths {
+            let fd = Darwin.open(p, O_EVTONLY)
+            guard fd >= 0 else { continue }
+            let src = DispatchSource.makeFileSystemObjectSource(
+                fileDescriptor: fd, eventMask: [.write, .extend, .delete, .rename, .attrib], queue: .main)
+            src.setEventHandler { [weak self] in
+                MainActor.assumeIsolated { self?.scheduleScan() }
+            }
+            src.setCancelHandler { Darwin.close(fd) }
+            src.resume()
+            watchers.append(src)
+        }
+    }
+
+    /// Arka arkaya gelen değişiklikleri 1 saniyelik pencerede tek taramada birleştirir.
+    private func scheduleScan() {
+        pendingScan?.cancel()
+        let w = DispatchWorkItem { [weak self] in
+            MainActor.assumeIsolated { self?.scanSystem() }
+        }
+        pendingScan = w
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: w)
     }
 
     // MARK: Sistem taraması
@@ -114,7 +155,8 @@ final class Store: ObservableObject {
     }
 
     func scanSystem() {
-        guard source == .system, !scanning else { return }
+        guard source == .system else { return }
+        if scanning { rescanRequested = true; return }
         scanning = true
         let url = Self.stateURL
         Task.detached(priority: .utility) {
@@ -134,7 +176,13 @@ final class Store: ObservableObject {
                 self.needsFullDiskAccess = !r.tccReadable
                 self.lastScan = Date()
                 self.scanning = false
+                self.scanCount += 1
                 self.reanalyze(notifyNew: !first)
+                self.armWatchers()
+                if self.rescanRequested {
+                    self.rescanRequested = false
+                    self.scheduleScan()
+                }
             }
         }
     }

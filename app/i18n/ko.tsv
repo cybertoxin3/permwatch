@@ -125,11 +125,10 @@ sort.name	이름순
 sort.recent	최근 변경순
 sort.risk	위험도순
 status.badLines	%ld개 줄을 읽을 수 없음
-status.checked	확인: %@
 status.demo	데모 데이터
 status.file	로그: %@
 status.lastEvent	최근 이벤트: %@
-status.scanning	검사 중…
+status.live	실시간 감시 중
 status.system	이 Mac
 sub.addedBy	추가: %@
 sub.launchedBy	실행: %@

@@ -49,6 +49,25 @@ enum Snapshot {
             }
             return
         }
+        if section == "watchtest", let dir = ProcessInfo.processInfo.environment["PERMWATCH_WATCH_TEST"] {
+            // İzlenen test klasörüne dosya yazıp taramanın kendiliğinden tetiklendiğini doğrular.
+            DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
+                let before = store.scanCount
+                let t0 = Date()
+                FileManager.default.createFile(atPath: dir + "/tetikle.plist", contents: Data())
+                @MainActor func check() {
+                    if store.scanCount > before {
+                        print(String(format: "tetiklendi: %.1f sn sonra tarama yapıldı (%d → %d)",
+                                     Date().timeIntervalSince(t0), before, store.scanCount))
+                        exit(0)
+                    }
+                    if Date().timeIntervalSince(t0) > 10 { print("tetiklenmedi"); exit(1) }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: check)
+                }
+                check()
+            }
+            return
+        }
         if section == "dump" {
             // Uyarıların düz metin dökümü (test için): risk, tarih, başlık, kurallar.
             DispatchQueue.main.asyncAfter(deadline: .now() + 6) {

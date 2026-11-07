@@ -125,11 +125,10 @@ sort.name	按名称
 sort.recent	最近更改
 sort.risk	按风险
 status.badLines	%ld 行无法读取
-status.checked	已检查：%@
 status.demo	演示数据
 status.file	日志：%@
 status.lastEvent	最近事件：%@
-status.scanning	正在扫描…
+status.live	实时监控中
 status.system	这台 Mac
 sub.addedBy	添加者：%@
 sub.launchedBy	启动者：%@
