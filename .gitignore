@@ -1,0 +1,4 @@
+permwatch
+*.jsonl
+.DS_Store
+tests/test_json
