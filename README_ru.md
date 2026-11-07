@@ -1,6 +1,6 @@
 <div align="center">
 
-[Türkçe](README_tr.md) · [English](README_en.md) · **Русский**
+[Türkçe](README_tr.md) · [English](README.md) · **Русский** · [Deutsch](README_de.md) · [Français](README_fr.md) · [Español](README_es.md) · [Português](README_pt.md) · [Italiano](README_it.md) · [Українська](README_uk.md) · [日本語](README_ja.md) · [简体中文](README_zh.md) · [한국어](README_ko.md) · [العربية](README_ar.md)
 
 # permwatch
 
