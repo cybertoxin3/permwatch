@@ -1,0 +1,128 @@
+action.missingFile	Die Datei ist nicht auf diesem Mac
+action.openPermissions	Berechtigungen öffnen
+action.removeItem	Anmeldeobjekt entfernen
+action.removed	In den Papierkorb gelegt
+action.showInFinder	Im Finder zeigen
+action.trust	Als vertrauenswürdig markieren
+action.untrust	Vertrauen entfernen
+alert.evasion	Gatekeeper umgangen
+alert.execution	verdächtige Ausführung
+alert.permission	verdächtige Berechtigung
+alert.persistence	verdächtige Persistenz
+app.firstSeen	zuerst gesehen %@
+app.noLoginItem	Kein Anmeldeobjekt
+apps.subtitle	Welche App worauf zugreifen kann
+btm.agent	agent (Benutzer)
+btm.daemon	daemon (System)
+btm.loginItem	Anmeldeobjekt
+confirm.cancel	Abbrechen
+confirm.trash.body	Es wird bei der nächsten Anmeldung nicht mehr geladen. Du kannst es aus dem Papierkorb wiederherstellen.
+confirm.trash.ok	In den Papierkorb
+confirm.trash.title	„%@“ in den Papierkorb legen?
+detail.chain	Kette dieser App
+detail.empty	Wähle ein Ereignis
+detail.triggered	Ausgelöste Regeln:
+empty.body	Öffne eine JSON-Lines-Datei, die das permwatch-Kommandozeilentool erzeugt hat.
+empty.title	Keine Ereignisse
+ev.btm.agent	Neuer LaunchAgent hinzugefügt
+ev.btm.daemon	Neuer LaunchDaemon hinzugefügt
+ev.btm.login	%@ hat ein Anmeldeobjekt hinzugefügt
+ev.btm.remove	Startobjekt entfernt
+ev.exec	%@ ausgeführt
+ev.exec.first	%@ zum ersten Mal gestartet
+ev.gatekeeper	Gatekeeper für %@ umgangen
+ev.quarantine	Quarantäne-Flag entfernt
+ev.tcc.denied	%1$@ → %2$@ abgelehnt
+ev.tcc.granted	%1$@ → %2$@ erteilt
+ev.tcc.limited	%1$@ → %2$@ eingeschränkt
+ev.tcc.revoked	%1$@ → %2$@ entzogen
+field.addedBy	Hinzugefügt von
+field.arguments	Argumente
+field.executes	Startet
+field.grantedVia	Erteilt über
+field.identity	Identität
+field.itemType	Objekttyp
+field.lastActivity	Zuletzt aktiv
+field.parent	Elternprozess
+field.path	Pfad
+field.process	Prozess
+field.quarantine	Quarantäne
+field.reason	Grund
+field.service	Dienst
+field.signature	Signatur
+field.source	Quelle
+field.target	Ziel
+filter.alerts	Nur Warnungen
+filter.all	Alle
+filter.loginItems	Anmeldeobjekte
+filter.permissions	Berechtigungen
+filter.processes	Prozesse
+menu.loadDemo	Demodaten laden
+menu.loginItems	Anmeldeobjekte
+menu.openAlerts	offene Warnungen
+menu.openFile	Ereignisprotokoll öffnen …
+menu.openTimeline	Zeitleiste öffnen
+menu.permChanges	Berechtigungsänderungen (24 h)
+menu.quit	Beenden
+menu.recent	Letzte Ereignisse
+menu.watching	Protokoll wird beobachtet
+nav.accessibility	Bedienungshilfen
+nav.alerts	Warnungen
+nav.apps	Apps
+nav.fullDisk	Festplattenvollzugriff
+nav.loginItems	Anmeldeobjekte
+nav.micCamera	Mikrofon & Kamera
+nav.permissions	Berechtigungen
+nav.persistence	Persistenz
+nav.processes	Prozesse
+nav.screen	Bildschirmaufnahme
+nav.timeline	Zeitleiste
+open.message	Wähle ein JSON-Lines-Protokoll des permwatch-Kommandozeilentools
+quarantine.removed	manuell entfernt (xattr)
+reason.mdm	MDM-Richtlinie
+reason.systemSet	Vom System gesetzt
+reason.userConsent	Nutzerzustimmung
+reason.userSet	Über Systemeinstellungen
+risk.caution	Achtung
+risk.high	Hohes Risiko
+risk.normal	Normal
+rule.dyld	Mit DYLD_*-Injektionsvariablen gestartet
+rule.gatekeeper	Der Nutzer hat Gatekeeper für diese Datei umgangen
+rule.hiddenTarget	Zieldatei liegt in einem versteckten Ordner
+rule.lolbinFromUnsigned	Ein Systemwerkzeug wurde von einer unsignierten App gestartet
+rule.nightHidden	Mitten in der Nacht aus einem versteckten Ordner gestartet
+rule.quarantine	Das Quarantäne-Flag wurde entfernt, Gatekeeper umgangen
+rule.rapidGrants	Dieselbe App erhielt in 2 Minuten Bedienungshilfen und Bildschirmaufnahme
+rule.tccAdhoc	Berechtigung für eine ad-hoc-signierte App erteilt
+rule.tccUnsigned	Berechtigung für eine unsignierte App erteilt
+rule.unsignedDownload	Eine unsignierte App wurde zum ersten Mal aus „Downloads“ gestartet
+rule.unsignedPersistence	Ein unsignierter Prozess hat ein Startobjekt hinzugefügt
+search.prompt	Suchen: App, Pfad, Team-ID …
+sig.adhoc	ad-hoc-signiert
+sig.apple	Apple
+sig.developer	Entwickler · %@
+sig.unsigned	unsigniert
+sort.name	Nach Name
+sort.recent	Zuletzt geändert
+sort.risk	Nach Risiko
+status.badLines	%ld Zeilen nicht lesbar
+status.demo	Demodaten
+status.file	Protokoll: %@
+status.lastEvent	Letztes Ereignis: %@
+status.none	Keine Daten
+sub.addedBy	von: %@
+sub.launchedBy	durch %@
+sub.quarantineRemoved	Quarantäne-Flag entfernt
+svc.accessibility	Bedienungshilfen
+svc.automation	Automation
+svc.camera	Kamera
+svc.contacts	Kontakte
+svc.desktop	Schreibtisch-Ordner
+svc.documents	Dokumente-Ordner
+svc.downloads	Downloads-Ordner
+svc.fullDisk	Festplattenvollzugriff
+svc.inputMonitoring	Eingabeüberwachung
+svc.microphone	Mikrofon
+svc.photos	Fotos
+svc.screen	Bildschirmaufnahme
+tag.trusted	Vertrauenswürdig

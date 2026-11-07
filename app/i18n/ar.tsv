@@ -1,0 +1,128 @@
+action.missingFile	الملف غير موجود على جهاز Mac هذا
+action.openPermissions	فتح الأذونات
+action.removeItem	إزالة عنصر الدخول
+action.removed	نُقل إلى سلة المهملات
+action.showInFinder	إظهار في Finder
+action.trust	وضع علامة موثوق
+action.untrust	إلغاء الثقة
+alert.evasion	تجاوز Gatekeeper
+alert.execution	تشغيل مشبوه
+alert.permission	إذن مشبوه
+alert.persistence	استمرارية مشبوهة
+app.firstSeen	رُصد أول مرة %@
+app.noLoginItem	لا عنصر دخول
+apps.subtitle	أي تطبيق يصل إلى ماذا
+btm.agent	agent (مستخدم)
+btm.daemon	daemon (نظام)
+btm.loginItem	عنصر تسجيل الدخول
+confirm.cancel	إلغاء
+confirm.trash.body	لن يُحمَّل بعد الآن عند تسجيل الدخول التالي. يمكنك استعادته من سلة المهملات.
+confirm.trash.ok	نقل إلى سلة المهملات
+confirm.trash.title	هل تريد نقل «%@» إلى سلة المهملات؟
+detail.chain	سلسلة هذا التطبيق
+detail.empty	اختر حدثًا
+detail.triggered	القواعد المُفعَّلة:
+empty.body	افتح ملف JSON Lines أنشأته أداة سطر الأوامر permwatch.
+empty.title	لا توجد أحداث
+ev.btm.agent	إضافة LaunchAgent جديد
+ev.btm.daemon	إضافة LaunchDaemon جديد
+ev.btm.login	أضاف %@ عنصر تسجيل دخول
+ev.btm.remove	أُزيل عنصر بدء التشغيل
+ev.exec	تم تشغيل %@
+ev.exec.first	تشغيل %@ لأول مرة
+ev.gatekeeper	تم تجاوز Gatekeeper لـ %@
+ev.quarantine	أُزيلت علامة العزل
+ev.tcc.denied	%1$@ ← رُفض %2$@
+ev.tcc.granted	%1$@ ← مُنح %2$@
+ev.tcc.limited	%1$@ ← مُنح %2$@ بشكل محدود
+ev.tcc.revoked	%1$@ ← أُزيل %2$@
+field.addedBy	أضافه
+field.arguments	الوسائط
+field.executes	يشغّل
+field.grantedVia	مُنح عبر
+field.identity	المعرّف
+field.itemType	نوع العنصر
+field.lastActivity	آخر نشاط
+field.parent	العملية الأم
+field.path	المسار
+field.process	العملية
+field.quarantine	العزل
+field.reason	السبب
+field.service	الخدمة
+field.signature	التوقيع
+field.source	المصدر
+field.target	الهدف
+filter.alerts	التنبيهات فقط
+filter.all	الكل
+filter.loginItems	عناصر الدخول
+filter.permissions	تغييرات الأذونات
+filter.processes	العمليات
+menu.loadDemo	تحميل البيانات التجريبية
+menu.loginItems	عناصر دخول
+menu.openAlerts	تنبيهات مفتوحة
+menu.openFile	فتح سجل الأحداث…
+menu.openTimeline	فتح الخط الزمني
+menu.permChanges	تغييرات أذونات (24 ساعة)
+menu.quit	إنهاء
+menu.recent	الأحداث الأخيرة
+menu.watching	يراقب السجل
+nav.accessibility	تسهيلات الاستخدام
+nav.alerts	التنبيهات
+nav.apps	التطبيقات
+nav.fullDisk	الوصول الكامل إلى القرص
+nav.loginItems	عناصر تسجيل الدخول
+nav.micCamera	الميكروفون والكاميرا
+nav.permissions	الأذونات
+nav.persistence	الاستمرارية
+nav.processes	العمليات
+nav.screen	تسجيل الشاشة
+nav.timeline	الخط الزمني
+open.message	اختر سجل JSON Lines كتبته أداة permwatch
+quarantine.removed	أُزيل يدويًا (xattr)
+reason.mdm	سياسة MDM
+reason.systemSet	عيّنه النظام
+reason.userConsent	موافقة المستخدم
+reason.userSet	عبر إعدادات النظام
+risk.caution	تنبيه
+risk.high	خطورة عالية
+risk.normal	عادي
+rule.dyld	شُغّل مع متغيرات حقن DYLD_*
+rule.gatekeeper	تجاوز المستخدم Gatekeeper لهذا الملف
+rule.hiddenTarget	الملف الهدف في مجلد مخفي
+rule.lolbinFromUnsigned	شغّل تطبيق غير موقّع أداة نظام
+rule.nightHidden	تشغيل ليلي من مجلد مخفي
+rule.quarantine	أُزيلت علامة العزل وجرى تجاوز Gatekeeper
+rule.rapidGrants	حصل التطبيق نفسه على تسهيلات الاستخدام وتسجيل الشاشة خلال دقيقتين
+rule.tccAdhoc	مُنح إذن لتطبيق بتوقيع مخصص
+rule.tccUnsigned	مُنح إذن لتطبيق غير موقّع
+rule.unsignedDownload	تطبيق غير موقّع يعمل لأول مرة من مجلد التنزيلات
+rule.unsignedPersistence	أضافت عملية غير موقّعة عنصر بدء تشغيل
+search.prompt	بحث: تطبيق، مسار، Team ID…
+sig.adhoc	توقيع مخصص
+sig.apple	Apple
+sig.developer	مطوّر · %@
+sig.unsigned	غير موقّع
+sort.name	حسب الاسم
+sort.recent	آخر تغيير
+sort.risk	حسب الخطورة
+status.badLines	تعذّرت قراءة %ld من الأسطر
+status.demo	بيانات تجريبية
+status.file	السجل: %@
+status.lastEvent	آخر حدث: %@
+status.none	لا توجد بيانات
+sub.addedBy	أضافه: %@
+sub.launchedBy	بواسطة %@
+sub.quarantineRemoved	أُزيلت علامة العزل
+svc.accessibility	تسهيلات الاستخدام
+svc.automation	الأتمتة
+svc.camera	الكاميرا
+svc.contacts	جهات الاتصال
+svc.desktop	مجلد سطح المكتب
+svc.documents	مجلد المستندات
+svc.downloads	مجلد التنزيلات
+svc.fullDisk	الوصول الكامل إلى القرص
+svc.inputMonitoring	مراقبة الإدخال
+svc.microphone	الميكروفون
+svc.photos	الصور
+svc.screen	تسجيل الشاشة
+tag.trusted	موثوق

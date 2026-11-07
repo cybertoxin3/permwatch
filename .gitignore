@@ -2,3 +2,5 @@ permwatch
 *.jsonl
 .DS_Store
 tests/test_json
+app/build/
+!app/Resources/sample-events.jsonl

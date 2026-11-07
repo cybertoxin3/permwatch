@@ -1,0 +1,128 @@
+action.missingFile	此 Mac 上没有该文件
+action.openPermissions	打开权限设置
+action.removeItem	移除登录项
+action.removed	已移到废纸篓
+action.showInFinder	在访达中显示
+action.trust	标记为可信
+action.untrust	取消信任
+alert.evasion	绕过 Gatekeeper
+alert.execution	可疑的执行
+alert.permission	可疑的权限
+alert.persistence	可疑的持久化
+app.firstSeen	首次发现：%@
+app.noLoginItem	无登录项
+apps.subtitle	哪个应用能访问什么
+btm.agent	agent（用户）
+btm.daemon	daemon（系统）
+btm.loginItem	登录项
+confirm.cancel	取消
+confirm.trash.body	下次登录时将不再加载。你可以从废纸篓中恢复。
+confirm.trash.ok	移到废纸篓
+confirm.trash.title	将“%@”移到废纸篓？
+detail.chain	该应用的事件链
+detail.empty	选择一个事件
+detail.triggered	触发的规则：
+empty.body	打开由 permwatch 命令行工具生成的 JSON Lines 文件。
+empty.title	没有事件
+ev.btm.agent	新增 LaunchAgent
+ev.btm.daemon	新增 LaunchDaemon
+ev.btm.login	%@ 添加了登录项
+ev.btm.remove	启动项已移除
+ev.exec	%@ 已执行
+ev.exec.first	%@ 首次运行
+ev.gatekeeper	已为 %@ 绕过 Gatekeeper
+ev.quarantine	隔离标记已移除
+ev.tcc.denied	%1$@ → 已拒绝%2$@
+ev.tcc.granted	%1$@ → 已授予%2$@
+ev.tcc.limited	%1$@ → 已有限授予%2$@
+ev.tcc.revoked	%1$@ → 已移除%2$@
+field.addedBy	添加者
+field.arguments	参数
+field.executes	执行
+field.grantedVia	授权方式
+field.identity	标识
+field.itemType	项目类型
+field.lastActivity	最近活动
+field.parent	父进程
+field.path	路径
+field.process	进程
+field.quarantine	隔离
+field.reason	原因
+field.service	服务
+field.signature	签名
+field.source	来源
+field.target	目标
+filter.alerts	仅警报
+filter.all	全部
+filter.loginItems	登录项
+filter.permissions	权限变更
+filter.processes	进程
+menu.loadDemo	载入演示数据
+menu.loginItems	登录项
+menu.openAlerts	未处理警报
+menu.openFile	打开事件日志…
+menu.openTimeline	打开时间线
+menu.permChanges	权限变更（24 小时）
+menu.quit	退出
+menu.recent	最近事件
+menu.watching	正在监视日志
+nav.accessibility	辅助功能
+nav.alerts	警报
+nav.apps	应用
+nav.fullDisk	完全磁盘访问权限
+nav.loginItems	登录项
+nav.micCamera	麦克风与摄像头
+nav.permissions	权限
+nav.persistence	持久化
+nav.processes	进程
+nav.screen	屏幕录制
+nav.timeline	时间线
+open.message	选择由 permwatch 命令行工具写入的 JSON Lines 日志
+quarantine.removed	已手动移除 (xattr)
+reason.mdm	MDM 策略
+reason.systemSet	由系统设置
+reason.userConsent	用户同意
+reason.userSet	通过系统设置
+risk.caution	注意
+risk.high	高风险
+risk.normal	正常
+rule.dyld	使用 DYLD_* 注入变量启动
+rule.gatekeeper	用户为此文件绕过了 Gatekeeper
+rule.hiddenTarget	目标文件位于隐藏文件夹中
+rule.lolbinFromUnsigned	系统工具由未签名的应用启动
+rule.nightHidden	深夜从隐藏文件夹运行
+rule.quarantine	隔离标记被移除，绕过了 Gatekeeper
+rule.rapidGrants	同一应用在 2 分钟内获得了辅助功能和屏幕录制权限
+rule.tccAdhoc	权限被授予临时签名的应用
+rule.tccUnsigned	权限被授予未签名的应用
+rule.unsignedDownload	未签名的应用首次从“下载”文件夹运行
+rule.unsignedPersistence	未签名的进程添加了启动项
+search.prompt	搜索：应用、路径、Team ID…
+sig.adhoc	临时签名
+sig.apple	Apple
+sig.developer	开发者 · %@
+sig.unsigned	未签名
+sort.name	按名称
+sort.recent	最近更改
+sort.risk	按风险
+status.badLines	%ld 行无法读取
+status.demo	演示数据
+status.file	日志：%@
+status.lastEvent	最近事件：%@
+status.none	无数据
+sub.addedBy	添加者：%@
+sub.launchedBy	启动者：%@
+sub.quarantineRemoved	隔离标记已移除
+svc.accessibility	辅助功能
+svc.automation	自动化
+svc.camera	摄像头
+svc.contacts	通讯录
+svc.desktop	“桌面”文件夹
+svc.documents	“文稿”文件夹
+svc.downloads	“下载”文件夹
+svc.fullDisk	完全磁盘访问权限
+svc.inputMonitoring	输入监控
+svc.microphone	麦克风
+svc.photos	照片
+svc.screen	屏幕录制
+tag.trusted	可信

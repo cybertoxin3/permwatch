@@ -1,0 +1,128 @@
+action.missingFile	Этого файла нет на Mac
+action.openPermissions	Открыть разрешения
+action.removeItem	Удалить объект входа
+action.removed	Перемещено в Корзину
+action.showInFinder	Показать в Finder
+action.trust	Доверять
+action.untrust	Отменить доверие
+alert.evasion	обход Gatekeeper
+alert.execution	подозрительный запуск
+alert.permission	подозрительное разрешение
+alert.persistence	подозрительный автозапуск
+app.firstSeen	впервые замечено %@
+app.noLoginItem	Нет автозапуска
+apps.subtitle	Какое приложение к чему имеет доступ
+btm.agent	agent (пользователь)
+btm.daemon	daemon (система)
+btm.loginItem	Объект входа
+confirm.cancel	Отмена
+confirm.trash.body	Он перестанет загружаться при следующем входе. Его можно вернуть из Корзины.
+confirm.trash.ok	Переместить в Корзину
+confirm.trash.title	Переместить «%@» в Корзину?
+detail.chain	Цепочка этого приложения
+detail.empty	Выберите событие
+detail.triggered	Сработавшие правила:
+empty.body	Откройте файл JSON Lines, созданный утилитой permwatch.
+empty.title	Нет событий
+ev.btm.agent	Добавлен новый LaunchAgent
+ev.btm.daemon	Добавлен новый LaunchDaemon
+ev.btm.login	%@ добавил объект входа
+ev.btm.remove	Объект автозапуска удалён
+ev.exec	%@ запущен
+ev.exec.first	%@ запущен впервые
+ev.gatekeeper	Gatekeeper обойдён для %@
+ev.quarantine	Удалён флаг карантина
+ev.tcc.denied	%1$@ → %2$@: отказано
+ev.tcc.granted	%1$@ → %2$@: разрешено
+ev.tcc.limited	%1$@ → %2$@: ограничено
+ev.tcc.revoked	%1$@ → %2$@: отозвано
+field.addedBy	Добавил
+field.arguments	Аргументы
+field.executes	Запускает
+field.grantedVia	Источник
+field.identity	Идентификатор
+field.itemType	Тип объекта
+field.lastActivity	Активность
+field.parent	Родительский процесс
+field.path	Путь
+field.process	Процесс
+field.quarantine	Карантин
+field.reason	Причина
+field.service	Служба
+field.signature	Подпись
+field.source	Источник
+field.target	Цель
+filter.alerts	Только оповещения
+filter.all	Все
+filter.loginItems	Объекты входа
+filter.permissions	Разрешения
+filter.processes	Процессы
+menu.loadDemo	Загрузить демо-данные
+menu.loginItems	объектов входа
+menu.openAlerts	открытых оповещений
+menu.openFile	Открыть журнал событий…
+menu.openTimeline	Открыть хронологию
+menu.permChanges	изменений разрешений (24 ч)
+menu.quit	Выйти
+menu.recent	Последние события
+menu.watching	журнал отслеживается
+nav.accessibility	Универсальный доступ
+nav.alerts	Оповещения
+nav.apps	Приложения
+nav.fullDisk	Полный доступ к диску
+nav.loginItems	Объекты входа
+nav.micCamera	Микрофон и камера
+nav.permissions	Разрешения
+nav.persistence	Автозапуск
+nav.processes	Процессы
+nav.screen	Запись экрана
+nav.timeline	Хронология
+open.message	Выберите журнал JSON Lines, записанный утилитой permwatch
+quarantine.removed	удалён вручную (xattr)
+reason.mdm	Политика MDM
+reason.systemSet	Установлено системой
+reason.userConsent	Согласие пользователя
+reason.userSet	Через Системные настройки
+risk.caution	Внимание
+risk.high	Высокий риск
+risk.normal	Норма
+rule.dyld	Запущен с переменными инъекции DYLD_*
+rule.gatekeeper	Пользователь обошёл Gatekeeper для этого файла
+rule.hiddenTarget	Целевой файл находится в скрытой папке
+rule.lolbinFromUnsigned	Системная утилита запущена неподписанным приложением
+rule.nightHidden	Ночной запуск из скрытой папки
+rule.quarantine	Флаг карантина удалён, Gatekeeper обойдён
+rule.rapidGrants	Одно приложение за 2 минуты получило универсальный доступ и запись экрана
+rule.tccAdhoc	Разрешение выдано приложению с ad-hoc подписью
+rule.tccUnsigned	Разрешение выдано неподписанному приложению
+rule.unsignedDownload	Неподписанное приложение впервые запущено из «Загрузок»
+rule.unsignedPersistence	Неподписанный процесс добавил объект автозапуска
+search.prompt	Поиск: приложение, путь, Team ID…
+sig.adhoc	ad-hoc подпись
+sig.apple	Apple
+sig.developer	разработчик · %@
+sig.unsigned	без подписи
+sort.name	По имени
+sort.recent	По изменению
+sort.risk	По риску
+status.badLines	Не удалось прочитать строк: %ld
+status.demo	Демо-данные
+status.file	Журнал: %@
+status.lastEvent	Последнее событие: %@
+status.none	Нет данных
+sub.addedBy	добавил: %@
+sub.launchedBy	запустил: %@
+sub.quarantineRemoved	флаг карантина удалён
+svc.accessibility	Универсальный доступ
+svc.automation	Автоматизация
+svc.camera	Камера
+svc.contacts	Контакты
+svc.desktop	Папка «Рабочий стол»
+svc.documents	Папка «Документы»
+svc.downloads	Папка «Загрузки»
+svc.fullDisk	Полный доступ к диску
+svc.inputMonitoring	Мониторинг ввода
+svc.microphone	Микрофон
+svc.photos	Фото
+svc.screen	Запись экрана
+tag.trusted	Доверенное

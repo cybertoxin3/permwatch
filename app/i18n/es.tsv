@@ -1,0 +1,128 @@
+action.missingFile	El archivo no está en este Mac
+action.openPermissions	Abrir permisos
+action.removeItem	Quitar ítem de inicio
+action.removed	Movido a la papelera
+action.showInFinder	Mostrar en Finder
+action.trust	Marcar como fiable
+action.untrust	Quitar confianza
+alert.evasion	evasión de Gatekeeper
+alert.execution	ejecución sospechosa
+alert.permission	permiso sospechoso
+alert.persistence	persistencia sospechosa
+app.firstSeen	visto por primera vez %@
+app.noLoginItem	Sin ítem de inicio
+apps.subtitle	Qué app accede a qué
+btm.agent	agent (usuario)
+btm.daemon	daemon (sistema)
+btm.loginItem	Ítem de inicio
+confirm.cancel	Cancelar
+confirm.trash.body	Dejará de cargarse en el próximo inicio de sesión. Puedes recuperarlo de la papelera.
+confirm.trash.ok	Mover a la papelera
+confirm.trash.title	¿Mover «%@» a la papelera?
+detail.chain	Cadena de esta app
+detail.empty	Selecciona un evento
+detail.triggered	Reglas activadas:
+empty.body	Abre un archivo JSON Lines generado por la herramienta de línea de comandos permwatch.
+empty.title	Sin eventos
+ev.btm.agent	Nuevo LaunchAgent añadido
+ev.btm.daemon	Nuevo LaunchDaemon añadido
+ev.btm.login	%@ añadió un ítem de inicio
+ev.btm.remove	Ítem de inicio eliminado
+ev.exec	%@ ejecutado
+ev.exec.first	%@ se ejecutó por primera vez
+ev.gatekeeper	Gatekeeper esquivado para %@
+ev.quarantine	Marca de cuarentena eliminada
+ev.tcc.denied	%1$@ → %2$@ denegado
+ev.tcc.granted	%1$@ → %2$@ concedido
+ev.tcc.limited	%1$@ → %2$@ limitado
+ev.tcc.revoked	%1$@ → %2$@ retirado
+field.addedBy	Añadido por
+field.arguments	Argumentos
+field.executes	Ejecuta
+field.grantedVia	Concedido vía
+field.identity	Identidad
+field.itemType	Tipo
+field.lastActivity	Última actividad
+field.parent	Proceso padre
+field.path	Ruta
+field.process	Proceso
+field.quarantine	Cuarentena
+field.reason	Motivo
+field.service	Servicio
+field.signature	Firma
+field.source	Origen
+field.target	Destino
+filter.alerts	Solo alertas
+filter.all	Todo
+filter.loginItems	Ítems de inicio
+filter.permissions	Permisos
+filter.processes	Procesos
+menu.loadDemo	Cargar datos de demostración
+menu.loginItems	ítems de inicio
+menu.openAlerts	alertas abiertas
+menu.openFile	Abrir registro de eventos…
+menu.openTimeline	Abrir cronología
+menu.permChanges	cambios de permisos (24 h)
+menu.quit	Salir
+menu.recent	Eventos recientes
+menu.watching	vigilando registro
+nav.accessibility	Accesibilidad
+nav.alerts	Alertas
+nav.apps	Apps
+nav.fullDisk	Acceso total al disco
+nav.loginItems	Ítems de inicio
+nav.micCamera	Micrófono y cámara
+nav.permissions	Permisos
+nav.persistence	Persistencia
+nav.processes	Procesos
+nav.screen	Grabación de pantalla
+nav.timeline	Cronología
+open.message	Elige un registro JSON Lines escrito por la herramienta permwatch
+quarantine.removed	eliminada a mano (xattr)
+reason.mdm	Política MDM
+reason.systemSet	Establecido por el sistema
+reason.userConsent	Consentimiento del usuario
+reason.userSet	Desde Ajustes del Sistema
+risk.caution	Atención
+risk.high	Riesgo alto
+risk.normal	Normal
+rule.dyld	Iniciado con variables de inyección DYLD_*
+rule.gatekeeper	El usuario esquivó Gatekeeper para este archivo
+rule.hiddenTarget	El archivo de destino está en una carpeta oculta
+rule.lolbinFromUnsigned	Una herramienta del sistema fue lanzada por una app sin firma
+rule.nightHidden	Se ejecutó de madrugada desde una carpeta oculta
+rule.quarantine	Se eliminó la marca de cuarentena, esquivando Gatekeeper
+rule.rapidGrants	La misma app obtuvo accesibilidad y grabación de pantalla en 2 minutos
+rule.tccAdhoc	Permiso concedido a una app con firma ad hoc
+rule.tccUnsigned	Permiso concedido a una app sin firma
+rule.unsignedDownload	Una app sin firma se ejecutó por primera vez desde Descargas
+rule.unsignedPersistence	Un proceso sin firma añadió un ítem de inicio
+search.prompt	Buscar: app, ruta, Team ID…
+sig.adhoc	firma ad hoc
+sig.apple	Apple
+sig.developer	desarrollador · %@
+sig.unsigned	sin firma
+sort.name	Por nombre
+sort.recent	Último cambio
+sort.risk	Por riesgo
+status.badLines	%ld líneas no se pudieron leer
+status.demo	Datos de demostración
+status.file	Registro: %@
+status.lastEvent	Último evento: %@
+status.none	Sin datos
+sub.addedBy	añadido por: %@
+sub.launchedBy	por %@
+sub.quarantineRemoved	cuarentena eliminada
+svc.accessibility	Accesibilidad
+svc.automation	Automatización
+svc.camera	Cámara
+svc.contacts	Contactos
+svc.desktop	Carpeta Escritorio
+svc.documents	Carpeta Documentos
+svc.downloads	Carpeta Descargas
+svc.fullDisk	Acceso total al disco
+svc.inputMonitoring	Monitorización de entrada
+svc.microphone	Micrófono
+svc.photos	Fotos
+svc.screen	Grabación de pantalla
+tag.trusted	Fiable

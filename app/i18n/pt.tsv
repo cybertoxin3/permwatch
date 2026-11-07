@@ -1,0 +1,128 @@
+action.missingFile	O arquivo não está neste Mac
+action.openPermissions	Abrir permissões
+action.removeItem	Remover item de início
+action.removed	Movido para o Lixo
+action.showInFinder	Mostrar no Finder
+action.trust	Marcar como confiável
+action.untrust	Remover confiança
+alert.evasion	desvio do Gatekeeper
+alert.execution	execução suspeita
+alert.permission	permissão suspeita
+alert.persistence	persistência suspeita
+app.firstSeen	visto pela primeira vez %@
+app.noLoginItem	Sem item de início
+apps.subtitle	Qual app acessa o quê
+btm.agent	agent (usuário)
+btm.daemon	daemon (sistema)
+btm.loginItem	Item de início
+confirm.cancel	Cancelar
+confirm.trash.body	Ele deixará de ser carregado no próximo login. Você pode restaurá-lo do Lixo.
+confirm.trash.ok	Mover para o Lixo
+confirm.trash.title	Mover “%@” para o Lixo?
+detail.chain	Cadeia deste app
+detail.empty	Selecione um evento
+detail.triggered	Regras acionadas:
+empty.body	Abra um arquivo JSON Lines gerado pela ferramenta de linha de comando permwatch.
+empty.title	Nenhum evento
+ev.btm.agent	Novo LaunchAgent adicionado
+ev.btm.daemon	Novo LaunchDaemon adicionado
+ev.btm.login	%@ adicionou um item de início
+ev.btm.remove	Item de início removido
+ev.exec	%@ executado
+ev.exec.first	%@ executado pela primeira vez
+ev.gatekeeper	Gatekeeper contornado para %@
+ev.quarantine	Marca de quarentena removida
+ev.tcc.denied	%1$@ → %2$@ negado
+ev.tcc.granted	%1$@ → %2$@ concedido
+ev.tcc.limited	%1$@ → %2$@ limitado
+ev.tcc.revoked	%1$@ → %2$@ removido
+field.addedBy	Adicionado por
+field.arguments	Argumentos
+field.executes	Executa
+field.grantedVia	Concedido via
+field.identity	Identidade
+field.itemType	Tipo
+field.lastActivity	Última atividade
+field.parent	Processo pai
+field.path	Caminho
+field.process	Processo
+field.quarantine	Quarentena
+field.reason	Motivo
+field.service	Serviço
+field.signature	Assinatura
+field.source	Origem
+field.target	Alvo
+filter.alerts	Só alertas
+filter.all	Tudo
+filter.loginItems	Itens de início
+filter.permissions	Permissões
+filter.processes	Processos
+menu.loadDemo	Carregar dados de demonstração
+menu.loginItems	itens de início
+menu.openAlerts	alertas abertos
+menu.openFile	Abrir registro de eventos…
+menu.openTimeline	Abrir linha do tempo
+menu.permChanges	mudanças de permissão (24 h)
+menu.quit	Encerrar
+menu.recent	Eventos recentes
+menu.watching	monitorando registro
+nav.accessibility	Acessibilidade
+nav.alerts	Alertas
+nav.apps	Apps
+nav.fullDisk	Acesso Total ao Disco
+nav.loginItems	Itens de início
+nav.micCamera	Microfone e câmera
+nav.permissions	Permissões
+nav.persistence	Persistência
+nav.processes	Processos
+nav.screen	Gravação de tela
+nav.timeline	Linha do tempo
+open.message	Escolha um registro JSON Lines gravado pela ferramenta permwatch
+quarantine.removed	removida manualmente (xattr)
+reason.mdm	Política MDM
+reason.systemSet	Definido pelo sistema
+reason.userConsent	Consentimento do usuário
+reason.userSet	Pelos Ajustes do Sistema
+risk.caution	Atenção
+risk.high	Risco alto
+risk.normal	Normal
+rule.dyld	Iniciado com variáveis de injeção DYLD_*
+rule.gatekeeper	O usuário contornou o Gatekeeper para este arquivo
+rule.hiddenTarget	O arquivo de destino está em uma pasta oculta
+rule.lolbinFromUnsigned	Uma ferramenta do sistema foi iniciada por um app sem assinatura
+rule.nightHidden	Executado de madrugada a partir de uma pasta oculta
+rule.quarantine	A marca de quarentena foi removida, contornando o Gatekeeper
+rule.rapidGrants	O mesmo app obteve acessibilidade e gravação de tela em 2 minutos
+rule.tccAdhoc	Permissão concedida a um app com assinatura ad hoc
+rule.tccUnsigned	Permissão concedida a um app sem assinatura
+rule.unsignedDownload	Um app sem assinatura foi executado pela primeira vez a partir de Downloads
+rule.unsignedPersistence	Um processo sem assinatura adicionou um item de início
+search.prompt	Buscar: app, caminho, Team ID…
+sig.adhoc	assinatura ad hoc
+sig.apple	Apple
+sig.developer	desenvolvedor · %@
+sig.unsigned	sem assinatura
+sort.name	Por nome
+sort.recent	Última mudança
+sort.risk	Por risco
+status.badLines	%ld linhas não puderam ser lidas
+status.demo	Dados de demonstração
+status.file	Registro: %@
+status.lastEvent	Último evento: %@
+status.none	Sem dados
+sub.addedBy	por: %@
+sub.launchedBy	por %@
+sub.quarantineRemoved	quarentena removida
+svc.accessibility	Acessibilidade
+svc.automation	Automação
+svc.camera	Câmera
+svc.contacts	Contatos
+svc.desktop	Pasta Mesa
+svc.documents	Pasta Documentos
+svc.downloads	Pasta Downloads
+svc.fullDisk	Acesso Total ao Disco
+svc.inputMonitoring	Monitoramento de Entrada
+svc.microphone	Microfone
+svc.photos	Fotos
+svc.screen	Gravação de tela
+tag.trusted	Confiável

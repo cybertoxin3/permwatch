@@ -1,0 +1,128 @@
+action.missingFile	The file isn’t on this Mac
+action.openPermissions	Open permissions
+action.removeItem	Remove login item
+action.removed	Moved to Trash
+action.showInFinder	Show in Finder
+action.trust	Mark as trusted
+action.untrust	Remove trust
+alert.evasion	Gatekeeper bypass
+alert.execution	suspicious execution
+alert.permission	suspicious permission
+alert.persistence	suspicious persistence
+app.firstSeen	first seen %@
+app.noLoginItem	No login item
+apps.subtitle	Which app can access what
+btm.agent	agent (user)
+btm.daemon	daemon (system)
+btm.loginItem	Login item
+confirm.cancel	Cancel
+confirm.trash.body	It will stop loading at the next login. You can restore it from the Trash.
+confirm.trash.ok	Move to Trash
+confirm.trash.title	Move “%@” to the Trash?
+detail.chain	This app’s chain
+detail.empty	Select an event
+detail.triggered	Triggered rules:
+empty.body	Open a JSON Lines file produced by the permwatch CLI.
+empty.title	No events
+ev.btm.agent	New LaunchAgent added
+ev.btm.daemon	New LaunchDaemon added
+ev.btm.login	%@ added a login item
+ev.btm.remove	Startup item removed
+ev.exec	%@ executed
+ev.exec.first	%@ ran for the first time
+ev.gatekeeper	Gatekeeper bypassed for %@
+ev.quarantine	Quarantine flag removed
+ev.tcc.denied	%1$@ → %2$@ denied
+ev.tcc.granted	%1$@ → %2$@ granted
+ev.tcc.limited	%1$@ → %2$@ limited
+ev.tcc.revoked	%1$@ → %2$@ removed
+field.addedBy	Added by
+field.arguments	Arguments
+field.executes	Executes
+field.grantedVia	Granted via
+field.identity	Identity
+field.itemType	Item type
+field.lastActivity	Last activity
+field.parent	Parent process
+field.path	Path
+field.process	Process
+field.quarantine	Quarantine
+field.reason	Reason
+field.service	Service
+field.signature	Signature
+field.source	Source
+field.target	Target
+filter.alerts	Alerts only
+filter.all	All
+filter.loginItems	Login items
+filter.permissions	Permission changes
+filter.processes	Processes
+menu.loadDemo	Load Demo Data
+menu.loginItems	login items
+menu.openAlerts	open alerts
+menu.openFile	Open Event Log…
+menu.openTimeline	Open timeline
+menu.permChanges	permission changes (24 h)
+menu.quit	Quit
+menu.recent	Recent events
+menu.watching	watching log
+nav.accessibility	Accessibility
+nav.alerts	Alerts
+nav.apps	Apps
+nav.fullDisk	Full Disk Access
+nav.loginItems	Login Items
+nav.micCamera	Microphone & Camera
+nav.permissions	Permissions
+nav.persistence	Persistence
+nav.processes	Processes
+nav.screen	Screen Recording
+nav.timeline	Timeline
+open.message	Choose a JSON Lines log written by the permwatch CLI
+quarantine.removed	removed manually (xattr)
+reason.mdm	MDM policy
+reason.systemSet	Set by the system
+reason.userConsent	User consent
+reason.userSet	Via System Settings
+risk.caution	Caution
+risk.high	High risk
+risk.normal	Normal
+rule.dyld	Launched with DYLD_* injection variables
+rule.gatekeeper	The user bypassed Gatekeeper for this file
+rule.hiddenTarget	Target file is in a hidden folder
+rule.lolbinFromUnsigned	A system tool was launched by an unsigned app
+rule.nightHidden	Ran from a hidden folder in the middle of the night
+rule.quarantine	The quarantine flag was removed, bypassing Gatekeeper
+rule.rapidGrants	The same app got Accessibility and Screen Recording within 2 minutes
+rule.tccAdhoc	Permission granted to an ad-hoc signed app
+rule.tccUnsigned	Permission granted to an unsigned app
+rule.unsignedDownload	An unsigned app ran from Downloads for the first time
+rule.unsignedPersistence	An unsigned process added a startup item
+search.prompt	Search: app, path, Team ID…
+sig.adhoc	ad-hoc signed
+sig.apple	Apple
+sig.developer	developer · %@
+sig.unsigned	unsigned
+sort.name	By name
+sort.recent	Last changed
+sort.risk	By risk
+status.badLines	%ld lines could not be read
+status.demo	Demo data
+status.file	Log: %@
+status.lastEvent	Last event: %@
+status.none	No data
+sub.addedBy	added by: %@
+sub.launchedBy	by %@
+sub.quarantineRemoved	quarantine flag removed
+svc.accessibility	Accessibility
+svc.automation	Automation
+svc.camera	Camera
+svc.contacts	Contacts
+svc.desktop	Desktop folder
+svc.documents	Documents folder
+svc.downloads	Downloads folder
+svc.fullDisk	Full Disk Access
+svc.inputMonitoring	Input Monitoring
+svc.microphone	Microphone
+svc.photos	Photos
+svc.screen	Screen Recording
+tag.trusted	Trusted

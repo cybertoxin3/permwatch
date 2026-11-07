@@ -1,0 +1,233 @@
+import SwiftUI
+
+enum SidebarItem: Hashable {
+    case timeline, alerts, apps
+    case category(Category)
+    case loginItems, processes
+}
+
+enum TimelineFilter: CaseIterable {
+    case all, alerts, permissions, loginItems, processes
+    var title: String {
+        switch self {
+        case .all: return L("filter.all")
+        case .alerts: return L("filter.alerts")
+        case .permissions: return L("filter.permissions")
+        case .loginItems: return L("filter.loginItems")
+        case .processes: return L("filter.processes")
+        }
+    }
+}
+
+struct MainView: View {
+    @EnvironmentObject var store: Store
+    @State private var section: SidebarItem = .timeline
+    @State private var filter: TimelineFilter = .all
+    @State private var selection: Int?
+    @State private var search = ""
+
+    var body: some View {
+        NavigationSplitView {
+            Sidebar(section: $section)
+                .navigationSplitViewColumnWidth(min: 200, ideal: 230, max: 280)
+        } detail: {
+            if section == .apps {
+                AppsView()
+            } else {
+                HStack(spacing: 0) {
+                    TimelineList(items: visibleItems, filter: $filter, selection: $selection,
+                                 showChips: section == .timeline)
+                        .frame(minWidth: 460)
+                    Divider()
+                    Group {
+                        if let it = store.item(selection) {
+                            DetailView(item: it)
+                        } else {
+                            ContentUnavailableView(L("detail.empty"), systemImage: "sidebar.right")
+                        }
+                    }
+                    .frame(width: 400)
+                    .background(Color(nsColor: .underPageBackgroundColor).opacity(0.25))
+                }
+                .navigationTitle(sectionTitle)
+                .searchable(text: $search, placement: .toolbar, prompt: L("search.prompt"))
+            }
+        }
+        .onAppear {
+            selectFirstAlert()
+            if Snapshot.section == "apps" { section = .apps }
+            Snapshot.scheduleIfRequested(store: store, selection: selection)
+        }
+        .onChange(of: store.items.count) { selectFirstAlert() }
+    }
+
+    private func selectFirstAlert() {
+        if store.item(selection) == nil {
+            selection = store.items.filter { $0.risk == .high && $0.kind == .btmAdd }.first?.id
+                ?? store.items.last?.id
+        }
+    }
+
+    private var sectionTitle: String {
+        switch section {
+        case .timeline: return L("nav.timeline")
+        case .alerts: return L("nav.alerts")
+        case .apps: return L("nav.apps")
+        case .category(.micCamera): return L("nav.micCamera")
+        case .category(.screen): return L("nav.screen")
+        case .category(.accessibility): return L("nav.accessibility")
+        case .category(.fullDisk): return L("nav.fullDisk")
+        case .loginItems: return L("nav.loginItems")
+        case .processes: return L("nav.processes")
+        }
+    }
+
+    private var visibleItems: [Item] {
+        var its = store.items
+        switch section {
+        case .alerts: its = its.filter { $0.risk >= .caution }
+        case .category(let c): its = its.filter { $0.tccService.map(c.services.contains) ?? false }
+        case .loginItems: its = its.filter { $0.kind == .btmAdd || $0.kind == .btmRemove }
+        case .processes: its = its.filter { $0.kind == .exec }
+        default: break
+        }
+        if section == .timeline {
+            switch filter {
+            case .all: break
+            case .alerts: its = its.filter { $0.risk >= .caution }
+            case .permissions: its = its.filter { $0.kind == .tcc }
+            case .loginItems: its = its.filter { $0.kind == .btmAdd || $0.kind == .btmRemove }
+            case .processes: its = its.filter { $0.kind == .exec }
+            }
+        }
+        let q = search.trimmingCharacters(in: .whitespaces).lowercased()
+        if !q.isEmpty {
+            its = its.filter { it in
+                ([it.title, it.subtitle, it.appName] + it.fields.map(\.value)).contains { $0.lowercased().contains(q) }
+            }
+        }
+        return its.sorted { $0.date > $1.date }
+    }
+}
+
+// MARK: - Kenar çubuğu
+
+struct Sidebar: View {
+    @EnvironmentObject var store: Store
+    @Binding var section: SidebarItem
+
+    var body: some View {
+        List(selection: $section) {
+            Label(L("nav.timeline"), systemImage: "list.bullet").badge(store.items.count).tag(SidebarItem.timeline)
+            Label(L("nav.alerts"), systemImage: "exclamationmark.triangle").badge(store.openAlerts).tag(SidebarItem.alerts)
+            Label(L("nav.apps"), systemImage: "square.grid.2x2").tag(SidebarItem.apps)
+
+            Section(L("nav.permissions")) {
+                Label(L("nav.micCamera"), systemImage: "mic").tag(SidebarItem.category(.micCamera))
+                Label(L("nav.screen"), systemImage: "rectangle.dashed.badge.record").tag(SidebarItem.category(.screen))
+                Label(L("nav.accessibility"), systemImage: "accessibility").tag(SidebarItem.category(.accessibility))
+                Label(L("nav.fullDisk"), systemImage: "internaldrive").tag(SidebarItem.category(.fullDisk))
+            }
+            Section(L("nav.persistence")) {
+                Label(L("nav.loginItems"), systemImage: "power").badge(store.loginItemCount).tag(SidebarItem.loginItems)
+                Label(L("nav.processes"), systemImage: "terminal").tag(SidebarItem.processes)
+            }
+        }
+        .listStyle(.sidebar)
+        .safeAreaInset(edge: .bottom) { status.padding(12) }
+    }
+
+    private var status: some View {
+        VStack(alignment: .leading, spacing: 2) {
+            HStack(spacing: 5) {
+                Circle().fill(store.source == .demo ? Color.orange : Color.green).frame(width: 7, height: 7)
+                Text(sourceText).lineLimit(1).truncationMode(.middle)
+            }
+            if let d = store.lastEvent {
+                Text(L("status.lastEvent", Fmt.relative(d)))
+            }
+            if store.badLines > 0 {
+                Text(L("status.badLines", store.badLines)).foregroundStyle(.orange)
+            }
+        }
+        .font(.system(size: 11))
+        .foregroundStyle(.secondary)
+        .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    private var sourceText: String {
+        switch store.source {
+        case .none: return L("status.none")
+        case .demo: return L("status.demo")
+        case .file(let u): return L("status.file", u.lastPathComponent)
+        }
+    }
+}
+
+// MARK: - Zaman çizelgesi
+
+struct TimelineList: View {
+    let items: [Item]
+    @Binding var filter: TimelineFilter
+    @Binding var selection: Int?
+    let showChips: Bool
+
+    var body: some View {
+        VStack(spacing: 0) {
+            if showChips {
+                HStack(spacing: 6) {
+                    ForEach(TimelineFilter.allCases, id: \.self) { f in
+                        Chip(title: f.title, selected: filter == f) { filter = f }
+                    }
+                    Spacer()
+                }
+                .padding(.horizontal, 16)
+                .padding(.vertical, 10)
+                Divider()
+            }
+            if items.isEmpty {
+                ContentUnavailableView(L("empty.title"), systemImage: "tray", description: Text(L("empty.body")))
+            } else {
+                List(selection: $selection) {
+                    ForEach(days, id: \.0) { day, its in
+                        Section {
+                            ForEach(its) { EventRow(item: $0).tag($0.id) }
+                        } header: {
+                            Text(Fmt.day.string(from: day).uppercased(with: .current))
+                                .font(.system(size: 11, weight: .semibold))
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+                }
+                .listStyle(.inset)
+            }
+        }
+    }
+
+    private var days: [(Date, [Item])] {
+        let cal = Calendar.current
+        let groups = Dictionary(grouping: items) { cal.startOfDay(for: $0.date) }
+        return groups.keys.sorted(by: >).map { ($0, groups[$0]!.sorted { $0.date > $1.date }) }
+    }
+}
+
+struct EventRow: View {
+    let item: Item
+
+    var body: some View {
+        HStack(spacing: 12) {
+            Text(Fmt.time.string(from: item.date))
+                .font(.system(size: 12).monospacedDigit())
+                .foregroundStyle(.secondary)
+                .frame(width: 44, alignment: .leading)
+            AppIcon(name: item.appName, risk: item.risk)
+            VStack(alignment: .leading, spacing: 2) {
+                Text(item.title).font(.system(size: 13, weight: .semibold)).lineLimit(1)
+                Text(item.subtitle).font(.system(size: 12)).foregroundStyle(.secondary).lineLimit(1).truncationMode(.middle)
+            }
+            Spacer(minLength: 8)
+            RiskTag(item.risk, trusted: item.trusted)
+        }
+        .padding(.vertical, 5)
+    }
+}

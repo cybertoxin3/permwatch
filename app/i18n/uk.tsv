@@ -1,0 +1,128 @@
+action.missingFile	Цього файлу немає на Mac
+action.openPermissions	Відкрити дозволи
+action.removeItem	Видалити об’єкт входу
+action.removed	Переміщено в Смітник
+action.showInFinder	Показати у Finder
+action.trust	Довіряти
+action.untrust	Скасувати довіру
+alert.evasion	обхід Gatekeeper
+alert.execution	підозрілий запуск
+alert.permission	підозрілий дозвіл
+alert.persistence	підозрілий автозапуск
+app.firstSeen	вперше помічено %@
+app.noLoginItem	Немає автозапуску
+apps.subtitle	Яка програма до чого має доступ
+btm.agent	agent (користувач)
+btm.daemon	daemon (система)
+btm.loginItem	Об’єкт входу
+confirm.cancel	Скасувати
+confirm.trash.body	Він більше не завантажуватиметься під час наступного входу. Його можна відновити зі Смітника.
+confirm.trash.ok	Перемістити в Смітник
+confirm.trash.title	Перемістити «%@» у Смітник?
+detail.chain	Ланцюжок цієї програми
+detail.empty	Виберіть подію
+detail.triggered	Спрацьовані правила:
+empty.body	Відкрийте файл JSON Lines, створений утилітою permwatch.
+empty.title	Немає подій
+ev.btm.agent	Додано новий LaunchAgent
+ev.btm.daemon	Додано новий LaunchDaemon
+ev.btm.login	%@ додав об’єкт входу
+ev.btm.remove	Об’єкт автозапуску видалено
+ev.exec	%@ запущено
+ev.exec.first	%@ запущено вперше
+ev.gatekeeper	Gatekeeper обійдено для %@
+ev.quarantine	Видалено прапорець карантину
+ev.tcc.denied	%1$@ → %2$@: відмовлено
+ev.tcc.granted	%1$@ → %2$@: дозволено
+ev.tcc.limited	%1$@ → %2$@: обмежено
+ev.tcc.revoked	%1$@ → %2$@: відкликано
+field.addedBy	Додав
+field.arguments	Аргументи
+field.executes	Запускає
+field.grantedVia	Джерело
+field.identity	Ідентифікатор
+field.itemType	Тип об’єкта
+field.lastActivity	Активність
+field.parent	Батьківський процес
+field.path	Шлях
+field.process	Процес
+field.quarantine	Карантин
+field.reason	Причина
+field.service	Служба
+field.signature	Підпис
+field.source	Джерело
+field.target	Ціль
+filter.alerts	Лише сповіщення
+filter.all	Усі
+filter.loginItems	Об’єкти входу
+filter.permissions	Дозволи
+filter.processes	Процеси
+menu.loadDemo	Завантажити демо-дані
+menu.loginItems	об’єктів входу
+menu.openAlerts	відкритих сповіщень
+menu.openFile	Відкрити журнал подій…
+menu.openTimeline	Відкрити хронологію
+menu.permChanges	змін дозволів (24 год)
+menu.quit	Вийти
+menu.recent	Останні події
+menu.watching	журнал відстежується
+nav.accessibility	Доступність
+nav.alerts	Сповіщення
+nav.apps	Програми
+nav.fullDisk	Повний доступ до диска
+nav.loginItems	Об’єкти входу
+nav.micCamera	Мікрофон і камера
+nav.permissions	Дозволи
+nav.persistence	Автозапуск
+nav.processes	Процеси
+nav.screen	Запис екрана
+nav.timeline	Хронологія
+open.message	Виберіть журнал JSON Lines, записаний утилітою permwatch
+quarantine.removed	видалено вручну (xattr)
+reason.mdm	Політика MDM
+reason.systemSet	Встановлено системою
+reason.userConsent	Згода користувача
+reason.userSet	Через Системні параметри
+risk.caution	Увага
+risk.high	Високий ризик
+risk.normal	Норма
+rule.dyld	Запущено зі змінними інʼєкції DYLD_*
+rule.gatekeeper	Користувач обійшов Gatekeeper для цього файлу
+rule.hiddenTarget	Цільовий файл у прихованій теці
+rule.lolbinFromUnsigned	Системну утиліту запустила непідписана програма
+rule.nightHidden	Нічний запуск із прихованої теки
+rule.quarantine	Прапорець карантину видалено, Gatekeeper обійдено
+rule.rapidGrants	Одна програма за 2 хвилини отримала доступність і запис екрана
+rule.tccAdhoc	Дозвіл надано програмі з ad-hoc підписом
+rule.tccUnsigned	Дозвіл надано непідписаній програмі
+rule.unsignedDownload	Непідписану програму вперше запущено із «Завантажень»
+rule.unsignedPersistence	Непідписаний процес додав об’єкт автозапуску
+search.prompt	Пошук: програма, шлях, Team ID…
+sig.adhoc	ad-hoc підпис
+sig.apple	Apple
+sig.developer	розробник · %@
+sig.unsigned	без підпису
+sort.name	За назвою
+sort.recent	За зміною
+sort.risk	За ризиком
+status.badLines	Не вдалося прочитати рядків: %ld
+status.demo	Демо-дані
+status.file	Журнал: %@
+status.lastEvent	Остання подія: %@
+status.none	Немає даних
+sub.addedBy	додав: %@
+sub.launchedBy	запустив: %@
+sub.quarantineRemoved	прапорець карантину видалено
+svc.accessibility	Доступність
+svc.automation	Автоматизація
+svc.camera	Камера
+svc.contacts	Контакти
+svc.desktop	Тека «Робочий стіл»
+svc.documents	Тека «Документи»
+svc.downloads	Тека «Завантаження»
+svc.fullDisk	Повний доступ до диска
+svc.inputMonitoring	Моніторинг вводу
+svc.microphone	Мікрофон
+svc.photos	Фотографії
+svc.screen	Запис екрана
+tag.trusted	Довірена

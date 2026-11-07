@@ -1,0 +1,128 @@
+action.missingFile	Dosya bu Mac'te yok
+action.openPermissions	İzinleri aç
+action.removeItem	Giriş öğesini kaldır
+action.removed	Çöp Sepeti'ne taşındı
+action.showInFinder	Finder'da göster
+action.trust	Güvenilir say
+action.untrust	Güveni kaldır
+alert.evasion	Gatekeeper atlatma
+alert.execution	şüpheli çalıştırma
+alert.permission	şüpheli izin
+alert.persistence	şüpheli kalıcılık
+app.firstSeen	ilk görülme: %@
+app.noLoginItem	Giriş öğesi yok
+apps.subtitle	Hangi uygulama neye erişebiliyor
+btm.agent	agent (kullanıcı)
+btm.daemon	daemon (sistem)
+btm.loginItem	Giriş öğesi
+confirm.cancel	Vazgeç
+confirm.trash.body	Bir sonraki girişte artık yüklenmez. Çöp Sepeti'nden geri alabilirsin.
+confirm.trash.ok	Çöp Sepeti'ne taşı
+confirm.trash.title	“%@” Çöp Sepeti'ne taşınsın mı?
+detail.chain	Bu uygulamanın zinciri
+detail.empty	Bir olay seç
+detail.triggered	Tetiklenen kurallar:
+empty.body	permwatch komut satırı aracının ürettiği bir JSON Lines dosyası aç.
+empty.title	Olay yok
+ev.btm.agent	Yeni LaunchAgent eklendi
+ev.btm.daemon	Yeni LaunchDaemon eklendi
+ev.btm.login	%@ giriş öğesi ekledi
+ev.btm.remove	Başlangıç öğesi kaldırıldı
+ev.exec	%@ çalıştırıldı
+ev.exec.first	%@ ilk kez çalıştı
+ev.gatekeeper	%@ için Gatekeeper atlatıldı
+ev.quarantine	Karantina bayrağı silindi
+ev.tcc.denied	%1$@ → %2$@ reddedildi
+ev.tcc.granted	%1$@ → %2$@ izni verildi
+ev.tcc.limited	%1$@ → %2$@ sınırlı izin
+ev.tcc.revoked	%1$@ → %2$@ izni kaldırıldı
+field.addedBy	Ekleyen süreç
+field.arguments	Argümanlar
+field.executes	Çalıştırılacak
+field.grantedVia	İzin kaynağı
+field.identity	Kimlik
+field.itemType	Öğe türü
+field.lastActivity	Son etkinlik
+field.parent	Üst süreç
+field.path	Yol
+field.process	Süreç
+field.quarantine	Karantina
+field.reason	Sebep
+field.service	Servis
+field.signature	İmza
+field.source	Kaynak
+field.target	Hedef
+filter.alerts	Yalnızca uyarılar
+filter.all	Tümü
+filter.loginItems	Giriş öğeleri
+filter.permissions	İzin değişiklikleri
+filter.processes	Süreçler
+menu.loadDemo	Demo Verisini Yükle
+menu.loginItems	giriş öğesi
+menu.openAlerts	açık uyarı
+menu.openFile	Olay Kaydını Aç…
+menu.openTimeline	Zaman çizelgesini aç
+menu.permChanges	izin değişikliği (24 sa)
+menu.quit	Çık
+menu.recent	Son olaylar
+menu.watching	kayıt izleniyor
+nav.accessibility	Erişilebilirlik
+nav.alerts	Uyarılar
+nav.apps	Uygulamalar
+nav.fullDisk	Tam Disk Erişimi
+nav.loginItems	Giriş Öğeleri
+nav.micCamera	Mikrofon ve Kamera
+nav.permissions	İzinler
+nav.persistence	Kalıcılık
+nav.processes	Süreçler
+nav.screen	Ekran Kaydı
+nav.timeline	Zaman Çizelgesi
+open.message	permwatch komut satırı aracının yazdığı bir JSON Lines kaydı seç
+quarantine.removed	elle silinmiş (xattr)
+reason.mdm	MDM politikası
+reason.systemSet	Sistem tarafından
+reason.userConsent	Kullanıcı onayı
+reason.userSet	Sistem Ayarları üzerinden
+risk.caution	Dikkat
+risk.high	Yüksek risk
+risk.normal	Normal
+rule.dyld	DYLD_* enjeksiyon değişkenleriyle başlatıldı
+rule.gatekeeper	Kullanıcı bu dosya için Gatekeeper'ı atlattı
+rule.hiddenTarget	Hedef dosya gizli bir klasörde
+rule.lolbinFromUnsigned	Bir sistem aracı imzasız bir uygulama tarafından çalıştırıldı
+rule.nightHidden	Gece yarısı gizli bir klasörden çalıştı
+rule.quarantine	Karantina bayrağı silindi, Gatekeeper atlatıldı
+rule.rapidGrants	Aynı uygulama 2 dakika içinde Erişilebilirlik ve Ekran Kaydı izni aldı
+rule.tccAdhoc	Ad-hoc imzalı bir uygulamaya izin verildi
+rule.tccUnsigned	İmzasız bir uygulamaya izin verildi
+rule.unsignedDownload	İmzasız bir uygulama İndirilenler'den ilk kez çalıştı
+rule.unsignedPersistence	İmzasız bir süreç başlangıç öğesi ekledi
+search.prompt	Ara: uygulama, yol, Team ID…
+sig.adhoc	ad-hoc imzalı
+sig.apple	Apple
+sig.developer	geliştirici · %@
+sig.unsigned	imzasız
+sort.name	Ada göre
+sort.recent	Son değişiklik
+sort.risk	Riske göre
+status.badLines	%ld satır okunamadı
+status.demo	Demo verisi
+status.file	Kayıt: %@
+status.lastEvent	Son olay: %@
+status.none	Veri yok
+sub.addedBy	ekleyen: %@
+sub.launchedBy	başlatan: %@
+sub.quarantineRemoved	karantina bayrağı silinmiş
+svc.accessibility	Erişilebilirlik
+svc.automation	Otomasyon
+svc.camera	Kamera
+svc.contacts	Kişiler
+svc.desktop	Masaüstü klasörü
+svc.documents	Belgeler klasörü
+svc.downloads	İndirilenler klasörü
+svc.fullDisk	Tam Disk Erişimi
+svc.inputMonitoring	Girdi İzleme
+svc.microphone	Mikrofon
+svc.photos	Fotoğraflar
+svc.screen	Ekran Kaydı
+tag.trusted	Güvenilir

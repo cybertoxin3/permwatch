@@ -34,6 +34,22 @@ karşılaştırabilirsin:
 sudo eslogger btm_launch_item_add tcc_modify | jq .
 ```
 
+## macOS uygulaması
+
+`app/` klasöründe SwiftUI arayüzü var. Xcode gerekmez, Command Line Tools yeterli:
+
+```sh
+make app                          # app/build/permwatch.app
+open app/build/permwatch.app
+```
+
+- Uygulama demo verisiyle açılır. **Dosya → Olay Kaydını Aç…** ile CLI'ın ürettiği bir
+  `events.jsonl` açılabilir; dosya büyüdükçe uygulama da güncellenir ve yüksek riskli
+  olaylarda bildirim gönderir.
+- Arayüz sistem diline göre açılır (13 dil). Çeviriler `app/i18n/<dil>.tsv` dosyalarında;
+  derleme sırasında her dilde bütün anahtarların ve yer tutucuların olduğu kontrol edilir.
+- Kural motoru `app/Sources/Analyzer.swift` içinde.
+
 ## Derleme ve test
 
 ```sh

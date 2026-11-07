@@ -1,0 +1,128 @@
+action.missingFile	Le fichier n’est pas sur ce Mac
+action.openPermissions	Ouvrir les autorisations
+action.removeItem	Supprimer l’élément
+action.removed	Placé dans la corbeille
+action.showInFinder	Afficher dans le Finder
+action.trust	Marquer comme fiable
+action.untrust	Retirer la confiance
+alert.evasion	contournement de Gatekeeper
+alert.execution	exécution suspecte
+alert.permission	autorisation suspecte
+alert.persistence	persistance suspecte
+app.firstSeen	vue pour la première fois %@
+app.noLoginItem	Pas d’élément d’ouverture
+apps.subtitle	Quelle app accède à quoi
+btm.agent	agent (utilisateur)
+btm.daemon	daemon (système)
+btm.loginItem	Élément d’ouverture
+confirm.cancel	Annuler
+confirm.trash.body	Il ne sera plus chargé à la prochaine connexion. Vous pourrez le récupérer dans la corbeille.
+confirm.trash.ok	Placer dans la corbeille
+confirm.trash.title	Placer « %@ » dans la corbeille ?
+detail.chain	Chaîne de cette app
+detail.empty	Sélectionnez un événement
+detail.triggered	Règles déclenchées :
+empty.body	Ouvrez un fichier JSON Lines produit par l’outil en ligne de commande permwatch.
+empty.title	Aucun événement
+ev.btm.agent	Nouveau LaunchAgent ajouté
+ev.btm.daemon	Nouveau LaunchDaemon ajouté
+ev.btm.login	%@ a ajouté un élément d’ouverture
+ev.btm.remove	Élément de démarrage supprimé
+ev.exec	%@ exécuté
+ev.exec.first	%@ lancé pour la première fois
+ev.gatekeeper	Gatekeeper contourné pour %@
+ev.quarantine	Marqueur de quarantaine supprimé
+ev.tcc.denied	%1$@ → %2$@ refusé
+ev.tcc.granted	%1$@ → %2$@ accordé
+ev.tcc.limited	%1$@ → %2$@ limité
+ev.tcc.revoked	%1$@ → %2$@ retiré
+field.addedBy	Ajouté par
+field.arguments	Arguments
+field.executes	Exécute
+field.grantedVia	Accordé via
+field.identity	Identité
+field.itemType	Type
+field.lastActivity	Dernière activité
+field.parent	Processus parent
+field.path	Chemin
+field.process	Processus
+field.quarantine	Quarantaine
+field.reason	Raison
+field.service	Service
+field.signature	Signature
+field.source	Source
+field.target	Cible
+filter.alerts	Alertes seulement
+filter.all	Tout
+filter.loginItems	Ouverture
+filter.permissions	Autorisations
+filter.processes	Processus
+menu.loadDemo	Charger les données de démo
+menu.loginItems	éléments d’ouverture
+menu.openAlerts	alertes ouvertes
+menu.openFile	Ouvrir un journal d’événements…
+menu.openTimeline	Ouvrir la chronologie
+menu.permChanges	changements d’autorisation (24 h)
+menu.quit	Quitter
+menu.recent	Événements récents
+menu.watching	journal surveillé
+nav.accessibility	Accessibilité
+nav.alerts	Alertes
+nav.apps	Apps
+nav.fullDisk	Accès complet au disque
+nav.loginItems	Éléments d’ouverture
+nav.micCamera	Micro et caméra
+nav.permissions	Autorisations
+nav.persistence	Persistance
+nav.processes	Processus
+nav.screen	Enregistrement de l’écran
+nav.timeline	Chronologie
+open.message	Choisissez un journal JSON Lines écrit par l’outil permwatch
+quarantine.removed	supprimée à la main (xattr)
+reason.mdm	Règle MDM
+reason.systemSet	Défini par le système
+reason.userConsent	Consentement
+reason.userSet	Via Réglages Système
+risk.caution	Attention
+risk.high	Risque élevé
+risk.normal	Normal
+rule.dyld	Lancé avec des variables d’injection DYLD_*
+rule.gatekeeper	L’utilisateur a contourné Gatekeeper pour ce fichier
+rule.hiddenTarget	Le fichier cible est dans un dossier caché
+rule.lolbinFromUnsigned	Un outil système a été lancé par une app non signée
+rule.nightHidden	Lancé en pleine nuit depuis un dossier caché
+rule.quarantine	Le marqueur de quarantaine a été supprimé, Gatekeeper est contourné
+rule.rapidGrants	La même app a obtenu accessibilité et enregistrement de l’écran en 2 minutes
+rule.tccAdhoc	Autorisation accordée à une app signée ad hoc
+rule.tccUnsigned	Autorisation accordée à une app non signée
+rule.unsignedDownload	Une app non signée s’est lancée pour la première fois depuis Téléchargements
+rule.unsignedPersistence	Un processus non signé a ajouté un élément de démarrage
+search.prompt	Rechercher : app, chemin, Team ID…
+sig.adhoc	signée ad hoc
+sig.apple	Apple
+sig.developer	développeur · %@
+sig.unsigned	non signée
+sort.name	Par nom
+sort.recent	Dernière modif.
+sort.risk	Par risque
+status.badLines	%ld lignes illisibles
+status.demo	Données de démo
+status.file	Journal : %@
+status.lastEvent	Dernier événement : %@
+status.none	Aucune donnée
+sub.addedBy	ajouté par : %@
+sub.launchedBy	par %@
+sub.quarantineRemoved	quarantaine supprimée
+svc.accessibility	Accessibilité
+svc.automation	Automatisation
+svc.camera	Caméra
+svc.contacts	Contacts
+svc.desktop	Dossier Bureau
+svc.documents	Dossier Documents
+svc.downloads	Dossier Téléchargements
+svc.fullDisk	Accès complet au disque
+svc.inputMonitoring	Surveillance de l’entrée
+svc.microphone	Micro
+svc.photos	Photos
+svc.screen	Enregistrement de l’écran
+tag.trusted	Fiable

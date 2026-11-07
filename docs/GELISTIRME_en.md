@@ -33,6 +33,21 @@ rule and UI layers on the roadmap. To validate, compare the output with `eslogge
 sudo eslogger btm_launch_item_add tcc_modify | jq .
 ```
 
+## macOS app
+
+The SwiftUI interface lives in `app/`. No Xcode needed, Command Line Tools are enough:
+
+```sh
+make app                          # app/build/permwatch.app
+open app/build/permwatch.app
+```
+
+- The app opens with demo data. **File → Open Event Log…** opens an `events.jsonl` written by
+  the CLI; the app follows the file as it grows and sends a notification for high-risk events.
+- The interface follows the system language (13 languages). Translations live in
+  `app/i18n/<lang>.tsv`; the build checks that every language has every key and placeholder.
+- The rule engine is in `app/Sources/Analyzer.swift`.
+
 ## Build and test
 
 ```sh

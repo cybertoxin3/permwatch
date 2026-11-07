@@ -19,7 +19,11 @@ test: tests/test_json
 run: $(BIN)
 	sudo ./$(BIN)
 
+app:
+	./app/build.sh
+
 clean:
 	rm -f $(BIN) tests/test_json
+	rm -rf app/build
 
-.PHONY: all test run clean
+.PHONY: all test run clean app
