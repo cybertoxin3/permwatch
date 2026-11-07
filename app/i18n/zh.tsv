@@ -36,6 +36,10 @@ ev.tcc.denied	%1$@ → 已拒绝%2$@
 ev.tcc.granted	%1$@ → 已授予%2$@
 ev.tcc.limited	%1$@ → 已有限授予%2$@
 ev.tcc.revoked	%1$@ → 已移除%2$@
+fda.body	permwatch 读取 macOS 隐私数据库（TCC），显示每个应用拥有哪些权限，并检查你的启动项。任何数据都不会离开你的 Mac。请在系统设置的“完全磁盘访问权限”中打开 permwatch。
+fda.hint	如果 permwatch 已在列表中，请关闭后再重新打开：macOS 会将权限绑定到当前这个版本。
+fda.open	打开隐私设置
+fda.title	需要完全磁盘访问权限
 field.addedBy	添加者
 field.arguments	参数
 field.executes	执行
@@ -65,6 +69,7 @@ menu.openTimeline	打开时间线
 menu.permChanges	权限变更（24 小时）
 menu.quit	退出
 menu.recent	最近事件
+menu.scan	扫描这台 Mac
 menu.watching	正在监视日志
 nav.accessibility	辅助功能
 nav.alerts	警报
@@ -79,7 +84,9 @@ nav.screen	屏幕录制
 nav.timeline	时间线
 open.message	选择由 permwatch 命令行工具写入的 JSON Lines 日志
 quarantine.removed	已手动移除 (xattr)
+reason.entitled	授权（Entitlement）
 reason.mdm	MDM 策略
+reason.servicePolicy	服务策略
 reason.systemSet	由系统设置
 reason.userConsent	用户同意
 reason.userSet	通过系统设置
@@ -93,36 +100,57 @@ rule.lolbinFromUnsigned	系统工具由未签名的应用启动
 rule.nightHidden	深夜从隐藏文件夹运行
 rule.quarantine	隔离标记被移除，绕过了 Gatekeeper
 rule.rapidGrants	同一应用在 2 分钟内获得了辅助功能和屏幕录制权限
+rule.startupWeakSignature	启动项运行了脚本或临时签名的程序
 rule.tccAdhoc	权限被授予临时签名的应用
 rule.tccUnsigned	权限被授予未签名的应用
 rule.unsignedDownload	未签名的应用首次从“下载”文件夹运行
 rule.unsignedPersistence	未签名的进程添加了启动项
+rule.unsignedStartupBinary	启动项运行了未签名的程序
 search.prompt	搜索：应用、路径、Team ID…
 sig.adhoc	临时签名
 sig.apple	Apple
 sig.developer	开发者 · %@
+sig.script	脚本
+sig.unreadable	无法验证（无读取权限）
 sig.unsigned	未签名
 sort.name	按名称
 sort.recent	最近更改
 sort.risk	按风险
 status.badLines	%ld 行无法读取
+status.checked	已检查：%@
 status.demo	演示数据
 status.file	日志：%@
 status.lastEvent	最近事件：%@
-status.none	无数据
+status.scanning	正在扫描…
+status.system	这台 Mac
 sub.addedBy	添加者：%@
 sub.launchedBy	启动者：%@
 sub.quarantineRemoved	隔离标记已移除
+sub.runs	运行：%@
 svc.accessibility	辅助功能
+svc.appData	其他应用的数据
+svc.appManagement	App 管理
 svc.automation	自动化
+svc.bluetooth	蓝牙
+svc.calendar	日历
 svc.camera	摄像头
 svc.contacts	通讯录
 svc.desktop	“桌面”文件夹
+svc.developerTools	开发者工具
 svc.documents	“文稿”文件夹
 svc.downloads	“下载”文件夹
+svc.fileProvider	文件提供程序
+svc.focus	专注模式
 svc.fullDisk	完全磁盘访问权限
+svc.icloud	iCloud
 svc.inputMonitoring	输入监控
+svc.mediaLibrary	媒体与 Apple Music
 svc.microphone	麦克风
+svc.networkVolumes	网络宗卷
+svc.passkeys	通行密钥
 svc.photos	照片
+svc.reminders	提醒事项
+svc.removableVolumes	可移除宗卷
 svc.screen	屏幕录制
+svc.speech	语音识别
 tag.trusted	可信

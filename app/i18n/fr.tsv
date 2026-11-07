@@ -36,6 +36,10 @@ ev.tcc.denied	%1$@ → %2$@ refusé
 ev.tcc.granted	%1$@ → %2$@ accordé
 ev.tcc.limited	%1$@ → %2$@ limité
 ev.tcc.revoked	%1$@ → %2$@ retiré
+fda.body	permwatch lit la base de confidentialité de macOS (TCC) pour montrer quelle app a quelle autorisation, et vérifie vos éléments de démarrage. Aucune donnée ne quitte votre Mac. Activez permwatch dans « Accès complet au disque » des Réglages Système.
+fda.hint	Si permwatch est déjà dans la liste, désactivez-le puis réactivez-le : macOS lie l’autorisation à cette version précise.
+fda.open	Ouvrir les réglages de confidentialité
+fda.title	Accès complet au disque requis
 field.addedBy	Ajouté par
 field.arguments	Arguments
 field.executes	Exécute
@@ -65,6 +69,7 @@ menu.openTimeline	Ouvrir la chronologie
 menu.permChanges	changements d’autorisation (24 h)
 menu.quit	Quitter
 menu.recent	Événements récents
+menu.scan	Analyser ce Mac
 menu.watching	journal surveillé
 nav.accessibility	Accessibilité
 nav.alerts	Alertes
@@ -79,7 +84,9 @@ nav.screen	Enregistrement de l’écran
 nav.timeline	Chronologie
 open.message	Choisissez un journal JSON Lines écrit par l’outil permwatch
 quarantine.removed	supprimée à la main (xattr)
+reason.entitled	Entitlement
 reason.mdm	Règle MDM
+reason.servicePolicy	Règle du service
 reason.systemSet	Défini par le système
 reason.userConsent	Consentement
 reason.userSet	Via Réglages Système
@@ -93,36 +100,57 @@ rule.lolbinFromUnsigned	Un outil système a été lancé par une app non signée
 rule.nightHidden	Lancé en pleine nuit depuis un dossier caché
 rule.quarantine	Le marqueur de quarantaine a été supprimé, Gatekeeper est contourné
 rule.rapidGrants	La même app a obtenu accessibilité et enregistrement de l’écran en 2 minutes
+rule.startupWeakSignature	L’élément de démarrage lance un script ou un programme signé ad hoc
 rule.tccAdhoc	Autorisation accordée à une app signée ad hoc
 rule.tccUnsigned	Autorisation accordée à une app non signée
 rule.unsignedDownload	Une app non signée s’est lancée pour la première fois depuis Téléchargements
 rule.unsignedPersistence	Un processus non signé a ajouté un élément de démarrage
+rule.unsignedStartupBinary	L’élément de démarrage lance un programme non signé
 search.prompt	Rechercher : app, chemin, Team ID…
 sig.adhoc	signée ad hoc
 sig.apple	Apple
 sig.developer	développeur · %@
+sig.script	script
+sig.unreadable	vérification impossible (pas d’accès en lecture)
 sig.unsigned	non signée
 sort.name	Par nom
 sort.recent	Dernière modif.
 sort.risk	Par risque
 status.badLines	%ld lignes illisibles
+status.checked	Vérifié %@
 status.demo	Données de démo
 status.file	Journal : %@
 status.lastEvent	Dernier événement : %@
-status.none	Aucune donnée
+status.scanning	Analyse…
+status.system	Ce Mac
 sub.addedBy	ajouté par : %@
 sub.launchedBy	par %@
 sub.quarantineRemoved	quarantaine supprimée
+sub.runs	lance : %@
 svc.accessibility	Accessibilité
+svc.appData	Données d’autres apps
+svc.appManagement	Gestion des apps
 svc.automation	Automatisation
+svc.bluetooth	Bluetooth
+svc.calendar	Calendriers
 svc.camera	Caméra
 svc.contacts	Contacts
 svc.desktop	Dossier Bureau
+svc.developerTools	Outils de développement
 svc.documents	Dossier Documents
 svc.downloads	Dossier Téléchargements
+svc.fileProvider	Fournisseur de fichiers
+svc.focus	Concentration
 svc.fullDisk	Accès complet au disque
+svc.icloud	iCloud
 svc.inputMonitoring	Surveillance de l’entrée
+svc.mediaLibrary	Médias et Apple Music
 svc.microphone	Micro
+svc.networkVolumes	Volumes réseau
+svc.passkeys	Clés d’identification
 svc.photos	Photos
+svc.reminders	Rappels
+svc.removableVolumes	Volumes amovibles
 svc.screen	Enregistrement de l’écran
+svc.speech	Reconnaissance vocale
 tag.trusted	Fiable

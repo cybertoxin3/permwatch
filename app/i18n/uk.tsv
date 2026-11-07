@@ -36,6 +36,10 @@ ev.tcc.denied	%1$@ → %2$@: відмовлено
 ev.tcc.granted	%1$@ → %2$@: дозволено
 ev.tcc.limited	%1$@ → %2$@: обмежено
 ev.tcc.revoked	%1$@ → %2$@: відкликано
+fda.body	permwatch читає базу конфіденційності macOS (TCC), щоб показати, яка програма має які дозволи, і перевіряє об’єкти автозапуску. Дані не залишають ваш Mac. Увімкніть permwatch у розділі «Повний доступ до диска» в Системних параметрах.
+fda.hint	Якщо permwatch уже є в списку, вимкніть і знову ввімкніть його: macOS прив’язує дозвіл до цієї збірки.
+fda.open	Відкрити параметри конфіденційності
+fda.title	Потрібен повний доступ до диска
 field.addedBy	Додав
 field.arguments	Аргументи
 field.executes	Запускає
@@ -65,6 +69,7 @@ menu.openTimeline	Відкрити хронологію
 menu.permChanges	змін дозволів (24 год)
 menu.quit	Вийти
 menu.recent	Останні події
+menu.scan	Перевірити цей Mac
 menu.watching	журнал відстежується
 nav.accessibility	Доступність
 nav.alerts	Сповіщення
@@ -79,7 +84,9 @@ nav.screen	Запис екрана
 nav.timeline	Хронологія
 open.message	Виберіть журнал JSON Lines, записаний утилітою permwatch
 quarantine.removed	видалено вручну (xattr)
+reason.entitled	Entitlement
 reason.mdm	Політика MDM
+reason.servicePolicy	Політика служби
 reason.systemSet	Встановлено системою
 reason.userConsent	Згода користувача
 reason.userSet	Через Системні параметри
@@ -93,36 +100,57 @@ rule.lolbinFromUnsigned	Системну утиліту запустила не�
 rule.nightHidden	Нічний запуск із прихованої теки
 rule.quarantine	Прапорець карантину видалено, Gatekeeper обійдено
 rule.rapidGrants	Одна програма за 2 хвилини отримала доступність і запис екрана
+rule.startupWeakSignature	Об’єкт автозапуску запускає скрипт або програму з ad-hoc підписом
 rule.tccAdhoc	Дозвіл надано програмі з ad-hoc підписом
 rule.tccUnsigned	Дозвіл надано непідписаній програмі
 rule.unsignedDownload	Непідписану програму вперше запущено із «Завантажень»
 rule.unsignedPersistence	Непідписаний процес додав об’єкт автозапуску
+rule.unsignedStartupBinary	Об’єкт автозапуску запускає непідписану програму
 search.prompt	Пошук: програма, шлях, Team ID…
 sig.adhoc	ad-hoc підпис
 sig.apple	Apple
 sig.developer	розробник · %@
+sig.script	скрипт
+sig.unreadable	не вдалося перевірити (немає доступу на читання)
 sig.unsigned	без підпису
 sort.name	За назвою
 sort.recent	За зміною
 sort.risk	За ризиком
 status.badLines	Не вдалося прочитати рядків: %ld
+status.checked	Перевірено %@
 status.demo	Демо-дані
 status.file	Журнал: %@
 status.lastEvent	Остання подія: %@
-status.none	Немає даних
+status.scanning	Сканування…
+status.system	Цей Mac
 sub.addedBy	додав: %@
 sub.launchedBy	запустив: %@
 sub.quarantineRemoved	прапорець карантину видалено
+sub.runs	запускає: %@
 svc.accessibility	Доступність
+svc.appData	Дані інших програм
+svc.appManagement	Керування програмами
 svc.automation	Автоматизація
+svc.bluetooth	Bluetooth
+svc.calendar	Календарі
 svc.camera	Камера
 svc.contacts	Контакти
 svc.desktop	Тека «Робочий стіл»
+svc.developerTools	Інструменти розробника
 svc.documents	Тека «Документи»
 svc.downloads	Тека «Завантаження»
+svc.fileProvider	Постачальник файлів
+svc.focus	Зосередження
 svc.fullDisk	Повний доступ до диска
+svc.icloud	iCloud
 svc.inputMonitoring	Моніторинг вводу
+svc.mediaLibrary	Медіа та Apple Music
 svc.microphone	Мікрофон
+svc.networkVolumes	Мережеві томи
+svc.passkeys	Ключі входу
 svc.photos	Фотографії
+svc.reminders	Нагадування
+svc.removableVolumes	Знімні томи
 svc.screen	Запис екрана
+svc.speech	Розпізнавання мовлення
 tag.trusted	Довірена

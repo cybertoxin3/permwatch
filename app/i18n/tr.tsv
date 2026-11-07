@@ -36,6 +36,10 @@ ev.tcc.denied	%1$@ → %2$@ reddedildi
 ev.tcc.granted	%1$@ → %2$@ izni verildi
 ev.tcc.limited	%1$@ → %2$@ sınırlı izin
 ev.tcc.revoked	%1$@ → %2$@ izni kaldırıldı
+fda.body	permwatch, hangi uygulamanın hangi izne sahip olduğunu göstermek için macOS gizlilik veritabanını (TCC) okur ve başlangıç öğelerini kontrol eder. Hiçbir veri Mac'inden çıkmaz. Sistem Ayarları'nda Tam Disk Erişimi altında permwatch'ı aç.
+fda.hint	permwatch listede zaten varsa kapatıp yeniden aç: macOS izni uygulamanın bu derlemesine bağlar.
+fda.open	Gizlilik Ayarlarını Aç
+fda.title	Tam Disk Erişimi gerekli
 field.addedBy	Ekleyen süreç
 field.arguments	Argümanlar
 field.executes	Çalıştırılacak
@@ -65,6 +69,7 @@ menu.openTimeline	Zaman çizelgesini aç
 menu.permChanges	izin değişikliği (24 sa)
 menu.quit	Çık
 menu.recent	Son olaylar
+menu.scan	Bu Mac'i Tara
 menu.watching	kayıt izleniyor
 nav.accessibility	Erişilebilirlik
 nav.alerts	Uyarılar
@@ -79,7 +84,9 @@ nav.screen	Ekran Kaydı
 nav.timeline	Zaman Çizelgesi
 open.message	permwatch komut satırı aracının yazdığı bir JSON Lines kaydı seç
 quarantine.removed	elle silinmiş (xattr)
+reason.entitled	Yetki (entitlement)
 reason.mdm	MDM politikası
+reason.servicePolicy	Servis politikası
 reason.systemSet	Sistem tarafından
 reason.userConsent	Kullanıcı onayı
 reason.userSet	Sistem Ayarları üzerinden
@@ -93,36 +100,57 @@ rule.lolbinFromUnsigned	Bir sistem aracı imzasız bir uygulama tarafından çal
 rule.nightHidden	Gece yarısı gizli bir klasörden çalıştı
 rule.quarantine	Karantina bayrağı silindi, Gatekeeper atlatıldı
 rule.rapidGrants	Aynı uygulama 2 dakika içinde Erişilebilirlik ve Ekran Kaydı izni aldı
+rule.startupWeakSignature	Başlangıç öğesi bir betik ya da ad-hoc imzalı bir program çalıştırıyor
 rule.tccAdhoc	Ad-hoc imzalı bir uygulamaya izin verildi
 rule.tccUnsigned	İmzasız bir uygulamaya izin verildi
 rule.unsignedDownload	İmzasız bir uygulama İndirilenler'den ilk kez çalıştı
 rule.unsignedPersistence	İmzasız bir süreç başlangıç öğesi ekledi
+rule.unsignedStartupBinary	Başlangıç öğesi imzasız bir program çalıştırıyor
 search.prompt	Ara: uygulama, yol, Team ID…
 sig.adhoc	ad-hoc imzalı
 sig.apple	Apple
 sig.developer	geliştirici · %@
+sig.script	betik
+sig.unreadable	doğrulanamadı (okuma izni yok)
 sig.unsigned	imzasız
 sort.name	Ada göre
 sort.recent	Son değişiklik
 sort.risk	Riske göre
 status.badLines	%ld satır okunamadı
+status.checked	Kontrol: %@
 status.demo	Demo verisi
 status.file	Kayıt: %@
 status.lastEvent	Son olay: %@
-status.none	Veri yok
+status.scanning	Taranıyor…
+status.system	Bu Mac
 sub.addedBy	ekleyen: %@
 sub.launchedBy	başlatan: %@
 sub.quarantineRemoved	karantina bayrağı silinmiş
+sub.runs	çalıştırır: %@
 svc.accessibility	Erişilebilirlik
+svc.appData	Diğer uygulamaların verileri
+svc.appManagement	Uygulama Yönetimi
 svc.automation	Otomasyon
+svc.bluetooth	Bluetooth
+svc.calendar	Takvimler
 svc.camera	Kamera
 svc.contacts	Kişiler
 svc.desktop	Masaüstü klasörü
+svc.developerTools	Geliştirici Araçları
 svc.documents	Belgeler klasörü
 svc.downloads	İndirilenler klasörü
+svc.fileProvider	Dosya Sağlayıcı
+svc.focus	Odak
 svc.fullDisk	Tam Disk Erişimi
+svc.icloud	iCloud
 svc.inputMonitoring	Girdi İzleme
+svc.mediaLibrary	Medya ve Apple Music
 svc.microphone	Mikrofon
+svc.networkVolumes	Ağ birimleri
+svc.passkeys	Geçiş anahtarları
 svc.photos	Fotoğraflar
+svc.reminders	Anımsatıcılar
+svc.removableVolumes	Çıkarılabilir birimler
 svc.screen	Ekran Kaydı
+svc.speech	Konuşma Tanıma
 tag.trusted	Güvenilir

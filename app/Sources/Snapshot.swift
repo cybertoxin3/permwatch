@@ -18,7 +18,7 @@ enum Snapshot {
             guard let it = store.item(selection) else { exit(5) }
             view = AnyView(DetailView(item: it, scrollable: false).frame(width: 400, alignment: .top))
         case "cards":
-            let apps = store.apps.sorted { ($0.risk, $0.lastSeen) > ($1.risk, $1.lastSeen) }
+            let apps = Array(store.apps.sorted { ($0.risk, $0.lastSeen) > ($1.risk, $1.lastSeen) }.prefix(6))
             view = AnyView(LazyVGrid(columns: [GridItem(.fixed(520), spacing: 16), GridItem(.fixed(520))], spacing: 16) {
                 ForEach(apps) { AppCard(app: $0) }
             }.padding(20).frame(width: 1100))
@@ -29,8 +29,8 @@ enum Snapshot {
             .background(Color(nsColor: .windowBackgroundColor))
             .environment(\.colorScheme, scheme))
         r.scale = 2
-        guard let img = r.nsImage, let tiff = img.tiffRepresentation,
-              let png = NSBitmapImageRep(data: tiff)?.representation(using: .png, properties: [:]) else { exit(6) }
+        guard let cg = r.cgImage,
+              let png = NSBitmapImageRep(cgImage: cg).representation(using: .png, properties: [:]) else { exit(6) }
         try? png.write(to: URL(fileURLWithPath: path))
         exit(0)
     }
@@ -38,11 +38,22 @@ enum Snapshot {
     @MainActor
     static func scheduleIfRequested(store: Store, selection: Int?) {
         guard let path = target else { return }
-        if let s = section, ["detail", "cards", "menu"].contains(s) {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) { renderView(store, selection: selection, to: path) }
+        if section == "dump" {
+            // Uyarıların düz metin dökümü (test için): risk, tarih, başlık, kurallar.
+            DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
+                for it in store.items where it.risk >= .caution {
+                    print("\(it.risk == .high ? "YÜKSEK" : "dikkat")\t\(it.title)\t\(it.subtitle)\t\(it.rules.map(\.rawValue).joined(separator: ","))")
+                }
+                print("toplam olay: \(store.items.count), uygulama: \(store.apps.count)")
+                exit(0)
+            }
             return
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+        if let s = section, ["detail", "cards", "menu"].contains(s) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 6) { renderView(store, selection: selection, to: path) }
+            return
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
             guard let win = NSApp.windows.first(where: { $0.isVisible && $0.contentView != nil && $0.frame.width > 600 }),
                   let frameView = win.contentView?.superview else {
                 exit(2)

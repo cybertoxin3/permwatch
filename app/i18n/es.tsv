@@ -36,6 +36,10 @@ ev.tcc.denied	%1$@ → %2$@ denegado
 ev.tcc.granted	%1$@ → %2$@ concedido
 ev.tcc.limited	%1$@ → %2$@ limitado
 ev.tcc.revoked	%1$@ → %2$@ retirado
+fda.body	permwatch lee la base de datos de privacidad de macOS (TCC) para mostrar qué app tiene cada permiso, y revisa tus ítems de inicio. Ningún dato sale de tu Mac. Activa permwatch en «Acceso total al disco» en Ajustes del Sistema.
+fda.hint	Si permwatch ya está en la lista, desactívalo y vuelve a activarlo: macOS vincula el permiso a esta compilación exacta.
+fda.open	Abrir ajustes de privacidad
+fda.title	Se necesita acceso total al disco
 field.addedBy	Añadido por
 field.arguments	Argumentos
 field.executes	Ejecuta
@@ -65,6 +69,7 @@ menu.openTimeline	Abrir cronología
 menu.permChanges	cambios de permisos (24 h)
 menu.quit	Salir
 menu.recent	Eventos recientes
+menu.scan	Analizar este Mac
 menu.watching	vigilando registro
 nav.accessibility	Accesibilidad
 nav.alerts	Alertas
@@ -79,7 +84,9 @@ nav.screen	Grabación de pantalla
 nav.timeline	Cronología
 open.message	Elige un registro JSON Lines escrito por la herramienta permwatch
 quarantine.removed	eliminada a mano (xattr)
+reason.entitled	Entitlement
 reason.mdm	Política MDM
+reason.servicePolicy	Política del servicio
 reason.systemSet	Establecido por el sistema
 reason.userConsent	Consentimiento del usuario
 reason.userSet	Desde Ajustes del Sistema
@@ -93,36 +100,57 @@ rule.lolbinFromUnsigned	Una herramienta del sistema fue lanzada por una app sin 
 rule.nightHidden	Se ejecutó de madrugada desde una carpeta oculta
 rule.quarantine	Se eliminó la marca de cuarentena, esquivando Gatekeeper
 rule.rapidGrants	La misma app obtuvo accesibilidad y grabación de pantalla en 2 minutos
+rule.startupWeakSignature	El ítem de inicio ejecuta un script o un programa con firma ad hoc
 rule.tccAdhoc	Permiso concedido a una app con firma ad hoc
 rule.tccUnsigned	Permiso concedido a una app sin firma
 rule.unsignedDownload	Una app sin firma se ejecutó por primera vez desde Descargas
 rule.unsignedPersistence	Un proceso sin firma añadió un ítem de inicio
+rule.unsignedStartupBinary	El ítem de inicio ejecuta un programa sin firma
 search.prompt	Buscar: app, ruta, Team ID…
 sig.adhoc	firma ad hoc
 sig.apple	Apple
 sig.developer	desarrollador · %@
+sig.script	script
+sig.unreadable	no se pudo verificar (sin acceso de lectura)
 sig.unsigned	sin firma
 sort.name	Por nombre
 sort.recent	Último cambio
 sort.risk	Por riesgo
 status.badLines	%ld líneas no se pudieron leer
+status.checked	Revisado %@
 status.demo	Datos de demostración
 status.file	Registro: %@
 status.lastEvent	Último evento: %@
-status.none	Sin datos
+status.scanning	Analizando…
+status.system	Este Mac
 sub.addedBy	añadido por: %@
 sub.launchedBy	por %@
 sub.quarantineRemoved	cuarentena eliminada
+sub.runs	ejecuta: %@
 svc.accessibility	Accesibilidad
+svc.appData	Datos de otras apps
+svc.appManagement	Gestión de apps
 svc.automation	Automatización
+svc.bluetooth	Bluetooth
+svc.calendar	Calendarios
 svc.camera	Cámara
 svc.contacts	Contactos
 svc.desktop	Carpeta Escritorio
+svc.developerTools	Herramientas de desarrollo
 svc.documents	Carpeta Documentos
 svc.downloads	Carpeta Descargas
+svc.fileProvider	Proveedor de archivos
+svc.focus	Concentración
 svc.fullDisk	Acceso total al disco
+svc.icloud	iCloud
 svc.inputMonitoring	Monitorización de entrada
+svc.mediaLibrary	Contenido y Apple Music
 svc.microphone	Micrófono
+svc.networkVolumes	Volúmenes de red
+svc.passkeys	Llaves de acceso
 svc.photos	Fotos
+svc.reminders	Recordatorios
+svc.removableVolumes	Volúmenes extraíbles
 svc.screen	Grabación de pantalla
+svc.speech	Reconocimiento de voz
 tag.trusted	Fiable

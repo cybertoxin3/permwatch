@@ -36,6 +36,10 @@ ev.tcc.denied	%1$@ → %2$@ abgelehnt
 ev.tcc.granted	%1$@ → %2$@ erteilt
 ev.tcc.limited	%1$@ → %2$@ eingeschränkt
 ev.tcc.revoked	%1$@ → %2$@ entzogen
+fda.body	permwatch liest die Datenschutzdatenbank von macOS (TCC), um zu zeigen, welche App welche Berechtigung hat, und prüft deine Startobjekte. Keine Daten verlassen deinen Mac. Aktiviere permwatch unter „Festplattenvollzugriff“ in den Systemeinstellungen.
+fda.hint	Ist permwatch schon in der Liste, schalte es aus und wieder ein: macOS bindet die Berechtigung an genau diesen Build.
+fda.open	Datenschutzeinstellungen öffnen
+fda.title	Festplattenvollzugriff erforderlich
 field.addedBy	Hinzugefügt von
 field.arguments	Argumente
 field.executes	Startet
@@ -65,6 +69,7 @@ menu.openTimeline	Zeitleiste öffnen
 menu.permChanges	Berechtigungsänderungen (24 h)
 menu.quit	Beenden
 menu.recent	Letzte Ereignisse
+menu.scan	Diesen Mac prüfen
 menu.watching	Protokoll wird beobachtet
 nav.accessibility	Bedienungshilfen
 nav.alerts	Warnungen
@@ -79,7 +84,9 @@ nav.screen	Bildschirmaufnahme
 nav.timeline	Zeitleiste
 open.message	Wähle ein JSON-Lines-Protokoll des permwatch-Kommandozeilentools
 quarantine.removed	manuell entfernt (xattr)
+reason.entitled	Entitlement
 reason.mdm	MDM-Richtlinie
+reason.servicePolicy	Dienstrichtlinie
 reason.systemSet	Vom System gesetzt
 reason.userConsent	Nutzerzustimmung
 reason.userSet	Über Systemeinstellungen
@@ -93,36 +100,57 @@ rule.lolbinFromUnsigned	Ein Systemwerkzeug wurde von einer unsignierten App gest
 rule.nightHidden	Mitten in der Nacht aus einem versteckten Ordner gestartet
 rule.quarantine	Das Quarantäne-Flag wurde entfernt, Gatekeeper umgangen
 rule.rapidGrants	Dieselbe App erhielt in 2 Minuten Bedienungshilfen und Bildschirmaufnahme
+rule.startupWeakSignature	Startobjekt startet ein Skript oder ein ad-hoc-signiertes Programm
 rule.tccAdhoc	Berechtigung für eine ad-hoc-signierte App erteilt
 rule.tccUnsigned	Berechtigung für eine unsignierte App erteilt
 rule.unsignedDownload	Eine unsignierte App wurde zum ersten Mal aus „Downloads“ gestartet
 rule.unsignedPersistence	Ein unsignierter Prozess hat ein Startobjekt hinzugefügt
+rule.unsignedStartupBinary	Startobjekt startet ein unsigniertes Programm
 search.prompt	Suchen: App, Pfad, Team-ID …
 sig.adhoc	ad-hoc-signiert
 sig.apple	Apple
 sig.developer	Entwickler · %@
+sig.script	Skript
+sig.unreadable	nicht prüfbar (kein Lesezugriff)
 sig.unsigned	unsigniert
 sort.name	Nach Name
 sort.recent	Zuletzt geändert
 sort.risk	Nach Risiko
 status.badLines	%ld Zeilen nicht lesbar
+status.checked	Geprüft %@
 status.demo	Demodaten
 status.file	Protokoll: %@
 status.lastEvent	Letztes Ereignis: %@
-status.none	Keine Daten
+status.scanning	Wird geprüft …
+status.system	Dieser Mac
 sub.addedBy	von: %@
 sub.launchedBy	durch %@
 sub.quarantineRemoved	Quarantäne-Flag entfernt
+sub.runs	startet: %@
 svc.accessibility	Bedienungshilfen
+svc.appData	Daten anderer Apps
+svc.appManagement	App-Verwaltung
 svc.automation	Automation
+svc.bluetooth	Bluetooth
+svc.calendar	Kalender
 svc.camera	Kamera
 svc.contacts	Kontakte
 svc.desktop	Schreibtisch-Ordner
+svc.developerTools	Entwicklertools
 svc.documents	Dokumente-Ordner
 svc.downloads	Downloads-Ordner
+svc.fileProvider	Dateianbieter
+svc.focus	Fokus
 svc.fullDisk	Festplattenvollzugriff
+svc.icloud	iCloud
 svc.inputMonitoring	Eingabeüberwachung
+svc.mediaLibrary	Medien & Apple Music
 svc.microphone	Mikrofon
+svc.networkVolumes	Netzwerkvolumes
+svc.passkeys	Passkeys
 svc.photos	Fotos
+svc.reminders	Erinnerungen
+svc.removableVolumes	Wechselmedien
 svc.screen	Bildschirmaufnahme
+svc.speech	Spracherkennung
 tag.trusted	Vertrauenswürdig

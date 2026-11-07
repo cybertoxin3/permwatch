@@ -25,13 +25,13 @@ enum Risk: Int, Comparable {
 enum Kind { case exec, btmAdd, btmRemove, quarantine, gatekeeper, tcc }
 
 enum Rule: String {
-    case unsignedPersistence, rapidGrants, hiddenTarget, nightHidden, tccUnsigned, tccAdhoc,
+    case unsignedPersistence, unsignedStartupBinary, startupWeakSignature, rapidGrants, hiddenTarget, nightHidden, tccUnsigned, tccAdhoc,
          quarantine, unsignedDownload, dyld, gatekeeper, lolbinFromUnsigned
 
     var risk: Risk {
         switch self {
-        case .unsignedPersistence, .rapidGrants, .hiddenTarget, .nightHidden, .tccUnsigned, .dyld: return .high
-        case .tccAdhoc, .quarantine, .unsignedDownload, .gatekeeper, .lolbinFromUnsigned: return .caution
+        case .unsignedPersistence, .unsignedStartupBinary, .rapidGrants, .hiddenTarget, .nightHidden, .tccUnsigned, .dyld: return .high
+        case .tccAdhoc, .startupWeakSignature, .quarantine, .unsignedDownload, .gatekeeper, .lolbinFromUnsigned: return .caution
         }
     }
 
@@ -155,7 +155,16 @@ enum Text10n {
             "kTCCServiceSystemPolicyDesktopFolder": "svc.desktop", "kTCCServiceSystemPolicyDownloadsFolder": "svc.downloads",
             "kTCCServiceAppleEvents": "svc.automation", "kTCCServiceListenEvent": "svc.inputMonitoring",
             "kTCCServicePostEvent": "svc.accessibility", "kTCCServiceAddressBook": "svc.contacts",
-            "kTCCServicePhotos": "svc.photos",
+            "kTCCServicePhotos": "svc.photos", "kTCCServicePhotosAdd": "svc.photos",
+            "kTCCServiceBluetoothAlways": "svc.bluetooth", "kTCCServiceDeveloperTool": "svc.developerTools",
+            "kTCCServiceFileProviderDomain": "svc.fileProvider", "kTCCServiceFocusStatus": "svc.focus",
+            "kTCCServiceMediaLibrary": "svc.mediaLibrary", "kTCCServiceReminders": "svc.reminders",
+            "kTCCServiceCalendar": "svc.calendar", "kTCCServiceSpeechRecognition": "svc.speech",
+            "kTCCServiceSystemPolicyAppBundles": "svc.appManagement", "kTCCServiceSystemPolicyAppData": "svc.appData",
+            "kTCCServiceSystemPolicyNetworkVolumes": "svc.networkVolumes",
+            "kTCCServiceSystemPolicyRemovableVolumes": "svc.removableVolumes",
+            "kTCCServiceUbiquity": "svc.icloud", "kTCCServiceLiverpool": "svc.icloud",
+            "kTCCServiceWebBrowserPublicKeyCredential": "svc.passkeys",
         ]
         if let k = map[s] { return L(k) }
         return s.replacingOccurrences(of: "kTCCService", with: "")
@@ -167,6 +176,8 @@ enum Text10n {
         case "user_set": return L("reason.userSet")
         case "system_set": return L("reason.systemSet")
         case "mdm_policy": return L("reason.mdm")
+        case "service_policy", "service_override_policy", "app_type_policy": return L("reason.servicePolicy")
+        case "entitled": return L("reason.entitled")
         case let x?: return x
         case nil: return "—"
         }
@@ -184,6 +195,7 @@ enum Text10n {
         switch sig {
         case "unsigned": return L("sig.unsigned")
         case "adhoc": return L("sig.adhoc")
+        case "unreadable": return L("sig.unreadable")
         case "apple": return L("sig.apple")
         case "developer":
             if let org, let team { return "\(org) (\(team))" }
@@ -239,6 +251,7 @@ enum Analyzer {
         var helperOwner: [String: String] = [:]   // BTM executable → uygulama anahtarı
         var bundleKey: [String: String] = [:]     // signing_id → uygulama anahtarı
         var seenExec = Set<String>()
+        var usedIDs = Set<Int>()
         var quarantined: [String] = []           // karantinası silinen yollar
         var items: [Item] = []
         let cal = Calendar.current
@@ -363,8 +376,15 @@ enum Analyzer {
                 }
                 let ownerSig = owner?.signature
                 let ownerUnsigned = ownerSig == "unsigned" || ownerSig == "adhoc"
+                let scanned = e.origin == "scan"
                 if add {
-                    if ownerUnsigned { rules.append(.unsignedPersistence) }
+                    if scanned {
+                        // Tarama öğeyi kimin eklediğini bilemez; yalnızca neyi çalıştırdığını bilir.
+                        if ownerSig == "unsigned" && owner?.script != true { rules.append(.unsignedStartupBinary) }
+                        else if ownerUnsigned { rules.append(.startupWeakSignature) }
+                    } else if ownerUnsigned {
+                        rules.append(.unsignedPersistence)
+                    }
                     let g = apps[key]!.grants
                     if let a = g["kTCCServiceAccessibility"], let s = g["kTCCServiceScreenCapture"], abs(a.timeIntervalSince(s)) <= 120 {
                         rules.append(.rapidGrants)
@@ -373,17 +393,20 @@ enum Analyzer {
                 }
                 let plistPath = PathUtil.fromURL(it?.url)
                 if let p = plistPath { sub.append(PathUtil.abbreviate(p).components(separatedBy: "/").last ?? p) }
-                let who = procName(owner) + (Text10n.signature(ownerSig, team: owner?.team_id).map { " (\($0))" } ?? "")
-                sub.append(L("sub.addedBy", who))
+                let sigDesc = owner?.script == true ? L("sig.script") : Text10n.signature(ownerSig, team: owner?.team_id)
+                let who = procName(owner) + (sigDesc.map { " (\($0))" } ?? "")
+                sub.append(scanned ? L("sub.runs", who) : L("sub.addedBy", who))
 
                 fields.append(Field(label: L("field.itemType"), value: typeText, mono: true))
                 if let p = plistPath { fields.append(Field(label: "Plist", value: PathUtil.abbreviate(p), mono: true)) }
                 if let exe = e.executable_path { fields.append(Field(label: L("field.executes"), value: PathUtil.abbreviate(exe), mono: true)) }
-                fields.append(Field(label: L("field.addedBy"), value: "\(procName(owner)) (pid \(owner?.pid ?? 0))", mono: true))
-                fields.append(Field(label: L("field.signature"),
-                                    value: Text10n.signature(ownerSig, team: owner?.team_id) ?? "—",
-                                    mono: true, warn: ownerUnsigned))
-                if let src = owner?.path { fields.append(Field(label: L("field.source"), value: PathUtil.abbreviate(PathUtil.appBundle(src) ?? src), mono: true)) }
+                if !scanned {
+                    fields.append(Field(label: L("field.addedBy"), value: "\(procName(owner)) (pid \(owner?.pid ?? 0))", mono: true))
+                }
+                fields.append(Field(label: L("field.signature"), value: sigDesc ?? "—", mono: true, warn: ownerUnsigned))
+                if let src = owner?.path, !scanned || PathUtil.appBundle(src) != nil {
+                    fields.append(Field(label: L("field.source"), value: PathUtil.abbreviate(PathUtil.appBundle(src) ?? src), mono: true))
+                }
                 if add, let p = plistPath, p.contains("/Library/LaunchAgents/"), p.hasPrefix(NSHomeDirectory()) { plist = p }
                 reveal = plistPath
 
@@ -475,6 +498,9 @@ enum Analyzer {
                 if let s = sigText(key) { sub.append(s) }
                 fields.append(Field(label: L("field.service"), value: svcName))
                 fields.append(Field(label: L("field.identity"), value: PathUtil.abbreviate(ident), mono: true))
+                if let target = e.argv?.first {
+                    fields.append(Field(label: L("field.target"), value: PathUtil.abbreviate(target), mono: true))
+                }
                 fields.append(Field(label: L("field.reason"), value: Text10n.reason(e.reason)))
                 fields.append(Field(label: L("field.signature"), value: sigText(key) ?? "—", mono: true,
                                     warn: apps[key]!.sig == "unsigned" || apps[key]!.sig == "adhoc"))
@@ -484,10 +510,18 @@ enum Analyzer {
                 continue
             }
 
-            apps[key]!.itemIDs.append(idx)
+            // Taramalar arasında değişmeyen kimlik: olay türü + zaman + konu.
+            var h = Hasher()
+            h.combine(e.event); h.combine(e.ts); h.combine(e.identity); h.combine(e.service)
+            h.combine(e.item?.url); h.combine(e.target?.path); h.combine(e.target?.process?.path); h.combine(e.update)
+            var sid = h.finalize()
+            while usedIDs.contains(sid) { sid &+= 1 }
+            usedIDs.insert(sid)
+            _ = idx
+            apps[key]!.itemIDs.append(sid)
             let isTrusted = trusted.contains(key)
             let risk = isTrusted ? .normal : (rules.map(\.risk).max() ?? .normal)
-            items.append(Item(id: idx, date: d, kind: kind, appKey: key, appName: name, title: title,
+            items.append(Item(id: sid, date: d, kind: kind, appKey: key, appName: name, title: title,
                               subtitle: sub.joined(separator: " · "), rules: rules, risk: risk, trusted: isTrusted,
                               rawType: e.event.uppercased(), fields: fields, tccService: tccService,
                               revealPath: reveal, removablePlist: plist))

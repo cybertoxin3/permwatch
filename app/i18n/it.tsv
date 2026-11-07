@@ -36,6 +36,10 @@ ev.tcc.denied	%1$@ → %2$@ negato
 ev.tcc.granted	%1$@ → %2$@ concesso
 ev.tcc.limited	%1$@ → %2$@ limitato
 ev.tcc.revoked	%1$@ → %2$@ revocato
+fda.body	permwatch legge il database della privacy di macOS (TCC) per mostrare quale app ha quale autorizzazione e controlla gli elementi di avvio. Nessun dato lascia il tuo Mac. Attiva permwatch in “Accesso completo al disco” nelle Impostazioni di Sistema.
+fda.hint	Se permwatch è già nell’elenco, disattivalo e riattivalo: macOS lega l’autorizzazione a questa build.
+fda.open	Apri impostazioni privacy
+fda.title	Serve l’accesso completo al disco
 field.addedBy	Aggiunto da
 field.arguments	Argomenti
 field.executes	Esegue
@@ -65,6 +69,7 @@ menu.openTimeline	Apri cronologia
 menu.permChanges	modifiche autorizzazioni (24 h)
 menu.quit	Esci
 menu.recent	Eventi recenti
+menu.scan	Controlla questo Mac
 menu.watching	registro monitorato
 nav.accessibility	Accessibilità
 nav.alerts	Avvisi
@@ -79,7 +84,9 @@ nav.screen	Registrazione schermo
 nav.timeline	Cronologia
 open.message	Scegli un registro JSON Lines scritto dallo strumento permwatch
 quarantine.removed	rimossa a mano (xattr)
+reason.entitled	Entitlement
 reason.mdm	Criterio MDM
+reason.servicePolicy	Criterio del servizio
 reason.systemSet	Impostato dal sistema
 reason.userConsent	Consenso utente
 reason.userSet	Da Impostazioni di Sistema
@@ -93,36 +100,57 @@ rule.lolbinFromUnsigned	Uno strumento di sistema è stato avviato da un’app no
 rule.nightHidden	Avviata nel cuore della notte da una cartella nascosta
 rule.quarantine	Il flag di quarantena è stato rimosso, aggirando Gatekeeper
 rule.rapidGrants	La stessa app ha ottenuto Accessibilità e registrazione schermo in 2 minuti
+rule.startupWeakSignature	L’elemento di avvio esegue uno script o un programma con firma ad hoc
 rule.tccAdhoc	Autorizzazione concessa a un’app con firma ad hoc
 rule.tccUnsigned	Autorizzazione concessa a un’app non firmata
 rule.unsignedDownload	Un’app non firmata è stata avviata per la prima volta da Download
 rule.unsignedPersistence	Un processo non firmato ha aggiunto un elemento di avvio
+rule.unsignedStartupBinary	L’elemento di avvio esegue un programma non firmato
 search.prompt	Cerca: app, percorso, Team ID…
 sig.adhoc	firma ad hoc
 sig.apple	Apple
 sig.developer	sviluppatore · %@
+sig.script	script
+sig.unreadable	impossibile verificare (nessun accesso in lettura)
 sig.unsigned	non firmata
 sort.name	Per nome
 sort.recent	Ultima modifica
 sort.risk	Per rischio
 status.badLines	%ld righe illeggibili
+status.checked	Controllato %@
 status.demo	Dati demo
 status.file	Registro: %@
 status.lastEvent	Ultimo evento: %@
-status.none	Nessun dato
+status.scanning	Analisi…
+status.system	Questo Mac
 sub.addedBy	aggiunto da: %@
 sub.launchedBy	da %@
 sub.quarantineRemoved	quarantena rimossa
+sub.runs	esegue: %@
 svc.accessibility	Accessibilità
+svc.appData	Dati di altre app
+svc.appManagement	Gestione app
 svc.automation	Automazione
+svc.bluetooth	Bluetooth
+svc.calendar	Calendari
 svc.camera	Fotocamera
 svc.contacts	Contatti
 svc.desktop	Cartella Scrivania
+svc.developerTools	Strumenti per sviluppatori
 svc.documents	Cartella Documenti
 svc.downloads	Cartella Download
+svc.fileProvider	Fornitore di file
+svc.focus	Full immersion
 svc.fullDisk	Accesso completo al disco
+svc.icloud	iCloud
 svc.inputMonitoring	Monitoraggio input
+svc.mediaLibrary	Media e Apple Music
 svc.microphone	Microfono
+svc.networkVolumes	Volumi di rete
+svc.passkeys	Passkey
 svc.photos	Foto
+svc.reminders	Promemoria
+svc.removableVolumes	Volumi rimovibili
 svc.screen	Registrazione schermo
+svc.speech	Riconoscimento vocale
 tag.trusted	Affidabile

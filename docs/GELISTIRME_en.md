@@ -42,8 +42,16 @@ make app                          # app/build/permwatch.app
 open app/build/permwatch.app
 ```
 
-- The app opens with demo data. **File → Open Event Log…** opens an `events.jsonl` written by
-  the CLI; the app follows the file as it grows and sends a notification for high-risk events.
+- The app **scans this Mac**: it reads every permission from the user and system TCC databases,
+  startup items from the `LaunchAgents`/`LaunchDaemons` folders, and verifies each program's
+  signature. It rescans every 30 seconds and finds removed permissions and new items by
+  comparing with the previous scan (`~/Library/Application Support/permwatch/state.json`).
+  The app needs **Full Disk Access** for this and says so if it is missing. With ad-hoc
+  builds, toggle the permission off and on after each rebuild.
+- Until the Endpoint Security entitlement arrives there is no real-time capture and no
+  record of **which process** made a change; that is the CLI core's job.
+- **File → Open Event Log…** opens an `events.jsonl` written by the CLI and follows it as it
+  grows. **Load Demo Data** shows the sample scenario.
 - The interface follows the system language (13 languages). Translations live in
   `app/i18n/<lang>.tsv`; the build checks that every language has every key and placeholder.
 - The rule engine is in `app/Sources/Analyzer.swift`.

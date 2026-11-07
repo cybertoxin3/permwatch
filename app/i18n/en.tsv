@@ -36,6 +36,10 @@ ev.tcc.denied	%1$@ → %2$@ denied
 ev.tcc.granted	%1$@ → %2$@ granted
 ev.tcc.limited	%1$@ → %2$@ limited
 ev.tcc.revoked	%1$@ → %2$@ removed
+fda.body	permwatch reads the macOS privacy database (TCC) to show which app has which permission, and checks your startup items. Nothing leaves your Mac. Turn on permwatch under Full Disk Access in System Settings.
+fda.hint	If permwatch is already in the list, turn it off and on again: macOS ties the permission to this exact build.
+fda.open	Open Privacy Settings
+fda.title	Full Disk Access needed
 field.addedBy	Added by
 field.arguments	Arguments
 field.executes	Executes
@@ -65,6 +69,7 @@ menu.openTimeline	Open timeline
 menu.permChanges	permission changes (24 h)
 menu.quit	Quit
 menu.recent	Recent events
+menu.scan	Scan This Mac
 menu.watching	watching log
 nav.accessibility	Accessibility
 nav.alerts	Alerts
@@ -79,7 +84,9 @@ nav.screen	Screen Recording
 nav.timeline	Timeline
 open.message	Choose a JSON Lines log written by the permwatch CLI
 quarantine.removed	removed manually (xattr)
+reason.entitled	Entitlement
 reason.mdm	MDM policy
+reason.servicePolicy	Service policy
 reason.systemSet	Set by the system
 reason.userConsent	User consent
 reason.userSet	Via System Settings
@@ -93,36 +100,57 @@ rule.lolbinFromUnsigned	A system tool was launched by an unsigned app
 rule.nightHidden	Ran from a hidden folder in the middle of the night
 rule.quarantine	The quarantine flag was removed, bypassing Gatekeeper
 rule.rapidGrants	The same app got Accessibility and Screen Recording within 2 minutes
+rule.startupWeakSignature	Startup item runs a script or an ad-hoc signed program
 rule.tccAdhoc	Permission granted to an ad-hoc signed app
 rule.tccUnsigned	Permission granted to an unsigned app
 rule.unsignedDownload	An unsigned app ran from Downloads for the first time
 rule.unsignedPersistence	An unsigned process added a startup item
+rule.unsignedStartupBinary	Startup item runs an unsigned program
 search.prompt	Search: app, path, Team ID…
 sig.adhoc	ad-hoc signed
 sig.apple	Apple
 sig.developer	developer · %@
+sig.script	script
+sig.unreadable	could not verify (no read access)
 sig.unsigned	unsigned
 sort.name	By name
 sort.recent	Last changed
 sort.risk	By risk
 status.badLines	%ld lines could not be read
+status.checked	Checked %@
 status.demo	Demo data
 status.file	Log: %@
 status.lastEvent	Last event: %@
-status.none	No data
+status.scanning	Scanning…
+status.system	This Mac
 sub.addedBy	added by: %@
 sub.launchedBy	by %@
 sub.quarantineRemoved	quarantine flag removed
+sub.runs	runs: %@
 svc.accessibility	Accessibility
+svc.appData	Data from other apps
+svc.appManagement	App Management
 svc.automation	Automation
+svc.bluetooth	Bluetooth
+svc.calendar	Calendars
 svc.camera	Camera
 svc.contacts	Contacts
 svc.desktop	Desktop folder
+svc.developerTools	Developer Tools
 svc.documents	Documents folder
 svc.downloads	Downloads folder
+svc.fileProvider	File Provider
+svc.focus	Focus
 svc.fullDisk	Full Disk Access
+svc.icloud	iCloud
 svc.inputMonitoring	Input Monitoring
+svc.mediaLibrary	Media & Apple Music
 svc.microphone	Microphone
+svc.networkVolumes	Network volumes
+svc.passkeys	Passkeys
 svc.photos	Photos
+svc.reminders	Reminders
+svc.removableVolumes	Removable volumes
 svc.screen	Screen Recording
+svc.speech	Speech Recognition
 tag.trusted	Trusted

@@ -39,6 +39,30 @@ enum Signing {
         return result
     }
 
+    /// İmzayı sınıflandırır: apple | developer | adhoc | unsigned.
+    /// Yalnızca imza yapısını doğrular (tüm dosyaları hash'lemez), bu yüzden hızlıdır.
+    /// Dosya okunamıyorsa (ör. yalnızca root okuyabiliyorsa) "unreadable" döner: imzasız sanmak yanlış alarm olur.
+    static func classify(path: String) -> (signature: String, team: String?, identifier: String?) {
+        let exe = Bundle(path: path)?.executablePath ?? path
+        guard FileManager.default.isReadableFile(atPath: exe) else { return ("unreadable", nil, nil) }
+        var code: SecStaticCode?
+        guard SecStaticCodeCreateWithPath(URL(fileURLWithPath: path) as CFURL, [], &code) == errSecSuccess,
+              let code else { return ("unreadable", nil, nil) }
+        var dict: CFDictionary?
+        guard SecCodeCopySigningInformation(code, SecCSFlags(rawValue: kSecCSSigningInformation), &dict) == errSecSuccess,
+              let info = dict as? [String: Any] else { return ("unreadable", nil, nil) }
+        guard let ident = info[kSecCodeInfoIdentifier as String] as? String else { return ("unsigned", nil, nil) }
+        let flags = (info[kSecCodeInfoFlags as String] as? NSNumber)?.uint32Value ?? 0
+        let team = info[kSecCodeInfoTeamIdentifier as String] as? String
+        if flags & 0x2 != 0 { return ("adhoc", nil, ident) }   // CS_ADHOC
+        var req: SecRequirement?
+        if SecRequirementCreateWithString("anchor apple" as CFString, [], &req) == errSecSuccess, let req,
+           SecStaticCodeCheckValidity(code, SecCSFlags(rawValue: kSecCSBasicValidateOnly), req) == errSecSuccess {
+            return ("apple", nil, ident)
+        }
+        return ("developer", team, ident)
+    }
+
     /// Bundle ID'den yüklü uygulamanın yolunu bulur.
     static func appPath(bundleID: String) -> String? {
         NSWorkspace.shared.urlForApplication(withBundleIdentifier: bundleID)?.path

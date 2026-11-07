@@ -36,6 +36,10 @@ ev.tcc.denied	%1$@ → %2$@ を拒否
 ev.tcc.granted	%1$@ → %2$@ を許可
 ev.tcc.limited	%1$@ → %2$@ を制限付きで許可
 ev.tcc.revoked	%1$@ → %2$@ の許可を削除
+fda.body	permwatch は macOS のプライバシーデータベース(TCC)を読み取り、どのアプリがどの許可を持っているかを表示し、起動項目を確認します。データが Mac の外に出ることはありません。システム設定の「フルディスクアクセス」で permwatch をオンにしてください。
+fda.hint	permwatch がすでに一覧にある場合は、一度オフにしてからオンにしてください。macOS は許可をこのビルドに結び付けています。
+fda.open	プライバシー設定を開く
+fda.title	フルディスクアクセスが必要です
 field.addedBy	追加したプロセス
 field.arguments	引数
 field.executes	実行ファイル
@@ -65,6 +69,7 @@ menu.openTimeline	タイムラインを開く
 menu.permChanges	アクセス権の変更(24時間)
 menu.quit	終了
 menu.recent	最近のイベント
+menu.scan	この Mac をスキャン
 menu.watching	ログを監視中
 nav.accessibility	アクセシビリティ
 nav.alerts	アラート
@@ -79,7 +84,9 @@ nav.screen	画面収録
 nav.timeline	タイムライン
 open.message	permwatch コマンドラインツールが書き出した JSON Lines ログを選択
 quarantine.removed	手動で削除(xattr)
+reason.entitled	エンタイトルメント
 reason.mdm	MDM ポリシー
+reason.servicePolicy	サービスポリシー
 reason.systemSet	システムによる設定
 reason.userConsent	ユーザーの承認
 reason.userSet	システム設定から
@@ -93,36 +100,57 @@ rule.lolbinFromUnsigned	署名のないアプリがシステムツールを起�
 rule.nightHidden	深夜に隠しフォルダから実行されました
 rule.quarantine	隔離フラグが削除され、Gatekeeper が回避されました
 rule.rapidGrants	同じアプリが2分以内にアクセシビリティと画面収録を取得しました
+rule.startupWeakSignature	起動項目がスクリプトまたはアドホック署名のプログラムを実行しています
 rule.tccAdhoc	アドホック署名のアプリにアクセス権が与えられました
 rule.tccUnsigned	署名のないアプリにアクセス権が与えられました
 rule.unsignedDownload	署名のないアプリがダウンロードフォルダから初めて起動しました
 rule.unsignedPersistence	署名のないプロセスが起動項目を追加しました
+rule.unsignedStartupBinary	起動項目が署名のないプログラムを実行しています
 search.prompt	検索: アプリ、パス、Team ID…
 sig.adhoc	アドホック署名
 sig.apple	Apple
 sig.developer	デベロッパ · %@
+sig.script	スクリプト
+sig.unreadable	検証できません(読み取り権限なし)
 sig.unsigned	署名なし
 sort.name	名前順
 sort.recent	最終変更
 sort.risk	リスク順
 status.badLines	%ld 行を読み取れませんでした
+status.checked	確認: %@
 status.demo	デモデータ
 status.file	ログ: %@
 status.lastEvent	最終イベント: %@
-status.none	データなし
+status.scanning	スキャン中…
+status.system	この Mac
 sub.addedBy	追加元: %@
 sub.launchedBy	起動元: %@
 sub.quarantineRemoved	隔離フラグ削除済み
+sub.runs	実行: %@
 svc.accessibility	アクセシビリティ
+svc.appData	ほかのアプリのデータ
+svc.appManagement	アプリ管理
 svc.automation	オートメーション
+svc.bluetooth	Bluetooth
+svc.calendar	カレンダー
 svc.camera	カメラ
 svc.contacts	連絡先
 svc.desktop	デスクトップフォルダ
+svc.developerTools	デベロッパツール
 svc.documents	書類フォルダ
 svc.downloads	ダウンロードフォルダ
+svc.fileProvider	ファイルプロバイダ
+svc.focus	集中モード
 svc.fullDisk	フルディスクアクセス
+svc.icloud	iCloud
 svc.inputMonitoring	入力監視
+svc.mediaLibrary	メディアと Apple Music
 svc.microphone	マイク
+svc.networkVolumes	ネットワークボリューム
+svc.passkeys	パスキー
 svc.photos	写真
+svc.reminders	リマインダー
+svc.removableVolumes	リムーバブルボリューム
 svc.screen	画面収録
+svc.speech	音声認識
 tag.trusted	信頼済み

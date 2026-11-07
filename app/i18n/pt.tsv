@@ -36,6 +36,10 @@ ev.tcc.denied	%1$@ → %2$@ negado
 ev.tcc.granted	%1$@ → %2$@ concedido
 ev.tcc.limited	%1$@ → %2$@ limitado
 ev.tcc.revoked	%1$@ → %2$@ removido
+fda.body	O permwatch lê o banco de dados de privacidade do macOS (TCC) para mostrar qual app tem cada permissão e verifica seus itens de início. Nenhum dado sai do seu Mac. Ative o permwatch em Acesso Total ao Disco nos Ajustes do Sistema.
+fda.hint	Se o permwatch já estiver na lista, desative e ative de novo: o macOS vincula a permissão a esta compilação.
+fda.open	Abrir ajustes de privacidade
+fda.title	Acesso Total ao Disco necessário
 field.addedBy	Adicionado por
 field.arguments	Argumentos
 field.executes	Executa
@@ -65,6 +69,7 @@ menu.openTimeline	Abrir linha do tempo
 menu.permChanges	mudanças de permissão (24 h)
 menu.quit	Encerrar
 menu.recent	Eventos recentes
+menu.scan	Verificar este Mac
 menu.watching	monitorando registro
 nav.accessibility	Acessibilidade
 nav.alerts	Alertas
@@ -79,7 +84,9 @@ nav.screen	Gravação de tela
 nav.timeline	Linha do tempo
 open.message	Escolha um registro JSON Lines gravado pela ferramenta permwatch
 quarantine.removed	removida manualmente (xattr)
+reason.entitled	Entitlement
 reason.mdm	Política MDM
+reason.servicePolicy	Política do serviço
 reason.systemSet	Definido pelo sistema
 reason.userConsent	Consentimento do usuário
 reason.userSet	Pelos Ajustes do Sistema
@@ -93,36 +100,57 @@ rule.lolbinFromUnsigned	Uma ferramenta do sistema foi iniciada por um app sem as
 rule.nightHidden	Executado de madrugada a partir de uma pasta oculta
 rule.quarantine	A marca de quarentena foi removida, contornando o Gatekeeper
 rule.rapidGrants	O mesmo app obteve acessibilidade e gravação de tela em 2 minutos
+rule.startupWeakSignature	O item de início executa um script ou um programa com assinatura ad hoc
 rule.tccAdhoc	Permissão concedida a um app com assinatura ad hoc
 rule.tccUnsigned	Permissão concedida a um app sem assinatura
 rule.unsignedDownload	Um app sem assinatura foi executado pela primeira vez a partir de Downloads
 rule.unsignedPersistence	Um processo sem assinatura adicionou um item de início
+rule.unsignedStartupBinary	O item de início executa um programa sem assinatura
 search.prompt	Buscar: app, caminho, Team ID…
 sig.adhoc	assinatura ad hoc
 sig.apple	Apple
 sig.developer	desenvolvedor · %@
+sig.script	script
+sig.unreadable	não foi possível verificar (sem acesso de leitura)
 sig.unsigned	sem assinatura
 sort.name	Por nome
 sort.recent	Última mudança
 sort.risk	Por risco
 status.badLines	%ld linhas não puderam ser lidas
+status.checked	Verificado %@
 status.demo	Dados de demonstração
 status.file	Registro: %@
 status.lastEvent	Último evento: %@
-status.none	Sem dados
+status.scanning	Verificando…
+status.system	Este Mac
 sub.addedBy	por: %@
 sub.launchedBy	por %@
 sub.quarantineRemoved	quarentena removida
+sub.runs	executa: %@
 svc.accessibility	Acessibilidade
+svc.appData	Dados de outros apps
+svc.appManagement	Gerenciamento de Apps
 svc.automation	Automação
+svc.bluetooth	Bluetooth
+svc.calendar	Calendários
 svc.camera	Câmera
 svc.contacts	Contatos
 svc.desktop	Pasta Mesa
+svc.developerTools	Ferramentas de Desenvolvedor
 svc.documents	Pasta Documentos
 svc.downloads	Pasta Downloads
+svc.fileProvider	Provedor de Arquivos
+svc.focus	Foco
 svc.fullDisk	Acesso Total ao Disco
+svc.icloud	iCloud
 svc.inputMonitoring	Monitoramento de Entrada
+svc.mediaLibrary	Mídia e Apple Music
 svc.microphone	Microfone
+svc.networkVolumes	Volumes de rede
+svc.passkeys	Chaves-senha
 svc.photos	Fotos
+svc.reminders	Lembretes
+svc.removableVolumes	Volumes removíveis
 svc.screen	Gravação de tela
+svc.speech	Reconhecimento de Fala
 tag.trusted	Confiável

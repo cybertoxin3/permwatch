@@ -43,9 +43,16 @@ make app                          # app/build/permwatch.app
 open app/build/permwatch.app
 ```
 
-- Uygulama demo verisiyle açılır. **Dosya → Olay Kaydını Aç…** ile CLI'ın ürettiği bir
-  `events.jsonl` açılabilir; dosya büyüdükçe uygulama da güncellenir ve yüksek riskli
-  olaylarda bildirim gönderir.
+- Uygulama **bu Mac'i tarar**: kullanıcı ve sistem TCC veritabanlarından bütün izinleri,
+  `LaunchAgents`/`LaunchDaemons` klasörlerinden başlangıç öğelerini okur ve her programın
+  imzasını doğrular. 30 saniyede bir yeniden tarar; kaldırılan izinleri ve yeni öğeleri
+  önceki taramayla karşılaştırarak bulur (`~/Library/Application Support/permwatch/state.json`).
+  Bunun için uygulamaya **Tam Disk Erişimi** verilmeli; yoksa uygulama bunu söyler.
+  Ad-hoc imzalı derlemelerde her derlemeden sonra izni kapatıp açmak gerekir.
+- Endpoint Security onayı gelene kadar değişikliği **hangi sürecin yaptığı** ve anlık
+  yakalama yok; bunlar CLI çekirdeğinin işi.
+- **Dosya → Olay Kaydını Aç…** ile CLI'ın ürettiği bir `events.jsonl` açılabilir; dosya
+  büyüdükçe uygulama güncellenir. **Demo Verisini Yükle** örnek senaryoyu gösterir.
 - Arayüz sistem diline göre açılır (13 dil). Çeviriler `app/i18n/<dil>.tsv` dosyalarında;
   derleme sırasında her dilde bütün anahtarların ve yer tutucuların olduğu kontrol edilir.
 - Kural motoru `app/Sources/Analyzer.swift` içinde.

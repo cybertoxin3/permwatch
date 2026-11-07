@@ -2,7 +2,7 @@ import Foundation
 
 // permwatch CLI'ının JSON Lines çıktısının şeması (src/main.c ile birebir).
 
-struct ProcInfo: Decodable, Hashable {
+struct ProcInfo: Codable, Hashable {
     var pid: Int32?
     var ppid: Int32?
     var uid: Int32?
@@ -13,9 +13,10 @@ struct ProcInfo: Decodable, Hashable {
     var signature: String?   // apple | developer | adhoc | unsigned
     var cs_flags: String?
     var cdhash: String?
+    var script: Bool?        // imzasız ama "#!" ile başlayan betik (yalnızca tarama)
 }
 
-struct BTMItem: Decodable, Hashable {
+struct BTMItem: Codable, Hashable {
     var type: String
     var legacy: Bool?
     var managed: Bool?
@@ -24,14 +25,14 @@ struct BTMItem: Decodable, Hashable {
     var app_url: String?
 }
 
-struct TargetSigning: Decodable, Hashable {
+struct TargetSigning: Codable, Hashable {
     var signing_id: String?
     var team_id: String?
     var cdhash: String?
 }
 
 /// `target` exec olayında süreç nesnesi, quarantine/gatekeeper olaylarında dosya yolu.
-enum TargetField: Decodable, Hashable {
+enum TargetField: Codable, Hashable {
     case process(ProcInfo)
     case path(String)
 
@@ -44,11 +45,19 @@ enum TargetField: Decodable, Hashable {
         }
     }
 
+    func encode(to encoder: Encoder) throws {
+        var c = encoder.singleValueContainer()
+        switch self {
+        case .process(let p): try c.encode(p)
+        case .path(let s): try c.encode(s)
+        }
+    }
+
     var process: ProcInfo? { if case .process(let p) = self { return p }; return nil }
     var path: String? { if case .path(let s) = self { return s }; return nil }
 }
 
-struct RawEvent: Decodable {
+struct RawEvent: Codable {
     var ts: Double
     var event: String
     var process: ProcInfo?
@@ -73,6 +82,8 @@ struct RawEvent: Decodable {
     // gatekeeper
     var sha256: String?
     var target_signing: TargetSigning?
+    // "scan": CLI olayı değil, SystemScanner'ın bu Mac'in mevcut durumundan ürettiği kayıt
+    var origin: String?
 
     var date: Date { Date(timeIntervalSince1970: ts) }
 }

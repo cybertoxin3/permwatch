@@ -9,10 +9,10 @@ struct MenuBarPanel: View {
             HStack {
                 Text("permwatch").font(.system(size: 14, weight: .bold))
                 Spacer()
-                Label(store.source == .demo ? L("status.demo") : L("menu.watching"), systemImage: "circle.fill")
+                Label(sourceLabel, systemImage: "circle.fill")
                     .labelStyle(.titleAndIcon)
                     .font(.system(size: 11))
-                    .foregroundStyle(store.source == .demo ? .orange : .green)
+                    .foregroundStyle(store.source == .demo ? .orange : (store.needsFullDiskAccess ? .red : .green))
             }
             .padding([.horizontal, .top], 14)
             .padding(.bottom, 10)
@@ -62,6 +62,14 @@ struct MenuBarPanel: View {
             .padding(14)
         }
         .frame(width: 380)
+    }
+
+    private var sourceLabel: String {
+        switch store.source {
+        case .system: return store.needsFullDiskAccess ? L("fda.title") : L("status.system")
+        case .demo: return L("status.demo")
+        case .file: return L("menu.watching")
+        }
     }
 
     private var recent: [Item] {

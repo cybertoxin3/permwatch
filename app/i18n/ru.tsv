@@ -36,6 +36,10 @@ ev.tcc.denied	%1$@ → %2$@: отказано
 ev.tcc.granted	%1$@ → %2$@: разрешено
 ev.tcc.limited	%1$@ → %2$@: ограничено
 ev.tcc.revoked	%1$@ → %2$@: отозвано
+fda.body	permwatch читает базу конфиденциальности macOS (TCC), чтобы показать, у какого приложения какие разрешения, и проверяет объекты автозапуска. Данные не покидают ваш Mac. Включите permwatch в разделе «Полный доступ к диску» в Системных настройках.
+fda.hint	Если permwatch уже есть в списке, выключите и снова включите его: macOS привязывает разрешение к этой сборке.
+fda.open	Открыть настройки конфиденциальности
+fda.title	Нужен полный доступ к диску
 field.addedBy	Добавил
 field.arguments	Аргументы
 field.executes	Запускает
@@ -65,6 +69,7 @@ menu.openTimeline	Открыть хронологию
 menu.permChanges	изменений разрешений (24 ч)
 menu.quit	Выйти
 menu.recent	Последние события
+menu.scan	Проверить этот Mac
 menu.watching	журнал отслеживается
 nav.accessibility	Универсальный доступ
 nav.alerts	Оповещения
@@ -79,7 +84,9 @@ nav.screen	Запись экрана
 nav.timeline	Хронология
 open.message	Выберите журнал JSON Lines, записанный утилитой permwatch
 quarantine.removed	удалён вручную (xattr)
+reason.entitled	Entitlement
 reason.mdm	Политика MDM
+reason.servicePolicy	Политика службы
 reason.systemSet	Установлено системой
 reason.userConsent	Согласие пользователя
 reason.userSet	Через Системные настройки
@@ -93,36 +100,57 @@ rule.lolbinFromUnsigned	Системная утилита запущена не�
 rule.nightHidden	Ночной запуск из скрытой папки
 rule.quarantine	Флаг карантина удалён, Gatekeeper обойдён
 rule.rapidGrants	Одно приложение за 2 минуты получило универсальный доступ и запись экрана
+rule.startupWeakSignature	Объект автозапуска запускает скрипт или программу с ad-hoc подписью
 rule.tccAdhoc	Разрешение выдано приложению с ad-hoc подписью
 rule.tccUnsigned	Разрешение выдано неподписанному приложению
 rule.unsignedDownload	Неподписанное приложение впервые запущено из «Загрузок»
 rule.unsignedPersistence	Неподписанный процесс добавил объект автозапуска
+rule.unsignedStartupBinary	Объект автозапуска запускает неподписанную программу
 search.prompt	Поиск: приложение, путь, Team ID…
 sig.adhoc	ad-hoc подпись
 sig.apple	Apple
 sig.developer	разработчик · %@
+sig.script	скрипт
+sig.unreadable	не удалось проверить (нет доступа на чтение)
 sig.unsigned	без подписи
 sort.name	По имени
 sort.recent	По изменению
 sort.risk	По риску
 status.badLines	Не удалось прочитать строк: %ld
+status.checked	Проверено %@
 status.demo	Демо-данные
 status.file	Журнал: %@
 status.lastEvent	Последнее событие: %@
-status.none	Нет данных
+status.scanning	Сканирование…
+status.system	Этот Mac
 sub.addedBy	добавил: %@
 sub.launchedBy	запустил: %@
 sub.quarantineRemoved	флаг карантина удалён
+sub.runs	запускает: %@
 svc.accessibility	Универсальный доступ
+svc.appData	Данные других приложений
+svc.appManagement	Управление приложениями
 svc.automation	Автоматизация
+svc.bluetooth	Bluetooth
+svc.calendar	Календари
 svc.camera	Камера
 svc.contacts	Контакты
 svc.desktop	Папка «Рабочий стол»
+svc.developerTools	Инструменты разработчика
 svc.documents	Папка «Документы»
 svc.downloads	Папка «Загрузки»
+svc.fileProvider	Поставщик файлов
+svc.focus	Фокусирование
 svc.fullDisk	Полный доступ к диску
+svc.icloud	iCloud
 svc.inputMonitoring	Мониторинг ввода
+svc.mediaLibrary	Медиа и Apple Music
 svc.microphone	Микрофон
+svc.networkVolumes	Сетевые тома
+svc.passkeys	Ключи входа
 svc.photos	Фото
+svc.reminders	Напоминания
+svc.removableVolumes	Съёмные тома
 svc.screen	Запись экрана
+svc.speech	Распознавание речи
 tag.trusted	Доверенное

@@ -5,51 +5,84 @@ import UserNotifications
 @MainActor
 final class Store: ObservableObject {
     enum Source: Equatable {
-        case none
+        case system     // bu Mac'in gerçek durumu (TCC.db + launchd)
         case demo
         case file(URL)
     }
 
     @Published private(set) var items: [Item] = []
     @Published private(set) var apps: [AppSummary] = []
-    @Published private(set) var source: Source = .none
+    @Published private(set) var source: Source = .system
     @Published private(set) var badLines = 0
     @Published private(set) var trusted: Set<String>
+    @Published private(set) var needsFullDiskAccess = false
+    @Published private(set) var scanning = false
+    @Published private(set) var lastScan: Date?
 
     private var raw: [RawEvent] = []
     private var tail: DispatchSourceFileSystemObject?
     private var tailHandle: FileHandle?
     private var tailBuffer = Data()
+    private var timer: Timer?
+    private var activeObserver: NSObjectProtocol?
 
     private static let trustedKey = "trustedApps"
+    private static let scanInterval: TimeInterval = 30
 
     init() {
         trusted = Set(UserDefaults.standard.stringArray(forKey: Self.trustedKey) ?? [])
-        loadDemo()
+        // Tam Disk Erişimi sonradan verilirse, uygulamaya dönüldüğünde taramayı yenile.
+        activeObserver = NotificationCenter.default.addObserver(
+            forName: NSApplication.didBecomeActiveNotification, object: nil, queue: .main
+        ) { [weak self] _ in
+            MainActor.assumeIsolated {
+                guard let self, self.source == .system else { return }
+                self.scanSystem()
+            }
+        }
+        if ProcessInfo.processInfo.environment["PERMWATCH_DEMO"] != nil {
+            loadDemo()
+        } else {
+            useSystem()
+        }
     }
 
     // MARK: Kaynaklar
 
+    func useSystem() {
+        stopTail()
+        source = .system
+        badLines = 0
+        scanSystem()
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: Self.scanInterval, repeats: true) { [weak self] _ in
+            MainActor.assumeIsolated { self?.scanSystem() }
+        }
+    }
+
     func loadDemo() {
         stopTail()
+        stopTimer()
         guard let url = Bundle.main.url(forResource: "sample-events", withExtension: "jsonl"),
               let data = try? Data(contentsOf: url) else { return }
         let r = JSONL.decode(data)
         raw = r.events
         badLines = r.bad
         source = .demo
-        reanalyze()
+        needsFullDiskAccess = false
+        reanalyze(notifyNew: false)
     }
 
     func open(_ url: URL) {
         stopTail()
+        stopTimer()
         guard let h = try? FileHandle(forReadingFrom: url) else { return }
-        let data = h.readDataToEndOfFile()
-        let r = JSONL.decode(data)
+        let r = JSONL.decode(h.readDataToEndOfFile())
         raw = r.events
         badLines = r.bad
         source = .file(url)
-        reanalyze()
+        needsFullDiskAccess = false
+        reanalyze(notifyNew: false)
         startTail(handle: h)
     }
 
@@ -61,7 +94,58 @@ final class Store: ObservableObject {
         if panel.runModal() == .OK, let url = panel.url { open(url) }
     }
 
-    // MARK: Canlı okuma
+    private func stopTimer() {
+        timer?.invalidate()
+        timer = nil
+    }
+
+    // MARK: Sistem taraması
+
+    private struct State: Codable {
+        var snapshot: SystemScanner.Snapshot
+        var removed: [RawEvent]
+    }
+
+    private static var stateURL: URL {
+        let dir = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
+            .appendingPathComponent("permwatch", isDirectory: true)
+        try? FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
+        return dir.appendingPathComponent("state.json")
+    }
+
+    func scanSystem() {
+        guard source == .system, !scanning else { return }
+        scanning = true
+        let url = Self.stateURL
+        Task.detached(priority: .utility) {
+            let prev = (try? Data(contentsOf: url)).flatMap { try? JSONDecoder().decode(State.self, from: $0) }
+            let r = SystemScanner.scan(previous: prev?.snapshot, removedLog: prev?.removed ?? [])
+            let removed = r.events.filter { $0.update == "delete" || $0.event == "btm_launch_item_remove" }
+            // TCC okunamadıysa izin anlık görüntüsünü ezme (yoksa her şey "kaldırıldı" görünür).
+            var snap = r.snapshot
+            if !r.tccReadable, let p = prev?.snapshot { snap.tcc = p.tcc }
+            if let data = try? JSONEncoder().encode(State(snapshot: snap, removed: Array(removed.suffix(500)))) {
+                try? data.write(to: url, options: .atomic)
+            }
+            await MainActor.run {
+                guard self.source == .system else { self.scanning = false; return }
+                let first = self.lastScan == nil
+                self.raw = r.events
+                self.needsFullDiskAccess = !r.tccReadable
+                self.lastScan = Date()
+                self.scanning = false
+                self.reanalyze(notifyNew: !first)
+            }
+        }
+    }
+
+    func openFullDiskAccessSettings() {
+        if let u = URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_AllFiles") {
+            NSWorkspace.shared.open(u)
+        }
+    }
+
+    // MARK: Canlı dosya okuma
 
     private func startTail(handle: FileHandle) {
         tailHandle = handle
@@ -90,19 +174,21 @@ final class Store: ObservableObject {
         tailBuffer = Data(tailBuffer[tailBuffer.index(after: lastNL)...])
         let r = JSONL.decode(Data(complete))
         guard !r.events.isEmpty else { return }
-        let before = Set(items.filter { $0.risk == .high }.map(\.id))
         raw.append(contentsOf: r.events)
         badLines += r.bad
-        reanalyze()
-        for it in items where it.risk == .high && !before.contains(it.id) { notify(it) }
+        reanalyze(notifyNew: true)
     }
 
     // MARK: Analiz
 
-    private func reanalyze() {
+    private func reanalyze(notifyNew: Bool) {
+        let before = Set(items.filter { $0.risk == .high }.map(\.id))
         let a = Analyzer.run(raw, trusted: trusted)
         items = a.items
         apps = a.apps
+        if notifyNew {
+            for it in items where it.risk == .high && !before.contains(it.id) { notify(it) }
+        }
     }
 
     func item(_ id: Int?) -> Item? {
@@ -118,10 +204,10 @@ final class Store: ObservableObject {
 
     var openAlerts: Int { items.filter { $0.risk >= .caution }.count }
 
-    /// Kayıttaki son olaydan geriye 24 saatte olan izin değişiklikleri.
+    /// Son 24 saatte olan izin değişiklikleri (demo/kayıt dosyasında kayıttaki son olaya göre).
     var recentPermissionChanges: Int {
-        guard let last = lastEvent else { return 0 }
-        return items.filter { $0.kind == .tcc && last.timeIntervalSince($0.date) <= 86_400 }.count
+        let ref = source == .system ? Date() : (lastEvent ?? Date())
+        return items.filter { $0.kind == .tcc && ref.timeIntervalSince($0.date) <= 86_400 }.count
     }
 
     var loginItemCount: Int { apps.filter { $0.loginItem != nil }.count }
@@ -131,7 +217,7 @@ final class Store: ObservableObject {
     func toggleTrust(_ key: String) {
         if trusted.contains(key) { trusted.remove(key) } else { trusted.insert(key) }
         UserDefaults.standard.set(Array(trusted), forKey: Self.trustedKey)
-        reanalyze()
+        reanalyze(notifyNew: false)
     }
 
     func reveal(_ path: String) {
@@ -145,7 +231,10 @@ final class Store: ObservableObject {
     /// LaunchAgent plist'ini Çöp Sepeti'ne taşır (geri alınabilir).
     func trash(_ path: String, completion: @escaping (Bool) -> Void) {
         NSWorkspace.shared.recycle([URL(fileURLWithPath: path)]) { _, err in
-            DispatchQueue.main.async { completion(err == nil) }
+            DispatchQueue.main.async {
+                completion(err == nil)
+                if err == nil { self.scanSystem() }
+            }
         }
     }
 
@@ -157,11 +246,10 @@ final class Store: ObservableObject {
 
     private func notify(_ it: Item) {
         let c = UNMutableNotificationContent()
-        c.title = it.alertHeader
+        c.title = "\(it.risk.label): \(it.alertHeader)"
         c.body = "\(it.title)\n" + it.rules.map(\.text).joined(separator: "\n")
         c.sound = .default
-        let req = UNNotificationRequest(identifier: "pw-\(it.id)", content: c, trigger: nil)
-        UNUserNotificationCenter.current().add(req)
+        UNUserNotificationCenter.current().add(UNNotificationRequest(identifier: "pw-\(it.id)", content: c, trigger: nil))
     }
 }
 

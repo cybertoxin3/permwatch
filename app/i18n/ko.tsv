@@ -36,6 +36,10 @@ ev.tcc.denied	%1$@ → %2$@ 거부
 ev.tcc.granted	%1$@ → %2$@ 허용
 ev.tcc.limited	%1$@ → %2$@ 제한적 허용
 ev.tcc.revoked	%1$@ → %2$@ 권한 제거
+fda.body	permwatch는 macOS 개인정보 데이터베이스(TCC)를 읽어 어떤 앱이 어떤 권한을 가졌는지 보여 주고 시동 항목을 확인합니다. 어떤 데이터도 Mac 밖으로 나가지 않습니다. 시스템 설정의 '전체 디스크 접근 권한'에서 permwatch를 켜십시오.
+fda.hint	permwatch가 이미 목록에 있다면 껐다가 다시 켜십시오. macOS는 권한을 이 빌드에 연결합니다.
+fda.open	개인정보 보호 설정 열기
+fda.title	전체 디스크 접근 권한 필요
 field.addedBy	추가한 프로세스
 field.arguments	인수
 field.executes	실행 파일
@@ -65,6 +69,7 @@ menu.openTimeline	타임라인 열기
 menu.permChanges	권한 변경(24시간)
 menu.quit	종료
 menu.recent	최근 이벤트
+menu.scan	이 Mac 검사
 menu.watching	로그 감시 중
 nav.accessibility	손쉬운 사용
 nav.alerts	경고
@@ -79,7 +84,9 @@ nav.screen	화면 기록
 nav.timeline	타임라인
 open.message	permwatch 명령줄 도구가 기록한 JSON Lines 로그를 선택하십시오
 quarantine.removed	수동으로 제거됨 (xattr)
+reason.entitled	인타이틀먼트
 reason.mdm	MDM 정책
+reason.servicePolicy	서비스 정책
 reason.systemSet	시스템에서 설정
 reason.userConsent	사용자 동의
 reason.userSet	시스템 설정에서
@@ -93,36 +100,57 @@ rule.lolbinFromUnsigned	서명 없는 앱이 시스템 도구를 실행함
 rule.nightHidden	심야에 숨김 폴더에서 실행됨
 rule.quarantine	격리 플래그가 제거되어 Gatekeeper가 우회됨
 rule.rapidGrants	같은 앱이 2분 안에 손쉬운 사용과 화면 기록 권한을 얻음
+rule.startupWeakSignature	시동 항목이 스크립트 또는 애드혹 서명된 프로그램을 실행함
 rule.tccAdhoc	애드혹 서명된 앱에 권한이 허용됨
 rule.tccUnsigned	서명 없는 앱에 권한이 허용됨
 rule.unsignedDownload	서명 없는 앱이 다운로드 폴더에서 처음 실행됨
 rule.unsignedPersistence	서명 없는 프로세스가 시동 항목을 추가함
+rule.unsignedStartupBinary	시동 항목이 서명 없는 프로그램을 실행함
 search.prompt	검색: 앱, 경로, Team ID…
 sig.adhoc	애드혹 서명
 sig.apple	Apple
 sig.developer	개발자 · %@
+sig.script	스크립트
+sig.unreadable	확인할 수 없음(읽기 권한 없음)
 sig.unsigned	서명 없음
 sort.name	이름순
 sort.recent	최근 변경순
 sort.risk	위험도순
 status.badLines	%ld개 줄을 읽을 수 없음
+status.checked	확인: %@
 status.demo	데모 데이터
 status.file	로그: %@
 status.lastEvent	최근 이벤트: %@
-status.none	데이터 없음
+status.scanning	검사 중…
+status.system	이 Mac
 sub.addedBy	추가: %@
 sub.launchedBy	실행: %@
 sub.quarantineRemoved	격리 플래그 제거됨
+sub.runs	실행: %@
 svc.accessibility	손쉬운 사용
+svc.appData	다른 앱의 데이터
+svc.appManagement	앱 관리
 svc.automation	자동화
+svc.bluetooth	Bluetooth
+svc.calendar	캘린더
 svc.camera	카메라
 svc.contacts	연락처
 svc.desktop	데스크탑 폴더
+svc.developerTools	개발자 도구
 svc.documents	문서 폴더
 svc.downloads	다운로드 폴더
+svc.fileProvider	파일 제공자
+svc.focus	집중 모드
 svc.fullDisk	전체 디스크 접근 권한
+svc.icloud	iCloud
 svc.inputMonitoring	입력 모니터링
+svc.mediaLibrary	미디어 및 Apple Music
 svc.microphone	마이크
+svc.networkVolumes	네트워크 볼륨
+svc.passkeys	패스키
 svc.photos	사진
+svc.reminders	미리 알림
+svc.removableVolumes	이동식 볼륨
 svc.screen	화면 기록
+svc.speech	음성 인식
 tag.trusted	신뢰함

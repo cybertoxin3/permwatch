@@ -31,7 +31,9 @@ struct MainView: View {
             Sidebar(section: $section)
                 .navigationSplitViewColumnWidth(min: 200, ideal: 230, max: 280)
         } detail: {
-            if section == .apps {
+            if store.needsFullDiskAccess && store.source == .system {
+                FullDiskAccessView()
+            } else if section == .apps {
                 AppsView()
             } else {
                 HStack(spacing: 0) {
@@ -54,11 +56,14 @@ struct MainView: View {
             }
         }
         .onAppear {
-            selectFirstAlert()
+            DispatchQueue.main.async { selectFirstAlert() }
             if Snapshot.section == "apps" { section = .apps }
             Snapshot.scheduleIfRequested(store: store, selection: selection)
         }
-        .onChange(of: store.items.count) { selectFirstAlert() }
+        .onChange(of: store.items.count) {
+            // Liste güncellenirken seçimi aynı döngüde değiştirmek NSTableView'ı uyarıyor.
+            DispatchQueue.main.async { selectFirstAlert() }
+        }
     }
 
     private func selectFirstAlert() {
@@ -140,10 +145,12 @@ struct Sidebar: View {
     private var status: some View {
         VStack(alignment: .leading, spacing: 2) {
             HStack(spacing: 5) {
-                Circle().fill(store.source == .demo ? Color.orange : Color.green).frame(width: 7, height: 7)
+                Circle().fill(statusColor).frame(width: 7, height: 7)
                 Text(sourceText).lineLimit(1).truncationMode(.middle)
             }
-            if let d = store.lastEvent {
+            if store.source == .system, let d = store.lastScan {
+                Text(store.scanning ? L("status.scanning") : L("status.checked", Fmt.relative(d)))
+            } else if let d = store.lastEvent {
                 Text(L("status.lastEvent", Fmt.relative(d)))
             }
             if store.badLines > 0 {
@@ -155,9 +162,17 @@ struct Sidebar: View {
         .frame(maxWidth: .infinity, alignment: .leading)
     }
 
+    private var statusColor: Color {
+        switch store.source {
+        case .system: return store.needsFullDiskAccess ? .red : .green
+        case .demo: return .orange
+        case .file: return .blue
+        }
+    }
+
     private var sourceText: String {
         switch store.source {
-        case .none: return L("status.none")
+        case .system: return L("status.system")
         case .demo: return L("status.demo")
         case .file(let u): return L("status.file", u.lastPathComponent)
         }
@@ -229,5 +244,35 @@ struct EventRow: View {
             RiskTag(item.risk, trusted: item.trusted)
         }
         .padding(.vertical, 5)
+    }
+}
+
+// MARK: - Tam Disk Erişimi
+
+struct FullDiskAccessView: View {
+    @EnvironmentObject var store: Store
+
+    var body: some View {
+        VStack(spacing: 18) {
+            Image(systemName: "lock.shield")
+                .font(.system(size: 52, weight: .light))
+                .foregroundStyle(.secondary)
+            Text(L("fda.title")).font(.system(size: 22, weight: .bold))
+            Text(L("fda.body"))
+                .font(.system(size: 14))
+                .foregroundStyle(.secondary)
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: 520)
+            HStack(spacing: 12) {
+                Button(L("fda.open")) { store.openFullDiskAccessSettings() }
+                    .buttonStyle(.borderedProminent)
+                Button(L("menu.loadDemo")) { store.loadDemo() }
+            }
+            .controlSize(.large)
+            Text(L("fda.hint")).font(.system(size: 12)).foregroundStyle(.tertiary)
+                .multilineTextAlignment(.center).frame(maxWidth: 520)
+        }
+        .padding(40)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
