@@ -1,9 +1,13 @@
 action.missingFile	Dosya bu Mac'te yok
+action.more	Diğer
 action.openPermissions	İzinleri aç
 action.removeItem	Giriş öğesini kaldır
 action.removed	Çöp Sepeti'ne taşındı
+action.resetAll	Tüm izinleri sıfırla
+action.resetPermission	İzni sıfırla
 action.showInFinder	Finder'da göster
 action.trust	Güvenilir say
+action.uninstall	Kaldır…
 action.untrust	Güveni kaldır
 alert.evasion	Gatekeeper atlatma
 alert.execution	şüpheli çalıştırma
@@ -15,6 +19,7 @@ apps.subtitle	Hangi uygulama neye erişebiliyor
 btm.agent	agent (kullanıcı)
 btm.daemon	daemon (sistem)
 btm.loginItem	Giriş öğesi
+common.ok	Tamam
 confirm.cancel	Vazgeç
 confirm.trash.body	Bir sonraki girişte artık yüklenmez. Çöp Sepeti'nden geri alabilirsin.
 confirm.trash.ok	Çöp Sepeti'ne taşı
@@ -90,6 +95,9 @@ reason.servicePolicy	Servis politikası
 reason.systemSet	Sistem tarafından
 reason.userConsent	Kullanıcı onayı
 reason.userSet	Sistem Ayarları üzerinden
+reset.done	İzin sıfırlandı. Uygulama bir dahaki ihtiyacında yeniden soracak.
+reset.failed	Sıfırlanamadı: %@
+reset.noBundle	Bu programın paket kimliği (bundle ID) yok; izni yalnızca Sistem Ayarları'ndan değiştirilebilir.
 risk.caution	Dikkat
 risk.high	Yüksek risk
 risk.normal	Normal
@@ -154,3 +162,10 @@ svc.removableVolumes	Çıkarılabilir birimler
 svc.screen	Ekran Kaydı
 svc.speech	Konuşma Tanıma
 tag.trusted	Güvenilir
+uninstall.blocked	macOS bu uygulamayı koruyor; kaldırılamaz.
+uninstall.body	Önce uygulama kapatılır, ardından seçilen öğeler Çöp Sepeti'ne taşınır. Çöp Sepeti'ni boşalttığında kalıcı olarak silinirler.
+uninstall.confirm	Çöp Sepeti'ne taşı
+uninstall.done	Çöp Sepeti'ne taşındı.
+uninstall.failed	Taşınamadı: %@
+uninstall.resetPerms	Gizlilik izinlerini de sıfırla
+uninstall.title	“%@” kaldırılsın mı?

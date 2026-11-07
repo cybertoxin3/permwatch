@@ -1,9 +1,13 @@
 action.missingFile	Il file non è su questo Mac
+action.more	Altro
 action.openPermissions	Apri autorizzazioni
 action.removeItem	Rimuovi elemento login
 action.removed	Spostato nel Cestino
+action.resetAll	Reimposta tutte le autorizzazioni
+action.resetPermission	Reimposta autorizzazione
 action.showInFinder	Mostra nel Finder
 action.trust	Segna come affidabile
+action.uninstall	Disinstalla…
 action.untrust	Rimuovi fiducia
 alert.evasion	aggiramento di Gatekeeper
 alert.execution	esecuzione sospetta
@@ -15,6 +19,7 @@ apps.subtitle	Quale app accede a cosa
 btm.agent	agent (utente)
 btm.daemon	daemon (sistema)
 btm.loginItem	Elemento login
+common.ok	OK
 confirm.cancel	Annulla
 confirm.trash.body	Non verrà più caricato al prossimo login. Puoi ripristinarlo dal Cestino.
 confirm.trash.ok	Sposta nel Cestino
@@ -90,6 +95,9 @@ reason.servicePolicy	Criterio del servizio
 reason.systemSet	Impostato dal sistema
 reason.userConsent	Consenso utente
 reason.userSet	Da Impostazioni di Sistema
+reset.done	Autorizzazione reimpostata. L’app la richiederà di nuovo quando servirà.
+reset.failed	Impossibile reimpostare: %@
+reset.noBundle	Questo programma non ha un identificatore di bundle; la sua autorizzazione si può cambiare solo in Impostazioni di Sistema.
 risk.caution	Attenzione
 risk.high	Rischio alto
 risk.normal	Normale
@@ -154,3 +162,10 @@ svc.removableVolumes	Volumi rimovibili
 svc.screen	Registrazione schermo
 svc.speech	Riconoscimento vocale
 tag.trusted	Affidabile
+uninstall.blocked	macOS protegge questa app; non può essere rimossa.
+uninstall.body	Prima l’app viene chiusa, poi gli elementi selezionati vengono spostati nel Cestino. Vengono eliminati definitivamente solo quando svuoti il Cestino.
+uninstall.confirm	Sposta nel Cestino
+uninstall.done	Spostato nel Cestino.
+uninstall.failed	Impossibile spostare: %@
+uninstall.resetPerms	Reimposta anche le autorizzazioni privacy
+uninstall.title	Disinstallare “%@”?

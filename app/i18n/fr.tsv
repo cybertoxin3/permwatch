@@ -1,9 +1,13 @@
 action.missingFile	Le fichier n’est pas sur ce Mac
+action.more	Plus
 action.openPermissions	Ouvrir les autorisations
 action.removeItem	Supprimer l’élément
 action.removed	Placé dans la corbeille
+action.resetAll	Réinitialiser toutes les autorisations
+action.resetPermission	Réinitialiser l’autorisation
 action.showInFinder	Afficher dans le Finder
 action.trust	Marquer comme fiable
+action.uninstall	Désinstaller…
 action.untrust	Retirer la confiance
 alert.evasion	contournement de Gatekeeper
 alert.execution	exécution suspecte
@@ -15,6 +19,7 @@ apps.subtitle	Quelle app accède à quoi
 btm.agent	agent (utilisateur)
 btm.daemon	daemon (système)
 btm.loginItem	Élément d’ouverture
+common.ok	OK
 confirm.cancel	Annuler
 confirm.trash.body	Il ne sera plus chargé à la prochaine connexion. Vous pourrez le récupérer dans la corbeille.
 confirm.trash.ok	Placer dans la corbeille
@@ -90,6 +95,9 @@ reason.servicePolicy	Règle du service
 reason.systemSet	Défini par le système
 reason.userConsent	Consentement
 reason.userSet	Via Réglages Système
+reset.done	Autorisation réinitialisée. L’app la redemandera la prochaine fois.
+reset.failed	Réinitialisation impossible : %@
+reset.noBundle	Ce programme n’a pas d’identifiant de paquet ; son autorisation ne peut être modifiée que dans Réglages Système.
 risk.caution	Attention
 risk.high	Risque élevé
 risk.normal	Normal
@@ -154,3 +162,10 @@ svc.removableVolumes	Volumes amovibles
 svc.screen	Enregistrement de l’écran
 svc.speech	Reconnaissance vocale
 tag.trusted	Fiable
+uninstall.blocked	macOS protège cette app ; elle ne peut pas être supprimée.
+uninstall.body	L’app est d’abord quittée, puis les éléments choisis sont placés dans la corbeille. Ils ne sont supprimés définitivement que lorsque vous videz la corbeille.
+uninstall.confirm	Placer dans la corbeille
+uninstall.done	Placé dans la corbeille.
+uninstall.failed	Impossible de déplacer : %@
+uninstall.resetPerms	Réinitialiser aussi ses autorisations de confidentialité
+uninstall.title	Désinstaller « %@ » ?

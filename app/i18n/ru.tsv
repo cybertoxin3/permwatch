@@ -1,9 +1,13 @@
 action.missingFile	Этого файла нет на Mac
+action.more	Ещё
 action.openPermissions	Открыть разрешения
 action.removeItem	Удалить объект входа
 action.removed	Перемещено в Корзину
+action.resetAll	Сбросить все разрешения
+action.resetPermission	Сбросить разрешение
 action.showInFinder	Показать в Finder
 action.trust	Доверять
+action.uninstall	Удалить…
 action.untrust	Отменить доверие
 alert.evasion	обход Gatekeeper
 alert.execution	подозрительный запуск
@@ -15,6 +19,7 @@ apps.subtitle	Какое приложение к чему имеет досту�
 btm.agent	agent (пользователь)
 btm.daemon	daemon (система)
 btm.loginItem	Объект входа
+common.ok	ОК
 confirm.cancel	Отмена
 confirm.trash.body	Он перестанет загружаться при следующем входе. Его можно вернуть из Корзины.
 confirm.trash.ok	Переместить в Корзину
@@ -90,6 +95,9 @@ reason.servicePolicy	Политика службы
 reason.systemSet	Установлено системой
 reason.userConsent	Согласие пользователя
 reason.userSet	Через Системные настройки
+reset.done	Разрешение сброшено. Приложение снова запросит его, когда понадобится.
+reset.failed	Не удалось сбросить: %@
+reset.noBundle	У этой программы нет идентификатора пакета, поэтому её разрешение можно изменить только в Системных настройках.
 risk.caution	Внимание
 risk.high	Высокий риск
 risk.normal	Норма
@@ -154,3 +162,10 @@ svc.removableVolumes	Съёмные тома
 svc.screen	Запись экрана
 svc.speech	Распознавание речи
 tag.trusted	Доверенное
+uninstall.blocked	macOS защищает это приложение; его нельзя удалить.
+uninstall.body	Сначала приложение будет закрыто, затем выбранные объекты переместятся в Корзину. Окончательно они удалятся, когда вы очистите Корзину.
+uninstall.confirm	Переместить в Корзину
+uninstall.done	Перемещено в Корзину.
+uninstall.failed	Не удалось переместить: %@
+uninstall.resetPerms	Также сбросить его разрешения конфиденциальности
+uninstall.title	Удалить «%@»?

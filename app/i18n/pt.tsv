@@ -1,9 +1,13 @@
 action.missingFile	O arquivo não está neste Mac
+action.more	Mais
 action.openPermissions	Abrir permissões
 action.removeItem	Remover item de início
 action.removed	Movido para o Lixo
+action.resetAll	Redefinir todas as permissões
+action.resetPermission	Redefinir permissão
 action.showInFinder	Mostrar no Finder
 action.trust	Marcar como confiável
+action.uninstall	Desinstalar…
 action.untrust	Remover confiança
 alert.evasion	desvio do Gatekeeper
 alert.execution	execução suspeita
@@ -15,6 +19,7 @@ apps.subtitle	Qual app acessa o quê
 btm.agent	agent (usuário)
 btm.daemon	daemon (sistema)
 btm.loginItem	Item de início
+common.ok	OK
 confirm.cancel	Cancelar
 confirm.trash.body	Ele deixará de ser carregado no próximo login. Você pode restaurá-lo do Lixo.
 confirm.trash.ok	Mover para o Lixo
@@ -90,6 +95,9 @@ reason.servicePolicy	Política do serviço
 reason.systemSet	Definido pelo sistema
 reason.userConsent	Consentimento do usuário
 reason.userSet	Pelos Ajustes do Sistema
+reset.done	Permissão redefinida. O app pedirá de novo na próxima vez que precisar.
+reset.failed	Não foi possível redefinir: %@
+reset.noBundle	Este programa não tem identificador de pacote; a permissão só pode ser alterada nos Ajustes do Sistema.
 risk.caution	Atenção
 risk.high	Risco alto
 risk.normal	Normal
@@ -154,3 +162,10 @@ svc.removableVolumes	Volumes removíveis
 svc.screen	Gravação de tela
 svc.speech	Reconhecimento de Fala
 tag.trusted	Confiável
+uninstall.blocked	O macOS protege este app; ele não pode ser removido.
+uninstall.body	Primeiro o app é encerrado e, em seguida, os itens selecionados vão para o Lixo. Eles só são apagados de vez quando você esvazia o Lixo.
+uninstall.confirm	Mover para o Lixo
+uninstall.done	Movido para o Lixo.
+uninstall.failed	Não foi possível mover: %@
+uninstall.resetPerms	Redefinir também as permissões de privacidade
+uninstall.title	Desinstalar “%@”?

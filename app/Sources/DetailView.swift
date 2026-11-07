@@ -6,6 +6,8 @@ struct DetailView: View {
     var scrollable = true
     @State private var confirmTrash = false
     @State private var trashed = false
+    @State private var showUninstall = false
+    @State private var message: String?
 
     var body: some View {
         Group {
@@ -20,6 +22,12 @@ struct DetailView: View {
         } message: {
             Text(L("confirm.trash.body"))
         }
+        .sheet(isPresented: $showUninstall) {
+            UninstallSheet(appPath: item.appKey, name: item.appName).environmentObject(store)
+        }
+        .alert(message ?? "", isPresented: Binding(get: { message != nil }, set: { if !$0 { message = nil } })) {
+            Button(L("common.ok")) { message = nil }
+        }
     }
 
     private var content: some View {
@@ -28,10 +36,13 @@ struct DetailView: View {
                     alertBox
                 }
 
-                VStack(alignment: .leading, spacing: 3) {
-                    Text(item.title).font(.system(size: 17, weight: .bold))
-                    Text("\(Fmt.full.string(from: item.date)) · \(item.rawType)")
-                        .font(.system(size: 12)).foregroundStyle(.secondary)
+                HStack(alignment: .top, spacing: 12) {
+                    AppIcon(name: item.appName, risk: item.risk, key: item.appKey, size: 42)
+                    VStack(alignment: .leading, spacing: 3) {
+                        Text(item.title).font(.system(size: 17, weight: .bold))
+                        Text("\(Fmt.full.string(from: item.date)) · \(item.rawType)")
+                            .font(.system(size: 12)).foregroundStyle(.secondary)
+                    }
                 }
 
                 Grid(alignment: .leadingFirstTextBaseline, horizontalSpacing: 12, verticalSpacing: 7) {
@@ -114,9 +125,16 @@ struct DetailView: View {
             }
             if let s = item.tccService {
                 Button(L("action.openPermissions")) { store.openSettings(service: s) }
+                if store.bundleID(forKey: item.appKey) != nil {
+                    Button(L("action.resetPermission")) { message = store.resetPermission(service: s, key: item.appKey) }
+                }
             }
             Button(store.trusted.contains(item.appKey) ? L("action.untrust") : L("action.trust")) {
                 store.toggleTrust(item.appKey)
+            }
+            if Uninstaller.blockReason(item.appKey) == nil {
+                Button(L("action.uninstall")) { showUninstall = true }
+                    .foregroundStyle(.red)
             }
         }
         .controlSize(.large)

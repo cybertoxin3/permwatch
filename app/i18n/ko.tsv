@@ -1,9 +1,13 @@
 action.missingFile	이 Mac에 해당 파일이 없습니다
+action.more	더 보기
 action.openPermissions	권한 열기
 action.removeItem	로그인 항목 제거
 action.removed	휴지통으로 이동됨
+action.resetAll	모든 권한 재설정
+action.resetPermission	권한 재설정
 action.showInFinder	Finder에서 보기
 action.trust	신뢰함으로 표시
+action.uninstall	제거…
 action.untrust	신뢰 해제
 alert.evasion	Gatekeeper 우회
 alert.execution	의심스러운 실행
@@ -15,6 +19,7 @@ apps.subtitle	어떤 앱이 무엇에 접근할 수 있는지
 btm.agent	agent(사용자)
 btm.daemon	daemon(시스템)
 btm.loginItem	로그인 항목
+common.ok	확인
 confirm.cancel	취소
 confirm.trash.body	다음 로그인부터 더 이상 로드되지 않습니다. 휴지통에서 복원할 수 있습니다.
 confirm.trash.ok	휴지통으로 이동
@@ -90,6 +95,9 @@ reason.servicePolicy	서비스 정책
 reason.systemSet	시스템에서 설정
 reason.userConsent	사용자 동의
 reason.userSet	시스템 설정에서
+reset.done	권한을 재설정했습니다. 앱이 다음에 필요할 때 다시 요청합니다.
+reset.failed	재설정할 수 없음: %@
+reset.noBundle	이 프로그램에는 번들 ID가 없으므로 권한은 시스템 설정에서만 변경할 수 있습니다.
 risk.caution	주의
 risk.high	높은 위험
 risk.normal	정상
@@ -154,3 +162,10 @@ svc.removableVolumes	이동식 볼륨
 svc.screen	화면 기록
 svc.speech	음성 인식
 tag.trusted	신뢰함
+uninstall.blocked	macOS가 이 앱을 보호하므로 제거할 수 없습니다.
+uninstall.body	먼저 앱을 종료한 다음 선택한 항목을 휴지통으로 이동합니다. 휴지통을 비울 때 영구적으로 삭제됩니다.
+uninstall.confirm	휴지통으로 이동
+uninstall.done	휴지통으로 이동했습니다.
+uninstall.failed	이동할 수 없음: %@
+uninstall.resetPerms	개인정보 보호 권한도 재설정
+uninstall.title	‘%@’을(를) 제거하겠습니까?

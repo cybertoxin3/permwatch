@@ -8,6 +8,8 @@
 
 <div align="center">
 
+<img src="../images/icon.png" width="128" alt="permwatch">
+
 # permwatch
 
 **اعرف ما الذي يستطيع كل تطبيق على جهاز Mac الوصول إليه.**

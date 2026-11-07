@@ -1,9 +1,13 @@
 action.missingFile	このファイルはこの Mac にありません
+action.more	その他
 action.openPermissions	アクセス権を開く
 action.removeItem	ログイン項目を削除
 action.removed	ゴミ箱に移動しました
+action.resetAll	すべてのアクセス権をリセット
+action.resetPermission	アクセス権をリセット
 action.showInFinder	Finder に表示
 action.trust	信頼済みにする
+action.uninstall	アンインストール…
 action.untrust	信頼を解除
 alert.evasion	Gatekeeper の回避
 alert.execution	不審な実行
@@ -15,6 +19,7 @@ apps.subtitle	どのアプリが何にアクセスできるか
 btm.agent	agent(ユーザー)
 btm.daemon	daemon(システム)
 btm.loginItem	ログイン項目
+common.ok	OK
 confirm.cancel	キャンセル
 confirm.trash.body	次回ログイン時から読み込まれなくなります。ゴミ箱から元に戻せます。
 confirm.trash.ok	ゴミ箱に入れる
@@ -90,6 +95,9 @@ reason.servicePolicy	サービスポリシー
 reason.systemSet	システムによる設定
 reason.userConsent	ユーザーの承認
 reason.userSet	システム設定から
+reset.done	アクセス権をリセットしました。次に必要になったとき、アプリが再度確認します。
+reset.failed	リセットできませんでした: %@
+reset.noBundle	このプログラムにはバンドル ID がないため、アクセス権はシステム設定でのみ変更できます。
 risk.caution	注意
 risk.high	高リスク
 risk.normal	正常
@@ -154,3 +162,10 @@ svc.removableVolumes	リムーバブルボリューム
 svc.screen	画面収録
 svc.speech	音声認識
 tag.trusted	信頼済み
+uninstall.blocked	このアプリは macOS で保護されているため削除できません。
+uninstall.body	まずアプリを終了し、選択した項目をゴミ箱に移動します。完全に削除されるのはゴミ箱を空にしたときです。
+uninstall.confirm	ゴミ箱に入れる
+uninstall.done	ゴミ箱に移動しました。
+uninstall.failed	移動できませんでした: %@
+uninstall.resetPerms	プライバシーのアクセス権もリセット
+uninstall.title	“%@”をアンインストールしますか?

@@ -2,6 +2,8 @@
 
 [Türkçe](README_tr.md) · [English](../../README.md) · [Русский](README_ru.md) · [Deutsch](README_de.md) · [Français](README_fr.md) · [Español](README_es.md) · [Português](README_pt.md) · [Italiano](README_it.md) · [Українська](README_uk.md) · **日本語** · [简体中文](README_zh.md) · [한국어](README_ko.md) · [العربية](README_ar.md)
 
+<img src="../images/icon.png" width="128" alt="permwatch">
+
 # permwatch
 
 **Mac のアプリが何にアクセスできるのかを、ひと目で。**

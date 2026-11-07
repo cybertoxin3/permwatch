@@ -1,9 +1,13 @@
 action.missingFile	Цього файлу немає на Mac
+action.more	Ще
 action.openPermissions	Відкрити дозволи
 action.removeItem	Видалити об’єкт входу
 action.removed	Переміщено в Смітник
+action.resetAll	Скинути всі дозволи
+action.resetPermission	Скинути дозвіл
 action.showInFinder	Показати у Finder
 action.trust	Довіряти
+action.uninstall	Видалити…
 action.untrust	Скасувати довіру
 alert.evasion	обхід Gatekeeper
 alert.execution	підозрілий запуск
@@ -15,6 +19,7 @@ apps.subtitle	Яка програма до чого має доступ
 btm.agent	agent (користувач)
 btm.daemon	daemon (система)
 btm.loginItem	Об’єкт входу
+common.ok	OK
 confirm.cancel	Скасувати
 confirm.trash.body	Він більше не завантажуватиметься під час наступного входу. Його можна відновити зі Смітника.
 confirm.trash.ok	Перемістити в Смітник
@@ -90,6 +95,9 @@ reason.servicePolicy	Політика служби
 reason.systemSet	Встановлено системою
 reason.userConsent	Згода користувача
 reason.userSet	Через Системні параметри
+reset.done	Дозвіл скинуто. Програма запитає його знову, коли знадобиться.
+reset.failed	Не вдалося скинути: %@
+reset.noBundle	Ця програма не має ідентифікатора пакета, тому її дозвіл можна змінити лише в Системних параметрах.
 risk.caution	Увага
 risk.high	Високий ризик
 risk.normal	Норма
@@ -154,3 +162,10 @@ svc.removableVolumes	Знімні томи
 svc.screen	Запис екрана
 svc.speech	Розпізнавання мовлення
 tag.trusted	Довірена
+uninstall.blocked	macOS захищає цю програму; її неможливо видалити.
+uninstall.body	Спочатку програму буде закрито, потім вибрані об’єкти переміщено до Смітника. Остаточно вони видаляться, коли ви очистите Смітник.
+uninstall.confirm	Перемістити в Смітник
+uninstall.done	Переміщено в Смітник.
+uninstall.failed	Не вдалося перемістити: %@
+uninstall.resetPerms	Також скинути її дозволи конфіденційності
+uninstall.title	Видалити «%@»?

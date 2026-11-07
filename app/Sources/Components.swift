@@ -23,9 +23,29 @@ struct RiskTag: View {
 struct AppIcon: View {
     let name: String
     let risk: Risk
+    var key: String? = nil
     var size: CGFloat = 30
 
     var body: some View {
+        if let key, let img = IconCache.icon(for: key) {
+            Image(nsImage: img)
+                .resizable()
+                .interpolation(.high)
+                .frame(width: size, height: size)
+                .overlay(alignment: .topTrailing) {
+                    if risk >= .caution {
+                        Circle().fill(risk.color)
+                            .frame(width: size * 0.32, height: size * 0.32)
+                            .overlay(Circle().strokeBorder(Color(nsColor: .windowBackgroundColor), lineWidth: 1.5))
+                            .offset(x: size * 0.06, y: -size * 0.06)
+                    }
+                }
+        } else {
+            letterTile
+        }
+    }
+
+    private var letterTile: some View {
         RoundedRectangle(cornerRadius: size * 0.27)
             .fill(color)
             .frame(width: size, height: size)

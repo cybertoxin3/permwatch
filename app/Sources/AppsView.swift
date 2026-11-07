@@ -35,23 +35,38 @@ struct AppsView: View {
 struct AppCard: View {
     @EnvironmentObject var store: Store
     let app: AppSummary
+    @State private var showUninstall = false
+    @State private var message: String?
 
     var body: some View {
         let risky = app.risk == .high && !app.trusted
         VStack(alignment: .leading, spacing: 12) {
             HStack(alignment: .top, spacing: 12) {
-                AppIcon(name: app.name, risk: app.trusted ? .normal : app.risk, size: 40)
+                AppIcon(name: app.name, risk: app.trusted ? .normal : app.risk, key: app.key, size: 44)
                 VStack(alignment: .leading, spacing: 2) {
                     Text(app.name).font(.system(size: 15, weight: .semibold))
                     Text(subtitle).font(.system(size: 12)).foregroundStyle(.secondary).lineLimit(2)
                 }
                 Spacer()
                 RiskTag(app.risk, trusted: app.trusted)
+                Menu {
+                    menuItems
+                } label: {
+                    Image(systemName: "ellipsis.circle").font(.system(size: 15))
+                }
+                .menuStyle(.borderlessButton)
+                .menuIndicator(.hidden)
+                .fixedSize()
+                .help(L("action.more"))
             }
 
             FlowLayout(spacing: 6) {
                 ForEach(app.services, id: \.self) { s in
                     Pill(text: Text10n.service(s), systemImage: Icons.service(s), tint: risky ? .red : .blue)
+                        .contextMenu {
+                            Button(L("action.resetPermission")) { message = store.resetPermission(service: s, key: app.key) }
+                            Button(L("action.openPermissions")) { store.openSettings(service: s) }
+                        }
                 }
                 if let li = app.loginItem {
                     Pill(text: li, systemImage: "power", tint: risky ? .red : .blue)
@@ -86,8 +101,30 @@ struct AppCard: View {
                 .fill(risky ? Color.red.opacity(0.04) : Color(nsColor: .controlBackgroundColor))
         )
         .overlay(RoundedRectangle(cornerRadius: 12).strokeBorder(risky ? Color.red.opacity(0.3) : Color.secondary.opacity(0.2)))
-        .contextMenu {
-            Button(store.trusted.contains(app.key) ? L("action.untrust") : L("action.trust")) { store.toggleTrust(app.key) }
+        .contextMenu { menuItems }
+        .sheet(isPresented: $showUninstall) {
+            UninstallSheet(appPath: app.key, name: app.name).environmentObject(store)
+        }
+        .alert(message ?? "", isPresented: Binding(get: { message != nil }, set: { if !$0 { message = nil } })) {
+            Button(L("common.ok")) { message = nil }
+        }
+    }
+
+    @ViewBuilder
+    private var menuItems: some View {
+        if let p = IconCache.resolve(app.key) {
+            Button(L("action.showInFinder")) { store.reveal(p) }
+        }
+        if !app.services.isEmpty {
+            Button(L("action.resetAll")) { message = store.resetPermission(service: nil, key: app.key) }
+        }
+        Button(store.trusted.contains(app.key) ? L("action.untrust") : L("action.trust")) { store.toggleTrust(app.key) }
+        Divider()
+        let blocked = Uninstaller.blockReason(app.key)
+        Button(L("action.uninstall")) { showUninstall = true }
+            .disabled(blocked != nil)
+        if blocked != nil && blocked != .missing {
+            Text(L("uninstall.blocked"))
         }
     }
 

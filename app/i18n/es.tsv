@@ -1,9 +1,13 @@
 action.missingFile	El archivo no está en este Mac
+action.more	Más
 action.openPermissions	Abrir permisos
 action.removeItem	Quitar ítem de inicio
 action.removed	Movido a la papelera
+action.resetAll	Restablecer todos los permisos
+action.resetPermission	Restablecer permiso
 action.showInFinder	Mostrar en Finder
 action.trust	Marcar como fiable
+action.uninstall	Desinstalar…
 action.untrust	Quitar confianza
 alert.evasion	evasión de Gatekeeper
 alert.execution	ejecución sospechosa
@@ -15,6 +19,7 @@ apps.subtitle	Qué app accede a qué
 btm.agent	agent (usuario)
 btm.daemon	daemon (sistema)
 btm.loginItem	Ítem de inicio
+common.ok	Aceptar
 confirm.cancel	Cancelar
 confirm.trash.body	Dejará de cargarse en el próximo inicio de sesión. Puedes recuperarlo de la papelera.
 confirm.trash.ok	Mover a la papelera
@@ -90,6 +95,9 @@ reason.servicePolicy	Política del servicio
 reason.systemSet	Establecido por el sistema
 reason.userConsent	Consentimiento del usuario
 reason.userSet	Desde Ajustes del Sistema
+reset.done	Permiso restablecido. La app lo volverá a pedir la próxima vez que lo necesite.
+reset.failed	No se pudo restablecer: %@
+reset.noBundle	Este programa no tiene identificador de paquete, así que su permiso solo se puede cambiar en Ajustes del Sistema.
 risk.caution	Atención
 risk.high	Riesgo alto
 risk.normal	Normal
@@ -154,3 +162,10 @@ svc.removableVolumes	Volúmenes extraíbles
 svc.screen	Grabación de pantalla
 svc.speech	Reconocimiento de voz
 tag.trusted	Fiable
+uninstall.blocked	macOS protege esta app; no se puede eliminar.
+uninstall.body	Primero se cierra la app y luego los ítems seleccionados se mueven a la papelera. Solo se eliminan definitivamente al vaciar la papelera.
+uninstall.confirm	Mover a la papelera
+uninstall.done	Movido a la papelera.
+uninstall.failed	No se pudo mover: %@
+uninstall.resetPerms	Restablecer también sus permisos de privacidad
+uninstall.title	¿Desinstalar «%@»?

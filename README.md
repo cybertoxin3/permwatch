@@ -2,6 +2,8 @@
 
 [Türkçe](docs/i18n/README_tr.md) · **English** · [Русский](docs/i18n/README_ru.md) · [Deutsch](docs/i18n/README_de.md) · [Français](docs/i18n/README_fr.md) · [Español](docs/i18n/README_es.md) · [Português](docs/i18n/README_pt.md) · [Italiano](docs/i18n/README_it.md) · [Українська](docs/i18n/README_uk.md) · [日本語](docs/i18n/README_ja.md) · [简体中文](docs/i18n/README_zh.md) · [한국어](docs/i18n/README_ko.md) · [العربية](docs/i18n/README_ar.md)
 
+<img src="docs/images/icon.png" width="128" alt="permwatch">
+
 # permwatch
 
 **See what every app on your Mac can access.**

@@ -38,6 +38,17 @@ enum Snapshot {
     @MainActor
     static func scheduleIfRequested(store: Store, selection: Int?) {
         guard let path = target else { return }
+        if section == "uninstall-dry", let app = ProcessInfo.processInfo.environment["PERMWATCH_APP"] {
+            // Kuru çalıştırma: hiçbir şey silmeden kaldırılacak öğeleri listeler.
+            DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
+                print("engel: \(String(describing: Uninstaller.blockReason(app)))  bundle: \(store.bundleID(forKey: app) ?? "-")")
+                for c in Uninstaller.candidates(appPath: app, launchPlists: store.launchPlists(forApp: app)) {
+                    print(ByteCountFormatter.string(fromByteCount: c.size, countStyle: .file), PathUtil.abbreviate(c.path))
+                }
+                exit(0)
+            }
+            return
+        }
         if section == "dump" {
             // Uyarıların düz metin dökümü (test için): risk, tarih, başlık, kurallar.
             DispatchQueue.main.asyncAfter(deadline: .now() + 6) {

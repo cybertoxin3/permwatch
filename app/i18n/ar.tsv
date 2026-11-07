@@ -1,9 +1,13 @@
 action.missingFile	الملف غير موجود على جهاز Mac هذا
+action.more	المزيد
 action.openPermissions	فتح الأذونات
 action.removeItem	إزالة عنصر الدخول
 action.removed	نُقل إلى سلة المهملات
+action.resetAll	إعادة تعيين كل الأذونات
+action.resetPermission	إعادة تعيين الإذن
 action.showInFinder	إظهار في Finder
 action.trust	وضع علامة موثوق
+action.uninstall	إلغاء التثبيت…
 action.untrust	إلغاء الثقة
 alert.evasion	تجاوز Gatekeeper
 alert.execution	تشغيل مشبوه
@@ -15,6 +19,7 @@ apps.subtitle	أي تطبيق يصل إلى ماذا
 btm.agent	agent (مستخدم)
 btm.daemon	daemon (نظام)
 btm.loginItem	عنصر تسجيل الدخول
+common.ok	حسنًا
 confirm.cancel	إلغاء
 confirm.trash.body	لن يُحمَّل بعد الآن عند تسجيل الدخول التالي. يمكنك استعادته من سلة المهملات.
 confirm.trash.ok	نقل إلى سلة المهملات
@@ -90,6 +95,9 @@ reason.servicePolicy	سياسة الخدمة
 reason.systemSet	عيّنه النظام
 reason.userConsent	موافقة المستخدم
 reason.userSet	عبر إعدادات النظام
+reset.done	أُعيد تعيين الإذن. سيطلبه التطبيق مجددًا عند الحاجة.
+reset.failed	تعذّرت إعادة التعيين: %@
+reset.noBundle	لا يملك هذا البرنامج معرّف حزمة، لذا لا يمكن تغيير إذنه إلا من إعدادات النظام.
 risk.caution	تنبيه
 risk.high	خطورة عالية
 risk.normal	عادي
@@ -154,3 +162,10 @@ svc.removableVolumes	وحدات التخزين القابلة للإزالة
 svc.screen	تسجيل الشاشة
 svc.speech	التعرف على الكلام
 tag.trusted	موثوق
+uninstall.blocked	يحمي macOS هذا التطبيق؛ لا يمكن إزالته.
+uninstall.body	يُغلق التطبيق أولًا، ثم تُنقل العناصر المحددة إلى سلة المهملات. لا تُحذف نهائيًا إلا عند إفراغ سلة المهملات.
+uninstall.confirm	نقل إلى سلة المهملات
+uninstall.done	نُقل إلى سلة المهملات.
+uninstall.failed	تعذّر النقل: %@
+uninstall.resetPerms	إعادة تعيين أذونات الخصوصية أيضًا
+uninstall.title	هل تريد إلغاء تثبيت «%@»؟

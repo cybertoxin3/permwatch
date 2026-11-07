@@ -238,6 +238,38 @@ final class Store: ObservableObject {
         }
     }
 
+    // MARK: Kaldırma ve izinler
+
+    func bundleID(forKey key: String) -> String? {
+        if key.hasPrefix("bundle:") { return String(key.dropFirst(7)) }
+        return Uninstaller.bundleID(key)
+    }
+
+    /// Uygulama paketinin içindeki bir programı çalıştıran başlangıç öğeleri.
+    func launchPlists(forApp appPath: String) -> [String] {
+        raw.filter { $0.event == "btm_launch_item_add" && ($0.executable_path ?? "").hasPrefix(appPath + "/") }
+            .compactMap { PathUtil.fromURL($0.item?.url) }
+    }
+
+    /// TCC iznini sıfırlar (tccutil). service nil ise uygulamanın bütün izinleri.
+    /// İzin VERMEK mümkün değildir; macOS buna hiçbir uygulamaya izin vermez.
+    func resetPermission(service: String?, key: String) -> String {
+        guard let id = bundleID(forKey: key) else { return L("reset.noBundle") }
+        let svc = service.map { $0.replacingOccurrences(of: "kTCCService", with: "") } ?? "All"
+        let (code, out) = Shell.run("/usr/bin/tccutil", ["reset", svc, id])
+        scanSystem()
+        return code == 0 ? L("reset.done") : L("reset.failed", out)
+    }
+
+    func uninstall(_ items: [Uninstaller.Candidate], key: String, resetPermissions: Bool,
+                   completion: @escaping (String) -> Void) {
+        Uninstaller.run(items, bundleID: bundleID(forKey: key), resetPermissions: resetPermissions) { failed in
+            self.scanSystem()
+            completion(failed.isEmpty ? L("uninstall.done")
+                                      : L("uninstall.failed", failed.map(PathUtil.abbreviate).joined(separator: ", ")))
+        }
+    }
+
     // MARK: Bildirim
 
     func requestNotificationPermission() {

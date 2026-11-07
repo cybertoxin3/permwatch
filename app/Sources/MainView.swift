@@ -235,7 +235,7 @@ struct EventRow: View {
                 .font(.system(size: 12).monospacedDigit())
                 .foregroundStyle(.secondary)
                 .frame(width: 44, alignment: .leading)
-            AppIcon(name: item.appName, risk: item.risk)
+            AppIcon(name: item.appName, risk: item.risk, key: item.appKey)
             VStack(alignment: .leading, spacing: 2) {
                 Text(item.title).font(.system(size: 13, weight: .semibold)).lineLimit(1)
                 Text(item.subtitle).font(.system(size: 12)).foregroundStyle(.secondary).lineLimit(1).truncationMode(.middle)

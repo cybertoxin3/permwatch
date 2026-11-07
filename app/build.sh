@@ -16,7 +16,7 @@ mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
 swiftc -parse-as-library -O -target "$ARCH-apple-macos14" \
     Sources/*.swift -o "$APP/Contents/MacOS/permwatch"
 
-cp Resources/sample-events.jsonl "$APP/Contents/Resources/"
+cp Resources/sample-events.jsonl Resources/AppIcon.icns "$APP/Contents/Resources/"
 python3 -I tools/build_strings.py i18n "$APP/Contents/Resources"
 
 LOCS=$(cd "$APP/Contents/Resources" && ls -d *.lproj | sed 's/\.lproj//' | sed 's/.*/<string>&<\/string>/' | tr -d '\n')
@@ -30,6 +30,7 @@ cat > "$APP/Contents/Info.plist" <<EOF
     <key>CFBundleDisplayName</key><string>permwatch</string>
     <key>CFBundleExecutable</key><string>permwatch</string>
     <key>CFBundlePackageType</key><string>APPL</string>
+    <key>CFBundleIconFile</key><string>AppIcon</string>
     <key>CFBundleShortVersionString</key><string>0.1.0</string>
     <key>CFBundleVersion</key><string>1</string>
     <key>CFBundleDevelopmentRegion</key><string>en</string>

@@ -1,9 +1,13 @@
 action.missingFile	The file isn’t on this Mac
+action.more	More
 action.openPermissions	Open permissions
 action.removeItem	Remove login item
 action.removed	Moved to Trash
+action.resetAll	Reset all permissions
+action.resetPermission	Reset permission
 action.showInFinder	Show in Finder
 action.trust	Mark as trusted
+action.uninstall	Uninstall…
 action.untrust	Remove trust
 alert.evasion	Gatekeeper bypass
 alert.execution	suspicious execution
@@ -15,6 +19,7 @@ apps.subtitle	Which app can access what
 btm.agent	agent (user)
 btm.daemon	daemon (system)
 btm.loginItem	Login item
+common.ok	OK
 confirm.cancel	Cancel
 confirm.trash.body	It will stop loading at the next login. You can restore it from the Trash.
 confirm.trash.ok	Move to Trash
@@ -90,6 +95,9 @@ reason.servicePolicy	Service policy
 reason.systemSet	Set by the system
 reason.userConsent	User consent
 reason.userSet	Via System Settings
+reset.done	Permission reset. The app will ask again the next time it needs it.
+reset.failed	Could not reset: %@
+reset.noBundle	This program has no bundle ID, so its permission can only be changed in System Settings.
 risk.caution	Caution
 risk.high	High risk
 risk.normal	Normal
@@ -154,3 +162,10 @@ svc.removableVolumes	Removable volumes
 svc.screen	Screen Recording
 svc.speech	Speech Recognition
 tag.trusted	Trusted
+uninstall.blocked	macOS protects this app; it can’t be removed.
+uninstall.body	The app is quit first, then the selected items are moved to the Trash. They are deleted permanently only when you empty the Trash.
+uninstall.confirm	Move to Trash
+uninstall.done	Moved to the Trash.
+uninstall.failed	Could not move: %@
+uninstall.resetPerms	Also reset its privacy permissions
+uninstall.title	Uninstall “%@”?

@@ -2,6 +2,8 @@
 
 [Türkçe](README_tr.md) · [English](../../README.md) · [Русский](README_ru.md) · [Deutsch](README_de.md) · [Français](README_fr.md) · [Español](README_es.md) · [Português](README_pt.md) · [Italiano](README_it.md) · [Українська](README_uk.md) · [日本語](README_ja.md) · [简体中文](README_zh.md) · **한국어** · [العربية](README_ar.md)
 
+<img src="../images/icon.png" width="128" alt="permwatch">
+
 # permwatch
 
 **Mac의 모든 앱이 무엇에 접근할 수 있는지 확인하세요.**

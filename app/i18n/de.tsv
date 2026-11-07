@@ -1,9 +1,13 @@
 action.missingFile	Die Datei ist nicht auf diesem Mac
+action.more	Mehr
 action.openPermissions	Berechtigungen öffnen
 action.removeItem	Anmeldeobjekt entfernen
 action.removed	In den Papierkorb gelegt
+action.resetAll	Alle Berechtigungen zurücksetzen
+action.resetPermission	Berechtigung zurücksetzen
 action.showInFinder	Im Finder zeigen
 action.trust	Als vertrauenswürdig markieren
+action.uninstall	Deinstallieren …
 action.untrust	Vertrauen entfernen
 alert.evasion	Gatekeeper umgangen
 alert.execution	verdächtige Ausführung
@@ -15,6 +19,7 @@ apps.subtitle	Welche App worauf zugreifen kann
 btm.agent	agent (Benutzer)
 btm.daemon	daemon (System)
 btm.loginItem	Anmeldeobjekt
+common.ok	OK
 confirm.cancel	Abbrechen
 confirm.trash.body	Es wird bei der nächsten Anmeldung nicht mehr geladen. Du kannst es aus dem Papierkorb wiederherstellen.
 confirm.trash.ok	In den Papierkorb
@@ -90,6 +95,9 @@ reason.servicePolicy	Dienstrichtlinie
 reason.systemSet	Vom System gesetzt
 reason.userConsent	Nutzerzustimmung
 reason.userSet	Über Systemeinstellungen
+reset.done	Berechtigung zurückgesetzt. Die App fragt beim nächsten Mal erneut.
+reset.failed	Zurücksetzen fehlgeschlagen: %@
+reset.noBundle	Dieses Programm hat keine Bundle-ID, daher lässt sich seine Berechtigung nur in den Systemeinstellungen ändern.
 risk.caution	Achtung
 risk.high	Hohes Risiko
 risk.normal	Normal
@@ -154,3 +162,10 @@ svc.removableVolumes	Wechselmedien
 svc.screen	Bildschirmaufnahme
 svc.speech	Spracherkennung
 tag.trusted	Vertrauenswürdig
+uninstall.blocked	macOS schützt diese App; sie kann nicht entfernt werden.
+uninstall.body	Die App wird zuerst beendet, dann werden die ausgewählten Objekte in den Papierkorb gelegt. Endgültig gelöscht werden sie erst, wenn du den Papierkorb leerst.
+uninstall.confirm	In den Papierkorb
+uninstall.done	In den Papierkorb gelegt.
+uninstall.failed	Nicht verschiebbar: %@
+uninstall.resetPerms	Auch ihre Datenschutzberechtigungen zurücksetzen
+uninstall.title	„%@“ deinstallieren?
