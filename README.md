@@ -1,5 +1,7 @@
 <div align="center">
 
+**Türkçe** · [English](README_en.md) · [Русский](README_ru.md)
+
 # permwatch
 
 **Mac'inde hangi uygulamanın neye eriştiğini gör.**
