@@ -1,6 +1,6 @@
 <div align="center">
 
-[Türkçe](README_tr.md) · [English](README.md) · [Русский](README_ru.md) · [Deutsch](README_de.md) · **Français** · [Español](README_es.md) · [Português](README_pt.md) · [Italiano](README_it.md) · [Українська](README_uk.md) · [日本語](README_ja.md) · [简体中文](README_zh.md) · [한국어](README_ko.md) · [العربية](README_ar.md)
+[Türkçe](README_tr.md) · [English](../../README.md) · [Русский](README_ru.md) · [Deutsch](README_de.md) · **Français** · [Español](README_es.md) · [Português](README_pt.md) · [Italiano](README_it.md) · [Українська](README_uk.md) · [日本語](README_ja.md) · [简体中文](README_zh.md) · [한국어](README_ko.md) · [العربية](README_ar.md)
 
 # permwatch
 
@@ -27,7 +27,7 @@ Laquelle s’est discrètement ajoutée au démarrage ? macOS ne vous donne pas 
 **permwatch, si.**
 
 <p align="center">
-  <img src="docs/images/timeline_fr.png" alt="Chronologie de permwatch" width="900">
+  <img src="../images/timeline_fr.png" alt="Chronologie de permwatch" width="900">
 </p>
 
 ## Un scénario
@@ -49,7 +49,7 @@ Pris un par un, ces gestes semblent anodins. Ensemble, ils forment une chaîne d
 permwatch relie les points et vous montre une seule alerte claire.
 
 <p align="center">
-  <img src="docs/images/alert_fr.png" alt="Notification et barre des menus de permwatch" width="900">
+  <img src="../images/alert_fr.png" alt="Notification et barre des menus de permwatch" width="900">
 </p>
 
 ## Ce qu’il fait
@@ -61,7 +61,7 @@ permwatch relie les points et vous montre une seule alerte claire.
 - 📍 **Dans la barre des menus :** discret, mais présent quand il le faut
 
 <p align="center">
-  <img src="docs/images/apps_fr.png" alt="Vue des apps dans permwatch" width="900">
+  <img src="../images/apps_fr.png" alt="Vue des apps dans permwatch" width="900">
 </p>
 
 ## Votre vie privée reste chez vous
@@ -84,7 +84,7 @@ permwatch est en développement actif.
 
 > Les images ci-dessus sont des aperçus de conception. « Konvertix » est une app fictive.
 
-Développeur et envie d’essayer le moteur ? **[Guide du développeur (en anglais) →](docs/GELISTIRME_en.md)**
+Développeur et envie d’essayer le moteur ? **[Guide du développeur (en anglais) →](../GELISTIRME_en.md)**
 
 ---
 

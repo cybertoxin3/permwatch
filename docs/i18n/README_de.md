@@ -1,6 +1,6 @@
 <div align="center">
 
-[Türkçe](README_tr.md) · [English](README.md) · [Русский](README_ru.md) · **Deutsch** · [Français](README_fr.md) · [Español](README_es.md) · [Português](README_pt.md) · [Italiano](README_it.md) · [Українська](README_uk.md) · [日本語](README_ja.md) · [简体中文](README_zh.md) · [한국어](README_ko.md) · [العربية](README_ar.md)
+[Türkçe](README_tr.md) · [English](../../README.md) · [Русский](README_ru.md) · **Deutsch** · [Français](README_fr.md) · [Español](README_es.md) · [Português](README_pt.md) · [Italiano](README_it.md) · [Українська](README_uk.md) · [日本語](README_ja.md) · [简体中文](README_zh.md) · [한국어](README_ko.md) · [العربية](README_ar.md)
 
 # permwatch
 
@@ -27,7 +27,7 @@ Welche hat sich still und leise in den Autostart eingetragen? macOS zeigt dir di
 **permwatch schon.**
 
 <p align="center">
-  <img src="docs/images/timeline_de.png" alt="permwatch Zeitleiste" width="900">
+  <img src="../images/timeline_de.png" alt="permwatch Zeitleiste" width="900">
 </p>
 
 ## Ein Szenario
@@ -49,7 +49,7 @@ Einzeln wirkt jeder Schritt harmlos. Zusammen ergeben sie eine bekannte Angriffs
 permwatch verbindet die Punkte und zeigt dir eine einzige, klare Warnung.
 
 <p align="center">
-  <img src="docs/images/alert_de.png" alt="permwatch Mitteilung und Menüleiste" width="900">
+  <img src="../images/alert_de.png" alt="permwatch Mitteilung und Menüleiste" width="900">
 </p>
 
 ## Was es kann
@@ -61,7 +61,7 @@ permwatch verbindet die Punkte und zeigt dir eine einzige, klare Warnung.
 - 📍 **In der Menüleiste:** Bleibt im Hintergrund und meldet sich, wenn es darauf ankommt
 
 <p align="center">
-  <img src="docs/images/apps_de.png" alt="permwatch App-Ansicht" width="900">
+  <img src="../images/apps_de.png" alt="permwatch App-Ansicht" width="900">
 </p>
 
 ## Deine Privatsphäre bleibt bei dir
@@ -84,7 +84,7 @@ permwatch befindet sich in aktiver Entwicklung.
 
 > Die Bilder oben sind Designvorschauen. „Konvertix“ im Szenario ist eine erfundene App.
 
-Entwickler und möchtest den Kern ausprobieren? **[Entwicklerhandbuch (Englisch) →](docs/GELISTIRME_en.md)**
+Entwickler und möchtest den Kern ausprobieren? **[Entwicklerhandbuch (Englisch) →](../GELISTIRME_en.md)**
 
 ---
 

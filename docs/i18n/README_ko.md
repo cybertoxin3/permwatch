@@ -1,6 +1,6 @@
 <div align="center">
 
-[Türkçe](README_tr.md) · [English](README.md) · [Русский](README_ru.md) · [Deutsch](README_de.md) · [Français](README_fr.md) · [Español](README_es.md) · [Português](README_pt.md) · [Italiano](README_it.md) · [Українська](README_uk.md) · [日本語](README_ja.md) · [简体中文](README_zh.md) · **한국어** · [العربية](README_ar.md)
+[Türkçe](README_tr.md) · [English](../../README.md) · [Русский](README_ru.md) · [Deutsch](README_de.md) · [Français](README_fr.md) · [Español](README_es.md) · [Português](README_pt.md) · [Italiano](README_it.md) · [Українська](README_uk.md) · [日本語](README_ja.md) · [简体中文](README_zh.md) · **한국어** · [العربية](README_ar.md)
 
 # permwatch
 
@@ -27,7 +27,7 @@ permwatch는 모든 권한 변경을 기록하고, 수상한 일이 생기면 �
 **permwatch는 보여 줍니다.**
 
 <p align="center">
-  <img src="docs/images/timeline_ko.png" alt="permwatch 타임라인" width="900">
+  <img src="../images/timeline_ko.png" alt="permwatch 타임라인" width="900">
 </p>
 
 ## 시나리오
@@ -49,7 +49,7 @@ permwatch는 모든 권한 변경을 기록하고, 수상한 일이 생기면 �
 permwatch는 이 점들을 연결해 하나의 명확한 경고로 알려 줍니다.
 
 <p align="center">
-  <img src="docs/images/alert_ko.png" alt="permwatch 알림과 메뉴 막대" width="900">
+  <img src="../images/alert_ko.png" alt="permwatch 알림과 메뉴 막대" width="900">
 </p>
 
 ## 기능
@@ -61,7 +61,7 @@ permwatch는 이 점들을 연결해 하나의 명확한 경고로 알려 줍니
 - 📍 **메뉴 막대에서:** 평소에는 조용히, 필요할 때는 확실하게
 
 <p align="center">
-  <img src="docs/images/apps_ko.png" alt="permwatch 앱 보기" width="900">
+  <img src="../images/apps_ko.png" alt="permwatch 앱 보기" width="900">
 </p>
 
 ## 개인정보는 당신 곁에
@@ -84,7 +84,7 @@ permwatch는 활발히 개발 중입니다.
 
 > 위 이미지는 디자인 미리보기입니다. 시나리오의 "Konvertix"는 가상의 앱입니다.
 
-개발자이고 핵심 엔진을 써 보고 싶다면: **[개발자 가이드(영어) →](docs/GELISTIRME_en.md)**
+개발자이고 핵심 엔진을 써 보고 싶다면: **[개발자 가이드(영어) →](../GELISTIRME_en.md)**
 
 ---
 

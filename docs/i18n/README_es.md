@@ -1,6 +1,6 @@
 <div align="center">
 
-[Türkçe](README_tr.md) · [English](README.md) · [Русский](README_ru.md) · [Deutsch](README_de.md) · [Français](README_fr.md) · **Español** · [Português](README_pt.md) · [Italiano](README_it.md) · [Українська](README_uk.md) · [日本語](README_ja.md) · [简体中文](README_zh.md) · [한국어](README_ko.md) · [العربية](README_ar.md)
+[Türkçe](README_tr.md) · [English](../../README.md) · [Русский](README_ru.md) · [Deutsch](README_de.md) · [Français](README_fr.md) · **Español** · [Português](README_pt.md) · [Italiano](README_it.md) · [Українська](README_uk.md) · [日本語](README_ja.md) · [简体中文](README_zh.md) · [한국어](README_ko.md) · [العربية](README_ar.md)
 
 # permwatch
 
@@ -27,7 +27,7 @@ Pulsamos «Aceptar» decenas de veces al día. Pero ¿a qué app le diste qué p
 **permwatch, sí.**
 
 <p align="center">
-  <img src="docs/images/timeline_es.png" alt="Cronología de permwatch" width="900">
+  <img src="../images/timeline_es.png" alt="Cronología de permwatch" width="900">
 </p>
 
 ## Un escenario
@@ -49,7 +49,7 @@ Por separado, cada paso parece inofensivo. Juntos forman una cadena de ataque co
 permwatch une los puntos y te muestra una sola alerta clara.
 
 <p align="center">
-  <img src="docs/images/alert_es.png" alt="Notificación y barra de menús de permwatch" width="900">
+  <img src="../images/alert_es.png" alt="Notificación y barra de menús de permwatch" width="900">
 </p>
 
 ## Qué hace
@@ -61,7 +61,7 @@ permwatch une los puntos y te muestra una sola alerta clara.
 - 📍 **En la barra de menús:** no molesta, pero habla cuando importa
 
 <p align="center">
-  <img src="docs/images/apps_es.png" alt="Vista de apps de permwatch" width="900">
+  <img src="../images/apps_es.png" alt="Vista de apps de permwatch" width="900">
 </p>
 
 ## Tu privacidad se queda contigo
@@ -84,7 +84,7 @@ permwatch está en desarrollo activo.
 
 > Las imágenes de arriba son vistas previas del diseño. «Konvertix» es una app ficticia.
 
-¿Eres desarrollador y quieres probar el núcleo? **[Guía para desarrolladores (en inglés) →](docs/GELISTIRME_en.md)**
+¿Eres desarrollador y quieres probar el núcleo? **[Guía para desarrolladores (en inglés) →](../GELISTIRME_en.md)**
 
 ---
 

@@ -1,6 +1,6 @@
 <div align="center">
 
-**Türkçe** · [English](README.md) · [Русский](README_ru.md) · [Deutsch](README_de.md) · [Français](README_fr.md) · [Español](README_es.md) · [Português](README_pt.md) · [Italiano](README_it.md) · [Українська](README_uk.md) · [日本語](README_ja.md) · [简体中文](README_zh.md) · [한국어](README_ko.md) · [العربية](README_ar.md)
+**Türkçe** · [English](../../README.md) · [Русский](README_ru.md) · [Deutsch](README_de.md) · [Français](README_fr.md) · [Español](README_es.md) · [Português](README_pt.md) · [Italiano](README_it.md) · [Українська](README_uk.md) · [日本語](README_ja.md) · [简体中文](README_zh.md) · [한국어](README_ko.md) · [العربية](README_ar.md)
 
 # permwatch
 
@@ -27,7 +27,7 @@ Hangisi kendini sessizce başlangıca ekledi? macOS bu soruların cevabını san
 **permwatch gösteriyor.**
 
 <p align="center">
-  <img src="docs/images/timeline.png" alt="permwatch zaman çizelgesi" width="900">
+  <img src="../images/timeline.png" alt="permwatch zaman çizelgesi" width="900">
 </p>
 
 ## Bir senaryo
@@ -49,7 +49,7 @@ Tek tek bakınca masum görünen bu adımlar, birlikte bakınca tanıdık bir sa
 permwatch zinciri birleştirir ve sana tek bir net uyarı gösterir.
 
 <p align="center">
-  <img src="docs/images/alert.png" alt="permwatch bildirimi ve menü çubuğu" width="900">
+  <img src="../images/alert.png" alt="permwatch bildirimi ve menü çubuğu" width="900">
 </p>
 
 ## Neler yapar
@@ -61,7 +61,7 @@ permwatch zinciri birleştirir ve sana tek bir net uyarı gösterir.
 - 📍 **Menü çubuğunda:** Göze batmadan çalışır, gerektiğinde konuşur
 
 <p align="center">
-  <img src="docs/images/apps.png" alt="permwatch uygulama görünümü" width="900">
+  <img src="../images/apps.png" alt="permwatch uygulama görünümü" width="900">
 </p>
 
 ## Gizliliğin sende kalır
@@ -84,7 +84,7 @@ permwatch aktif geliştirme aşamasında.
 
 > Yukarıdaki görseller tasarım önizlemesidir. Senaryodaki "Konvertix" uygulaması temsilidir.
 
-Geliştiriciysen ve çekirdeği denemek istiyorsan: **[Geliştirici rehberi →](docs/GELISTIRME.md)**
+Geliştiriciysen ve çekirdeği denemek istiyorsan: **[Geliştirici rehberi →](../GELISTIRME.md)**
 
 ---
 

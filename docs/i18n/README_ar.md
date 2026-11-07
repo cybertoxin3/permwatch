@@ -1,6 +1,6 @@
 <div align="center">
 
-[Türkçe](README_tr.md) · [English](README.md) · [Русский](README_ru.md) · [Deutsch](README_de.md) · [Français](README_fr.md) · [Español](README_es.md) · [Português](README_pt.md) · [Italiano](README_it.md) · [Українська](README_uk.md) · [日本語](README_ja.md) · [简体中文](README_zh.md) · [한국어](README_ko.md) · **العربية**
+[Türkçe](README_tr.md) · [English](../../README.md) · [Русский](README_ru.md) · [Deutsch](README_de.md) · [Français](README_fr.md) · [Español](README_es.md) · [Português](README_pt.md) · [Italiano](README_it.md) · [Українська](README_uk.md) · [日本語](README_ja.md) · [简体中文](README_zh.md) · [한국어](README_ko.md) · **العربية**
 
 </div>
 
@@ -33,7 +33,7 @@
 **أما permwatch فيُظهرها.**
 
 <p align="center">
-  <img src="docs/images/timeline_ar.png" alt="الخط الزمني في permwatch" width="900">
+  <img src="../images/timeline_ar.png" alt="الخط الزمني في permwatch" width="900">
 </p>
 
 ## سيناريو
@@ -55,7 +55,7 @@
 يربط permwatch هذه النقاط ويعرض لك تنبيهًا واحدًا واضحًا.
 
 <p align="center">
-  <img src="docs/images/alert_ar.png" alt="إشعار permwatch وشريط القائمة" width="900">
+  <img src="../images/alert_ar.png" alt="إشعار permwatch وشريط القائمة" width="900">
 </p>
 
 ## ماذا يفعل
@@ -67,7 +67,7 @@
 - 📍 **في شريط القائمة:** لا يزعجك، لكنه يتكلم حين يلزم
 
 <p align="center">
-  <img src="docs/images/apps_ar.png" alt="عرض التطبيقات في permwatch" width="900">
+  <img src="../images/apps_ar.png" alt="عرض التطبيقات في permwatch" width="900">
 </p>
 
 ## خصوصيتك تبقى معك
@@ -90,7 +90,7 @@ permwatch قيد التطوير النشط.
 
 > الصور أعلاه معاينات للتصميم. تطبيق «Konvertix» في السيناريو تطبيق خيالي.
 
-هل أنت مطوّر وتريد تجربة النواة؟ **[دليل المطوّر (بالإنجليزية) ←](docs/GELISTIRME_en.md)**
+هل أنت مطوّر وتريد تجربة النواة؟ **[دليل المطوّر (بالإنجليزية) ←](../GELISTIRME_en.md)**
 
 ---
 

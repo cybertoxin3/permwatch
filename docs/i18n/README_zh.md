@@ -1,6 +1,6 @@
 <div align="center">
 
-[Türkçe](README_tr.md) · [English](README.md) · [Русский](README_ru.md) · [Deutsch](README_de.md) · [Français](README_fr.md) · [Español](README_es.md) · [Português](README_pt.md) · [Italiano](README_it.md) · [Українська](README_uk.md) · [日本語](README_ja.md) · **简体中文** · [한국어](README_ko.md) · [العربية](README_ar.md)
+[Türkçe](README_tr.md) · [English](../../README.md) · [Русский](README_ru.md) · [Deutsch](README_de.md) · [Français](README_fr.md) · [Español](README_es.md) · [Português](README_pt.md) · [Italiano](README_it.md) · [Українська](README_uk.md) · [日本語](README_ja.md) · **简体中文** · [한국어](README_ko.md) · [العربية](README_ar.md)
 
 # permwatch
 
@@ -27,7 +27,7 @@ permwatch 记录每一次权限变更，一旦发现可疑情况立即提醒你�
 **permwatch 会。**
 
 <p align="center">
-  <img src="docs/images/timeline_zh.png" alt="permwatch 时间线" width="900">
+  <img src="../images/timeline_zh.png" alt="permwatch 时间线" width="900">
 </p>
 
 ## 一个场景
@@ -49,7 +49,7 @@ permwatch 记录每一次权限变更，一旦发现可疑情况立即提醒你�
 permwatch 会把这些线索串联起来，只给你一条清晰的警报。
 
 <p align="center">
-  <img src="docs/images/alert_zh.png" alt="permwatch 通知与菜单栏" width="900">
+  <img src="../images/alert_zh.png" alt="permwatch 通知与菜单栏" width="900">
 </p>
 
 ## 功能
@@ -61,7 +61,7 @@ permwatch 会把这些线索串联起来，只给你一条清晰的警报。
 - 📍 **常驻菜单栏：** 平时不打扰，关键时刻及时提醒
 
 <p align="center">
-  <img src="docs/images/apps_zh.png" alt="permwatch 应用视图" width="900">
+  <img src="../images/apps_zh.png" alt="permwatch 应用视图" width="900">
 </p>
 
 ## 你的隐私只属于你
@@ -84,7 +84,7 @@ permwatch 正在积极开发中。
 
 > 以上图片为设计预览。场景中的"Konvertix"是虚构的应用。
 
-如果你是开发者，想试用核心引擎：**[开发者指南（英文）→](docs/GELISTIRME_en.md)**
+如果你是开发者，想试用核心引擎：**[开发者指南（英文）→](../GELISTIRME_en.md)**
 
 ---
 

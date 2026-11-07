@@ -1,6 +1,6 @@
 <div align="center">
 
-[Türkçe](README_tr.md) · [English](README.md) · **Русский** · [Deutsch](README_de.md) · [Français](README_fr.md) · [Español](README_es.md) · [Português](README_pt.md) · [Italiano](README_it.md) · [Українська](README_uk.md) · [日本語](README_ja.md) · [简体中文](README_zh.md) · [한국어](README_ko.md) · [العربية](README_ar.md)
+[Türkçe](README_tr.md) · [English](../../README.md) · **Русский** · [Deutsch](README_de.md) · [Français](README_fr.md) · [Español](README_es.md) · [Português](README_pt.md) · [Italiano](README_it.md) · [Українська](README_uk.md) · [日本語](README_ja.md) · [简体中文](README_zh.md) · [한국어](README_ko.md) · [العربية](README_ar.md)
 
 # permwatch
 
@@ -27,7 +27,7 @@ permwatch ведёт журнал всех изменений разрешени
 **permwatch показывает.**
 
 <p align="center">
-  <img src="docs/images/timeline_ru.png" alt="Хронология permwatch" width="900">
+  <img src="../images/timeline_ru.png" alt="Хронология permwatch" width="900">
 </p>
 
 ## Сценарий
@@ -49,7 +49,7 @@ permwatch ведёт журнал всех изменений разрешени
 permwatch связывает их и показывает одно понятное оповещение.
 
 <p align="center">
-  <img src="docs/images/alert_ru.png" alt="Уведомление и меню permwatch" width="900">
+  <img src="../images/alert_ru.png" alt="Уведомление и меню permwatch" width="900">
 </p>
 
 ## Возможности
@@ -61,7 +61,7 @@ permwatch связывает их и показывает одно понятн�
 - 📍 **В строке меню:** не мешает, но вовремя предупреждает
 
 <p align="center">
-  <img src="docs/images/apps_ru.png" alt="Приложения в permwatch" width="900">
+  <img src="../images/apps_ru.png" alt="Приложения в permwatch" width="900">
 </p>
 
 ## Ваша приватность остаётся с вами
@@ -84,7 +84,7 @@ permwatch находится в активной разработке.
 
 > Изображения выше — предварительный дизайн. Приложение «Konvertix» в сценарии вымышленное.
 
-Разработчик и хотите попробовать ядро? **[Руководство для разработчиков →](docs/GELISTIRME_ru.md)**
+Разработчик и хотите попробовать ядро? **[Руководство для разработчиков →](../GELISTIRME_ru.md)**
 
 ---
 

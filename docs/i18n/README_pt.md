@@ -1,6 +1,6 @@
 <div align="center">
 
-[Türkçe](README_tr.md) · [English](README.md) · [Русский](README_ru.md) · [Deutsch](README_de.md) · [Français](README_fr.md) · [Español](README_es.md) · **Português** · [Italiano](README_it.md) · [Українська](README_uk.md) · [日本語](README_ja.md) · [简体中文](README_zh.md) · [한국어](README_ko.md) · [العربية](README_ar.md)
+[Türkçe](README_tr.md) · [English](../../README.md) · [Русский](README_ru.md) · [Deutsch](README_de.md) · [Français](README_fr.md) · [Español](README_es.md) · **Português** · [Italiano](README_it.md) · [Українська](README_uk.md) · [日本語](README_ja.md) · [简体中文](README_zh.md) · [한국어](README_ko.md) · [العربية](README_ar.md)
 
 # permwatch
 
@@ -27,7 +27,7 @@ Qual delas se adicionou em silêncio ao início? O macOS não mostra essas respo
 **O permwatch mostra.**
 
 <p align="center">
-  <img src="docs/images/timeline_pt.png" alt="Linha do tempo do permwatch" width="900">
+  <img src="../images/timeline_pt.png" alt="Linha do tempo do permwatch" width="900">
 </p>
 
 ## Um cenário
@@ -49,7 +49,7 @@ Cada passo, sozinho, parece inofensivo. Juntos, formam uma cadeia de ataque conh
 O permwatch liga os pontos e mostra um único alerta claro.
 
 <p align="center">
-  <img src="docs/images/alert_pt.png" alt="Notificação e barra de menus do permwatch" width="900">
+  <img src="../images/alert_pt.png" alt="Notificação e barra de menus do permwatch" width="900">
 </p>
 
 ## O que ele faz
@@ -61,7 +61,7 @@ O permwatch liga os pontos e mostra um único alerta claro.
 - 📍 **Na barra de menus:** não atrapalha, mas avisa quando importa
 
 <p align="center">
-  <img src="docs/images/apps_pt.png" alt="Visão de apps do permwatch" width="900">
+  <img src="../images/apps_pt.png" alt="Visão de apps do permwatch" width="900">
 </p>
 
 ## Sua privacidade fica com você
@@ -84,7 +84,7 @@ O permwatch está em desenvolvimento ativo.
 
 > As imagens acima são prévias de design. "Konvertix" no cenário é um app fictício.
 
-É desenvolvedor e quer testar o núcleo? **[Guia do desenvolvedor (em inglês) →](docs/GELISTIRME_en.md)**
+É desenvolvedor e quer testar o núcleo? **[Guia do desenvolvedor (em inglês) →](../GELISTIRME_en.md)**
 
 ---
 

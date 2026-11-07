@@ -1,6 +1,6 @@
 <div align="center">
 
-[Türkçe](README_tr.md) · [English](README.md) · [Русский](README_ru.md) · [Deutsch](README_de.md) · [Français](README_fr.md) · [Español](README_es.md) · [Português](README_pt.md) · **Italiano** · [Українська](README_uk.md) · [日本語](README_ja.md) · [简体中文](README_zh.md) · [한국어](README_ko.md) · [العربية](README_ar.md)
+[Türkçe](README_tr.md) · [English](../../README.md) · [Русский](README_ru.md) · [Deutsch](README_de.md) · [Français](README_fr.md) · [Español](README_es.md) · [Português](README_pt.md) · **Italiano** · [Українська](README_uk.md) · [日本語](README_ja.md) · [简体中文](README_zh.md) · [한국어](README_ko.md) · [العربية](README_ar.md)
 
 # permwatch
 
@@ -27,7 +27,7 @@ Quale si è aggiunta in silenzio all'avvio? macOS non ti mostra queste risposte.
 **permwatch sì.**
 
 <p align="center">
-  <img src="docs/images/timeline_it.png" alt="Cronologia di permwatch" width="900">
+  <img src="../images/timeline_it.png" alt="Cronologia di permwatch" width="900">
 </p>
 
 ## Uno scenario
@@ -49,7 +49,7 @@ Preso da solo, ogni passo sembra innocuo. Insieme formano una catena d'attacco b
 permwatch unisce i puntini e ti mostra un unico avviso chiaro.
 
 <p align="center">
-  <img src="docs/images/alert_it.png" alt="Notifica e barra dei menu di permwatch" width="900">
+  <img src="../images/alert_it.png" alt="Notifica e barra dei menu di permwatch" width="900">
 </p>
 
 ## Cosa fa
@@ -61,7 +61,7 @@ permwatch unisce i puntini e ti mostra un unico avviso chiaro.
 - 📍 **Nella barra dei menu:** non disturba, ma parla quando serve
 
 <p align="center">
-  <img src="docs/images/apps_it.png" alt="Vista app di permwatch" width="900">
+  <img src="../images/apps_it.png" alt="Vista app di permwatch" width="900">
 </p>
 
 ## La tua privacy resta con te
@@ -84,7 +84,7 @@ permwatch è in sviluppo attivo.
 
 > Le immagini sopra sono anteprime di design. "Konvertix" nello scenario è un'app di fantasia.
 
-Sei uno sviluppatore e vuoi provare il motore? **[Guida per sviluppatori (in inglese) →](docs/GELISTIRME_en.md)**
+Sei uno sviluppatore e vuoi provare il motore? **[Guida per sviluppatori (in inglese) →](../GELISTIRME_en.md)**
 
 ---
 

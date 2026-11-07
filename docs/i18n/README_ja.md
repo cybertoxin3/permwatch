@@ -1,6 +1,6 @@
 <div align="center">
 
-[Türkçe](README_tr.md) · [English](README.md) · [Русский](README_ru.md) · [Deutsch](README_de.md) · [Français](README_fr.md) · [Español](README_es.md) · [Português](README_pt.md) · [Italiano](README_it.md) · [Українська](README_uk.md) · **日本語** · [简体中文](README_zh.md) · [한국어](README_ko.md) · [العربية](README_ar.md)
+[Türkçe](README_tr.md) · [English](../../README.md) · [Русский](README_ru.md) · [Deutsch](README_de.md) · [Français](README_fr.md) · [Español](README_es.md) · [Português](README_pt.md) · [Italiano](README_it.md) · [Українська](README_uk.md) · **日本語** · [简体中文](README_zh.md) · [한국어](README_ko.md) · [العربية](README_ar.md)
 
 # permwatch
 
@@ -27,7 +27,7 @@ permwatch はアクセス権の変更をすべて記録し、怪しい動きが�
 **permwatch なら見せてくれます。**
 
 <p align="center">
-  <img src="docs/images/timeline_ja.png" alt="permwatch のタイムライン" width="900">
+  <img src="../images/timeline_ja.png" alt="permwatch のタイムライン" width="900">
 </p>
 
 ## ある日のシナリオ
@@ -49,7 +49,7 @@ permwatch はアクセス権の変更をすべて記録し、怪しい動きが�
 permwatch はそれらを結びつけ、ひとつのわかりやすいアラートにして伝えます。
 
 <p align="center">
-  <img src="docs/images/alert_ja.png" alt="permwatch の通知とメニューバー" width="900">
+  <img src="../images/alert_ja.png" alt="permwatch の通知とメニューバー" width="900">
 </p>
 
 ## できること
@@ -61,7 +61,7 @@ permwatch はそれらを結びつけ、ひとつのわかりやすいアラー�
 - 📍 **メニューバーに常駐:** 普段は控えめに、必要なときだけ知らせます
 
 <p align="center">
-  <img src="docs/images/apps_ja.png" alt="permwatch のアプリ表示" width="900">
+  <img src="../images/apps_ja.png" alt="permwatch のアプリ表示" width="900">
 </p>
 
 ## プライバシーはあなたの手元に
@@ -84,7 +84,7 @@ permwatch は現在活発に開発中です。
 
 > 上の画像はデザインのプレビューです。シナリオに登場する「Konvertix」は架空のアプリです。
 
-デベロッパの方でコアを試してみたい場合は: **[開発者ガイド(英語)→](docs/GELISTIRME_en.md)**
+デベロッパの方でコアを試してみたい場合は: **[開発者ガイド(英語)→](../GELISTIRME_en.md)**
 
 ---
 

@@ -1,6 +1,6 @@
 <div align="center">
 
-[Türkçe](README_tr.md) · [English](README.md) · [Русский](README_ru.md) · [Deutsch](README_de.md) · [Français](README_fr.md) · [Español](README_es.md) · [Português](README_pt.md) · [Italiano](README_it.md) · **Українська** · [日本語](README_ja.md) · [简体中文](README_zh.md) · [한국어](README_ko.md) · [العربية](README_ar.md)
+[Türkçe](README_tr.md) · [English](../../README.md) · [Русский](README_ru.md) · [Deutsch](README_de.md) · [Français](README_fr.md) · [Español](README_es.md) · [Português](README_pt.md) · [Italiano](README_it.md) · **Українська** · [日本語](README_ja.md) · [简体中文](README_zh.md) · [한국어](README_ko.md) · [العربية](README_ar.md)
 
 # permwatch
 
@@ -27,7 +27,7 @@ permwatch веде журнал усіх змін дозволів і одраз
 **permwatch показує.**
 
 <p align="center">
-  <img src="docs/images/timeline_uk.png" alt="Хронологія permwatch" width="900">
+  <img src="../images/timeline_uk.png" alt="Хронологія permwatch" width="900">
 </p>
 
 ## Сценарій
@@ -49,7 +49,7 @@ permwatch веде журнал усіх змін дозволів і одраз
 permwatch пов’язує їх і показує одне зрозуміле сповіщення.
 
 <p align="center">
-  <img src="docs/images/alert_uk.png" alt="Сповіщення та меню permwatch" width="900">
+  <img src="../images/alert_uk.png" alt="Сповіщення та меню permwatch" width="900">
 </p>
 
 ## Можливості
@@ -61,7 +61,7 @@ permwatch пов’язує їх і показує одне зрозуміле �
 - 📍 **У рядку меню:** не заважає, але вчасно попереджає
 
 <p align="center">
-  <img src="docs/images/apps_uk.png" alt="Програми в permwatch" width="900">
+  <img src="../images/apps_uk.png" alt="Програми в permwatch" width="900">
 </p>
 
 ## Ваша приватність залишається з вами
@@ -84,7 +84,7 @@ permwatch перебуває в активній розробці.
 
 > Зображення вище є попереднім дизайном. Програма «Konvertix» у сценарії вигадана.
 
-Ви розробник і хочете спробувати ядро? **[Посібник для розробників (англійською) →](docs/GELISTIRME_en.md)**
+Ви розробник і хочете спробувати ядро? **[Посібник для розробників (англійською) →](../GELISTIRME_en.md)**
 
 ---
 
