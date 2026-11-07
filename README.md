@@ -1,98 +1,91 @@
+<div align="center">
+
 # permwatch
 
+**Mac'inde hangi uygulamanın neye eriştiğini gör.**
+
+Kamera, mikrofon, ekran kaydı, başlangıç öğeleri.<br>
+Her izin değişikliğinin kaydını tutar, şüpheli olanları anında haber verir.
+
 [![build](https://github.com/cybertoxin3/permwatch/actions/workflows/build.yml/badge.svg)](https://github.com/cybertoxin3/permwatch/actions/workflows/build.yml)
+![macOS](https://img.shields.io/badge/macOS-13%2B-black?logo=apple)
+![Durum](https://img.shields.io/badge/durum-geli%C5%9Ftirme%20a%C5%9Famas%C4%B1nda-orange)
 
-macOS için Endpoint Security tabanlı izin ve kalıcılık denetleyicisi. Şimdilik CLI çekirdeği.
+</div>
 
-| Çıktıdaki `event` | ES olayı | Ne yakalar | macOS |
-|---|---|---|---|
-| `exec` | `NOTIFY_EXEC` | Süreç başlatma. Apple binary'leri filtreli, LOLBin'ler ve `DYLD_*` ortam değişkeni içerenler her zaman gösterilir | 10.15+ |
-| `btm_launch_item_add` | `NOTIFY_BTM_LAUNCH_ITEM_ADD` | Yeni login item, LaunchAgent, LaunchDaemon | 13+ |
-| `btm_launch_item_remove` | `NOTIFY_BTM_LAUNCH_ITEM_REMOVE` | Kalıcılık öğesinin silinmesi (iz temizleme) | 13+ |
-| `quarantine_removed` | `NOTIFY_DELETEEXTATTR` | `com.apple.quarantine` silinmesi (Gatekeeper atlatma) | 10.15+ |
-| `gatekeeper_user_override` | `NOTIFY_GATEKEEPER_USER_OVERRIDE` | Kullanıcı engellenen uygulama için "Yine de Aç" dedi | 15+ |
-| `tcc_modify` | `NOTIFY_TCC_MODIFY` | TCC izni verildi, geri alındı veya değişti (servis, uygulama, sebep) | 15.4+ |
+---
 
-Her süreç için şunlar yazılır: `pid`, `ppid`, `responsible_pid`, yol, `signing_id`, `team_id`,
-`signature` (`apple` / `developer` / `adhoc` / `unsigned`), ham `cs_flags` ve `cdhash`.
-cdhash'i VirusTotal gibi servislerde arayabilirsin.
+## İzin verdin ve unuttun
 
-Çıktı JSON Lines formatında, her satır bir olay. Geçersiz UTF-8 byte'ları `�` olarak yazılır,
-böylece `jq` hiçbir satırda hata vermez.
+"Ekran kaydına izin ver." "Erişilebilirlik izni gerekiyor." "Girişte açılsın mı?"
 
-### Neden `eslogger` değil?
+Her gün onlarca kez "Tamam"a basıyoruz. Peki hangi uygulamaya ne zaman ne izni verdin?
+Hangisi kendini sessizce başlangıca ekledi? macOS bu soruların cevabını sana göstermiyor.
 
-macOS 13+ ile gelen `eslogger` aynı olayları ham JSON olarak basar. permwatch'ın farkı şunlar:
-gürültü filtresi (platform binary'leri atılır ama LOLBin'ler tutulur), yalnızca quarantine'e
-indirgenmiş xattr olayları, `DYLD_*` enjeksiyon tespiti, sadeleştirilmiş şema ve
-yol haritasındaki depolama, kural ve arayüz katmanları. Doğrulama için çıktıyı `eslogger` ile
-karşılaştırabilirsin:
+**permwatch gösteriyor.**
 
-```sh
-sudo eslogger btm_launch_item_add tcc_modify | jq .
-```
+<p align="center">
+  <img src="docs/images/timeline.png" alt="permwatch zaman çizelgesi" width="900">
+</p>
 
-## Derleme ve test
+## Bir senaryo
 
-```sh
-make            # derler ve entitlement ile ad-hoc imzalar
-make test       # JSON escape unit testleri (ES gerektirmez, her Mac'te çalışır)
-```
+İnternetten ücretsiz bir PDF dönüştürücü indiriyorsun. Açıyorsun, birkaç izin istiyor, "Tamam" diyorsun.
+Her şey normal görünüyor.
 
-## Neden ana Mac'te çalışmıyor?
+permwatch ise arka planda şunları görüyor:
 
-`com.apple.developer.endpoint-security.client` kısıtlı bir entitlement. SIP açıkken
-ad-hoc imzalı binary'yi AMFI öldürür (exit 137 / SIGKILL). İki çözüm var:
+| Saat | Ne oldu |
+|---|---|
+| 13:46 | İndirilen uygulamanın **karantina etiketi silindi**, yani Gatekeeper atlatıldı |
+| 13:47 | **İmzasız** bir uygulama İndirilenler'den ilk kez çalıştı |
+| 13:48 | Bir dakika içinde hem **Erişilebilirlik** hem **Ekran Kaydı** izni aldı |
+| 13:49 | Gizli bir klasördeki bir programı **başlangıca ekledi** |
+| 03:12 | Gece yarısı, sen uyurken **o gizli program çalıştı** |
 
-1. **Test için:** SIP ve AMFI kapalı bir macOS VM (aşağıda).
-2. **Dağıtım için:** Apple'dan ES entitlement'ı istersin, Developer ID ile imzalar
-   ve notarize edersin. (Talep gönderildi, inceleniyor.)
+Tek tek bakınca masum görünen bu adımlar, birlikte bakınca tanıdık bir saldırı zinciri oluşturuyor.
+permwatch zinciri birleştirir ve sana tek bir net uyarı gösterir.
 
-## VM test ortamı (Apple Silicon, UTM)
+<p align="center">
+  <img src="docs/images/alert.png" alt="permwatch bildirimi ve menü çubuğu" width="900">
+</p>
 
-1. UTM'yi kur, "Virtualize → macOS" ile bir VM oluştur (macOS 15.4+ olsun ki TCC_MODIFY çalışsın).
-2. VM'i kurtarma modunda aç (UTM'de VM'e sağ tık → *Boot into Recovery Mode*).
-3. Kurtarma terminalinde:
-   ```sh
-   csrutil disable
-   ```
-4. Normal açılıştan sonra VM içinde:
-   ```sh
-   sudo nvram boot-args="amfi_get_out_of_my_way=1"
-   sudo reboot
-   ```
-5. Terminal'e **Full Disk Access** ver (Sistem Ayarları → Gizlilik ve Güvenlik).
-6. Projeyi VM'e kopyala, `xcode-select --install`, sonra `make && sudo ./permwatch`.
+## Neler yapar
 
-> ⚠️ Bu ayarlar VM'in güvenliğini ciddi şekilde zayıflatır. Ana makinende yapma.
-> Malware örneklerini de sadece bu VM'de, snapshot alarak çalıştır.
+- 🕒 **Zaman çizelgesi:** Her izin değişikliği, her yeni başlangıç öğesi, tarihi ve sorumlusuyla birlikte
+- 🚨 **Akıllı uyarılar:** İmzasız uygulamalar, gece yarısı etkinlikleri, Gatekeeper atlatma denemeleri
+- 🔍 **Uygulama görünümü:** Bir uygulamanın sahip olduğu bütün izinler tek bir kartta
+- 🧬 **İmza kontrolü:** Apple mı, tanınmış bir geliştirici mi, yoksa kimliği belirsiz bir kaynak mı?
+- 📍 **Menü çubuğunda:** Göze batmadan çalışır, gerektiğinde konuşur
 
-## Olayları tetiklemek
+<p align="center">
+  <img src="docs/images/apps.png" alt="permwatch uygulama görünümü" width="900">
+</p>
 
-```sh
-# Terminal 1
-sudo ./permwatch | tee events.jsonl | jq .
+## Gizliliğin sende kalır
 
-# Terminal 2 (sudo olmadan)
-./tests/trigger.sh
-```
+permwatch **hiçbir veriyi dışarı göndermez.** Analytics, hesap ya da bulut yok.
+Bütün kayıtlar senin Mac'inde kalır. Bir gizlilik aracının başka türlü olmasını zaten beklemezdin.
 
-`trigger.sh` zararsız şekilde şunları yapar: LOLBin çalıştırma (`osascript`, `curl`),
-`DYLD_INSERT_LIBRARIES` ile exec, quarantine ekleyip silme, test LaunchAgent'ı yükleyip kaldırma.
-TCC ve Gatekeeper olaylarını elle nasıl tetikleyeceğini de yazar.
+## Nasıl çalışır
 
-## Yol haritası
+permwatch, Apple'ın güvenlik yazılımları için sunduğu resmi **Endpoint Security** altyapısını kullanır.
+Çekirdek C ile yazılmıştır, yalnızca **gözlemler** ve hiçbir zaman sistemin işleyişine müdahale etmez.
 
-- [x] ES istemcisi: EXEC, BTM add/remove, TCC_MODIFY, quarantine silme, Gatekeeper override
-- [x] LOLBin izin listesi, `DYLD_*` tespiti, ad-hoc imza ayrımı, cdhash
-- [x] JSON escape unit testleri, GitHub Actions derlemesi
-- [ ] Hassas dosya erişimi: ayrı bir `es_client` üzerinde inverted muting ile `NOTIFY_OPEN`
-      (LaunchAgents, TCC.db, Keychains, `~/.zshrc`, tarayıcı cookie'leri)
-- [ ] Enjeksiyon: `NOTIFY_GET_TASK`, `NOTIFY_REMOTE_THREAD_CREATE`
-- [ ] Yetki ve uzaktan erişim: `NOTIFY_SUDO`, `NOTIFY_AUTHORIZATION_PETITION`,
-      `NOTIFY_SCREENSHARING_ATTACH`, `NOTIFY_OPENSSH_LOGIN`, `NOTIFY_XP_MALWARE_DETECTED`,
-      `NOTIFY_PROFILE_ADD`
-- [ ] Süreç soy ağacı (`Safari → zsh → curl → osascript`)
-- [ ] JSON kural dosyası (Sigma benzeri) ve SQLite depolama
-- [ ] System Extension + XPC + SwiftUI arayüzü
-- [ ] Lite sürüm: CoreAudio süreç nesneleriyle mikrofon geçmişi (App Store)
+## Durum
+
+permwatch aktif geliştirme aşamasında.
+
+- ✅ Olayları yakalayan çekirdek motor (komut satırı)
+- ⏳ Apple Endpoint Security izni: başvuru yapıldı, inceleniyor
+- 🛠 macOS uygulaması ve arayüz: tasarım aşamasında
+
+> Yukarıdaki görseller tasarım önizlemesidir. Senaryodaki "Konvertix" uygulaması temsilidir.
+
+Geliştiriciysen ve çekirdeği denemek istiyorsan: **[Geliştirici rehberi →](docs/GELISTIRME.md)**
+
+---
+
+<div align="center">
+<sub>macOS güvenliğini merak eden biri tarafından, meraklılar için yapıldı.</sub>
+</div>
