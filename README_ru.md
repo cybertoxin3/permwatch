@@ -1,6 +1,6 @@
 <div align="center">
 
-[Türkçe](README.md) · [English](README_en.md) · **Русский**
+[Türkçe](README_tr.md) · [English](README_en.md) · **Русский**
 
 # permwatch
 
