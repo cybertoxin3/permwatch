@@ -1,3 +1,5 @@
+**Türkçe** · [English](GELISTIRME_en.md) · [Русский](GELISTIRME_ru.md)
+
 # permwatch
 
 [![build](https://github.com/cybertoxin3/permwatch/actions/workflows/build.yml/badge.svg)](https://github.com/cybertoxin3/permwatch/actions/workflows/build.yml)
@@ -17,7 +19,7 @@ Her süreç için şunlar yazılır: `pid`, `ppid`, `responsible_pid`, yol, `sig
 `signature` (`apple` / `developer` / `adhoc` / `unsigned`), ham `cs_flags` ve `cdhash`.
 cdhash'i VirusTotal gibi servislerde arayabilirsin.
 
-Çıktı JSON Lines formatında, her satır bir olay. Geçersiz UTF-8 byte'ları `�` olarak yazılır,
+Çıktı JSON Lines formatında, her satır bir olay. Geçersiz UTF-8 byte'ları `\ufffd` olarak yazılır,
 böylece `jq` hiçbir satırda hata vermez.
 
 ### Neden `eslogger` değil?

@@ -84,7 +84,7 @@ permwatch is in active development.
 
 > The images above are design previews. "Konvertix" in the scenario is a fictional app.
 
-Developer and want to try the core? **[Developer guide (Turkish) →](docs/GELISTIRME.md)**
+Developer and want to try the core? **[Developer guide →](docs/GELISTIRME_en.md)**
 
 ---
 
