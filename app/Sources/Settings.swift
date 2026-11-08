@@ -170,7 +170,9 @@ struct SettingsView: View {
                     Text(L("settings.captureFolderDesc")).font(.system(size: 11)).foregroundStyle(.secondary)
                         .fixedSize(horizontal: false, vertical: true)
                 }
-
+            }
+            // Engellenen sunucular: basit modda da, en az bir engel varsa görünür (kaldırabilmek için).
+            if advanced || !blocks.ips.isEmpty {
                 Section {
                     if blocks.ips.isEmpty {
                         Text(L("block.none")).foregroundStyle(.secondary)
