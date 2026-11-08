@@ -4,6 +4,8 @@ permwatch is a privacy tool, so it is strict about your data.
 
 **Nothing leaves your Mac.** permwatch has no analytics, no telemetry, no account and no server. It makes no network requests of its own.
 
+The malware scan runs entirely on your Mac with the XProtect signatures already installed by macOS; no file or hash is uploaded.
+
 The only exception is one you trigger yourself. **"Check with VirusTotal"** opens your browser at `virustotal.com/gui/file/<SHA-256>`. Only the file's hash is in the address; the file itself is never uploaded.
 
 ## What is stored on your Mac

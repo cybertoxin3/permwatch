@@ -56,6 +56,7 @@ permwatch zinciri birleştirir ve sana tek bir net uyarı gösterir.
 
 ## Neler yapar
 
+- 🐞 **Zararlı taraması:** Uygulamalarını, başlangıç öğelerini, çalışan programları ve indirilenleri **Apple'ın kendi XProtect zararlı imzalarıyla** (macOS'un güncel tuttuğu imzalar) açık kaynak YARA motoru kullanarak tarar. Hızlı tarama yaklaşık 10 saniye sürer. Yeni indirilenler otomatik taranır; bulunan zararlı, onu başlatan başlangıç öğeleriyle birlikte Çöp Sepeti'ne taşınabilir.
 - 💡 **Öneriler:** Bütün bulguları sade dille açıklayan ve tek tıkla düzeltme sunan tek ekran. Silinmiş uygulamalardan kalan izinleri ve aylardır açmadığın uygulamalardaki izinleri bulur.
 - 🕒 **Zaman çizelgesi:** Her izin değişikliği ve her yeni başlangıç öğesi; tarihi ve sorumlu süreciyle
 - 🚨 **Uyarılar:** İmzasız başlangıç programları, şüpheli izin örüntüleri ve Gatekeeper atlatma girişimleri. Yeni bir şey olduğunda ekranın üstünde küçük bir pencere açılır.
@@ -73,7 +74,7 @@ permwatch zinciri birleştirir ve sana tek bir net uyarı gösterir.
 
 ## Ne değildir
 
-permwatch **bir antivirüs değildir.** Zararlı yazılım imza veritabanı yoktur ve **hiçbir şeyi engellemez.** Olanı gösterir, açıklar ve düzeltmene yardım eder. Bağlantıları engellemek istiyorsan yanında LuLu veya Little Snitch gibi bir güvenlik duvarı kullan.
+permwatch **tam bir antivirüs değildir.** Apple'ın imzalarının bildiği zararlıları bulur ama kendi imza veritabanı yoktur ve **hiçbir şeyi anlık olarak engellemez.** Olanı gösterir, açıklar ve düzeltmene yardım eder. Bağlantıları engellemek istiyorsan yanında LuLu veya Little Snitch gibi bir güvenlik duvarı kullan.
 
 Kurallar sezgiseldir: yanlış alarm verebilir (ör. geliştirici araçlarında) ve iyi gizlenmiş zararlıları kaçırabilir.
 
@@ -90,6 +91,7 @@ permwatch **hiçbir yere veri göndermez.** Analiz yok, hesap yok, bulut yok. Ay
 
 ## Üçüncü taraf kod
 
+- Apple'ın XProtect imzalarını çalıştırmak için VirusTotal'ın [YARA](https://github.com/VirusTotal/yara) v4.5.8 motoru (BSD-3). `app/vendor/yara` içinde.
 - Terminal için Miguel de Icaza'nın [SwiftTerm](https://github.com/migueldeicaza/SwiftTerm) v1.20.0 kütüphanesi (MIT). `app/vendor/SwiftTerm` içinde.
 
 ## Durum

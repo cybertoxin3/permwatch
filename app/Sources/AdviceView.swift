@@ -108,6 +108,7 @@ struct AdviceView: View {
     @EnvironmentObject var packets: PacketMonitor
     @EnvironmentObject var advisor: Advisor
     @EnvironmentObject var center: ThreatCenter
+    @EnvironmentObject var scanner: MalwareScanner
     @State private var done: Set<String> = []
     @State private var message: String?
     @State private var confirm: AdviceItem?
@@ -211,6 +212,16 @@ struct AdviceView: View {
             out.append(.init(id: "posture.\(c.id)", verdict: c.id == "sip" || c.id == "gatekeeper" ? .danger : .caution,
                              icon: "shield.slash", title: L("adv.posture.title", c.title), body: L("adv.posture." + c.id),
                              primary: c.settingsURL.flatMap { URL(string: $0) }.map { u in (L("sec.fix"), { NSWorkspace.shared.open(u) }) }))
+        }
+        if !scanner.detections.isEmpty {
+            out.append(.init(id: "malware", verdict: .danger, icon: "ladybug.fill",
+                             title: L("scan.found", scanner.detections.count.formatted()),
+                             body: scanner.detections.map { "\($0.name): \(PathUtil.abbreviate($0.path))" }.joined(separator: "\n"),
+                             primary: (L("threat.review"), { go(.scan) })))
+        } else if scanner.lastScan.map({ Date().timeIntervalSince($0) > 7 * 86_400 }) ?? true {
+            out.append(.init(id: "malware.scan", verdict: .info, icon: "ladybug",
+                             title: scanner.lastScan == nil ? L("scan.never") : L("scan.stale"), body: L("scan.adviceBody"),
+                             primary: (L("scan.quick"), { go(.scan); scanner.start(.quick) })))
         }
         let high = store.items.filter { $0.risk == .high && !$0.trusted }.count
         if high > 0 {

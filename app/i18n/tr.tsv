@@ -447,3 +447,36 @@ term.cmd.dns	Kullanılan DNS sunucuları
 term.cmd.profiles	Yüklü yapılandırma profilleri
 term.cmd.updates	Mevcut yazılım güncellemeleri
 term.cmd.pktap	Süreç adlarıyla paket yakalama (tcpdump)
+nav.scan	Zararlı Taraması
+scan.noRules	Apple'ın XProtect imzaları bu Mac'te bulunamadı.
+scan.collecting	Taranacak dosyalar bulunuyor…
+scan.threatTitle	Zararlı bulundu: %@
+scan.removed	%@ Çöp Sepeti'ne taşındı. Tamamen silmek için Çöp Sepeti'ni boşalt.
+scan.removeFailed	Çöp Sepeti'ne taşınamadı: %@
+scan.error	Tarama çalışamadı: %@
+scan.removeTitle	%@ kaldırılsın mı?
+scan.remove	Çöp Sepeti'ne Taşı
+scan.removeBody	Dosya (ve ait olduğu uygulama) ile onu başlatan başlangıç öğeleri durdurulup Çöp Sepeti'ne taşınır. İstersen Çöp Sepeti'nden geri alabilirsin.
+scan.cancel	Durdur
+scan.quick	Hızlı Tara
+scan.full	Tam Tarama
+scan.running	Taranıyor…
+scan.found	%@ tehdit bulundu
+scan.never	Mac'in henüz taranmadı
+scan.clean	Zararlı bulunmadı
+scan.last	Son tarama %1$@ · %2$@ dosya · %3$@
+scan.fullShort	tam
+scan.quickShort	hızlı
+scan.signatures	Apple XProtect imzaları %@
+scan.progress	%@ dosya tarandı
+scan.cleanTitle	Apple'ın zararlı imzalarıyla eşleşen bir şey yok
+scan.cleanBody	%@ dosya kontrol edildi: uygulamalar ve yardımcıları, başlangıç öğeleri, çalışan programlar ve zararlıların genellikle saklandığı yerler.
+scan.unreadable	%@ dosya okunamadı (genelde sistemce korunan yardımcılar).
+scan.detectionBody	Bu dosya Apple'ın yayımladığı bir zararlı imzasıyla eşleşiyor. Açma. Çöp Sepeti'ne taşı, ardından o çalışırken girmiş olabileceğin parolaları değiştir.
+scan.launchItems	Otomatik başlatan: %@
+scan.rule	İmza
+scan.aboutTitle	Bu tarama nasıl çalışır
+scan.about	permwatch, dosyaları Apple'ın kendi XProtect zararlı imzalarıyla (macOS'un kullandığı ve otomatik güncellediği imzalar) açık kaynak YARA motorunu kullanarak karşılaştırır. Apple'ın bildiği zararlıları (Adload, Pirrit, Genieo gibi reklam yazılımları, bilgi hırsızları, arka kapılar) yakalar. Yeni veya hedefli zararlılar henüz tanınmıyor olabilir. Hiçbir şey yüklenmez; tarama tamamen Mac'inde çalışır.
+scan.stale	Son zararlı taraması bir haftadan eski
+scan.adviceBody	Hızlı tarama yaklaşık 10 saniye sürer; uygulamaları, başlangıç öğelerini ve çalışan programları Apple'ın kendi zararlı imzalarıyla kontrol eder.
+scan.progressFull	%1$@ dosya incelendi · %2$@ program ve betik tarandı

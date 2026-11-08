@@ -447,3 +447,36 @@ term.cmd.dns	Servidores DNS en uso
 term.cmd.profiles	Perfiles de configuración instalados
 term.cmd.updates	Actualizaciones disponibles
 term.cmd.pktap	Captura de paquetes con nombres de proceso (tcpdump)
+nav.scan	Análisis de malware
+scan.noRules	No se encontraron las firmas XProtect de Apple en este Mac.
+scan.collecting	Buscando archivos para analizar…
+scan.threatTitle	Malware encontrado: %@
+scan.removed	%@ se movió a la Papelera. Vacíala para borrarlo definitivamente.
+scan.removeFailed	No se pudo mover a la Papelera: %@
+scan.error	No se pudo ejecutar el análisis: %@
+scan.removeTitle	¿Eliminar %@?
+scan.remove	Mover a la Papelera
+scan.removeBody	El archivo (y la app a la que pertenece) y los ítems de inicio que lo ejecutan se detienen y van a la Papelera. Puedes recuperarlos desde ella.
+scan.cancel	Detener
+scan.quick	Análisis rápido
+scan.full	Análisis completo
+scan.running	Analizando…
+scan.found	%@ amenazas encontradas
+scan.never	Tu Mac aún no se ha analizado
+scan.clean	No se encontró malware
+scan.last	Último análisis %1$@ · %2$@ archivos · %3$@
+scan.fullShort	completo
+scan.quickShort	rápido
+scan.signatures	Firmas de Apple XProtect %@
+scan.progress	%@ archivos analizados
+scan.cleanTitle	Nada coincidió con las firmas de malware de Apple
+scan.cleanBody	%@ archivos revisados: apps y sus asistentes, ítems de inicio, programas en ejecución y lugares donde suele esconderse el malware.
+scan.unreadable	%@ archivos no se pudieron leer (normalmente asistentes protegidos por el sistema).
+scan.detectionBody	Este archivo coincide con una firma de malware publicada por Apple. No lo abras. Muévelo a la Papelera y cambia las contraseñas que escribiste mientras pudo estar activo.
+scan.launchItems	Se inicia automáticamente desde: %@
+scan.rule	Firma
+scan.aboutTitle	Cómo funciona el análisis
+scan.about	permwatch compara los archivos con las firmas XProtect de Apple —las que macOS usa y actualiza automáticamente— mediante el motor de código abierto YARA. Detecta el malware que Apple conoce (adware como Adload, Pirrit y Genieo, ladrones de datos, puertas traseras). El malware nuevo o dirigido puede no reconocerse aún. No se sube nada; el análisis se hace solo en tu Mac.
+scan.stale	El último análisis fue hace más de una semana
+scan.adviceBody	Un análisis rápido tarda unos 10 segundos y revisa apps, ítems de inicio y programas en ejecución con las firmas de Apple.
+scan.progressFull	%1$@ archivos examinados · %2$@ programas y scripts analizados

@@ -447,3 +447,36 @@ term.cmd.dns	사용 중인 DNS 서버
 term.cmd.profiles	설치된 구성 프로파일
 term.cmd.updates	사용 가능한 소프트웨어 업데이트
 term.cmd.pktap	프로세스 이름 포함 패킷 캡처(tcpdump)
+nav.scan	악성 코드 검사
+scan.noRules	이 Mac에서 Apple의 XProtect 시그니처를 찾을 수 없습니다.
+scan.collecting	검사할 파일을 찾는 중…
+scan.threatTitle	악성 코드 발견: %@
+scan.removed	%@을(를) 휴지통으로 옮겼습니다. 완전히 삭제하려면 휴지통을 비우세요.
+scan.removeFailed	휴지통으로 옮길 수 없음: %@
+scan.error	검사를 실행할 수 없음: %@
+scan.removeTitle	%@을(를) 제거할까요?
+scan.remove	휴지통으로 이동
+scan.removeBody	파일(및 해당 앱)과 이를 실행하는 로그인 항목을 중지하고 휴지통으로 옮깁니다. 휴지통에서 복원할 수 있습니다.
+scan.cancel	중지
+scan.quick	빠른 검사
+scan.full	전체 검사
+scan.running	검사 중…
+scan.found	위협 %@개 발견
+scan.never	아직 Mac을 검사하지 않았습니다
+scan.clean	악성 코드가 발견되지 않음
+scan.last	마지막 검사 %1$@ · 파일 %2$@개 · %3$@
+scan.fullShort	전체
+scan.quickShort	빠른
+scan.signatures	Apple XProtect 시그니처 %@
+scan.progress	파일 %@개 검사함
+scan.cleanTitle	Apple의 악성 코드 시그니처와 일치하는 항목 없음
+scan.cleanBody	파일 %@개 확인: 앱과 도우미, 로그인 항목, 실행 중인 프로그램, 악성 코드가 주로 숨는 위치.
+scan.unreadable	파일 %@개를 읽을 수 없음(보통 시스템이 보호하는 도우미).
+scan.detectionBody	이 파일은 Apple이 공개한 악성 코드 시그니처와 일치합니다. 열지 마세요. 휴지통으로 옮긴 뒤 실행 중이었을 때 입력한 암호를 변경하세요.
+scan.launchItems	자동 실행 항목: %@
+scan.rule	시그니처
+scan.aboutTitle	검사 방식
+scan.about	permwatch는 오픈 소스 YARA 엔진으로 파일을 Apple의 XProtect 악성 코드 시그니처(macOS가 사용하고 자동 업데이트하는 시그니처)와 대조합니다. Apple이 알고 있는 악성 코드(Adload, Pirrit, Genieo 같은 애드웨어, 정보 탈취형, 백도어)를 탐지합니다. 새롭거나 표적형 악성 코드는 아직 탐지되지 않을 수 있습니다. 아무것도 업로드되지 않으며 검사는 Mac에서만 실행됩니다.
+scan.stale	마지막 검사가 일주일 넘게 지났습니다
+scan.adviceBody	빠른 검사는 약 10초가 걸리며 앱, 로그인 항목, 실행 중인 프로그램을 Apple 시그니처로 확인합니다.
+scan.progressFull	파일 %1$@개 확인 · 프로그램 및 스크립트 %2$@개 검사

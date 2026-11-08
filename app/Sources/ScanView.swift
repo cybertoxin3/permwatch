@@ -1,0 +1,146 @@
+import SwiftUI
+
+/// Zararlı taraması: Apple'ın XProtect imzalarıyla hızlı/tam tarama, sonuçlar ve temizleme.
+struct ScanView: View {
+    @EnvironmentObject var scanner: MalwareScanner
+    @State private var confirm: Detection?
+
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 18) {
+                header
+                if scanner.running { progress }
+                if let e = scanner.error {
+                    Label(L("scan.error", e), systemImage: "exclamationmark.triangle").foregroundStyle(.red)
+                }
+                if let m = scanner.message {
+                    Label(m, systemImage: "checkmark.circle").foregroundStyle(.secondary)
+                }
+                if !scanner.detections.isEmpty {
+                    ForEach(scanner.detections) { detectionCard($0) }
+                } else if scanner.lastScan != nil && !scanner.running {
+                    clean
+                }
+                about
+            }
+            .padding(24)
+            .frame(maxWidth: 820, alignment: .leading)
+            .frame(maxWidth: .infinity)
+        }
+        .navigationTitle(L("nav.scan"))
+        .confirmationDialog(confirm.map { L("scan.removeTitle", $0.name) } ?? "",
+                            isPresented: Binding(get: { confirm != nil }, set: { if !$0 { confirm = nil } })) {
+            Button(L("scan.remove"), role: .destructive) { if let d = confirm { scanner.remove(d) }; confirm = nil }
+            Button(L("confirm.cancel"), role: .cancel) { confirm = nil }
+        } message: {
+            Text(L("scan.removeBody"))
+        }
+    }
+
+    private var verdictColor: Color {
+        if !scanner.detections.isEmpty { return .red }
+        return scanner.lastScan == nil ? .secondary : .green
+    }
+
+    private var header: some View {
+        HStack(alignment: .center, spacing: 18) {
+            Image(systemName: scanner.detections.isEmpty ? (scanner.lastScan == nil ? "shield" : "checkmark.shield.fill") : "xmark.shield.fill")
+                .font(.system(size: 46)).foregroundStyle(verdictColor).frame(width: 60)
+            VStack(alignment: .leading, spacing: 4) {
+                Text(title).font(.system(size: 20, weight: .bold))
+                Text(subtitle).font(.system(size: 12.5)).foregroundStyle(.secondary)
+            }
+            Spacer()
+            if scanner.running {
+                Button(L("scan.cancel")) { scanner.cancel() }
+            } else {
+                VStack(alignment: .trailing, spacing: 6) {
+                    Button { scanner.start(.quick) } label: { Label(L("scan.quick"), systemImage: "bolt.shield") }
+                        .buttonStyle(.borderedProminent).controlSize(.large)
+                    Button(L("scan.full")) { scanner.start(.full) }.controlSize(.small)
+                }
+            }
+        }
+    }
+
+    private var title: String {
+        if scanner.running { return L("scan.running") }
+        if !scanner.detections.isEmpty { return L("scan.found", scanner.detections.count.formatted()) }
+        return scanner.lastScan == nil ? L("scan.never") : L("scan.clean")
+    }
+
+    private var subtitle: String {
+        var parts: [String] = []
+        if let d = scanner.lastScan {
+            parts.append(L("scan.last", Fmt.relative(d), scanner.scanned.formatted(),
+                           scanner.lastKind == .full ? L("scan.fullShort") : L("scan.quickShort")))
+        }
+        if let v = scanner.signatureVersion { parts.append(L("scan.signatures", v)) }
+        return parts.joined(separator: " · ")
+    }
+
+    private var progress: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            if scanner.progress < 0 { ProgressView().progressViewStyle(.linear) } else { ProgressView(value: scanner.progress) }
+            HStack {
+                Text(scanner.examined > 0 ? L("scan.progressFull", scanner.examined.formatted(), scanner.scanned.formatted())
+                                          : L("scan.progress", scanner.scanned.formatted())).monospacedDigit()
+                Spacer()
+                Text(scanner.current).lineLimit(1).truncationMode(.middle).foregroundStyle(.secondary)
+            }
+            .font(.system(size: 11.5))
+        }
+    }
+
+    private var clean: some View {
+        HStack(spacing: 12) {
+            Image(systemName: "checkmark.seal.fill").foregroundStyle(.green).font(.system(size: 22))
+            VStack(alignment: .leading, spacing: 3) {
+                Text(L("scan.cleanTitle")).font(.system(size: 13, weight: .semibold))
+                Text(L("scan.cleanBody", scanner.scanned.formatted())).font(.system(size: 12)).foregroundStyle(.secondary)
+                if scanner.unreadable > 0 {
+                    Text(L("scan.unreadable", scanner.unreadable.formatted())).font(.system(size: 11)).foregroundStyle(.secondary)
+                }
+            }
+        }
+        .padding(14)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(Color.green.opacity(0.08), in: RoundedRectangle(cornerRadius: 12))
+    }
+
+    private func detectionCard(_ d: Detection) -> some View {
+        HStack(alignment: .top, spacing: 14) {
+            AppIcon(name: d.name, risk: .high, key: PathUtil.appBundle(d.path) ?? d.path, size: 40)
+            VStack(alignment: .leading, spacing: 5) {
+                Text(d.name).font(.system(size: 15, weight: .bold)).foregroundStyle(.red)
+                Text(PathUtil.abbreviate(d.path)).font(.system(size: 11.5, design: .monospaced)).textSelection(.enabled)
+                    .lineLimit(2).truncationMode(.middle)
+                Text(L("scan.detectionBody")).font(.system(size: 12)).foregroundStyle(.secondary)
+                    .fixedSize(horizontal: false, vertical: true)
+                if !d.launchItems.isEmpty {
+                    Text(L("scan.launchItems", d.launchItems.map(PathUtil.abbreviate).joined(separator: ", ")))
+                        .font(.system(size: 11.5)).foregroundStyle(.orange)
+                }
+                HStack(spacing: 8) {
+                    Button(L("scan.remove")) { confirm = d }.buttonStyle(.borderedProminent).tint(.red)
+                    Button(L("action.showInFinder")) { NSWorkspace.shared.activateFileViewerSelecting([URL(fileURLWithPath: d.path)]) }
+                    Button(L("action.virustotal")) { Lookup.virusTotal(path: d.path) }
+                }
+                .controlSize(.small)
+                .padding(.top, 2)
+                Text("\(L("scan.rule")): \(d.rule)").font(.system(size: 10.5)).foregroundStyle(.tertiary)
+            }
+        }
+        .padding(16)
+        .background(Color.red.opacity(0.07), in: RoundedRectangle(cornerRadius: 12))
+        .overlay(RoundedRectangle(cornerRadius: 12).strokeBorder(Color.red.opacity(0.35)))
+    }
+
+    private var about: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Text(L("scan.aboutTitle")).font(.system(size: 12, weight: .semibold))
+            Text(L("scan.about")).font(.system(size: 11.5)).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
+        }
+        .padding(.top, 8)
+    }
+}

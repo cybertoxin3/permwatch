@@ -447,3 +447,36 @@ term.cmd.dns	正在使用的 DNS 服务器
 term.cmd.profiles	已安装的配置描述文件
 term.cmd.updates	可用的软件更新
 term.cmd.pktap	带进程名称的数据包捕获(tcpdump)
+nav.scan	恶意软件扫描
+scan.noRules	在此 Mac 上找不到 Apple 的 XProtect 签名。
+scan.collecting	正在查找要扫描的文件…
+scan.threatTitle	发现恶意软件:%@
+scan.removed	%@ 已移到废纸篓。清倒废纸篓即可彻底删除。
+scan.removeFailed	无法移到废纸篓:%@
+scan.error	无法运行扫描:%@
+scan.removeTitle	移除 %@?
+scan.remove	移到废纸篓
+scan.removeBody	该文件(及其所属应用)和启动它的登录项将被停止并移到废纸篓。你仍可从废纸篓恢复。
+scan.cancel	停止
+scan.quick	快速扫描
+scan.full	全面扫描
+scan.running	正在扫描…
+scan.found	发现 %@ 个威胁
+scan.never	尚未扫描你的 Mac
+scan.clean	未发现恶意软件
+scan.last	上次扫描 %1$@ · %2$@ 个文件 · %3$@
+scan.fullShort	全面
+scan.quickShort	快速
+scan.signatures	Apple XProtect 签名 %@
+scan.progress	已扫描 %@ 个文件
+scan.cleanTitle	没有与 Apple 恶意软件签名匹配的内容
+scan.cleanBody	已检查 %@ 个文件:应用及其辅助程序、登录项、正在运行的程序以及恶意软件常藏身的位置。
+scan.unreadable	%@ 个文件无法读取(通常是受系统保护的辅助程序)。
+scan.detectionBody	此文件与 Apple 发布的恶意软件签名匹配。不要打开它。将其移到废纸篓,并更改它可能运行期间输入过的密码。
+scan.launchItems	由以下项目自动启动:%@
+scan.rule	签名
+scan.aboutTitle	此扫描的工作原理
+scan.about	permwatch 使用开源 YARA 引擎,将文件与 Apple 自己的 XProtect 恶意软件签名(macOS 使用并自动更新的签名)进行比对。它能检测 Apple 已知的恶意软件(如 Adload、Pirrit、Genieo 等广告软件、信息窃取程序、后门)。新出现或定向的恶意软件可能尚无法识别。不会上传任何内容;扫描完全在你的 Mac 上进行。
+scan.stale	上次扫描已超过一周
+scan.adviceBody	快速扫描约需 10 秒,会用 Apple 自己的恶意软件签名检查应用、登录项和正在运行的程序。
+scan.progressFull	已检查 %1$@ 个文件 · 已扫描 %2$@ 个程序和脚本

@@ -447,3 +447,36 @@ term.cmd.dns	Server DNS in uso
 term.cmd.profiles	Profili di configurazione installati
 term.cmd.updates	Aggiornamenti disponibili
 term.cmd.pktap	Cattura pacchetti con nomi dei processi (tcpdump)
+nav.scan	Scansione malware
+scan.noRules	Le firme XProtect di Apple non sono state trovate su questo Mac.
+scan.collecting	Ricerca dei file da analizzare…
+scan.threatTitle	Malware trovato: %@
+scan.removed	%@ è stato spostato nel Cestino. Svuotalo per eliminarlo definitivamente.
+scan.removeFailed	Impossibile spostare nel Cestino: %@
+scan.error	Impossibile eseguire la scansione: %@
+scan.removeTitle	Rimuovere %@?
+scan.remove	Sposta nel Cestino
+scan.removeBody	Il file (e l’app a cui appartiene) e gli elementi di login che lo avviano vengono fermati e spostati nel Cestino. Puoi ancora ripristinarli.
+scan.cancel	Interrompi
+scan.quick	Scansione rapida
+scan.full	Scansione completa
+scan.running	Scansione in corso…
+scan.found	%@ minacce trovate
+scan.never	Il Mac non è ancora stato analizzato
+scan.clean	Nessun malware trovato
+scan.last	Ultima scansione %1$@ · %2$@ file · %3$@
+scan.fullShort	completa
+scan.quickShort	rapida
+scan.signatures	Firme Apple XProtect %@
+scan.progress	%@ file analizzati
+scan.cleanTitle	Nessuna corrispondenza con le firme malware di Apple
+scan.cleanBody	%@ file controllati: app e relativi helper, elementi di login, programmi in esecuzione e luoghi dove di solito si nasconde il malware.
+scan.unreadable	%@ file non leggibili (di solito helper protetti dal sistema).
+scan.detectionBody	Questo file corrisponde a una firma malware pubblicata da Apple. Non aprirlo. Spostalo nel Cestino e cambia le password digitate mentre poteva essere attivo.
+scan.launchItems	Avviato automaticamente da: %@
+scan.rule	Firma
+scan.aboutTitle	Come funziona la scansione
+scan.about	permwatch confronta i file con le firme XProtect di Apple — quelle che macOS usa e aggiorna automaticamente — tramite il motore open source YARA. Rileva il malware noto ad Apple (adware come Adload, Pirrit e Genieo, stealer, backdoor). Malware nuovo o mirato potrebbe non essere ancora riconosciuto. Non viene caricato nulla; la scansione avviene solo sul tuo Mac.
+scan.stale	L’ultima scansione risale a oltre una settimana fa
+scan.adviceBody	Una scansione rapida richiede circa 10 secondi e controlla app, elementi di login e programmi in esecuzione con le firme di Apple.
+scan.progressFull	%1$@ file esaminati · %2$@ programmi e script analizzati

@@ -447,3 +447,36 @@ term.cmd.dns	DNS servers in use
 term.cmd.profiles	Installed configuration profiles
 term.cmd.updates	Available software updates
 term.cmd.pktap	Packet capture with process names (tcpdump)
+nav.scan	Malware Scan
+scan.noRules	Apple’s XProtect signatures were not found on this Mac.
+scan.collecting	Finding files to scan…
+scan.threatTitle	Malware found: %@
+scan.removed	%@ was moved to the Trash. Empty the Trash to delete it for good.
+scan.removeFailed	Could not move to the Trash: %@
+scan.error	Scan could not run: %@
+scan.removeTitle	Remove %@?
+scan.remove	Move to Trash
+scan.removeBody	The file (and the app it belongs to) and any login item that starts it are stopped and moved to the Trash. You can still restore them from the Trash.
+scan.cancel	Stop
+scan.quick	Quick Scan
+scan.full	Full Scan
+scan.running	Scanning…
+scan.found	%@ threats found
+scan.never	Your Mac hasn’t been scanned yet
+scan.clean	No malware found
+scan.last	Last scan %1$@ · %2$@ files · %3$@
+scan.fullShort	full
+scan.quickShort	quick
+scan.signatures	Apple XProtect signatures %@
+scan.progress	%@ files scanned
+scan.cleanTitle	Nothing matched Apple’s malware signatures
+scan.cleanBody	%@ files checked: apps and their helpers, login items, running programs and the places malware usually hides.
+scan.unreadable	%@ files could not be read (usually system-protected helpers).
+scan.detectionBody	This file matches a malware signature published by Apple. Don’t open it. Move it to the Trash, then change any passwords you typed while it may have been running.
+scan.launchItems	Started automatically by: %@
+scan.rule	Signature
+scan.aboutTitle	How this scan works
+scan.about	permwatch checks files against Apple’s own XProtect malware signatures, the ones macOS uses and updates automatically, using the open-source YARA engine. It detects malware Apple knows about (adware such as Adload, Pirrit and Genieo, stealers, backdoors). New or targeted malware may not be detected yet. Nothing is uploaded; the scan runs entirely on your Mac.
+scan.stale	Last malware scan was more than a week ago
+scan.adviceBody	A quick scan takes about 10 seconds and checks apps, login items and running programs with Apple’s own malware signatures.
+scan.progressFull	%1$@ files examined · %2$@ programs and scripts scanned

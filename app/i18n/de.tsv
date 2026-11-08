@@ -447,3 +447,36 @@ term.cmd.dns	Verwendete DNS-Server
 term.cmd.profiles	Installierte Konfigurationsprofile
 term.cmd.updates	Verfügbare Softwareupdates
 term.cmd.pktap	Paketmitschnitt mit Prozessnamen (tcpdump)
+nav.scan	Malware-Scan
+scan.noRules	Apples XProtect-Signaturen wurden auf diesem Mac nicht gefunden.
+scan.collecting	Zu prüfende Dateien werden gesucht …
+scan.threatTitle	Malware gefunden: %@
+scan.removed	%@ wurde in den Papierkorb gelegt. Leere den Papierkorb, um es endgültig zu löschen.
+scan.removeFailed	Konnte nicht in den Papierkorb gelegt werden: %@
+scan.error	Scan konnte nicht laufen: %@
+scan.removeTitle	%@ entfernen?
+scan.remove	In den Papierkorb
+scan.removeBody	Die Datei (samt zugehöriger App) und Anmeldeobjekte, die sie starten, werden gestoppt und in den Papierkorb gelegt. Du kannst sie von dort wiederherstellen.
+scan.cancel	Stoppen
+scan.quick	Schnellscan
+scan.full	Vollständiger Scan
+scan.running	Wird gescannt …
+scan.found	%@ Bedrohungen gefunden
+scan.never	Dein Mac wurde noch nicht gescannt
+scan.clean	Keine Malware gefunden
+scan.last	Letzter Scan %1$@ · %2$@ Dateien · %3$@
+scan.fullShort	vollständig
+scan.quickShort	schnell
+scan.signatures	Apple-XProtect-Signaturen %@
+scan.progress	%@ Dateien gescannt
+scan.cleanTitle	Nichts passte zu Apples Malware-Signaturen
+scan.cleanBody	%@ Dateien geprüft: Apps und ihre Helfer, Anmeldeobjekte, laufende Programme und Orte, an denen sich Malware gewöhnlich versteckt.
+scan.unreadable	%@ Dateien konnten nicht gelesen werden (meist systemgeschützte Helfer).
+scan.detectionBody	Diese Datei passt zu einer von Apple veröffentlichten Malware-Signatur. Öffne sie nicht. Lege sie in den Papierkorb und ändere Passwörter, die du währenddessen eingegeben hast.
+scan.launchItems	Wird automatisch gestartet von: %@
+scan.rule	Signatur
+scan.aboutTitle	So funktioniert der Scan
+scan.about	permwatch prüft Dateien mit Apples eigenen XProtect-Signaturen – denen, die macOS nutzt und automatisch aktualisiert – über die Open-Source-Engine YARA. Erkannt wird Malware, die Apple kennt (Adware wie Adload, Pirrit, Genieo, Infostealer, Backdoors). Neue oder gezielte Malware wird evtl. noch nicht erkannt. Es wird nichts hochgeladen; der Scan läuft nur auf deinem Mac.
+scan.stale	Letzter Malware-Scan liegt über eine Woche zurück
+scan.adviceBody	Ein Schnellscan dauert etwa 10 Sekunden und prüft Apps, Anmeldeobjekte und laufende Programme mit Apples eigenen Malware-Signaturen.
+scan.progressFull	%1$@ Dateien geprüft · %2$@ Programme und Skripte gescannt

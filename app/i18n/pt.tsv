@@ -447,3 +447,36 @@ term.cmd.dns	Servidores DNS em uso
 term.cmd.profiles	Perfis de configuração instalados
 term.cmd.updates	Atualizações disponíveis
 term.cmd.pktap	Captura de pacotes com nomes de processo (tcpdump)
+nav.scan	Verificação de malware
+scan.noRules	As assinaturas XProtect da Apple não foram encontradas neste Mac.
+scan.collecting	Procurando arquivos para verificar…
+scan.threatTitle	Malware encontrado: %@
+scan.removed	%@ foi movido para o Lixo. Esvazie o Lixo para apagá-lo de vez.
+scan.removeFailed	Não foi possível mover para o Lixo: %@
+scan.error	Não foi possível verificar: %@
+scan.removeTitle	Remover %@?
+scan.remove	Mover para o Lixo
+scan.removeBody	O arquivo (e o app ao qual pertence) e os itens de início que o executam são parados e movidos para o Lixo. Você ainda pode restaurá-los.
+scan.cancel	Parar
+scan.quick	Verificação rápida
+scan.full	Verificação completa
+scan.running	Verificando…
+scan.found	%@ ameaças encontradas
+scan.never	Seu Mac ainda não foi verificado
+scan.clean	Nenhum malware encontrado
+scan.last	Última verificação %1$@ · %2$@ arquivos · %3$@
+scan.fullShort	completa
+scan.quickShort	rápida
+scan.signatures	Assinaturas Apple XProtect %@
+scan.progress	%@ arquivos verificados
+scan.cleanTitle	Nada correspondeu às assinaturas de malware da Apple
+scan.cleanBody	%@ arquivos verificados: apps e seus auxiliares, itens de início, programas em execução e locais onde malware costuma se esconder.
+scan.unreadable	%@ arquivos não puderam ser lidos (geralmente auxiliares protegidos pelo sistema).
+scan.detectionBody	Este arquivo corresponde a uma assinatura de malware publicada pela Apple. Não o abra. Mova-o para o Lixo e troque as senhas digitadas enquanto ele pode ter rodado.
+scan.launchItems	Iniciado automaticamente por: %@
+scan.rule	Assinatura
+scan.aboutTitle	Como esta verificação funciona
+scan.about	O permwatch compara os arquivos com as assinaturas XProtect da Apple — as que o macOS usa e atualiza automaticamente — usando o mecanismo de código aberto YARA. Ele detecta malware conhecido pela Apple (adware como Adload, Pirrit e Genieo, ladrões de dados, backdoors). Malware novo ou direcionado pode ainda não ser reconhecido. Nada é enviado; a verificação roda só no seu Mac.
+scan.stale	A última verificação foi há mais de uma semana
+scan.adviceBody	Uma verificação rápida leva cerca de 10 segundos e checa apps, itens de início e programas em execução com as assinaturas da Apple.
+scan.progressFull	%1$@ arquivos examinados · %2$@ programas e scripts verificados

@@ -1,7 +1,7 @@
 import SwiftUI
 
 enum SidebarItem: Hashable {
-    case timeline, alerts, advice, apps, running, security, downloads, network, packets, terminal
+    case timeline, alerts, advice, scan, apps, running, security, downloads, network, packets, terminal
     case category(Category)
     case loginItems, processes
 }
@@ -38,6 +38,8 @@ struct MainView: View {
                 FullDiskAccessView()
             } else if section == .advice {
                 AdviceView()
+            } else if section == .scan {
+                ScanView()
             } else if section == .apps {
                 AppsView()
             } else if section == .running {
@@ -98,6 +100,7 @@ struct MainView: View {
             if Snapshot.section == "packets" { section = .packets }
             if Snapshot.section == "advice" { section = .advice }
             if Snapshot.section == "terminal" { section = .terminal }
+            if Snapshot.section == "scan" { section = .scan }
             Snapshot.scheduleIfRequested(store: store, selection: selection)
         }
         .onChange(of: store.items.count) {
@@ -118,6 +121,7 @@ struct MainView: View {
         case .timeline: return L("nav.timeline")
         case .alerts: return L("nav.alerts")
         case .advice: return L("nav.advice")
+        case .scan: return L("nav.scan")
         case .apps: return L("nav.apps")
         case .running: return L("nav.running")
         case .security: return L("nav.security")
@@ -170,6 +174,7 @@ struct Sidebar: View {
     @EnvironmentObject var posture: SecurityPosture
     @EnvironmentObject var downloads: DownloadGuard
     @EnvironmentObject var network: NetworkMonitor
+    @EnvironmentObject var scanner: MalwareScanner
     @Binding var section: SidebarItem
 
     var body: some View {
@@ -177,6 +182,7 @@ struct Sidebar: View {
             Label(L("nav.timeline"), systemImage: "list.bullet").badge(store.items.count).tag(SidebarItem.timeline)
             Label(L("nav.alerts"), systemImage: "exclamationmark.triangle").badge(store.openAlerts).tag(SidebarItem.alerts)
             Label(L("nav.advice"), systemImage: "lightbulb").tag(SidebarItem.advice)
+            Label(L("nav.scan"), systemImage: "ladybug").badge(scanner.detections.count).tag(SidebarItem.scan)
             Label(L("nav.apps"), systemImage: "square.grid.2x2").tag(SidebarItem.apps)
             Label(L("nav.running"), systemImage: "cpu").badge(monitor.suspicious).tag(SidebarItem.running)
 

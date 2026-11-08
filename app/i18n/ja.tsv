@@ -447,3 +447,36 @@ term.cmd.dns	使用中の DNS サーバ
 term.cmd.profiles	インストール済みの構成プロファイル
 term.cmd.updates	利用可能なソフトウェアアップデート
 term.cmd.pktap	プロセス名付きパケットキャプチャ(tcpdump)
+nav.scan	マルウェアスキャン
+scan.noRules	この Mac に Apple の XProtect シグネチャが見つかりません。
+scan.collecting	スキャンするファイルを探しています…
+scan.threatTitle	マルウェアを検出: %@
+scan.removed	%@ をゴミ箱に移動しました。完全に削除するにはゴミ箱を空にしてください。
+scan.removeFailed	ゴミ箱に移動できません: %@
+scan.error	スキャンを実行できません: %@
+scan.removeTitle	%@ を削除しますか?
+scan.remove	ゴミ箱に入れる
+scan.removeBody	ファイル(と所属するアプリ)およびそれを起動するログイン項目を停止し、ゴミ箱に移動します。ゴミ箱から戻すこともできます。
+scan.cancel	停止
+scan.quick	クイックスキャン
+scan.full	フルスキャン
+scan.running	スキャン中…
+scan.found	%@ 件の脅威を検出
+scan.never	まだスキャンしていません
+scan.clean	マルウェアは見つかりませんでした
+scan.last	前回のスキャン %1$@ · %2$@ ファイル · %3$@
+scan.fullShort	フル
+scan.quickShort	クイック
+scan.signatures	Apple XProtect シグネチャ %@
+scan.progress	%@ ファイルをスキャン
+scan.cleanTitle	Apple のマルウェアシグネチャに一致するものはありません
+scan.cleanBody	%@ ファイルを確認:アプリとヘルパー、ログイン項目、実行中のプログラム、マルウェアがよく隠れる場所。
+scan.unreadable	%@ ファイルを読めませんでした(通常はシステムで保護されたヘルパー)。
+scan.detectionBody	このファイルは Apple が公開したマルウェアシグネチャに一致します。開かないでください。ゴミ箱に入れ、動作していた可能性のある間に入力したパスワードを変更しましょう。
+scan.launchItems	自動起動元: %@
+scan.rule	シグネチャ
+scan.aboutTitle	このスキャンの仕組み
+scan.about	permwatch は、macOS が使用し自動更新している Apple の XProtect マルウェアシグネチャと、オープンソースの YARA エンジンを使ってファイルを照合します。Apple が把握しているマルウェア(Adload、Pirrit、Genieo などのアドウェア、情報窃取型、バックドア)を検出します。新しいマルウェアや標的型はまだ検出できない場合があります。何もアップロードされず、スキャンはすべて Mac 上で行われます。
+scan.stale	前回のスキャンから 1 週間以上経っています
+scan.adviceBody	クイックスキャンは約 10 秒で、アプリ、ログイン項目、実行中のプログラムを Apple のシグネチャで確認します。
+scan.progressFull	%1$@ ファイルを確認 · %2$@ 個のプログラムとスクリプトをスキャン

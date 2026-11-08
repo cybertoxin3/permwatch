@@ -56,6 +56,7 @@ permwatch connects the dots and gives you one clear alert.
 
 ## What it does
 
+- 🐞 **Malware scan:** Checks your apps, login items, running programs and downloads against **Apple’s own XProtect malware signatures** (the ones macOS keeps up to date), using the open-source YARA engine. A quick scan takes about 10 seconds. New downloads are scanned automatically, and anything found can be moved to the Trash together with the login items that start it.
 - 💡 **Recommendations:** One screen that explains every finding in plain language and offers a one-click fix. It finds permissions left behind by deleted apps and permissions in apps you haven't opened for months.
 - 🕒 **Timeline:** Every permission change and every new startup item, with its date and the process responsible
 - 🚨 **Alerts:** Unsigned startup programs, suspicious permission patterns, Gatekeeper bypasses, and a small pop-up at the top of the screen when something new appears
@@ -73,7 +74,7 @@ permwatch connects the dots and gives you one clear alert.
 
 ## What it is not
 
-permwatch is **not an antivirus.** It has no malware signature database and **it doesn't block anything.** It shows you what is happening, explains it and helps you fix it. If you want to block connections, use a firewall such as LuLu or Little Snitch alongside it.
+permwatch is **not a full antivirus.** It detects the malware Apple's signatures know about, but it has no signatures of its own and **it doesn't block anything in real time.** It shows you what is happening, explains it and helps you fix it. If you want to block connections, use a firewall such as LuLu or Little Snitch alongside it.
 
 The rules are heuristics: they can raise false alarms (for example with developer tools) and can miss well-hidden malware.
 
@@ -90,6 +91,7 @@ permwatch **sends no data anywhere.** No analytics, no account, no cloud. Detail
 
 ## Third-party code
 
+- [YARA](https://github.com/VirusTotal/yara) v4.5.8 by VirusTotal (BSD-3-Clause), used to run Apple’s XProtect signatures. Vendored in `app/vendor/yara`.
 - [SwiftTerm](https://github.com/migueldeicaza/SwiftTerm) v1.20.0 by Miguel de Icaza (MIT), used for the terminal. Vendored in `app/vendor/SwiftTerm`.
 
 ## Status

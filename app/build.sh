@@ -24,8 +24,18 @@ if [[ ! -f "$ST_DIR/libSwiftTerm.a" ]]; then
         -emit-module -emit-module-path "$ST_DIR/SwiftTerm.swiftmodule" "${ST_SRC[@]}" -o "$ST_DIR/libSwiftTerm.a"
 fi
 
+# YARA (vendor/, BSD-3): Apple'ın XProtect imzalarıyla zararlı taraması. Önbellekli statik kütüphane.
+Y_KEY=$(cat vendor/yara/libyara/**/*.(c|h) vendor/yara/build_libyara.sh | shasum | cut -c1-16)
+Y_DIR=build/.yara/$ARCH-$Y_KEY
+if [[ ! -f "$Y_DIR/libyara.a" ]]; then
+    echo "libyara derleniyor (bir kez)…"
+    rm -rf build/.yara; mkdir -p "$Y_DIR"
+    vendor/yara/build_libyara.sh "$PWD/vendor/yara" "$PWD/$Y_DIR" "$ARCH"
+fi
+
 # shared/: paket yakalama motoru (libpcap), hem uygulamaya hem yardımcıya derlenir.
-swiftc -parse-as-library -O -target "$ARCH-apple-macos14" -import-objc-header shared/bridge.h \
+swiftc -parse-as-library -O -target "$ARCH-apple-macos14" -import-objc-header shared/bridge-app.h \
+    -Xcc -I"vendor/yara/libyara/include" -L "$Y_DIR" -lyara \
     -I "$ST_DIR" -L "$ST_DIR" -lSwiftTerm \
     Sources/*.swift shared/*.swift -lpcap -o "$APP/Contents/MacOS/permwatch"
 # Yönetici modu yardımcısı (ayrı, küçük, girdisiz bir program)

@@ -330,6 +330,9 @@ final class DownloadGuard: ObservableObject {
         items = list.sorted { $0.date > $1.date }
         for i in list { cache["\(i.path)|\(i.date.timeIntervalSince1970)"] = i }
         if initialDone {
+            // Yeni gelen her indirmeyi Apple'ın XProtect imzalarıyla da tara.
+            let fresh = list.filter { !known.contains($0.id) }.map(\.path)
+            if !fresh.isEmpty { MalwareScanner.shared.scanInBackground(fresh) }
             for i in list where !known.contains(i.id) && i.risk >= .caution {
                 ThreatCenter.shared.report(Threat(
                     id: "dl-\(i.path)", risk: i.risk, title: "\(i.risk.label): \(L("dl.threatTitle"))",
