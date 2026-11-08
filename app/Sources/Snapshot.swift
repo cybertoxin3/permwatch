@@ -157,9 +157,11 @@ enum Snapshot {
             DispatchQueue.main.asyncAfter(deadline: .now() + 6) { renderView(store, selection: selection, to: path) }
             return
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
+        let delay = Double(ProcessInfo.processInfo.environment["PERMWATCH_SNAPSHOT_DELAY"] ?? "") ?? 6
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
             guard let win = NSApp.windows.first(where: { $0.isVisible && $0.contentView != nil && $0.frame.width > 600 }),
                   let frameView = win.contentView?.superview else {
+                for w in NSApp.windows { FileHandle.standardError.write(Data("pencere: \(type(of: w)) görünür=\(w.isVisible) \(w.frame)\n".utf8)) }
                 exit(2)
             }
             // Katman ağacını doğrudan çiz: cacheDisplay yarı saydam (vibrancy) arka planları boş bırakıyor.

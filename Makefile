@@ -32,4 +32,8 @@ test-app:
 	    app/shared/Packets.swift app/Sources/Explain.swift app/Sources/L10n.swift app/tests/main.swift \
 	    -o tests/test_app && ./tests/test_app
 
-.PHONY: all test test-app run clean app
+# Bütünleşik testler: kontroller ve düzeltmeler gerçek sistemde (make app önbelleğini kullanır)
+test-integration: app
+	app/tools/test_integration.sh
+
+.PHONY: all test test-app test-integration run clean app

@@ -551,3 +551,4 @@ fix.confirm.trash	Şunlar Çöp Sepeti'ne taşınacak:\n%@
 fix.confirm.profile	"%@" yapılandırma profili kaldırılacak. macOS şifreni soracak.
 fix.confirm.cert	Mac'in "%@" sertifikasına güvenmeyi bırakacak; sertifikanın kendisi silinmez. Şirket veya okul Wi-Fi'ın içinse bağlanmak için yeniden güvenmen gerekebilir.
 fix.confirm.policy	%1$@ tercihlerinden "%2$@" ayarı silinecek.
+ov.review	%@ konuya göz at

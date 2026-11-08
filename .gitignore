@@ -5,3 +5,4 @@ tests/test_json
 app/build/
 !app/Resources/sample-events.jsonl
 tests/test_app
+tests/test_integration

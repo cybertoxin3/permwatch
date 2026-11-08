@@ -551,3 +551,4 @@ fix.confirm.trash	Éléments placés dans la corbeille :\n%@
 fix.confirm.profile	Le profil « %@ » sera supprimé. macOS demandera votre mot de passe.
 fix.confirm.cert	Votre Mac ne fera plus confiance à « %@ » ; le certificat est conservé. S’il sert au Wi‑Fi de l’entreprise ou de l’école, il faudra peut-être lui refaire confiance pour vous connecter.
 fix.confirm.policy	Le réglage « %2$@ » sera supprimé des préférences de %1$@.
+ov.review	%@ points à vérifier

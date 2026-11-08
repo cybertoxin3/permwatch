@@ -551,3 +551,4 @@ fix.confirm.trash	次をゴミ箱に移動します:\n%@
 fix.confirm.profile	構成プロファイル「%@」を削除します。macOS がパスワードを求めます。
 fix.confirm.cert	Mac は「%@」を信頼しなくなります。証明書自体は残ります。会社や学校の Wi‑Fi 用なら、接続するために再度信頼が必要になる場合があります。
 fix.confirm.policy	%1$@ の環境設定から「%2$@」を削除します。
+ov.review	確認が必要な項目 %@ 件

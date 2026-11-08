@@ -551,3 +551,4 @@ fix.confirm.trash	다음 항목을 휴지통으로 옮깁니다:\n%@
 fix.confirm.profile	구성 프로파일 '%@'을(를) 제거합니다. macOS가 암호를 묻습니다.
 fix.confirm.cert	Mac이 '%@'을(를) 더 이상 신뢰하지 않습니다. 인증서 자체는 유지됩니다. 회사·학교 Wi‑Fi용이라면 연결하려면 다시 신뢰해야 할 수 있습니다.
 fix.confirm.policy	%1$@ 환경설정에서 '%2$@' 설정을 삭제합니다.
+ov.review	확인할 항목 %@개

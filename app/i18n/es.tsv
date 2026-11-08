@@ -551,3 +551,4 @@ fix.confirm.trash	Se moverá a la Papelera:\n%@
 fix.confirm.profile	Se eliminará el perfil «%@». macOS pedirá tu contraseña.
 fix.confirm.cert	Tu Mac dejará de confiar en «%@»; el certificado se conserva. Si es para el Wi‑Fi de tu empresa o centro, quizá debas volver a confiar en él para conectarte.
 fix.confirm.policy	Se eliminará el ajuste «%2$@» de las preferencias de %1$@.
+ov.review	%@ cosas por revisar

@@ -231,10 +231,10 @@ enum Checks {
                                              "ProxyServer", "ProxyMode", "ProxyPacUrl", "DnsOverHttpsTemplates",
                                              "ExtensionAllowedTypes", "Homepage", "SearchEngines", "Extensions", "Proxy"]
 
-    static func browserPolicies() -> [Finding] {
+    static func browserPolicies(domains: [String] = policyDomains) -> [Finding] {
         var out: [Finding] = []
         let user = NSUserName()
-        for domain in policyDomains {
+        for domain in domains {
             // Profil ile zorlanmış (yönetilen) ayarlar
             for path in ["/Library/Managed Preferences/\(domain).plist", "/Library/Managed Preferences/\(user)/\(domain).plist"] {
                 guard let d = NSDictionary(contentsOfFile: path) as? [String: Any] else { continue }
@@ -346,9 +346,15 @@ enum Checks {
     // MARK: Güvenilen kök sertifikalar
 
     static func trustedCerts() -> [Finding] {
+        [false, true].flatMap { admin in
+            parseTrust(Shell.run("/usr/bin/security", admin ? ["dump-trust-settings", "-d"] : ["dump-trust-settings"]).1, admin: admin)
+        }
+    }
+
+    /// `security dump-trust-settings` çıktısını bulgulara çevirir.
+    static func parseTrust(_ text: String, admin: Bool) -> [Finding] {
         var out: [Finding] = []
-        for admin in [false, true] {
-            let text = Shell.run("/usr/bin/security", admin ? ["dump-trust-settings", "-d"] : ["dump-trust-settings"]).1
+        do {
             var certs: [(name: String, policies: [String], roots: Int)] = []
             for line in text.split(separator: "\n").map(String.init) {
                 let t = line.trimmingCharacters(in: .whitespaces)
@@ -370,7 +376,7 @@ enum Checks {
                                    fixes: [(L("chk.cert.fix"), .untrustCert(name: name, admin: admin))]))
             }
         }
-        return out
+        return out.sorted { $0.id < $1.id }
     }
 
     /// Adı verilen sertifika(lar)ın güven ayarını kaldırır (sertifika silinmez).
@@ -400,14 +406,30 @@ enum Checks {
     static func profiles(rootOutput: String?) -> [Finding] {
         var text = Shell.run("/usr/bin/profiles", ["show", "-type", "configuration", "-user", NSUserName()]).1
         if let r = rootOutput { text += "\n" + r }
+        return parseProfiles(text)
+    }
+
+    /// `profiles show` çıktısı: her satır "_computerlevel[N] …" ya da "<kullanıcı>[N] …" önekiyle başlar;
+    /// satırlar profil numarasına göre gruplanır.
+    static func parseProfiles(_ text: String) -> [Finding] {
+        var groups: [String: [String]] = [:]
+        var order: [String] = []
+        let re = try! NSRegularExpression(pattern: #"^\s*([^\s\[]+)\[(\d+)\]\s*(.*)$"#)
+        for line in text.split(separator: "\n").map(String.init) {
+            guard let m = re.firstMatch(in: line, range: NSRange(line.startIndex..., in: line)),
+                  let a = Range(m.range(at: 1), in: line), let n = Range(m.range(at: 2), in: line),
+                  let rest = Range(m.range(at: 3), in: line) else { continue }
+            let key = String(line[a]) + "#" + String(line[n])
+            if groups[key] == nil { order.append(key) }
+            groups[key, default: []].append(String(line[rest]))
+        }
         var out: [Finding] = []
         var seen = Set<String>()
-        // "attribute: name: X" ve "attribute: profileIdentifier: Y" satırları; yük türleri de bölümde geçer
-        let sections = text.components(separatedBy: "_computerlevel[").count > 1
-            ? text.components(separatedBy: "_computerlevel[") : text.components(separatedBy: "\n\n")
-        for sec in sections {
+        for key in order {
+            let lines = groups[key] ?? []
+            let sec = lines.joined(separator: "\n")
             func attr(_ k: String) -> String? {
-                sec.split(separator: "\n").first { $0.contains("attribute: \(k): ") }
+                lines.first { $0.contains("attribute: \(k): ") }
                     .flatMap { $0.components(separatedBy: "attribute: \(k): ").last?.trimmingCharacters(in: .whitespaces) }
             }
             guard let id = attr("profileIdentifier"), seen.insert(id).inserted else { continue }
@@ -423,8 +445,10 @@ enum Checks {
         return out
     }
 
-    static func vpns() -> [Finding] {
-        let lines = Shell.run("/usr/sbin/scutil", ["--nc", "list"]).1.split(separator: "\n").filter { $0.contains("VPN") || $0.contains("PPP") || $0.contains("IPSec") }
+    static func vpns() -> [Finding] { parseVPNs(Shell.run("/usr/sbin/scutil", ["--nc", "list"]).1) }
+
+    static func parseVPNs(_ text: String) -> [Finding] {
+        let lines = text.split(separator: "\n").filter { $0.contains("VPN") || $0.contains("PPP") || $0.contains("IPSec") }
         let names = lines.compactMap { l -> String? in
             guard let a = l.firstIndex(of: "\""), let b = l.lastIndex(of: "\""), a < b else { return nil }
             return String(l[l.index(after: a)..<b])
@@ -437,8 +461,10 @@ enum Checks {
 
     // MARK: Uzaktan erişim
 
-    static func sharing() -> [Finding] {
-        let listening = Set(Shell.run("/usr/sbin/netstat", ["-an", "-p", "tcp"]).1.split(separator: "\n")
+    static func sharing() -> [Finding] { parseSharing(Shell.run("/usr/sbin/netstat", ["-an", "-p", "tcp"]).1) }
+
+    static func parseSharing(_ netstat: String) -> [Finding] {
+        let listening = Set(netstat.split(separator: "\n")
             .filter { $0.contains("LISTEN") }.compactMap { $0.split(separator: " ", omittingEmptySubsequences: true).dropFirst(3).first }
             .compactMap { a -> Int? in
                 let s = String(a)

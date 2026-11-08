@@ -551,3 +551,4 @@ fix.confirm.trash	These will be moved to the Trash:\n%@
 fix.confirm.profile	The configuration profile “%@” will be removed. macOS asks for your password.
 fix.confirm.cert	Your Mac will stop trusting “%@”. The certificate itself is kept. If it is for your company or school Wi-Fi, you may need to trust it again to connect.
 fix.confirm.policy	The setting “%2$@” will be deleted from %1$@’s preferences.
+ov.review	%@ things to review

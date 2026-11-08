@@ -154,7 +154,7 @@ struct AdviceView: View {
         .onAppear {
             advisor.refresh(apps: store.apps); posture.refresh()
             if checks.lastRun == nil { runChecks() }
-            if Snapshot.section == "advice" {
+            if Snapshot.section == "advice" && Snapshot.target == nil {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 8) { advisor.refresh(apps: store.apps) }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 16) {
                     for i in (items + checkItems) { FileHandle.standardError.write(Data("öneri: [\(i.verdict.label)] \(i.title) — \(i.body.prefix(110))\n".utf8)) }
@@ -180,7 +180,8 @@ struct AdviceView: View {
                     .font(.system(size: 34)).foregroundStyle(color)
             }
             VStack(alignment: .leading, spacing: 4) {
-                Text(urgent + review == 0 ? L("ov.good") : L("ov.issues", urgent.formatted(), review.formatted()))
+                Text(urgent + review == 0 ? L("ov.good")
+                     : urgent == 0 ? L("ov.review", review.formatted()) : L("ov.issues", urgent.formatted(), review.formatted()))
                     .font(.system(size: 21, weight: .bold))
                 Text(checks.lastRun.map { L("ov.lastCheck", Fmt.relative($0)) } ?? L("ov.never"))
                     .font(.system(size: 12)).foregroundStyle(.secondary)

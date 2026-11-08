@@ -72,7 +72,7 @@ struct ScanView: View {
     private var subtitle: String {
         var parts: [String] = []
         if let d = scanner.lastScan {
-            parts.append(L("scan.last", Fmt.relative(d), scanner.scanned.formatted(),
+            parts.append(L("scan.last", Fmt.relative(d), scanner.lastScanned.formatted(),
                            scanner.lastKind == .full ? L("scan.fullShort") : L("scan.quickShort")))
         }
         if let v = scanner.signatureVersion { parts.append(L("scan.signatures", v)) }
@@ -97,7 +97,7 @@ struct ScanView: View {
             Image(systemName: "checkmark.seal.fill").foregroundStyle(.green).font(.system(size: 22))
             VStack(alignment: .leading, spacing: 3) {
                 Text(L("scan.cleanTitle")).font(.system(size: 13, weight: .semibold))
-                Text(L("scan.cleanBody", scanner.scanned.formatted())).font(.system(size: 12)).foregroundStyle(.secondary)
+                Text(L("scan.cleanBody", scanner.lastScanned.formatted())).font(.system(size: 12)).foregroundStyle(.secondary)
                 if scanner.unreadable > 0 {
                     Text(L("scan.unreadable", scanner.unreadable.formatted())).font(.system(size: 11)).foregroundStyle(.secondary)
                 }

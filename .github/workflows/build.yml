@@ -17,3 +17,5 @@ jobs:
         run: make test-app
       - name: macOS uygulaması
         run: make app
+      - name: Bütünleşik testler
+        run: make test-integration

@@ -46,6 +46,8 @@ final class RootBridge: ObservableObject {
 
     /// Açılışta: kullanıcı modu daha önce açtıysa ve yardımcı çalışmıyorsa yeniden ister.
     func resumeIfNeeded() {
+        // Geliştirme anlık görüntüsü sırasında şifre sorma.
+        if Snapshot.target != nil || Snapshot.section != nil { return }
         if enabledPreference && !active { enable() }
     }
 
