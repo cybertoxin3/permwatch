@@ -10,43 +10,55 @@ WORK=$(mktemp -d -t permwatch-build)
 trap 'rm -rf "$WORK"' EXIT
 APP="$WORK/permwatch.app"
 OUT=build/permwatch.app
-ARCH=${ARCH:-$(uname -m)}
+NATIVE=$(uname -m)
+# Yayın derlemesi (PERMWATCH_RELEASE=1) ya da UNIVERSAL=1: Apple Silicon + Intel tek pakette.
+if [[ -n "${ARCHS:-}" ]]; then :
+elif [[ "${PERMWATCH_RELEASE:-0}" == 1 || "${UNIVERSAL:-0}" == 1 ]]; then ARCHS="arm64 x86_64"
+else ARCHS=$NATIVE; fi
 mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
 
-# SwiftTerm (vendor/, MIT): terminal bölümü. Ayrı modül olarak derlenir; kaynak değişmedikçe önbellekten.
 ST_SRC=(vendor/SwiftTerm/Sources/**/*.swift)
 ST_KEY=$(cat "${ST_SRC[@]}" | shasum | cut -c1-16)
-ST_DIR=build/.swiftterm/$ARCH-$ST_KEY
-if [[ ! -f "$ST_DIR/libSwiftTerm.a" ]]; then
-    echo "SwiftTerm derleniyor (bir kez, yaklaşık 1 dakika)…"
-    rm -rf build/.swiftterm; mkdir -p "$ST_DIR"
-    swiftc -parse-as-library -O -target "$ARCH-apple-macos14" -module-name SwiftTerm -emit-library -static \
-        -emit-module -emit-module-path "$ST_DIR/SwiftTerm.swiftmodule" "${ST_SRC[@]}" -o "$ST_DIR/libSwiftTerm.a"
-fi
-
-# YARA (vendor/, BSD-3): Apple'ın XProtect imzalarıyla zararlı taraması. Önbellekli statik kütüphane.
 Y_KEY=$(cat vendor/yara/libyara/**/*.(c|h) vendor/yara/build_libyara.sh | shasum | cut -c1-16)
-Y_DIR=build/.yara/$ARCH-$Y_KEY
-if [[ ! -f "$Y_DIR/libyara.a" ]]; then
-    echo "libyara derleniyor (bir kez)…"
-    rm -rf build/.yara; mkdir -p "$Y_DIR"
-    vendor/yara/build_libyara.sh "$PWD/vendor/yara" "$PWD/$Y_DIR" "$ARCH"
-fi
-
-# shared/: paket yakalama motoru (libpcap), hem uygulamaya hem yardımcıya derlenir.
-swiftc -parse-as-library -O -target "$ARCH-apple-macos14" -import-objc-header shared/bridge-app.h \
-    -Xcc -I"vendor/yara/libyara/include" -L "$Y_DIR" -lyara \
-    -I "$ST_DIR" -L "$ST_DIR" -lSwiftTerm \
-    -F vendor/Sparkle -framework Sparkle -Xlinker -rpath -Xlinker @executable_path/../Frameworks \
-    Sources/*.swift shared/*.swift -lpcap -o "$APP/Contents/MacOS/permwatch"
-# Sparkle (vendor/, MIT): güncellemeler. Korumalı (sandbox) olmayan uygulamada XPC servisleri gerekmez.
+for ARCH in ${=ARCHS}; do
+    # SwiftTerm (vendor/, MIT): terminal bölümü. Mimari başına önbellekli statik modül.
+    ST_DIR=build/.swiftterm/$ARCH-$ST_KEY
+    if [[ ! -f "$ST_DIR/libSwiftTerm.a" ]]; then
+        echo "SwiftTerm derleniyor ($ARCH, bir kez, yaklaşık 1 dakika)…"
+        rm -rf build/.swiftterm/$ARCH-*(N); mkdir -p "$ST_DIR"
+        swiftc -parse-as-library -O -target "$ARCH-apple-macos14" -module-name SwiftTerm -emit-library -static \
+            -emit-module -emit-module-path "$ST_DIR/SwiftTerm.swiftmodule" "${ST_SRC[@]}" -o "$ST_DIR/libSwiftTerm.a"
+    fi
+    # YARA (vendor/, BSD-3): zararlı taraması. Mimari başına önbellekli statik kütüphane.
+    Y_DIR=build/.yara/$ARCH-$Y_KEY
+    if [[ ! -f "$Y_DIR/libyara.a" ]]; then
+        echo "libyara derleniyor ($ARCH, bir kez)…"
+        rm -rf build/.yara/$ARCH-*(N); mkdir -p "$Y_DIR"
+        vendor/yara/build_libyara.sh "$PWD/vendor/yara" "$PWD/$Y_DIR" "$ARCH"
+    fi
+    mkdir -p "$WORK/$ARCH"
+    # shared/: paket yakalama motoru (libpcap), hem uygulamaya hem yardımcıya derlenir.
+    swiftc -parse-as-library -O -target "$ARCH-apple-macos14" -import-objc-header shared/bridge-app.h \
+        -Xcc -I"vendor/yara/libyara/include" -L "$Y_DIR" -lyara \
+        -I "$ST_DIR" -L "$ST_DIR" -lSwiftTerm \
+        -F vendor/Sparkle -framework Sparkle -Xlinker -rpath -Xlinker @executable_path/../Frameworks \
+        Sources/*.swift shared/*.swift -lpcap -o "$WORK/$ARCH/permwatch"
+    # Yönetici modu yardımcısı (ayrı, küçük, girdisiz bir program)
+    swiftc -O -target "$ARCH-apple-macos14" -import-objc-header shared/bridge.h \
+        helper/main.swift shared/*.swift -lpcap -o "$WORK/$ARCH/permwatch-root"
+done
+for B in permwatch permwatch-root; do
+    lipo -create $(for a in ${=ARCHS}; do print -r -- "$WORK/$a/$B"; done) -output "$APP/Contents/MacOS/$B"
+done
+# Koruma servisi (geliştirme) yalnızca bu Mac'in mimarisinde.
+ARCH=$NATIVE
+Y_DIR=build/.yara/$NATIVE-$Y_KEY
+if [[ ! -f "$Y_DIR/libyara.a" ]]; then mkdir -p "$Y_DIR"; vendor/yara/build_libyara.sh "$PWD/vendor/yara" "$PWD/$Y_DIR" "$NATIVE"; fi
+# Sparkle (vendor/, MIT): güncellemeler (evrensel). Korumalı (sandbox) olmayan uygulamada XPC servisleri gerekmez.
 mkdir -p "$APP/Contents/Frameworks"
 ditto --norsrc --noextattr --noacl vendor/Sparkle/Sparkle.framework "$APP/Contents/Frameworks/Sparkle.framework"
 xattr -cr "$APP/Contents/Frameworks/Sparkle.framework"
 rm -rf "$APP/Contents/Frameworks/Sparkle.framework/XPCServices" "$APP/Contents/Frameworks/Sparkle.framework/Versions/B/XPCServices"
-# Yönetici modu yardımcısı (ayrı, küçük, girdisiz bir program)
-swiftc -O -target "$ARCH-apple-macos14" -import-objc-header shared/bridge.h \
-    helper/main.swift shared/*.swift -lpcap -o "$APP/Contents/MacOS/permwatch-root"
 
 cp Resources/sample-events.jsonl Resources/AppIcon.icns "$APP/Contents/Resources/"
 mkdir -p "$APP/Contents/Resources/rules" && cp -R Resources/rules/elastic "$APP/Contents/Resources/rules/"

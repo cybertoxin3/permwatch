@@ -2,7 +2,7 @@
 # Bütünleşik testleri derleyip çalıştırır (önce app/build.sh çalışmış olmalı).
 set -euo pipefail
 cd "${0:A:h}/.."
-YD=(build/.yara/*(N)); ST=(build/.swiftterm/*(N))
+YD=(build/.yara/$(uname -m)-*(N)); ST=(build/.swiftterm/$(uname -m)-*(N))
 [[ -n "${YD[1]:-}" && -n "${ST[1]:-}" ]] || { echo "önce app/build.sh çalıştırın" >&2; exit 1 }
 SRC=(Sources/*.swift(N))
 SRC=(${SRC:#Sources/App.swift})
