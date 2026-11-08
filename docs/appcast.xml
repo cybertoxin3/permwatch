@@ -4,25 +4,26 @@
         <title>permwatch</title>
         <link>https://github.com/cybertoxin3/permwatch</link>
         <item>
-            <title>permwatch 0.4.0</title>
-            <pubDate>Sun, 08 Nov 2026 21:17:41 +0000</pubDate>
-            <sparkle:version>5</sparkle:version>
-            <sparkle:shortVersionString>0.4.0</sparkle:shortVersionString>
+            <title>permwatch 0.4.1</title>
+            <pubDate>Sun, 08 Nov 2026 22:25:14 +0000</pubDate>
+            <sparkle:version>6</sparkle:version>
+            <sparkle:shortVersionString>0.4.1</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <description><![CDATA[**permwatch 0.4.0**
-- Updates now arrive inside the app: see what's new, tap Update, and watch the download progress.
-- Simple mode: only the sections you need. Turn on Advanced mode for the rest.
-- A short welcome guide on first launch.
-- Settings are now inside the main window too.
-- Help › Report a Problem: send us an email with the technical details already filled in.
+            <description><![CDATA[**permwatch 0.4.1**
+- Now runs on Intel Macs too.
+- Uses about 4× less CPU in the background.
+- If permwatch ever crashes, you can send us a short summary (no personal data).
+- A refresh button for updates, in the update card and in Settings.
+- Blocked servers stay visible in Settings in simple mode.
 
 **Türkçe**
-- Güncellemeler artık uygulamanın içinde: neler yeni, Güncelle'ye bas, indirmeyi yüzdesiyle izle.
-- Basit mod: yalnızca ihtiyacın olan bölümler. Gerisi için Gelişmiş mod.
-- İlk açılışta kısa bir rehber. Ayarlar artık ana pencerede de.
-- Yardım › Bize Bildir: teknik bilgileri hazır bir e-postayla bize yaz.]]></description>
-            <sparkle:fullReleaseNotesLink>https://github.com/cybertoxin3/permwatch/releases/tag/v0.4.0</sparkle:fullReleaseNotesLink>
-            <enclosure url="https://github.com/cybertoxin3/permwatch/releases/download/v0.4.0/permwatch-0.4.0.zip" sparkle:edSignature="c5hg3Vj1+NVyhKtYKnkBa0r1lzTQpl/IvARBDgVH+cLEJoy6SX8hWZWedHrs9IEoefie8PyOC2SXSeRL6JHUDA==" length="5449775" type="application/octet-stream"/>
+- Artık Intel Mac'lerde de çalışıyor.
+- Arka planda yaklaşık 4 kat daha az işlemci kullanıyor.
+- permwatch çökerse bize kısa bir özet gönderebilirsin (kişisel bilgi yok).
+- Güncellemeler için Yenile düğmesi: güncelleme kartında ve Ayarlar'da.
+- Engellenen sunucular basit modda da Ayarlar'da görünüyor.]]></description>
+            <sparkle:fullReleaseNotesLink>https://github.com/cybertoxin3/permwatch/releases/tag/v0.4.1</sparkle:fullReleaseNotesLink>
+            <enclosure url="https://github.com/cybertoxin3/permwatch/releases/download/v0.4.1/permwatch-0.4.1.zip" sparkle:edSignature="FGz+EqLzVXkhW+NnHw45QI/qWIVdGpOOMjX3RTUhGRF+E+MtbfQSJ4UOSDHgw5XTUyw3qzQ040eIEf1lGhvQAw==" length="8409083" type="application/octet-stream"/>
         </item>
     </channel>
 </rss>
