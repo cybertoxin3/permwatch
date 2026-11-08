@@ -207,7 +207,7 @@ settings.downloads	Carpetas de descargas
 settings.downloadsDesc	permwatch vigila estas carpetas (incluidas las configuradas en tus navegadores) y, con Spotlight, encuentra apps descargadas en cualquier lugar del Mac.
 settings.root	Modo administrador
 settings.rootActive	Activo: todos los procesos son visibles
-settings.rootDesc	Ejecuta como root un pequeño asistente de solo lectura para que permwatch vea las conexiones de red y argumentos de todos los procesos, todos los ítems de inicio, el crontab de root y los perfiles de configuración. macOS pide tu contraseña. El asistente no recibe comandos y se detiene al cerrar permwatch.
+settings.rootDesc	Ejecuta como root un pequeño asistente de solo lectura para que permwatch vea las conexiones y argumentos de todos los procesos, todos los ítems de inicio, el crontab de root y los perfiles, y capture paquetes con nombres de proceso. Antes de ejecutarse, el asistente se copia a /Library/PrivilegedHelperTools y se verifica su firma. macOS pide tu contraseña. No acepta órdenes y se detiene al cerrar permwatch.
 settings.rootDisable	Desactivar
 settings.rootEnable	Activar…
 settings.rootFailed	No se pudo iniciar: %@
@@ -343,8 +343,8 @@ x.badport.what	El puerto %@ lo usan a menudo herramientas de hacking y malware d
 x.badport.advice	Si no reconoces la app, compruébala con VirusTotal y ciérrala desde Apps en ejecución.
 x.inbound.what	%1$@ intenta abrir una conexión con tu Mac en el puerto %2$@. Puede que un servicio de compartir o un servidor de tu Mac sea accesible desde la red.
 x.inbound.advice	Activa el cortafuegos (sección Seguridad) y desactiva los servicios para compartir que no uses en Ajustes del Sistema › General › Compartir.
-x.tls.hello	%1$@ inicia una conexión cifrada con %2$@. Solo se ve el nombre del sitio; nadie puede leer el contenido por el camino.
-x.encrypted	Tráfico cifrado entre %1$@ y %2$@. Así debe ser; nadie en la red puede leerlo.
+x.tls.hello	%1$@ inicia una conexión cifrada con %2$@. Solo se ve el nombre del sitio; el contenido queda oculto. El cifrado no indica si el sitio es seguro; revisa el nombre si no lo reconoces.
+x.encrypted	Tráfico cifrado entre %1$@ y %2$@: nadie en la red puede leer el contenido. El cifrado no demuestra que el servidor sea de confianza; si conoces la app, es lo esperado.
 x.ssh	Un inicio de sesión remoto cifrado (SSH). Alguien está entrando en un ordenador, o en el tuyo.
 x.ssh.advice	Bien si lo iniciaste tú. Si la conexión llega a tu Mac y no la esperabas, desactiva Sesión remota en Ajustes del Sistema › General › Compartir.
 x.dns.nx	El nombre %@ no existe. Un error tipográfico ocasional es normal.
@@ -415,3 +415,11 @@ pkt.chooseFolder	Elegir…
 settings.captureFolder	Grabaciones de captura
 settings.captureOff	No se guardan automáticamente
 settings.captureFolderDesc	Cuando una captura se detiene, su archivo .pcap se copia aquí con la fecha y hora en el nombre, p. ej. permwatch-2026-11-08_14-30-00.pcap. Puedes abrirlo en Wireshark o enviarlo a alguien para que lo analice.
+settings.rootUnsigned	El modo administrador requiere una compilación firmada con Developer ID para verificar la firma del asistente antes de ejecutarlo como root.
+settings.rootBadSignature	La firma del asistente no es válida o no es del desarrollador de permwatch, así que no se inició. Puede que la app se haya modificado; descárgala de nuevo.
+settings.rootCancelled	Cancelado.
+adv.revokeConfirm	La app sigue funcionando; si de verdad necesita el permiso, macOS te lo volverá a pedir. No se borra nada.
+uninstall.byName	Encontrado solo por el nombre. Puede ser de otra app; selecciónalo solo si estás seguro.
+pkt.storePayload	Guardar también el contenido (puede incluir contraseñas)
+x.unsigned.what	%1$@ no está firmado por un desarrollador conocido e intercambia datos con %2$@. La conexión puede estar cifrada, pero el cifrado solo oculta el contenido: no dice nada sobre si el programa o el servidor son de confianza. El malware habla con sus servidores de control exactamente así.
+x.unsigned.advice	Si instalaste este programa tú mismo (una herramienta de desarrollo, por ejemplo), puede estar bien. Si no lo reconoces, compruébalo con VirusTotal y ciérralo desde Apps en ejecución.

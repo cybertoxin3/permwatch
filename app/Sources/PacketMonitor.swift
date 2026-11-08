@@ -26,6 +26,10 @@ final class PacketMonitor: ObservableObject {
         didSet { UserDefaults.standard.set(saveFolder, forKey: Self.saveFolderKey) }
     }
     @Published private(set) var lastSaved: URL?
+    /// Paket içeriğini de sakla (varsayılan kapalı: yalnızca başlıklar; parolalar diske yazılmaz).
+    @Published var storePayload = UserDefaults.standard.bool(forKey: "captureStorePayload") {
+        didSet { UserDefaults.standard.set(storePayload, forKey: "captureStorePayload") }
+    }
     @Published private(set) var saveError: String?
     nonisolated static let saveFolderKey = "captureSaveFolder"
 
@@ -45,6 +49,10 @@ final class PacketMonitor: ObservableObject {
     private var startedAt = Date()
     private var nextSeq = 0
     private var flows: [String: (out: Int, inb: Int, warned: Bool)] = [:]
+    /// Paket geldikçe güncellenen konuşmalar ve özet sayaçları (ekran her yenilemede yeniden hesaplamasın).
+    @Published private(set) var conversations: [String: Conversation] = [:]
+    @Published private(set) var encryptedBytes = 0
+    @Published private(set) var transportBytes = 0
 
     init() {
         try? FileManager.default.removeItem(at: Self.flagURL)
@@ -89,7 +97,8 @@ final class PacketMonitor: ObservableObject {
         startedAt = Date()
         if RootBridge.shared.active {
             try? FileManager.default.createDirectory(at: Self.userDir, withIntermediateDirectories: true)
-            FileManager.default.createFile(atPath: Self.flagURL.path, contents: nil, attributes: [.posixPermissions: 0o600])
+            FileManager.default.createFile(atPath: Self.flagURL.path, contents: Data((storePayload ? "payload=1" : "payload=0").utf8),
+                                           attributes: [.posixPermissions: 0o600])
             tail = Tail(path: RootBridge.packetsPath, notBefore: startedAt)
             mode = .root
             device = "pktap"
@@ -104,7 +113,9 @@ final class PacketMonitor: ObservableObject {
                 return
             }
             try? FileManager.default.createDirectory(at: Self.userDir, withIntermediateDirectories: true)
+            e.storePayload = storePayload
             e.dump(to: Self.localPcap.path)
+            chmod(Self.localPcap.path, 0o600)
             let box = inbox
             e.onPacket = { box.put($0) }
             e.start()
@@ -160,6 +171,7 @@ final class PacketMonitor: ObservableObject {
             // Kopya her zaman kullanıcıya ait, normal izinli bir dosya olsun.
             let data = try Data(contentsOf: src, options: .mappedIfSafe)
             try data.write(to: dest, options: .atomic)
+            try? FileManager.default.setAttributes([.posixPermissions: 0o600], ofItemAtPath: dest.path)
             lastSaved = dest
             return dest
         } catch {
@@ -190,6 +202,9 @@ final class PacketMonitor: ObservableObject {
     func clear() {
         packets.removeAll()
         flows.removeAll()
+        conversations.removeAll()
+        encryptedBytes = 0
+        transportBytes = 0
         totalBytes = 0
         totalPackets = 0
     }
@@ -213,6 +228,16 @@ final class PacketMonitor: ObservableObject {
     }
 
     func displayName(_ ip: String) -> String { names[ip] ?? ip }
+
+    private var sigs: [String: String] = [:]
+    /// Sürecin imza türü (apple, developer, adhoc, unsigned…); yol başına bir kez hesaplanır.
+    func signature(for pid: Int32?) -> String? {
+        guard let path = path(for: pid) else { return nil }
+        if let s = sigs[path] { return s }
+        let s = PathUtil.homebrewFormula(path) != nil ? "homebrew" : Signing.classify(path: path).signature
+        sigs[path] = s
+        return s
+    }
 
     // MARK: Akış
 
@@ -272,9 +297,34 @@ final class PacketMonitor: ObservableObject {
             }
         }
         if newNames.count != names.count { names = newNames }
+        var convs = conversations
+        for p in batch { Self.accumulate(p, into: &convs, names: newNames) }
+        conversations = convs
+        encryptedBytes += batch.filter { ["TLS", "QUIC", "SSH"].contains($0.proto) }.reduce(0) { $0 + $1.len }
+        transportBytes += batch.filter { $0.sport != nil }.reduce(0) { $0 + $1.len }
         totalPackets += batch.count
         packets.append(contentsOf: batch)
         if packets.count > maxRows { packets.removeFirst(packets.count - maxRows) }
+    }
+
+    var conversationList: [Conversation] { conversations.values.sorted { $0.bytes > $1.bytes } }
+
+    static func accumulate(_ p: Packet, into map: inout [String: Conversation], names: [String: String]) {
+        let remoteIsSrc = p.dir == "in" || (p.dir == nil && Conversation.isLocal(p.dst) && !Conversation.isLocal(p.src))
+        let ip = remoteIsSrc ? p.src : p.dst
+        let port = remoteIsSrc ? p.sport : p.dport
+        let proc = p.eproc ?? p.proc ?? "—"
+        let key = "\(proc)|\(ip)|\(port ?? 0)"
+        var c = map[key] ?? Conversation(id: key, proc: proc, pid: p.epid ?? p.pid, remote: ip,
+                                         host: names[ip], port: port, first: p.ts, last: p.ts)
+        c.packets += 1
+        c.bytes += p.len
+        if remoteIsSrc { c.bytesIn += p.len } else { c.bytesOut += p.len }
+        c.last = p.ts
+        c.protos.insert(p.proto)
+        if c.host == nil { c.host = names[ip] ?? (p.proto == "TLS" || p.proto == "HTTP" ? p.host : nil) }
+        if p.flags?.contains("pkt.flag.cleartextCreds") == true { c.creds = true }
+        map[key] = c
     }
 
     private func report(_ p: Packet) {

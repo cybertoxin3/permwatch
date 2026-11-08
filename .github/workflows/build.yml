@@ -13,5 +13,7 @@ jobs:
         run: make
       - name: Unit testler
         run: make test
+      - name: Uygulama testleri
+        run: make test-app
       - name: macOS uygulaması
         run: make app

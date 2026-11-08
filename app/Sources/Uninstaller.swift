@@ -9,6 +9,8 @@ enum Uninstaller {
         let path: String
         let size: Int64
         let isApp: Bool
+        /// Yalnızca ad benzerliğiyle bulundu (başka bir uygulamaya ait olabilir): varsayılan seçili gelmez.
+        var byName = false
     }
 
     enum Blocked { case system, apple, permwatch, missing }
@@ -44,21 +46,24 @@ enum Uninstaller {
                 paths += agents.filter { $0.hasPrefix(id) }.map { "\(home)/LaunchAgents/\($0)" }
             }
         }
+        var nameBased = Set<String>()
         // Ada göre klasörler yalnızca genel olmayan, en az 4 harfli adlar için.
         if name.count >= 4 {
-            paths += ["\(home)/Application Support/\(name)", "\(home)/Caches/\(name)", "\(home)/Logs/\(name)"]
+            let n = ["\(home)/Application Support/\(name)", "\(home)/Caches/\(name)", "\(home)/Logs/\(name)"]
+            paths += n; nameBased.formUnion(n)
         }
         // "Üretici Ürün" adlı uygulamalar verilerini çoğu zaman "Üretici/Ürün" altında tutar (ör. Google/Chrome).
         let words = name.split(separator: " ", maxSplits: 1).map(String.init)
         if words.count == 2, words[0].count >= 3, words[1].count >= 3 {
-            paths += ["\(home)/Application Support/\(words[0])/\(words[1])", "\(home)/Caches/\(words[0])/\(words[1])"]
+            let n = ["\(home)/Application Support/\(words[0])/\(words[1])", "\(home)/Caches/\(words[0])/\(words[1])"]
+            paths += n; nameBased.formUnion(n)
         }
         paths += launchPlists
         var seen = Set<String>()
         return paths.compactMap { p in
             guard !seen.contains(p), fm.fileExists(atPath: p) else { return nil }
             seen.insert(p)
-            return Candidate(path: p, size: size(of: p), isApp: p == appPath)
+            return Candidate(path: p, size: size(of: p), isApp: p == appPath, byName: nameBased.contains(p))
         }
     }
 

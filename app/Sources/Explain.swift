@@ -1,6 +1,39 @@
 import Foundation
 import SwiftUI
 
+// MARK: - Konuşma (uygulama ↔ sunucu)
+
+struct Conversation: Identifiable {
+    let id: String
+    let proc: String
+    let pid: Int32?
+    let remote: String
+    var host: String?
+    let port: Int?
+    var first: Double
+    var last: Double
+    var packets = 0
+    var bytes = 0
+    var bytesIn = 0
+    var bytesOut = 0
+    var protos: Set<String> = []
+    var creds = false
+
+    /// Çok veri gönderip az alan bağlantı (yükleme/sızdırma belirtisi olabilir).
+    var uploadHeavy: Bool { bytesOut > 20 << 20 && bytesOut > bytesIn * 5 }
+
+    static func isLocal(_ ip: String) -> Bool {
+        if ip.hasPrefix("10.") || ip.hasPrefix("192.168.") || ip.hasPrefix("127.") || ip.hasPrefix("169.254.")
+            || ip.hasPrefix("fe80") || ip.hasPrefix("fd") || ip == "::1" { return true }
+        let parts = ip.split(separator: ".").compactMap { Int($0) }
+        if parts.count == 4 {
+            if parts[0] == 172 && (16...31).contains(parts[1]) { return true }
+            if parts[0] == 100 && (64...127).contains(parts[1]) { return true }
+        }
+        return false
+    }
+}
+
 // MARK: - İzleyiciler (reklam, analiz, telemetri)
 
 struct Tracker {
@@ -40,6 +73,40 @@ enum Trackers {
         "sentry.io": ("Sentry", .telemetry), "bugsnag.com": ("Bugsnag", .telemetry), "datadoghq.com": ("Datadog", .telemetry),
         "browser-intake-datadoghq.com": ("Datadog", .telemetry), "instabug.com": ("Instabug", .telemetry),
         "applovin.com": ("AppLovin", .ads), "unityads.unity3d.com": ("Unity Ads", .ads), "chartboost.com": ("Chartboost", .ads),
+        "ads.yahoo.com": ("Yahoo", .ads), "analytics.yahoo.com": ("Yahoo", .analytics), "sp.analytics.yahoo.com": ("Yahoo", .analytics),
+        "ads.pinterest.com": ("Pinterest", .ads), "ct.pinterest.com": ("Pinterest", .ads), "tr.snapchat.com": ("Snap", .ads),
+        "sc-static.net": ("Snap", .ads), "analytics.snapchat.com": ("Snap", .analytics), "ads.reddit.com": ("Reddit", .ads),
+        "events.redditmedia.com": ("Reddit", .analytics), "static.ads-twitter.com": ("X", .ads),
+        "ads.yandex.ru": ("Yandex", .ads), "an.yandex.ru": ("Yandex", .ads), "top-fwz1.mail.ru": ("VK", .analytics),
+        "ad.mail.ru": ("VK", .ads), "mc.webvisor.org": ("Yandex", .analytics),
+        "googleoptimize.com": ("Google", .analytics), "stats.g.doubleclick.net": ("Google", .analytics),
+        "firebaselogging-pa.googleapis.com": ("Google Firebase", .telemetry), "firebaseinstallations.googleapis.com": ("Google Firebase", .analytics),
+        "imasdk.googleapis.com": ("Google", .ads), "pagead2.googlesyndication.com": ("Google", .ads),
+        "adsafeprotected.com": ("Integral Ad Science", .ads), "doubleverify.com": ("DoubleVerify", .ads),
+        "smartadserver.com": ("Equativ", .ads), "33across.com": ("33Across", .ads), "sharethrough.com": ("Sharethrough", .ads),
+        "teads.tv": ("Teads", .ads), "yieldmo.com": ("Yieldmo", .ads), "media.net": ("Media.net", .ads),
+        "bidswitch.net": ("BidSwitch", .ads), "contextweb.com": ("PulsePoint", .ads), "lijit.com": ("Sovrn", .ads),
+        "demdex.net": ("Adobe", .ads), "omtrdc.net": ("Adobe", .analytics), "2o7.net": ("Adobe", .analytics),
+        "everesttech.net": ("Adobe", .ads), "adobedtm.com": ("Adobe", .analytics), "krxd.net": ("Salesforce", .ads),
+        "exelator.com": ("Nielsen", .ads), "imrworldwide.com": ("Nielsen", .analytics), "bluekai.com": ("Oracle", .ads),
+        "addthis.com": ("Oracle", .social), "rlcdn.com": ("LiveRamp", .ads), "agkn.com": ("Neustar", .ads),
+        "tapad.com": ("Tapad", .ads), "mathtag.com": ("MediaMath", .ads), "turn.com": ("Amobee", .ads),
+        "zemanta.com": ("Outbrain", .ads), "revcontent.com": ("Revcontent", .ads), "mgid.com": ("MGID", .ads),
+        "matomo.cloud": ("Matomo", .analytics), "plausible.io": ("Plausible", .analytics), "kissmetrics.com": ("Kissmetrics", .analytics),
+        "crazyegg.com": ("Crazy Egg", .analytics), "mouseflow.com": ("Mouseflow", .analytics), "luckyorange.com": ("Lucky Orange", .analytics),
+        "smartlook.com": ("Smartlook", .analytics), "logrocket.io": ("LogRocket", .analytics), "lr-ingest.io": ("LogRocket", .analytics),
+        "pendo.io": ("Pendo", .analytics), "intercom.io": ("Intercom", .analytics), "customer.io": ("Customer.io", .analytics),
+        "clevertap-prod.com": ("CleverTap", .analytics), "leanplum.com": ("Leanplum", .analytics), "airship.com": ("Airship", .analytics),
+        "urbanairship.com": ("Airship", .analytics), "iterable.com": ("Iterable", .analytics), "rudderstack.com": ("RudderStack", .analytics),
+        "split.io": ("Split", .telemetry), "optimizely.com": ("Optimizely", .analytics), "vwo.com": ("VWO", .analytics),
+        "appcenter.ms": ("Microsoft", .telemetry), "in.appcenter.ms": ("Microsoft", .telemetry), "dc.services.visualstudio.com": ("Microsoft", .telemetry),
+        "mobile.events.data.microsoft.com": ("Microsoft", .telemetry), "self.events.data.microsoft.com": ("Microsoft", .telemetry),
+        "telemetry.mozilla.org": ("Mozilla", .telemetry), "incoming.telemetry.mozilla.org": ("Mozilla", .telemetry),
+        "rollbar.com": ("Rollbar", .telemetry), "raygun.io": ("Raygun", .telemetry), "honeybadger.io": ("Honeybadger", .telemetry),
+        "embrace.io": ("Embrace", .telemetry), "dynatrace.com": ("Dynatrace", .telemetry), "appdynamics.com": ("AppDynamics", .telemetry),
+        "mopub.com": ("MoPub", .ads), "startappservice.com": ("Start.io", .ads), "tapjoy.com": ("Tapjoy", .ads),
+        "fyber.com": ("Fyber", .ads), "mintegral.com": ("Mintegral", .ads), "pangle.io": ("Pangle", .ads), "bytedance.com": ("ByteDance", .analytics),
+        "umeng.com": ("Umeng", .analytics), "umengcloud.com": ("Umeng", .analytics), "doubleclick.com": ("Google", .ads),
         "inmobi.com": ("InMobi", .ads), "vungle.com": ("Vungle", .ads), "ironsrc.mobi": ("ironSource", .ads),
     ]
 
@@ -74,7 +141,10 @@ struct Explanation {
 enum Explainer {
     static let badPorts: Set<Int> = [4444, 1337, 31337, 6667, 6666, 5555, 12345, 27374, 9001, 1080]
 
-    static func packet(_ p: Packet, host: String?, app: String) -> Explanation {
+    /// İmzasız / geçici imzalı programlar: şifreli trafikleri "normal" sayılmaz.
+    static func untrusted(_ sig: String?) -> Bool { sig == "unsigned" || sig == "adhoc" }
+
+    static func packet(_ p: Packet, host: String?, app: String, signature: String? = nil) -> Explanation {
         let flags = p.flags ?? []
         let peer = host ?? p.dst
         if flags.contains("pkt.flag.cleartextCreds") {
@@ -95,6 +165,9 @@ enum Explainer {
         }
         if p.dir == "in", p.tcp == "SYN" {
             return .init(verdict: .caution, what: L("x.inbound.what", p.src, String(p.dport ?? 0)), advice: L("x.inbound.advice"))
+        }
+        if untrusted(signature), ["TLS", "QUIC", "SSH"].contains(p.proto) || p.sport != nil {
+            return .init(verdict: .caution, what: L("x.unsigned.what", app, peer), advice: L("x.unsigned.advice"))
         }
         switch p.proto {
         case "TLS":
@@ -126,9 +199,12 @@ enum Explainer {
         return .init(verdict: .info, what: L("x.generic", app, peer), advice: nil)
     }
 
-    static func conversation(_ c: Conversation) -> Explanation {
+    static func conversation(_ c: Conversation, signature: String? = nil) -> Explanation {
         let peer = c.host ?? c.remote
         if c.creds { return .init(verdict: .danger, what: L("x.creds.what", c.proc, peer), advice: L("x.creds.advice")) }
+        if untrusted(signature) {
+            return .init(verdict: .caution, what: L("x.unsigned.what", c.proc, peer), advice: L("x.unsigned.advice"))
+        }
         if let t = Trackers.match(c.host) {
             return .init(verdict: .caution, what: L("x.tracker.what", c.proc, t.company, t.kindText), advice: L("x.tracker.advice"))
         }

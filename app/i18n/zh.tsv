@@ -207,7 +207,7 @@ settings.downloads	下载文件夹
 settings.downloadsDesc	permwatch 会监视这些文件夹（包括浏览器中设置的），并通过聚焦找到下载到 Mac 任何位置的应用。
 settings.root	管理员模式
 settings.rootActive	已开启：所有进程均可见
-settings.rootDesc	以 root 身份运行一个只读的小助手，让 permwatch 能看到所有进程的网络连接和参数、所有登录项、root 的 crontab 和配置描述文件。macOS 会询问你的密码。助手不接受任何命令，并在 permwatch 退出时停止。
+settings.rootDesc	以 root 身份运行一个小型只读助手,使 permwatch 能看到所有进程的网络连接和参数、所有登录项、root 的 crontab 和配置描述文件,并按进程名称捕获数据包。运行前,助手会被复制到 /Library/PrivilegedHelperTools 并验证签名。macOS 会要求输入密码。它不接受任何命令,并随 permwatch 退出而停止。
 settings.rootDisable	关闭
 settings.rootEnable	开启…
 settings.rootFailed	无法启动：%@
@@ -343,8 +343,8 @@ x.badport.what	端口 %@ 常被黑客工具和远程控制恶意软件使用,也
 x.badport.advice	如果你不认识这个应用,请用 VirusTotal 检查,并在“正在运行的应用”中退出它。
 x.inbound.what	%1$@ 正尝试通过端口 %2$@ 连接你的 Mac。你 Mac 上的某个共享服务或服务器可能可从网络访问。
 x.inbound.advice	打开防火墙(“安全”部分),并在系统设置 › 通用 › 共享 中关闭不用的共享服务。
-x.tls.hello	%1$@ 正在与 %2$@ 建立加密连接。只有网站名称可见,传输中的内容无人能读取。
-x.encrypted	%1$@ 与 %2$@ 之间的加密流量。这是正常的,网络上无人能读取。
+x.tls.hello	%1$@ 正在与 %2$@ 建立加密连接。只有网站名称可见,内容保持隐藏。加密并不说明网站是否安全;如果不认识该名称,请检查一下。
+x.encrypted	%1$@ 与 %2$@ 之间的加密流量:网络上无人能读取内容。加密并不能证明服务器可信;如果你了解该应用,这属于正常情况。
 x.ssh	加密的远程登录(SSH)。有人正在登录某台计算机,或你的计算机。
 x.ssh.advice	如果是你发起的就没问题。如果有意外的连接进入你的 Mac,请在系统设置 › 通用 › 共享 中关闭“远程登录”。
 x.dns.nx	名称 %@ 不存在。偶尔输错是正常的。
@@ -415,3 +415,11 @@ pkt.chooseFolder	选择…
 settings.captureFolder	数据包捕获记录
 settings.captureOff	不自动保存
 settings.captureFolderDesc	捕获停止时,其 .pcap 文件会以包含日期和时间的名称复制到这里,例如 permwatch-2026-11-08_14-30-00.pcap。你可以在 Wireshark 中打开,或发送给他人分析。
+settings.rootUnsigned	管理员模式需要使用 Developer ID 证书签名的版本,以便在以 root 运行前验证助手的签名。
+settings.rootBadSignature	助手的签名无效或并非来自 permwatch 开发者,因此未启动。应用可能已被修改,请重新下载。
+settings.rootCancelled	已取消。
+adv.revokeConfirm	应用会继续工作;如果确实需要该权限,macOS 会再次询问你。不会删除任何内容。
+uninstall.byName	仅按名称找到。可能属于其他应用;确定时再选择。
+pkt.storePayload	同时保存数据包内容(可能包含密码)
+x.unsigned.what	%1$@ 未经已知开发者签名,正在与 %2$@ 交换数据。连接可能是加密的,但加密只隐藏内容,并不能说明程序或服务器是否可信。恶意软件正是这样与控制服务器通信的。
+x.unsigned.advice	如果是你自己安装的程序(例如开发工具),可能没问题。如果你不认识它,请用 VirusTotal 检查,并在“正在运行的应用”中退出。

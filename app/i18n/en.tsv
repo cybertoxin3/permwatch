@@ -207,7 +207,7 @@ settings.downloads	Download folders
 settings.downloadsDesc	permwatch watches these folders, including the ones set in your browsers, and also finds downloaded apps anywhere on your Mac through Spotlight.
 settings.root	Administrator mode
 settings.rootActive	Active: every process is visible
-settings.rootDesc	Runs a small read-only helper as root so permwatch can see every process’s network connections and arguments, all login items, the root crontab and configuration profiles. macOS asks for your password. The helper takes no commands and stops when permwatch quits.
+settings.rootDesc	Runs a small read-only helper as root so permwatch can see every process’s network connections and arguments, all login items, the root crontab and configuration profiles, and capture packets with process names. Before it runs, the helper is copied to /Library/PrivilegedHelperTools and its signature is verified. macOS asks for your password. It takes no commands and stops when permwatch quits.
 settings.rootDisable	Turn Off
 settings.rootEnable	Turn On…
 settings.rootFailed	Could not start: %@
@@ -343,8 +343,8 @@ x.badport.what	Port %@ is often used by hacking tools and remote-control malware
 x.badport.advice	If you don’t recognise the app, check it with VirusTotal and quit it from Running Apps.
 x.inbound.what	%1$@ is trying to open a connection to your Mac on port %2$@. A sharing service or server on your Mac may be reachable from the network.
 x.inbound.advice	Turn on the firewall (Security section) and switch off sharing services you don’t use in System Settings › General › Sharing.
-x.tls.hello	%1$@ is starting an encrypted connection to %2$@. Only the site name is visible; the content cannot be read by anyone on the way.
-x.encrypted	Encrypted traffic between %1$@ and %2$@. This is how it should be; nobody on the network can read it.
+x.tls.hello	%1$@ is starting an encrypted connection to %2$@. Only the site name is visible; the content stays hidden. Encryption doesn’t tell whether the site is safe; check the name if you don’t recognise it.
+x.encrypted	Encrypted traffic between %1$@ and %2$@: nobody on the network can read the content. Encryption doesn’t prove the server is trustworthy; if you know the app, this is expected.
 x.ssh	An encrypted remote login (SSH). Someone is logging in to a computer, or into yours.
 x.ssh.advice	Fine if you started it. If the connection comes in to your Mac and you didn’t expect it, turn off Remote Login in System Settings › General › Sharing.
 x.dns.nx	The name %@ does not exist. The occasional typo is normal.
@@ -415,3 +415,11 @@ pkt.chooseFolder	Choose…
 settings.captureFolder	Packet capture recordings
 settings.captureOff	Not saved automatically
 settings.captureFolderDesc	When a capture stops, its .pcap file is copied here with the date and time in its name, e.g. permwatch-2026-11-08_14-30-00.pcap. You can open these files in Wireshark or send them to someone for analysis.
+settings.rootUnsigned	Administrator mode needs a build signed with a Developer ID certificate, so the helper’s signature can be verified before it runs as root.
+settings.rootBadSignature	The helper’s signature is invalid or doesn’t come from the permwatch developer, so it was not started. The app may have been modified; download it again.
+settings.rootCancelled	Cancelled.
+adv.revokeConfirm	The app keeps working; if it really needs the permission, macOS will simply ask you again. Nothing is deleted.
+uninstall.byName	Found by name only. It may belong to another app; select it only if you’re sure.
+pkt.storePayload	Also save packet contents (may include passwords)
+x.unsigned.what	%1$@ is not signed by a known developer and is exchanging data with %2$@. The connection may be encrypted, but encryption only hides the content: it says nothing about whether the program or the server can be trusted. Malware talks to its control servers exactly like this.
+x.unsigned.advice	If you installed this program yourself (a developer tool, for example) this can be fine. If you don’t recognise it, check it with VirusTotal and quit it from Running Apps.

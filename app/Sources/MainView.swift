@@ -24,7 +24,7 @@ struct MainView: View {
     @EnvironmentObject var monitor: ProcessMonitor
     @EnvironmentObject var center: ThreatCenter
     @Environment(\.openWindow) private var openWindow
-    @State private var section: SidebarItem = .timeline
+    @State private var section: SidebarItem = .advice
     @State private var filter: TimelineFilter = .all
     @State private var selection: Int?
     @State private var search = ""

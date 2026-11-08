@@ -26,8 +26,14 @@ struct Packet: Codable, Identifiable, Hashable {
     var tcp: String?            // TCP bayrakları
     var flags: [String]?        // pkt.flag.* anahtarları
     var hex: String?            // çerçevenin ilk baytları
+    /// Uygulama verisinin (başlıklardan sonrası) arabellekteki başlangıcı; dosyaya yazılmaz.
+    var payloadStart: Int?
 
     var id: Int { seq }
+
+    enum CodingKeys: String, CodingKey {
+        case seq, ts, pid, proc, epid, eproc, iface, dir, l3, proto, src, dst, sport, dport, len, info, host, dns, tcp, flags, hex
+    }
 }
 
 enum PacketParser {
@@ -39,7 +45,26 @@ enum PacketParser {
     }
     static let dltPktapApple: Int32 = 149, dltPktap: Int32 = 258
 
-    static func parse(link: Int32, _ b: UnsafeRawBufferPointer, wire: Int, ts: Double, seq: Int) -> Packet? {
+    /// payload false: hex dökümü yalnızca başlıkları içerir (uygulama verisi, ör. parolalar, saklanmaz).
+    static func parse(link: Int32, _ b: UnsafeRawBufferPointer, wire: Int, ts: Double, seq: Int, payload: Bool = false) -> Packet? {
+        var frame = 0
+        guard var p = parseFrame(link: link, b, wire: wire, ts: ts, seq: seq, frame: &frame) else { return nil }
+        let full = ["ARP", "ICMP", "ICMPv6"].contains(p.proto)
+        let end = payload ? b.count : (p.payloadStart ?? (full ? b.count : min(b.count, frame + 40)))
+        p.payloadStart = end
+        p.hex = Reader(b).hex(frame, max(0, min(160, end - frame)))
+        p.info = maskSecrets(p.info)
+        return p
+    }
+
+    /// URL ve başlıklardaki parola/anahtar değerlerini gizler.
+    static func maskSecrets(_ s: String) -> String {
+        guard s.range(of: "(?i)(pass|pwd|token|secret|key|auth)", options: .regularExpression) != nil else { return s }
+        return s.replacingOccurrences(of: "(?i)((?:pass(?:word|wd)?|pwd|token|secret|api_?key|access_?key|auth)[a-z_]*=)[^&\\s]+",
+                                      with: "$1****", options: .regularExpression)
+    }
+
+    private static func parseFrame(link: Int32, _ b: UnsafeRawBufferPointer, wire: Int, ts: Double, seq: Int, frame outFrame: inout Int) -> Packet? {
         var r = Reader(b)
         var pkt = Packet(seq: seq, ts: ts, l3: "?", proto: "?", src: "", dst: "", len: wire, info: "")
         var link = link
@@ -59,7 +84,7 @@ enum PacketParser {
             pkt.len = max(0, wire - hl)
         }
         let frame = off
-        pkt.hex = r.hex(frame, 160)
+        outFrame = frame
 
         // Bağlantı katmanı → ağ katmanı
         var l3 = -1, ethType: UInt16 = 0
@@ -147,6 +172,7 @@ enum PacketParser {
         let fs = names.filter { fl & $0.0 != 0 }.map(\.1)
         p.tcp = fs.joined(separator: " ")
         let pl = t + doff
+        p.payloadStart = min(pl, r.limit)
         let n = max(0, r.limit - pl)
         p.info = "\(sp) → \(dp) [\(p.tcp ?? "")] Len=\(n)"
         guard n > 0, r.has(pl, 1) else { return }
@@ -243,6 +269,7 @@ enum PacketParser {
         let sp = Int(r.be16(u)), dp = Int(r.be16(u + 2))
         p.sport = sp; p.dport = dp
         let pl = u + 8
+        p.payloadStart = min(pl, r.limit)
         let n = max(0, r.limit - pl)
         p.info = "\(sp) → \(dp) Len=\(n)"
         let ports = Set([sp, dp])
@@ -400,6 +427,8 @@ final class CaptureEngine: @unchecked Sendable {
     /// Saniyede bundan fazla paket listeye özetlenmez (hepsi yine .pcap dosyasına yazılır).
     var maxPerSecond = 1500
     private(set) var skipped = 0
+    /// false: .pcap dosyasına ve özetlere yalnızca başlıklar yazılır.
+    var storePayload = false
     var onPacket: (Packet) -> Void = { _ in }
 
     init(device: String) { self.device = device }
@@ -453,17 +482,21 @@ final class CaptureEngine: @unchecked Sendable {
             var data: UnsafePointer<UInt8>?
             let rc = pcap_next_ex(h, &hdr, &data)
             if rc == 1, let hdr, let data {
-                if let d = dumper { pcap_dump(UnsafeMutablePointer<UInt8>(d), hdr, data) }
                 let ts = Double(hdr.pointee.ts.tv_sec) + Double(hdr.pointee.ts.tv_usec) / 1e6
+                let buf = UnsafeRawBufferPointer(start: data, count: Int(hdr.pointee.caplen))
+                let p = PacketParser.parse(link: linkType, buf, wire: Int(hdr.pointee.len), ts: ts, seq: seq + 1,
+                                           payload: storePayload)
+                if let d = dumper {
+                    var h = hdr.pointee
+                    if !storePayload { h.caplen = UInt32(min(Int(h.caplen), p?.payloadStart ?? 64)) }
+                    pcap_dump(UnsafeMutablePointer<UInt8>(d), &h, data)
+                }
                 let s = Int(ts)
                 if s != second { second = s; inSecond = 0 }
                 inSecond += 1
                 if inSecond > maxPerSecond { skipped += 1; continue }
                 seq += 1
-                let buf = UnsafeRawBufferPointer(start: data, count: Int(hdr.pointee.caplen))
-                if let p = PacketParser.parse(link: linkType, buf, wire: Int(hdr.pointee.len), ts: ts, seq: seq) {
-                    onPacket(p)
-                }
+                if let p { onPacket(p) }
             } else if rc < 0 {
                 break
             }

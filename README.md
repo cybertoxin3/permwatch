@@ -12,7 +12,7 @@ Camera, microphone, screen recording, login items.<br>
 permwatch keeps a record of every permission change and alerts you the moment something looks off.
 
 [![build](https://github.com/cybertoxin3/permwatch/actions/workflows/build.yml/badge.svg)](https://github.com/cybertoxin3/permwatch/actions/workflows/build.yml)
-![macOS](https://img.shields.io/badge/macOS-13%2B-black?logo=apple)
+![macOS](https://img.shields.io/badge/macOS-14%2B-black?logo=apple)
 ![Status](https://img.shields.io/badge/status-in%20development-orange)
 
 </div>
@@ -56,35 +56,42 @@ permwatch connects the dots and gives you one clear alert.
 
 ## What it does
 
+- 💡 **Recommendations:** One screen that explains every finding in plain language and offers a one-click fix. It finds permissions left behind by deleted apps and permissions in apps you haven't opened for months.
 - 🕒 **Timeline:** Every permission change and every new startup item, with its date and the process responsible
-- 🚨 **Smart alerts:** Unsigned apps, midnight activity, Gatekeeper bypass attempts
-- 🔍 **App view:** All the permissions an app holds, on a single card
-- 🧬 **Signature check:** Apple, a known developer, or an unknown source?
-- 📍 **In the menu bar:** Stays out of your way, speaks up when it matters
+- 🚨 **Alerts:** Unsigned startup programs, suspicious permission patterns, Gatekeeper bypasses, and a small pop-up at the top of the screen when something new appears
+- 🔍 **Apps:** All the permissions an app holds, on a single card. Revoke a permission or move the app to the Trash.
+- 🧠 **Running apps:** A task manager that flags programs running from odd places, pretending to be system processes, or whose file was deleted
+- 🌐 **Network:** Which app is connected where, with warnings for unsigned programs
+- 📦 **Packet capture:** Like Wireshark, but every packet shows the app that sent it and a plain-language explanation. It spots trackers, unencrypted connections and passwords sent in clear text. Captures are saved as .pcap files you can open in Wireshark.
+- ⬇️ **Downloads:** Checks downloaded apps and installers anywhere on your Mac, including USB disks, with Gatekeeper
+- 🎙 **Microphone and camera:** Who is using them right now, and a history
 
 <p align="center">
   <img src="docs/images/apps_en.png" alt="permwatch app view" width="900">
 </p>
 
+## What it is not
+
+permwatch is **not an antivirus.** It has no malware signature database and **it doesn't block anything.** It shows you what is happening, explains it and helps you fix it. If you want to block connections, use a firewall such as LuLu or Little Snitch alongside it.
+
+The rules are heuristics: they can raise false alarms (for example with developer tools) and can miss well-hidden malware.
+
 ## Your privacy stays with you
 
-permwatch **sends no data anywhere.** No analytics, no account, no cloud.
-Every record stays on your Mac. You wouldn't expect anything less from a privacy tool.
+permwatch **sends no data anywhere.** No analytics, no account, no cloud. Details: **[PRIVACY.md](PRIVACY.md)**
 
 ## How it works
 
-permwatch uses **Endpoint Security**, Apple's official framework for security software.
-The core is written in C. It only **observes** and never interferes with how your system works.
+- Reads macOS's permission database and startup items (with Full Disk Access) and watches them for changes
+- Optional **administrator mode** runs a small read-only helper as root. Before it starts, the helper is copied to `/Library/PrivilegedHelperTools` and its code signature is verified against the developer's Team ID.
+- Packet capture uses libpcap. With administrator mode it uses Apple's PKTAP, which attaches the sending process to each packet.
+- An Endpoint Security engine (C) for real-time events is ready and waiting for Apple's entitlement.
 
 ## Status
 
-permwatch is in active development.
-
-- ✅ Core engine that captures events (command line)
+- ✅ macOS app: permissions, startup items, processes, network, packet capture, downloads, recommendations. Available in 13 languages.
 - ⏳ Apple Endpoint Security entitlement: requested, under review
-- 🛠 macOS app and interface: in design
-
-> The images above are design previews. "Konvertix" in the scenario is a fictional app.
+- ⏳ Notarized release: in preparation
 
 Developer and want to try the core? **[Developer guide →](docs/GELISTIRME_en.md)**
 

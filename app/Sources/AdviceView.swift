@@ -22,9 +22,11 @@ final class Advisor: ObservableObject {
     func refresh(apps: [AppSummary]) {
         let input = apps.compactMap { a -> (String, String, [String])? in
             let s = a.services.filter(Self.sensitive.contains)
-            return s.isEmpty ? nil : (a.key, a.name, s)
+            // Başlangıçta açılan uygulamalar "açılmasa" da her gün çalışır: önerme.
+            return s.isEmpty || a.loginItem != nil ? nil : (a.key, a.name, s)
         }
         Task.detached(priority: .utility) {
+            let running = Advisor.runningPaths()
             var out: [UnusedPermission] = []
             for (key, name, services) in input {
                 let path: String?
@@ -40,6 +42,10 @@ final class Advisor: ObservableObject {
                 }
                 // Sistem bileşenlerini önerme.
                 if path.hasPrefix("/System/") || path.hasPrefix("/usr/") { continue }
+                // Şu an çalışıyorsa (kendisi ya da paketindeki bir yardımcı) kullanılıyordur.
+                if running.contains(where: { $0 == path || $0.hasPrefix(path + "/") }) { continue }
+                // Arka planda çalışan araçlar (menü çubuğu, yardımcılar) Spotlight'ta "açıldı" sayılmaz.
+                if Advisor.isBackgroundCapable(path) { continue }
                 guard let item = MDItemCreate(kCFAllocatorDefault, path as CFString),
                       let used = MDItemCopyAttribute(item, kMDItemLastUsedDate) as? Date else { continue }
                 let days = Int(Date().timeIntervalSince(used) / 86_400)
@@ -48,6 +54,34 @@ final class Advisor: ObservableObject {
             let result = out.sorted { ($0.days ?? .max) > ($1.days ?? .max) }
             await MainActor.run { self.unused = result }
         }
+    }
+}
+
+extension Advisor {
+    /// Çalışan bütün süreçlerin dosya yolları.
+    nonisolated static func runningPaths() -> [String] {
+        let n = proc_listallpids(nil, 0)
+        var pids = [Int32](repeating: 0, count: Int(max(n, 0)) + 64)
+        let got = Int(proc_listallpids(&pids, Int32(pids.count * MemoryLayout<Int32>.size)))
+        var buf = [CChar](repeating: 0, count: 4096)
+        return pids.prefix(max(0, got)).compactMap { pid in
+            guard pid > 0, proc_pidpath(pid, &buf, UInt32(buf.count)) > 0 else { return nil }
+            return String(cString: buf)
+        }
+    }
+
+    /// Kullanıcı açmadan arka planda çalışabilen uygulama mı (LSUIElement, LSBackgroundOnly,
+    /// paket içi oturum açma öğesi ya da launchd servisi)?
+    nonisolated static func isBackgroundCapable(_ app: String) -> Bool {
+        let info = NSDictionary(contentsOfFile: app + "/Contents/Info.plist")
+        if (info?["LSUIElement"] as? Bool) == true || (info?["LSUIElement"] as? String) == "1" { return true }
+        if (info?["LSBackgroundOnly"] as? Bool) == true { return true }
+        let fm = FileManager.default
+        for sub in ["Contents/Library/LoginItems", "Contents/Library/LaunchAgents", "Contents/Library/LaunchDaemons",
+                    "Contents/Library/LaunchServices", "Contents/Library/SystemExtensions"] {
+            if let c = try? fm.contentsOfDirectory(atPath: app + "/" + sub), !c.isEmpty { return true }
+        }
+        return false
     }
 }
 
@@ -73,6 +107,7 @@ struct AdviceView: View {
     @EnvironmentObject var center: ThreatCenter
     @State private var done: Set<String> = []
     @State private var message: String?
+    @State private var confirm: AdviceItem?
 
     var body: some View {
         let list = items.filter { !done.contains($0.id) }
@@ -94,6 +129,12 @@ struct AdviceView: View {
             .frame(maxWidth: .infinity)
         }
         .navigationTitle(L("nav.advice"))
+        .confirmationDialog(confirm?.title ?? "", isPresented: Binding(get: { confirm != nil }, set: { if !$0 { confirm = nil } })) {
+            Button(L("adv.revoke"), role: .destructive) { confirm?.primary?.run(); confirm = nil }
+            Button(L("confirm.cancel"), role: .cancel) { confirm = nil }
+        } message: {
+            Text(L("adv.revokeConfirm"))
+        }
         .onAppear {
             advisor.refresh(apps: store.apps); posture.refresh()
             if Snapshot.section == "advice" {
@@ -136,7 +177,10 @@ struct AdviceView: View {
                 }
                 Text(a.body).font(.system(size: 12.5)).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
                 HStack(spacing: 8) {
-                    if let p = a.primary { Button(p.title) { p.run() }.buttonStyle(.borderedProminent).tint(a.verdict.color) }
+                    if let p = a.primary {
+                        Button(p.title) { if a.id.hasPrefix("unused.") { confirm = a } else { p.run() } }
+                            .buttonStyle(.borderedProminent).tint(a.verdict.color)
+                    }
                     if let s = a.secondary { Button(s.title) { s.run() } }
                     Button(L("adv.dismiss")) { done.insert(a.id) }.buttonStyle(.borderless).foregroundStyle(.secondary)
                 }

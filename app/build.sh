@@ -55,8 +55,15 @@ pick() { print -r -- "$IDS" | grep -m1 -oE "\"$1: [^\"]+\"" | tr -d '"' || true 
 SIGN=${PERMWATCH_SIGN:-$(pick "Developer ID Application")}
 SIGN=${SIGN:-$(pick "Apple Development")}
 SIGN=${SIGN:--}
-codesign --force --sign "$SIGN" --timestamp=none "$APP/Contents/MacOS/permwatch-root"
-codesign --force --sign "$SIGN" --timestamp=none "$APP"
+# Gerçek sertifikayla: sıkılaştırılmış çalışma ortamı (notarizasyon şartı). Yayın derlemesinde
+# (PERMWATCH_RELEASE=1) Apple'ın güvenli zaman damgası da eklenir.
+OPTS=()
+if [[ "$SIGN" != "-" ]]; then
+    OPTS=(--options runtime)
+    if [[ "${PERMWATCH_RELEASE:-0}" == 1 ]]; then OPTS+=(--timestamp); else OPTS+=(--timestamp=none); fi
+fi
+codesign --force --sign "$SIGN" "${OPTS[@]}" --identifier com.yusuf.permwatch.root "$APP/Contents/MacOS/permwatch-root"
+codesign --force --sign "$SIGN" "${OPTS[@]}" --entitlements permwatch.entitlements "$APP"
 echo "imza: $SIGN"
 mkdir -p build
 rm -rf "$OUT"

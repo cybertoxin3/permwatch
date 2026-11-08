@@ -109,6 +109,21 @@ struct AppSummary: Identifiable {
 // MARK: - Yardımcılar
 
 enum PathUtil {
+    /// Homebrew ile kurulmuş bir paketin programıysa paket adı. Homebrew programları çoğunlukla
+    /// geçici (ad-hoc) imzalıdır; bu yüzden imzasız sayılıp yanlış alarm üretmesinler. Kurulum kaydı
+    /// (INSTALL_RECEIPT.json) aranır; risk tamamen kaldırılmaz, yalnızca düşürülür.
+    static func homebrewFormula(_ path: String?) -> String? {
+        guard let path else { return nil }
+        let real = (path as NSString).resolvingSymlinksInPath
+        for cellar in ["/opt/homebrew/Cellar/", "/usr/local/Cellar/", "/home/linuxbrew/.linuxbrew/Cellar/"] where real.hasPrefix(cellar) {
+            let parts = real.dropFirst(cellar.count).split(separator: "/")
+            guard parts.count >= 2 else { return nil }
+            let receipt = cellar + parts[0] + "/" + parts[1] + "/INSTALL_RECEIPT.json"
+            return FileManager.default.fileExists(atPath: receipt) ? String(parts[0]) : nil
+        }
+        return nil
+    }
+
     /// /Users/<ad>/x → ~/x
     static func abbreviate(_ p: String) -> String {
         var s = p
@@ -371,8 +386,9 @@ enum Analyzer {
                 rules = (e.note ?? "").split(separator: ",").compactMap { Rule(rawValue: String($0)) }
                 let owner = e.instigator
                 if add, let sig = owner?.signature {
-                    if sig == "unsigned" && owner?.script != true { rules.append(.unsignedStartupBinary) }
-                    else if sig == "adhoc" || owner?.script == true { rules.append(.startupWeakSignature) }
+                    let brew = PathUtil.homebrewFormula(owner?.path ?? e.executable_path) != nil
+                    if sig == "unsigned" && owner?.script != true { rules.append(brew ? .startupWeakSignature : .unsignedStartupBinary) }
+                    else if (sig == "adhoc" && !brew) || owner?.script == true { rules.append(.startupWeakSignature) }
                     // Apple'a ait yetkilendirme eklentisi şüpheli değildir.
                     if sig == "apple" { rules.removeAll { $0 == .authPlugin } }
                 }

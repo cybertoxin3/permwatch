@@ -207,7 +207,7 @@ settings.downloads	Pastas de download
 settings.downloadsDesc	O permwatch monitora estas pastas (incluindo as definidas nos navegadores) e, com o Spotlight, encontra apps baixados em qualquer lugar do Mac.
 settings.root	Modo administrador
 settings.rootActive	Ativo: todos os processos estão visíveis
-settings.rootDesc	Executa como root um pequeno auxiliar somente leitura para que o permwatch veja conexões de rede e argumentos de todos os processos, todos os itens de início, o crontab do root e perfis de configuração. O macOS pede sua senha. O auxiliar não recebe comandos e para quando o permwatch fecha.
+settings.rootDesc	Executa como root um pequeno auxiliar somente leitura para que o permwatch veja as conexões e argumentos de todos os processos, todos os itens de início, o crontab do root e os perfis, e capture pacotes com nomes de processo. Antes de rodar, o auxiliar é copiado para /Library/PrivilegedHelperTools e sua assinatura é verificada. O macOS pede sua senha. Ele não aceita comandos e para quando o permwatch fecha.
 settings.rootDisable	Desativar
 settings.rootEnable	Ativar…
 settings.rootFailed	Não foi possível iniciar: %@
@@ -343,8 +343,8 @@ x.badport.what	A porta %@ é muito usada por ferramentas de invasão e malware d
 x.badport.advice	Se não reconhece o app, verifique no VirusTotal e encerre-o em Apps em execução.
 x.inbound.what	%1$@ está tentando abrir uma conexão com seu Mac na porta %2$@. Um serviço de compartilhamento ou servidor do Mac pode estar acessível pela rede.
 x.inbound.advice	Ative o firewall (seção Segurança) e desligue os serviços de compartilhamento que não usa em Ajustes do Sistema › Geral › Compartilhamento.
-x.tls.hello	%1$@ está iniciando uma conexão criptografada com %2$@. Só o nome do site é visível; ninguém pode ler o conteúdo no caminho.
-x.encrypted	Tráfego criptografado entre %1$@ e %2$@. É assim que deve ser; ninguém na rede consegue ler.
+x.tls.hello	%1$@ está iniciando uma conexão criptografada com %2$@. Só o nome do site é visível; o conteúdo fica oculto. A criptografia não diz se o site é seguro; verifique o nome se não o reconhecer.
+x.encrypted	Tráfego criptografado entre %1$@ e %2$@: ninguém na rede consegue ler o conteúdo. A criptografia não prova que o servidor é confiável; se você conhece o app, é o esperado.
 x.ssh	Um login remoto criptografado (SSH). Alguém está entrando em um computador, ou no seu.
 x.ssh.advice	Tudo bem se foi você. Se a conexão chega ao seu Mac sem você esperar, desative Início de Sessão Remoto em Ajustes do Sistema › Geral › Compartilhamento.
 x.dns.nx	O nome %@ não existe. Um erro de digitação ocasional é normal.
@@ -415,3 +415,11 @@ pkt.chooseFolder	Escolher…
 settings.captureFolder	Gravações de captura
 settings.captureOff	Não são salvas automaticamente
 settings.captureFolderDesc	Quando uma captura para, o arquivo .pcap é copiado para cá com data e hora no nome, por ex. permwatch-2026-11-08_14-30-00.pcap. Você pode abri-lo no Wireshark ou enviá-lo a alguém para análise.
+settings.rootUnsigned	O modo administrador exige uma versão assinada com Developer ID, para verificar a assinatura do auxiliar antes de executá-lo como root.
+settings.rootBadSignature	A assinatura do auxiliar é inválida ou não é do desenvolvedor do permwatch, por isso ele não foi iniciado. O app pode ter sido modificado; baixe-o novamente.
+settings.rootCancelled	Cancelado.
+adv.revokeConfirm	O app continua funcionando; se realmente precisar da permissão, o macOS pedirá de novo. Nada é apagado.
+uninstall.byName	Encontrado só pelo nome. Pode pertencer a outro app; selecione apenas se tiver certeza.
+pkt.storePayload	Salvar também o conteúdo dos pacotes (pode incluir senhas)
+x.unsigned.what	%1$@ não é assinado por um desenvolvedor conhecido e está trocando dados com %2$@. A conexão pode ser criptografada, mas a criptografia só esconde o conteúdo: não diz nada sobre se o programa ou o servidor são confiáveis. Malware fala com seus servidores de controle exatamente assim.
+x.unsigned.advice	Se você mesmo instalou este programa (uma ferramenta de desenvolvimento, por exemplo), pode estar tudo bem. Se não o reconhece, verifique no VirusTotal e encerre-o em Apps em execução.

@@ -1,5 +1,6 @@
 import AppKit
 import Foundation
+import Security
 
 /// Yönetici modu yardımcısının (permwatch-root) yazdığı veri.
 struct RootData {
@@ -47,23 +48,79 @@ final class RootBridge: ObservableObject {
         if enabledPreference && !active { enable() }
     }
 
+    nonisolated static let installedHelper = "/Library/PrivilegedHelperTools/com.yusuf.permwatch.root"
+    nonisolated static let helperIdentifier = "com.yusuf.permwatch.root"
+
+    /// Çalışan permwatch'ın geçerli imzasındaki Team ID (geçici imzalı derlemelerde nil).
+    nonisolated static func ownTeamID() -> String? {
+        var me: SecCode?
+        guard SecCodeCopySelf([], &me) == errSecSuccess, let me,
+              SecCodeCheckValidity(me, [], nil) == errSecSuccess else { return nil }
+        var st: SecStaticCode?
+        guard SecCodeCopyStaticCode(me, [], &st) == errSecSuccess, let st else { return nil }
+        var info: CFDictionary?
+        guard SecCodeCopySigningInformation(st, SecCSFlags(rawValue: kSecCSSigningInformation), &info) == errSecSuccess,
+              let d = info as? [String: Any] else { return nil }
+        let team = d[kSecCodeInfoTeamIdentifier as String] as? String
+        return team.flatMap { $0.allSatisfy { $0.isLetter || $0.isNumber } ? $0 : nil }
+    }
+
+    /// Yardımcının taşıması gereken imza: aynı geliştirici (Team ID) ve yardımcının kimliği.
+    nonisolated static func helperRequirement(team: String) -> String {
+        "identifier \"\(helperIdentifier)\" and anchor apple generic and certificate leaf[subject.OU] = \"\(team)\""
+    }
+
     /// macOS'un yönetici şifresi penceresiyle yardımcıyı root olarak başlatır.
+    ///
+    /// Güvenlik: yardımcı uygulama paketinin içinden doğrudan çalıştırılmaz (paket kullanıcının
+    /// yazabildiği bir yerdeyse başka bir program onu değiştirip root olabilirdi). Root olarak
+    /// root'a ait /Library/PrivilegedHelperTools'a kopyalanır, kopyanın imzası root olarak
+    /// doğrulanır ve yalnızca doğrulama geçerse o kopya çalıştırılır.
     func enable() {
         guard !starting else { return }
         guard let helper = Bundle.main.path(forAuxiliaryExecutable: "permwatch-root") else {
             lastError = "permwatch-root"
             return
         }
+        guard let team = Self.ownTeamID() else {
+            lastError = L("settings.rootUnsigned")
+            return
+        }
+        // Şifre sormadan önce de denetle (bozuk/değiştirilmiş paket için anlaşılır hata).
+        var st: SecStaticCode?
+        var req: SecRequirement?
+        guard SecStaticCodeCreateWithPath(URL(fileURLWithPath: helper) as CFURL, [], &st) == errSecSuccess, let st,
+              SecRequirementCreateWithString(Self.helperRequirement(team: team) as CFString, [], &req) == errSecSuccess,
+              SecStaticCodeCheckValidity(st, SecCSFlags(rawValue: kSecCSStrictValidate), req) == errSecSuccess else {
+            lastError = L("settings.rootBadSignature")
+            return
+        }
         starting = true
         lastError = nil
         let pid = ProcessInfo.processInfo.processIdentifier
-        let quoted = "'" + helper.replacingOccurrences(of: "'", with: "'\\''") + "'"
-        let cmd = "\(quoted) \(pid) > /dev/null 2>&1 &"
+        func q(_ s: String) -> String { "'" + s.replacingOccurrences(of: "'", with: "'\\''") + "'" }
+        let dst = Self.installedHelper
+        let cmd = [
+            "set -e",
+            "/bin/mkdir -p /Library/PrivilegedHelperTools",
+            "/usr/sbin/chown root:wheel /Library/PrivilegedHelperTools",
+            "/bin/chmod 755 /Library/PrivilegedHelperTools",
+            "/bin/rm -f \(q(dst))",
+            "/usr/bin/ditto \(q(helper)) \(q(dst))",
+            "/usr/sbin/chown root:wheel \(q(dst))",
+            "/bin/chmod 755 \(q(dst))",
+            "/usr/bin/codesign --verify --strict -R=\(q(Self.helperRequirement(team: team))) \(q(dst)) || { /bin/rm -f \(q(dst)); exit 41; }",
+            "\(q(dst)) \(pid) > /dev/null 2>&1 &",
+        ].joined(separator: "; ")
         let script = "do shell script \"\(cmd.replacingOccurrences(of: "\\", with: "\\\\").replacingOccurrences(of: "\"", with: "\\\""))\" with administrator privileges with prompt \"\(L("settings.rootPrompt"))\""
         DispatchQueue.global(qos: .userInitiated).async {
             var err: NSDictionary?
             NSAppleScript(source: script)?.executeAndReturnError(&err)
-            let msg = err.map { ($0[NSAppleScript.errorMessage] as? String) ?? "\($0[NSAppleScript.errorNumber] ?? "?")" }
+            let code = (err?[NSAppleScript.errorNumber] as? Int) ?? 0
+            let msg: String? = err == nil ? nil
+                : code == -128 ? L("settings.rootCancelled")
+                : code == 41 ? L("settings.rootBadSignature")
+                : (err?[NSAppleScript.errorMessage] as? String) ?? "\(code)"
             DispatchQueue.main.async {
                 self.starting = false
                 if let msg {

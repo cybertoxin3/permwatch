@@ -207,7 +207,7 @@ settings.downloads	다운로드 폴더
 settings.downloadsDesc	permwatch는 이 폴더들(브라우저에서 설정한 폴더 포함)을 감시하고, Spotlight로 Mac 어디에 다운로드된 앱이든 찾아냅니다.
 settings.root	관리자 모드
 settings.rootActive	켜짐: 모든 프로세스가 보임
-settings.rootDesc	읽기 전용 소형 도우미를 root로 실행해 permwatch가 모든 프로세스의 네트워크 연결과 인수, 모든 로그인 항목, root crontab, 구성 프로파일을 볼 수 있게 합니다. macOS가 암호를 묻습니다. 도우미는 명령을 받지 않으며 permwatch가 종료되면 멈춥니다.
+settings.rootDesc	작은 읽기 전용 도우미를 root로 실행하여 permwatch가 모든 프로세스의 네트워크 연결과 인수, 모든 로그인 항목, root crontab, 구성 프로파일을 보고 프로세스 이름과 함께 패킷을 캡처하게 합니다. 실행 전에 도우미는 /Library/PrivilegedHelperTools로 복사되고 서명이 확인됩니다. macOS가 암호를 묻습니다. 명령을 받지 않으며 permwatch가 종료되면 멈춥니다.
 settings.rootDisable	끄기
 settings.rootEnable	켜기…
 settings.rootFailed	시작할 수 없음: %@
@@ -343,8 +343,8 @@ x.badport.what	포트 %@은(는) 해킹 도구와 원격 제어 악성 코드가
 x.badport.advice	모르는 앱이라면 VirusTotal로 확인하고 '실행 중인 앱'에서 종료하세요.
 x.inbound.what	%1$@이(가) 포트 %2$@로 Mac에 연결하려고 합니다. Mac의 공유 서비스나 서버가 네트워크에서 접근 가능할 수 있습니다.
 x.inbound.advice	방화벽을 켜고(보안 섹션) 사용하지 않는 공유 서비스를 시스템 설정 › 일반 › 공유에서 끄세요.
-x.tls.hello	%1$@이(가) %2$@와 암호화된 연결을 시작합니다. 사이트 이름만 보이며 전송 중 내용은 누구도 읽을 수 없습니다.
-x.encrypted	%1$@와 %2$@ 사이의 암호화된 트래픽입니다. 정상이며 네트워크의 누구도 읽을 수 없습니다.
+x.tls.hello	%1$@이(가) %2$@와 암호화된 연결을 시작합니다. 사이트 이름만 보이고 내용은 숨겨집니다. 암호화는 사이트의 안전성을 알려 주지 않으니, 모르는 이름이면 확인하세요.
+x.encrypted	%1$@와 %2$@ 사이의 암호화된 트래픽입니다. 네트워크의 누구도 내용을 읽을 수 없습니다. 암호화가 서버의 신뢰성을 증명하지는 않으며, 아는 앱이라면 예상된 동작입니다.
 x.ssh	암호화된 원격 로그인(SSH)입니다. 누군가 컴퓨터 또는 내 컴퓨터에 로그인하고 있습니다.
 x.ssh.advice	직접 시작했다면 괜찮습니다. 예상치 못한 연결이 Mac으로 들어오면 시스템 설정 › 일반 › 공유에서 '원격 로그인'을 끄세요.
 x.dns.nx	%@라는 이름은 존재하지 않습니다. 가끔 있는 오타는 정상입니다.
@@ -415,3 +415,11 @@ pkt.chooseFolder	선택…
 settings.captureFolder	패킷 캡처 기록
 settings.captureOff	자동 저장 안 함
 settings.captureFolderDesc	캡처가 중지되면 .pcap 파일이 날짜와 시간이 들어간 이름으로 여기에 복사됩니다(예: permwatch-2026-11-08_14-30-00.pcap). Wireshark에서 열거나 분석을 위해 다른 사람에게 보낼 수 있습니다.
+settings.rootUnsigned	관리자 모드는 root로 실행하기 전에 도우미 서명을 확인할 수 있도록 Developer ID 인증서로 서명된 빌드가 필요합니다.
+settings.rootBadSignature	도우미 서명이 유효하지 않거나 permwatch 개발자의 것이 아니어서 시작하지 않았습니다. 앱이 변조되었을 수 있으니 다시 다운로드하세요.
+settings.rootCancelled	취소됨.
+adv.revokeConfirm	앱은 계속 작동합니다. 권한이 정말 필요하면 macOS가 다시 묻습니다. 아무것도 삭제되지 않습니다.
+uninstall.byName	이름으로만 찾았습니다. 다른 앱의 것일 수 있으니 확실할 때만 선택하세요.
+pkt.storePayload	패킷 내용도 저장(암호가 포함될 수 있음)
+x.unsigned.what	%1$@은(는) 알려진 개발자의 서명이 없으며 %2$@와 데이터를 주고받고 있습니다. 연결이 암호화되어 있을 수 있지만 암호화는 내용만 숨길 뿐, 프로그램이나 서버를 믿을 수 있는지는 알려 주지 않습니다. 악성 코드도 제어 서버와 바로 이렇게 통신합니다.
+x.unsigned.advice	직접 설치한 프로그램(예: 개발 도구)이라면 괜찮을 수 있습니다. 모르는 프로그램이면 VirusTotal로 확인하고 '실행 중인 앱'에서 종료하세요.

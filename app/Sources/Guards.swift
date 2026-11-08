@@ -572,7 +572,8 @@ final class NetworkMonitor: ObservableObject {
                 sigCache[pid] = (path, sig)
             }
             let (path, sig) = sigCache[pid]!
-            let weak = sig == "unsigned" || sig == "adhoc"
+            let brew = PathUtil.homebrewFormula(path) != nil
+            let weak = (sig == "unsigned" || sig == "adhoc") && !brew
             var rules: [String] = []
             var args: [String] = []
             var risk: Risk = .normal
@@ -582,6 +583,9 @@ final class NetworkMonitor: ObservableObject {
             }
             if st.contains("LISTEN") && weak && !loopback {
                 rules.append("nrule.unsignedListener"); args.append(""); risk = .high
+            } else if st.contains("LISTEN") && brew && !loopback {
+                // Homebrew sunucusu ağa açık dinliyor: genelde bilinçli (ör. veritabanı), yine de görünsün.
+                rules.append("nrule.unsignedListener"); args.append(""); risk = .caution
             }
             if let r = remote, let port = Int(r.split(separator: ":").last ?? ""), badPorts.contains(port) {
                 rules.append("nrule.badPort"); args.append("\(port)"); risk = .high

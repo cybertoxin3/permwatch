@@ -207,7 +207,7 @@ settings.downloads	Download-Ordner
 settings.downloadsDesc	permwatch überwacht diese Ordner (auch die in deinen Browsern eingestellten) und findet geladene Apps per Spotlight überall auf deinem Mac.
 settings.root	Administratormodus
 settings.rootActive	Aktiv: alle Prozesse sichtbar
-settings.rootDesc	Startet einen kleinen, nur lesenden Helfer als root, damit permwatch Netzwerkverbindungen und Argumente aller Prozesse, alle Anmeldeobjekte, die root-Crontab und Konfigurationsprofile sieht. macOS fragt nach deinem Passwort. Der Helfer nimmt keine Befehle an und endet, wenn permwatch beendet wird.
+settings.rootDesc	Startet einen kleinen, nur lesenden Helfer als root, damit permwatch Netzwerkverbindungen und Argumente aller Prozesse, alle Anmeldeobjekte, die root-crontab und Profile sieht und Pakete mit Prozessnamen mitschneidet. Vor dem Start wird der Helfer nach /Library/PrivilegedHelperTools kopiert und seine Signatur geprüft. macOS fragt nach deinem Passwort. Er nimmt keine Befehle an und endet mit permwatch.
 settings.rootDisable	Ausschalten
 settings.rootEnable	Einschalten …
 settings.rootFailed	Start fehlgeschlagen: %@
@@ -343,8 +343,8 @@ x.badport.what	Port %@ wird oft von Hacking-Tools und Fernsteuerungs-Malware gen
 x.badport.advice	Wenn du die App nicht kennst, prüfe sie mit VirusTotal und beende sie unter „Laufende Apps“.
 x.inbound.what	%1$@ versucht, über Port %2$@ eine Verbindung zu deinem Mac aufzubauen. Ein Freigabedienst oder Server auf deinem Mac könnte aus dem Netz erreichbar sein.
 x.inbound.advice	Schalte die Firewall ein (Bereich Sicherheit) und deaktiviere ungenutzte Freigaben unter Systemeinstellungen › Allgemein › Teilen.
-x.tls.hello	%1$@ baut eine verschlüsselte Verbindung zu %2$@ auf. Nur der Seitenname ist sichtbar; den Inhalt kann unterwegs niemand lesen.
-x.encrypted	Verschlüsselter Verkehr zwischen %1$@ und %2$@. So soll es sein; niemand im Netz kann ihn lesen.
+x.tls.hello	%1$@ baut eine verschlüsselte Verbindung zu %2$@ auf. Nur der Seitenname ist sichtbar, der Inhalt bleibt verborgen. Verschlüsselung sagt nichts über die Sicherheit der Seite; prüfe unbekannte Namen.
+x.encrypted	Verschlüsselter Verkehr zwischen %1$@ und %2$@: niemand im Netz kann den Inhalt lesen. Verschlüsselung beweist nicht, dass der Server vertrauenswürdig ist; kennst du die App, ist das zu erwarten.
 x.ssh	Eine verschlüsselte Fernanmeldung (SSH). Jemand meldet sich an einem Computer an – oder an deinem.
 x.ssh.advice	In Ordnung, wenn du es gestartet hast. Kommt die Verbindung unerwartet zu deinem Mac, schalte „Entfernte Anmeldung“ unter Systemeinstellungen › Allgemein › Teilen aus.
 x.dns.nx	Den Namen %@ gibt es nicht. Ein gelegentlicher Tippfehler ist normal.
@@ -415,3 +415,11 @@ pkt.chooseFolder	Auswählen …
 settings.captureFolder	Paketmitschnitt-Aufnahmen
 settings.captureOff	Nicht automatisch gesichert
 settings.captureFolderDesc	Wenn ein Mitschnitt endet, wird seine .pcap-Datei mit Datum und Uhrzeit im Namen hierher kopiert, z. B. permwatch-2026-11-08_14-30-00.pcap. Du kannst sie in Wireshark öffnen oder zur Analyse weitergeben.
+settings.rootUnsigned	Der Administratormodus braucht einen mit Developer ID signierten Build, damit die Signatur des Helfers vor dem Start als root geprüft werden kann.
+settings.rootBadSignature	Die Signatur des Helfers ist ungültig oder stammt nicht vom permwatch-Entwickler, daher wurde er nicht gestartet. Die App wurde evtl. verändert; lade sie neu.
+settings.rootCancelled	Abgebrochen.
+adv.revokeConfirm	Die App funktioniert weiter; braucht sie die Berechtigung wirklich, fragt macOS einfach erneut. Es wird nichts gelöscht.
+uninstall.byName	Nur anhand des Namens gefunden. Kann zu einer anderen App gehören; nur auswählen, wenn du sicher bist.
+pkt.storePayload	Auch Paketinhalte sichern (kann Passwörter enthalten)
+x.unsigned.what	%1$@ ist nicht von einem bekannten Entwickler signiert und tauscht Daten mit %2$@ aus. Die Verbindung mag verschlüsselt sein, aber Verschlüsselung verbirgt nur den Inhalt – sie sagt nichts darüber, ob Programm oder Server vertrauenswürdig sind. Genau so spricht Malware mit ihren Steuerservern.
+x.unsigned.advice	Wenn du das Programm selbst installiert hast (z. B. ein Entwicklerwerkzeug), kann das in Ordnung sein. Kennst du es nicht, prüfe es mit VirusTotal und beende es unter „Laufende Apps“.

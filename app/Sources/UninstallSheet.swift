@@ -27,8 +27,13 @@ struct UninstallSheet: View {
                 Toggle(isOn: Binding(get: { selected.contains(c.id) },
                                      set: { if $0 { selected.insert(c.id) } else { selected.remove(c.id) } })) {
                     HStack {
-                        Text(PathUtil.abbreviate(c.path)).font(.system(size: 12, design: .monospaced))
-                            .lineLimit(1).truncationMode(.middle)
+                        VStack(alignment: .leading, spacing: 1) {
+                            Text(PathUtil.abbreviate(c.path)).font(.system(size: 12, design: .monospaced))
+                                .lineLimit(1).truncationMode(.middle)
+                            if c.byName {
+                                Text(L("uninstall.byName")).font(.system(size: 10.5)).foregroundStyle(.orange)
+                            }
+                        }
                         Spacer()
                         Text(ByteCountFormatter.string(fromByteCount: c.size, countStyle: .file))
                             .font(.system(size: 11)).foregroundStyle(.secondary)
@@ -62,7 +67,7 @@ struct UninstallSheet: View {
         .frame(width: 560, height: 440)
         .onAppear {
             candidates = Uninstaller.candidates(appPath: appPath, launchPlists: store.launchPlists(forApp: appPath))
-            selected = Set(candidates.map(\.id))
+            selected = Set(candidates.filter { !$0.byName }.map(\.id))
         }
     }
 

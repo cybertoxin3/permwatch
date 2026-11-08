@@ -207,7 +207,7 @@ settings.downloads	Dossiers de téléchargement
 settings.downloadsDesc	permwatch surveille ces dossiers (y compris ceux réglés dans vos navigateurs) et trouve aussi via Spotlight les apps téléchargées n’importe où sur votre Mac.
 settings.root	Mode administrateur
 settings.rootActive	Actif : tous les processus sont visibles
-settings.rootDesc	Lance en root un petit assistant en lecture seule pour que permwatch voie les connexions réseau et arguments de tous les processus, tous les éléments d’ouverture, la crontab root et les profils de configuration. macOS demande votre mot de passe. L’assistant ne reçoit aucune commande et s’arrête quand permwatch quitte.
+settings.rootDesc	Lance un petit assistant en lecture seule en root pour que permwatch voie les connexions réseau et arguments de tous les processus, tous les éléments d’ouverture, la crontab root et les profils, et capture les paquets avec les noms de processus. Avant son lancement, l’assistant est copié dans /Library/PrivilegedHelperTools et sa signature est vérifiée. macOS demande votre mot de passe. Il n’accepte aucune commande et s’arrête avec permwatch.
 settings.rootDisable	Désactiver
 settings.rootEnable	Activer…
 settings.rootFailed	Démarrage impossible : %@
@@ -343,8 +343,8 @@ x.badport.what	Le port %@ est souvent utilisé par des outils de piratage et des
 x.badport.advice	Si vous ne reconnaissez pas l’app, vérifiez-la avec VirusTotal et quittez-la depuis Apps en cours.
 x.inbound.what	%1$@ essaie d’ouvrir une connexion vers votre Mac sur le port %2$@. Un service de partage ou un serveur de votre Mac est peut-être accessible depuis le réseau.
 x.inbound.advice	Activez le pare-feu (section Sécurité) et désactivez les partages inutilisés dans Réglages Système › Général › Partage.
-x.tls.hello	%1$@ ouvre une connexion chiffrée vers %2$@. Seul le nom du site est visible ; personne ne peut lire le contenu en chemin.
-x.encrypted	Trafic chiffré entre %1$@ et %2$@. C’est ce qu’il faut ; personne sur le réseau ne peut le lire.
+x.tls.hello	%1$@ ouvre une connexion chiffrée vers %2$@. Seul le nom du site est visible ; le contenu reste caché. Le chiffrement ne dit pas si le site est sûr ; vérifiez le nom si vous ne le connaissez pas.
+x.encrypted	Trafic chiffré entre %1$@ et %2$@ : personne sur le réseau ne peut lire le contenu. Le chiffrement ne prouve pas que le serveur est fiable ; si vous connaissez l’app, c’est attendu.
 x.ssh	Une connexion à distance chiffrée (SSH). Quelqu’un se connecte à un ordinateur, ou au vôtre.
 x.ssh.advice	Pas de souci si c’est vous. Si la connexion arrive sur votre Mac sans que vous l’attendiez, désactivez Session à distance dans Réglages Système › Général › Partage.
 x.dns.nx	Le nom %@ n’existe pas. Une faute de frappe de temps en temps est normale.
@@ -415,3 +415,11 @@ pkt.chooseFolder	Choisir…
 settings.captureFolder	Enregistrements de capture
 settings.captureOff	Pas d’enregistrement automatique
 settings.captureFolderDesc	À l’arrêt d’une capture, son fichier .pcap est copié ici avec la date et l’heure dans le nom, par ex. permwatch-2026-11-08_14-30-00.pcap. Vous pouvez l’ouvrir dans Wireshark ou l’envoyer à quelqu’un pour analyse.
+settings.rootUnsigned	Le mode administrateur nécessite une version signée avec un certificat Developer ID, afin de vérifier la signature de l’assistant avant son lancement en root.
+settings.rootBadSignature	La signature de l’assistant est invalide ou ne vient pas du développeur de permwatch ; il n’a donc pas été lancé. L’app a peut-être été modifiée ; téléchargez-la à nouveau.
+settings.rootCancelled	Annulé.
+adv.revokeConfirm	L’app continue de fonctionner ; si elle a vraiment besoin de l’autorisation, macOS vous la redemandera. Rien n’est supprimé.
+uninstall.byName	Trouvé uniquement par le nom. Peut appartenir à une autre app ; ne le sélectionnez que si vous en êtes sûr.
+pkt.storePayload	Enregistrer aussi le contenu des paquets (peut contenir des mots de passe)
+x.unsigned.what	%1$@ n’est pas signé par un développeur connu et échange des données avec %2$@. La connexion est peut-être chiffrée, mais le chiffrement ne fait que cacher le contenu : il ne dit rien de la fiabilité du programme ou du serveur. C’est exactement ainsi qu’un malware parle à son serveur de contrôle.
+x.unsigned.advice	Si vous avez installé ce programme vous-même (un outil de développement, par exemple), cela peut être normal. Sinon, vérifiez-le avec VirusTotal et quittez-le depuis Apps en cours.

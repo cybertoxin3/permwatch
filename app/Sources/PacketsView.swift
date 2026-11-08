@@ -79,6 +79,8 @@ struct PacketsView: View {
                             .disabled(cap.pcapURL == nil)
                     }
                     Divider()
+                    Toggle(L("pkt.storePayload"), isOn: $cap.storePayload).disabled(cap.running)
+                    Divider()
                     Button(cap.saveFolder == nil ? L("pkt.autoFolder") : L("pkt.changeFolder")) { cap.chooseSaveFolder() }
                     if let dir = cap.saveFolder {
                         Button(L("pkt.showFolder")) { NSWorkspace.shared.open(URL(fileURLWithPath: dir)) }
@@ -121,10 +123,8 @@ struct PacketsView: View {
 
     /// Tek bakışta: ne kadarı şifreli, kaç izleyici, şifresiz bağlantı var mı.
     private var insights: some View {
-        let convs = conversations
-        let enc = cap.packets.filter { ["TLS", "QUIC", "SSH"].contains($0.proto) }.reduce(0) { $0 + $1.len }
-        let tcpudp = cap.packets.filter { $0.sport != nil }.reduce(0) { $0 + $1.len }
-        let pct = tcpudp == 0 ? 100 : Int((Double(enc) / Double(tcpudp) * 100).rounded())
+        let convs = cap.conversations.values
+        let pct = cap.transportBytes == 0 ? 100 : Int((Double(cap.encryptedBytes) / Double(cap.transportBytes) * 100).rounded())
         let trackers = Set(convs.compactMap { Trackers.match($0.host)?.company })
         let plain = convs.filter { !$0.protos.isDisjoint(with: ["HTTP", "FTP", "Telnet", "POP3", "IMAP", "SMTP"]) }.count
         let creds = convs.filter(\.creds).count
@@ -209,7 +209,7 @@ struct PacketsView: View {
     private var packetTable: some View {
         Table(visible, selection: $selection) {
             TableColumn("") { p in
-                let e = Explainer.packet(p, host: cap.names[p.dst], app: p.eproc ?? p.proc ?? "—")
+                let e = Explainer.packet(p, host: cap.names[p.dst], app: p.eproc ?? p.proc ?? "—", signature: cap.signature(for: p.epid ?? p.pid))
                 if e.verdict == .caution || e.verdict == .danger {
                     Image(systemName: e.verdict.icon).foregroundStyle(e.verdict.color).help(e.what)
                 }
@@ -262,27 +262,7 @@ struct PacketsView: View {
 
     // MARK: Konuşmalar
 
-    private var conversations: [Conversation] {
-        var map: [String: Conversation] = [:]
-        for p in cap.packets {
-            let remoteIsSrc = p.dir == "in" || (p.dir == nil && Conversation.isLocal(p.dst) && !Conversation.isLocal(p.src))
-            let ip = remoteIsSrc ? p.src : p.dst
-            let port = remoteIsSrc ? p.sport : p.dport
-            let proc = p.eproc ?? p.proc ?? "—"
-            let key = "\(proc)|\(ip)|\(port ?? 0)"
-            var c = map[key] ?? Conversation(id: key, proc: proc, pid: p.epid ?? p.pid, remote: ip,
-                                             host: cap.names[ip], port: port, first: p.ts, last: p.ts)
-            c.packets += 1
-            c.bytes += p.len
-            if remoteIsSrc { c.bytesIn += p.len } else { c.bytesOut += p.len }
-            c.last = p.ts
-            c.protos.insert(p.proto)
-            if c.host == nil { c.host = cap.names[ip] ?? (p.proto == "TLS" || p.proto == "HTTP" ? p.host : nil) }
-            if p.flags?.contains("pkt.flag.cleartextCreds") == true { c.creds = true }
-            map[key] = c
-        }
-        return map.values.sorted { $0.bytes > $1.bytes }
-    }
+    private var conversations: [Conversation] { cap.conversationList }
 
     private func protoColor(_ p: Packet) -> Color {
         if p.flags?.contains("pkt.flag.cleartextCreds") == true { return .red }
@@ -297,37 +277,6 @@ struct PacketsView: View {
 
     private func applyFocus() {
         if case .packet(let s) = center.navFocus { filter = ""; showConversations = false; selection = s }
-    }
-}
-
-struct Conversation: Identifiable {
-    let id: String
-    let proc: String
-    let pid: Int32?
-    let remote: String
-    var host: String?
-    let port: Int?
-    var first: Double
-    var last: Double
-    var packets = 0
-    var bytes = 0
-    var bytesIn = 0
-    var bytesOut = 0
-    var protos: Set<String> = []
-    var creds = false
-
-    /// Çok veri gönderip az alan bağlantı (yükleme/sızdırma belirtisi olabilir).
-    var uploadHeavy: Bool { bytesOut > 20 << 20 && bytesOut > bytesIn * 5 }
-
-    static func isLocal(_ ip: String) -> Bool {
-        if ip.hasPrefix("10.") || ip.hasPrefix("192.168.") || ip.hasPrefix("127.") || ip.hasPrefix("169.254.")
-            || ip.hasPrefix("fe80") || ip.hasPrefix("fd") || ip == "::1" { return true }
-        let parts = ip.split(separator: ".").compactMap { Int($0) }
-        if parts.count == 4 {
-            if parts[0] == 172 && (16...31).contains(parts[1]) { return true }
-            if parts[0] == 100 && (64...127).contains(parts[1]) { return true }
-        }
-        return false
     }
 }
 
@@ -350,7 +299,7 @@ struct ConversationsPane: View {
                                 Text(c.host ?? c.remote).font(.system(size: 12)).foregroundStyle(.secondary)
                             }
                         }
-                        ExplanationCard(e: Explainer.conversation(c))
+                        ExplanationCard(e: Explainer.conversation(c, signature: cap.signature(for: c.pid)))
                         if let t = Trackers.match(c.host) {
                             Label("\(t.company) · \(t.kindText)", systemImage: "eye.trianglebadge.exclamationmark")
                                 .font(.system(size: 12)).foregroundStyle(.orange)
@@ -381,7 +330,7 @@ struct ConversationsTable: View {
     var body: some View {
         Table(rows, selection: $selection) {
             TableColumn("") { c in
-                let e = Explainer.conversation(c)
+                let e = Explainer.conversation(c, signature: cap.signature(for: c.pid))
                 Image(systemName: e.verdict.icon).foregroundStyle(e.verdict.color).help(e.what)
             }
             .width(18)
@@ -423,7 +372,7 @@ struct PacketDetail: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 14) {
-                ExplanationCard(e: Explainer.packet(p, host: cap.names[p.dst], app: p.eproc ?? p.proc ?? L("x.someApp")))
+                ExplanationCard(e: Explainer.packet(p, host: cap.names[p.dst], app: p.eproc ?? p.proc ?? L("x.someApp"), signature: cap.signature(for: p.epid ?? p.pid)))
                 group(L("pkt.frame")) {
                     row(L("col.no"), String(p.seq))
                     row(L("col.time"), Fmt.packetTime.string(from: Date(timeIntervalSince1970: p.ts)))

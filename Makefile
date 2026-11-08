@@ -26,4 +26,10 @@ clean:
 	rm -f $(BIN) tests/test_json
 	rm -rf app/build
 
-.PHONY: all test run clean app
+# Uygulama testleri (paket ayrıştırıcı, açıklamalar, izleyiciler)
+test-app:
+	swiftc -import-objc-header app/shared/bridge.h -lpcap \
+	    app/shared/Packets.swift app/Sources/Explain.swift app/Sources/L10n.swift app/tests/main.swift \
+	    -o tests/test_app && ./tests/test_app
+
+.PHONY: all test test-app run clean app

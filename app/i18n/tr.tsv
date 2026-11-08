@@ -207,7 +207,7 @@ settings.downloads	İndirme klasörleri
 settings.downloadsDesc	permwatch bu klasörleri (tarayıcılarında ayarlı olanlar dahil) izler; ayrıca Spotlight ile Mac'inin herhangi bir yerine indirilen uygulamaları da bulur.
 settings.root	Yönetici modu
 settings.rootActive	Açık: bütün süreçler görünüyor
-settings.rootDesc	Küçük, salt-okunur bir yardımcıyı root olarak çalıştırır; böylece permwatch bütün süreçlerin ağ bağlantılarını ve argümanlarını, bütün giriş öğelerini, root crontab'ını ve konfigürasyon profillerini görebilir. macOS şifreni sorar. Yardımcı dışarıdan komut almaz ve permwatch kapanınca durur.
+settings.rootDesc	Küçük, salt-okunur bir yardımcıyı root olarak çalıştırır; böylece permwatch her sürecin ağ bağlantılarını ve argümanlarını, tüm giriş öğelerini, root crontab'ını ve yapılandırma profillerini görür ve paketleri süreç adlarıyla yakalar. Çalışmadan önce yardımcı /Library/PrivilegedHelperTools'a kopyalanır ve imzası doğrulanır. macOS şifreni sorar. Komut almaz ve permwatch kapanınca durur.
 settings.rootDisable	Kapat
 settings.rootEnable	Aç…
 settings.rootFailed	Başlatılamadı: %@
@@ -343,8 +343,8 @@ x.badport.what	%@ numaralı port sıklıkla hack araçları ve uzaktan kontrol z
 x.badport.advice	Uygulamayı tanımıyorsan VirusTotal ile kontrol et ve Çalışan Uygulamalar'dan kapat.
 x.inbound.what	%1$@, Mac'ine %2$@ portundan bağlantı açmaya çalışıyor. Mac'indeki bir paylaşım servisi veya sunucu ağdan erişilebilir olabilir.
 x.inbound.advice	Güvenlik duvarını aç (Güvenlik bölümü) ve kullanmadığın paylaşım servislerini Sistem Ayarları › Genel › Paylaşma'dan kapat.
-x.tls.hello	%1$@, %2$@ ile şifreli bir bağlantı başlatıyor. Yalnızca site adı görünür; içeriği yolda kimse okuyamaz.
-x.encrypted	%1$@ ile %2$@ arasında şifreli trafik. Olması gereken bu; ağdaki kimse okuyamaz.
+x.tls.hello	%1$@, %2$@ ile şifreli bir bağlantı başlatıyor. Yalnızca site adı görünür; içerik gizli kalır. Şifreleme sitenin güvenli olup olmadığını söylemez; adı tanımıyorsan kontrol et.
+x.encrypted	%1$@ ile %2$@ arasında şifreli trafik: ağdaki kimse içeriği okuyamaz. Şifreleme sunucunun güvenilir olduğunu kanıtlamaz; uygulamayı tanıyorsan bu beklenen bir durum.
 x.ssh	Şifreli bir uzaktan oturum (SSH). Biri bir bilgisayara ya da senin bilgisayarına giriş yapıyor.
 x.ssh.advice	Sen başlattıysan sorun yok. Bağlantı Mac'ine geliyorsa ve beklemiyorsan Sistem Ayarları › Genel › Paylaşma'dan Uzaktan Giriş'i kapat.
 x.dns.nx	%@ diye bir ad yok. Ara sıra yazım hatası normaldir.
@@ -415,3 +415,11 @@ pkt.chooseFolder	Seç…
 settings.captureFolder	Paket yakalama kayıtları
 settings.captureOff	Otomatik kaydedilmiyor
 settings.captureFolderDesc	Bir yakalama durduğunda .pcap dosyası adında tarih ve saatle buraya kopyalanır, örn. permwatch-2026-11-08_14-30-00.pcap. Bu dosyaları Wireshark'ta açabilir veya incelemesi için birine gönderebilirsin.
+settings.rootUnsigned	Yönetici modu, yardımcının imzası root olarak çalışmadan önce doğrulanabilsin diye Developer ID sertifikasıyla imzalanmış bir derleme gerektirir.
+settings.rootBadSignature	Yardımcının imzası geçersiz veya permwatch geliştiricisine ait değil; bu yüzden başlatılmadı. Uygulama değiştirilmiş olabilir; yeniden indir.
+settings.rootCancelled	İptal edildi.
+adv.revokeConfirm	Uygulama çalışmaya devam eder; izne gerçekten ihtiyacı varsa macOS sana yeniden sorar. Hiçbir şey silinmez.
+uninstall.byName	Yalnızca ada göre bulundu. Başka bir uygulamaya ait olabilir; emin değilsen seçme.
+pkt.storePayload	Paket içeriğini de kaydet (parolalar içerebilir)
+x.unsigned.what	%1$@ bilinen bir geliştirici tarafından imzalanmamış ve %2$@ ile veri alışverişi yapıyor. Bağlantı şifreli olabilir ama şifreleme yalnızca içeriği gizler; programın ya da sunucunun güvenilir olup olmadığı hakkında hiçbir şey söylemez. Zararlılar da kontrol sunucularıyla tam olarak böyle konuşur.
+x.unsigned.advice	Bu programı kendin kurduysan (örneğin bir geliştirici aracı) sorun olmayabilir. Tanımıyorsan VirusTotal ile kontrol et ve Çalışan Uygulamalar'dan kapat.

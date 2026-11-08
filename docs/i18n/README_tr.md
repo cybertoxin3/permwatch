@@ -12,7 +12,7 @@ Kamera, mikrofon, ekran kaydı, başlangıç öğeleri.<br>
 Her izin değişikliğinin kaydını tutar, şüpheli olanları anında haber verir.
 
 [![build](https://github.com/cybertoxin3/permwatch/actions/workflows/build.yml/badge.svg)](https://github.com/cybertoxin3/permwatch/actions/workflows/build.yml)
-![macOS](https://img.shields.io/badge/macOS-13%2B-black?logo=apple)
+![macOS](https://img.shields.io/badge/macOS-14%2B-black?logo=apple)
 ![Durum](https://img.shields.io/badge/durum-geli%C5%9Ftirme%20a%C5%9Famas%C4%B1nda-orange)
 
 </div>
@@ -56,35 +56,42 @@ permwatch zinciri birleştirir ve sana tek bir net uyarı gösterir.
 
 ## Neler yapar
 
-- 🕒 **Zaman çizelgesi:** Her izin değişikliği, her yeni başlangıç öğesi, tarihi ve sorumlusuyla birlikte
-- 🚨 **Akıllı uyarılar:** İmzasız uygulamalar, gece yarısı etkinlikleri, Gatekeeper atlatma denemeleri
-- 🔍 **Uygulama görünümü:** Bir uygulamanın sahip olduğu bütün izinler tek bir kartta
-- 🧬 **İmza kontrolü:** Apple mı, tanınmış bir geliştirici mi, yoksa kimliği belirsiz bir kaynak mı?
-- 📍 **Menü çubuğunda:** Göze batmadan çalışır, gerektiğinde konuşur
+- 💡 **Öneriler:** Bütün bulguları sade dille açıklayan ve tek tıkla düzeltme sunan tek ekran. Silinmiş uygulamalardan kalan izinleri ve aylardır açmadığın uygulamalardaki izinleri bulur.
+- 🕒 **Zaman çizelgesi:** Her izin değişikliği ve her yeni başlangıç öğesi; tarihi ve sorumlu süreciyle
+- 🚨 **Uyarılar:** İmzasız başlangıç programları, şüpheli izin örüntüleri ve Gatekeeper atlatma girişimleri. Yeni bir şey olduğunda ekranın üstünde küçük bir pencere açılır.
+- 🔍 **Uygulamalar:** Bir uygulamanın sahip olduğu bütün izinler tek kartta. İzni kaldırabilir veya uygulamayı Çöp Sepeti'ne taşıyabilirsin.
+- 🧠 **Çalışan uygulamalar:** Garip yerlerden çalışan, sistem süreci gibi görünen veya dosyası silinmiş programları işaretleyen görev yöneticisi
+- 🌐 **Ağ:** Hangi uygulama nereye bağlı; imzasız programlar için uyarı
+- 📦 **Paket yakalama:** Wireshark gibi, ama her pakette onu gönderen uygulama ve sade dilde bir açıklama var. İzleyicileri, şifresiz bağlantıları ve açık metin gönderilen parolaları yakalar. Kayıtlar Wireshark'ta açılabilen .pcap dosyaları olarak saklanır.
+- ⬇️ **İndirilenler:** Mac'inin her yerindeki (USB diskler dahil) indirilmiş uygulama ve kurulum dosyalarını Gatekeeper ile denetler
+- 🎙 **Mikrofon ve kamera:** Şu an kim kullanıyor, geçmişiyle birlikte
 
 <p align="center">
   <img src="../images/apps.png" alt="permwatch uygulama görünümü" width="900">
 </p>
 
+## Ne değildir
+
+permwatch **bir antivirüs değildir.** Zararlı yazılım imza veritabanı yoktur ve **hiçbir şeyi engellemez.** Olanı gösterir, açıklar ve düzeltmene yardım eder. Bağlantıları engellemek istiyorsan yanında LuLu veya Little Snitch gibi bir güvenlik duvarı kullan.
+
+Kurallar sezgiseldir: yanlış alarm verebilir (ör. geliştirici araçlarında) ve iyi gizlenmiş zararlıları kaçırabilir.
+
 ## Gizliliğin sende kalır
 
-permwatch **hiçbir veriyi dışarı göndermez.** Analytics, hesap ya da bulut yok.
-Bütün kayıtlar senin Mac'inde kalır. Bir gizlilik aracının başka türlü olmasını zaten beklemezdin.
+permwatch **hiçbir yere veri göndermez.** Analiz yok, hesap yok, bulut yok. Ayrıntılar: **[PRIVACY.md](../../PRIVACY.md)**
 
 ## Nasıl çalışır
 
-permwatch, Apple'ın güvenlik yazılımları için sunduğu resmi **Endpoint Security** altyapısını kullanır.
-Çekirdek C ile yazılmıştır, yalnızca **gözlemler** ve hiçbir zaman sistemin işleyişine müdahale etmez.
+- macOS'un izin veritabanını ve başlangıç öğelerini okur (Tam Disk Erişimi ile) ve değişiklikleri izler
+- İsteğe bağlı **yönetici modu**, küçük ve salt-okunur bir yardımcıyı root olarak çalıştırır. Yardımcı başlamadan önce `/Library/PrivilegedHelperTools`'a kopyalanır ve kod imzası geliştiricinin Team ID'sine göre doğrulanır.
+- Paket yakalama libpcap kullanır. Yönetici modunda Apple'ın PKTAP'ını kullanır; bu, her pakete onu gönderen süreci ekler.
+- Gerçek zamanlı olaylar için Endpoint Security motoru (C) hazır ve Apple'ın iznini bekliyor.
 
 ## Durum
 
-permwatch aktif geliştirme aşamasında.
-
-- ✅ Olayları yakalayan çekirdek motor (komut satırı)
-- ⏳ Apple Endpoint Security izni: başvuru yapıldı, inceleniyor
-- 🛠 macOS uygulaması ve arayüz: tasarım aşamasında
-
-> Yukarıdaki görseller tasarım önizlemesidir. Senaryodaki "Konvertix" uygulaması temsilidir.
+- ✅ macOS uygulaması: izinler, başlangıç öğeleri, süreçler, ağ, paket yakalama, indirilenler, öneriler. 13 dilde kullanılabilir.
+- ⏳ Apple Endpoint Security izni: başvuruldu, inceleniyor
+- ⏳ Notarize edilmiş sürüm: hazırlanıyor
 
 Geliştiriciysen ve çekirdeği denemek istiyorsan: **[Geliştirici rehberi →](../GELISTIRME.md)**
 
