@@ -675,3 +675,27 @@ report.send	Написать письмо
 report.subject	сообщение о проблеме
 report.settingDesc	Нашли ошибку или что-то непонятно? Напишите нам письмо с уже заполненными техническими сведениями.
 nav.settings	Настройки
+upd.cardTitle	Доступен permwatch %@
+upd.current	У вас: %@
+upd.notesTitle	Что нового
+upd.update	Обновить
+upd.later	Позже
+upd.skip	Пропустить эту версию
+upd.cancel	Отменить
+upd.downloading	Загрузка: %1$@ (%2$@ из %3$@)
+upd.starting	Начинается загрузка…
+upd.extracting	Подготовка к установке…
+upd.background	Можно продолжать пользоваться permwatch: загрузка идёт в фоне.
+upd.readyTitle	permwatch %@ готов
+upd.readyBody	Установится при перезапуске permwatch. Настройки и история сохранятся.
+upd.relaunch	Перезапустить и установить
+upd.onQuit	Установить при выходе
+upd.installing	Установка…
+upd.failed	Не удалось завершить обновление: %@
+upd.retry	Повторить
+upd.upToDate	permwatch обновлён
+upd.upToDateBody	%@ — последняя версия.
+upd.sidebarDownloading	Загружается обновление %@
+upd.sidebarReady	Обновление готово
+upd.notifyTitle	permwatch %@ загружен
+upd.notifyBody	Установится при перезапуске permwatch.

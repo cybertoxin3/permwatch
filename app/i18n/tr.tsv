@@ -675,3 +675,27 @@ report.send	E-posta Yaz
 report.subject	sorun bildirimi
 report.settingDesc	Bir hata ya da anlaşılmayan bir şey mi buldun? Teknik bilgileri hazır doldurulmuş bir e-postayla bize yaz.
 nav.settings	Ayarlar
+upd.cardTitle	permwatch %@ çıktı
+upd.current	Sendeki: %@
+upd.notesTitle	Neler yeni
+upd.update	Güncelle
+upd.later	Sonra
+upd.skip	Bu sürümü atla
+upd.cancel	İptal
+upd.downloading	İndiriliyor: %1$@ (%2$@ / %3$@)
+upd.starting	İndirme başlıyor…
+upd.extracting	Kuruluma hazırlanıyor…
+upd.background	permwatch'ı kullanmaya devam edebilirsin; indirme arka planda sürer.
+upd.readyTitle	permwatch %@ hazır
+upd.readyBody	permwatch yeniden başlayınca kurulacak. Ayarların ve kayıtların korunur.
+upd.relaunch	Yeniden Başlat ve Kur
+upd.onQuit	Çıkışta Kur
+upd.installing	Kuruluyor…
+upd.failed	Güncelleme tamamlanamadı: %@
+upd.retry	Tekrar Dene
+upd.upToDate	permwatch güncel
+upd.upToDateBody	%@ en son sürüm.
+upd.sidebarDownloading	Güncelleme iniyor %@
+upd.sidebarReady	Güncelleme hazır
+upd.notifyTitle	permwatch %@ indirildi
+upd.notifyBody	permwatch'ı yeniden başlattığında kurulacak.

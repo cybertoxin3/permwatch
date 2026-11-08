@@ -675,3 +675,27 @@ report.send	撰写邮件
 report.subject	问题报告
 report.settingDesc	发现错误或不清楚的地方？发一封已填好技术信息的邮件给我们。
 nav.settings	设置
+upd.cardTitle	permwatch %@ 已推出
+upd.current	你当前的版本：%@
+upd.notesTitle	新功能
+upd.update	更新
+upd.later	稍后
+upd.skip	跳过此版本
+upd.cancel	取消
+upd.downloading	正在下载：%1$@（%2$@ / %3$@）
+upd.starting	正在开始下载…
+upd.extracting	正在准备安装…
+upd.background	你可以继续使用 permwatch，下载会在后台继续。
+upd.readyTitle	permwatch %@ 已就绪
+upd.readyBody	将在 permwatch 重新启动时安装。你的设置和记录会保留。
+upd.relaunch	重新启动并安装
+upd.onQuit	退出时安装
+upd.installing	正在安装…
+upd.failed	无法完成更新：%@
+upd.retry	重试
+upd.upToDate	permwatch 已是最新版本
+upd.upToDateBody	%@ 是最新版本。
+upd.sidebarDownloading	正在下载更新 %@
+upd.sidebarReady	更新已就绪
+upd.notifyTitle	已下载 permwatch %@
+upd.notifyBody	将在你重新启动 permwatch 时安装。

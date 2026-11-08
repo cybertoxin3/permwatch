@@ -675,3 +675,27 @@ report.send	Write Email
 report.subject	problem report
 report.settingDesc	Found a bug or something unclear? Send us an email with the technical details already filled in.
 nav.settings	Settings
+upd.cardTitle	permwatch %@ is available
+upd.current	You have %@
+upd.notesTitle	What's new
+upd.update	Update
+upd.later	Later
+upd.skip	Skip this version
+upd.cancel	Cancel
+upd.downloading	Downloading: %1$@ (%2$@ of %3$@)
+upd.starting	Starting download…
+upd.extracting	Preparing to install…
+upd.background	You can keep using permwatch; the download continues in the background.
+upd.readyTitle	permwatch %@ is ready
+upd.readyBody	It will be installed when permwatch restarts. Your settings and history are kept.
+upd.relaunch	Restart and Install
+upd.onQuit	Install When I Quit
+upd.installing	Installing…
+upd.failed	The update could not be completed: %@
+upd.retry	Try Again
+upd.upToDate	permwatch is up to date
+upd.upToDateBody	%@ is the latest version.
+upd.sidebarDownloading	Update downloading %@
+upd.sidebarReady	Update ready
+upd.notifyTitle	permwatch %@ has been downloaded
+upd.notifyBody	It will be installed when you restart permwatch.

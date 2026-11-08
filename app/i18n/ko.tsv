@@ -675,3 +675,27 @@ report.send	메일 작성
 report.subject	문제 신고
 report.settingDesc	버그나 이해하기 어려운 점이 있나요? 기술 정보가 미리 채워진 메일로 알려 주세요.
 nav.settings	설정
+upd.cardTitle	permwatch %@ 사용 가능
+upd.current	현재 버전: %@
+upd.notesTitle	새로운 기능
+upd.update	업데이트
+upd.later	나중에
+upd.skip	이 버전 건너뛰기
+upd.cancel	취소
+upd.downloading	다운로드 중: %1$@ (%2$@ / %3$@)
+upd.starting	다운로드 시작 중…
+upd.extracting	설치 준비 중…
+upd.background	permwatch를 계속 사용할 수 있습니다. 다운로드는 백그라운드에서 계속됩니다.
+upd.readyTitle	permwatch %@ 준비 완료
+upd.readyBody	permwatch를 다시 시작하면 설치됩니다. 설정과 기록은 유지됩니다.
+upd.relaunch	다시 시작하고 설치
+upd.onQuit	종료할 때 설치
+upd.installing	설치 중…
+upd.failed	업데이트를 완료하지 못했습니다: %@
+upd.retry	다시 시도
+upd.upToDate	permwatch가 최신 버전입니다
+upd.upToDateBody	%@이(가) 최신 버전입니다.
+upd.sidebarDownloading	업데이트 다운로드 중 %@
+upd.sidebarReady	업데이트 준비됨
+upd.notifyTitle	permwatch %@ 다운로드됨
+upd.notifyBody	permwatch를 다시 시작하면 설치됩니다.

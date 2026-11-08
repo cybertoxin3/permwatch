@@ -675,3 +675,27 @@ report.send	メールを作成
 report.subject	問題の報告
 report.settingDesc	不具合やわかりにくい点がありましたか？技術情報が入力済みのメールでお知らせください。
 nav.settings	設定
+upd.cardTitle	permwatch %@ が利用可能です
+upd.current	現在のバージョン: %@
+upd.notesTitle	新機能
+upd.update	アップデート
+upd.later	あとで
+upd.skip	このバージョンをスキップ
+upd.cancel	キャンセル
+upd.downloading	ダウンロード中: %1$@（%2$@ / %3$@）
+upd.starting	ダウンロードを開始しています…
+upd.extracting	インストールの準備中…
+upd.background	permwatch はそのまま使えます。ダウンロードはバックグラウンドで続きます。
+upd.readyTitle	permwatch %@ の準備ができました
+upd.readyBody	permwatch の再起動時にインストールされます。設定と履歴は保持されます。
+upd.relaunch	再起動してインストール
+upd.onQuit	終了時にインストール
+upd.installing	インストール中…
+upd.failed	アップデートを完了できませんでした: %@
+upd.retry	再試行
+upd.upToDate	permwatch は最新です
+upd.upToDateBody	%@ が最新バージョンです。
+upd.sidebarDownloading	アップデートをダウンロード中 %@
+upd.sidebarReady	アップデートの準備完了
+upd.notifyTitle	permwatch %@ をダウンロードしました
+upd.notifyBody	permwatch の再起動時にインストールされます。

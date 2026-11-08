@@ -675,3 +675,27 @@ report.send	اكتب رسالة
 report.subject	بلاغ عن مشكلة
 report.settingDesc	وجدت خطأ أو شيئًا غير واضح؟ راسلنا برسالة تتضمن التفاصيل التقنية مسبقًا.
 nav.settings	الإعدادات
+upd.cardTitle	permwatch %@ متاح
+upd.current	الإصدار لديك: %@
+upd.notesTitle	ما الجديد
+upd.update	تحديث
+upd.later	لاحقًا
+upd.skip	تخطَّ هذا الإصدار
+upd.cancel	إلغاء
+upd.downloading	جارٍ التنزيل: %1$@ (%2$@ من %3$@)
+upd.starting	يبدأ التنزيل…
+upd.extracting	جارٍ التحضير للتثبيت…
+upd.background	يمكنك متابعة استخدام permwatch؛ يستمر التنزيل في الخلفية.
+upd.readyTitle	permwatch %@ جاهز
+upd.readyBody	سيُثبّت عند إعادة تشغيل permwatch. تُحفظ إعداداتك وسجلّك.
+upd.relaunch	أعد التشغيل وثبّت
+upd.onQuit	ثبّت عند الإنهاء
+upd.installing	جارٍ التثبيت…
+upd.failed	تعذّر إكمال التحديث: %@
+upd.retry	أعد المحاولة
+upd.upToDate	permwatch محدّث
+upd.upToDateBody	%@ هو أحدث إصدار.
+upd.sidebarDownloading	يُنزَّل التحديث %@
+upd.sidebarReady	التحديث جاهز
+upd.notifyTitle	نُزّل permwatch %@
+upd.notifyBody	سيُثبّت عند إعادة تشغيل permwatch.

@@ -675,3 +675,27 @@ report.send	Scrivi e-mail
 report.subject	segnalazione di problema
 report.settingDesc	Hai trovato un errore o qualcosa di poco chiaro? Scrivici un'e-mail con i dettagli tecnici già compilati.
 nav.settings	Impostazioni
+upd.cardTitle	permwatch %@ è disponibile
+upd.current	Installata: %@
+upd.notesTitle	Novità
+upd.update	Aggiorna
+upd.later	Più tardi
+upd.skip	Salta questa versione
+upd.cancel	Annulla
+upd.downloading	Download: %1$@ (%2$@ di %3$@)
+upd.starting	Avvio del download…
+upd.extracting	Preparazione dell'installazione…
+upd.background	Puoi continuare a usare permwatch; il download prosegue in background.
+upd.readyTitle	permwatch %@ è pronto
+upd.readyBody	Verrà installato al riavvio di permwatch. Impostazioni e cronologia vengono mantenute.
+upd.relaunch	Riavvia e installa
+upd.onQuit	Installa all'uscita
+upd.installing	Installazione…
+upd.failed	Impossibile completare l'aggiornamento: %@
+upd.retry	Riprova
+upd.upToDate	permwatch è aggiornato
+upd.upToDateBody	%@ è l'ultima versione.
+upd.sidebarDownloading	Aggiornamento in download %@
+upd.sidebarReady	Aggiornamento pronto
+upd.notifyTitle	permwatch %@ è stato scaricato
+upd.notifyBody	Verrà installato al riavvio di permwatch.
