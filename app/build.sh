@@ -37,7 +37,13 @@ fi
 swiftc -parse-as-library -O -target "$ARCH-apple-macos14" -import-objc-header shared/bridge-app.h \
     -Xcc -I"vendor/yara/libyara/include" -L "$Y_DIR" -lyara \
     -I "$ST_DIR" -L "$ST_DIR" -lSwiftTerm \
+    -F vendor/Sparkle -framework Sparkle -Xlinker -rpath -Xlinker @executable_path/../Frameworks \
     Sources/*.swift shared/*.swift -lpcap -o "$APP/Contents/MacOS/permwatch"
+# Sparkle (vendor/, MIT): güncellemeler. Korumalı (sandbox) olmayan uygulamada XPC servisleri gerekmez.
+mkdir -p "$APP/Contents/Frameworks"
+ditto --norsrc --noextattr --noacl vendor/Sparkle/Sparkle.framework "$APP/Contents/Frameworks/Sparkle.framework"
+xattr -cr "$APP/Contents/Frameworks/Sparkle.framework"
+rm -rf "$APP/Contents/Frameworks/Sparkle.framework/XPCServices" "$APP/Contents/Frameworks/Sparkle.framework/Versions/B/XPCServices"
 # Yönetici modu yardımcısı (ayrı, küçük, girdisiz bir program)
 swiftc -O -target "$ARCH-apple-macos14" -import-objc-header shared/bridge.h \
     helper/main.swift shared/*.swift -lpcap -o "$APP/Contents/MacOS/permwatch-root"
@@ -64,6 +70,16 @@ cat > "$APP/Contents/Library/LaunchDaemons/com.yusuf.permwatch.root.plist" <<PLI
 PLIST
 python3 -I tools/build_strings.py i18n "$APP/Contents/Resources"
 
+# Güncelleme listesi ve açık anahtar (gizli anahtar yalnızca geliştiricinin Anahtar Zinciri'nde).
+# Anahtar dosyası yoksa Sparkle kapalı kalır; uygulama yalnızca yeni sürüm olduğunu haber verir.
+SPARKLE_KEYS=""
+if [[ -f sparkle-public-key.txt ]]; then
+    SPARKLE_KEYS="<key>SUFeedURL</key><string>https://raw.githubusercontent.com/cybertoxin3/permwatch/main/docs/appcast.xml</string>
+    <key>SUPublicEDKey</key><string>$(tr -d ' \n' < sparkle-public-key.txt)</string>
+    <key>SUEnableAutomaticChecks</key><true/>
+    <key>SUScheduledCheckInterval</key><integer>86400</integer>
+    <key>SUEnableSystemProfiling</key><false/>"
+fi
 LOCS=$(cd "$APP/Contents/Resources" && ls -d *.lproj | sed 's/\.lproj//' | sed 's/.*/<string>&<\/string>/' | tr -d '\n')
 cat > "$APP/Contents/Info.plist" <<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -83,6 +99,7 @@ cat > "$APP/Contents/Info.plist" <<EOF
     <key>LSMinimumSystemVersion</key><string>14.0</string>
     <key>LSApplicationCategoryType</key><string>public.app-category.utilities</string>
     <key>NSHighResolutionCapable</key><true/>
+    $SPARKLE_KEYS
     <key>NSAppleEventsUsageDescription</key><string>permwatch, kaldırmak istediğin uygulamaları Çöp Sepeti'ne taşımak için Finder'ı kullanır. / permwatch uses Finder to move apps you uninstall to the Trash.</string>
 </dict>
 </plist>
@@ -104,6 +121,11 @@ if [[ "$SIGN" != "-" ]]; then
     if [[ "${PERMWATCH_RELEASE:-0}" == 1 ]]; then OPTS+=(--timestamp); else OPTS+=(--timestamp=none); fi
 fi
 codesign --force --sign "$SIGN" "${OPTS[@]}" --identifier com.yusuf.permwatch.root "$APP/Contents/MacOS/permwatch-root"
+# Sparkle içten dışa: yardımcı programlar, sonra çerçeve.
+SF="$APP/Contents/Frameworks/Sparkle.framework/Versions/B"
+codesign --force --sign "$SIGN" "${OPTS[@]}" "$SF/Autoupdate"
+codesign --force --sign "$SIGN" "${OPTS[@]}" "$SF/Updater.app"
+codesign --force --sign "$SIGN" "${OPTS[@]}" "$APP/Contents/Frameworks/Sparkle.framework"
 # Çalıştırmadan önce engelleme (permwatch-guard, Endpoint Security). Apple'ın dağıtım onayı gelene kadar
 # yalnızca geliştirme profiliyle, kayıtlı Mac'lerde çalışır; bu yüzden yayın derlemesine girmez.
 GUARD_PROFILE=${PERMWATCH_GUARD_PROFILE:-$HOME/Library/Application Support/permwatch-dev/guard.provisionprofile}

@@ -640,3 +640,25 @@ guard.approveButton	Open Login Items
 guard.blockedTitle	Blocked before it ran: %@
 guard.blockedBody	It was started by %@. The file is still on your Mac; quarantine it from the list below. If you know this program and trust it, allow it.
 guard.allow	I know it, let it run
+onb.title	Welcome to permwatch
+onb.lead	permwatch keeps an eye on your Mac and tells you, in plain words, when something needs your attention.
+onb.p1	Finds malware with Apple's and Elastic's signatures, and checks new files within seconds.
+onb.p2	Spots what scammers and adware leave behind: remote-access tools, hijacked browsers, spying permissions.
+onb.p3	Nothing is removed or blocked without asking you first, and anything can be undone.
+onb.privacy	Nothing about you leaves your Mac. No account, no tracking.
+onb.start	Get started
+onb.next	Continue
+onb.back	Back
+onb.later	Later
+onb.fdaTitle	One permission to see everything
+onb.fdaBody	To find apps that have access to your camera, screen or files, and to check downloads in every folder, permwatch needs Full Disk Access. It only reads; it never changes your files.
+onb.fdaSteps	1. Click "Open Settings".\n2. Turn on permwatch in the list (enter your Mac password if asked).\n3. Come back here; this page continues by itself.
+onb.fdaDone	Full Disk Access is on. Thank you!
+onb.checkTitle	Let's check your Mac
+onb.checkBody	The first check takes about a minute: a malware scan, browser and permission checks, and a look for remote-access tools. You'll see the results on the Overview.
+onb.checkNow	Check my Mac
+onb.skip	Skip for now
+nav.advancedMode	Advanced mode
+nav.advancedHelp	Shows the timeline, processes, network, packet capture and terminal.
+upd.checkNow	Check for Updates…
+upd.auto	Download and install updates automatically

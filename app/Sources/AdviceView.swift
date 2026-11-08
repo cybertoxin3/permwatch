@@ -271,7 +271,7 @@ struct AdviceView: View {
         if updates.updateAvailable, let v = updates.latest {
             out.append(.init(id: "update.\(v)", verdict: .info, icon: "arrow.down.app", title: L("upd.title", v),
                              body: L("upd.body", UpdateChecker.current),
-                             primary: (L("upd.open"), { if let u = updates.releaseURL { NSWorkspace.shared.open(u) } })))
+                             primary: (L("upd.open"), { updates.install() })))
         }
         if store.needsFullDiskAccess || downloads.needsFullDisk {
             out.append(.init(id: "fda", verdict: .danger, icon: "lock.shield", title: L("fda.one.title"), body: L("fda.one.body"),

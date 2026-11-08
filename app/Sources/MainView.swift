@@ -28,6 +28,7 @@ struct MainView: View {
     @State private var filter: TimelineFilter = .all
     @State private var selection: Int?
     @State private var search = ""
+    @State private var onboarding = false
 
     var body: some View {
         NavigationSplitView {
@@ -90,7 +91,11 @@ struct MainView: View {
             monitor.trusted = t
             monitor.refresh()
         }
+        .sheet(isPresented: $onboarding) {
+            OnboardingView(isPresented: $onboarding) { section = .advice }
+        }
         .onAppear {
+            if Snapshot.section == nil, !UserDefaults.standard.bool(forKey: OnboardingView.doneKey) { onboarding = true }
             center.openMainWindow = { [openWindow] in openWindow(id: "main") }
             RootBridge.shared.resumeIfNeeded()
             monitor.trusted = store.trusted
@@ -176,6 +181,9 @@ struct Sidebar: View {
     @EnvironmentObject var network: NetworkMonitor
     @EnvironmentObject var scanner: MalwareScanner
     @Binding var section: SidebarItem
+    /// Basit mod (varsayılan): yalnızca sıradan kullanıcının işine yarayan bölümler.
+    @AppStorage(Sidebar.advancedKey) private var advanced = false
+    static let advancedKey = "advancedMode"
 
     var body: some View {
         List(selection: $section) {
@@ -185,7 +193,9 @@ struct Sidebar: View {
 
             Section(L("nav.yourMac")) {
                 Label(L("nav.apps"), systemImage: "square.grid.2x2").tag(SidebarItem.apps)
-                Label(L("nav.running"), systemImage: "cpu").badge(monitor.suspicious).tag(SidebarItem.running)
+                if advanced || monitor.suspicious > 0 {
+                    Label(L("nav.running"), systemImage: "cpu").badge(monitor.suspicious).tag(SidebarItem.running)
+                }
                 Label(L("nav.security"), systemImage: "lock.shield").badge(posture.issues).tag(SidebarItem.security)
                 Label(L("nav.downloads"), systemImage: "arrow.down.circle").badge(downloads.risky).tag(SidebarItem.downloads)
             }
@@ -196,16 +206,31 @@ struct Sidebar: View {
                 Label(L("nav.fullDisk"), systemImage: "internaldrive").tag(SidebarItem.category(.fullDisk))
                 Label(L("nav.loginItems"), systemImage: "power").badge(store.loginItemCount).tag(SidebarItem.loginItems)
             }
-            Section(L("nav.advanced")) {
-                Label(L("nav.timeline"), systemImage: "list.bullet").tag(SidebarItem.timeline)
-                Label(L("nav.processes"), systemImage: "terminal").tag(SidebarItem.processes)
+            if advanced {
+                Section(L("nav.advanced")) {
+                    Label(L("nav.timeline"), systemImage: "list.bullet").tag(SidebarItem.timeline)
+                    Label(L("nav.processes"), systemImage: "terminal").tag(SidebarItem.processes)
+                    Label(L("nav.network"), systemImage: "network").badge(network.risky).tag(SidebarItem.network)
+                    Label(L("nav.packets"), systemImage: "waveform.path.ecg").tag(SidebarItem.packets)
+                    Label(L("nav.terminal"), systemImage: "apple.terminal").tag(SidebarItem.terminal)
+                }
+            } else if network.risky > 0 {
+                // Basit modda da riskli bağlantı varsa Ağ görünsün.
                 Label(L("nav.network"), systemImage: "network").badge(network.risky).tag(SidebarItem.network)
-                Label(L("nav.packets"), systemImage: "waveform.path.ecg").tag(SidebarItem.packets)
-                Label(L("nav.terminal"), systemImage: "apple.terminal").tag(SidebarItem.terminal)
             }
         }
         .listStyle(.sidebar)
-        .safeAreaInset(edge: .bottom) { status.padding(12) }
+        .safeAreaInset(edge: .bottom) {
+            VStack(alignment: .leading, spacing: 8) {
+                Toggle(L("nav.advancedMode"), isOn: $advanced).toggleStyle(.switch).controlSize(.mini)
+                    .font(.system(size: 11.5)).help(L("nav.advancedHelp"))
+                    .onChange(of: advanced) { _, on in
+                        if !on, [.timeline, .processes, .packets, .terminal, .running, .network].contains(section) { section = .advice }
+                    }
+                status
+            }
+            .padding(12)
+        }
     }
 
     private var status: some View {

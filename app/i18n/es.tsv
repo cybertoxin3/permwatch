@@ -640,3 +640,25 @@ guard.approveButton	Abrir Ítems de inicio
 guard.blockedTitle	Bloqueado antes de ejecutarse: %@
 guard.blockedBody	Lo inició %@. El archivo sigue en tu Mac; ponlo en cuarentena desde la lista de abajo. Si conoces este programa y confías en él, permítelo.
 guard.allow	Lo conozco, dejar que se ejecute
+onb.title	Te damos la bienvenida a permwatch
+onb.lead	permwatch vigila tu Mac y te dice, con palabras sencillas, cuándo algo necesita tu atención.
+onb.p1	Encuentra malware con las firmas de Apple y Elastic, y revisa los archivos nuevos en segundos.
+onb.p2	Detecta lo que dejan los estafadores y el adware: herramientas de acceso remoto, navegadores secuestrados, permisos espía.
+onb.p3	Nada se elimina ni se bloquea sin preguntarte antes, y todo se puede deshacer.
+onb.privacy	Nada sobre ti sale de tu Mac. Sin cuentas ni rastreo.
+onb.start	Empezar
+onb.next	Continuar
+onb.back	Atrás
+onb.later	Más tarde
+onb.fdaTitle	Un permiso para verlo todo
+onb.fdaBody	Para encontrar apps con acceso a tu cámara, pantalla o archivos, y revisar las descargas en todas las carpetas, permwatch necesita acceso total al disco. Solo lee; nunca cambia tus archivos.
+onb.fdaSteps	1. Haz clic en «Abrir Ajustes».\n2. Activa permwatch en la lista (introduce la contraseña de tu Mac si te la pide).\n3. Vuelve aquí; esta página continuará sola.
+onb.fdaDone	El acceso total al disco está activado. ¡Gracias!
+onb.checkTitle	Revisemos tu Mac
+onb.checkBody	La primera revisión tarda un minuto: análisis de malware, comprobación del navegador y los permisos, y búsqueda de herramientas de acceso remoto. Verás los resultados en Resumen.
+onb.checkNow	Revisar mi Mac
+onb.skip	Omitir por ahora
+nav.advancedMode	Modo avanzado
+nav.advancedHelp	Muestra la cronología, los procesos, la red, la captura de paquetes y el terminal.
+upd.checkNow	Buscar actualizaciones…
+upd.auto	Descargar e instalar actualizaciones automáticamente

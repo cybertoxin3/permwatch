@@ -6,7 +6,7 @@ permwatch is a privacy tool, so it is strict about your data.
 
 permwatch makes only these requests by itself. Each is a plain download that carries no data about you or your Mac, and each can be turned off in Settings:
 
-- **Update check** (Settings › Check for new versions): once a day it asks GitHub (`api.github.com`) for the number of the latest release.
+- **Update check** (Settings › Check for new versions): once a day it reads the update list (`raw.githubusercontent.com/cybertoxin3/permwatch/main/docs/appcast.xml`) with Sparkle. If there is a new version and you accept it (or turned on automatic installation), it downloads the release from GitHub. Updates are only installed if they are notarized by Apple and signed with permwatch's update key. Sparkle's optional system profile is turned off.
 - **Threat lists and extra signatures** (Settings › Malicious server check and extra signatures): once a day it downloads the list of known malicious domains (`malware-filter.gitlab.io`, a mirror of abuse.ch URLhaus), the list of known malicious IP addresses (`feodotracker.abuse.ch`) and Elastic Security's macOS malware rules (`api.github.com` and `raw.githubusercontent.com`). Matching against these lists happens on your Mac; no address you visit is ever sent anywhere.
 
 The malware scan and real-time protection run entirely on your Mac with Apple's XProtect signatures and the downloaded Elastic rules; no file or hash is uploaded.

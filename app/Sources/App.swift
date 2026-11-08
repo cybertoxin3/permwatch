@@ -58,6 +58,9 @@ struct PermwatchApp: App {
                     .keyboardShortcut("o")
                 Button(L("menu.loadDemo")) { store.loadDemo() }
             }
+            CommandGroup(after: .appInfo) {
+                Button(L("upd.checkNow")) { updates.checkNow() }
+            }
         }
 
         MenuBarExtra {

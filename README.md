@@ -105,6 +105,7 @@ permwatch **sends no data anywhere.** No analytics, no account, no cloud. Detail
 
 - [YARA](https://github.com/VirusTotal/yara) v4.5.8 by VirusTotal (BSD-3-Clause), used to run Apple’s XProtect signatures. Vendored in `app/vendor/yara`.
 - [SwiftTerm](https://github.com/migueldeicaza/SwiftTerm) v1.20.0 by Miguel de Icaza (MIT), used for the terminal. Vendored in `app/vendor/SwiftTerm`.
+- [Sparkle](https://sparkle-project.org) 2.10.1 (MIT), used for signed automatic updates. Vendored in `app/vendor/Sparkle`.
 - macOS malware rules from [Elastic Security protections-artifacts](https://github.com/elastic/protections-artifacts) (Elastic License 2.0). A copy ships in `app/Resources/rules/elastic` and is refreshed daily.
 - Malicious server lists: [URLhaus](https://urlhaus.abuse.ch) via [malware-filter](https://gitlab.com/malware-filter/urlhaus-filter) and [Feodo Tracker](https://feodotracker.abuse.ch) by abuse.ch (CC0), downloaded daily.
 

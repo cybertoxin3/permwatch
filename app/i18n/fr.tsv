@@ -640,3 +640,25 @@ guard.approveButton	Ouvrir Ouverture
 guard.blockedTitle	Bloqué avant son lancement : %@
 guard.blockedBody	Lancé par %@. Le fichier est toujours sur ton Mac ; mets-le en quarantaine depuis la liste ci-dessous. Si tu connais ce programme et lui fais confiance, autorise-le.
 guard.allow	Je le connais, l'autoriser
+onb.title	Bienvenue dans permwatch
+onb.lead	permwatch surveille ton Mac et te dit, avec des mots simples, quand quelque chose mérite ton attention.
+onb.p1	Trouve les logiciels malveillants avec les signatures d'Apple et d'Elastic, et vérifie les nouveaux fichiers en quelques secondes.
+onb.p2	Repère ce que laissent les escrocs et les logiciels publicitaires : outils d'accès à distance, navigateurs détournés, autorisations d'espionnage.
+onb.p3	Rien n'est supprimé ni bloqué sans te demander, et tout peut être annulé.
+onb.privacy	Rien te concernant ne quitte ton Mac. Pas de compte, pas de pistage.
+onb.start	Commencer
+onb.next	Continuer
+onb.back	Retour
+onb.later	Plus tard
+onb.fdaTitle	Une autorisation pour tout voir
+onb.fdaBody	Pour trouver les apps qui ont accès à ta caméra, ton écran ou tes fichiers, et vérifier les téléchargements de tous les dossiers, permwatch a besoin de l'accès complet au disque. Il lit seulement et ne modifie jamais tes fichiers.
+onb.fdaSteps	1. Clique sur « Ouvrir les Réglages ».\n2. Active permwatch dans la liste (saisis le mot de passe de ton Mac si demandé).\n3. Reviens ici ; cette page continue toute seule.
+onb.fdaDone	L'accès complet au disque est activé. Merci !
+onb.checkTitle	Vérifions ton Mac
+onb.checkBody	La première vérification prend environ une minute : analyse antimalware, contrôle du navigateur et des autorisations, recherche d'outils d'accès à distance. Les résultats s'affichent dans la Vue d'ensemble.
+onb.checkNow	Vérifier mon Mac
+onb.skip	Passer pour l'instant
+nav.advancedMode	Mode avancé
+nav.advancedHelp	Affiche la chronologie, les processus, le réseau, la capture de paquets et le terminal.
+upd.checkNow	Rechercher les mises à jour…
+upd.auto	Télécharger et installer les mises à jour automatiquement

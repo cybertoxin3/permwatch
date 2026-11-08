@@ -640,3 +640,25 @@ guard.approveButton	Giriş Öğeleri'ni aç
 guard.blockedTitle	Çalışmadan engellendi: %@
 guard.blockedBody	Onu başlatan: %@. Dosya hâlâ Mac'inde; aşağıdaki listeden karantinaya alabilirsin. Bu programı tanıyor ve güveniyorsan çalışmasına izin ver.
 guard.allow	Tanıyorum, çalışsın
+onb.title	permwatch'a hoş geldin
+onb.lead	permwatch Mac'ine göz kulak olur ve dikkat etmen gereken bir şey olduğunda bunu sade bir dille söyler.
+onb.p1	Apple'ın ve Elastic'in imzalarıyla zararlıları bulur, yeni dosyaları saniyeler içinde denetler.
+onb.p2	Dolandırıcıların ve reklam yazılımlarının bıraktıklarını yakalar: uzaktan erişim programları, ele geçirilmiş tarayıcılar, casus izinler.
+onb.p3	Sana sormadan hiçbir şey silinmez ya da engellenmez; her şey geri alınabilir.
+onb.privacy	Seninle ilgili hiçbir şey Mac'inden çıkmaz. Hesap yok, takip yok.
+onb.start	Başlayalım
+onb.next	Devam
+onb.back	Geri
+onb.later	Sonra
+onb.fdaTitle	Her şeyi görmek için tek bir izin
+onb.fdaBody	Kameraya, ekrana ya da dosyalarına erişebilen uygulamaları bulmak ve her klasördeki indirilenleri denetlemek için permwatch'ın Tam Disk Erişimi'ne ihtiyacı var. Yalnızca okur; dosyalarını asla değiştirmez.
+onb.fdaSteps	1. "Ayarları Aç"a tıkla.\n2. Listede permwatch'ı aç (istenirse Mac parolanı gir).\n3. Buraya dön; bu sayfa kendiliğinden devam eder.
+onb.fdaDone	Tam Disk Erişimi açık. Teşekkürler!
+onb.checkTitle	Mac'ini kontrol edelim
+onb.checkBody	İlk kontrol yaklaşık bir dakika sürer: zararlı taraması, tarayıcı ve izin kontrolleri ve uzaktan erişim programı araması. Sonuçları Genel Bakış'ta göreceksin.
+onb.checkNow	Mac'imi kontrol et
+onb.skip	Şimdilik geç
+nav.advancedMode	Gelişmiş mod
+nav.advancedHelp	Zaman çizelgesini, süreçleri, ağı, paket yakalamayı ve terminali gösterir.
+upd.checkNow	Güncellemeleri Denetle…
+upd.auto	Güncellemeleri otomatik indir ve kur

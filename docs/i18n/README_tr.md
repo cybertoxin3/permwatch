@@ -105,6 +105,7 @@ permwatch **hiçbir yere veri göndermez.** Analiz yok, hesap yok, bulut yok. Ay
 
 - Apple'ın XProtect imzalarını çalıştırmak için VirusTotal'ın [YARA](https://github.com/VirusTotal/yara) v4.5.8 motoru (BSD-3). `app/vendor/yara` içinde.
 - Terminal için Miguel de Icaza'nın [SwiftTerm](https://github.com/migueldeicaza/SwiftTerm) v1.20.0 kütüphanesi (MIT). `app/vendor/SwiftTerm` içinde.
+- İmzalı otomatik güncellemeler için [Sparkle](https://sparkle-project.org) 2.10.1 (MIT). `app/vendor/Sparkle` içinde.
 - [Elastic Security protections-artifacts](https://github.com/elastic/protections-artifacts) macOS zararlı kuralları (Elastic License 2.0). Bir kopyası `app/Resources/rules/elastic` içinde gelir ve her gün güncellenir.
 - Zararlı sunucu listeleri: abuse.ch'nin [URLhaus](https://urlhaus.abuse.ch) ([malware-filter](https://gitlab.com/malware-filter/urlhaus-filter) aynası) ve [Feodo Tracker](https://feodotracker.abuse.ch) listeleri (CC0), her gün indirilir.
 

@@ -640,3 +640,25 @@ guard.approveButton	로그인 항목 열기
 guard.blockedTitle	실행 전에 차단됨: %@
 guard.blockedBody	실행한 프로그램: %@. 파일은 아직 Mac에 있습니다. 아래 목록에서 격리하세요. 이 프로그램을 알고 신뢰한다면 허용하세요.
 guard.allow	알고 있음, 실행 허용
+onb.title	permwatch에 오신 것을 환영합니다
+onb.lead	permwatch는 Mac을 지켜보다가 주의가 필요한 일이 생기면 쉬운 말로 알려 줍니다.
+onb.p1	Apple과 Elastic의 시그니처로 악성코드를 찾고, 새 파일을 몇 초 안에 검사합니다.
+onb.p2	사기범과 애드웨어가 남긴 흔적을 찾아냅니다: 원격 접속 도구, 탈취된 브라우저, 감시용 권한.
+onb.p3	묻지 않고 삭제하거나 차단하는 일은 없으며, 모든 작업은 되돌릴 수 있습니다.
+onb.privacy	사용자에 관한 어떤 정보도 Mac 밖으로 나가지 않습니다. 계정도 추적도 없습니다.
+onb.start	시작하기
+onb.next	계속
+onb.back	뒤로
+onb.later	나중에
+onb.fdaTitle	모든 것을 보기 위한 권한 하나
+onb.fdaBody	카메라·화면·파일에 접근하는 앱을 찾고 모든 폴더의 다운로드를 검사하려면 permwatch에 전체 디스크 접근 권한이 필요합니다. 읽기만 하며 파일을 절대 변경하지 않습니다.
+onb.fdaSteps	1. '설정 열기'를 클릭합니다.\n2. 목록에서 permwatch를 켭니다(요청되면 Mac 암호 입력).\n3. 여기로 돌아오면 자동으로 계속됩니다.
+onb.fdaDone	전체 디스크 접근 권한이 켜졌습니다. 감사합니다!
+onb.checkTitle	Mac을 검사해 봅시다
+onb.checkBody	첫 검사는 약 1분 걸립니다: 악성코드 검사, 브라우저와 권한 확인, 원격 접속 도구 찾기. 결과는 개요에서 볼 수 있습니다.
+onb.checkNow	내 Mac 검사
+onb.skip	지금은 건너뛰기
+nav.advancedMode	고급 모드
+nav.advancedHelp	타임라인, 프로세스, 네트워크, 패킷 캡처, 터미널을 표시합니다.
+upd.checkNow	업데이트 확인…
+upd.auto	업데이트 자동 다운로드 및 설치

@@ -640,3 +640,25 @@ guard.approveButton	打开登录项
 guard.blockedTitle	运行前已阻止：%@
 guard.blockedBody	启动者：%@。文件仍在你的 Mac 上；可从下方列表将其隔离。如果你认识并信任这个程序，请允许它。
 guard.allow	我认识，允许运行
+onb.title	欢迎使用 permwatch
+onb.lead	permwatch 会照看你的 Mac，在有需要注意的事情时用简单的话告诉你。
+onb.p1	用 Apple 和 Elastic 的特征查找恶意软件，并在几秒内检查新文件。
+onb.p2	发现骗子和广告软件留下的东西：远程访问工具、被劫持的浏览器、窥探性权限。
+onb.p3	不经你同意不会删除或阻止任何东西，一切都可以撤销。
+onb.privacy	关于你的任何信息都不会离开你的 Mac。没有账户，没有跟踪。
+onb.start	开始
+onb.next	继续
+onb.back	返回
+onb.later	稍后
+onb.fdaTitle	一项权限，看见一切
+onb.fdaBody	为了找出能访问摄像头、屏幕或文件的应用，并检查所有文件夹中的下载内容，permwatch 需要完全磁盘访问权限。它只读取，从不更改你的文件。
+onb.fdaSteps	1. 点按“打开设置”。\n2. 在列表中打开 permwatch（如有要求请输入 Mac 密码）。\n3. 回到这里，此页面会自动继续。
+onb.fdaDone	完全磁盘访问权限已开启。谢谢！
+onb.checkTitle	来检查你的 Mac
+onb.checkBody	首次检查约需一分钟：恶意软件扫描、浏览器和权限检查，以及远程访问工具查找。结果会显示在“概览”中。
+onb.checkNow	检查我的 Mac
+onb.skip	暂时跳过
+nav.advancedMode	高级模式
+nav.advancedHelp	显示时间线、进程、网络、数据包捕获和终端。
+upd.checkNow	检查更新…
+upd.auto	自动下载并安装更新

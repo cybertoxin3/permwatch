@@ -640,3 +640,25 @@ guard.approveButton	ログイン項目を開く
 guard.blockedTitle	実行前にブロック: %@
 guard.blockedBody	起動元: %@。ファイルはまだ Mac にあります。下のリストから隔離できます。このプログラムを知っていて信頼できるなら許可してください。
 guard.allow	知っている、実行を許可
+onb.title	permwatch へようこそ
+onb.lead	permwatch は Mac を見守り、注意が必要なことがあればわかりやすい言葉でお知らせします。
+onb.p1	Apple と Elastic のシグネチャでマルウェアを見つけ、新しいファイルを数秒で確認します。
+onb.p2	詐欺やアドウェアが残すもの（遠隔操作ツール、乗っ取られたブラウザ、スパイ的な権限）を見つけます。
+onb.p3	確認なしに削除やブロックをすることはなく、すべて元に戻せます。
+onb.privacy	あなたに関する情報は Mac の外に出ません。アカウントも追跡もありません。
+onb.start	はじめる
+onb.next	続ける
+onb.back	戻る
+onb.later	あとで
+onb.fdaTitle	すべてを見るための権限はひとつだけ
+onb.fdaBody	カメラ・画面・ファイルにアクセスできるアプリを見つけ、すべてのフォルダのダウンロードを確認するには、フルディスクアクセスが必要です。読み取るだけで、ファイルを変更することはありません。
+onb.fdaSteps	1.「設定を開く」をクリックします。\n2. リストで permwatch をオンにします（求められたら Mac のパスワードを入力）。\n3. ここに戻ると、自動で次に進みます。
+onb.fdaDone	フルディスクアクセスがオンになりました。ありがとうございます！
+onb.checkTitle	Mac をチェックしましょう
+onb.checkBody	最初のチェックは約1分です。マルウェアスキャン、ブラウザと権限の確認、遠隔操作ツールの検索を行います。結果は概要に表示されます。
+onb.checkNow	Mac をチェック
+onb.skip	今はスキップ
+nav.advancedMode	詳細モード
+nav.advancedHelp	タイムライン、プロセス、ネットワーク、パケットキャプチャ、ターミナルを表示します。
+upd.checkNow	アップデートを確認…
+upd.auto	アップデートを自動でダウンロードしてインストール

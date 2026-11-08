@@ -162,6 +162,7 @@ struct SettingsView: View {
 
             Section {
                 Toggle(L("upd.setting"), isOn: $updates.enabled)
+                if updates.usesSparkle && updates.enabled { Toggle(L("upd.auto"), isOn: $updates.autoInstall) }
                 Text(L("upd.settingDesc", UpdateChecker.current)).font(.system(size: 11)).foregroundStyle(.secondary)
             }
 
