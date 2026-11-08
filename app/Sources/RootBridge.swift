@@ -229,8 +229,14 @@ final class RootBridge: ObservableObject {
         if serviceAvailable, service.status != .notRegistered { try? service.unregister() }
     }
 
+    private var lastStamp: Date?
+
     private func read() {
         guard enabledPreference || data != nil else { return }
+        // Yardımcı dosyayı 5 sn'de bir yazar: değişmediyse (büyük) JSON'u yeniden ayrıştırma.
+        let stamp = (try? FileManager.default.attributesOfItem(atPath: Self.outPath))?[.modificationDate] as? Date
+        if stamp != nil, stamp == lastStamp, data != nil { return }
+        lastStamp = stamp
         Task.detached(priority: .utility) {
             let parsed = RootBridge.parse()
             await MainActor.run {

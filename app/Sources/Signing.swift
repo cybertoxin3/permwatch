@@ -43,6 +43,29 @@ enum Signing {
     /// Yalnızca imza yapısını doğrular (tüm dosyaları hash'lemez), bu yüzden hızlıdır.
     /// Dosya okunamıyorsa (ör. yalnızca root okuyabiliyorsa) "unreadable" döner: imzasız sanmak yanlış alarm olur.
     static func classify(path: String) -> (signature: String, team: String?, identifier: String?) {
+        // Önbellek: aynı dosya (yol + boyut + değişiklik zamanı) her yoklamada yeniden doğrulanmasın.
+        let exe0 = Bundle(path: path)?.executablePath ?? path
+        var st = stat()
+        let key = stat(exe0, &st) == 0 ? "\(path)|\(st.st_size)|\(st.st_mtimespec.tv_sec)|\(st.st_ino)" : nil
+        if let key, let hit = classifyCache.get(key) { return hit }
+        let r = classifyUncached(path: path)
+        if let key { classifyCache.set(key, r) }
+        return r
+    }
+
+    final class Cache: @unchecked Sendable {
+        private let lock = NSLock()
+        private var map: [String: (String, String?, String?)] = [:]
+        func get(_ k: String) -> (String, String?, String?)? { lock.lock(); defer { lock.unlock() }; return map[k] }
+        func set(_ k: String, _ v: (String, String?, String?)) {
+            lock.lock(); defer { lock.unlock() }
+            if map.count > 4000 { map.removeAll(keepingCapacity: true) }
+            map[k] = v
+        }
+    }
+    static let classifyCache = Cache()
+
+    private static func classifyUncached(path: String) -> (signature: String, team: String?, identifier: String?) {
         let exe = Bundle(path: path)?.executablePath ?? path
         guard FileManager.default.isReadableFile(atPath: exe) else { return ("unreadable", nil, nil) }
         var code: SecStaticCode?

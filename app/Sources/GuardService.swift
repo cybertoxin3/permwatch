@@ -32,7 +32,7 @@ final class GuardService: ObservableObject {
         readOffset = UInt64(UserDefaults.standard.integer(forKey: seenKey))
         guard available else { return }
         refresh()
-        timer = Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { [weak self] _ in
+        timer = Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { [weak self] _ in
             MainActor.assumeIsolated { self?.refresh() }
         }
     }

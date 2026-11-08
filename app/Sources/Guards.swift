@@ -533,7 +533,7 @@ final class NetworkMonitor: ObservableObject {
 
     private func reschedule() {
         timer?.invalidate()
-        timer = Timer.scheduledTimer(withTimeInterval: visible ? 3 : 10, repeats: true) { [weak self] _ in
+        timer = Timer.scheduledTimer(withTimeInterval: visible ? 3 : 20, repeats: true) { [weak self] _ in
             MainActor.assumeIsolated { self?.refresh() }
         }
     }

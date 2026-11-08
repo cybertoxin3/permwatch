@@ -32,7 +32,7 @@ final class Store: ObservableObject {
 
     private static let trustedKey = "trustedApps"
     /// Asıl tetikleyici dosya izleyicileridir; zamanlayıcı yalnızca yedek.
-    private static let fallbackInterval: TimeInterval = 60
+    private static let fallbackInterval: TimeInterval = 300
 
     init() {
         trusted = Set(UserDefaults.standard.stringArray(forKey: Self.trustedKey) ?? [])

@@ -77,10 +77,10 @@ final class ProcessMonitor: ObservableObject {
 
     var suspicious: Int { rows.filter { $0.risk >= .caution }.count }
 
-    /// Görünürken 2 sn, arka planda 5 sn aralıkla (yeni şüpheli süreçler için) yeniler.
+    /// Görünürken 2 sn, arka planda 15 sn aralıkla (yeni şüpheli süreçler için) yeniler.
     private func reschedule() {
         timer?.invalidate()
-        timer = Timer.scheduledTimer(withTimeInterval: visible ? 2 : 5, repeats: true) { [weak self] _ in
+        timer = Timer.scheduledTimer(withTimeInterval: visible ? 2 : 15, repeats: true) { [weak self] _ in
             MainActor.assumeIsolated { self?.refresh() }
         }
     }
