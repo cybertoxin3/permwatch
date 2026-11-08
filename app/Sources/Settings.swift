@@ -52,6 +52,7 @@ struct SettingsView: View {
     @EnvironmentObject var downloads: DownloadGuard
     @EnvironmentObject var root: RootBridge
     @EnvironmentObject var packets: PacketMonitor
+    @EnvironmentObject var updates: UpdateChecker
 
     var body: some View {
         Form {
@@ -107,6 +108,11 @@ struct SettingsView: View {
             } footer: {
                 Text(L("settings.captureFolderDesc")).font(.system(size: 11)).foregroundStyle(.secondary)
                     .fixedSize(horizontal: false, vertical: true)
+            }
+
+            Section {
+                Toggle(L("upd.setting"), isOn: $updates.enabled)
+                Text(L("upd.settingDesc", UpdateChecker.current)).font(.system(size: 11)).foregroundStyle(.secondary)
             }
 
             Section {

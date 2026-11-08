@@ -565,3 +565,8 @@ chk.safari.unsigned	Bu Safari uzantısı, bilinen bir geliştirici tarafından i
 chk.safari.open	Safari Uzantılarını Aç
 chk.safari.summaryTitle	%@ uygulama Safari uzantısı ekliyor
 chk.safari.summaryBody	%@. İmzalı uygulamalardan geliyorlar. Safari yalnızca Safari › Ayarlar › Uzantılar'da açtıklarını çalıştırır; kullanmadıklarını kaldır.
+upd.title	Yeni sürüm var: %@
+upd.body	Sendeki sürüm %@. Yeni sürümler yeni kontroller ve düzeltmeler içerir.
+upd.open	İndir
+upd.setting	Yeni sürümleri denetle
+upd.settingDesc	permwatch günde bir kez GitHub'a en son sürüm numarasını sorar. Seninle veya Mac'inle ilgili hiçbir şey gönderilmez. Bu sürüm: %@.

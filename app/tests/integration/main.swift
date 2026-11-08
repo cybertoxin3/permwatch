@@ -88,6 +88,9 @@ func check(_ cond: Bool, _ name: String) { if cond { print("✓ \(name)") } else
     let sum = Checks.summarizeExtensions([Finding(id: "ext.summary.Safari", category: .browser, verdict: .info, title: "s", body: "")])
     check(sum.count == 1 && sum[0].id == "ext.summary.Safari", "hazır özet kartı ikinci kez özetlenmez")
 
+    check(UpdateChecker.isNewer("v0.10.0", than: "0.9.3") && !UpdateChecker.isNewer("0.2.0", than: "0.2.0") && !UpdateChecker.isNewer("v0.1.9", than: "0.2"),
+          "sürüm karşılaştırma")
+
     // VPN sızıntısı (sentetik: tünel utun4, fiziksel en0 = 192.0.2.10)
     func conn(_ name: String, _ local: String, _ remote: String) -> ConnRow {
         ConnRow(id: name + remote, pid: 1, name: name, path: nil, proto: "TCP", local: local, remote: remote, state: "ESTABLISHED",

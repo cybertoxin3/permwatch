@@ -565,3 +565,8 @@ chk.safari.unsigned	この Safari 拡張機能は、既知の開発元に署名�
 chk.safari.open	Safari 拡張機能を開く
 chk.safari.summaryTitle	%@ 個のアプリが Safari 拡張機能を追加しています
 chk.safari.summaryBody	%@。署名済みアプリのものです。Safari は「Safari › 設定 › 機能拡張」でオンにしたものだけを実行します。使っていないものは削除しましょう。
+upd.title	新しいバージョンがあります: %@
+upd.body	現在のバージョンは %@ です。新しいバージョンには新しいチェックと修正が含まれます。
+upd.open	ダウンロード
+upd.setting	新しいバージョンを確認
+upd.settingDesc	permwatch は 1 日 1 回、GitHub に最新のバージョン番号を問い合わせます。あなたや Mac に関する情報は送信されません。このバージョン: %@。

@@ -565,3 +565,8 @@ chk.safari.unsigned	Diese Safari-Erweiterung stammt aus einer App ohne Signatur 
 chk.safari.open	Safari-Erweiterungen öffnen
 chk.safari.summaryTitle	%@ Apps fügen Safari-Erweiterungen hinzu
 chk.safari.summaryBody	%@. Sie stammen aus signierten Apps. Safari führt nur die unter Safari › Einstellungen › Erweiterungen aktivierten aus; entferne ungenutzte.
+upd.title	Neue Version verfügbar: %@
+upd.body	Du hast %@. Neue Versionen bringen neue Prüfungen und Korrekturen.
+upd.open	Laden
+upd.setting	Nach neuen Versionen suchen
+upd.settingDesc	Einmal täglich fragt permwatch GitHub nach der neuesten Versionsnummer. Über dich oder deinen Mac wird nichts gesendet. Diese Version: %@.

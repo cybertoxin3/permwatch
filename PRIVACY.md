@@ -2,7 +2,9 @@
 
 permwatch is a privacy tool, so it is strict about your data.
 
-**Nothing leaves your Mac.** permwatch has no analytics, no telemetry, no account and no server. It makes no network requests of its own.
+**Nothing about you leaves your Mac.** permwatch has no analytics, no telemetry, no account and no server.
+
+The only request it makes by itself is an optional update check: once a day it asks GitHub (`api.github.com`) for the number of the latest release. No data about you or your Mac is included. You can turn it off in Settings › Check for new versions.
 
 The malware scan runs entirely on your Mac with the XProtect signatures already installed by macOS; no file or hash is uploaded.
 

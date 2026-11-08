@@ -565,3 +565,8 @@ chk.safari.unsigned	Це розширення Safari з програми без 
 chk.safari.open	Відкрити розширення Safari
 chk.safari.summaryTitle	Програм із розширеннями Safari: %@
 chk.safari.summaryBody	%@. Вони з підписаних програм. Safari запускає лише ввімкнені в Safari › Параметри › Розширення; видаліть непотрібні.
+upd.title	Доступна нова версія: %@
+upd.body	У вас версія %@. Нові версії містять нові перевірки й виправлення.
+upd.open	Завантажити
+upd.setting	Перевіряти нові версії
+upd.settingDesc	Раз на день permwatch запитує в GitHub номер останньої версії. Про вас і ваш Mac нічого не надсилається. Ця версія: %@.

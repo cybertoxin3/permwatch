@@ -565,3 +565,8 @@ chk.safari.unsigned	Esta extensión de Safari viene de una app sin firma de un d
 chk.safari.open	Abrir extensiones de Safari
 chk.safari.summaryTitle	%@ apps añaden extensiones de Safari
 chk.safari.summaryBody	%@. Vienen de apps firmadas. Safari solo ejecuta las que activaste en Safari › Ajustes › Extensiones; elimina las que no uses.
+upd.title	Nueva versión disponible: %@
+upd.body	Tienes la %@. Las nuevas versiones traen nuevas comprobaciones y correcciones.
+upd.open	Descargar
+upd.setting	Buscar nuevas versiones
+upd.settingDesc	Una vez al día permwatch pregunta a GitHub el número de la última versión. No se envía nada sobre ti ni tu Mac. Esta versión: %@.

@@ -113,6 +113,7 @@ struct AdviceView: View {
     @EnvironmentObject var center: ThreatCenter
     @EnvironmentObject var scanner: MalwareScanner
     @EnvironmentObject var checks: SecurityChecks
+    @EnvironmentObject var updates: UpdateChecker
     @State private var done: Set<String> = []
     @State private var message: String?
     @State private var confirm: AdviceItem?
@@ -154,6 +155,7 @@ struct AdviceView: View {
         .onAppear {
             advisor.refresh(apps: store.apps); posture.refresh()
             if checks.lastRun == nil { runChecks() }
+            updates.check()
             if Snapshot.section == "advice" && Snapshot.target == nil {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 8) { advisor.refresh(apps: store.apps) }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 16) {
@@ -266,6 +268,11 @@ struct AdviceView: View {
 
     private var items: [AdviceItem] {
         var out: [AdviceItem] = []
+        if updates.updateAvailable, let v = updates.latest {
+            out.append(.init(id: "update.\(v)", verdict: .info, icon: "arrow.down.app", title: L("upd.title", v),
+                             body: L("upd.body", UpdateChecker.current),
+                             primary: (L("upd.open"), { if let u = updates.releaseURL { NSWorkspace.shared.open(u) } })))
+        }
         if store.needsFullDiskAccess || downloads.needsFullDisk {
             out.append(.init(id: "fda", verdict: .danger, icon: "lock.shield", title: L("fda.one.title"), body: L("fda.one.body"),
                              primary: (L("fda.open"), FullDisk.openSettings)))

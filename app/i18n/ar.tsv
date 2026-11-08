@@ -565,3 +565,8 @@ chk.safari.unsigned	تأتي إضافة Safari هذه من تطبيق غير م�
 chk.safari.open	فتح إضافات Safari
 chk.safari.summaryTitle	‏%@ تطبيقات تضيف إضافات إلى Safari
 chk.safari.summaryBody	%@. تأتي من تطبيقات موقّعة. لا يشغّل Safari إلا ما فعّلته في Safari › الإعدادات › الإضافات؛ أزل ما لا تستخدمه.
+upd.title	يتوفر إصدار جديد: %@
+upd.body	لديك الإصدار %@. تتضمن الإصدارات الجديدة فحوصًا وإصلاحات جديدة.
+upd.open	تنزيل
+upd.setting	التحقق من الإصدارات الجديدة
+upd.settingDesc	يسأل permwatch مرة يوميًا GitHub عن رقم أحدث إصدار. لا يُرسل أي شيء عنك أو عن جهازك. هذا الإصدار: %@.

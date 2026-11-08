@@ -565,3 +565,8 @@ chk.safari.unsigned	此 Safari 扩展来自未经已知开发者签名的应用�
 chk.safari.open	打开 Safari 扩展
 chk.safari.summaryTitle	%@ 个应用添加了 Safari 扩展
 chk.safari.summaryBody	%@。它们来自已签名的应用。Safari 只运行你在“Safari › 设置 › 扩展”中开启的扩展;请移除不用的。
+upd.title	有新版本:%@
+upd.body	你的版本是 %@。新版本包含新的检查和修复。
+upd.open	下载
+upd.setting	检查新版本
+upd.settingDesc	permwatch 每天向 GitHub 查询一次最新版本号。不会发送任何关于你或你的 Mac 的信息。当前版本:%@。
