@@ -231,6 +231,12 @@ while true {
         slow["btm"] = run("/usr/bin/sfltool", ["dumpbtm"])
         slow["cron"] = run("/usr/bin/crontab", ["-l", "-u", "root"])
         slow["profiles"] = run("/usr/bin/profiles", ["show", "-type", "configuration"])
+        // Apple XProtect / XProtect Remediator: son 3 günün tespit ve temizleme kayıtları (saatte bir).
+        if tick % 720 == 0 {
+            let log = run("/usr/bin/log", ["show", "--last", "3d", "--style", "compact", "--predicate",
+                "(subsystem BEGINSWITH \"com.apple.XProtect\" OR process BEGINSWITH \"XProtect\") AND (eventMessage CONTAINS[c] \"remediat\" OR eventMessage CONTAINS[c] \"detected\" OR eventMessage CONTAINS[c] \"malware found\")"])
+            slow["xprotect"] = String(log.split(separator: "\n").filter { !$0.hasPrefix("Timestamp") && !$0.contains("Filtering the log") }.suffix(200).joined(separator: "\n"))
+        }
     }
     // Süreçler ve bağlantılar 5 saniyede bir.
     if tick % 5 == 0 {
@@ -250,6 +256,7 @@ while true {
         var doc: [String: Any] = [
             "ts": Date().timeIntervalSince1970,
             "btm": slow["btm"] ?? "", "cron": slow["cron"] ?? "", "profiles": slow["profiles"] ?? "",
+            "xprotect": slow["xprotect"] ?? "",
         ]
         doc.merge(medium) { a, _ in a }
         var cap: [String: Any] = ["active": capture != nil]

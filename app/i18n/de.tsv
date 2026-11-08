@@ -573,3 +573,7 @@ upd.settingDesc	Einmal täglich fragt permwatch GitHub nach der neuesten Version
 settings.rootApprove	Noch ein Schritt: In Systemeinstellungen › Allgemein › Anmeldeobjekte & Erweiterungen „permwatch“ unter „Im Hintergrund erlauben“ einschalten. Danach fragt macOS nicht mehr nach dem Passwort.
 net.first.title	%@ hat sich mit einem neuen Server verbunden
 net.first.detail	%@ · Dieses unsignierte Programm hat noch nie mit diesem Server gesprochen.
+scan.xpTitle	Apples eigene Hintergrundscans (XProtect)
+scan.xpNeedsRoot	macOS führt sie still aus und speichert die Ergebnisse in einem geschützten Protokoll. Schalte den Administratormodus ein, um zu sehen, was XProtect in den letzten 3 Tagen gefunden oder entfernt hat.
+scan.xpNone	XProtect hat in den letzten 3 Tagen nichts gefunden oder entfernt.
+scan.xpFound	XProtect hat in den letzten 3 Tagen %@ Erkennungs- oder Entfernungsereignisse protokolliert:

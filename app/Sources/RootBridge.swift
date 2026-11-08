@@ -16,6 +16,8 @@ struct RootData {
     var captureError: String?
     var captureSkipped = 0
     var capturePktapError: String?
+    /// Apple XProtect tespit/temizleme kayıtları (son 3 gün, yönetici modunda).
+    var xprotectLog = ""
 
     var fresh: Bool { Date().timeIntervalSince(ts) < 20 }
 }
@@ -242,6 +244,7 @@ final class RootBridge: ObservableObject {
         var r = RootData(ts: Date(timeIntervalSince1970: ts), lsof: j["lsof"] as? String ?? "",
                          btm: j["btm"] as? String ?? "", cron: j["cron"] as? String ?? "",
                          profiles: j["profiles"] as? String ?? "", procs: procs)
+        r.xprotectLog = j["xprotect"] as? String ?? ""
         if let c = j["capture"] as? [String: Any] {
             r.captureActive = c["active"] as? Bool ?? false
             r.captureDevice = c["device"] as? String

@@ -573,3 +573,7 @@ upd.settingDesc	يسأل permwatch مرة يوميًا GitHub عن رقم أحد
 settings.rootApprove	خطوة أخيرة: في إعدادات النظام › عام › عناصر تسجيل الدخول والإضافات، شغّل «permwatch» ضمن «السماح في الخلفية». بعدها لن يطلب macOS كلمة المرور مجددًا.
 net.first.title	اتصل %@ بخادم جديد
 net.first.detail	%@ · لم يتصل هذا البرنامج غير الموقّع بهذا الخادم من قبل.
+scan.xpTitle	فحوص Apple في الخلفية (XProtect)
+scan.xpNeedsRoot	يشغّل macOS هذه الفحوص بصمت ويحفظ نتائجها في سجل محمي. شغّل وضع المسؤول لرؤية ما اكتشفه XProtect أو أزاله في آخر 3 أيام.
+scan.xpNone	لم يكتشف XProtect أو يُزل شيئًا في آخر 3 أيام.
+scan.xpFound	سجّل XProtect ‏%@ حدث اكتشاف أو إزالة في آخر 3 أيام:

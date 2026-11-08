@@ -21,6 +21,7 @@ struct ScanView: View {
                 } else if scanner.lastScan != nil && !scanner.running {
                     clean
                 }
+                xprotectSection
                 about
             }
             .padding(24)
@@ -134,6 +135,26 @@ struct ScanView: View {
         .padding(16)
         .background(Color.red.opacity(0.07), in: RoundedRectangle(cornerRadius: 12))
         .overlay(RoundedRectangle(cornerRadius: 12).strokeBorder(Color.red.opacity(0.35)))
+    }
+
+    /// Apple'ın kendi arka plan taramalarının (XProtect Remediator) kayıtları; yalnızca yönetici modunda okunabilir.
+    private var xprotectSection: some View {
+        let lines = (RootBridge.shared.data?.xprotectLog ?? "").split(separator: "\n").map(String.init)
+        return VStack(alignment: .leading, spacing: 6) {
+            Text(L("scan.xpTitle")).font(.system(size: 12, weight: .semibold))
+            if !RootBridge.shared.active {
+                Text(L("scan.xpNeedsRoot")).font(.system(size: 11.5)).foregroundStyle(.secondary)
+            } else if lines.isEmpty {
+                Text(L("scan.xpNone")).font(.system(size: 11.5)).foregroundStyle(.secondary)
+            } else {
+                Text(L("scan.xpFound", lines.count.formatted())).font(.system(size: 11.5)).foregroundStyle(.orange)
+                ScrollView(.horizontal) {
+                    Text(lines.suffix(30).joined(separator: "\n")).font(.system(size: 10.5, design: .monospaced)).textSelection(.enabled)
+                }
+                .frame(maxHeight: 180)
+            }
+        }
+        .padding(.top, 6)
     }
 
     private var about: some View {

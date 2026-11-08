@@ -573,3 +573,7 @@ upd.settingDesc	permwatch 每天向 GitHub 查询一次最新版本号。不会�
 settings.rootApprove	还差一步:在系统设置 › 通用 › 登录项与扩展中,打开“允许在后台”下的“permwatch”。之后 macOS 不会再要求输入密码。
 net.first.title	%@ 连接到了一个新服务器
 net.first.detail	%@ · 这个未签名的程序以前从未与该服务器通信。
+scan.xpTitle	Apple 自身的后台扫描(XProtect)
+scan.xpNeedsRoot	macOS 会静默运行这些扫描,并将结果保存在受保护的日志中。打开管理员模式即可查看 XProtect 最近 3 天检测或移除的内容。
+scan.xpNone	XProtect 最近 3 天没有检测到或移除任何内容。
+scan.xpFound	XProtect 最近 3 天记录了 %@ 条检测或移除事件:

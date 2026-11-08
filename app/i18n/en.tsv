@@ -573,3 +573,7 @@ upd.settingDesc	Once a day permwatch asks GitHub for the latest version number. 
 settings.rootApprove	One more step: in System Settings › General › Login Items & Extensions, turn on “permwatch” under “Allow in the Background”. After that macOS won’t ask for your password again.
 net.first.title	%@ connected to a new server
 net.first.detail	%@ · This unsigned program has never talked to this server before.
+scan.xpTitle	Apple’s own background scans (XProtect)
+scan.xpNeedsRoot	macOS runs these silently and keeps the results in a protected log. Turn on administrator mode to show what XProtect detected or removed in the last 3 days.
+scan.xpNone	No detections or removals by XProtect in the last 3 days.
+scan.xpFound	XProtect logged %@ detection or removal events in the last 3 days:

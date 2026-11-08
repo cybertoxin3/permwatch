@@ -573,3 +573,7 @@ upd.settingDesc	Une fois par jour, permwatch demande à GitHub le dernier numér
 settings.rootApprove	Dernière étape : dans Réglages Système › Général › Ouverture et extensions, activez « permwatch » sous « Autoriser en arrière-plan ». macOS ne demandera plus votre mot de passe.
 net.first.title	%@ s’est connecté à un nouveau serveur
 net.first.detail	%@ · Ce programme non signé n’avait jamais contacté ce serveur.
+scan.xpTitle	Analyses d’Apple en arrière-plan (XProtect)
+scan.xpNeedsRoot	macOS les exécute discrètement et garde les résultats dans un journal protégé. Activez le mode administrateur pour voir ce que XProtect a détecté ou supprimé ces 3 derniers jours.
+scan.xpNone	XProtect n’a rien détecté ni supprimé ces 3 derniers jours.
+scan.xpFound	XProtect a enregistré %@ détections ou suppressions ces 3 derniers jours :

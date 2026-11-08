@@ -573,3 +573,7 @@ upd.settingDesc	permwatch は 1 日 1 回、GitHub に最新のバージョン�
 settings.rootApprove	あと 1 手順: システム設定 › 一般 › ログイン項目と機能拡張で、「バックグラウンドでの実行を許可」の「permwatch」をオンにしてください。以後 macOS はパスワードを求めません。
 net.first.title	%@ が新しいサーバに接続しました
 net.first.detail	%@ · この未署名のプログラムは、このサーバと通信したことがありません。
+scan.xpTitle	Apple 独自のバックグラウンドスキャン(XProtect)
+scan.xpNeedsRoot	macOS はこれらを目立たず実行し、結果を保護されたログに保存します。管理者モードをオンにすると、過去 3 日間に XProtect が検出・削除したものを表示します。
+scan.xpNone	過去 3 日間、XProtect による検出・削除はありません。
+scan.xpFound	過去 3 日間に XProtect が記録した検出・削除イベント: %@ 件

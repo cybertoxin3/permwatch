@@ -573,3 +573,7 @@ upd.settingDesc	permwatch günde bir kez GitHub'a en son sürüm numarasını so
 settings.rootApprove	Son bir adım: Sistem Ayarları › Genel › Giriş Öğeleri ve Uzantılar'da "Arka Planda İzin Ver" altındaki "permwatch"ı aç. Bundan sonra macOS şifreni bir daha sormaz.
 net.first.title	%@ yeni bir sunucuya bağlandı
 net.first.detail	%@ · Bu imzasız program bu sunucuyla daha önce hiç konuşmamıştı.
+scan.xpTitle	Apple'ın kendi arka plan taramaları (XProtect)
+scan.xpNeedsRoot	macOS bunları sessizce çalıştırır ve sonuçları korunan bir günlükte tutar. XProtect'in son 3 günde neyi tespit ettiğini veya kaldırdığını görmek için yönetici modunu aç.
+scan.xpNone	XProtect son 3 günde hiçbir şey tespit etmedi veya kaldırmadı.
+scan.xpFound	XProtect son 3 günde %@ tespit veya kaldırma kaydı tuttu:

@@ -573,3 +573,7 @@ upd.settingDesc	Una volta al giorno permwatch chiede a GitHub il numero dell’u
 settings.rootApprove	Ultimo passo: in Impostazioni di Sistema › Generali › Elementi login ed estensioni attiva «permwatch» in «Consenti in background». Poi macOS non chiederà più la password.
 net.first.title	%@ si è collegato a un nuovo server
 net.first.detail	%@ · Questo programma non firmato non aveva mai contattato questo server.
+scan.xpTitle	Scansioni in background di Apple (XProtect)
+scan.xpNeedsRoot	macOS le esegue in silenzio e conserva i risultati in un log protetto. Attiva la modalità amministratore per vedere cosa XProtect ha rilevato o rimosso negli ultimi 3 giorni.
+scan.xpNone	XProtect non ha rilevato né rimosso nulla negli ultimi 3 giorni.
+scan.xpFound	XProtect ha registrato %@ rilevamenti o rimozioni negli ultimi 3 giorni:

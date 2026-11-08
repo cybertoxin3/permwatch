@@ -573,3 +573,7 @@ upd.settingDesc	Una vez al día permwatch pregunta a GitHub el número de la úl
 settings.rootApprove	Un paso más: en Ajustes del Sistema › General › Ítems de inicio y extensiones, activa «permwatch» en «Permitir en segundo plano». Después macOS no volverá a pedir tu contraseña.
 net.first.title	%@ se conectó a un servidor nuevo
 net.first.detail	%@ · Este programa sin firma nunca había hablado con este servidor.
+scan.xpTitle	Análisis de Apple en segundo plano (XProtect)
+scan.xpNeedsRoot	macOS los ejecuta en silencio y guarda los resultados en un registro protegido. Activa el modo administrador para ver lo que XProtect detectó o eliminó en los últimos 3 días.
+scan.xpNone	XProtect no detectó ni eliminó nada en los últimos 3 días.
+scan.xpFound	XProtect registró %@ detecciones o eliminaciones en los últimos 3 días:
