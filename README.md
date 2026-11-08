@@ -16,7 +16,7 @@ permwatch keeps a record of every permission change and alerts you the moment so
 ![Status](https://img.shields.io/badge/status-in%20development-orange)
 
 </div>
-
+ 
 ---
 
 ## You clicked "Allow" and forgot
