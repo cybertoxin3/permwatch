@@ -150,7 +150,8 @@ func check(_ cond: Bool, _ name: String) { if cond { print("✓ \(name)") } else
 
     // YARA motoru + Apple imzaları: EICAR
     let eicar = FileManager.default.temporaryDirectory.appendingPathComponent("permwatch-eicar-\(UUID().uuidString).com")
-    try? Data("X5O!P%@AP[4\\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*".utf8).write(to: eicar)
+    // Ters yazılı: test programının kendisi EICAR kuralına takılıp koruma servisince engellenmesin.
+    try? Data(String("*H+H$!ELIF-TSET-SURIVITNA-DRADNATS-RACIE$}7)CC7)^P(45XZP\\4[PA@%P!O5X".reversed()).utf8).write(to: eicar)
     if FileManager.default.fileExists(atPath: YaraEngine.rulesDir + "/XProtect.yara") {
         check(YaraEngine.shared.load() == nil, "Apple XProtect kuralları derlendi (\(YaraEngine.shared.ruleCount))")
         check(YaraEngine.shared.scan(eicar.path)?.contains { $0.rule == "EICAR" } == true, "EICAR test dosyası yakalandı")
