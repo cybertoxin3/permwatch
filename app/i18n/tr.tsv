@@ -1,6 +1,8 @@
+action.forceQuit	Zorla Çık
 action.missingFile	Dosya bu Mac'te yok
 action.more	Diğer
 action.openPermissions	İzinleri aç
+action.quit	Çık
 action.removeItem	Giriş öğesini kaldır
 action.removed	Çöp Sepeti'ne taşındı
 action.resetAll	Tüm izinleri sıfırla
@@ -13,14 +15,22 @@ alert.evasion	Gatekeeper atlatma
 alert.execution	şüpheli çalıştırma
 alert.permission	şüpheli izin
 alert.persistence	şüpheli kalıcılık
+alert.process	şüpheli süreç
 app.firstSeen	ilk görülme: %@
 app.noLoginItem	Giriş öğesi yok
 apps.subtitle	Hangi uygulama neye erişebiliyor
 btm.agent	agent (kullanıcı)
 btm.daemon	daemon (sistem)
 btm.loginItem	Giriş öğesi
+col.cpu	CPU %
+col.memory	Bellek
+col.name	Ad
+col.risk	Risk
+col.user	Kullanıcı
 common.ok	Tamam
 confirm.cancel	Vazgeç
+confirm.forceQuit.body	Bu süreçteki kaydedilmemiş değişiklikler kaybolur.
+confirm.forceQuit.title	“%@” zorla kapatılsın mı?
 confirm.trash.body	Bir sonraki girişte artık yüklenmez. Çöp Sepeti'nden geri alabilirsin.
 confirm.trash.ok	Çöp Sepeti'ne taşı
 confirm.trash.title	“%@” Çöp Sepeti'ne taşınsın mı?
@@ -47,12 +57,14 @@ fda.open	Gizlilik Ayarlarını Aç
 fda.title	Tam Disk Erişimi gerekli
 field.addedBy	Ekleyen süreç
 field.arguments	Argümanlar
+field.connections	Ağ bağlantıları
 field.executes	Çalıştırılacak
 field.grantedVia	İzin kaynağı
 field.identity	Kimlik
 field.itemType	Öğe türü
 field.lastActivity	Son etkinlik
 field.parent	Üst süreç
+field.parentChain	Başlatan
 field.path	Yol
 field.process	Süreç
 field.quarantine	Karantina
@@ -60,6 +72,7 @@ field.reason	Sebep
 field.service	Servis
 field.signature	İmza
 field.source	Kaynak
+field.started	Başlangıç
 field.target	Hedef
 filter.alerts	Yalnızca uyarılar
 filter.all	Tümü
@@ -86,9 +99,21 @@ nav.micCamera	Mikrofon ve Kamera
 nav.permissions	İzinler
 nav.persistence	Kalıcılık
 nav.processes	Süreçler
+nav.running	Çalışan Süreçler
 nav.screen	Ekran Kaydı
 nav.timeline	Zaman Çizelgesi
 open.message	permwatch komut satırı aracının yazdığı bir JSON Lines kaydı seç
+proc.count	%ld süreç
+proc.filter.suspicious	Şüpheli
+proc.filter.thirdParty	Apple dışı
+proc.killFailed	Kapatılamadı: %@
+proc.noAccess	Yalnızca kendi süreçlerinde görülebilir
+proc.noConnections	Açık bağlantı yok
+proc.select	Bir süreç seç
+prule.deletedBinary	Program dosyası silindiği halde çalışmaya devam ediyor
+prule.masquerade	Sistem süreci adını kullanıyor ama alışılmadık bir yerden çalışıyor
+prule.suspiciousLocation	İndirilenler, geçici ya da gizli bir klasörden çalışıyor
+prule.unsignedUserLocation	Kullanıcının yazabildiği bir klasörden imzasız program çalışıyor
 quarantine.removed	elle silinmiş (xattr)
 reason.entitled	Yetki (entitlement)
 reason.mdm	MDM politikası

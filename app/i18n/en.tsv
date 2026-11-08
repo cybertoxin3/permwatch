@@ -1,6 +1,8 @@
+action.forceQuit	Force Quit
 action.missingFile	The file isn’t on this Mac
 action.more	More
 action.openPermissions	Open permissions
+action.quit	Quit
 action.removeItem	Remove login item
 action.removed	Moved to Trash
 action.resetAll	Reset all permissions
@@ -13,14 +15,22 @@ alert.evasion	Gatekeeper bypass
 alert.execution	suspicious execution
 alert.permission	suspicious permission
 alert.persistence	suspicious persistence
+alert.process	suspicious process
 app.firstSeen	first seen %@
 app.noLoginItem	No login item
 apps.subtitle	Which app can access what
 btm.agent	agent (user)
 btm.daemon	daemon (system)
 btm.loginItem	Login item
+col.cpu	CPU %
+col.memory	Memory
+col.name	Name
+col.risk	Risk
+col.user	User
 common.ok	OK
 confirm.cancel	Cancel
+confirm.forceQuit.body	Unsaved changes in this process will be lost.
+confirm.forceQuit.title	Force quit “%@”?
 confirm.trash.body	It will stop loading at the next login. You can restore it from the Trash.
 confirm.trash.ok	Move to Trash
 confirm.trash.title	Move “%@” to the Trash?
@@ -47,12 +57,14 @@ fda.open	Open Privacy Settings
 fda.title	Full Disk Access needed
 field.addedBy	Added by
 field.arguments	Arguments
+field.connections	Network connections
 field.executes	Executes
 field.grantedVia	Granted via
 field.identity	Identity
 field.itemType	Item type
 field.lastActivity	Last activity
 field.parent	Parent process
+field.parentChain	Launched by
 field.path	Path
 field.process	Process
 field.quarantine	Quarantine
@@ -60,6 +72,7 @@ field.reason	Reason
 field.service	Service
 field.signature	Signature
 field.source	Source
+field.started	Started
 field.target	Target
 filter.alerts	Alerts only
 filter.all	All
@@ -86,9 +99,21 @@ nav.micCamera	Microphone & Camera
 nav.permissions	Permissions
 nav.persistence	Persistence
 nav.processes	Processes
+nav.running	Running Processes
 nav.screen	Screen Recording
 nav.timeline	Timeline
 open.message	Choose a JSON Lines log written by the permwatch CLI
+proc.count	%ld processes
+proc.filter.suspicious	Suspicious
+proc.filter.thirdParty	Non-Apple
+proc.killFailed	Could not quit: %@
+proc.noAccess	Only available for your own processes
+proc.noConnections	No open connections
+proc.select	Select a process
+prule.deletedBinary	The program’s file was deleted while it is still running
+prule.masquerade	Uses a system process name but runs from an unusual location
+prule.suspiciousLocation	Running from Downloads, a temporary or a hidden folder
+prule.unsignedUserLocation	Unsigned program running from a user-writable folder
 quarantine.removed	removed manually (xattr)
 reason.entitled	Entitlement
 reason.mdm	MDM policy

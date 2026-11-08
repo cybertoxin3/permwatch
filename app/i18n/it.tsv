@@ -1,6 +1,8 @@
+action.forceQuit	Uscita forzata
 action.missingFile	Il file non è su questo Mac
 action.more	Altro
 action.openPermissions	Apri autorizzazioni
+action.quit	Esci
 action.removeItem	Rimuovi elemento login
 action.removed	Spostato nel Cestino
 action.resetAll	Reimposta tutte le autorizzazioni
@@ -13,14 +15,22 @@ alert.evasion	aggiramento di Gatekeeper
 alert.execution	esecuzione sospetta
 alert.permission	autorizzazione sospetta
 alert.persistence	persistenza sospetta
+alert.process	processo sospetto
 app.firstSeen	vista per la prima volta %@
 app.noLoginItem	Nessun elemento login
 apps.subtitle	Quale app accede a cosa
 btm.agent	agent (utente)
 btm.daemon	daemon (sistema)
 btm.loginItem	Elemento login
+col.cpu	CPU %
+col.memory	Memoria
+col.name	Nome
+col.risk	Rischio
+col.user	Utente
 common.ok	OK
 confirm.cancel	Annulla
+confirm.forceQuit.body	Le modifiche non salvate di questo processo andranno perse.
+confirm.forceQuit.title	Forzare l’uscita da “%@”?
 confirm.trash.body	Non verrà più caricato al prossimo login. Puoi ripristinarlo dal Cestino.
 confirm.trash.ok	Sposta nel Cestino
 confirm.trash.title	Spostare “%@” nel Cestino?
@@ -47,12 +57,14 @@ fda.open	Apri impostazioni privacy
 fda.title	Serve l’accesso completo al disco
 field.addedBy	Aggiunto da
 field.arguments	Argomenti
+field.connections	Connessioni di rete
 field.executes	Esegue
 field.grantedVia	Concesso tramite
 field.identity	Identità
 field.itemType	Tipo
 field.lastActivity	Ultima attività
 field.parent	Processo padre
+field.parentChain	Avviato da
 field.path	Percorso
 field.process	Processo
 field.quarantine	Quarantena
@@ -60,6 +72,7 @@ field.reason	Motivo
 field.service	Servizio
 field.signature	Firma
 field.source	Origine
+field.started	Avvio
 field.target	Destinazione
 filter.alerts	Solo avvisi
 filter.all	Tutto
@@ -86,9 +99,21 @@ nav.micCamera	Microfono e fotocamera
 nav.permissions	Autorizzazioni
 nav.persistence	Persistenza
 nav.processes	Processi
+nav.running	Processi in esecuzione
 nav.screen	Registrazione schermo
 nav.timeline	Cronologia
 open.message	Scegli un registro JSON Lines scritto dallo strumento permwatch
+proc.count	%ld processi
+proc.filter.suspicious	Sospetti
+proc.filter.thirdParty	Non Apple
+proc.killFailed	Impossibile chiudere: %@
+proc.noAccess	Disponibile solo per i tuoi processi
+proc.noConnections	Nessuna connessione aperta
+proc.select	Seleziona un processo
+prule.deletedBinary	Il file del programma è stato eliminato mentre è ancora in esecuzione
+prule.masquerade	Usa il nome di un processo di sistema ma viene eseguito da una posizione insolita
+prule.suspiciousLocation	In esecuzione da Download, da una cartella temporanea o nascosta
+prule.unsignedUserLocation	Programma non firmato in esecuzione da una cartella scrivibile dall’utente
 quarantine.removed	rimossa a mano (xattr)
 reason.entitled	Entitlement
 reason.mdm	Criterio MDM

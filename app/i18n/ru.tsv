@@ -1,6 +1,8 @@
+action.forceQuit	Завершить принудительно
 action.missingFile	Этого файла нет на Mac
 action.more	Ещё
 action.openPermissions	Открыть разрешения
+action.quit	Завершить
 action.removeItem	Удалить объект входа
 action.removed	Перемещено в Корзину
 action.resetAll	Сбросить все разрешения
@@ -13,14 +15,22 @@ alert.evasion	обход Gatekeeper
 alert.execution	подозрительный запуск
 alert.permission	подозрительное разрешение
 alert.persistence	подозрительный автозапуск
+alert.process	подозрительный процесс
 app.firstSeen	впервые замечено %@
 app.noLoginItem	Нет автозапуска
 apps.subtitle	Какое приложение к чему имеет доступ
 btm.agent	agent (пользователь)
 btm.daemon	daemon (система)
 btm.loginItem	Объект входа
+col.cpu	ЦП %
+col.memory	Память
+col.name	Имя
+col.risk	Риск
+col.user	Пользователь
 common.ok	ОК
 confirm.cancel	Отмена
+confirm.forceQuit.body	Несохранённые изменения в этом процессе будут потеряны.
+confirm.forceQuit.title	Завершить «%@» принудительно?
 confirm.trash.body	Он перестанет загружаться при следующем входе. Его можно вернуть из Корзины.
 confirm.trash.ok	Переместить в Корзину
 confirm.trash.title	Переместить «%@» в Корзину?
@@ -47,12 +57,14 @@ fda.open	Открыть настройки конфиденциальности
 fda.title	Нужен полный доступ к диску
 field.addedBy	Добавил
 field.arguments	Аргументы
+field.connections	Сетевые подключения
 field.executes	Запускает
 field.grantedVia	Источник
 field.identity	Идентификатор
 field.itemType	Тип объекта
 field.lastActivity	Активность
 field.parent	Родительский процесс
+field.parentChain	Запущен
 field.path	Путь
 field.process	Процесс
 field.quarantine	Карантин
@@ -60,6 +72,7 @@ field.reason	Причина
 field.service	Служба
 field.signature	Подпись
 field.source	Источник
+field.started	Запуск
 field.target	Цель
 filter.alerts	Только оповещения
 filter.all	Все
@@ -86,9 +99,21 @@ nav.micCamera	Микрофон и камера
 nav.permissions	Разрешения
 nav.persistence	Автозапуск
 nav.processes	Процессы
+nav.running	Запущенные процессы
 nav.screen	Запись экрана
 nav.timeline	Хронология
 open.message	Выберите журнал JSON Lines, записанный утилитой permwatch
+proc.count	Процессов: %ld
+proc.filter.suspicious	Подозрительные
+proc.filter.thirdParty	Не от Apple
+proc.killFailed	Не удалось завершить: %@
+proc.noAccess	Доступно только для ваших процессов
+proc.noConnections	Нет открытых подключений
+proc.select	Выберите процесс
+prule.deletedBinary	Файл программы удалён, но она продолжает работать
+prule.masquerade	Использует имя системного процесса, но запущен из необычного места
+prule.suspiciousLocation	Запущен из «Загрузок», временной или скрытой папки
+prule.unsignedUserLocation	Неподписанная программа запущена из папки, доступной пользователю для записи
 quarantine.removed	удалён вручную (xattr)
 reason.entitled	Entitlement
 reason.mdm	Политика MDM

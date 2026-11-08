@@ -1,6 +1,8 @@
+action.forceQuit	強制終了
 action.missingFile	このファイルはこの Mac にありません
 action.more	その他
 action.openPermissions	アクセス権を開く
+action.quit	終了
 action.removeItem	ログイン項目を削除
 action.removed	ゴミ箱に移動しました
 action.resetAll	すべてのアクセス権をリセット
@@ -13,14 +15,22 @@ alert.evasion	Gatekeeper の回避
 alert.execution	不審な実行
 alert.permission	不審なアクセス権
 alert.persistence	不審な永続化
+alert.process	不審なプロセス
 app.firstSeen	初回検出: %@
 app.noLoginItem	ログイン項目なし
 apps.subtitle	どのアプリが何にアクセスできるか
 btm.agent	agent(ユーザー)
 btm.daemon	daemon(システム)
 btm.loginItem	ログイン項目
+col.cpu	CPU %
+col.memory	メモリ
+col.name	名前
+col.risk	リスク
+col.user	ユーザ
 common.ok	OK
 confirm.cancel	キャンセル
+confirm.forceQuit.body	このプロセスで保存されていない変更は失われます。
+confirm.forceQuit.title	“%@”を強制終了しますか?
 confirm.trash.body	次回ログイン時から読み込まれなくなります。ゴミ箱から元に戻せます。
 confirm.trash.ok	ゴミ箱に入れる
 confirm.trash.title	“%@”をゴミ箱に入れますか?
@@ -47,12 +57,14 @@ fda.open	プライバシー設定を開く
 fda.title	フルディスクアクセスが必要です
 field.addedBy	追加したプロセス
 field.arguments	引数
+field.connections	ネットワーク接続
 field.executes	実行ファイル
 field.grantedVia	許可の経路
 field.identity	識別子
 field.itemType	項目の種類
 field.lastActivity	最終アクティビティ
 field.parent	親プロセス
+field.parentChain	起動元
 field.path	パス
 field.process	プロセス
 field.quarantine	隔離
@@ -60,6 +72,7 @@ field.reason	理由
 field.service	サービス
 field.signature	署名
 field.source	入手元
+field.started	開始
 field.target	対象
 filter.alerts	アラートのみ
 filter.all	すべて
@@ -86,9 +99,21 @@ nav.micCamera	マイクとカメラ
 nav.permissions	アクセス権
 nav.persistence	永続化
 nav.processes	プロセス
+nav.running	実行中のプロセス
 nav.screen	画面収録
 nav.timeline	タイムライン
 open.message	permwatch コマンドラインツールが書き出した JSON Lines ログを選択
+proc.count	%ld 個のプロセス
+proc.filter.suspicious	不審
+proc.filter.thirdParty	Apple 以外
+proc.killFailed	終了できませんでした: %@
+proc.noAccess	自分のプロセスでのみ表示できます
+proc.noConnections	開いている接続はありません
+proc.select	プロセスを選択してください
+prule.deletedBinary	実行中のプログラムのファイルが削除されています
+prule.masquerade	システムプロセスの名前を使っていますが、通常とは異なる場所から実行されています
+prule.suspiciousLocation	ダウンロード、一時フォルダ、または隠しフォルダから実行されています
+prule.unsignedUserLocation	ユーザが書き込めるフォルダから署名のないプログラムが実行されています
 quarantine.removed	手動で削除(xattr)
 reason.entitled	エンタイトルメント
 reason.mdm	MDM ポリシー

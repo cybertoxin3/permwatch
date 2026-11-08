@@ -1,6 +1,8 @@
+action.forceQuit	Forzar salida
 action.missingFile	El archivo no está en este Mac
 action.more	Más
 action.openPermissions	Abrir permisos
+action.quit	Salir
 action.removeItem	Quitar ítem de inicio
 action.removed	Movido a la papelera
 action.resetAll	Restablecer todos los permisos
@@ -13,14 +15,22 @@ alert.evasion	evasión de Gatekeeper
 alert.execution	ejecución sospechosa
 alert.permission	permiso sospechoso
 alert.persistence	persistencia sospechosa
+alert.process	proceso sospechoso
 app.firstSeen	visto por primera vez %@
 app.noLoginItem	Sin ítem de inicio
 apps.subtitle	Qué app accede a qué
 btm.agent	agent (usuario)
 btm.daemon	daemon (sistema)
 btm.loginItem	Ítem de inicio
+col.cpu	CPU %
+col.memory	Memoria
+col.name	Nombre
+col.risk	Riesgo
+col.user	Usuario
 common.ok	Aceptar
 confirm.cancel	Cancelar
+confirm.forceQuit.body	Se perderán los cambios no guardados de este proceso.
+confirm.forceQuit.title	¿Forzar la salida de «%@»?
 confirm.trash.body	Dejará de cargarse en el próximo inicio de sesión. Puedes recuperarlo de la papelera.
 confirm.trash.ok	Mover a la papelera
 confirm.trash.title	¿Mover «%@» a la papelera?
@@ -47,12 +57,14 @@ fda.open	Abrir ajustes de privacidad
 fda.title	Se necesita acceso total al disco
 field.addedBy	Añadido por
 field.arguments	Argumentos
+field.connections	Conexiones de red
 field.executes	Ejecuta
 field.grantedVia	Concedido vía
 field.identity	Identidad
 field.itemType	Tipo
 field.lastActivity	Última actividad
 field.parent	Proceso padre
+field.parentChain	Iniciado por
 field.path	Ruta
 field.process	Proceso
 field.quarantine	Cuarentena
@@ -60,6 +72,7 @@ field.reason	Motivo
 field.service	Servicio
 field.signature	Firma
 field.source	Origen
+field.started	Inicio
 field.target	Destino
 filter.alerts	Solo alertas
 filter.all	Todo
@@ -86,9 +99,21 @@ nav.micCamera	Micrófono y cámara
 nav.permissions	Permisos
 nav.persistence	Persistencia
 nav.processes	Procesos
+nav.running	Procesos en ejecución
 nav.screen	Grabación de pantalla
 nav.timeline	Cronología
 open.message	Elige un registro JSON Lines escrito por la herramienta permwatch
+proc.count	%ld procesos
+proc.filter.suspicious	Sospechosos
+proc.filter.thirdParty	No de Apple
+proc.killFailed	No se pudo cerrar: %@
+proc.noAccess	Solo disponible para tus propios procesos
+proc.noConnections	Sin conexiones abiertas
+proc.select	Selecciona un proceso
+prule.deletedBinary	El archivo del programa se eliminó mientras sigue en ejecución
+prule.masquerade	Usa el nombre de un proceso del sistema pero se ejecuta desde una ubicación inusual
+prule.suspiciousLocation	Se ejecuta desde Descargas, una carpeta temporal u oculta
+prule.unsignedUserLocation	Programa sin firma ejecutándose desde una carpeta en la que el usuario puede escribir
 quarantine.removed	eliminada a mano (xattr)
 reason.entitled	Entitlement
 reason.mdm	Política MDM

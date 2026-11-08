@@ -3,12 +3,14 @@ import SwiftUI
 @main
 struct PermwatchApp: App {
     @StateObject private var store = Store()
+    @StateObject private var monitor = ProcessMonitor()
     @AppStorage(Theme.storageKey) private var theme: Theme = .system
 
     var body: some Scene {
         WindowGroup(id: "main") {
             MainView()
                 .environmentObject(store)
+                .environmentObject(monitor)
                 .frame(minWidth: 1100, minHeight: 640)
                 .preferredColorScheme(theme.colorScheme)
                 .onAppear {

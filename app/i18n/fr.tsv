@@ -1,6 +1,8 @@
+action.forceQuit	Forcer à quitter
 action.missingFile	Le fichier n’est pas sur ce Mac
 action.more	Plus
 action.openPermissions	Ouvrir les autorisations
+action.quit	Quitter
 action.removeItem	Supprimer l’élément
 action.removed	Placé dans la corbeille
 action.resetAll	Réinitialiser toutes les autorisations
@@ -13,14 +15,22 @@ alert.evasion	contournement de Gatekeeper
 alert.execution	exécution suspecte
 alert.permission	autorisation suspecte
 alert.persistence	persistance suspecte
+alert.process	processus suspect
 app.firstSeen	vue pour la première fois %@
 app.noLoginItem	Pas d’élément d’ouverture
 apps.subtitle	Quelle app accède à quoi
 btm.agent	agent (utilisateur)
 btm.daemon	daemon (système)
 btm.loginItem	Élément d’ouverture
+col.cpu	Processeur %
+col.memory	Mémoire
+col.name	Nom
+col.risk	Risque
+col.user	Utilisateur
 common.ok	OK
 confirm.cancel	Annuler
+confirm.forceQuit.body	Les modifications non enregistrées de ce processus seront perdues.
+confirm.forceQuit.title	Forcer « %@ » à quitter ?
 confirm.trash.body	Il ne sera plus chargé à la prochaine connexion. Vous pourrez le récupérer dans la corbeille.
 confirm.trash.ok	Placer dans la corbeille
 confirm.trash.title	Placer « %@ » dans la corbeille ?
@@ -47,12 +57,14 @@ fda.open	Ouvrir les réglages de confidentialité
 fda.title	Accès complet au disque requis
 field.addedBy	Ajouté par
 field.arguments	Arguments
+field.connections	Connexions réseau
 field.executes	Exécute
 field.grantedVia	Accordé via
 field.identity	Identité
 field.itemType	Type
 field.lastActivity	Dernière activité
 field.parent	Processus parent
+field.parentChain	Lancé par
 field.path	Chemin
 field.process	Processus
 field.quarantine	Quarantaine
@@ -60,6 +72,7 @@ field.reason	Raison
 field.service	Service
 field.signature	Signature
 field.source	Source
+field.started	Démarré
 field.target	Cible
 filter.alerts	Alertes seulement
 filter.all	Tout
@@ -86,9 +99,21 @@ nav.micCamera	Micro et caméra
 nav.permissions	Autorisations
 nav.persistence	Persistance
 nav.processes	Processus
+nav.running	Processus en cours
 nav.screen	Enregistrement de l’écran
 nav.timeline	Chronologie
 open.message	Choisissez un journal JSON Lines écrit par l’outil permwatch
+proc.count	%ld processus
+proc.filter.suspicious	Suspects
+proc.filter.thirdParty	Hors Apple
+proc.killFailed	Impossible de quitter : %@
+proc.noAccess	Disponible uniquement pour vos propres processus
+proc.noConnections	Aucune connexion ouverte
+proc.select	Sélectionnez un processus
+prule.deletedBinary	Le fichier du programme a été supprimé alors qu’il est toujours en cours d’exécution
+prule.masquerade	Utilise le nom d’un processus système mais s’exécute depuis un emplacement inhabituel
+prule.suspiciousLocation	Exécuté depuis Téléchargements, un dossier temporaire ou caché
+prule.unsignedUserLocation	Programme non signé exécuté depuis un dossier modifiable par l’utilisateur
 quarantine.removed	supprimée à la main (xattr)
 reason.entitled	Entitlement
 reason.mdm	Règle MDM

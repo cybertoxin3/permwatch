@@ -1,6 +1,8 @@
+action.forceQuit	强制退出
 action.missingFile	此 Mac 上没有该文件
 action.more	更多
 action.openPermissions	打开权限设置
+action.quit	退出
 action.removeItem	移除登录项
 action.removed	已移到废纸篓
 action.resetAll	重置所有权限
@@ -13,14 +15,22 @@ alert.evasion	绕过 Gatekeeper
 alert.execution	可疑的执行
 alert.permission	可疑的权限
 alert.persistence	可疑的持久化
+alert.process	可疑进程
 app.firstSeen	首次发现：%@
 app.noLoginItem	无登录项
 apps.subtitle	哪个应用能访问什么
 btm.agent	agent（用户）
 btm.daemon	daemon（系统）
 btm.loginItem	登录项
+col.cpu	CPU %
+col.memory	内存
+col.name	名称
+col.risk	风险
+col.user	用户
 common.ok	好
 confirm.cancel	取消
+confirm.forceQuit.body	此进程中未存储的更改将会丢失。
+confirm.forceQuit.title	要强制退出“%@”吗？
 confirm.trash.body	下次登录时将不再加载。你可以从废纸篓中恢复。
 confirm.trash.ok	移到废纸篓
 confirm.trash.title	将“%@”移到废纸篓？
@@ -47,12 +57,14 @@ fda.open	打开隐私设置
 fda.title	需要完全磁盘访问权限
 field.addedBy	添加者
 field.arguments	参数
+field.connections	网络连接
 field.executes	执行
 field.grantedVia	授权方式
 field.identity	标识
 field.itemType	项目类型
 field.lastActivity	最近活动
 field.parent	父进程
+field.parentChain	启动者
 field.path	路径
 field.process	进程
 field.quarantine	隔离
@@ -60,6 +72,7 @@ field.reason	原因
 field.service	服务
 field.signature	签名
 field.source	来源
+field.started	启动时间
 field.target	目标
 filter.alerts	仅警报
 filter.all	全部
@@ -86,9 +99,21 @@ nav.micCamera	麦克风与摄像头
 nav.permissions	权限
 nav.persistence	持久化
 nav.processes	进程
+nav.running	正在运行的进程
 nav.screen	屏幕录制
 nav.timeline	时间线
 open.message	选择由 permwatch 命令行工具写入的 JSON Lines 日志
+proc.count	%ld 个进程
+proc.filter.suspicious	可疑
+proc.filter.thirdParty	非 Apple
+proc.killFailed	无法退出：%@
+proc.noAccess	仅适用于你自己的进程
+proc.noConnections	没有打开的连接
+proc.select	选择一个进程
+prule.deletedBinary	程序文件已被删除，但程序仍在运行
+prule.masquerade	使用系统进程的名称，却从不寻常的位置运行
+prule.suspiciousLocation	从“下载”、临时或隐藏文件夹运行
+prule.unsignedUserLocation	从用户可写入的文件夹运行未签名的程序
 quarantine.removed	已手动移除 (xattr)
 reason.entitled	授权（Entitlement）
 reason.mdm	MDM 策略

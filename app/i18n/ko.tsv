@@ -1,6 +1,8 @@
+action.forceQuit	강제 종료
 action.missingFile	이 Mac에 해당 파일이 없습니다
 action.more	더 보기
 action.openPermissions	권한 열기
+action.quit	종료
 action.removeItem	로그인 항목 제거
 action.removed	휴지통으로 이동됨
 action.resetAll	모든 권한 재설정
@@ -13,14 +15,22 @@ alert.evasion	Gatekeeper 우회
 alert.execution	의심스러운 실행
 alert.permission	의심스러운 권한
 alert.persistence	의심스러운 지속성
+alert.process	의심스러운 프로세스
 app.firstSeen	처음 발견: %@
 app.noLoginItem	로그인 항목 없음
 apps.subtitle	어떤 앱이 무엇에 접근할 수 있는지
 btm.agent	agent(사용자)
 btm.daemon	daemon(시스템)
 btm.loginItem	로그인 항목
+col.cpu	CPU %
+col.memory	메모리
+col.name	이름
+col.risk	위험
+col.user	사용자
 common.ok	확인
 confirm.cancel	취소
+confirm.forceQuit.body	이 프로세스에서 저장되지 않은 변경 사항은 사라집니다.
+confirm.forceQuit.title	‘%@’을(를) 강제 종료하겠습니까?
 confirm.trash.body	다음 로그인부터 더 이상 로드되지 않습니다. 휴지통에서 복원할 수 있습니다.
 confirm.trash.ok	휴지통으로 이동
 confirm.trash.title	‘%@’을(를) 휴지통으로 이동하겠습니까?
@@ -47,12 +57,14 @@ fda.open	개인정보 보호 설정 열기
 fda.title	전체 디스크 접근 권한 필요
 field.addedBy	추가한 프로세스
 field.arguments	인수
+field.connections	네트워크 연결
 field.executes	실행 파일
 field.grantedVia	허용 경로
 field.identity	식별자
 field.itemType	항목 유형
 field.lastActivity	최근 활동
 field.parent	상위 프로세스
+field.parentChain	실행한 프로세스
 field.path	경로
 field.process	프로세스
 field.quarantine	격리
@@ -60,6 +72,7 @@ field.reason	사유
 field.service	서비스
 field.signature	서명
 field.source	출처
+field.started	시작
 field.target	대상
 filter.alerts	경고만
 filter.all	전체
@@ -86,9 +99,21 @@ nav.micCamera	마이크 및 카메라
 nav.permissions	권한
 nav.persistence	지속성
 nav.processes	프로세스
+nav.running	실행 중인 프로세스
 nav.screen	화면 기록
 nav.timeline	타임라인
 open.message	permwatch 명령줄 도구가 기록한 JSON Lines 로그를 선택하십시오
+proc.count	프로세스 %ld개
+proc.filter.suspicious	의심스러움
+proc.filter.thirdParty	Apple 외
+proc.killFailed	종료할 수 없음: %@
+proc.noAccess	자신의 프로세스에서만 볼 수 있음
+proc.noConnections	열린 연결 없음
+proc.select	프로세스를 선택하십시오
+prule.deletedBinary	실행 중인 프로그램의 파일이 삭제됨
+prule.masquerade	시스템 프로세스 이름을 쓰지만 평소와 다른 위치에서 실행됨
+prule.suspiciousLocation	다운로드, 임시 또는 숨김 폴더에서 실행됨
+prule.unsignedUserLocation	사용자가 쓸 수 있는 폴더에서 서명 없는 프로그램이 실행됨
 quarantine.removed	수동으로 제거됨 (xattr)
 reason.entitled	인타이틀먼트
 reason.mdm	MDM 정책

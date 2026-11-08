@@ -1,6 +1,8 @@
+action.forceQuit	إنهاء إجباري
 action.missingFile	الملف غير موجود على جهاز Mac هذا
 action.more	المزيد
 action.openPermissions	فتح الأذونات
+action.quit	إنهاء
 action.removeItem	إزالة عنصر الدخول
 action.removed	نُقل إلى سلة المهملات
 action.resetAll	إعادة تعيين كل الأذونات
@@ -13,14 +15,22 @@ alert.evasion	تجاوز Gatekeeper
 alert.execution	تشغيل مشبوه
 alert.permission	إذن مشبوه
 alert.persistence	استمرارية مشبوهة
+alert.process	عملية مشبوهة
 app.firstSeen	رُصد أول مرة %@
 app.noLoginItem	لا عنصر دخول
 apps.subtitle	أي تطبيق يصل إلى ماذا
 btm.agent	agent (مستخدم)
 btm.daemon	daemon (نظام)
 btm.loginItem	عنصر تسجيل الدخول
+col.cpu	المعالج %
+col.memory	الذاكرة
+col.name	الاسم
+col.risk	الخطورة
+col.user	المستخدم
 common.ok	حسنًا
 confirm.cancel	إلغاء
+confirm.forceQuit.body	ستُفقد التغييرات غير المحفوظة في هذه العملية.
+confirm.forceQuit.title	هل تريد إنهاء «%@» إجباريًا؟
 confirm.trash.body	لن يُحمَّل بعد الآن عند تسجيل الدخول التالي. يمكنك استعادته من سلة المهملات.
 confirm.trash.ok	نقل إلى سلة المهملات
 confirm.trash.title	هل تريد نقل «%@» إلى سلة المهملات؟
@@ -47,12 +57,14 @@ fda.open	فتح إعدادات الخصوصية
 fda.title	مطلوب الوصول الكامل إلى القرص
 field.addedBy	أضافه
 field.arguments	الوسائط
+field.connections	اتصالات الشبكة
 field.executes	يشغّل
 field.grantedVia	مُنح عبر
 field.identity	المعرّف
 field.itemType	نوع العنصر
 field.lastActivity	آخر نشاط
 field.parent	العملية الأم
+field.parentChain	شغّلها
 field.path	المسار
 field.process	العملية
 field.quarantine	العزل
@@ -60,6 +72,7 @@ field.reason	السبب
 field.service	الخدمة
 field.signature	التوقيع
 field.source	المصدر
+field.started	البدء
 field.target	الهدف
 filter.alerts	التنبيهات فقط
 filter.all	الكل
@@ -86,9 +99,21 @@ nav.micCamera	الميكروفون والكاميرا
 nav.permissions	الأذونات
 nav.persistence	الاستمرارية
 nav.processes	العمليات
+nav.running	العمليات قيد التشغيل
 nav.screen	تسجيل الشاشة
 nav.timeline	الخط الزمني
 open.message	اختر سجل JSON Lines كتبته أداة permwatch
+proc.count	%ld عملية
+proc.filter.suspicious	مشبوهة
+proc.filter.thirdParty	غير Apple
+proc.killFailed	تعذّر الإنهاء: %@
+proc.noAccess	متاح لعملياتك فقط
+proc.noConnections	لا توجد اتصالات مفتوحة
+proc.select	اختر عملية
+prule.deletedBinary	حُذف ملف البرنامج بينما لا يزال يعمل
+prule.masquerade	يستخدم اسم عملية نظام لكنه يعمل من موقع غير معتاد
+prule.suspiciousLocation	يعمل من التنزيلات أو من مجلد مؤقت أو مخفي
+prule.unsignedUserLocation	برنامج غير موقّع يعمل من مجلد يستطيع المستخدم الكتابة فيه
 quarantine.removed	أُزيل يدويًا (xattr)
 reason.entitled	استحقاق (Entitlement)
 reason.mdm	سياسة MDM

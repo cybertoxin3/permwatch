@@ -1,6 +1,8 @@
+action.forceQuit	Sofort beenden
 action.missingFile	Die Datei ist nicht auf diesem Mac
 action.more	Mehr
 action.openPermissions	Berechtigungen öffnen
+action.quit	Beenden
 action.removeItem	Anmeldeobjekt entfernen
 action.removed	In den Papierkorb gelegt
 action.resetAll	Alle Berechtigungen zurücksetzen
@@ -13,14 +15,22 @@ alert.evasion	Gatekeeper umgangen
 alert.execution	verdächtige Ausführung
 alert.permission	verdächtige Berechtigung
 alert.persistence	verdächtige Persistenz
+alert.process	verdächtiger Prozess
 app.firstSeen	zuerst gesehen %@
 app.noLoginItem	Kein Anmeldeobjekt
 apps.subtitle	Welche App worauf zugreifen kann
 btm.agent	agent (Benutzer)
 btm.daemon	daemon (System)
 btm.loginItem	Anmeldeobjekt
+col.cpu	CPU %
+col.memory	Speicher
+col.name	Name
+col.risk	Risiko
+col.user	Benutzer
 common.ok	OK
 confirm.cancel	Abbrechen
+confirm.forceQuit.body	Nicht gesicherte Änderungen in diesem Prozess gehen verloren.
+confirm.forceQuit.title	„%@“ sofort beenden?
 confirm.trash.body	Es wird bei der nächsten Anmeldung nicht mehr geladen. Du kannst es aus dem Papierkorb wiederherstellen.
 confirm.trash.ok	In den Papierkorb
 confirm.trash.title	„%@“ in den Papierkorb legen?
@@ -47,12 +57,14 @@ fda.open	Datenschutzeinstellungen öffnen
 fda.title	Festplattenvollzugriff erforderlich
 field.addedBy	Hinzugefügt von
 field.arguments	Argumente
+field.connections	Netzwerkverbindungen
 field.executes	Startet
 field.grantedVia	Erteilt über
 field.identity	Identität
 field.itemType	Objekttyp
 field.lastActivity	Zuletzt aktiv
 field.parent	Elternprozess
+field.parentChain	Gestartet von
 field.path	Pfad
 field.process	Prozess
 field.quarantine	Quarantäne
@@ -60,6 +72,7 @@ field.reason	Grund
 field.service	Dienst
 field.signature	Signatur
 field.source	Quelle
+field.started	Gestartet
 field.target	Ziel
 filter.alerts	Nur Warnungen
 filter.all	Alle
@@ -86,9 +99,21 @@ nav.micCamera	Mikrofon & Kamera
 nav.permissions	Berechtigungen
 nav.persistence	Persistenz
 nav.processes	Prozesse
+nav.running	Laufende Prozesse
 nav.screen	Bildschirmaufnahme
 nav.timeline	Zeitleiste
 open.message	Wähle ein JSON-Lines-Protokoll des permwatch-Kommandozeilentools
+proc.count	%ld Prozesse
+proc.filter.suspicious	Verdächtig
+proc.filter.thirdParty	Nicht von Apple
+proc.killFailed	Beenden fehlgeschlagen: %@
+proc.noAccess	Nur für eigene Prozesse verfügbar
+proc.noConnections	Keine offenen Verbindungen
+proc.select	Wähle einen Prozess
+prule.deletedBinary	Die Programmdatei wurde gelöscht, während das Programm noch läuft
+prule.masquerade	Nutzt den Namen eines Systemprozesses, läuft aber von einem ungewöhnlichen Ort
+prule.suspiciousLocation	Läuft aus „Downloads“, einem temporären oder versteckten Ordner
+prule.unsignedUserLocation	Unsigniertes Programm läuft aus einem für den Benutzer beschreibbaren Ordner
 quarantine.removed	manuell entfernt (xattr)
 reason.entitled	Entitlement
 reason.mdm	MDM-Richtlinie

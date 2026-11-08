@@ -1,7 +1,7 @@
 import SwiftUI
 
 enum SidebarItem: Hashable {
-    case timeline, alerts, apps
+    case timeline, alerts, apps, running
     case category(Category)
     case loginItems, processes
 }
@@ -21,6 +21,7 @@ enum TimelineFilter: CaseIterable {
 
 struct MainView: View {
     @EnvironmentObject var store: Store
+    @EnvironmentObject var monitor: ProcessMonitor
     @State private var section: SidebarItem = .timeline
     @State private var filter: TimelineFilter = .all
     @State private var selection: Int?
@@ -35,6 +36,8 @@ struct MainView: View {
                 FullDiskAccessView()
             } else if section == .apps {
                 AppsView()
+            } else if section == .running {
+                ProcessesView()
             } else {
                 HStack(spacing: 0) {
                     TimelineList(items: visibleItems, filter: $filter, selection: $selection,
@@ -55,9 +58,15 @@ struct MainView: View {
                 .searchable(text: $search, placement: .toolbar, prompt: L("search.prompt"))
             }
         }
+        .onChange(of: store.trusted) { _, t in
+            monitor.trusted = t
+            monitor.refresh()
+        }
         .onAppear {
+            monitor.trusted = store.trusted
             DispatchQueue.main.async { selectFirstAlert() }
             if Snapshot.section == "apps" { section = .apps }
+            if Snapshot.section == "running" { section = .running }
             Snapshot.scheduleIfRequested(store: store, selection: selection)
         }
         .onChange(of: store.items.count) {
@@ -78,6 +87,7 @@ struct MainView: View {
         case .timeline: return L("nav.timeline")
         case .alerts: return L("nav.alerts")
         case .apps: return L("nav.apps")
+        case .running: return L("nav.running")
         case .category(.micCamera): return L("nav.micCamera")
         case .category(.screen): return L("nav.screen")
         case .category(.accessibility): return L("nav.accessibility")
@@ -119,6 +129,7 @@ struct MainView: View {
 
 struct Sidebar: View {
     @EnvironmentObject var store: Store
+    @EnvironmentObject var monitor: ProcessMonitor
     @Binding var section: SidebarItem
 
     var body: some View {
@@ -126,6 +137,7 @@ struct Sidebar: View {
             Label(L("nav.timeline"), systemImage: "list.bullet").badge(store.items.count).tag(SidebarItem.timeline)
             Label(L("nav.alerts"), systemImage: "exclamationmark.triangle").badge(store.openAlerts).tag(SidebarItem.alerts)
             Label(L("nav.apps"), systemImage: "square.grid.2x2").tag(SidebarItem.apps)
+            Label(L("nav.running"), systemImage: "cpu").badge(monitor.suspicious).tag(SidebarItem.running)
 
             Section(L("nav.permissions")) {
                 Label(L("nav.micCamera"), systemImage: "mic").tag(SidebarItem.category(.micCamera))

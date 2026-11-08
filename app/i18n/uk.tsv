@@ -1,6 +1,8 @@
+action.forceQuit	Завершити примусово
 action.missingFile	Цього файлу немає на Mac
 action.more	Ще
 action.openPermissions	Відкрити дозволи
+action.quit	Завершити
 action.removeItem	Видалити об’єкт входу
 action.removed	Переміщено в Смітник
 action.resetAll	Скинути всі дозволи
@@ -13,14 +15,22 @@ alert.evasion	обхід Gatekeeper
 alert.execution	підозрілий запуск
 alert.permission	підозрілий дозвіл
 alert.persistence	підозрілий автозапуск
+alert.process	підозрілий процес
 app.firstSeen	вперше помічено %@
 app.noLoginItem	Немає автозапуску
 apps.subtitle	Яка програма до чого має доступ
 btm.agent	agent (користувач)
 btm.daemon	daemon (система)
 btm.loginItem	Об’єкт входу
+col.cpu	ЦП %
+col.memory	Пам’ять
+col.name	Назва
+col.risk	Ризик
+col.user	Користувач
 common.ok	OK
 confirm.cancel	Скасувати
+confirm.forceQuit.body	Незбережені зміни в цьому процесі буде втрачено.
+confirm.forceQuit.title	Завершити «%@» примусово?
 confirm.trash.body	Він більше не завантажуватиметься під час наступного входу. Його можна відновити зі Смітника.
 confirm.trash.ok	Перемістити в Смітник
 confirm.trash.title	Перемістити «%@» у Смітник?
@@ -47,12 +57,14 @@ fda.open	Відкрити параметри конфіденційності
 fda.title	Потрібен повний доступ до диска
 field.addedBy	Додав
 field.arguments	Аргументи
+field.connections	Мережеві з’єднання
 field.executes	Запускає
 field.grantedVia	Джерело
 field.identity	Ідентифікатор
 field.itemType	Тип об’єкта
 field.lastActivity	Активність
 field.parent	Батьківський процес
+field.parentChain	Запустив
 field.path	Шлях
 field.process	Процес
 field.quarantine	Карантин
@@ -60,6 +72,7 @@ field.reason	Причина
 field.service	Служба
 field.signature	Підпис
 field.source	Джерело
+field.started	Запуск
 field.target	Ціль
 filter.alerts	Лише сповіщення
 filter.all	Усі
@@ -86,9 +99,21 @@ nav.micCamera	Мікрофон і камера
 nav.permissions	Дозволи
 nav.persistence	Автозапуск
 nav.processes	Процеси
+nav.running	Запущені процеси
 nav.screen	Запис екрана
 nav.timeline	Хронологія
 open.message	Виберіть журнал JSON Lines, записаний утилітою permwatch
+proc.count	Процесів: %ld
+proc.filter.suspicious	Підозрілі
+proc.filter.thirdParty	Не від Apple
+proc.killFailed	Не вдалося завершити: %@
+proc.noAccess	Доступно лише для ваших процесів
+proc.noConnections	Немає відкритих з’єднань
+proc.select	Виберіть процес
+prule.deletedBinary	Файл програми видалено, але вона досі працює
+prule.masquerade	Використовує назву системного процесу, але запущена з незвичного місця
+prule.suspiciousLocation	Запущено із «Завантажень», тимчасової або прихованої теки
+prule.unsignedUserLocation	Непідписана програма запущена з теки, доступної користувачу для запису
 quarantine.removed	видалено вручну (xattr)
 reason.entitled	Entitlement
 reason.mdm	Політика MDM

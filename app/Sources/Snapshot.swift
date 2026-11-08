@@ -69,6 +69,23 @@ enum Snapshot {
             }
             return
         }
+        if section == "procdump" {
+            // Çalışan süreçlerin özeti (test için)
+            let (_, first) = ProcessMonitor.collect(prev: [:], trusted: [])
+            usleep(500_000)
+            let (rows, _) = ProcessMonitor.collect(prev: first, trusted: [])
+            let withMem = rows.filter { $0.memory != nil }.count
+            print("süreç: \(rows.count), bellek/CPU okunabilen: \(withMem), imzalar: " +
+                  Dictionary(grouping: rows, by: { $0.signature ?? "yok" }).map { "\($0.key)=\($0.value.count)" }.sorted().joined(separator: " "))
+            for r in rows.sorted(by: { ($0.cpu ?? 0) > ($1.cpu ?? 0) }).prefix(5) {
+                print(String(format: "  en yoğun: %@ pid %d cpu %.1f mem %@", r.name, r.pid, r.cpu ?? -1,
+                             r.memory.map { ByteCountFormatter.string(fromByteCount: Int64($0), countStyle: .memory) } ?? "-"))
+            }
+            for r in rows where r.risk >= .caution {
+                print("\(r.risk == .high ? "YÜKSEK" : "dikkat")\t\(r.name) (\(r.pid))\t\(r.path ?? "-")\t\(r.rules.map(\.rawValue).joined(separator: ","))")
+            }
+            exit(0)
+        }
         if section == "dump" {
             // Uyarıların düz metin dökümü (test için): risk, tarih, başlık, kurallar.
             DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
