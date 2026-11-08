@@ -400,3 +400,18 @@ adv.gone.body	该应用已不在你的 Mac 上,但其权限仍有记录:%@。具
 adv.revoke	撤销权限
 adv.capture.title	查看你的应用在发送什么
 adv.capture.body	在正常使用 Mac 时开启几分钟数据包捕获。permwatch 会用通俗的语言告诉你哪些应用在与跟踪器通信、哪些使用未加密连接,以及是否有程序以明文发送密码。
+pkt.save	保存
+pkt.saveAs	将捕获另存为…
+pkt.saveToFolder	立即保存到 %@
+pkt.autoFolder	将每次捕获保存到文件夹…
+pkt.changeFolder	更改保存文件夹…
+pkt.showFolder	显示保存文件夹
+pkt.autoOff	停止自动保存
+pkt.autoOn	每次捕获停止时会保存到 %@
+pkt.saved	已保存:%@
+pkt.saveFailed	无法保存:%@
+pkt.noFile	还没有可保存的捕获。请先开始捕获。
+pkt.chooseFolder	选择…
+settings.captureFolder	数据包捕获记录
+settings.captureOff	不自动保存
+settings.captureFolderDesc	捕获停止时,其 .pcap 文件会以包含日期和时间的名称复制到这里,例如 permwatch-2026-11-08_14-30-00.pcap。你可以在 Wireshark 中打开,或发送给他人分析。

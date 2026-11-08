@@ -400,3 +400,18 @@ adv.gone.body	Bu uygulama artık Mac'inde yok ama izni hâlâ kayıtlı: %@. Ayn
 adv.revoke	İzinleri Kaldır
 adv.capture.title	Uygulamalarının ne gönderdiğini gör
 adv.capture.body	Mac'ini normal kullanırken birkaç dakika paket yakalamayı başlat. permwatch hangi uygulamaların izleyicilerle konuştuğunu, hangilerinin şifresiz bağlantı kullandığını ve parolayı açık metin gönderen bir şey olup olmadığını sade bir dille gösterir.
+pkt.save	Kaydet
+pkt.saveAs	Yakalamayı Farklı Kaydet…
+pkt.saveToFolder	Şimdi %@ klasörüne kaydet
+pkt.autoFolder	Her Yakalamayı Bir Klasöre Kaydet…
+pkt.changeFolder	Kayıt Klasörünü Değiştir…
+pkt.showFolder	Kayıt Klasörünü Göster
+pkt.autoOff	Otomatik Kaydetmeyi Kapat
+pkt.autoOn	Her yakalama durduğunda %@ klasörüne kaydedilir
+pkt.saved	Kaydedildi: %@
+pkt.saveFailed	Kaydedilemedi: %@
+pkt.noFile	Henüz kaydedilecek bir yakalama yok. Önce yakalamayı başlat.
+pkt.chooseFolder	Seç…
+settings.captureFolder	Paket yakalama kayıtları
+settings.captureOff	Otomatik kaydedilmiyor
+settings.captureFolderDesc	Bir yakalama durduğunda .pcap dosyası adında tarih ve saatle buraya kopyalanır, örn. permwatch-2026-11-08_14-30-00.pcap. Bu dosyaları Wireshark'ta açabilir veya incelemesi için birine gönderebilirsin.

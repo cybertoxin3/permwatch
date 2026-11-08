@@ -400,3 +400,18 @@ adv.gone.body	This app is no longer on your Mac, but its permission is still rec
 adv.revoke	Revoke Permissions
 adv.capture.title	See what your apps send
 adv.capture.body	Start a packet capture for a few minutes while you use your Mac normally. permwatch will show which apps talk to trackers, which use unencrypted connections and whether anything sends passwords in clear text, all explained in plain language.
+pkt.save	Save
+pkt.saveAs	Save Capture As…
+pkt.saveToFolder	Save Now to %@
+pkt.autoFolder	Save Every Capture to a Folder…
+pkt.changeFolder	Change Save Folder…
+pkt.showFolder	Show Save Folder
+pkt.autoOff	Stop Saving Automatically
+pkt.autoOn	Each capture is saved to %@ when it stops
+pkt.saved	Saved: %@
+pkt.saveFailed	Could not save: %@
+pkt.noFile	There is no capture to save yet. Start a capture first.
+pkt.chooseFolder	Choose…
+settings.captureFolder	Packet capture recordings
+settings.captureOff	Not saved automatically
+settings.captureFolderDesc	When a capture stops, its .pcap file is copied here with the date and time in its name, e.g. permwatch-2026-11-08_14-30-00.pcap. You can open these files in Wireshark or send them to someone for analysis.

@@ -400,3 +400,18 @@ adv.gone.body	Este app não está mais no seu Mac, mas a permissão continua reg
 adv.revoke	Revogar permissões
 adv.capture.title	Veja o que seus apps enviam
 adv.capture.body	Inicie uma captura por alguns minutos enquanto usa o Mac normalmente. O permwatch mostrará, em linguagem simples, quais apps falam com rastreadores, quais usam conexões sem criptografia e se algo envia senhas em texto aberto.
+pkt.save	Salvar
+pkt.saveAs	Salvar captura como…
+pkt.saveToFolder	Salvar agora em %@
+pkt.autoFolder	Salvar cada captura em uma pasta…
+pkt.changeFolder	Alterar pasta de salvamento…
+pkt.showFolder	Mostrar pasta de salvamento
+pkt.autoOff	Parar de salvar automaticamente
+pkt.autoOn	Cada captura é salva em %@ ao parar
+pkt.saved	Salvo: %@
+pkt.saveFailed	Não foi possível salvar: %@
+pkt.noFile	Ainda não há captura para salvar. Inicie uma captura primeiro.
+pkt.chooseFolder	Escolher…
+settings.captureFolder	Gravações de captura
+settings.captureOff	Não são salvas automaticamente
+settings.captureFolderDesc	Quando uma captura para, o arquivo .pcap é copiado para cá com data e hora no nome, por ex. permwatch-2026-11-08_14-30-00.pcap. Você pode abri-lo no Wireshark ou enviá-lo a alguém para análise.

@@ -400,3 +400,18 @@ adv.gone.body	Diese App ist nicht mehr auf deinem Mac, ihre Berechtigung ist abe
 adv.revoke	Berechtigungen widerrufen
 adv.capture.title	Sieh, was deine Apps senden
 adv.capture.body	Starte für ein paar Minuten einen Paketmitschnitt, während du den Mac normal nutzt. permwatch zeigt in einfachen Worten, welche Apps mit Trackern sprechen, welche unverschlüsselt verbinden und ob etwas Passwörter im Klartext sendet.
+pkt.save	Sichern
+pkt.saveAs	Mitschnitt sichern unter …
+pkt.saveToFolder	Jetzt in %@ sichern
+pkt.autoFolder	Jeden Mitschnitt in einem Ordner sichern …
+pkt.changeFolder	Speicherordner ändern …
+pkt.showFolder	Speicherordner zeigen
+pkt.autoOff	Automatisches Sichern beenden
+pkt.autoOn	Jeder Mitschnitt wird beim Stoppen in %@ gesichert
+pkt.saved	Gesichert: %@
+pkt.saveFailed	Sichern fehlgeschlagen: %@
+pkt.noFile	Noch kein Mitschnitt zum Sichern. Starte zuerst einen Mitschnitt.
+pkt.chooseFolder	Auswählen …
+settings.captureFolder	Paketmitschnitt-Aufnahmen
+settings.captureOff	Nicht automatisch gesichert
+settings.captureFolderDesc	Wenn ein Mitschnitt endet, wird seine .pcap-Datei mit Datum und Uhrzeit im Namen hierher kopiert, z. B. permwatch-2026-11-08_14-30-00.pcap. Du kannst sie in Wireshark öffnen oder zur Analyse weitergeben.

@@ -51,6 +51,7 @@ struct SettingsView: View {
     @AppStorage(Theme.storageKey) private var theme: Theme = .system
     @EnvironmentObject var downloads: DownloadGuard
     @EnvironmentObject var root: RootBridge
+    @EnvironmentObject var packets: PacketMonitor
 
     var body: some View {
         Form {
@@ -87,6 +88,25 @@ struct SettingsView: View {
                 Text(L("settings.downloads"))
             } footer: {
                 Text(L("settings.downloadsDesc")).font(.system(size: 11)).foregroundStyle(.secondary)
+            }
+
+            Section {
+                HStack {
+                    Image(systemName: "folder").foregroundStyle(.secondary)
+                    Text(packets.saveFolder.map(PathUtil.abbreviate) ?? L("settings.captureOff"))
+                        .lineLimit(1).truncationMode(.middle)
+                        .foregroundStyle(packets.saveFolder == nil ? .secondary : .primary)
+                    Spacer()
+                    if packets.saveFolder != nil {
+                        Button { packets.saveFolder = nil } label: { Image(systemName: "minus.circle") }.buttonStyle(.borderless)
+                    }
+                    Button(L("pkt.chooseFolder")) { packets.chooseSaveFolder() }
+                }
+            } header: {
+                Text(L("settings.captureFolder"))
+            } footer: {
+                Text(L("settings.captureFolderDesc")).font(.system(size: 11)).foregroundStyle(.secondary)
+                    .fixedSize(horizontal: false, vertical: true)
             }
 
             Section {

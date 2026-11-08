@@ -37,7 +37,10 @@ struct PacketsView: View {
         .navigationSubtitle(subtitle)
         .onAppear {
             devices = PacketMonitor.devices()
-            if Snapshot.section == "packets", !cap.running { cap.start() }
+            if Snapshot.section == "packets", !cap.running {
+                cap.start()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 5) { cap.stop() }
+            }
             applyFocus()
         }
         .onChange(of: center.navToken) { applyFocus() }
@@ -69,6 +72,23 @@ struct PacketsView: View {
                 Spacer()
                 Button { cap.clear(); selection = nil } label: { Image(systemName: "trash") }
                     .help(L("pkt.clear")).disabled(cap.packets.isEmpty)
+                Menu {
+                    Button(L("pkt.saveAs")) { cap.saveAs() }.disabled(cap.pcapURL == nil)
+                    if let dir = cap.saveFolder {
+                        Button(L("pkt.saveToFolder", PathUtil.abbreviate(dir))) { cap.copyCapture(toFolder: dir) }
+                            .disabled(cap.pcapURL == nil)
+                    }
+                    Divider()
+                    Button(cap.saveFolder == nil ? L("pkt.autoFolder") : L("pkt.changeFolder")) { cap.chooseSaveFolder() }
+                    if let dir = cap.saveFolder {
+                        Button(L("pkt.showFolder")) { NSWorkspace.shared.open(URL(fileURLWithPath: dir)) }
+                        Button(L("pkt.autoOff")) { cap.saveFolder = nil }
+                    }
+                } label: {
+                    Label(L("pkt.save"), systemImage: "square.and.arrow.down")
+                }
+                .fixedSize()
+                .help(cap.saveFolder.map { L("pkt.autoOn", PathUtil.abbreviate($0)) } ?? L("pkt.saveAs"))
                 Button { cap.openInWireshark() } label: { Label(L("pkt.openWireshark"), systemImage: "arrow.up.forward.app") }
                     .disabled(cap.pcapURL == nil)
             }
@@ -80,6 +100,20 @@ struct PacketsView: View {
                     Text(L("pkt.capturing")).font(.system(size: 11, weight: .semibold)).foregroundStyle(.red)
                 }
                 Text(modeText).font(.system(size: 11)).foregroundStyle(.secondary).lineLimit(1)
+            }
+            if let u = cap.lastSaved {
+                HStack(spacing: 6) {
+                    Image(systemName: "checkmark.circle.fill").foregroundStyle(.green)
+                    Text(L("pkt.saved", PathUtil.abbreviate(u.path))).lineLimit(1).truncationMode(.middle)
+                    Button(L("action.showInFinder")) { NSWorkspace.shared.activateFileViewerSelecting([u]) }
+                        .buttonStyle(.link)
+                }
+                .font(.system(size: 11))
+            } else if let e = cap.saveError {
+                Text(e).font(.system(size: 11)).foregroundStyle(.red)
+            } else if let dir = cap.saveFolder {
+                Label(L("pkt.autoOn", PathUtil.abbreviate(dir)), systemImage: "folder")
+                    .font(.system(size: 11)).foregroundStyle(.secondary)
             }
         }
         .padding(.horizontal, 16).padding(.vertical, 10)

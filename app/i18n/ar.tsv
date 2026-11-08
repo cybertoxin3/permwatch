@@ -400,3 +400,18 @@ adv.gone.body	لم يعد هذا التطبيق على جهازك، لكن إذ�
 adv.revoke	سحب الأذونات
 adv.capture.title	اعرف ما ترسله تطبيقاتك
 adv.capture.body	ابدأ التقاط الحزم لبضع دقائق أثناء استخدامك المعتاد لجهاز Mac. سيُظهر permwatch بلغة بسيطة أي التطبيقات تتواصل مع المتتبّعين، وأيها يستخدم اتصالات غير مشفّرة، وهل يرسل شيء كلمات مرور بنص واضح.
+pkt.save	حفظ
+pkt.saveAs	حفظ الالتقاط باسم…
+pkt.saveToFolder	احفظ الآن في %@
+pkt.autoFolder	احفظ كل التقاط في مجلد…
+pkt.changeFolder	تغيير مجلد الحفظ…
+pkt.showFolder	إظهار مجلد الحفظ
+pkt.autoOff	إيقاف الحفظ التلقائي
+pkt.autoOn	يُحفظ كل التقاط في %@ عند إيقافه
+pkt.saved	تم الحفظ: %@
+pkt.saveFailed	تعذّر الحفظ: %@
+pkt.noFile	لا يوجد التقاط للحفظ بعد. ابدأ الالتقاط أولًا.
+pkt.chooseFolder	اختر…
+settings.captureFolder	تسجيلات التقاط الحزم
+settings.captureOff	لا يُحفظ تلقائيًا
+settings.captureFolderDesc	عند إيقاف الالتقاط يُنسخ ملف ‎.pcap هنا مع التاريخ والوقت في اسمه، مثل permwatch-2026-11-08_14-30-00.pcap. يمكنك فتحه في Wireshark أو إرساله إلى شخص لتحليله.

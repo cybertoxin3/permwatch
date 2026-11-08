@@ -400,3 +400,18 @@ adv.gone.body	このアプリはもう Mac にありませんが、権限が記�
 adv.revoke	権限を取り消す
 adv.capture.title	アプリが何を送っているか確認
 adv.capture.body	普段どおり Mac を使いながら、数分間パケットキャプチャを実行してください。どのアプリがトラッカーと通信しているか、暗号化なしの接続を使っているか、パスワードを平文で送っていないかを、permwatch がわかりやすく示します。
+pkt.save	保存
+pkt.saveAs	キャプチャを別名で保存…
+pkt.saveToFolder	今すぐ %@ に保存
+pkt.autoFolder	すべてのキャプチャをフォルダに保存…
+pkt.changeFolder	保存先フォルダを変更…
+pkt.showFolder	保存先フォルダを表示
+pkt.autoOff	自動保存をやめる
+pkt.autoOn	キャプチャは停止時に %@ へ保存されます
+pkt.saved	保存しました: %@
+pkt.saveFailed	保存できません: %@
+pkt.noFile	保存するキャプチャがまだありません。先にキャプチャを開始してください。
+pkt.chooseFolder	選択…
+settings.captureFolder	パケットキャプチャの記録
+settings.captureOff	自動保存しない
+settings.captureFolderDesc	キャプチャが停止すると、その .pcap ファイルが日時入りの名前でここにコピーされます(例: permwatch-2026-11-08_14-30-00.pcap)。Wireshark で開いたり、分析のために誰かに送ったりできます。

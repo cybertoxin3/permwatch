@@ -1,5 +1,6 @@
 import AppKit
 import Foundation
+import UniformTypeIdentifiers
 
 /// Canlı paket yakalama. Yönetici modunda permwatch-root bütün arayüzleri PKTAP ile yakalar
 /// (her paket gönderen süreçle birlikte); değilse uygulama, erişim izni varsa (ör. Wireshark'ın
@@ -20,6 +21,13 @@ final class PacketMonitor: ObservableObject {
     @Published var localDevice: String = PacketMonitor.defaultDevice()
     /// IP → ad (yakalanan DNS yanıtlarından ve TLS SNI'dan, Wireshark'ın "yakalanan DNS ile çöz" seçeneği gibi).
     @Published private(set) var names: [String: String] = [:]
+    /// Her yakalama durdurulunca .pcap dosyasının tarih-saatli kopyasının konacağı klasör (boşsa kapalı).
+    @Published var saveFolder: String? = UserDefaults.standard.string(forKey: PacketMonitor.saveFolderKey) {
+        didSet { UserDefaults.standard.set(saveFolder, forKey: Self.saveFolderKey) }
+    }
+    @Published private(set) var lastSaved: URL?
+    @Published private(set) var saveError: String?
+    nonisolated static let saveFolderKey = "captureSaveFolder"
 
     let maxRows = 20000
     nonisolated static let userDir = FileManager.default.homeDirectoryForCurrentUser
@@ -40,8 +48,12 @@ final class PacketMonitor: ObservableObject {
 
     init() {
         try? FileManager.default.removeItem(at: Self.flagURL)
-        NotificationCenter.default.addObserver(forName: NSApplication.willTerminateNotification, object: nil, queue: .main) { _ in
+        NotificationCenter.default.addObserver(forName: NSApplication.willTerminateNotification, object: nil, queue: .main) { [weak self] _ in
             try? FileManager.default.removeItem(at: PacketMonitor.flagURL)
+            // Yakalama sürerken çıkılırsa son durumu da kaydet.
+            MainActor.assumeIsolated {
+                if let self, self.running, let dir = self.saveFolder { _ = self.copyCapture(toFolder: dir) }
+            }
         }
     }
 
@@ -71,6 +83,8 @@ final class PacketMonitor: ObservableObject {
     func start() {
         guard !running else { return }
         error = nil
+        lastSaved = nil
+        saveError = nil
         needsRoot = false
         startedAt = Date()
         if RootBridge.shared.active {
@@ -105,12 +119,72 @@ final class PacketMonitor: ObservableObject {
     }
 
     func stop() {
+        let wasRunning = running
         try? FileManager.default.removeItem(at: Self.flagURL)
         engine?.stop()
         engine = nil
         timer?.invalidate()
         timer = nil
         running = false
+        // Yakalayıcı dosyayı kapatsın (yerelde ≤0,25 sn, yardımcıda ≤1 sn), sonra klasöre kopyala.
+        if wasRunning, let dir = saveFolder {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.6) { [weak self] in _ = self?.copyCapture(toFolder: dir) }
+        }
+    }
+
+    // MARK: Kaydetme
+
+    private var captureStart: Date { startedAt }
+
+    var defaultFileName: String {
+        let f = DateFormatter()
+        f.dateFormat = "yyyy-MM-dd_HH-mm-ss"
+        return "permwatch-\(f.string(from: captureStart)).pcap"
+    }
+
+    /// Yakalamanın kopyasını klasöre tarih-saatli adla koyar.
+    @discardableResult
+    func copyCapture(toFolder dir: String) -> URL? {
+        copyCapture(to: URL(fileURLWithPath: dir).appendingPathComponent(defaultFileName))
+    }
+
+    @discardableResult
+    func copyCapture(to dest: URL) -> URL? {
+        saveError = nil
+        guard let src = pcapURL, FileManager.default.fileExists(atPath: src.path) else {
+            saveError = L("pkt.noFile"); return nil
+        }
+        do {
+            try FileManager.default.createDirectory(at: dest.deletingLastPathComponent(), withIntermediateDirectories: true)
+            if FileManager.default.fileExists(atPath: dest.path) { try FileManager.default.removeItem(at: dest) }
+            // Kopya her zaman kullanıcıya ait, normal izinli bir dosya olsun.
+            let data = try Data(contentsOf: src, options: .mappedIfSafe)
+            try data.write(to: dest, options: .atomic)
+            lastSaved = dest
+            return dest
+        } catch {
+            saveError = L("pkt.saveFailed", error.localizedDescription)
+            return nil
+        }
+    }
+
+    func saveAs() {
+        let p = NSSavePanel()
+        p.nameFieldStringValue = defaultFileName
+        p.allowedContentTypes = [UTType(filenameExtension: "pcap") ?? .data]
+        p.canCreateDirectories = true
+        if let dir = saveFolder { p.directoryURL = URL(fileURLWithPath: dir) }
+        if p.runModal() == .OK, let u = p.url { copyCapture(to: u) }
+    }
+
+    func chooseSaveFolder() {
+        let p = NSOpenPanel()
+        p.canChooseDirectories = true
+        p.canChooseFiles = false
+        p.canCreateDirectories = true
+        p.prompt = L("pkt.chooseFolder")
+        if let dir = saveFolder { p.directoryURL = URL(fileURLWithPath: dir) }
+        if p.runModal() == .OK, let u = p.url { saveFolder = u.path }
     }
 
     func clear() {
