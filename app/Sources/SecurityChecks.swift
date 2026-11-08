@@ -42,6 +42,7 @@ final class SecurityChecks: ObservableObject {
         Task.detached(priority: .userInitiated) {
             var out: [Finding] = []
             out += Checks.browserExtensions()
+            out += Checks.safariExtensions()
             out += Checks.browserPolicies()
             out += Checks.searchAndHome()
             out += Checks.proxy()
@@ -214,7 +215,7 @@ enum Checks {
         var out: [Finding] = []
         var groups: [String: [Finding]] = [:]
         for f in list {
-            if f.id.hasPrefix("ext."), f.verdict == .info {
+            if f.id.hasPrefix("ext."), !f.id.hasPrefix("ext.summary."), f.verdict == .info {
                 groups[String(f.id.split(separator: ".")[1]), default: []].append(f)
             } else {
                 out.append(f)
@@ -228,6 +229,46 @@ enum Checks {
                                body: L("chk.ext.summaryBody", names.joined(separator: ", ")),
                                fixes: app.map { [(L("chk.ext.open"), Finding.Fix.openInBrowser(app: $0.app, url: $0.page.replacingOccurrences(of: "?id=", with: "")))] }
                                    ?? (browser == "Firefox" ? [(L("chk.ext.open"), .openInBrowser(app: "Firefox", url: "about:addons"))] : [])))
+        }
+        return out
+    }
+
+    /// Safari uzantıları: sayfaya betik ekleyebilen türler (içerik engelleyiciler sayfayı okuyamaz).
+    static func safariExtensions() -> [Finding] {
+        parseSafari(Shell.run("/usr/bin/pluginkit", ["-mAvvv", "-p", "com.apple.Safari.extension,com.apple.Safari.web-extension"]).1)
+    }
+
+    static func parseSafari(_ text: String) -> [Finding] {
+        var parents: [String: (name: String, count: Int)] = [:]
+        var cur: [String: String] = [:]
+        func flush() {
+            if let p = cur["Parent Bundle"], !p.hasPrefix("/System/") {
+                parents[p, default: (cur["Parent Name"] ?? (p as NSString).lastPathComponent, 0)].count += 1
+            }
+            cur = [:]
+        }
+        for raw in text.split(separator: "\n", omittingEmptySubsequences: false) {
+            let line = raw.trimmingCharacters(in: .whitespaces)
+            if line.isEmpty || (!raw.hasPrefix("\t") && line.hasSuffix(")") && !line.contains(" = ")) { flush(); continue }
+            if let r = line.range(of: " = ") { cur[String(line[..<r.lowerBound])] = String(line[r.upperBound...]) }
+        }
+        flush()
+        var out: [Finding] = []
+        var trusted: [String] = []
+        for (path, v) in parents.sorted(by: { $0.value.name < $1.value.name }) {
+            let sig = FileManager.default.fileExists(atPath: path) ? Signing.classify(path: path).signature : "unsigned"
+            if sig == "unsigned" || sig == "adhoc" {
+                out.append(Finding(id: "safari.\(path)", category: .browser, verdict: .caution,
+                                   title: L("chk.ext.title", v.name, "Safari"), body: L("chk.safari.unsigned"),
+                                   iconKey: path, fixes: [(L("chk.safari.open"), .openURL("x-apple.systempreferences:com.apple.Safari-Extensions"))]))
+            } else {
+                trusted.append(v.name)
+            }
+        }
+        if !trusted.isEmpty {
+            out.append(Finding(id: "ext.summary.Safari", category: .browser, verdict: .info,
+                               title: L("chk.safari.summaryTitle", trusted.count.formatted()),
+                               body: L("chk.safari.summaryBody", trusted.joined(separator: ", "))))
         }
         return out
     }

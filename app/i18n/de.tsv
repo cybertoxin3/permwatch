@@ -561,3 +561,7 @@ chk.dnsleak.title	DNS-Leck außerhalb des VPN
 chk.dnsleak.body	Der DNS-Server %1$@ wird direkt über %2$@ erreicht, außerhalb des VPN. Dein Netz sieht jede aufgerufene Website. Nutze das DNS des VPN oder aktiviere dessen DNS-Leckschutz.
 chk.leak.appleTitle	%@ Apple-Systemdienste umgehen das VPN
 chk.leak.appleBody	%1$@ sprechen direkt über %2$@ mit Apple. macOS macht das absichtlich für einige eigene Dienste, solange das VPN nicht allen Verkehr tunnelt. Dein Netz sieht, dass du Apple kontaktierst, aber nicht, was du surfst. Wenn dir das wichtig ist, suche in der VPN-App nach „alle Netzwerke einbeziehen“ bzw. Full-Tunnel.
+chk.safari.unsigned	Diese Safari-Erweiterung stammt aus einer App ohne Signatur eines bekannten Entwicklers. Sie kann Skripte in Seiten einfügen. Schalte sie aus, wenn du nicht genau weißt, was sie ist.
+chk.safari.open	Safari-Erweiterungen öffnen
+chk.safari.summaryTitle	%@ Apps fügen Safari-Erweiterungen hinzu
+chk.safari.summaryBody	%@. Sie stammen aus signierten Apps. Safari führt nur die unter Safari › Einstellungen › Erweiterungen aktivierten aus; entferne ungenutzte.

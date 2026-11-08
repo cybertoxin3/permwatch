@@ -66,6 +66,28 @@ func check(_ cond: Bool, _ name: String) { if cond { print("✓ \(name)") } else
                               ("bundle:com.example.ok", "Recorder", ["kTCCServiceScreenCapture"], nil)])
     check(spy.count == 1 && spy[0].id == "spy.bundle:com.example.spy", "ekran + klavye izleme birlikte uyarı, tek izin değil")
 
+    // Safari uzantıları: uygulamaya göre gruplanır, sistem uzantıları sayılmaz
+    let saf = """
+         com.example.Ext.One(1.0)
+    	            Path = /Applications/NoSuchApp.app/Contents/PlugIns/One.appex
+    	   Parent Bundle = /Applications/NoSuchApp.app
+    	     Parent Name = NoSuchApp
+
+         com.example.Ext.Two(1.0)
+    	            Path = /Applications/NoSuchApp.app/Contents/PlugIns/Two.appex
+    	   Parent Bundle = /Applications/NoSuchApp.app
+    	     Parent Name = NoSuchApp
+
+         com.apple.Safari.Something(1.0)
+    	   Parent Bundle = /System/Applications/Something.app
+    """
+    let sf = Checks.parseSafari(saf)
+    check(sf.count == 1 && sf[0].id == "safari./Applications/NoSuchApp.app" && sf[0].verdict == .caution,
+          "Safari: imzasız/olmayan uygulamanın uzantısı uyarı, sistem uzantısı yok sayılır")
+
+    let sum = Checks.summarizeExtensions([Finding(id: "ext.summary.Safari", category: .browser, verdict: .info, title: "s", body: "")])
+    check(sum.count == 1 && sum[0].id == "ext.summary.Safari", "hazır özet kartı ikinci kez özetlenmez")
+
     // VPN sızıntısı (sentetik: tünel utun4, fiziksel en0 = 192.0.2.10)
     func conn(_ name: String, _ local: String, _ remote: String) -> ConnRow {
         ConnRow(id: name + remote, pid: 1, name: name, path: nil, proto: "TCP", local: local, remote: remote, state: "ESTABLISHED",

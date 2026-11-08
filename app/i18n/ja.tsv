@@ -561,3 +561,7 @@ chk.dnsleak.title	VPN 外での DNS リーク
 chk.dnsleak.body	DNS サーバ %1$@ に VPN を通らず %2$@ から直接アクセスしています。調べたサイトがネットワークに見えます。VPN の DNS を使うか、DNS リーク保護を有効にしましょう。
 chk.leak.appleTitle	Apple のシステムサービス %@ 個が VPN を経由していません
 chk.leak.appleBody	%1$@ が %2$@ から Apple と直接通信しています。VPN アプリがすべての通信をトンネルに通さない限り、macOS は一部のサービスで意図的にこうします。Apple と通信していることはネットワークから見えますが、閲覧内容は見えません。気になる場合は VPN アプリで「すべてのネットワークを含める」などのフルトンネル設定を探してください。
+chk.safari.unsigned	この Safari 拡張機能は、既知の開発元に署名されていないアプリのものです。表示中のページにスクリプトを追加できます。正体が分からなければオフにしましょう。
+chk.safari.open	Safari 拡張機能を開く
+chk.safari.summaryTitle	%@ 個のアプリが Safari 拡張機能を追加しています
+chk.safari.summaryBody	%@。署名済みアプリのものです。Safari は「Safari › 設定 › 機能拡張」でオンにしたものだけを実行します。使っていないものは削除しましょう。

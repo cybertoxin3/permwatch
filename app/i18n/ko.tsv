@@ -561,3 +561,7 @@ chk.dnsleak.title	VPN 외부 DNS 누출
 chk.dnsleak.body	DNS 서버 %1$@에 VPN을 거치지 않고 %2$@로 직접 접속합니다. 네트워크가 조회하는 모든 사이트를 볼 수 있습니다. VPN의 DNS를 사용하거나 DNS 누출 보호를 켜세요.
 chk.leak.appleTitle	Apple 시스템 서비스 %@개가 VPN을 우회
 chk.leak.appleBody	%1$@이(가) %2$@로 Apple과 직접 통신합니다. VPN 앱이 모든 트래픽을 터널로 보내지 않으면 macOS는 일부 자체 서비스에 대해 의도적으로 이렇게 합니다. 네트워크는 Apple과 통신한다는 것은 알 수 있지만 무엇을 보는지는 모릅니다. 중요하다면 VPN 앱에서 전체 터널 옵션을 찾아보세요.
+chk.safari.unsigned	이 Safari 확장 프로그램은 알려진 개발자의 서명이 없는 앱에서 왔습니다. 방문하는 페이지에 스크립트를 추가할 수 있습니다. 정확히 무엇인지 모르면 끄세요.
+chk.safari.open	Safari 확장 프로그램 열기
+chk.safari.summaryTitle	Safari 확장을 추가하는 앱 %@개
+chk.safari.summaryBody	%@. 서명된 앱에서 온 것입니다. Safari는 Safari › 설정 › 확장 프로그램에서 켠 것만 실행합니다. 사용하지 않는 것은 제거하세요.

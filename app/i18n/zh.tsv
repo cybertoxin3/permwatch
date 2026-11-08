@@ -561,3 +561,7 @@ chk.dnsleak.title	VPN 外的 DNS 泄漏
 chk.dnsleak.body	DNS 服务器 %1$@ 直接通过 %2$@ 访问,绕过了 VPN。你的网络能看到你查询的每个网站。请使用 VPN 自带的 DNS 或开启 DNS 泄漏保护。
 chk.leak.appleTitle	%@ 个 Apple 系统服务绕过了 VPN
 chk.leak.appleBody	%1$@ 直接通过 %2$@ 与 Apple 通信。除非 VPN 应用将所有流量都通过隧道,macOS 会有意让部分自身服务这样做。你的网络能看到你在联系 Apple,但看不到你浏览的内容。如果在意,请在 VPN 应用中寻找“全隧道/包含所有网络”选项。
+chk.safari.unsigned	此 Safari 扩展来自未经已知开发者签名的应用。它可以向你访问的页面注入脚本。除非确切知道它是什么,否则请关闭。
+chk.safari.open	打开 Safari 扩展
+chk.safari.summaryTitle	%@ 个应用添加了 Safari 扩展
+chk.safari.summaryBody	%@。它们来自已签名的应用。Safari 只运行你在“Safari › 设置 › 扩展”中开启的扩展;请移除不用的。

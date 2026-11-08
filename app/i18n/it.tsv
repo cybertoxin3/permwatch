@@ -561,3 +561,7 @@ chk.dnsleak.title	Perdita DNS fuori dalla VPN
 chk.dnsleak.body	Il server DNS %1$@ viene raggiunto direttamente tramite %2$@, fuori dalla VPN. La rete vede ogni sito cercato. Usa il DNS della VPN o attiva la protezione dalle perdite DNS.
 chk.leak.appleTitle	%@ servizi di sistema Apple aggirano la VPN
 chk.leak.appleBody	%1$@ comunicano con Apple direttamente tramite %2$@. macOS lo fa di proposito per alcuni suoi servizi, a meno che la VPN non instradi tutto nel tunnel. La rete vede che contatti Apple, non cosa navighi. Se ti interessa, cerca l’opzione tunnel completo nell’app VPN.
+chk.safari.unsigned	Questa estensione di Safari proviene da un’app non firmata da uno sviluppatore noto. Può inserire script nelle pagine. Disattivala se non sai esattamente cos’è.
+chk.safari.open	Apri estensioni di Safari
+chk.safari.summaryTitle	%@ app aggiungono estensioni a Safari
+chk.safari.summaryBody	%@. Provengono da app firmate. Safari esegue solo quelle attivate in Safari › Impostazioni › Estensioni; rimuovi quelle che non usi.
