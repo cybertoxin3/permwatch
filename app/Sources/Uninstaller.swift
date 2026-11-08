@@ -96,12 +96,37 @@ enum Uninstaller {
         // Uygulamanın kapanmasına kısa bir süre tanı.
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             let urls = items.map { URL(fileURLWithPath: $0.path) }
-            NSWorkspace.shared.recycle(urls) { moved, _ in
-                let movedPaths = Set(moved.keys.map(\.path))
-                let failed = items.map(\.path).filter { !movedPaths.contains($0) }
-                DispatchQueue.main.async { completion(failed) }
+            NSWorkspace.shared.recycle(urls) { _, _ in
+                // recycle, root'a ait uygulamalarda (çoğu /Applications uygulaması) ve macOS'un
+                // "Uygulama Yönetimi" korumasında yetki isteyemeden başarısız olur. Gerçekten
+                // yerinde kalanları Finder'a devret: Finder gerekirse yönetici şifresini sorar.
+                let fm = FileManager.default
+                let left = items.map(\.path).filter { fm.fileExists(atPath: $0) }
+                guard !left.isEmpty else { completion([]); return }
+                DispatchQueue.main.async {
+                    let errors = trashWithFinder(left)
+                    let still = left.filter { fm.fileExists(atPath: $0) }
+                    completion(still.map { p in errors[p].map { "\(p) (\($0))" } ?? p })
+                }
             }
         }
+    }
+
+    /// Finder ile Çöp Sepeti'ne taşır (sürükle-bırak ile aynı; gerektiğinde yetki ister).
+    /// Dönen sözlük: yol → hata mesajı.
+    @discardableResult
+    static func trashWithFinder(_ paths: [String]) -> [String: String] {
+        var errors: [String: String] = [:]
+        for p in paths {
+            let escaped = p.replacingOccurrences(of: "\\", with: "\\\\").replacingOccurrences(of: "\"", with: "\\\"")
+            let src = "tell application \"Finder\" to delete (POSIX file \"\(escaped)\" as alias)"
+            var err: NSDictionary?
+            NSAppleScript(source: src)?.executeAndReturnError(&err)
+            if let e = err {
+                errors[p] = (e[NSAppleScript.errorMessage] as? String) ?? "\(e[NSAppleScript.errorNumber] ?? "?")"
+            }
+        }
+        return errors
     }
 }
 

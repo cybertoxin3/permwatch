@@ -39,6 +39,17 @@ enum Snapshot {
     @MainActor
     static func scheduleIfRequested(store: Store, selection: Int?) {
         guard let path = target else { return }
+        if section == "uninstall-run", let app = ProcessInfo.processInfo.environment["PERMWATCH_APP"] {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                let items = Uninstaller.candidates(appPath: app, launchPlists: [])
+                Uninstaller.run(items, bundleID: nil, resetPermissions: false) { failed in
+                    let out = "aday: \(items.map(\.path))\nkalan: \(failed)\nhâlâ var mı: \(FileManager.default.fileExists(atPath: app))\n"
+                    try? out.write(toFile: path, atomically: true, encoding: .utf8)
+                    exit(0)
+                }
+            }
+            return
+        }
         if section == "uninstall-dry", let app = ProcessInfo.processInfo.environment["PERMWATCH_APP"] {
             // Kuru çalıştırma: hiçbir şey silmeden kaldırılacak öğeleri listeler.
             DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
