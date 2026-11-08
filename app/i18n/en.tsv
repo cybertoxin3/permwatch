@@ -272,3 +272,49 @@ uninstall.done	Moved to the Trash.
 uninstall.failed	Could not move: %@
 uninstall.resetPerms	Also reset its privacy permissions
 uninstall.title	Uninstall “%@”?
+nav.packets	Packet Capture
+pkt.start	Start Capture
+pkt.stop	Stop
+pkt.clear	Clear list
+pkt.openWireshark	Open in Wireshark
+pkt.filter	Filter: process, host, IP, port or protocol
+pkt.packets	Packets
+pkt.conversations	Conversations
+pkt.summary	%1$@ packets · %2$@
+pkt.skipped	%@ not listed (too fast; all are in the .pcap file)
+pkt.empty	Not capturing
+pkt.emptyBody	Start a capture to see every packet on your Mac live: which app talks to which server, DNS lookups, TLS server names and unencrypted traffic. Everything is also saved as a .pcap file you can open in Wireshark.
+pkt.waiting	Waiting for packets…
+pkt.capturing	Capturing
+pkt.modeRoot	All interfaces · with process names (administrator mode)
+pkt.modeLocal	Interface %@ · only your own processes are named (administrator mode names all)
+pkt.needRoot	Packet capture needs administrator mode
+pkt.needRootBody	macOS only lets administrators read raw network traffic. Turn on administrator mode to capture on all interfaces and see which app sent each packet.
+pkt.enableRoot	Turn On Administrator Mode…
+pkt.error	Could not start capture: %@
+pkt.rootGone	The administrator helper is not running.
+pkt.threat.creds	Password sent unencrypted
+pkt.threat.credsDetail	%1$@ sent login data in clear text to %2$@. Anyone on the network can read it.
+pkt.flag.cleartextCreds	Login data in clear text (unencrypted)
+pkt.flag.cleartextHTTP	Unencrypted HTTP: the content can be read on the network
+pkt.flag.cleartextProto	Unencrypted protocol: the traffic can be read on the network
+pkt.frame	Frame
+pkt.interface	Interface
+pkt.direction	Direction
+pkt.in	Incoming
+pkt.out	Outgoing
+pkt.onBehalf	On behalf of
+pkt.ports	Ports
+pkt.tcpFlags	Flags
+pkt.dnsAnswers	DNS answers
+pkt.bytes	Bytes
+col.no	No.
+col.time	Time
+col.source	Source
+col.destination	Destination
+col.protocol	Protocol
+col.length	Length
+col.info	Info
+col.host	Host
+col.port	Port
+col.packets	Packets

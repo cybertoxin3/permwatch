@@ -7,6 +7,12 @@ func L(_ key: String, _ args: CVarArg...) -> String {
 }
 
 enum Fmt {
+    static let packetTime: DateFormatter = {
+        let f = DateFormatter()
+        f.dateFormat = "HH:mm:ss.SSS"
+        return f
+    }()
+
     static let time: DateFormatter = {
         let f = DateFormatter()
         f.dateStyle = .none

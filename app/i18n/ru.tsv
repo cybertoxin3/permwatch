@@ -272,3 +272,49 @@ uninstall.done	Перемещено в Корзину.
 uninstall.failed	Не удалось переместить: %@
 uninstall.resetPerms	Также сбросить его разрешения конфиденциальности
 uninstall.title	Удалить «%@»?
+nav.packets	Захват пакетов
+pkt.start	Начать захват
+pkt.stop	Остановить
+pkt.clear	Очистить список
+pkt.openWireshark	Открыть в Wireshark
+pkt.filter	Фильтр: процесс, хост, IP, порт или протокол
+pkt.packets	Пакеты
+pkt.conversations	Соединения
+pkt.summary	Пакетов: %1$@ · %2$@
+pkt.skipped	%@ не показано (слишком быстро; все есть в файле .pcap)
+pkt.empty	Захват не идёт
+pkt.emptyBody	Начните захват, чтобы видеть каждый пакет в реальном времени: какое приложение с каким сервером общается, DNS-запросы, имена TLS-серверов и незашифрованный трафик. Всё также сохраняется в файл .pcap для Wireshark.
+pkt.waiting	Ожидание пакетов…
+pkt.capturing	Идёт захват
+pkt.modeRoot	Все интерфейсы · с именами процессов (режим администратора)
+pkt.modeLocal	Интерфейс %@ · названы только ваши процессы (режим администратора покажет все)
+pkt.needRoot	Для захвата пакетов нужен режим администратора
+pkt.needRootBody	macOS разрешает читать сетевой трафик только администраторам. Включите режим администратора, чтобы захватывать на всех интерфейсах и видеть, какое приложение отправило каждый пакет.
+pkt.enableRoot	Включить режим администратора…
+pkt.error	Не удалось начать захват: %@
+pkt.rootGone	Помощник администратора не запущен.
+pkt.threat.creds	Пароль отправлен без шифрования
+pkt.threat.credsDetail	%1$@ отправил данные для входа открытым текстом на %2$@. Их может прочитать любой в сети.
+pkt.flag.cleartextCreds	Данные для входа открытым текстом
+pkt.flag.cleartextHTTP	Незашифрованный HTTP: содержимое видно в сети
+pkt.flag.cleartextProto	Незашифрованный протокол: трафик видно в сети
+pkt.frame	Кадр
+pkt.interface	Интерфейс
+pkt.direction	Направление
+pkt.in	Входящие
+pkt.out	Исходящие
+pkt.onBehalf	От имени
+pkt.ports	Порты
+pkt.tcpFlags	Флаги
+pkt.dnsAnswers	Ответы DNS
+pkt.bytes	Байты
+col.no	№
+col.time	Время
+col.source	Источник
+col.destination	Назначение
+col.protocol	Протокол
+col.length	Длина
+col.info	Инфо
+col.host	Хост
+col.port	Порт
+col.packets	Пакеты

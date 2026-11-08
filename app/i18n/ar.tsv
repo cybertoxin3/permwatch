@@ -272,3 +272,49 @@ uninstall.done	نُقل إلى سلة المهملات.
 uninstall.failed	تعذّر النقل: %@
 uninstall.resetPerms	إعادة تعيين أذونات الخصوصية أيضًا
 uninstall.title	هل تريد إلغاء تثبيت «%@»؟
+nav.packets	التقاط الحزم
+pkt.start	بدء الالتقاط
+pkt.stop	إيقاف
+pkt.clear	مسح القائمة
+pkt.openWireshark	فتح في Wireshark
+pkt.filter	تصفية: العملية أو المضيف أو IP أو المنفذ أو البروتوكول
+pkt.packets	الحزم
+pkt.conversations	المحادثات
+pkt.summary	%1$@ حزمة · %2$@
+pkt.skipped	%@ غير مدرجة (سريعة جدًا؛ جميعها في ملف ‎.pcap)
+pkt.empty	لا يوجد التقاط
+pkt.emptyBody	ابدأ الالتقاط لرؤية كل حزمة على جهاز Mac مباشرةً: أي تطبيق يتصل بأي خادم، واستعلامات DNS، وأسماء خوادم TLS، والحركة غير المشفّرة. ويُحفظ كل شيء أيضًا في ملف ‎.pcap يمكن فتحه في Wireshark.
+pkt.waiting	بانتظار الحزم…
+pkt.capturing	جارٍ الالتقاط
+pkt.modeRoot	كل الواجهات · مع أسماء العمليات (وضع المسؤول)
+pkt.modeLocal	الواجهة %@ · تُسمّى عملياتك فقط (وضع المسؤول يُظهر الكل)
+pkt.needRoot	يتطلب التقاط الحزم وضع المسؤول
+pkt.needRootBody	لا يسمح macOS بقراءة حركة الشبكة الخام إلا للمسؤولين. شغّل وضع المسؤول للالتقاط على كل الواجهات ومعرفة التطبيق الذي أرسل كل حزمة.
+pkt.enableRoot	تشغيل وضع المسؤول…
+pkt.error	تعذّر بدء الالتقاط: %@
+pkt.rootGone	مساعد المسؤول لا يعمل.
+pkt.threat.creds	أُرسلت كلمة مرور دون تشفير
+pkt.threat.credsDetail	أرسل %1$@ بيانات تسجيل الدخول نصًا واضحًا إلى %2$@. يمكن لأي شخص على الشبكة قراءتها.
+pkt.flag.cleartextCreds	بيانات دخول بنص واضح (غير مشفّرة)
+pkt.flag.cleartextHTTP	HTTP غير مشفّر: يمكن قراءة المحتوى على الشبكة
+pkt.flag.cleartextProto	بروتوكول غير مشفّر: يمكن قراءة الحركة على الشبكة
+pkt.frame	الإطار
+pkt.interface	الواجهة
+pkt.direction	الاتجاه
+pkt.in	وارد
+pkt.out	صادر
+pkt.onBehalf	نيابةً عن
+pkt.ports	المنافذ
+pkt.tcpFlags	الأعلام
+pkt.dnsAnswers	إجابات DNS
+pkt.bytes	البايتات
+col.no	رقم
+col.time	الوقت
+col.source	المصدر
+col.destination	الوجهة
+col.protocol	البروتوكول
+col.length	الطول
+col.info	معلومات
+col.host	المضيف
+col.port	المنفذ
+col.packets	الحزم

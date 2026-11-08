@@ -8,6 +8,7 @@ struct PermwatchApp: App {
     @StateObject private var downloads = DownloadGuard()
     @StateObject private var media = MediaMonitor()
     @StateObject private var network = NetworkMonitor()
+    @StateObject private var packets = PacketMonitor()
     @StateObject private var center = ThreatCenter.shared
     @AppStorage(Theme.storageKey) private var theme: Theme = .system
 
@@ -26,6 +27,8 @@ struct PermwatchApp: App {
                 .environmentObject(downloads)
                 .environmentObject(media)
                 .environmentObject(network)
+                .environmentObject(packets)
+                .environmentObject(RootBridge.shared)
                 .environmentObject(center)
                 .frame(minWidth: 1100, minHeight: 640)
                 .preferredColorScheme(theme.colorScheme)

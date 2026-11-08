@@ -272,3 +272,49 @@ uninstall.done	Переміщено в Смітник.
 uninstall.failed	Не вдалося перемістити: %@
 uninstall.resetPerms	Також скинути її дозволи конфіденційності
 uninstall.title	Видалити «%@»?
+nav.packets	Захоплення пакетів
+pkt.start	Почати захоплення
+pkt.stop	Зупинити
+pkt.clear	Очистити список
+pkt.openWireshark	Відкрити у Wireshark
+pkt.filter	Фільтр: процес, хост, IP, порт або протокол
+pkt.packets	Пакети
+pkt.conversations	З'єднання
+pkt.summary	Пакетів: %1$@ · %2$@
+pkt.skipped	%@ не показано (надто швидко; усі є у файлі .pcap)
+pkt.empty	Захоплення не триває
+pkt.emptyBody	Почніть захоплення, щоб бачити кожен пакет наживо: яка програма з яким сервером спілкується, DNS-запити, імена TLS-серверів і незашифрований трафік. Усе також зберігається у файл .pcap для Wireshark.
+pkt.waiting	Очікування пакетів…
+pkt.capturing	Триває захоплення
+pkt.modeRoot	Усі інтерфейси · з іменами процесів (режим адміністратора)
+pkt.modeLocal	Інтерфейс %@ · названо лише ваші процеси (режим адміністратора покаже всі)
+pkt.needRoot	Для захоплення пакетів потрібен режим адміністратора
+pkt.needRootBody	macOS дозволяє читати мережевий трафік лише адміністраторам. Увімкніть режим адміністратора, щоб захоплювати на всіх інтерфейсах і бачити, яка програма надіслала кожен пакет.
+pkt.enableRoot	Увімкнути режим адміністратора…
+pkt.error	Не вдалося почати захоплення: %@
+pkt.rootGone	Помічник адміністратора не запущений.
+pkt.threat.creds	Пароль надіслано без шифрування
+pkt.threat.credsDetail	%1$@ надіслав дані для входу відкритим текстом на %2$@. Їх може прочитати будь-хто в мережі.
+pkt.flag.cleartextCreds	Дані для входу відкритим текстом
+pkt.flag.cleartextHTTP	Незашифрований HTTP: вміст видно в мережі
+pkt.flag.cleartextProto	Незашифрований протокол: трафік видно в мережі
+pkt.frame	Кадр
+pkt.interface	Інтерфейс
+pkt.direction	Напрямок
+pkt.in	Вхідні
+pkt.out	Вихідні
+pkt.onBehalf	Від імені
+pkt.ports	Порти
+pkt.tcpFlags	Прапорці
+pkt.dnsAnswers	Відповіді DNS
+pkt.bytes	Байти
+col.no	№
+col.time	Час
+col.source	Джерело
+col.destination	Призначення
+col.protocol	Протокол
+col.length	Довжина
+col.info	Інфо
+col.host	Хост
+col.port	Порт
+col.packets	Пакети

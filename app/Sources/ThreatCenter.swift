@@ -8,6 +8,7 @@ enum Focus: Equatable {
     case process(Int32)
     case download(String)
     case connection(String)
+    case packet(Int)
     case media
 }
 

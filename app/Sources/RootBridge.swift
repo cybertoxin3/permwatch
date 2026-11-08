@@ -9,6 +9,10 @@ struct RootData {
     var cron: String
     var profiles: String
     var procs: [Int32: (args: [String], dyld: [String])]
+    var captureActive = false
+    var captureDevice: String?
+    var captureError: String?
+    var captureSkipped = 0
 
     var fresh: Bool { Date().timeIntervalSince(ts) < 20 }
 }
@@ -19,6 +23,8 @@ final class RootBridge: ObservableObject {
     static let shared = RootBridge()
     static let prefKey = "rootMode"
     nonisolated static let outPath = "/Library/Application Support/permwatch/root.json"
+    nonisolated static let packetsPath = "/Library/Application Support/permwatch/packets.jsonl"
+    nonisolated static let pcapPath = "/Library/Application Support/permwatch/capture.pcap"
 
     @Published private(set) var data: RootData?
     @Published private(set) var lastError: String?
@@ -30,7 +36,7 @@ final class RootBridge: ObservableObject {
     var enabledPreference: Bool { UserDefaults.standard.bool(forKey: Self.prefKey) }
 
     private init() {
-        timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { [weak self] _ in
+        timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { [weak self] _ in
             MainActor.assumeIsolated { self?.read() }
         }
         read()
@@ -94,8 +100,15 @@ final class RootBridge: ObservableObject {
         for (k, v) in (j["procs"] as? [String: [String: [String]]]) ?? [:] {
             if let pid = Int32(k) { procs[pid] = (v["args"] ?? [], v["dyld"] ?? []) }
         }
-        return RootData(ts: Date(timeIntervalSince1970: ts), lsof: j["lsof"] as? String ?? "",
-                        btm: j["btm"] as? String ?? "", cron: j["cron"] as? String ?? "",
-                        profiles: j["profiles"] as? String ?? "", procs: procs)
+        var r = RootData(ts: Date(timeIntervalSince1970: ts), lsof: j["lsof"] as? String ?? "",
+                         btm: j["btm"] as? String ?? "", cron: j["cron"] as? String ?? "",
+                         profiles: j["profiles"] as? String ?? "", procs: procs)
+        if let c = j["capture"] as? [String: Any] {
+            r.captureActive = c["active"] as? Bool ?? false
+            r.captureDevice = c["device"] as? String
+            r.captureError = c["error"] as? String
+            r.captureSkipped = c["skipped"] as? Int ?? 0
+        }
+        return r
     }
 }

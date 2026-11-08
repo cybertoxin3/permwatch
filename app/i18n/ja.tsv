@@ -272,3 +272,49 @@ uninstall.done	ゴミ箱に移動しました。
 uninstall.failed	移動できませんでした: %@
 uninstall.resetPerms	プライバシーのアクセス権もリセット
 uninstall.title	“%@”をアンインストールしますか?
+nav.packets	パケットキャプチャ
+pkt.start	キャプチャ開始
+pkt.stop	停止
+pkt.clear	リストを消去
+pkt.openWireshark	Wiresharkで開く
+pkt.filter	フィルタ: プロセス、ホスト、IP、ポート、プロトコル
+pkt.packets	パケット
+pkt.conversations	通信
+pkt.summary	%1$@ パケット · %2$@
+pkt.skipped	%@ 件は一覧に未表示(高速すぎるため。すべて .pcap に保存)
+pkt.empty	キャプチャしていません
+pkt.emptyBody	キャプチャを開始すると、Mac のすべてのパケットをリアルタイムで確認できます。どのアプリがどのサーバと通信しているか、DNS 問い合わせ、TLS サーバ名、暗号化されていない通信。すべて Wireshark で開ける .pcap ファイルにも保存されます。
+pkt.waiting	パケットを待機中…
+pkt.capturing	キャプチャ中
+pkt.modeRoot	すべてのインターフェイス · プロセス名付き(管理者モード)
+pkt.modeLocal	インターフェイス %@ · 自分のプロセスのみ名前を表示(管理者モードですべて表示)
+pkt.needRoot	パケットキャプチャには管理者モードが必要です
+pkt.needRootBody	macOS では生のネットワーク通信を読めるのは管理者だけです。管理者モードをオンにすると、すべてのインターフェイスでキャプチャし、各パケットを送ったアプリを確認できます。
+pkt.enableRoot	管理者モードをオン…
+pkt.error	キャプチャを開始できません: %@
+pkt.rootGone	管理者ヘルパーが動作していません。
+pkt.threat.creds	パスワードが暗号化されずに送信されました
+pkt.threat.credsDetail	%1$@ が %2$@ にログイン情報を平文で送信しました。ネットワーク上の誰でも読めます。
+pkt.flag.cleartextCreds	平文のログイン情報(暗号化なし)
+pkt.flag.cleartextHTTP	暗号化されていない HTTP: 内容をネットワーク上で読めます
+pkt.flag.cleartextProto	暗号化されていないプロトコル: 通信をネットワーク上で読めます
+pkt.frame	フレーム
+pkt.interface	インターフェイス
+pkt.direction	方向
+pkt.in	受信
+pkt.out	送信
+pkt.onBehalf	代理元
+pkt.ports	ポート
+pkt.tcpFlags	フラグ
+pkt.dnsAnswers	DNS 応答
+pkt.bytes	バイト
+col.no	番号
+col.time	時刻
+col.source	送信元
+col.destination	宛先
+col.protocol	プロトコル
+col.length	長さ
+col.info	情報
+col.host	ホスト
+col.port	ポート
+col.packets	パケット

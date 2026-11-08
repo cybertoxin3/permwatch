@@ -272,3 +272,49 @@ uninstall.done	Movido a la papelera.
 uninstall.failed	No se pudo mover: %@
 uninstall.resetPerms	Restablecer también sus permisos de privacidad
 uninstall.title	¿Desinstalar «%@»?
+nav.packets	Captura de paquetes
+pkt.start	Iniciar captura
+pkt.stop	Detener
+pkt.clear	Vaciar lista
+pkt.openWireshark	Abrir en Wireshark
+pkt.filter	Filtro: proceso, host, IP, puerto o protocolo
+pkt.packets	Paquetes
+pkt.conversations	Conversaciones
+pkt.summary	%1$@ paquetes · %2$@
+pkt.skipped	%@ sin listar (demasiado rápido; todos están en el archivo .pcap)
+pkt.empty	Sin captura
+pkt.emptyBody	Inicia una captura para ver cada paquete en directo: qué app habla con qué servidor, consultas DNS, nombres de servidor TLS y tráfico sin cifrar. Todo se guarda también en un archivo .pcap que puedes abrir en Wireshark.
+pkt.waiting	Esperando paquetes…
+pkt.capturing	Capturando
+pkt.modeRoot	Todas las interfaces · con nombres de proceso (modo administrador)
+pkt.modeLocal	Interfaz %@ · solo se nombran tus procesos (el modo administrador muestra todos)
+pkt.needRoot	La captura de paquetes requiere el modo administrador
+pkt.needRootBody	macOS solo permite a los administradores leer el tráfico de red sin procesar. Activa el modo administrador para capturar en todas las interfaces y ver qué app envió cada paquete.
+pkt.enableRoot	Activar modo administrador…
+pkt.error	No se pudo iniciar la captura: %@
+pkt.rootGone	El asistente de administrador no se está ejecutando.
+pkt.threat.creds	Contraseña enviada sin cifrar
+pkt.threat.credsDetail	%1$@ envió datos de acceso sin cifrar a %2$@. Cualquiera en la red puede leerlos.
+pkt.flag.cleartextCreds	Datos de acceso sin cifrar
+pkt.flag.cleartextHTTP	HTTP sin cifrar: el contenido se puede leer en la red
+pkt.flag.cleartextProto	Protocolo sin cifrar: el tráfico se puede leer en la red
+pkt.frame	Trama
+pkt.interface	Interfaz
+pkt.direction	Dirección
+pkt.in	Entrante
+pkt.out	Saliente
+pkt.onBehalf	En nombre de
+pkt.ports	Puertos
+pkt.tcpFlags	Indicadores
+pkt.dnsAnswers	Respuestas DNS
+pkt.bytes	Bytes
+col.no	N.º
+col.time	Hora
+col.source	Origen
+col.destination	Destino
+col.protocol	Protocolo
+col.length	Longitud
+col.info	Info
+col.host	Host
+col.port	Puerto
+col.packets	Paquetes

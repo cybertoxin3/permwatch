@@ -272,3 +272,49 @@ uninstall.done	휴지통으로 이동했습니다.
 uninstall.failed	이동할 수 없음: %@
 uninstall.resetPerms	개인정보 보호 권한도 재설정
 uninstall.title	‘%@’을(를) 제거하겠습니까?
+nav.packets	패킷 캡처
+pkt.start	캡처 시작
+pkt.stop	중지
+pkt.clear	목록 지우기
+pkt.openWireshark	Wireshark에서 열기
+pkt.filter	필터: 프로세스, 호스트, IP, 포트 또는 프로토콜
+pkt.packets	패킷
+pkt.conversations	대화
+pkt.summary	패킷 %1$@개 · %2$@
+pkt.skipped	%@개 미표시(너무 빠름, 모두 .pcap 파일에 있음)
+pkt.empty	캡처 중 아님
+pkt.emptyBody	캡처를 시작하면 Mac의 모든 패킷을 실시간으로 볼 수 있습니다. 어떤 앱이 어떤 서버와 통신하는지, DNS 조회, TLS 서버 이름, 암호화되지 않은 트래픽. 모두 Wireshark에서 열 수 있는 .pcap 파일로도 저장됩니다.
+pkt.waiting	패킷 대기 중…
+pkt.capturing	캡처 중
+pkt.modeRoot	모든 인터페이스 · 프로세스 이름 포함(관리자 모드)
+pkt.modeLocal	인터페이스 %@ · 내 프로세스만 이름 표시(관리자 모드는 모두 표시)
+pkt.needRoot	패킷 캡처에는 관리자 모드가 필요합니다
+pkt.needRootBody	macOS는 관리자만 원시 네트워크 트래픽을 읽을 수 있습니다. 관리자 모드를 켜면 모든 인터페이스에서 캡처하고 각 패킷을 보낸 앱을 볼 수 있습니다.
+pkt.enableRoot	관리자 모드 켜기…
+pkt.error	캡처를 시작할 수 없음: %@
+pkt.rootGone	관리자 도우미가 실행되고 있지 않습니다.
+pkt.threat.creds	암호가 암호화되지 않은 채 전송됨
+pkt.threat.credsDetail	%1$@이(가) %2$@에 로그인 정보를 평문으로 보냈습니다. 네트워크의 누구나 읽을 수 있습니다.
+pkt.flag.cleartextCreds	평문 로그인 정보(암호화 안 됨)
+pkt.flag.cleartextHTTP	암호화되지 않은 HTTP: 네트워크에서 내용을 읽을 수 있음
+pkt.flag.cleartextProto	암호화되지 않은 프로토콜: 네트워크에서 트래픽을 읽을 수 있음
+pkt.frame	프레임
+pkt.interface	인터페이스
+pkt.direction	방향
+pkt.in	수신
+pkt.out	송신
+pkt.onBehalf	대리 대상
+pkt.ports	포트
+pkt.tcpFlags	플래그
+pkt.dnsAnswers	DNS 응답
+pkt.bytes	바이트
+col.no	번호
+col.time	시간
+col.source	출발지
+col.destination	목적지
+col.protocol	프로토콜
+col.length	길이
+col.info	정보
+col.host	호스트
+col.port	포트
+col.packets	패킷

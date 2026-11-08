@@ -272,3 +272,49 @@ uninstall.done	In den Papierkorb gelegt.
 uninstall.failed	Nicht verschiebbar: %@
 uninstall.resetPerms	Auch ihre Datenschutzberechtigungen zurücksetzen
 uninstall.title	„%@“ deinstallieren?
+nav.packets	Paketmitschnitt
+pkt.start	Mitschnitt starten
+pkt.stop	Stoppen
+pkt.clear	Liste leeren
+pkt.openWireshark	In Wireshark öffnen
+pkt.filter	Filter: Prozess, Host, IP, Port oder Protokoll
+pkt.packets	Pakete
+pkt.conversations	Verbindungen
+pkt.summary	%1$@ Pakete · %2$@
+pkt.skipped	%@ nicht aufgelistet (zu schnell; alle stehen in der .pcap-Datei)
+pkt.empty	Kein Mitschnitt aktiv
+pkt.emptyBody	Starte einen Mitschnitt, um jedes Paket live zu sehen: welche App mit welchem Server spricht, DNS-Anfragen, TLS-Servernamen und unverschlüsselten Verkehr. Alles wird zusätzlich als .pcap-Datei für Wireshark gespeichert.
+pkt.waiting	Warte auf Pakete …
+pkt.capturing	Mitschnitt läuft
+pkt.modeRoot	Alle Schnittstellen · mit Prozessnamen (Administratormodus)
+pkt.modeLocal	Schnittstelle %@ · nur eigene Prozesse benannt (Administratormodus zeigt alle)
+pkt.needRoot	Paketmitschnitt benötigt den Administratormodus
+pkt.needRootBody	macOS erlaubt nur Administratoren, rohen Netzwerkverkehr zu lesen. Schalte den Administratormodus ein, um auf allen Schnittstellen mitzuschneiden und zu sehen, welche App jedes Paket gesendet hat.
+pkt.enableRoot	Administratormodus einschalten …
+pkt.error	Mitschnitt konnte nicht starten: %@
+pkt.rootGone	Der Administrator-Helfer läuft nicht.
+pkt.threat.creds	Passwort unverschlüsselt gesendet
+pkt.threat.credsDetail	%1$@ hat Anmeldedaten im Klartext an %2$@ gesendet. Jeder im Netzwerk kann sie lesen.
+pkt.flag.cleartextCreds	Anmeldedaten im Klartext (unverschlüsselt)
+pkt.flag.cleartextHTTP	Unverschlüsseltes HTTP: Inhalt ist im Netzwerk lesbar
+pkt.flag.cleartextProto	Unverschlüsseltes Protokoll: Verkehr ist im Netzwerk lesbar
+pkt.frame	Rahmen
+pkt.interface	Schnittstelle
+pkt.direction	Richtung
+pkt.in	Eingehend
+pkt.out	Ausgehend
+pkt.onBehalf	Im Auftrag von
+pkt.ports	Ports
+pkt.tcpFlags	Flags
+pkt.dnsAnswers	DNS-Antworten
+pkt.bytes	Bytes
+col.no	Nr.
+col.time	Zeit
+col.source	Quelle
+col.destination	Ziel
+col.protocol	Protokoll
+col.length	Länge
+col.info	Info
+col.host	Host
+col.port	Port
+col.packets	Pakete

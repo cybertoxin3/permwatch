@@ -272,3 +272,49 @@ uninstall.done	Placé dans la corbeille.
 uninstall.failed	Impossible de déplacer : %@
 uninstall.resetPerms	Réinitialiser aussi ses autorisations de confidentialité
 uninstall.title	Désinstaller « %@ » ?
+nav.packets	Capture de paquets
+pkt.start	Démarrer la capture
+pkt.stop	Arrêter
+pkt.clear	Vider la liste
+pkt.openWireshark	Ouvrir dans Wireshark
+pkt.filter	Filtre : processus, hôte, IP, port ou protocole
+pkt.packets	Paquets
+pkt.conversations	Conversations
+pkt.summary	%1$@ paquets · %2$@
+pkt.skipped	%@ non listés (trop rapide ; tous sont dans le fichier .pcap)
+pkt.empty	Aucune capture en cours
+pkt.emptyBody	Démarrez une capture pour voir chaque paquet en direct : quelle app parle à quel serveur, requêtes DNS, noms de serveurs TLS et trafic non chiffré. Tout est aussi enregistré dans un fichier .pcap lisible par Wireshark.
+pkt.waiting	En attente de paquets…
+pkt.capturing	Capture en cours
+pkt.modeRoot	Toutes les interfaces · avec noms de processus (mode administrateur)
+pkt.modeLocal	Interface %@ · seuls vos processus sont nommés (le mode administrateur les nomme tous)
+pkt.needRoot	La capture de paquets nécessite le mode administrateur
+pkt.needRootBody	macOS ne permet qu’aux administrateurs de lire le trafic réseau brut. Activez le mode administrateur pour capturer sur toutes les interfaces et voir quelle app a envoyé chaque paquet.
+pkt.enableRoot	Activer le mode administrateur…
+pkt.error	Impossible de démarrer la capture : %@
+pkt.rootGone	L’assistant administrateur ne fonctionne pas.
+pkt.threat.creds	Mot de passe envoyé en clair
+pkt.threat.credsDetail	%1$@ a envoyé des identifiants en clair à %2$@. N’importe qui sur le réseau peut les lire.
+pkt.flag.cleartextCreds	Identifiants en clair (non chiffrés)
+pkt.flag.cleartextHTTP	HTTP non chiffré : le contenu est lisible sur le réseau
+pkt.flag.cleartextProto	Protocole non chiffré : le trafic est lisible sur le réseau
+pkt.frame	Trame
+pkt.interface	Interface
+pkt.direction	Sens
+pkt.in	Entrant
+pkt.out	Sortant
+pkt.onBehalf	Pour le compte de
+pkt.ports	Ports
+pkt.tcpFlags	Drapeaux
+pkt.dnsAnswers	Réponses DNS
+pkt.bytes	Octets
+col.no	N°
+col.time	Heure
+col.source	Source
+col.destination	Destination
+col.protocol	Protocole
+col.length	Longueur
+col.info	Info
+col.host	Hôte
+col.port	Port
+col.packets	Paquets

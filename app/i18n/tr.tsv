@@ -272,3 +272,49 @@ uninstall.done	Çöp Sepeti'ne taşındı.
 uninstall.failed	Taşınamadı: %@
 uninstall.resetPerms	Gizlilik izinlerini de sıfırla
 uninstall.title	“%@” kaldırılsın mı?
+nav.packets	Paket Yakalama
+pkt.start	Yakalamayı Başlat
+pkt.stop	Durdur
+pkt.clear	Listeyi temizle
+pkt.openWireshark	Wireshark'ta Aç
+pkt.filter	Filtre: süreç, sunucu, IP, port veya protokol
+pkt.packets	Paketler
+pkt.conversations	Konuşmalar
+pkt.summary	%1$@ paket · %2$@
+pkt.skipped	%@ paket listelenmedi (çok hızlı; hepsi .pcap dosyasında)
+pkt.empty	Yakalama yapılmıyor
+pkt.emptyBody	Mac'indeki her paketi canlı görmek için yakalamayı başlat: hangi uygulama hangi sunucuyla konuşuyor, DNS sorguları, TLS sunucu adları ve şifresiz trafik. Hepsi Wireshark'ta açabileceğin bir .pcap dosyasına da kaydedilir.
+pkt.waiting	Paketler bekleniyor…
+pkt.capturing	Yakalanıyor
+pkt.modeRoot	Tüm arayüzler · süreç adlarıyla (yönetici modu)
+pkt.modeLocal	Arayüz %@ · yalnızca kendi süreçlerin adlandırılır (yönetici modu hepsini gösterir)
+pkt.needRoot	Paket yakalama için yönetici modu gerekiyor
+pkt.needRootBody	macOS ham ağ trafiğini yalnızca yöneticilerin okumasına izin verir. Tüm arayüzlerde yakalamak ve her paketi hangi uygulamanın gönderdiğini görmek için yönetici modunu aç.
+pkt.enableRoot	Yönetici Modunu Aç…
+pkt.error	Yakalama başlatılamadı: %@
+pkt.rootGone	Yönetici yardımcısı çalışmıyor.
+pkt.threat.creds	Parola şifrelenmeden gönderildi
+pkt.threat.credsDetail	%1$@, %2$@ adresine giriş bilgilerini şifresiz gönderdi. Ağdaki herkes okuyabilir.
+pkt.flag.cleartextCreds	Giriş bilgisi şifresiz (açık metin)
+pkt.flag.cleartextHTTP	Şifresiz HTTP: içerik ağda okunabilir
+pkt.flag.cleartextProto	Şifresiz protokol: trafik ağda okunabilir
+pkt.frame	Çerçeve
+pkt.interface	Arayüz
+pkt.direction	Yön
+pkt.in	Gelen
+pkt.out	Giden
+pkt.onBehalf	Adına
+pkt.ports	Portlar
+pkt.tcpFlags	Bayraklar
+pkt.dnsAnswers	DNS yanıtları
+pkt.bytes	Baytlar
+col.no	No.
+col.time	Zaman
+col.source	Kaynak
+col.destination	Hedef
+col.protocol	Protokol
+col.length	Uzunluk
+col.info	Bilgi
+col.host	Sunucu
+col.port	Port
+col.packets	Paket

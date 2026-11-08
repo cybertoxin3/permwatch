@@ -13,10 +13,12 @@ OUT=build/permwatch.app
 ARCH=${ARCH:-$(uname -m)}
 mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
 
-swiftc -parse-as-library -O -target "$ARCH-apple-macos14" \
-    Sources/*.swift -o "$APP/Contents/MacOS/permwatch"
+# shared/: paket yakalama motoru (libpcap), hem uygulamaya hem yardımcıya derlenir.
+swiftc -parse-as-library -O -target "$ARCH-apple-macos14" -import-objc-header shared/bridge.h \
+    Sources/*.swift shared/*.swift -lpcap -o "$APP/Contents/MacOS/permwatch"
 # Yönetici modu yardımcısı (ayrı, küçük, girdisiz bir program)
-swiftc -O -target "$ARCH-apple-macos14" helper/main.swift -o "$APP/Contents/MacOS/permwatch-root"
+swiftc -O -target "$ARCH-apple-macos14" -import-objc-header shared/bridge.h \
+    helper/main.swift shared/*.swift -lpcap -o "$APP/Contents/MacOS/permwatch-root"
 
 cp Resources/sample-events.jsonl Resources/AppIcon.icns "$APP/Contents/Resources/"
 python3 -I tools/build_strings.py i18n "$APP/Contents/Resources"

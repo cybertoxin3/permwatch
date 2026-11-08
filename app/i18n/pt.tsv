@@ -272,3 +272,49 @@ uninstall.done	Movido para o Lixo.
 uninstall.failed	Não foi possível mover: %@
 uninstall.resetPerms	Redefinir também as permissões de privacidade
 uninstall.title	Desinstalar “%@”?
+nav.packets	Captura de pacotes
+pkt.start	Iniciar captura
+pkt.stop	Parar
+pkt.clear	Limpar lista
+pkt.openWireshark	Abrir no Wireshark
+pkt.filter	Filtro: processo, host, IP, porta ou protocolo
+pkt.packets	Pacotes
+pkt.conversations	Conversas
+pkt.summary	%1$@ pacotes · %2$@
+pkt.skipped	%@ não listados (rápido demais; todos estão no arquivo .pcap)
+pkt.empty	Sem captura
+pkt.emptyBody	Inicie uma captura para ver cada pacote ao vivo: qual app fala com qual servidor, consultas DNS, nomes de servidor TLS e tráfego sem criptografia. Tudo também é salvo em um arquivo .pcap que abre no Wireshark.
+pkt.waiting	Aguardando pacotes…
+pkt.capturing	Capturando
+pkt.modeRoot	Todas as interfaces · com nomes de processo (modo administrador)
+pkt.modeLocal	Interface %@ · só seus processos são nomeados (o modo administrador mostra todos)
+pkt.needRoot	A captura de pacotes requer o modo administrador
+pkt.needRootBody	O macOS só permite que administradores leiam o tráfego de rede bruto. Ative o modo administrador para capturar em todas as interfaces e ver qual app enviou cada pacote.
+pkt.enableRoot	Ativar modo administrador…
+pkt.error	Não foi possível iniciar a captura: %@
+pkt.rootGone	O auxiliar de administrador não está em execução.
+pkt.threat.creds	Senha enviada sem criptografia
+pkt.threat.credsDetail	%1$@ enviou dados de login sem criptografia para %2$@. Qualquer pessoa na rede pode lê-los.
+pkt.flag.cleartextCreds	Dados de login sem criptografia
+pkt.flag.cleartextHTTP	HTTP sem criptografia: o conteúdo pode ser lido na rede
+pkt.flag.cleartextProto	Protocolo sem criptografia: o tráfego pode ser lido na rede
+pkt.frame	Quadro
+pkt.interface	Interface
+pkt.direction	Direção
+pkt.in	Entrada
+pkt.out	Saída
+pkt.onBehalf	Em nome de
+pkt.ports	Portas
+pkt.tcpFlags	Flags
+pkt.dnsAnswers	Respostas DNS
+pkt.bytes	Bytes
+col.no	N.º
+col.time	Hora
+col.source	Origem
+col.destination	Destino
+col.protocol	Protocolo
+col.length	Tamanho
+col.info	Info
+col.host	Host
+col.port	Porta
+col.packets	Pacotes

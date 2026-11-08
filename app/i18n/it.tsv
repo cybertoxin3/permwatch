@@ -272,3 +272,49 @@ uninstall.done	Spostato nel Cestino.
 uninstall.failed	Impossibile spostare: %@
 uninstall.resetPerms	Reimposta anche le autorizzazioni privacy
 uninstall.title	Disinstallare “%@”?
+nav.packets	Cattura pacchetti
+pkt.start	Avvia cattura
+pkt.stop	Interrompi
+pkt.clear	Svuota elenco
+pkt.openWireshark	Apri in Wireshark
+pkt.filter	Filtro: processo, host, IP, porta o protocollo
+pkt.packets	Pacchetti
+pkt.conversations	Conversazioni
+pkt.summary	%1$@ pacchetti · %2$@
+pkt.skipped	%@ non elencati (troppo veloci; sono tutti nel file .pcap)
+pkt.empty	Nessuna cattura
+pkt.emptyBody	Avvia una cattura per vedere ogni pacchetto in tempo reale: quale app parla con quale server, query DNS, nomi dei server TLS e traffico non cifrato. Tutto viene salvato anche in un file .pcap apribile in Wireshark.
+pkt.waiting	In attesa di pacchetti…
+pkt.capturing	Cattura in corso
+pkt.modeRoot	Tutte le interfacce · con nomi dei processi (modalità amministratore)
+pkt.modeLocal	Interfaccia %@ · solo i tuoi processi hanno un nome (la modalità amministratore li mostra tutti)
+pkt.needRoot	La cattura dei pacchetti richiede la modalità amministratore
+pkt.needRootBody	macOS consente solo agli amministratori di leggere il traffico di rete grezzo. Attiva la modalità amministratore per catturare su tutte le interfacce e vedere quale app ha inviato ogni pacchetto.
+pkt.enableRoot	Attiva modalità amministratore…
+pkt.error	Impossibile avviare la cattura: %@
+pkt.rootGone	L’helper amministratore non è in esecuzione.
+pkt.threat.creds	Password inviata in chiaro
+pkt.threat.credsDetail	%1$@ ha inviato credenziali in chiaro a %2$@. Chiunque sulla rete può leggerle.
+pkt.flag.cleartextCreds	Credenziali in chiaro (non cifrate)
+pkt.flag.cleartextHTTP	HTTP non cifrato: il contenuto è leggibile sulla rete
+pkt.flag.cleartextProto	Protocollo non cifrato: il traffico è leggibile sulla rete
+pkt.frame	Frame
+pkt.interface	Interfaccia
+pkt.direction	Direzione
+pkt.in	In entrata
+pkt.out	In uscita
+pkt.onBehalf	Per conto di
+pkt.ports	Porte
+pkt.tcpFlags	Flag
+pkt.dnsAnswers	Risposte DNS
+pkt.bytes	Byte
+col.no	N.
+col.time	Ora
+col.source	Origine
+col.destination	Destinazione
+col.protocol	Protocollo
+col.length	Lunghezza
+col.info	Info
+col.host	Host
+col.port	Porta
+col.packets	Pacchetti

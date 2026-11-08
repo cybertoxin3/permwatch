@@ -272,3 +272,49 @@ uninstall.done	已移到废纸篓。
 uninstall.failed	无法移动：%@
 uninstall.resetPerms	同时重置其隐私权限
 uninstall.title	要卸载“%@”吗？
+nav.packets	数据包捕获
+pkt.start	开始捕获
+pkt.stop	停止
+pkt.clear	清空列表
+pkt.openWireshark	在 Wireshark 中打开
+pkt.filter	过滤:进程、主机、IP、端口或协议
+pkt.packets	数据包
+pkt.conversations	会话
+pkt.summary	%1$@ 个数据包 · %2$@
+pkt.skipped	%@ 个未列出(速度过快;全部保存在 .pcap 文件中)
+pkt.empty	未在捕获
+pkt.emptyBody	开始捕获即可实时查看 Mac 上的每个数据包:哪个应用在与哪个服务器通信、DNS 查询、TLS 服务器名称以及未加密流量。所有内容也会保存为可在 Wireshark 中打开的 .pcap 文件。
+pkt.waiting	正在等待数据包…
+pkt.capturing	正在捕获
+pkt.modeRoot	所有接口 · 含进程名称(管理员模式)
+pkt.modeLocal	接口 %@ · 仅显示你自己的进程名称(管理员模式显示全部)
+pkt.needRoot	数据包捕获需要管理员模式
+pkt.needRootBody	macOS 只允许管理员读取原始网络流量。打开管理员模式即可在所有接口上捕获,并查看每个数据包由哪个应用发送。
+pkt.enableRoot	打开管理员模式…
+pkt.error	无法开始捕获:%@
+pkt.rootGone	管理员助手未在运行。
+pkt.threat.creds	密码以未加密方式发送
+pkt.threat.credsDetail	%1$@ 以明文向 %2$@ 发送了登录信息。网络上的任何人都能读取。
+pkt.flag.cleartextCreds	明文登录信息(未加密)
+pkt.flag.cleartextHTTP	未加密 HTTP:内容可在网络上被读取
+pkt.flag.cleartextProto	未加密协议:流量可在网络上被读取
+pkt.frame	帧
+pkt.interface	接口
+pkt.direction	方向
+pkt.in	入站
+pkt.out	出站
+pkt.onBehalf	代表
+pkt.ports	端口
+pkt.tcpFlags	标志
+pkt.dnsAnswers	DNS 应答
+pkt.bytes	字节
+col.no	编号
+col.time	时间
+col.source	源地址
+col.destination	目标地址
+col.protocol	协议
+col.length	长度
+col.info	信息
+col.host	主机
+col.port	端口
+col.packets	数据包
