@@ -584,3 +584,6 @@ block.active	차단됨: 이 주소와 주고받는 모든 트래픽이 차단됩
 block.settings	차단된 서버
 block.none	차단된 서버가 없습니다.
 block.settingsDesc	네트워크 또는 패킷 캡처에서 서버를 차단하세요. 관리자 도우미가 macOS 내장 방화벽(pf)의 전용 영역에 목록을 적용하며 다른 방화벽 설정은 바꾸지 않습니다. 여기서 해제하거나 Mac을 재시동할 때까지 차단이 유지됩니다.
+donate.title	permwatch 후원하기
+donate.desc	permwatch는 무료이며 광고, 계정, 추적이 없습니다. 도움이 되었다면 암호화폐로 커피 한 잔 사주세요.
+donate.button	커피 사주기 ☕

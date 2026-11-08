@@ -584,3 +584,6 @@ block.active	Bloqueado: se descarta todo el tráfico hacia y desde esta direcci�
 block.settings	Servidores bloqueados
 block.none	No hay servidores bloqueados.
 block.settingsDesc	Bloquea servidores desde Red o Captura de paquetes. El asistente de administrador aplica la lista al cortafuegos integrado de macOS (pf) en su propia sección, sin cambiar tus otros ajustes. Los bloqueos duran hasta que los quites aquí o reinicies el Mac.
+donate.title	Apoya permwatch
+donate.desc	permwatch es gratuito, sin anuncios, cuentas ni rastreo. Si te ha servido, puedes invitarme a un café con cripto.
+donate.button	Invítame a un café ☕

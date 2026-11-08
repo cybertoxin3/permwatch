@@ -584,3 +584,6 @@ block.active	Blockiert: aller Verkehr von und zu dieser Adresse wird verworfen.
 block.settings	Blockierte Server
 block.none	Keine Server blockiert.
 block.settingsDesc	Blockiere Server unter Netzwerk oder Paketmitschnitt. Der Administrator-Helfer wendet die Liste in einem eigenen Bereich der integrierten macOS-Firewall (pf) an, ohne andere Einstellungen zu ändern. Sperren bleiben, bis du sie hier entfernst oder den Mac neu startest.
+donate.title	permwatch unterstützen
+donate.desc	permwatch ist kostenlos, ohne Werbung, Konto oder Tracking. Wenn es dir geholfen hat, kannst du mir mit Krypto einen Kaffee spendieren.
+donate.button	Kaffee spendieren ☕

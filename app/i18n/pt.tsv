@@ -584,3 +584,6 @@ block.active	Bloqueado: todo o tráfego de e para este endereço é descartado.
 block.settings	Servidores bloqueados
 block.none	Nenhum servidor bloqueado.
 block.settingsDesc	Bloqueie servidores nas seções Rede ou Captura de pacotes. O auxiliar de administrador aplica a lista ao firewall integrado do macOS (pf) em uma seção própria, sem alterar outros ajustes. Os bloqueios valem até você removê-los aqui ou reiniciar o Mac.
+donate.title	Apoie o permwatch
+donate.desc	O permwatch é gratuito, sem anúncios, contas ou rastreamento. Se ele te ajudou, você pode me pagar um café com cripto.
+donate.button	Me pague um café ☕

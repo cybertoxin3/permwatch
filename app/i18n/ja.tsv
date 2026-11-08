@@ -584,3 +584,6 @@ block.active	ブロック中: このアドレスとの通信はすべて破棄�
 block.settings	ブロック中のサーバ
 block.none	ブロック中のサーバはありません。
 block.settingsDesc	「ネットワーク」または「パケットキャプチャ」でサーバをブロックできます。管理者ヘルパーが macOS 内蔵ファイアウォール(pf)の専用セクションに一覧を適用し、ほかの設定は変更しません。ここで解除するか Mac を再起動するまでブロックは続きます。
+donate.title	permwatch を応援
+donate.desc	permwatch は無料で、広告・アカウント・追跡はありません。役に立ったなら、暗号資産でコーヒーをおごってください。
+donate.button	コーヒーをおごる ☕

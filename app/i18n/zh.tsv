@@ -584,3 +584,6 @@ block.active	已阻止:与此地址往来的所有流量都会被丢弃。
 block.settings	已阻止的服务器
 block.none	没有被阻止的服务器。
 block.settingsDesc	在“网络”或“数据包捕获”中阻止服务器。管理员助手会在 macOS 内置防火墙(pf)的独立区域应用此列表,不会更改其他防火墙设置。阻止会一直有效,直到你在此移除或重启 Mac。
+donate.title	支持 permwatch
+donate.desc	permwatch 免费，没有广告、账户或跟踪。如果它帮到了你，可以用加密货币请我喝杯咖啡。
+donate.button	请我喝咖啡 ☕

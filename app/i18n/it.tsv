@@ -584,3 +584,6 @@ block.active	Bloccato: tutto il traffico da e verso questo indirizzo viene scart
 block.settings	Server bloccati
 block.none	Nessun server bloccato.
 block.settingsDesc	Blocca i server dalle sezioni Rete o Cattura pacchetti. L’helper amministratore applica l’elenco al firewall integrato di macOS (pf) in una sezione dedicata, senza toccare le altre impostazioni. I blocchi restano finché non li rimuovi qui o riavvii il Mac.
+donate.title	Sostieni permwatch
+donate.desc	permwatch è gratuito, senza pubblicità, account o tracciamento. Se ti è stato utile, puoi offrirmi un caffè in cripto.
+donate.button	Offrimi un caffè ☕

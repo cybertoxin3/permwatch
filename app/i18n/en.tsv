@@ -584,3 +584,6 @@ block.active	Blocked: all traffic to and from this address is dropped.
 block.settings	Blocked servers
 block.none	No servers blocked.
 block.settingsDesc	Block servers from the Network or Packet Capture sections. The administrator helper applies the list to the built-in macOS firewall (pf) in its own section, without changing your other firewall settings. Blocks stay until you remove them here or restart the Mac.
+donate.title	Support permwatch
+donate.desc	permwatch is free, with no ads, accounts or tracking. If it helped you, you can buy me a coffee with crypto.
+donate.button	Buy me a coffee ☕

@@ -584,3 +584,6 @@ block.active	Engellendi: bu adrese giden ve gelen tüm trafik düşürülüyor.
 block.settings	Engellenen sunucular
 block.none	Engellenen sunucu yok.
 block.settingsDesc	Sunucuları Ağ veya Paket Yakalama bölümlerinden engelle. Yönetici yardımcısı listeyi yerleşik macOS güvenlik duvarına (pf) kendi bölümünde uygular; diğer güvenlik duvarı ayarlarına dokunmaz. Engeller burada kaldırana veya Mac'i yeniden başlatana kadar sürer.
+donate.title	permwatch'ı destekle
+donate.desc	permwatch ücretsiz; reklam, hesap veya takip yok. İşine yaradıysa kriptoyla bana bir kahve ısmarlayabilirsin.
+donate.button	Bana bir kahve ısmarla ☕

@@ -138,6 +138,17 @@ struct SettingsView: View {
 
             Section {
                 HStack {
+                    Text(L("donate.desc")).font(.system(size: 11.5)).foregroundStyle(.secondary)
+                        .fixedSize(horizontal: false, vertical: true)
+                    Spacer()
+                    Link(L("donate.button"), destination: URL(string: "https://github.com/cybertoxin3/permwatch#-buy-me-a-coffee")!)
+                }
+            } header: {
+                Text(L("donate.title"))
+            }
+
+            Section {
+                HStack {
                     Circle().fill(root.active ? Color.green : Color.secondary).frame(width: 8, height: 8)
                     Text(root.active ? L("settings.rootActive") : L("settings.rootInactive"))
                     Spacer()
