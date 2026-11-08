@@ -105,5 +105,13 @@ var cred = tls; cred.flags = ["pkt.flag.cleartextCreds"]
 check(Explainer.packet(cred, host: nil, app: "a").verdict == .danger, "şifresiz parola tehlike")
 check(Conversation.isLocal("192.168.1.5") && Conversation.isLocal("100.100.1.1") && !Conversation.isLocal("8.8.8.8"), "yerel adres tespiti")
 
+// .pcap düzeltme: yarım paket atılır, PKTAP bağlantı türü 258 olur
+var pc = Data([0xd4, 0xc3, 0xb2, 0xa1, 2, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0xff, 0xff, 0, 0, 149, 0, 0, 0])
+func rec(_ n: Int) -> Data { var r = Data(count: 8); r.append(contentsOf: le(UInt32(n))); r.append(contentsOf: le(UInt32(n))); r.append(Data(count: n)); return r }
+pc.append(rec(10)); pc.append(rec(20)); pc.append(rec(30).prefix(25))
+let fixed = PcapFile.sanitize(pc)
+check(fixed.packets == 2 && fixed.data.count == 24 + 26 + 36, "yarım kalan son paket atılır")
+check(fixed.data[20] == 2 && fixed.data[21] == 1, "PKTAP bağlantı türü 258 yazılır")
+
 print(failures == 0 ? "\nTüm testler geçti." : "\n\(failures) test başarısız.")
 exit(failures == 0 ? 0 : 1)

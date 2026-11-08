@@ -105,7 +105,9 @@ struct PacketsView: View {
                 Label(L("pkt.noPktap", e), systemImage: "exclamationmark.triangle")
                     .font(.system(size: 11)).foregroundStyle(.orange)
             }
-            if let u = cap.lastSaved {
+            if cap.saving {
+                HStack(spacing: 6) { ProgressView().controlSize(.mini); Text(L("pkt.saving")).font(.system(size: 11)) }
+            } else if let u = cap.lastSaved {
                 HStack(spacing: 6) {
                     Image(systemName: "checkmark.circle.fill").foregroundStyle(.green)
                     Text(L("pkt.saved", PathUtil.abbreviate(u.path))).lineLimit(1).truncationMode(.middle)

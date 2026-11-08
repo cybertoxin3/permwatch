@@ -62,7 +62,10 @@ final class PacketMonitor: ObservableObject {
             try? FileManager.default.removeItem(at: PacketMonitor.flagURL)
             // Yakalama sürerken çıkılırsa son durumu da kaydet.
             MainActor.assumeIsolated {
-                if let self, self.running, let dir = self.saveFolder { _ = self.copyCapture(toFolder: dir) }
+                if let self, self.running, let dir = self.saveFolder {
+                    self.stoppedAt = Date()
+                    _ = self.copyCapture(to: URL(fileURLWithPath: dir).appendingPathComponent(self.defaultFileName), wait: true)
+                }
             }
         }
     }
@@ -164,25 +167,40 @@ final class PacketMonitor: ObservableObject {
     }
 
     @discardableResult
-    func copyCapture(to dest: URL) -> URL? {
+    func copyCapture(to dest: URL, wait: Bool = false) -> URL? {
         saveError = nil
         guard let src = pcapURL, FileManager.default.fileExists(atPath: src.path) else {
             saveError = L("pkt.noFile"); return nil
         }
-        do {
-            try FileManager.default.createDirectory(at: dest.deletingLastPathComponent(), withIntermediateDirectories: true)
-            if FileManager.default.fileExists(atPath: dest.path) { try FileManager.default.removeItem(at: dest) }
-            // Kopya her zaman kullanıcıya ait, normal izinli bir dosya olsun.
-            let data = try Data(contentsOf: src, options: .mappedIfSafe)
-            try data.write(to: dest, options: .atomic)
-            try? FileManager.default.setAttributes([.posixPermissions: 0o600], ofItemAtPath: dest.path)
-            lastSaved = dest
-            notifySaved(dest, size: data.count)
-            return dest
-        } catch {
-            saveError = L("pkt.saveFailed", error.localizedDescription)
-            return nil
+        saving = true
+        // Büyük kayıtlar (yüzlerce MB) arayüzü dondurmasın: kopyalama arka planda.
+        let work = { () -> Result<Int, Error> in Result { try Self.writeCopy(from: src, to: dest) } }
+        let finish = { (r: Result<Int, Error>) in
+            self.saving = false
+            switch r {
+            case .success(let n): self.lastSaved = dest; self.notifySaved(dest, size: n)
+            case .failure(let e): self.saveError = L("pkt.saveFailed", e.localizedDescription)
+            }
         }
+        if wait { finish(work()); return lastSaved == dest ? dest : nil }
+        DispatchQueue.global(qos: .userInitiated).async {
+            let r = work()
+            DispatchQueue.main.async { finish(r) }
+        }
+        return dest
+    }
+
+    @Published private(set) var saving = false
+
+    /// Yalnızca tam paketleri, kullanıcıya ait 0600 bir dosyaya yazar. Dönüş: bayt sayısı.
+    nonisolated static func writeCopy(from src: URL, to dest: URL) throws -> Int {
+        let fm = FileManager.default
+        try fm.createDirectory(at: dest.deletingLastPathComponent(), withIntermediateDirectories: true)
+        let data = PcapFile.sanitize(try Data(contentsOf: src)).data
+        if fm.fileExists(atPath: dest.path) { try fm.removeItem(at: dest) }
+        try data.write(to: dest, options: .atomic)
+        try? fm.setAttributes([.posixPermissions: 0o600], ofItemAtPath: dest.path)
+        return data.count
     }
 
     private func notifySaved(_ url: URL, size: Int) {

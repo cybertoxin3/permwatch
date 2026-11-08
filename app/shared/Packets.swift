@@ -409,6 +409,48 @@ struct Reader {
     }
 }
 
+// MARK: - .pcap dosyası
+
+enum PcapFile {
+    /// Kayıt sürerken alınan kopya son paketin ortasında bitebilir: yalnızca tam paketleri bırak.
+    /// Apple'ın yazdığı DLT_PKTAP (149) bağlantı türünü standart LINKTYPE_PKTAP (258) yap; aksi halde
+    /// Wireshark dosyayı "USER 2" sanar. Dönüş: düzeltilmiş veri ve paket sayısı.
+    static func sanitize(_ input: Data) -> (data: Data, packets: Int) {
+        var d = input
+        guard d.count >= 24 else { return (d, 0) }
+        let magic = d.withUnsafeBytes { $0.load(fromByteOffset: 0, as: UInt32.self) }
+        let little: Bool
+        switch magic {
+        case 0xa1b2c3d4, 0xa1b23c4d: little = true
+        case 0xd4c3b2a1, 0x4d3cb2a1: little = false
+        default: return (d, 0)   // pcapng vb.: dokunma
+        }
+        func u32(_ o: Int) -> UInt32 {
+            let v = d.withUnsafeBytes { $0.loadUnaligned(fromByteOffset: o, as: UInt32.self) }
+            return little ? v : v.byteSwapped
+        }
+        if u32(20) == 149 {
+            let v: UInt32 = little ? 258 : UInt32(258).byteSwapped
+            withUnsafeBytes(of: v) { d.replaceSubrange(20..<24, with: $0) }
+        }
+        var off = 24, n = 0
+        while off + 16 <= d.count {
+            let incl = Int(u32(off + 8))
+            guard incl <= 262_144, off + 16 + incl <= d.count else { break }
+            off += 16 + incl; n += 1
+        }
+        if off < d.count { d.removeSubrange(off..<d.count) }
+        return (d, n)
+    }
+
+    /// Dosyayı yerinde düzelt (yakalama bittikten sonra).
+    static func fixInPlace(_ path: String) {
+        guard let d = FileManager.default.contents(atPath: path) else { return }
+        let s = sanitize(d)
+        if s.data != d { try? s.data.write(to: URL(fileURLWithPath: path)) }
+    }
+}
+
 // MARK: - libpcap oturumu
 
 struct CaptureError: Error { let message: String }
@@ -418,6 +460,7 @@ final class CaptureEngine: @unchecked Sendable {
     private(set) var linkType: Int32 = 0
     private var handle: OpaquePointer?
     private var dumper: OpaquePointer?
+    private var dumpPath: String?
     private let lock = NSLock()
     private var stopping = false
     private var seq = 0
@@ -471,6 +514,7 @@ final class CaptureEngine: @unchecked Sendable {
         guard let h = handle else { return false }
         unlink(path)
         dumper = pcap_dump_open(h, path)
+        dumpPath = dumper != nil ? path : nil
         return dumper != nil
     }
 
@@ -524,7 +568,10 @@ final class CaptureEngine: @unchecked Sendable {
                 pcap_dump_flush(d); lastFlush = Date()
             }
         }
-        if let d = dumper { pcap_dump_close(d); dumper = nil }
+        if let d = dumper {
+            pcap_dump_close(d); dumper = nil
+            if let p = dumpPath { PcapFile.fixInPlace(p) }
+        }
         pcap_close(h)
         handle = nil
     }
