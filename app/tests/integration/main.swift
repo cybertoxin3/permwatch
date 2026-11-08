@@ -141,6 +141,7 @@ func check(_ cond: Bool, _ name: String) { if cond { print("✓ \(name)") } else
     }
 
     // Çöp Sepeti'ne taşıma
+    try? FileManager.default.createDirectory(atPath: NSHomeDirectory() + "/Library/Application Support/permwatch", withIntermediateDirectories: true)
     let tmp = NSHomeDirectory() + "/Library/Application Support/permwatch/selftest-\(UUID().uuidString).txt"
     FileManager.default.createFile(atPath: tmp, contents: Data("x".utf8))
     var moved: NSURL?
@@ -164,7 +165,9 @@ func check(_ cond: Bool, _ name: String) { if cond { print("✓ \(name)") } else
     // Elastic imzaları: hepsi derlenir; zararsız bir deneme dosyası Xmrig kuralına takılır.
     check(YaraEngine.shared.load(force: true) == nil && YaraEngine.shared.extraCount > 100,
           "Elastic macOS kuralları derlendi (\(YaraEngine.shared.extraCount))")
-    let miner = NSHomeDirectory() + "/Library/Application Support/permwatch/selftest-miner-\(UUID().uuidString)"
+    let minerDir = NSHomeDirectory() + "/Library/Application Support/permwatch"
+    try? FileManager.default.createDirectory(atPath: minerDir, withIntermediateDirectories: true)   // temiz makinede (CI) yok
+    let miner = minerDir + "/selftest-miner-\(UUID().uuidString)"
     var body = Data([0xcf, 0xfa, 0xed, 0xfe])   // Mach-O başlığı (çalıştırılabilir değil)
     // Metinler ters yazılı: test programının kendisi kurala takılıp koruma servisince engellenmesin.
     let parts = ["tegrat_tes.gninim", "EMANTSOH_GIRMX", "]SNOITPO[ girmx :egasU", "NOISREV_GIRMX"].map { String($0.reversed()) }
