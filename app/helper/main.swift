@@ -6,8 +6,11 @@
 //  - Tek "girdi", kullanıcının kendi klasöründeki capture.on dosyasının var olup olmadığıdır:
 //    yalnızca paket yakalamayı açar/kapatır, içeriği okunmaz. Paketler eksiksiz kaydedilir.
 //  - Başlatan permwatch süreci kapanınca kendiliğinden çıkar.
+//  - Servis modunda (--daemon, SMAppService ile kurulur): konsoldaki kullanıcı için çalışır ve yalnızca
+//    permwatch açıkken (uygulamanın birkaç saniyede bir güncellediği "alive" dosyası tazeyken) veri toplar;
+//    aksi halde boşta bekler.
 //
-// Kullanım: permwatch-root <üst-pid>
+// Kullanım: permwatch-root <üst-pid>   |   permwatch-root --daemon
 import Darwin
 import Foundation
 
@@ -16,21 +19,46 @@ let outPath = outDir + "/root.json"
 let packetsPath = outDir + "/packets.jsonl"
 let pcapPath = outDir + "/capture.pcap"
 
-guard CommandLine.arguments.count >= 2, let parent = Int32(CommandLine.arguments[1]) else {
-    FileHandle.standardError.write(Data("kullanım: permwatch-root <üst-pid>\n".utf8))
+let daemon = CommandLine.arguments.dropFirst().first == "--daemon"
+guard daemon || (CommandLine.arguments.count >= 2 && Int32(CommandLine.arguments[1]) != nil) else {
+    FileHandle.standardError.write(Data("kullanım: permwatch-root <üst-pid> | --daemon\n".utf8))
     exit(64)
 }
+let parent: Int32 = daemon ? 0 : Int32(CommandLine.arguments[1])!
 guard getuid() == 0 else {
     FileHandle.standardError.write(Data("root olarak çalışmalı\n".utf8))
     exit(77)
 }
 
-// Başlatan kullanıcı: çıktı dosyaları ona ait olur, başka kullanıcılar okuyamaz.
-var bsd = proc_bsdinfo()
-guard proc_pidinfo(parent, PROC_PIDTBSDINFO, 0, &bsd, Int32(MemoryLayout<proc_bsdinfo>.size)) > 0 else { exit(65) }
-let owner = bsd.pbi_uid, ownerGid = bsd.pbi_gid
-let home = getpwuid(owner).map { String(cString: $0.pointee.pw_dir) } ?? "/var/empty"
-let flagPath = home + "/Library/Application Support/permwatch/capture.on"
+// Çıktıların sahibi: başlatan kullanıcı (servis modunda konsoldaki kullanıcı). Başka kullanıcılar okuyamaz.
+var owner: uid_t = 0, ownerGid: gid_t = 0
+var home = "/var/empty"
+var flagPath = "", alivePath = ""
+
+func setOwner(_ uid: uid_t) {
+    guard let pw = getpwuid(uid) else { return }
+    owner = uid; ownerGid = pw.pointee.pw_gid
+    home = String(cString: pw.pointee.pw_dir)
+    flagPath = home + "/Library/Application Support/permwatch/capture.on"
+    alivePath = home + "/Library/Application Support/permwatch/alive"
+}
+
+if daemon {
+    var st = stat()
+    guard stat("/dev/console", &st) == 0 else { exit(65) }
+    setOwner(st.st_uid)
+} else {
+    var bsd = proc_bsdinfo()
+    guard proc_pidinfo(parent, PROC_PIDTBSDINFO, 0, &bsd, Int32(MemoryLayout<proc_bsdinfo>.size)) > 0 else { exit(65) }
+    setOwner(bsd.pbi_uid)
+}
+
+/// Servis modunda: permwatch son 20 saniyede "buradayım" dedi mi? (Dosya kullanıcıya ait olmalı.)
+func appAlive() -> Bool {
+    var st = stat()
+    guard lstat(alivePath, &st) == 0, st.st_uid == owner, (st.st_mode & S_IFMT) == S_IFREG else { return false }
+    return Date().timeIntervalSince1970 - Double(st.st_mtimespec.tv_sec) < 20
+}
 
 func run(_ tool: String, _ args: [String]) -> String {
     let p = Process()
@@ -170,8 +198,23 @@ var captureError: String?
 var tick = 0
 var lastSig = ""
 while true {
-    // Başlatan uygulama kapandıysa çık.
-    if kill(parent, 0) != 0 && errno == ESRCH { capture?.stop(); exit(0) }
+    if daemon {
+        // Konsoldaki kullanıcı değiştiyse ona geç; permwatch kapalıysa boşta bekle.
+        var cs = stat()
+        if stat("/dev/console", &cs) == 0, cs.st_uid != owner, cs.st_uid != 0 {
+            capture?.stop(); capture = nil; captureError = nil
+            setOwner(cs.st_uid)
+        }
+        if !appAlive() {
+            if capture != nil { capture?.stop(); capture = nil; captureError = nil }
+            tick = 0
+            sleep(3)
+            continue
+        }
+    } else if kill(parent, 0) != 0 && errno == ESRCH {
+        // Başlatan uygulama kapandıysa çık.
+        capture?.stop(); exit(0)
+    }
 
     // Paket yakalama: kullanıcı "Yakalamayı Başlat" dediğinde capture.on oluşur.
     var st = stat()

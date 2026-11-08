@@ -43,6 +43,24 @@ swiftc -O -target "$ARCH-apple-macos14" -import-objc-header shared/bridge.h \
     helper/main.swift shared/*.swift -lpcap -o "$APP/Contents/MacOS/permwatch-root"
 
 cp Resources/sample-events.jsonl Resources/AppIcon.icns "$APP/Contents/Resources/"
+
+# Kalıcı yönetici servisi (SMAppService.daemon): kullanıcı Sistem Ayarları'nda bir kez onaylar.
+mkdir -p "$APP/Contents/Library/LaunchDaemons"
+cat > "$APP/Contents/Library/LaunchDaemons/com.yusuf.permwatch.root.plist" <<PLIST
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key><string>com.yusuf.permwatch.root</string>
+    <key>BundleProgram</key><string>Contents/MacOS/permwatch-root</string>
+    <key>ProgramArguments</key><array><string>permwatch-root</string><string>--daemon</string></array>
+    <key>AssociatedBundleIdentifiers</key><array><string>com.yusuf.permwatch</string></array>
+    <key>RunAtLoad</key><true/>
+    <key>KeepAlive</key><true/>
+    <key>ProcessType</key><string>Background</string>
+</dict>
+</plist>
+PLIST
 python3 -I tools/build_strings.py i18n "$APP/Contents/Resources"
 
 LOCS=$(cd "$APP/Contents/Resources" && ls -d *.lproj | sed 's/\.lproj//' | sed 's/.*/<string>&<\/string>/' | tr -d '\n')

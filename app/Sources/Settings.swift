@@ -128,6 +128,10 @@ struct SettingsView: View {
                         Button(L("settings.rootEnable")) { root.enable() }
                     }
                 }
+                if root.waitingApproval {
+                    Text(L("settings.rootApprove")).font(.system(size: 11)).foregroundStyle(.orange)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
                 if let e = root.lastError {
                     Text(L("settings.rootFailed", e)).font(.system(size: 11)).foregroundStyle(.red)
                 }

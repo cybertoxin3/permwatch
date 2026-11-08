@@ -1,6 +1,7 @@
 import AppKit
 import Foundation
 import Security
+import ServiceManagement
 
 /// Yönetici modu yardımcısının (permwatch-root) yazdığı veri.
 struct RootData {
@@ -33,6 +34,19 @@ final class RootBridge: ObservableObject {
     @Published private(set) var starting = false
 
     private var timer: Timer?
+    private var heartbeat: Timer?
+    private var approvalWatch: Timer?
+    @Published private(set) var waitingApproval = false
+
+    nonisolated static let daemonPlist = "com.yusuf.permwatch.root.plist"
+    var service: SMAppService { SMAppService.daemon(plistName: Self.daemonPlist) }
+    /// Kalıcı servis kullanılabilir mi (geçerli Developer ID imzası ve paket içinde servis tanımı).
+    var serviceAvailable: Bool {
+        Self.ownTeamID() != nil &&
+            FileManager.default.fileExists(atPath: Bundle.main.bundlePath + "/Contents/Library/LaunchDaemons/" + Self.daemonPlist)
+    }
+    static let aliveURL = FileManager.default.homeDirectoryForCurrentUser
+        .appendingPathComponent("Library/Application Support/permwatch/alive")
 
     var active: Bool { data?.fresh == true }
     var enabledPreference: Bool { UserDefaults.standard.bool(forKey: Self.prefKey) }
@@ -42,13 +56,74 @@ final class RootBridge: ObservableObject {
             MainActor.assumeIsolated { self?.read() }
         }
         read()
+        if enabledPreference { startHeartbeat() }
+    }
+
+    /// Servis modunda yardımcı yalnızca bu dosya tazeyken (permwatch açıkken) çalışır.
+    private func startHeartbeat() {
+        guard heartbeat == nil else { return }
+        let beat = {
+            let url = RootBridge.aliveURL
+            try? FileManager.default.createDirectory(at: url.deletingLastPathComponent(), withIntermediateDirectories: true)
+            if FileManager.default.fileExists(atPath: url.path) {
+                try? FileManager.default.setAttributes([.modificationDate: Date()], ofItemAtPath: url.path)
+            } else {
+                FileManager.default.createFile(atPath: url.path, contents: nil, attributes: [.posixPermissions: 0o600])
+            }
+        }
+        beat()
+        heartbeat = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { _ in beat() }
+    }
+
+    private func stopHeartbeat() {
+        heartbeat?.invalidate(); heartbeat = nil
+        try? FileManager.default.removeItem(at: Self.aliveURL)
+    }
+
+    /// Kalıcı servisi kaydeder; ilk seferde macOS Sistem Ayarları'nda onay ister.
+    private func enableService() {
+        lastError = nil
+        startHeartbeat()
+        UserDefaults.standard.set(true, forKey: Self.prefKey)
+        switch service.status {
+        case .enabled:
+            waitingApproval = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) { self.read() }
+            return
+        case .requiresApproval:
+            break
+        default:
+            do { try service.register() } catch {
+                if service.status != .requiresApproval {
+                    lastError = error.localizedDescription
+                    return
+                }
+            }
+        }
+        if service.status == .requiresApproval {
+            waitingApproval = true
+            SMAppService.openSystemSettingsLoginItems()
+            approvalWatch?.invalidate()
+            approvalWatch = Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { [weak self] t in
+                MainActor.assumeIsolated {
+                    guard let self else { t.invalidate(); return }
+                    if self.service.status == .enabled { self.waitingApproval = false; t.invalidate(); self.read() }
+                }
+            }
+        }
     }
 
     /// Açılışta: kullanıcı modu daha önce açtıysa ve yardımcı çalışmıyorsa yeniden ister.
     func resumeIfNeeded() {
         // Geliştirme anlık görüntüsü sırasında şifre sorma.
         if Snapshot.target != nil || Snapshot.section != nil { return }
-        if enabledPreference && !active { enable() }
+        guard enabledPreference else { return }
+        if serviceAvailable {
+            // Kayıtlı servis: şifre sorulmaz; yalnızca "buradayım" sinyali.
+            if service.status == .enabled { startHeartbeat() } else { enableService() }
+            return
+        }
+        if !active { enable() }
     }
 
     nonisolated static let installedHelper = "/Library/PrivilegedHelperTools/com.yusuf.permwatch.root"
@@ -81,6 +156,7 @@ final class RootBridge: ObservableObject {
     /// doğrulanır ve yalnızca doğrulama geçerse o kopya çalıştırılır.
     func enable() {
         guard !starting else { return }
+        if serviceAvailable { enableService(); return }
         guard let helper = Bundle.main.path(forAuxiliaryExecutable: "permwatch-root") else {
             lastError = "permwatch-root"
             return
@@ -140,6 +216,9 @@ final class RootBridge: ObservableObject {
     func disable() {
         UserDefaults.standard.set(false, forKey: Self.prefKey)
         data = nil
+        stopHeartbeat()
+        approvalWatch?.invalidate(); waitingApproval = false
+        if serviceAvailable, service.status != .notRegistered { try? service.unregister() }
     }
 
     private func read() {

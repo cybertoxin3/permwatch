@@ -570,3 +570,4 @@ upd.body	현재 버전은 %@입니다. 새 버전에는 새 검사와 수정 사
 upd.open	다운로드
 upd.setting	새 버전 확인
 upd.settingDesc	permwatch는 하루에 한 번 GitHub에 최신 버전 번호를 묻습니다. 사용자나 Mac에 관한 정보는 전송되지 않습니다. 현재 버전: %@.
+settings.rootApprove	한 단계 남았습니다: 시스템 설정 › 일반 › 로그인 항목 및 확장 프로그램에서 '백그라운드에서 허용'의 'permwatch'를 켜세요. 이후 macOS가 다시 암호를 묻지 않습니다.

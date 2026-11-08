@@ -570,3 +570,4 @@ upd.body	Hai la %@. Le nuove versioni includono nuovi controlli e correzioni.
 upd.open	Scarica
 upd.setting	Cerca nuove versioni
 upd.settingDesc	Una volta al giorno permwatch chiede a GitHub il numero dell’ultima versione. Non viene inviato nulla su di te o sul Mac. Questa versione: %@.
+settings.rootApprove	Ultimo passo: in Impostazioni di Sistema › Generali › Elementi login ed estensioni attiva «permwatch» in «Consenti in background». Poi macOS non chiederà più la password.
