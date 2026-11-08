@@ -1,6 +1,7 @@
 import AppKit
 import Foundation
 import UniformTypeIdentifiers
+import UserNotifications
 
 /// Canlı paket yakalama. Yönetici modunda permwatch-root bütün arayüzleri PKTAP ile yakalar
 /// (her paket gönderen süreçle birlikte); değilse uygulama, erişim izni varsa (ör. Wireshark'ın
@@ -48,6 +49,7 @@ final class PacketMonitor: ObservableObject {
     private var paths: [Int32: String] = [:]
     private var startedAt = Date()
     private var nextSeq = 0
+    private var stoppedAt: Date?
     private var flows: [String: (out: Int, inb: Int, warned: Bool)] = [:]
     /// Paket geldikçe güncellenen konuşmalar ve özet sayaçları (ekran her yenilemede yeniden hesaplamasın).
     @Published private(set) var conversations: [String: Conversation] = [:]
@@ -113,6 +115,7 @@ final class PacketMonitor: ObservableObject {
 
     private func beginRoot() {
         startedAt = Date()
+        stoppedAt = nil
         try? FileManager.default.createDirectory(at: Self.userDir, withIntermediateDirectories: true)
         FileManager.default.createFile(atPath: Self.flagURL.path, contents: Data("payload=1".utf8),
                                        attributes: [.posixPermissions: 0o600])
@@ -127,6 +130,7 @@ final class PacketMonitor: ObservableObject {
 
     func stop() {
         let wasRunning = running
+        if wasRunning { stoppedAt = Date() }
         try? FileManager.default.removeItem(at: Self.flagURL)
         engine?.stop()
         engine = nil
@@ -143,10 +147,14 @@ final class PacketMonitor: ObservableObject {
 
     private var captureStart: Date { startedAt }
 
+    /// permwatch-<başlangıç>_<bitiş ya da kayıt anı>.pcap: her kayıt benzersiz, hiçbiri öncekinin üzerine yazılmaz.
     var defaultFileName: String {
-        let f = DateFormatter()
-        f.dateFormat = "yyyy-MM-dd_HH-mm-ss"
-        return "permwatch-\(f.string(from: captureStart)).pcap"
+        let d = DateFormatter()
+        d.dateFormat = "yyyy-MM-dd_HH-mm-ss"
+        let t = DateFormatter()
+        t.dateFormat = "HH-mm-ss"
+        let end = stoppedAt ?? Date()
+        return "permwatch-\(d.string(from: captureStart))_\(t.string(from: end))\(running ? "-ara" : "").pcap"
     }
 
     /// Yakalamanın kopyasını klasöre tarih-saatli adla koyar.
@@ -169,11 +177,20 @@ final class PacketMonitor: ObservableObject {
             try data.write(to: dest, options: .atomic)
             try? FileManager.default.setAttributes([.posixPermissions: 0o600], ofItemAtPath: dest.path)
             lastSaved = dest
+            notifySaved(dest, size: data.count)
             return dest
         } catch {
             saveError = L("pkt.saveFailed", error.localizedDescription)
             return nil
         }
+    }
+
+    private func notifySaved(_ url: URL, size: Int) {
+        let c = UNMutableNotificationContent()
+        c.title = L("pkt.saved", url.lastPathComponent)
+        c.body = PathUtil.abbreviate(url.deletingLastPathComponent().path) + " · "
+            + ByteCountFormatter.string(fromByteCount: Int64(size), countStyle: .file)
+        UNUserNotificationCenter.current().add(UNNotificationRequest(identifier: "pcap-" + url.path, content: c, trigger: nil))
     }
 
     func saveAs() {
