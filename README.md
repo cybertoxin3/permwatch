@@ -18,7 +18,7 @@ permwatch keeps a record of every permission change and alerts you the moment so
 
 [![Download for macOS](https://img.shields.io/badge/%E2%AC%87%EF%B8%8F_Download%20for%20macOS-0A84FF?style=for-the-badge&logo=apple&logoColor=white)](https://github.com/cybertoxin3/permwatch/releases/latest)
 
-<sub>Apple Silicon (M1 or later) · macOS 14 or later · free</sub><br>
+<sub>Apple Silicon & Intel · macOS 14 or later · free</sub><br>
 <sub>Open the zip and drag **permwatch** to your Applications folder.</sub>
 
 </div>
@@ -64,6 +64,7 @@ permwatch connects the dots and gives you one clear alert.
 
 - 🐞 **Malware scan:** Checks your apps, login items, running programs and downloads with **Apple's XProtect signatures** and **Elastic Security's open macOS malware rules**, using the open-source YARA engine. A quick scan takes about 10 seconds. Anything found can be quarantined together with the login items that start it: it can no longer run, and you can restore it if it was a false alarm.
 - 🛡️ **Real-time protection:** New or changed files in Applications, Downloads, login items and the folders where malware hides are scanned within seconds. Your documents are watched for ransomware (many files suddenly encrypted), and the responsible program is paused if it is unsigned. Connections to servers on known malware lists (abuse.ch) are flagged, and you decide whether to block them.
+- 🧭 **Simple and up to date:** a short welcome guide, a simple mode that shows only what most people need (Advanced mode for the rest), updates that arrive inside the app with a progress bar, and **Help › Report a Problem**, which opens an email with the technical details already filled in.
 - 🛡 **Overview and one-click check:** Opens with a clear verdict. "Check My Mac" runs the malware scan and checks for browser hijacking (extensions that can read every site, forced browser policies, changed search engine or start page), traffic interception (trusted root certificates, configuration profiles, proxies, unknown DNS, VPN configurations), remote access (Screen Sharing, SSH, TeamViewer/AnyDesk/ToDesk-style tools), VPN and DNS leaks, Safari extensions and spyware-like permission combinations. Every finding has a fix button.
 - 💡 **Recommendations:** One screen that explains every finding in plain language and offers a one-click fix. It finds permissions left behind by deleted apps and permissions in apps you haven't opened for months.
 - 🕒 **Timeline:** Every permission change and every new startup item, with its date and the process responsible

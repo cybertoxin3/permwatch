@@ -18,7 +18,7 @@ Her izin değişikliğinin kaydını tutar, şüpheli olanları anında haber ve
 
 [![macOS için indir](https://img.shields.io/badge/%E2%AC%87%EF%B8%8F_macOS%20i%C3%A7in%20indir-0A84FF?style=for-the-badge&logo=apple&logoColor=white)](https://github.com/cybertoxin3/permwatch/releases/latest)
 
-<sub>Apple Silicon (M1 ve sonrası) · macOS 14 ve sonrası · ücretsiz</sub><br>
+<sub>Apple Silicon ve Intel · macOS 14 ve sonrası · ücretsiz</sub><br>
 <sub>Zip'i aç ve **permwatch**'ı Uygulamalar klasörüne sürükle.</sub>
 
 </div>
@@ -64,6 +64,7 @@ permwatch zinciri birleştirir ve sana tek bir net uyarı gösterir.
 
 - 🐞 **Zararlı taraması:** Uygulamalarını, başlangıç öğelerini, çalışan programları ve indirilenleri **Apple'ın XProtect imzaları** ve **Elastic Security'nin açık macOS zararlı kurallarıyla**, açık kaynak YARA motoru kullanarak tarar. Hızlı tarama yaklaşık 10 saniye sürer. Bulunan zararlı, onu başlatan başlangıç öğeleriyle birlikte karantinaya alınabilir: artık çalışamaz, yanlış alarmsa geri yüklenebilir.
 - 🛡️ **Gerçek zamanlı koruma:** Uygulamalar, İndirilenler, başlangıç öğeleri ve zararlıların saklandığı klasörlerdeki yeni ya da değişen dosyalar saniyeler içinde taranır. Belgelerin fidye yazılımına karşı izlenir (çok sayıda dosyanın birden şifrelenmesi); sorumlu program imzasızsa askıya alınır. Bilinen zararlı listelerindeki (abuse.ch) sunuculara giden bağlantılar işaretlenir; engelleyip engellememeye sen karar verirsin.
+- 🧭 **Sade ve güncel:** kısa bir ilk açılış rehberi, yalnızca çoğu kişinin ihtiyaç duyduğu bölümleri gösteren basit mod (gerisi için Gelişmiş mod), uygulamanın içinde ilerleme çubuğuyla gelen güncellemeler ve teknik bilgileri hazır doldurulmuş bir e-posta açan **Yardım › Bize Bildir**.
 - 🛡 **Genel bakış ve tek tıkla kontrol:** Açılışta net bir hüküm verir. "Mac'imi Kontrol Et" zararlı taramasını yapar ve şunları denetler: tarayıcı ele geçirme (her siteyi okuyabilen uzantılar, zorla uygulanan tarayıcı politikaları, değiştirilmiş arama motoru veya başlangıç sayfası), araya girme (güvenilen kök sertifikalar, yapılandırma profilleri, proxy, bilinmeyen DNS, VPN yapılandırmaları), uzaktan erişim (Ekran Paylaşımı, SSH, TeamViewer/AnyDesk/ToDesk benzeri araçlar), VPN ve DNS sızıntıları, Safari uzantıları ve casus yazılımı andıran izin kombinasyonları. Her bulgunun bir düzeltme düğmesi vardır.
 - 💡 **Öneriler:** Bütün bulguları sade dille açıklayan ve tek tıkla düzeltme sunan tek ekran. Silinmiş uygulamalardan kalan izinleri ve aylardır açmadığın uygulamalardaki izinleri bulur.
 - 🕒 **Zaman çizelgesi:** Her izin değişikliği ve her yeni başlangıç öğesi; tarihi ve sorumlu süreciyle

@@ -18,7 +18,7 @@ permwatch registra ogni modifica alle autorizzazioni e ti avvisa appena qualcosa
 
 [![Scarica per macOS](https://img.shields.io/badge/%E2%AC%87%EF%B8%8F_Scarica%20per%20macOS-0A84FF?style=for-the-badge&logo=apple&logoColor=white)](https://github.com/cybertoxin3/permwatch/releases/latest)
 
-<sub>Apple Silicon (M1 o successivi) · macOS 14 o successivi · gratis</sub><br>
+<sub>Apple Silicon e Intel · macOS 14 o successivi · gratis</sub><br>
 <sub>Apri lo zip e trascina **permwatch** nella cartella Applicazioni.</sub>
 
 </div>
@@ -65,6 +65,7 @@ permwatch unisce i puntini e ti mostra un unico avviso chiaro.
 - 🛡 **Panoramica e controllo con un clic:** un verdetto chiaro all’apertura. «Controlla il Mac» avvia la scansione malware e verifica dirottamento del browser, intercettazione del traffico (certificati radice, profili, proxy, DNS, VPN), perdite della VPN, accesso remoto e combinazioni di permessi tipiche degli spyware. Ogni problema ha un pulsante per risolverlo.
 - 🐞 **Scansione malware:** Controlla app, elementi di login, programmi in esecuzione e download con le **firme XProtect di Apple** e le **regole aperte per malware macOS di Elastic Security**, usando il motore open source YARA. Una scansione rapida dura circa 10 secondi. Ciò che viene trovato può essere messo in quarantena insieme agli elementi di login che lo avviano: non può più essere eseguito e puoi ripristinarlo se era un falso allarme.
 - 🛡️ **Protezione in tempo reale:** I file nuovi o modificati in Applicazioni, Download, elementi di login e nelle cartelle dove si nasconde il malware vengono analizzati in pochi secondi. I tuoi documenti sono sorvegliati contro il ransomware (molti file cifrati all'improvviso) e il programma responsabile viene sospeso se non è firmato. Le connessioni verso server in elenchi di malware noti (abuse.ch) vengono segnalate e decidi tu se bloccarle.
+- 🧭 **Semplice e aggiornato:** una breve guida di benvenuto, una modalità semplice con solo l'essenziale (il resto in modalità avanzata), aggiornamenti nell'app con barra di avanzamento e **Aiuto › Segnala un problema**, che apre un'e-mail con i dettagli tecnici già compilati.
 - 🔐 **Permessi:** cronologia di ogni modifica, permessi rimasti di app eliminate, revoca con un clic, disinstallazione.
 - 🌐 **Rete:** quale app si collega dove, cattura pacchetti con nomi dei processi e spiegazioni chiare, blocco dei server con il firewall integrato di macOS.
 - ⬇️ **Download, 🎙 microfono e fotocamera, ⌨️ terminale** con comandi di sicurezza pronti.

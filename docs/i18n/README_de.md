@@ -18,7 +18,7 @@ permwatch protokolliert jede Änderung an Berechtigungen und warnt dich sofort, 
 
 [![Für macOS laden](https://img.shields.io/badge/%E2%AC%87%EF%B8%8F_F%C3%BCr%20macOS%20laden-0A84FF?style=for-the-badge&logo=apple&logoColor=white)](https://github.com/cybertoxin3/permwatch/releases/latest)
 
-<sub>Apple Silicon (M1 oder neuer) · macOS 14 oder neuer · kostenlos</sub><br>
+<sub>Apple Silicon & Intel · macOS 14 oder neuer · kostenlos</sub><br>
 <sub>Öffne die ZIP-Datei und ziehe **permwatch** in den Ordner „Programme“.</sub>
 
 </div>
@@ -65,6 +65,7 @@ permwatch verbindet die Punkte und zeigt dir eine einzige, klare Warnung.
 - 🛡 **Übersicht und Prüfung mit einem Klick:** klares Urteil beim Start. „Mac prüfen“ startet den Malware-Scan und prüft Browser-Hijacking, Abfangen von Verkehr (Root-Zertifikate, Profile, Proxy, DNS, VPN), VPN-Lecks, Fernzugriff und spywareartige Rechte-Kombinationen. Jeder Fund hat einen Knopf zum Beheben.
 - 🐞 **Malware-Scan:** Prüft deine Apps, Anmeldeobjekte, laufenden Programme und Downloads mit **Apples XProtect-Signaturen** und den **offenen macOS-Malware-Regeln von Elastic Security**, mit der Open-Source-Engine YARA. Ein Schnellscan dauert etwa 10 Sekunden. Funde lassen sich zusammen mit den Anmeldeobjekten, die sie starten, in Quarantäne verschieben: Sie können nicht mehr laufen und lassen sich bei einem Fehlalarm wiederherstellen.
 - 🛡️ **Echtzeitschutz:** Neue oder geänderte Dateien in Programme, Downloads, Anmeldeobjekten und den Ordnern, in denen sich Schadsoftware versteckt, werden innerhalb von Sekunden geprüft. Deine Dokumente werden auf Ransomware überwacht (viele Dateien plötzlich verschlüsselt); ein unsigniertes verantwortliches Programm wird angehalten. Verbindungen zu Servern auf bekannten Malware-Listen (abuse.ch) werden markiert, und du entscheidest, ob sie blockiert werden.
+- 🧭 **Einfach und aktuell:** eine kurze Einführung, ein einfacher Modus mit nur dem Nötigsten (der Rest im erweiterten Modus), Updates direkt in der App mit Fortschrittsbalken und **Hilfe › Problem melden**, das eine E-Mail mit bereits ausgefüllten technischen Angaben öffnet.
 - 🔐 **Berechtigungen:** Verlauf jeder Änderung, übrig gebliebene Rechte gelöschter Apps, Widerrufen mit einem Klick, Apps deinstallieren.
 - 🌐 **Netzwerk:** welche App wohin verbindet, Paketmitschnitt mit Prozessnamen und verständlichen Erklärungen, Server mit der integrierten macOS-Firewall blockieren.
 - ⬇️ **Downloads, 🎙 Mikrofon und Kamera, ⌨️ Terminal** mit fertigen Sicherheitsbefehlen.

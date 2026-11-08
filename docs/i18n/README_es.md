@@ -18,7 +18,7 @@ permwatch registra cada cambio de permisos y te avisa en cuanto algo no cuadra.
 
 [![Descargar para macOS](https://img.shields.io/badge/%E2%AC%87%EF%B8%8F_Descargar%20para%20macOS-0A84FF?style=for-the-badge&logo=apple&logoColor=white)](https://github.com/cybertoxin3/permwatch/releases/latest)
 
-<sub>Apple Silicon (M1 o posterior) · macOS 14 o posterior · gratis</sub><br>
+<sub>Apple Silicon e Intel · macOS 14 o posterior · gratis</sub><br>
 <sub>Abre el zip y arrastra **permwatch** a la carpeta Aplicaciones.</sub>
 
 </div>
@@ -65,6 +65,7 @@ permwatch une los puntos y te muestra una sola alerta clara.
 - 🛡 **Resumen y comprobación con un clic:** un veredicto claro al abrir. «Comprobar mi Mac» lanza el análisis de malware y revisa el secuestro del navegador, la intercepción del tráfico (certificados raíz, perfiles, proxy, DNS, VPN), fugas de VPN, acceso remoto y combinaciones de permisos típicas de spyware. Cada hallazgo tiene un botón para solucionarlo.
 - 🐞 **Análisis de malware:** Revisa tus apps, ítems de inicio, programas en ejecución y descargas con las **firmas XProtect de Apple** y las **reglas abiertas de malware para macOS de Elastic Security**, usando el motor de código abierto YARA. Un análisis rápido tarda unos 10 segundos. Lo que encuentre puede ponerse en cuarentena junto con los ítems de inicio que lo ejecutan: ya no puede ejecutarse y puedes restaurarlo si era una falsa alarma.
 - 🛡️ **Protección en tiempo real:** Los archivos nuevos o modificados en Aplicaciones, Descargas, ítems de inicio y las carpetas donde se esconde el malware se analizan en segundos. Tus documentos se vigilan contra el ransomware (muchos archivos cifrados de golpe) y el programa responsable se pausa si no está firmado. Las conexiones a servidores de listas de malware conocidas (abuse.ch) se señalan, y tú decides si bloquearlas.
+- 🧭 **Sencillo y al día:** una breve guía de bienvenida, un modo simple con solo lo que la mayoría necesita (el resto en modo avanzado), actualizaciones dentro de la app con barra de progreso y **Ayuda › Informar de un problema**, que abre un correo con los detalles técnicos ya rellenados.
 - 🔐 **Permisos:** historial de cada cambio, permisos que quedaron de apps borradas, revocar con un clic, desinstalar apps.
 - 🌐 **Red:** qué app se conecta a dónde, captura de paquetes con nombres de proceso y explicaciones claras, bloqueo de servidores con el cortafuegos integrado de macOS.
 - ⬇️ **Descargas, 🎙 micrófono y cámara, ⌨️ terminal** con comandos de seguridad listos para usar.

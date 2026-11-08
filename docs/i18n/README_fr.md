@@ -18,7 +18,7 @@ permwatch garde une trace de chaque changement d’autorisation et vous alerte d
 
 [![Télécharger pour macOS](https://img.shields.io/badge/%E2%AC%87%EF%B8%8F_T%C3%A9l%C3%A9charger%20pour%20macOS-0A84FF?style=for-the-badge&logo=apple&logoColor=white)](https://github.com/cybertoxin3/permwatch/releases/latest)
 
-<sub>Apple Silicon (M1 ou plus récent) · macOS 14 ou plus récent · gratuit</sub><br>
+<sub>Apple Silicon et Intel · macOS 14 ou plus récent · gratuit</sub><br>
 <sub>Ouvre le zip et glisse **permwatch** dans le dossier Applications.</sub>
 
 </div>
@@ -65,6 +65,7 @@ permwatch relie les points et vous montre une seule alerte claire.
 - 🛡 **Vue d’ensemble et vérification en un clic :** un verdict clair dès l’ouverture. « Vérifier mon Mac » lance l’analyse antimalware et contrôle le détournement du navigateur, l’interception du trafic (certificats racine, profils, proxy, DNS, VPN), les fuites VPN, l’accès à distance et les combinaisons d’autorisations typiques des logiciels espions. Chaque problème a un bouton de correction.
 - 🐞 **Analyse antimalware :** Vérifie tes apps, éléments d'ouverture, programmes en cours et téléchargements avec les **signatures XProtect d'Apple** et les **règles ouvertes de logiciels malveillants macOS d'Elastic Security**, grâce au moteur open source YARA. Une analyse rapide prend environ 10 secondes. Ce qui est trouvé peut être mis en quarantaine avec les éléments d'ouverture qui le lancent : il ne peut plus s'exécuter, et tu peux le restaurer en cas de fausse alerte.
 - 🛡️ **Protection en temps réel :** Les fichiers nouveaux ou modifiés dans Applications, Téléchargements, les éléments d'ouverture et les dossiers où se cachent les logiciels malveillants sont analysés en quelques secondes. Tes documents sont surveillés contre les rançongiciels (beaucoup de fichiers chiffrés d'un coup) et le programme responsable est suspendu s'il n'est pas signé. Les connexions vers des serveurs figurant sur des listes connues (abuse.ch) sont signalées, et tu décides de les bloquer ou non.
+- 🧭 **Simple et à jour :** un court guide de bienvenue, un mode simple qui n'affiche que l'essentiel (le reste en mode avancé), des mises à jour dans l'app avec une barre de progression, et **Aide › Signaler un problème**, qui ouvre un e-mail avec les détails techniques déjà remplis.
 - 🔐 **Autorisations :** historique de chaque changement, autorisations restantes d’apps supprimées, révocation en un clic, désinstallation.
 - 🌐 **Réseau :** quelle app se connecte où, capture de paquets avec noms de processus et explications claires, blocage d’un serveur via le pare-feu intégré de macOS.
 - ⬇️ **Téléchargements, 🎙 micro et caméra, ⌨️ terminal** avec des commandes de sécurité prêtes à l’emploi.
