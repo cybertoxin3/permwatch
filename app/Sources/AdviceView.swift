@@ -123,6 +123,7 @@ struct AdviceView: View {
         let order: [Explanation.Verdict] = [.danger, .caution, .info, .ok]
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
+                UpdateCard()
                 header(list)
                 if let m = message ?? checks.message {
                     Text(m).font(.system(size: 12)).foregroundStyle(.secondary)
@@ -268,11 +269,6 @@ struct AdviceView: View {
 
     private var items: [AdviceItem] {
         var out: [AdviceItem] = []
-        if updates.updateAvailable, let v = updates.latest {
-            out.append(.init(id: "update.\(v)", verdict: .info, icon: "arrow.down.app", title: L("upd.title", v),
-                             body: L("upd.body", UpdateChecker.current),
-                             primary: (L("upd.open"), { updates.install() })))
-        }
         if store.needsFullDiskAccess || downloads.needsFullDisk {
             out.append(.init(id: "fda", verdict: .danger, icon: "lock.shield", title: L("fda.one.title"), body: L("fda.one.body"),
                              primary: (L("fda.open"), FullDisk.openSettings)))

@@ -20,5 +20,5 @@ xcrun stapler staple build/permwatch.app
 rm -f "$ZIP"; ditto -c -k --keepParent build/permwatch.app "$ZIP"
 spctl --assess --type execute -vv build/permwatch.app
 # Sparkle güncelleme listesi (anahtar varsa). Sürüm GitHub'a yüklendikten sonra docs/appcast.xml gönderilir.
-if [[ -f sparkle-public-key.txt ]]; then tools/appcast.sh "$ZIP"; fi
+if [[ -f sparkle-public-key.txt ]]; then tools/appcast.sh "$ZIP" "${PERMWATCH_NOTES:-}"; fi
 echo "hazır: $(pwd)/$ZIP"

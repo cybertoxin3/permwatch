@@ -99,7 +99,7 @@ struct MainView: View {
             OnboardingView(isPresented: $onboarding) { section = .advice }
         }
         .onAppear {
-            if Snapshot.section == nil, !UserDefaults.standard.bool(forKey: OnboardingView.doneKey) { onboarding = true }
+            if Snapshot.section == nil, !UpdateChecker.testMode, !UserDefaults.standard.bool(forKey: OnboardingView.doneKey) { onboarding = true }
             center.openMainWindow = { [openWindow] in openWindow(id: "main") }
             RootBridge.shared.resumeIfNeeded()
             monitor.trusted = store.trusted
@@ -229,6 +229,7 @@ struct Sidebar: View {
         .listStyle(.sidebar)
         .safeAreaInset(edge: .bottom) {
             VStack(alignment: .leading, spacing: 8) {
+                UpdateSidebarStatus { section = .advice }
                 Toggle(L("nav.advancedMode"), isOn: $advanced).toggleStyle(.switch).controlSize(.mini)
                     .font(.system(size: 11.5)).help(L("nav.advancedHelp"))
                     .onChange(of: advanced) { _, on in

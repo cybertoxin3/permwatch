@@ -16,6 +16,7 @@ if [[ "${1:-}" == "--init" ]]; then
     exit 0
 fi
 ZIP=${1:?zip dosyası}
+NOTES=${2:-}   # isteğe bağlı: sürüm notları (Markdown), uygulamadaki güncelleme kartında gösterilir
 [[ -f sparkle-public-key.txt ]] || { echo "önce: app/tools/appcast.sh --init" >&2; exit 1; }
 PLIST=build/permwatch.app/Contents/Info.plist
 VER=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" "$PLIST")
@@ -30,6 +31,7 @@ ITEM="        <item>
             <sparkle:version>$BUILD</sparkle:version>
             <sparkle:shortVersionString>$VER</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[$( [[ -n "$NOTES" ]] && sed 's/]]>/]] >/g' "$NOTES" )]]></description>
             <sparkle:fullReleaseNotesLink>https://github.com/cybertoxin3/permwatch/releases/tag/v$VER</sparkle:fullReleaseNotesLink>
             <enclosure url=\"$URL\" $SIG type=\"application/octet-stream\"/>
         </item>"

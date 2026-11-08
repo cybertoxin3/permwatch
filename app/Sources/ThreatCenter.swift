@@ -151,6 +151,14 @@ final class ThreatCenter: ObservableObject {
         }, completionHandler: { p.orderOut(nil) })
     }
 
+    /// Güncelleme indirildi: kullanıcı başka bir uygulamadaysa da haberi olsun.
+    func notifyUpdateReady(version: String) {
+        let c = UNMutableNotificationContent()
+        c.title = L("upd.notifyTitle", version)
+        c.body = L("upd.notifyBody")
+        UNUserNotificationCenter.current().add(UNNotificationRequest(identifier: "update.\(version)", content: c, trigger: nil))
+    }
+
     private func notify(_ t: Threat) {
         let c = UNMutableNotificationContent()
         c.title = t.title
