@@ -11,7 +11,8 @@ enum Snapshot {
     /// Tek bir görünümü pencereden bağımsız çizer (cam efektlerinden etkilenmez).
     @MainActor
     static func renderView(_ store: Store, selection: Int?, to path: String) {
-        let scheme: ColorScheme = ProcessInfo.processInfo.environment["PERMWATCH_DARK"] == nil ? .light : .dark
+        let scheme: ColorScheme = Theme.current.colorScheme
+            ?? (ProcessInfo.processInfo.environment["PERMWATCH_DARK"] == nil ? .light : .dark)
         let view: AnyView
         switch section {
         case "detail":

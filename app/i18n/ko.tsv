@@ -75,6 +75,7 @@ menu.permChanges	권한 변경(24시간)
 menu.quit	종료
 menu.recent	최근 이벤트
 menu.scan	이 Mac 검사
+menu.settings	설정…
 menu.watching	로그 감시 중
 nav.accessibility	손쉬운 사용
 nav.alerts	경고
@@ -115,6 +116,7 @@ rule.unsignedDownload	서명 없는 앱이 다운로드 폴더에서 처음 실�
 rule.unsignedPersistence	서명 없는 프로세스가 시동 항목을 추가함
 rule.unsignedStartupBinary	시동 항목이 서명 없는 프로그램을 실행함
 search.prompt	검색: 앱, 경로, Team ID…
+settings.appearance	화면 모드
 sig.adhoc	애드혹 서명
 sig.apple	Apple
 sig.developer	개발자 · %@
@@ -161,6 +163,9 @@ svc.removableVolumes	이동식 볼륨
 svc.screen	화면 기록
 svc.speech	음성 인식
 tag.trusted	신뢰함
+theme.dark	다크
+theme.light	라이트
+theme.system	시스템
 uninstall.blocked	macOS가 이 앱을 보호하므로 제거할 수 없습니다.
 uninstall.body	먼저 앱을 종료한 다음 선택한 항목을 휴지통으로 이동합니다. 휴지통을 비울 때 영구적으로 삭제됩니다.
 uninstall.confirm	휴지통으로 이동

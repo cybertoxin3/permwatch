@@ -75,6 +75,7 @@ menu.permChanges	изменений разрешений (24 ч)
 menu.quit	Выйти
 menu.recent	Последние события
 menu.scan	Проверить этот Mac
+menu.settings	Настройки…
 menu.watching	журнал отслеживается
 nav.accessibility	Универсальный доступ
 nav.alerts	Оповещения
@@ -115,6 +116,7 @@ rule.unsignedDownload	Неподписанное приложение вперв
 rule.unsignedPersistence	Неподписанный процесс добавил объект автозапуска
 rule.unsignedStartupBinary	Объект автозапуска запускает неподписанную программу
 search.prompt	Поиск: приложение, путь, Team ID…
+settings.appearance	Оформление
 sig.adhoc	ad-hoc подпись
 sig.apple	Apple
 sig.developer	разработчик · %@
@@ -161,6 +163,9 @@ svc.removableVolumes	Съёмные тома
 svc.screen	Запись экрана
 svc.speech	Распознавание речи
 tag.trusted	Доверенное
+theme.dark	Тёмное
+theme.light	Светлое
+theme.system	Как в системе
 uninstall.blocked	macOS защищает это приложение; его нельзя удалить.
 uninstall.body	Сначала приложение будет закрыто, затем выбранные объекты переместятся в Корзину. Окончательно они удалятся, когда вы очистите Корзину.
 uninstall.confirm	Переместить в Корзину

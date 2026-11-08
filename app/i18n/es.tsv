@@ -75,6 +75,7 @@ menu.permChanges	cambios de permisos (24 h)
 menu.quit	Salir
 menu.recent	Eventos recientes
 menu.scan	Analizar este Mac
+menu.settings	Ajustes…
 menu.watching	vigilando registro
 nav.accessibility	Accesibilidad
 nav.alerts	Alertas
@@ -115,6 +116,7 @@ rule.unsignedDownload	Una app sin firma se ejecutó por primera vez desde Descar
 rule.unsignedPersistence	Un proceso sin firma añadió un ítem de inicio
 rule.unsignedStartupBinary	El ítem de inicio ejecuta un programa sin firma
 search.prompt	Buscar: app, ruta, Team ID…
+settings.appearance	Apariencia
 sig.adhoc	firma ad hoc
 sig.apple	Apple
 sig.developer	desarrollador · %@
@@ -161,6 +163,9 @@ svc.removableVolumes	Volúmenes extraíbles
 svc.screen	Grabación de pantalla
 svc.speech	Reconocimiento de voz
 tag.trusted	Fiable
+theme.dark	Oscuro
+theme.light	Claro
+theme.system	Sistema
 uninstall.blocked	macOS protege esta app; no se puede eliminar.
 uninstall.body	Primero se cierra la app y luego los ítems seleccionados se mueven a la papelera. Solo se eliminan definitivamente al vaciar la papelera.
 uninstall.confirm	Mover a la papelera

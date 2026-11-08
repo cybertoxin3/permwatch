@@ -54,6 +54,9 @@ struct MenuBarPanel: View {
                 }
                 .buttonStyle(.link)
                 Spacer()
+                SettingsLink { Text(L("menu.settings")) }
+                    .buttonStyle(.plain)
+                    .foregroundStyle(.secondary)
                 Button(L("menu.quit")) { NSApp.terminate(nil) }
                     .buttonStyle(.plain)
                     .foregroundStyle(.secondary)

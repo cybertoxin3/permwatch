@@ -75,6 +75,7 @@ menu.permChanges	تغييرات أذونات (24 ساعة)
 menu.quit	إنهاء
 menu.recent	الأحداث الأخيرة
 menu.scan	فحص جهاز Mac هذا
+menu.settings	الإعدادات…
 menu.watching	يراقب السجل
 nav.accessibility	تسهيلات الاستخدام
 nav.alerts	التنبيهات
@@ -115,6 +116,7 @@ rule.unsignedDownload	تطبيق غير موقّع يعمل لأول مرة من
 rule.unsignedPersistence	أضافت عملية غير موقّعة عنصر بدء تشغيل
 rule.unsignedStartupBinary	عنصر بدء التشغيل يشغّل برنامجًا غير موقّع
 search.prompt	بحث: تطبيق، مسار، Team ID…
+settings.appearance	المظهر
 sig.adhoc	توقيع مخصص
 sig.apple	Apple
 sig.developer	مطوّر · %@
@@ -161,6 +163,9 @@ svc.removableVolumes	وحدات التخزين القابلة للإزالة
 svc.screen	تسجيل الشاشة
 svc.speech	التعرف على الكلام
 tag.trusted	موثوق
+theme.dark	داكن
+theme.light	فاتح
+theme.system	النظام
 uninstall.blocked	يحمي macOS هذا التطبيق؛ لا يمكن إزالته.
 uninstall.body	يُغلق التطبيق أولًا، ثم تُنقل العناصر المحددة إلى سلة المهملات. لا تُحذف نهائيًا إلا عند إفراغ سلة المهملات.
 uninstall.confirm	نقل إلى سلة المهملات

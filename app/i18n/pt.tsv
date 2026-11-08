@@ -75,6 +75,7 @@ menu.permChanges	mudanças de permissão (24 h)
 menu.quit	Encerrar
 menu.recent	Eventos recentes
 menu.scan	Verificar este Mac
+menu.settings	Ajustes…
 menu.watching	monitorando registro
 nav.accessibility	Acessibilidade
 nav.alerts	Alertas
@@ -115,6 +116,7 @@ rule.unsignedDownload	Um app sem assinatura foi executado pela primeira vez a pa
 rule.unsignedPersistence	Um processo sem assinatura adicionou um item de início
 rule.unsignedStartupBinary	O item de início executa um programa sem assinatura
 search.prompt	Buscar: app, caminho, Team ID…
+settings.appearance	Aparência
 sig.adhoc	assinatura ad hoc
 sig.apple	Apple
 sig.developer	desenvolvedor · %@
@@ -161,6 +163,9 @@ svc.removableVolumes	Volumes removíveis
 svc.screen	Gravação de tela
 svc.speech	Reconhecimento de Fala
 tag.trusted	Confiável
+theme.dark	Escuro
+theme.light	Claro
+theme.system	Sistema
 uninstall.blocked	O macOS protege este app; ele não pode ser removido.
 uninstall.body	Primeiro o app é encerrado e, em seguida, os itens selecionados vão para o Lixo. Eles só são apagados de vez quando você esvazia o Lixo.
 uninstall.confirm	Mover para o Lixo

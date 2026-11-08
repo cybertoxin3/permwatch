@@ -75,6 +75,7 @@ menu.permChanges	changements d’autorisation (24 h)
 menu.quit	Quitter
 menu.recent	Événements récents
 menu.scan	Analyser ce Mac
+menu.settings	Réglages…
 menu.watching	journal surveillé
 nav.accessibility	Accessibilité
 nav.alerts	Alertes
@@ -115,6 +116,7 @@ rule.unsignedDownload	Une app non signée s’est lancée pour la première fois
 rule.unsignedPersistence	Un processus non signé a ajouté un élément de démarrage
 rule.unsignedStartupBinary	L’élément de démarrage lance un programme non signé
 search.prompt	Rechercher : app, chemin, Team ID…
+settings.appearance	Apparence
 sig.adhoc	signée ad hoc
 sig.apple	Apple
 sig.developer	développeur · %@
@@ -161,6 +163,9 @@ svc.removableVolumes	Volumes amovibles
 svc.screen	Enregistrement de l’écran
 svc.speech	Reconnaissance vocale
 tag.trusted	Fiable
+theme.dark	Sombre
+theme.light	Clair
+theme.system	Système
 uninstall.blocked	macOS protège cette app ; elle ne peut pas être supprimée.
 uninstall.body	L’app est d’abord quittée, puis les éléments choisis sont placés dans la corbeille. Ils ne sont supprimés définitivement que lorsque vous videz la corbeille.
 uninstall.confirm	Placer dans la corbeille

@@ -75,6 +75,7 @@ menu.permChanges	modifiche autorizzazioni (24 h)
 menu.quit	Esci
 menu.recent	Eventi recenti
 menu.scan	Controlla questo Mac
+menu.settings	Impostazioni…
 menu.watching	registro monitorato
 nav.accessibility	Accessibilità
 nav.alerts	Avvisi
@@ -115,6 +116,7 @@ rule.unsignedDownload	Un’app non firmata è stata avviata per la prima volta d
 rule.unsignedPersistence	Un processo non firmato ha aggiunto un elemento di avvio
 rule.unsignedStartupBinary	L’elemento di avvio esegue un programma non firmato
 search.prompt	Cerca: app, percorso, Team ID…
+settings.appearance	Aspetto
 sig.adhoc	firma ad hoc
 sig.apple	Apple
 sig.developer	sviluppatore · %@
@@ -161,6 +163,9 @@ svc.removableVolumes	Volumi rimovibili
 svc.screen	Registrazione schermo
 svc.speech	Riconoscimento vocale
 tag.trusted	Affidabile
+theme.dark	Scuro
+theme.light	Chiaro
+theme.system	Sistema
 uninstall.blocked	macOS protegge questa app; non può essere rimossa.
 uninstall.body	Prima l’app viene chiusa, poi gli elementi selezionati vengono spostati nel Cestino. Vengono eliminati definitivamente solo quando svuoti il Cestino.
 uninstall.confirm	Sposta nel Cestino

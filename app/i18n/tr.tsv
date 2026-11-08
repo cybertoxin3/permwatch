@@ -75,6 +75,7 @@ menu.permChanges	izin değişikliği (24 sa)
 menu.quit	Çık
 menu.recent	Son olaylar
 menu.scan	Bu Mac'i Tara
+menu.settings	Ayarlar…
 menu.watching	kayıt izleniyor
 nav.accessibility	Erişilebilirlik
 nav.alerts	Uyarılar
@@ -115,6 +116,7 @@ rule.unsignedDownload	İmzasız bir uygulama İndirilenler'den ilk kez çalışt
 rule.unsignedPersistence	İmzasız bir süreç başlangıç öğesi ekledi
 rule.unsignedStartupBinary	Başlangıç öğesi imzasız bir program çalıştırıyor
 search.prompt	Ara: uygulama, yol, Team ID…
+settings.appearance	Görünüm
 sig.adhoc	ad-hoc imzalı
 sig.apple	Apple
 sig.developer	geliştirici · %@
@@ -161,6 +163,9 @@ svc.removableVolumes	Çıkarılabilir birimler
 svc.screen	Ekran Kaydı
 svc.speech	Konuşma Tanıma
 tag.trusted	Güvenilir
+theme.dark	Koyu
+theme.light	Açık
+theme.system	Sistem
 uninstall.blocked	macOS bu uygulamayı koruyor; kaldırılamaz.
 uninstall.body	Önce uygulama kapatılır, ardından seçilen öğeler Çöp Sepeti'ne taşınır. Çöp Sepeti'ni boşalttığında kalıcı olarak silinirler.
 uninstall.confirm	Çöp Sepeti'ne taşı

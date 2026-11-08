@@ -75,6 +75,7 @@ menu.permChanges	змін дозволів (24 год)
 menu.quit	Вийти
 menu.recent	Останні події
 menu.scan	Перевірити цей Mac
+menu.settings	Параметри…
 menu.watching	журнал відстежується
 nav.accessibility	Доступність
 nav.alerts	Сповіщення
@@ -115,6 +116,7 @@ rule.unsignedDownload	Непідписану програму вперше за�
 rule.unsignedPersistence	Непідписаний процес додав об’єкт автозапуску
 rule.unsignedStartupBinary	Об’єкт автозапуску запускає непідписану програму
 search.prompt	Пошук: програма, шлях, Team ID…
+settings.appearance	Вигляд
 sig.adhoc	ad-hoc підпис
 sig.apple	Apple
 sig.developer	розробник · %@
@@ -161,6 +163,9 @@ svc.removableVolumes	Знімні томи
 svc.screen	Запис екрана
 svc.speech	Розпізнавання мовлення
 tag.trusted	Довірена
+theme.dark	Темний
+theme.light	Світлий
+theme.system	Як у системі
 uninstall.blocked	macOS захищає цю програму; її неможливо видалити.
 uninstall.body	Спочатку програму буде закрито, потім вибрані об’єкти переміщено до Смітника. Остаточно вони видаляться, коли ви очистите Смітник.
 uninstall.confirm	Перемістити в Смітник

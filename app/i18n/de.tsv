@@ -75,6 +75,7 @@ menu.permChanges	Berechtigungsänderungen (24 h)
 menu.quit	Beenden
 menu.recent	Letzte Ereignisse
 menu.scan	Diesen Mac prüfen
+menu.settings	Einstellungen …
 menu.watching	Protokoll wird beobachtet
 nav.accessibility	Bedienungshilfen
 nav.alerts	Warnungen
@@ -115,6 +116,7 @@ rule.unsignedDownload	Eine unsignierte App wurde zum ersten Mal aus „Downloads
 rule.unsignedPersistence	Ein unsignierter Prozess hat ein Startobjekt hinzugefügt
 rule.unsignedStartupBinary	Startobjekt startet ein unsigniertes Programm
 search.prompt	Suchen: App, Pfad, Team-ID …
+settings.appearance	Erscheinungsbild
 sig.adhoc	ad-hoc-signiert
 sig.apple	Apple
 sig.developer	Entwickler · %@
@@ -161,6 +163,9 @@ svc.removableVolumes	Wechselmedien
 svc.screen	Bildschirmaufnahme
 svc.speech	Spracherkennung
 tag.trusted	Vertrauenswürdig
+theme.dark	Dunkel
+theme.light	Hell
+theme.system	System
 uninstall.blocked	macOS schützt diese App; sie kann nicht entfernt werden.
 uninstall.body	Die App wird zuerst beendet, dann werden die ausgewählten Objekte in den Papierkorb gelegt. Endgültig gelöscht werden sie erst, wenn du den Papierkorb leerst.
 uninstall.confirm	In den Papierkorb

@@ -75,6 +75,7 @@ menu.permChanges	permission changes (24 h)
 menu.quit	Quit
 menu.recent	Recent events
 menu.scan	Scan This Mac
+menu.settings	Settings…
 menu.watching	watching log
 nav.accessibility	Accessibility
 nav.alerts	Alerts
@@ -115,6 +116,7 @@ rule.unsignedDownload	An unsigned app ran from Downloads for the first time
 rule.unsignedPersistence	An unsigned process added a startup item
 rule.unsignedStartupBinary	Startup item runs an unsigned program
 search.prompt	Search: app, path, Team ID…
+settings.appearance	Appearance
 sig.adhoc	ad-hoc signed
 sig.apple	Apple
 sig.developer	developer · %@
@@ -161,6 +163,9 @@ svc.removableVolumes	Removable volumes
 svc.screen	Screen Recording
 svc.speech	Speech Recognition
 tag.trusted	Trusted
+theme.dark	Dark
+theme.light	Light
+theme.system	System
 uninstall.blocked	macOS protects this app; it can’t be removed.
 uninstall.body	The app is quit first, then the selected items are moved to the Trash. They are deleted permanently only when you empty the Trash.
 uninstall.confirm	Move to Trash

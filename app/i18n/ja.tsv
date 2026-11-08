@@ -75,6 +75,7 @@ menu.permChanges	アクセス権の変更(24時間)
 menu.quit	終了
 menu.recent	最近のイベント
 menu.scan	この Mac をスキャン
+menu.settings	設定…
 menu.watching	ログを監視中
 nav.accessibility	アクセシビリティ
 nav.alerts	アラート
@@ -115,6 +116,7 @@ rule.unsignedDownload	署名のないアプリがダウンロードフォルダ�
 rule.unsignedPersistence	署名のないプロセスが起動項目を追加しました
 rule.unsignedStartupBinary	起動項目が署名のないプログラムを実行しています
 search.prompt	検索: アプリ、パス、Team ID…
+settings.appearance	外観
 sig.adhoc	アドホック署名
 sig.apple	Apple
 sig.developer	デベロッパ · %@
@@ -161,6 +163,9 @@ svc.removableVolumes	リムーバブルボリューム
 svc.screen	画面収録
 svc.speech	音声認識
 tag.trusted	信頼済み
+theme.dark	ダーク
+theme.light	ライト
+theme.system	システム
 uninstall.blocked	このアプリは macOS で保護されているため削除できません。
 uninstall.body	まずアプリを終了し、選択した項目をゴミ箱に移動します。完全に削除されるのはゴミ箱を空にしたときです。
 uninstall.confirm	ゴミ箱に入れる

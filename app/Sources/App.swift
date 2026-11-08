@@ -3,13 +3,18 @@ import SwiftUI
 @main
 struct PermwatchApp: App {
     @StateObject private var store = Store()
+    @AppStorage(Theme.storageKey) private var theme: Theme = .system
 
     var body: some Scene {
         WindowGroup(id: "main") {
             MainView()
                 .environmentObject(store)
                 .frame(minWidth: 1100, minHeight: 640)
-                .onAppear { store.requestNotificationPermission() }
+                .preferredColorScheme(theme.colorScheme)
+                .onAppear {
+                    theme.apply()
+                    store.requestNotificationPermission()
+                }
         }
         .defaultSize(width: 1360, height: 820)
         .commands {
@@ -25,9 +30,15 @@ struct PermwatchApp: App {
         MenuBarExtra {
             MenuBarPanel()
                 .environmentObject(store)
+                .preferredColorScheme(theme.colorScheme)
         } label: {
             Image(systemName: store.openAlerts > 0 ? "exclamationmark.shield.fill" : "checkmark.shield")
         }
         .menuBarExtraStyle(.window)
+
+        Settings {
+            SettingsView()
+                .preferredColorScheme(theme.colorScheme)
+        }
     }
 }

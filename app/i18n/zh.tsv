@@ -75,6 +75,7 @@ menu.permChanges	权限变更（24 小时）
 menu.quit	退出
 menu.recent	最近事件
 menu.scan	扫描这台 Mac
+menu.settings	设置…
 menu.watching	正在监视日志
 nav.accessibility	辅助功能
 nav.alerts	警报
@@ -115,6 +116,7 @@ rule.unsignedDownload	未签名的应用首次从“下载”文件夹运行
 rule.unsignedPersistence	未签名的进程添加了启动项
 rule.unsignedStartupBinary	启动项运行了未签名的程序
 search.prompt	搜索：应用、路径、Team ID…
+settings.appearance	外观
 sig.adhoc	临时签名
 sig.apple	Apple
 sig.developer	开发者 · %@
@@ -161,6 +163,9 @@ svc.removableVolumes	可移除宗卷
 svc.screen	屏幕录制
 svc.speech	语音识别
 tag.trusted	可信
+theme.dark	深色
+theme.light	浅色
+theme.system	跟随系统
 uninstall.blocked	macOS 保护此应用，无法移除。
 uninstall.body	先退出该应用，然后将所选项目移到废纸篓。只有清倒废纸篓后才会被永久删除。
 uninstall.confirm	移到废纸篓
