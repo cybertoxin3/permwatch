@@ -467,19 +467,21 @@ enum Checks {
         ("atera", "Atera"), ("ninjarmm", "NinjaOne"), ("kaseya", "Kaseya"), ("action1", "Action1"), ("level.io", "Level"),
     ]
 
+    /// Araç adı dosya adında ayrı bir kelime olarak geçiyor mu? ("todesk", "Autodesk" içinde eşleşmemeli.)
+    static func matchesTool(_ text: String, _ key: String) -> Bool { WordMatch.matches(text, key) }
+
     static func remoteApps() -> [Finding] {
         let fm = FileManager.default
         var places: [String: String] = [:]   // ad → bulunduğu yer
         for dir in ["/Applications", home + "/Applications", "/Library/LaunchDaemons", "/Library/LaunchAgents", home + "/Library/LaunchAgents",
                     "/Library/Application Support", "/opt"] {
             for f in (try? fm.contentsOfDirectory(atPath: dir)) ?? [] {
-                let low = f.lowercased()
-                if let t = remoteTools.first(where: { low.contains($0.match) }) { places[t.name, default: dir + "/" + f] = places[t.name] ?? dir + "/" + f }
+                if let t = remoteTools.first(where: { matchesTool(f, $0.match) }) { places[t.name, default: dir + "/" + f] = places[t.name] ?? dir + "/" + f }
             }
         }
         let running = Set(Advisor.runningPaths().map { $0.lowercased() })
         return places.map { name, path in
-            let active = running.contains { r in remoteTools.contains { $0.name == name && r.contains($0.match) } }
+            let active = running.contains { r in remoteTools.contains { $0.name == name && matchesTool((r as NSString).lastPathComponent, $0.match) } }
             let isLaunch = path.contains("/Launch")
             return Finding(id: "remote.\(name)", category: .remote, verdict: active || isLaunch ? .caution : .info,
                            title: L("chk.remote.title", name),

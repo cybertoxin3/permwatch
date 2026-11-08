@@ -113,5 +113,10 @@ let fixed = PcapFile.sanitize(pc)
 check(fixed.packets == 2 && fixed.data.count == 24 + 26 + 36, "yarım kalan son paket atılır")
 check(fixed.data[20] == 2 && fixed.data[21] == 1, "PKTAP bağlantı türü 258 yazılır")
 
+// Uzaktan erişim aracı adı: yalnızca ayrı kelime olarak eşleşir
+check(!WordMatch.matches("com.autodesk.cer.plist", "todesk"), "Autodesk, ToDesk sanılmaz")
+check(WordMatch.matches("ToDesk.app", "todesk") && WordMatch.matches("com.youqu.todesk.service.plist", "todesk"), "ToDesk tanınır")
+check(!WordMatch.matches("Lateral.app", "atera") && WordMatch.matches("com.atera.agent.plist", "atera"), "Atera yalnızca kendi adıyla")
+
 print(failures == 0 ? "\nTüm testler geçti." : "\n\(failures) test başarısız.")
 exit(failures == 0 ? 0 : 1)

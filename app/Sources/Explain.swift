@@ -249,3 +249,12 @@ struct ExplanationCard: View {
         .overlay(RoundedRectangle(cornerRadius: 10).strokeBorder(e.verdict.color.opacity(0.3)))
     }
 }
+
+
+/// Bir adın metinde ayrı bir kelime olarak geçip geçmediği ("todesk", "Autodesk" içinde eşleşmez).
+enum WordMatch {
+    static func matches(_ text: String, _ key: String) -> Bool {
+        let pattern = "(?<![a-z0-9])" + NSRegularExpression.escapedPattern(for: key.lowercased()) + "(?![a-z0-9])"
+        return text.lowercased().range(of: pattern, options: .regularExpression) != nil
+    }
+}
