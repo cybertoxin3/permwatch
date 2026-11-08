@@ -587,3 +587,41 @@ block.settingsDesc	Block servers from the Network or Packet Capture sections. Th
 donate.title	Support permwatch
 donate.desc	permwatch is free, with no ads, accounts or tracking. If it helped you, you can buy me a coffee with crypto.
 donate.button	Buy me a coffee ☕
+nrule.intel	On a known malicious server list: %@
+intel.failed	Some lists could not be downloaded: %@. The previous lists are still in use.
+intel.alertTitle	%@ is talking to a known malicious server
+intel.alertDetail	%1$@ is on the %2$@ list. If you don't recognise it, block it.
+intel.cardTitle	Known malicious server
+intel.cardBody	%1$@ is on the %2$@ list of servers that spread or control malware. Do you recognise this server? If not, block it below. If you connected on purpose (for example for security research), choose "I know it" and we won't warn you again.
+intel.known	I know it, don't warn
+intel.setting	Malicious server check and extra signatures
+intel.settingDesc	Once a day permwatch downloads lists of known malicious servers (abuse.ch URLhaus and Feodo Tracker) and Elastic's macOS malware signatures. Nothing about you is sent. Connections are never blocked automatically: if one matches, you are asked. Seeing domain names needs admin mode (DNS answers are read only on this Mac).
+intel.status	%1$@ domains · %2$@ addresses · updated %3$@
+intel.never	Lists not downloaded yet
+intel.updateNow	Update now
+protect.settings	Protection
+rt.setting	Real-time protection
+rt.settingDesc	Scans new or changed files within seconds in Applications, Downloads, login items and the folders where malware usually hides. If malware is found you are warned and asked before it is quarantined.
+ransom.setting	Ransomware protection
+ransom.settingDesc	Notices when many of your documents are encrypted in a short time. If the program responsible is unsigned it is paused at once (this can be undone); you decide what happens next.
+ransom.title	Signs of ransomware
+ransom.detail	In the last 30 seconds %1$@ changed %2$@ of your documents in a way that looks like encryption.
+ransom.detailSuspended	In the last 30 seconds %1$@ changed %2$@ of your documents in a way that looks like encryption. The program has been paused.
+ransom.explain	Ransomware encrypts documents and demands money to unlock them. If this is not an encryption or backup tool you know, stop it and disconnect your Mac from the internet. If you know it, let it continue.
+ransom.terminate	Stop program
+ransom.resume	Let it continue
+rt.on	Real-time protection on · watching %1$@ folders · %2$@ files scanned
+rt.off	Real-time protection is off (turn it on in Settings)
+rt.needsFDA	Grant Full Disk Access for Downloads and documents
+scan.quarantine	Quarantine
+scan.qTitle	Quarantine %@?
+scan.qBody	The file and the login items that start it are moved to a separate folder and can no longer run. If it is a false alarm you can restore it from Quarantine.
+scan.quarantined	%@ was quarantined.
+scan.elastic	Elastic: %@ rules
+q.title	Quarantine (%@)
+q.explain	These files cannot run. If a file you know ended up here by mistake, restore it.
+q.restore	Restore
+q.delete	Delete permanently
+q.deleteTitle	Permanently delete %@?
+q.deleteBody	This cannot be undone.
+q.restoreFailed	Could not restore: %@

@@ -9,4 +9,4 @@ SRC=(${SRC:#Sources/App.swift})
 swiftc -parse-as-library -import-objc-header shared/bridge-app.h -Xcc -Ivendor/yara/libyara/include \
     -L "${YD[1]}" -lyara -I "${ST[1]}" -L "${ST[1]}" -lSwiftTerm \
     $SRC shared/Packets.swift tests/integration/main.swift -lpcap -o ../tests/test_integration
-../tests/test_integration
+PERMWATCH_EXTRA_RULES="$PWD/Resources/rules/elastic" ../tests/test_integration

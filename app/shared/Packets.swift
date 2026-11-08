@@ -473,6 +473,9 @@ final class CaptureEngine: @unchecked Sendable {
     /// LINKTYPE_PKTAP olarak yazılır. Olmadan "pktap,all" başlıkları atar, farklı bağlantı türlerini
     /// tek bir "ham IP" dosyasına karıştırır ve süreç bilgisi kaybolur.
     var wantPktap = false
+    /// İsteğe bağlı BPF süzgeci (ör. "port 53"); uygulanamazsa yakalama süzgeçsiz sürer.
+    var filter: String?
+    /// false: paketler sayılmaz/sınırlanmaz ve .pcap dosyasına yazılmaz (yalnızca onPacket).
     var onPacket: (Packet) -> Void = { _ in }
 
     init(device: String) { self.device = device }
@@ -501,6 +504,13 @@ final class CaptureEngine: @unchecked Sendable {
         }
         handle = h
         linkType = pcap_datalink(h)
+        if let f = filter {
+            var prog = bpf_program()
+            if pcap_compile(h, &prog, f, 1, PCAP_NETMASK_UNKNOWN) == 0 {
+                pcap_setfilter(h, &prog)
+                pcap_freecode(&prog)
+            }
+        }
         if wantPktap, linkType != PacketParser.dltPktapApple, linkType != PacketParser.dltPktap {
             pcap_close(h)
             handle = nil

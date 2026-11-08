@@ -63,7 +63,8 @@ permwatch verbindet die Punkte und zeigt dir eine einzige, klare Warnung.
 ## Was es kann
 
 - 🛡 **Übersicht und Prüfung mit einem Klick:** klares Urteil beim Start. „Mac prüfen“ startet den Malware-Scan und prüft Browser-Hijacking, Abfangen von Verkehr (Root-Zertifikate, Profile, Proxy, DNS, VPN), VPN-Lecks, Fernzugriff und spywareartige Rechte-Kombinationen. Jeder Fund hat einen Knopf zum Beheben.
-- 🐞 **Malware-Scan:** Apps, Autostart, laufende Programme und Downloads werden mit **Apples eigenen XProtect-Signaturen** über die Open-Source-Engine YARA geprüft. Ein Schnellscan dauert etwa 10 Sekunden; neue Downloads werden automatisch gescannt.
+- 🐞 **Malware-Scan:** Prüft deine Apps, Anmeldeobjekte, laufenden Programme und Downloads mit **Apples XProtect-Signaturen** und den **offenen macOS-Malware-Regeln von Elastic Security**, mit der Open-Source-Engine YARA. Ein Schnellscan dauert etwa 10 Sekunden. Funde lassen sich zusammen mit den Anmeldeobjekten, die sie starten, in Quarantäne verschieben: Sie können nicht mehr laufen und lassen sich bei einem Fehlalarm wiederherstellen.
+- 🛡️ **Echtzeitschutz:** Neue oder geänderte Dateien in Programme, Downloads, Anmeldeobjekten und den Ordnern, in denen sich Schadsoftware versteckt, werden innerhalb von Sekunden geprüft. Deine Dokumente werden auf Ransomware überwacht (viele Dateien plötzlich verschlüsselt); ein unsigniertes verantwortliches Programm wird angehalten. Verbindungen zu Servern auf bekannten Malware-Listen (abuse.ch) werden markiert, und du entscheidest, ob sie blockiert werden.
 - 🔐 **Berechtigungen:** Verlauf jeder Änderung, übrig gebliebene Rechte gelöschter Apps, Widerrufen mit einem Klick, Apps deinstallieren.
 - 🌐 **Netzwerk:** welche App wohin verbindet, Paketmitschnitt mit Prozessnamen und verständlichen Erklärungen, Server mit der integrierten macOS-Firewall blockieren.
 - ⬇️ **Downloads, 🎙 Mikrofon und Kamera, ⌨️ Terminal** mit fertigen Sicherheitsbefehlen.
@@ -74,7 +75,9 @@ permwatch verbindet die Punkte und zeigt dir eine einzige, klare Warnung.
 
 ## Was es nicht ist
 
-permwatch ist **kein vollständiger Virenscanner.** Es findet Malware, die Apples Signaturen kennen, blockiert aber keine Programme in Echtzeit. Die Regeln sind Heuristiken: Fehlalarme und übersehene Funde sind möglich.
+permwatch **ersetzt kein kommerzielles Antivirenprogramm mit eigenem Forschungsteam.** Die Signaturen stammen von Apple (XProtect) und Elastic Security, die Serverlisten von abuse.ch; es findet also, was diese Quellen kennen. Der Echtzeitschutz arbeitet mit Dateisystem-Ereignissen: Eine neue Datei wird in Sekunden geprüft, aber ein Programm lässt sich nicht *vor* seinem Start stoppen. Dafür braucht es Apples Endpoint-Security-Berechtigung, die wir beantragt haben. Verbindungen zu bekannten schädlichen Servern werden nie automatisch blockiert; du wirst zuerst gefragt.
+
+Die Regeln sind Heuristiken: Sie können Fehlalarme auslösen (etwa bei Entwicklerwerkzeugen) und gut versteckte Schadsoftware übersehen.
 
 ## Deine Privatsphäre bleibt bei dir
 

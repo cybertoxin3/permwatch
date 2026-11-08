@@ -15,7 +15,7 @@ final class UpdateChecker: ObservableObject {
         didSet { UserDefaults.standard.set(enabled, forKey: Self.enabledKey); if enabled { check(force: true) } }
     }
 
-    static var current: String { Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "0" }
+    nonisolated static var current: String { Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "0" }
 
     var updateAvailable: Bool { latest.map { Self.isNewer($0, than: Self.current) } ?? false }
 

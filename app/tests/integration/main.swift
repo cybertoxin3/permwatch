@@ -160,6 +160,53 @@ func check(_ cond: Bool, _ name: String) { if cond { print("✓ \(name)") } else
     }
     try? FileManager.default.removeItem(at: eicar)
 
+    // Elastic imzaları: hepsi derlenir; zararsız bir deneme dosyası Xmrig kuralına takılır.
+    check(YaraEngine.shared.load(force: true) == nil && YaraEngine.shared.extraCount > 100,
+          "Elastic macOS kuralları derlendi (\(YaraEngine.shared.extraCount))")
+    let miner = NSHomeDirectory() + "/Library/Application Support/permwatch/selftest-miner-\(UUID().uuidString)"
+    var body = Data([0xcf, 0xfa, 0xed, 0xfe])   // Mach-O başlığı (çalıştırılabilir değil)
+    body.append(Data("\0mining.set_target\0XMRIG_HOSTNAME\0Usage: xmrig [OPTIONS]\0XMRIG_VERSION\0".utf8))
+    FileManager.default.createFile(atPath: miner, contents: body, attributes: [.posixPermissions: 0o755])
+    let hit = YaraEngine.shared.scan(miner)?.first { $0.name == "MacOS.Cryptominer.Xmrig" }
+    check(hit != nil, "Elastic kuralı deneme dosyasını yakaladı")
+
+    // Karantina: taşınır, çalıştırılamaz, geri yüklenince izinleri geri gelir
+    let qs = QuarantineStore.shared
+    let failedQ = qs.quarantine(paths: [miner], launchItems: [], name: "MacOS.Cryptominer.Xmrig", rule: "test")
+    let qi = qs.items.first { $0.files[miner] != nil }
+    check(failedQ.isEmpty && qi != nil && !FileManager.default.fileExists(atPath: miner), "dosya karantinaya taşındı")
+    if let qi, let stored = qi.files[miner] {
+        check(!FileManager.default.isExecutableFile(atPath: stored), "karantinadaki dosya çalıştırılamaz")
+        check(qs.restore(qi) == nil && FileManager.default.isExecutableFile(atPath: miner), "geri yüklendi, izinler geri geldi")
+    }
+    try? FileManager.default.removeItem(atPath: miner)
+
+    // Zararlı sunucu listesi eşleştirmesi (üst alan adları dahil)
+    ThreatIntel.store.set(domains: ["evil.example"], ips: ["203.0.113.66"])
+    check(ThreatIntel.store.match(ip: "198.51.100.1", host: "cdn.a.evil.example")?.0 == "evil.example", "alt alan adı listedeki alan adına eşleşir")
+    check(ThreatIntel.store.match(ip: "203.0.113.66", host: nil)?.1 == "Feodo Tracker", "listedeki IP eşleşir")
+    check(ThreatIntel.store.match(ip: "198.51.100.1", host: "notevil.example") == nil, "benzer ama farklı alan adı eşleşmez")
+    check(ThreatIntel.parseHosts("# yorum\n0.0.0.0 bad.example\n0.0.0.0 0.0.0.0\n") == ["bad.example"], "hosts listesi ayrıştırılır")
+    check(ThreatIntel.parseIPs("# DstIP\r\n50.16.16.211\r\n# END\r\n") == ["50.16.16.211"], "Windows satır sonlu IP listesi ayrıştırılır")
+    check(PathUtil.abbreviate("/Users/Shared/x") == "/Users/Shared/x", "paylaşılan klasör ~ olarak gösterilmez")
+    ThreatIntel.store.set(domains: [], ips: [])
+
+    // Fidye yazılımı belirtileri
+    let rdir = FileManager.default.temporaryDirectory.appendingPathComponent("permwatch-ransom-\(UUID().uuidString)").path
+    try? FileManager.default.createDirectory(atPath: rdir, withIntermediateDirectories: true)
+    var rnd = Data(count: 4096); _ = rnd.withUnsafeMutableBytes { SecRandomCopyBytes(kSecRandomDefault, 4096, $0.baseAddress!) }
+    FileManager.default.createFile(atPath: rdir + "/rapor.pdf", contents: rnd)
+    FileManager.default.createFile(atPath: rdir + "/gercek.pdf", contents: Data(("%PDF-1.7\n" + String(repeating: "metin ", count: 400)).utf8))
+    FileManager.default.createFile(atPath: rdir + "/notlar.txt", contents: rnd)
+    FileManager.default.createFile(atPath: rdir + "/tez.docx.locked", contents: rnd)
+    FileManager.default.createFile(atPath: rdir + "/film.mp4.part", contents: rnd)
+    check(RansomDetector.suspicious(path: rdir + "/rapor.pdf", renamed: false), "rastgele baytlı .pdf şüpheli")
+    check(!RansomDetector.suspicious(path: rdir + "/gercek.pdf", renamed: false), "gerçek .pdf şüpheli değil")
+    check(RansomDetector.suspicious(path: rdir + "/notlar.txt", renamed: false), "rastgele baytlı .txt şüpheli")
+    check(RansomDetector.suspicious(path: rdir + "/tez.docx.locked", renamed: true), "rapor.docx → .locked şüpheli")
+    check(!RansomDetector.suspicious(path: rdir + "/film.mp4.part", renamed: true), "yarım indirme (.part) şüpheli değil")
+    try? FileManager.default.removeItem(atPath: rdir)
+
     print(failures == 0 ? "\nTüm bütünleşik testler geçti." : "\n\(failures) bütünleşik test başarısız.")
     exit(failures == 0 ? 0 : 1)
 } }

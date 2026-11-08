@@ -587,3 +587,41 @@ block.settingsDesc	Bloquez des serveurs depuis Réseau ou Capture de paquets. L�
 donate.title	Soutenir permwatch
 donate.desc	permwatch est gratuit, sans publicité, compte ni pistage. S'il t'a aidé, tu peux m'offrir un café en crypto.
 donate.button	M'offrir un café ☕
+nrule.intel	Sur une liste de serveurs malveillants connus : %@
+intel.failed	Certaines listes n'ont pas pu être téléchargées : %@. Les listes précédentes restent utilisées.
+intel.alertTitle	%@ communique avec un serveur malveillant connu
+intel.alertDetail	%1$@ figure sur la liste %2$@. Si tu ne le reconnais pas, bloque-le.
+intel.cardTitle	Serveur malveillant connu
+intel.cardBody	%1$@ figure sur la liste %2$@ des serveurs qui diffusent ou contrôlent des logiciels malveillants. Reconnais-tu ce serveur ? Sinon, bloque-le ci-dessous. Si tu t'y es connecté volontairement (par exemple pour de la recherche en sécurité), choisis « Je le connais » et nous ne t'avertirons plus.
+intel.known	Je le connais, ne pas avertir
+intel.setting	Contrôle des serveurs malveillants et signatures supplémentaires
+intel.settingDesc	Une fois par jour, permwatch télécharge des listes de serveurs malveillants connus (abuse.ch URLhaus et Feodo Tracker) et les signatures de logiciels malveillants macOS d'Elastic. Rien te concernant n'est envoyé. Les connexions ne sont jamais bloquées automatiquement : en cas de correspondance, on te demande. Voir les noms de domaine nécessite le mode administrateur (les réponses DNS sont lues uniquement sur ce Mac).
+intel.status	%1$@ domaines · %2$@ adresses · mis à jour %3$@
+intel.never	Listes pas encore téléchargées
+intel.updateNow	Mettre à jour
+protect.settings	Protection
+rt.setting	Protection en temps réel
+rt.settingDesc	Analyse en quelques secondes les fichiers nouveaux ou modifiés dans Applications, Téléchargements, les éléments d'ouverture et les dossiers où les logiciels malveillants se cachent souvent. En cas de détection, tu es averti et on te demande avant la mise en quarantaine.
+ransom.setting	Protection contre les rançongiciels
+ransom.settingDesc	Repère quand de nombreux documents sont chiffrés en peu de temps. Si le programme responsable n'est pas signé, il est suspendu aussitôt (réversible) ; tu décides de la suite.
+ransom.title	Signes de rançongiciel
+ransom.detail	Au cours des 30 dernières secondes, %1$@ a modifié %2$@ de tes documents d'une manière qui ressemble à un chiffrement.
+ransom.detailSuspended	Au cours des 30 dernières secondes, %1$@ a modifié %2$@ de tes documents d'une manière qui ressemble à un chiffrement. Le programme a été suspendu.
+ransom.explain	Un rançongiciel chiffre les documents et exige de l'argent pour les déverrouiller. S'il ne s'agit pas d'un outil de chiffrement ou de sauvegarde que tu connais, arrête-le et déconnecte ton Mac d'Internet. Si tu le connais, laisse-le continuer.
+ransom.terminate	Arrêter le programme
+ransom.resume	Le laisser continuer
+rt.on	Protection en temps réel activée · %1$@ dossiers surveillés · %2$@ fichiers analysés
+rt.off	La protection en temps réel est désactivée (active-la dans les Réglages)
+rt.needsFDA	Accorder l'accès complet au disque pour Téléchargements et documents
+scan.quarantine	Mettre en quarantaine
+scan.qTitle	Mettre %@ en quarantaine ?
+scan.qBody	Le fichier et les éléments d'ouverture qui le lancent sont déplacés dans un dossier à part et ne peuvent plus s'exécuter. En cas de fausse alerte, tu peux le restaurer depuis la Quarantaine.
+scan.quarantined	%@ a été mis en quarantaine.
+scan.elastic	Elastic : %@ règles
+q.title	Quarantaine (%@)
+q.explain	Ces fichiers ne peuvent pas s'exécuter. Si un fichier que tu connais est arrivé ici par erreur, restaure-le.
+q.restore	Restaurer
+q.delete	Supprimer définitivement
+q.deleteTitle	Supprimer définitivement %@ ?
+q.deleteBody	Cette action est irréversible.
+q.restoreFailed	Restauration impossible : %@

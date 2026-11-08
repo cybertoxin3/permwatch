@@ -504,6 +504,11 @@ struct ConnRow: Identifiable, Hashable {
     let rules: [String]          // nrule.* anahtarları
     let ruleArgs: [String]
     let risk: Risk
+    /// DNS izlemeden bilinen alan adı (yönetici modunda).
+    var host: String? = nil
+    /// Bilinen zararlı sunucu listesindeki eşleşme: (alan adı/adres, kaynak).
+    var intel: String? = nil
+    var intelSource: String? = nil
 
     var riskSort: Int { risk.rawValue }
     var remoteSort: String { remote ?? "" }
@@ -537,12 +542,21 @@ final class NetworkMonitor: ObservableObject {
         guard !busy else { return }
         busy = true
         let rootLsof = RootBridge.shared.active ? RootBridge.shared.data?.lsof : nil
+        let dns = RootBridge.shared.active ? (RootBridge.shared.data?.dns ?? [:]) : [:]
+        let intel = ThreatIntel.shared.enabled
         Task.detached(priority: .utility) {
-            let r = NetworkMonitor.collect(rootLsof: rootLsof)
+            let r = NetworkMonitor.collect(rootLsof: rootLsof, dns: dns, intel: intel)
             await MainActor.run {
                 self.rows = r
                 self.busy = false
-                for c in r where c.risk == .high {
+                for c in r where c.intel != nil {
+                    // Bilinen zararlı sunucu: otomatik engellenmez, kullanıcıya sorulur.
+                    ThreatCenter.shared.report(Threat(
+                        id: "intel.\(c.path ?? c.name).\(c.intel!)", risk: .high, title: L("intel.alertTitle", c.name),
+                        detail: L("intel.alertDetail", c.intel!, c.intelSource ?? ""),
+                        iconKey: c.path.map { PathUtil.appBundle($0) ?? $0 }, section: .network, focus: .connection(c.id)))
+                }
+                for c in r where c.risk == .high && c.intel == nil {
                     let t = Threat(id: "net-\(c.name)-\(c.remote ?? c.local)", risk: .high,
                                    title: "\(Risk.high.label): \(L("alert.network"))",
                                    detail: "\(c.name) · \(c.remote ?? c.local)",
@@ -585,7 +599,8 @@ final class NetworkMonitor: ObservableObject {
 
     /// lsof -F: yönetici yetkisi olmadan yalnızca kendi kullanıcının süreçleri görünür.
     /// rootLsof: yönetici modu açıksa yardımcının root olarak aldığı çıktı (bütün süreçler).
-    nonisolated static func collect(rootLsof: String? = nil) -> [ConnRow] {
+    nonisolated static func collect(rootLsof: String? = nil, dns: [String: (host: String, proc: String)] = [:],
+                                    intel: Bool = false) -> [ConnRow] {
         let out = rootLsof ?? Shell.run("/usr/sbin/lsof", ["-nP", "-i", "-F", "pcfPnT"]).1
         var rows: [ConnRow] = []
         var pid: Int32 = 0, cmd = "", proto = "", name = "", state = "", fd = ""
@@ -622,9 +637,18 @@ final class NetworkMonitor: ObservableObject {
                 rules.append("nrule.badPort"); args.append("\(port)"); risk = .high
             }
             let display = path.map { PathUtil.displayName(PathUtil.appBundle($0) ?? $0) } ?? cmd
-            rows.append(ConnRow(id: "\(pid)-\(fd)-\(name)", pid: pid, name: display, path: path, proto: proto,
-                                local: local, remote: remote, state: st, signature: sig, rules: rules, ruleArgs: args,
-                                risk: risk))
+            let ip = remote.map(BlockList.host(of:))
+            let host = ip.flatMap { dns[$0]?.host }
+            var hit: (String, String)?
+            if intel, let ip, !Conversation.isLocal(ip) { hit = ThreatIntel.store.match(ip: ip, host: host) }
+            if let h = hit { rules.insert("nrule.intel", at: 0); args.insert("\(h.0) (\(h.1))", at: 0); risk = .high }
+            var row = ConnRow(id: "\(pid)-\(fd)-\(name)", pid: pid, name: display, path: path, proto: proto,
+                              local: local, remote: remote, state: st, signature: sig, rules: rules, ruleArgs: args,
+                              risk: risk)
+            row.host = host
+            row.intel = hit?.0
+            row.intelSource = hit?.1
+            rows.append(row)
             name = ""; state = ""; proto = ""
         }
         for line in out.split(separator: "\n") {

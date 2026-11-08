@@ -3,12 +3,18 @@ import SwiftUI
 /// Zararlı taraması: Apple'ın XProtect imzalarıyla hızlı/tam tarama, sonuçlar ve temizleme.
 struct ScanView: View {
     @EnvironmentObject var scanner: MalwareScanner
+    @ObservedObject private var quarantine = QuarantineStore.shared
+    @ObservedObject private var realtime = RealtimeGuard.shared
     @State private var confirm: Detection?
+    @State private var confirmDelete: QuarantineItem?
+    @State private var qMessage: String?
 
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 18) {
                 header
+                realtimeStatus
+                ForEach(realtime.ransomAlerts) { ransomCard($0) }
                 if scanner.running { progress }
                 if let e = scanner.error {
                     Label(L("scan.error", e), systemImage: "exclamationmark.triangle").foregroundStyle(.red)
@@ -21,6 +27,7 @@ struct ScanView: View {
                 } else if scanner.lastScan != nil && !scanner.running {
                     clean
                 }
+                quarantineSection
                 xprotectSection
                 about
             }
@@ -30,12 +37,19 @@ struct ScanView: View {
         }
         .navigationTitle(L("nav.scan"))
         .onAppear { if Snapshot.section == "scanrun", !scanner.running { scanner.start(.quick) } }
-        .confirmationDialog(confirm.map { L("scan.removeTitle", $0.name) } ?? "",
+        .confirmationDialog(confirm.map { L("scan.qTitle", $0.name) } ?? "",
                             isPresented: Binding(get: { confirm != nil }, set: { if !$0 { confirm = nil } })) {
-            Button(L("scan.remove"), role: .destructive) { if let d = confirm { scanner.remove(d) }; confirm = nil }
+            Button(L("scan.quarantine"), role: .destructive) { if let d = confirm { scanner.remove(d) }; confirm = nil }
             Button(L("confirm.cancel"), role: .cancel) { confirm = nil }
         } message: {
-            Text(L("scan.removeBody"))
+            Text(L("scan.qBody"))
+        }
+        .confirmationDialog(confirmDelete.map { L("q.deleteTitle", $0.name) } ?? "",
+                            isPresented: Binding(get: { confirmDelete != nil }, set: { if !$0 { confirmDelete = nil } })) {
+            Button(L("q.delete"), role: .destructive) { if let q = confirmDelete { quarantine.delete(q) }; confirmDelete = nil }
+            Button(L("confirm.cancel"), role: .cancel) { confirmDelete = nil }
+        } message: {
+            Text(L("q.deleteBody"))
         }
     }
 
@@ -78,6 +92,7 @@ struct ScanView: View {
                            scanner.lastKind == .full ? L("scan.fullShort") : L("scan.quickShort")))
         }
         if let v = scanner.signatureVersion { parts.append(L("scan.signatures", v)) }
+        if YaraEngine.shared.extraCount > 0 { parts.append(L("scan.elastic", YaraEngine.shared.extraCount.formatted())) }
         return parts.joined(separator: " · ")
     }
 
@@ -124,7 +139,7 @@ struct ScanView: View {
                         .font(.system(size: 11.5)).foregroundStyle(.orange)
                 }
                 HStack(spacing: 8) {
-                    Button(L("scan.remove")) { confirm = d }.buttonStyle(.borderedProminent).tint(.red)
+                    Button(L("scan.quarantine")) { confirm = d }.buttonStyle(.borderedProminent).tint(.red)
                     Button(L("action.showInFinder")) { NSWorkspace.shared.activateFileViewerSelecting([URL(fileURLWithPath: d.path)]) }
                     Button(L("action.virustotal")) { Lookup.virusTotal(path: d.path) }
                 }
@@ -136,6 +151,70 @@ struct ScanView: View {
         .padding(16)
         .background(Color.red.opacity(0.07), in: RoundedRectangle(cornerRadius: 12))
         .overlay(RoundedRectangle(cornerRadius: 12).strokeBorder(Color.red.opacity(0.35)))
+    }
+
+    private var realtimeStatus: some View {
+        HStack(spacing: 8) {
+            Circle().fill(realtime.watching.isEmpty ? Color.secondary : Color.green).frame(width: 8, height: 8)
+            Text(realtime.watching.isEmpty ? L("rt.off")
+                 : L("rt.on", realtime.watching.count.formatted(), realtime.scannedCount.formatted()))
+                .font(.system(size: 12))
+            Spacer()
+            if !FullDisk.granted && !realtime.watching.isEmpty {
+                Button(L("rt.needsFDA")) { FullDisk.openSettings() }.controlSize(.small)
+            }
+        }
+        .padding(10)
+        .background(Color(nsColor: .controlBackgroundColor), in: RoundedRectangle(cornerRadius: 10))
+    }
+
+    private func ransomCard(_ a: RansomAlert) -> some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Label(L("ransom.title"), systemImage: "lock.trianglebadge.exclamationmark.fill")
+                .font(.system(size: 15, weight: .bold)).foregroundStyle(.red)
+            Text(a.suspended ? L("ransom.detailSuspended", a.name, a.files.formatted()) : L("ransom.detail", a.name, a.files.formatted()))
+                .font(.system(size: 12.5)).fixedSize(horizontal: false, vertical: true)
+            Text(L("ransom.explain")).font(.system(size: 12)).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
+            ForEach(a.examples, id: \.self) { Text(PathUtil.abbreviate($0)).font(.system(size: 11, design: .monospaced)).lineLimit(1) }
+            HStack(spacing: 8) {
+                Button(L("ransom.terminate")) { realtime.terminate(a) }.buttonStyle(.borderedProminent).tint(.red)
+                if a.suspended { Button(L("ransom.resume")) { realtime.resume(a) } }
+                if let p = a.path { Button(L("action.showInFinder")) { NSWorkspace.shared.activateFileViewerSelecting([URL(fileURLWithPath: p)]) } }
+                Button(L("threat.dismiss")) { realtime.dismiss(a) }
+            }
+            .controlSize(.small)
+        }
+        .padding(16)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(Color.red.opacity(0.07), in: RoundedRectangle(cornerRadius: 12))
+        .overlay(RoundedRectangle(cornerRadius: 12).strokeBorder(Color.red.opacity(0.35)))
+    }
+
+    @ViewBuilder private var quarantineSection: some View {
+        if !quarantine.items.isEmpty {
+            VStack(alignment: .leading, spacing: 8) {
+                Text(L("q.title", quarantine.items.count.formatted())).font(.system(size: 12, weight: .semibold))
+                Text(L("q.explain")).font(.system(size: 11.5)).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
+                if let m = qMessage { Text(m).font(.system(size: 11.5)).foregroundStyle(.orange) }
+                ForEach(quarantine.items) { q in
+                    HStack(spacing: 10) {
+                        Image(systemName: "lock.doc.fill").foregroundStyle(.orange)
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(q.name).font(.system(size: 12.5, weight: .semibold))
+                            Text(q.files.keys.sorted().map(PathUtil.abbreviate).joined(separator: ", "))
+                                .font(.system(size: 11, design: .monospaced)).foregroundStyle(.secondary).lineLimit(2).truncationMode(.middle)
+                            Text(Fmt.relative(q.date)).font(.system(size: 10.5)).foregroundStyle(.tertiary)
+                        }
+                        Spacer()
+                        Button(L("q.restore")) { qMessage = quarantine.restore(q) }
+                        Button(L("q.delete")) { confirmDelete = q }
+                    }
+                    .controlSize(.small)
+                    .padding(10)
+                    .background(Color(nsColor: .controlBackgroundColor), in: RoundedRectangle(cornerRadius: 10))
+                }
+            }
+        }
     }
 
     /// Apple'ın kendi arka plan taramalarının (XProtect Remediator) kayıtları; yalnızca yönetici modunda okunabilir.

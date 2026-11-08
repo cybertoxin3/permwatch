@@ -45,6 +45,8 @@ struct PermwatchApp: App {
                 .onAppear {
                     theme.apply()
                     store.requestNotificationPermission()
+                    RealtimeGuard.shared.start()
+                    ThreatIntel.shared.update()
                 }
         }
         .defaultSize(width: 1360, height: 820)
@@ -75,6 +77,8 @@ struct PermwatchApp: App {
                 .environmentObject(RootBridge.shared)
                 .environmentObject(packets)
                 .environmentObject(updates)
+                .environmentObject(ThreatIntel.shared)
+                .environmentObject(RealtimeGuard.shared)
                 .preferredColorScheme(theme.colorScheme)
         }
     }

@@ -53,6 +53,8 @@ struct SettingsView: View {
     @EnvironmentObject var root: RootBridge
     @EnvironmentObject var packets: PacketMonitor
     @EnvironmentObject var updates: UpdateChecker
+    @EnvironmentObject var intel: ThreatIntel
+    @EnvironmentObject var realtime: RealtimeGuard
     @ObservedObject private var blocks = BlockList.shared
 
     var body: some View {
@@ -129,6 +131,30 @@ struct SettingsView: View {
             } footer: {
                 Text(L("block.settingsDesc")).font(.system(size: 11)).foregroundStyle(.secondary)
                     .fixedSize(horizontal: false, vertical: true)
+            }
+
+            Section {
+                Toggle(L("rt.setting"), isOn: $realtime.enabled)
+                Text(L("rt.settingDesc")).font(.system(size: 11)).foregroundStyle(.secondary)
+                    .fixedSize(horizontal: false, vertical: true)
+                Toggle(L("ransom.setting"), isOn: $realtime.ransomEnabled)
+                Text(L("ransom.settingDesc")).font(.system(size: 11)).foregroundStyle(.secondary)
+                    .fixedSize(horizontal: false, vertical: true)
+                Toggle(L("intel.setting"), isOn: $intel.enabled)
+                Text(L("intel.settingDesc")).font(.system(size: 11)).foregroundStyle(.secondary)
+                    .fixedSize(horizontal: false, vertical: true)
+                if intel.enabled {
+                    HStack {
+                        Text(intel.lastUpdate.map { L("intel.status", intel.domainCount.formatted(), intel.ipCount.formatted(), Fmt.relative($0)) }
+                             ?? L("intel.never"))
+                            .font(.system(size: 11)).foregroundStyle(.secondary)
+                        Spacer()
+                        if intel.updating { ProgressView().controlSize(.small) } else { Button(L("intel.updateNow")) { intel.update(force: true) } }
+                    }
+                    if let e = intel.error { Text(e).font(.system(size: 11)).foregroundStyle(.red) }
+                }
+            } header: {
+                Text(L("protect.settings"))
             }
 
             Section {

@@ -33,13 +33,14 @@ guard getuid() == 0 else {
 // Çıktıların sahibi: başlatan kullanıcı (servis modunda konsoldaki kullanıcı). Başka kullanıcılar okuyamaz.
 var owner: uid_t = 0, ownerGid: gid_t = 0
 var home = "/var/empty"
-var flagPath = "", alivePath = ""
+var flagPath = "", alivePath = "", dnsFlagPath = ""
 
 func setOwner(_ uid: uid_t) {
     guard let pw = getpwuid(uid) else { return }
     owner = uid; ownerGid = pw.pointee.pw_gid
     home = String(cString: pw.pointee.pw_dir)
     flagPath = home + "/Library/Application Support/permwatch/capture.on"
+    dnsFlagPath = home + "/Library/Application Support/permwatch/dnswatch.on"
     alivePath = home + "/Library/Application Support/permwatch/alive"
 }
 
@@ -255,6 +256,48 @@ final class Capture {
     }
 }
 
+// MARK: - DNS izleme (zararlı sunucu kontrolü için: hangi adres hangi alan adına ait)
+
+/// Yalnızca DNS yanıtlarını okur: alan adı → adresler ve soran süreç. Paket içeriği saklanmaz,
+/// diske yalnızca son birkaç bin eşleme (root.json içinde, kullanıcıya ait) yazılır.
+final class DNSWatch {
+    private let engine: CaptureEngine
+    private let lock = NSLock()
+    private var map: [String: (host: String, proc: String, ts: Double)] = [:]
+
+    init() throws {
+        var lastError = "pktap"
+        for pk in [true, false] {
+            let e = CaptureEngine(device: "pktap,all")
+            e.wantPktap = pk
+            e.filter = "port 53"
+            e.storePayload = false
+            e.maxPerSecond = 400
+            do { try e.open(snaplen: 1500) } catch { lastError = (error as? CaptureError)?.message ?? "\(error)"; continue }
+            engine = e
+            e.onPacket = { [weak self] p in
+                guard let self, let host = p.host?.lowercased(), let ips = p.dns, !ips.isEmpty else { return }
+                self.lock.lock()
+                for ip in ips where validIP(ip) { self.map[ip] = (host, p.proc ?? "", p.ts) }
+                if self.map.count > 6000 {
+                    for (k, _) in self.map.sorted(by: { $0.value.ts < $1.value.ts }).prefix(2000) { self.map[k] = nil }
+                }
+                self.lock.unlock()
+            }
+            e.start()
+            return
+        }
+        throw CaptureError(message: lastError)
+    }
+
+    var snapshot: [[String: Any]] {
+        lock.lock(); defer { lock.unlock() }
+        return map.map { ["ip": $0.key, "host": $0.value.host, "proc": $0.value.proc, "ts": $0.value.ts] }
+    }
+
+    func stop() { engine.stop() }
+}
+
 try? FileManager.default.createDirectory(atPath: outDir, withIntermediateDirectories: true,
                                          attributes: [.posixPermissions: 0o755])
 chown(outDir, 0, 0); chmod(outDir, 0o755)
@@ -267,16 +310,20 @@ var capture: Capture?
 var captureError: String?
 var tick = 0
 var lastSig = ""
+var dnsWatch: DNSWatch?
+var dnsError: String?
 while true {
     if daemon {
         // Konsoldaki kullanıcı değiştiyse ona geç; permwatch kapalıysa boşta bekle.
         var cs = stat()
         if stat("/dev/console", &cs) == 0, cs.st_uid != owner, cs.st_uid != 0 {
             capture?.stop(); capture = nil; captureError = nil
+            dnsWatch?.stop(); dnsWatch = nil; dnsError = nil
             setOwner(cs.st_uid)
         }
         if !appAlive() {
             if capture != nil { capture?.stop(); capture = nil; captureError = nil }
+            dnsWatch?.stop(); dnsWatch = nil; dnsError = nil
             tick = 0
             sleep(3)
             continue
@@ -296,6 +343,15 @@ while true {
     }
     capture?.flush()
     applyBlocklist()
+
+    // DNS izleme: kullanıcı "Zararlı sunucu kontrolü"nü açık tuttuğunda dnswatch.on vardır.
+    var dst = stat()
+    let dnsWanted = lstat(dnsFlagPath, &dst) == 0 && dst.st_uid == owner
+    if dnsWanted, dnsWatch == nil, dnsError == nil {
+        do { dnsWatch = try DNSWatch() } catch { dnsError = (error as? CaptureError)?.message ?? "\(error)" }
+    } else if !dnsWanted, dnsWatch != nil || dnsError != nil {
+        dnsWatch?.stop(); dnsWatch = nil; dnsError = nil
+    }
 
     // Yavaş değişenler dakikada bir.
     if tick % 60 == 0 {
@@ -339,6 +395,8 @@ while true {
         if let e = captureError { cap["error"] = e }
         doc["capture"] = cap
         doc["block"] = blockStatus
+        if let w = dnsWatch { doc["dns"] = w.snapshot }
+        if let e = dnsError { doc["dnsError"] = e }
         if let data = try? JSONSerialization.data(withJSONObject: doc) { writeAtomic(data, to: outPath) }
     }
     tick += 1

@@ -4,9 +4,16 @@ permwatch is a privacy tool, so it is strict about your data.
 
 **Nothing about you leaves your Mac.** permwatch has no analytics, no telemetry, no account and no server.
 
-The only request it makes by itself is an optional update check: once a day it asks GitHub (`api.github.com`) for the number of the latest release. No data about you or your Mac is included. You can turn it off in Settings › Check for new versions.
+permwatch makes only these requests by itself. Each is a plain download that carries no data about you or your Mac, and each can be turned off in Settings:
 
-The malware scan runs entirely on your Mac with the XProtect signatures already installed by macOS; no file or hash is uploaded.
+- **Update check** (Settings › Check for new versions): once a day it asks GitHub (`api.github.com`) for the number of the latest release.
+- **Threat lists and extra signatures** (Settings › Malicious server check and extra signatures): once a day it downloads the list of known malicious domains (`malware-filter.gitlab.io`, a mirror of abuse.ch URLhaus), the list of known malicious IP addresses (`feodotracker.abuse.ch`) and Elastic Security's macOS malware rules (`api.github.com` and `raw.githubusercontent.com`). Matching against these lists happens on your Mac; no address you visit is ever sent anywhere.
+
+The malware scan and real-time protection run entirely on your Mac with Apple's XProtect signatures and the downloaded Elastic rules; no file or hash is uploaded.
+
+**DNS answers (administrator mode only).** To know which domain a connection belongs to, the administrator helper reads DNS answers on this Mac while the malicious server check is on. It keeps only the latest few thousand "address → domain" pairs, in memory and in `root.json` (readable only by your user account). Nothing is written to a log and nothing leaves your Mac. Turning the check off stops it.
+
+**Quarantine.** Quarantined files are kept in `~/Library/Application Support/permwatch/Quarantine` with execution permissions removed, until you restore or delete them.
 
 The only exception is one you trigger yourself. **"Check with VirusTotal"** opens your browser at `virustotal.com/gui/file/<SHA-256>`. Only the file's hash is in the address; the file itself is never uploaded.
 

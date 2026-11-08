@@ -43,6 +43,7 @@ swiftc -O -target "$ARCH-apple-macos14" -import-objc-header shared/bridge.h \
     helper/main.swift shared/*.swift -lpcap -o "$APP/Contents/MacOS/permwatch-root"
 
 cp Resources/sample-events.jsonl Resources/AppIcon.icns "$APP/Contents/Resources/"
+mkdir -p "$APP/Contents/Resources/rules" && cp -R Resources/rules/elastic "$APP/Contents/Resources/rules/"
 
 # Kalıcı yönetici servisi (SMAppService.daemon): kullanıcı Sistem Ayarları'nda bir kez onaylar.
 mkdir -p "$APP/Contents/Library/LaunchDaemons"

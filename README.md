@@ -62,7 +62,8 @@ permwatch connects the dots and gives you one clear alert.
 
 ## What it does
 
-- 🐞 **Malware scan:** Checks your apps, login items, running programs and downloads against **Apple’s own XProtect malware signatures** (the ones macOS keeps up to date), using the open-source YARA engine. A quick scan takes about 10 seconds. New downloads are scanned automatically, and anything found can be moved to the Trash together with the login items that start it.
+- 🐞 **Malware scan:** Checks your apps, login items, running programs and downloads with **Apple's XProtect signatures** and **Elastic Security's open macOS malware rules**, using the open-source YARA engine. A quick scan takes about 10 seconds. Anything found can be quarantined together with the login items that start it: it can no longer run, and you can restore it if it was a false alarm.
+- 🛡️ **Real-time protection:** New or changed files in Applications, Downloads, login items and the folders where malware hides are scanned within seconds. Your documents are watched for ransomware (many files suddenly encrypted), and the responsible program is paused if it is unsigned. Connections to servers on known malware lists (abuse.ch) are flagged, and you decide whether to block them.
 - 🛡 **Overview and one-click check:** Opens with a clear verdict. "Check My Mac" runs the malware scan and checks for browser hijacking (extensions that can read every site, forced browser policies, changed search engine or start page), traffic interception (trusted root certificates, configuration profiles, proxies, unknown DNS, VPN configurations), remote access (Screen Sharing, SSH, TeamViewer/AnyDesk/ToDesk-style tools), VPN and DNS leaks, Safari extensions and spyware-like permission combinations. Every finding has a fix button.
 - 💡 **Recommendations:** One screen that explains every finding in plain language and offers a one-click fix. It finds permissions left behind by deleted apps and permissions in apps you haven't opened for months.
 - 🕒 **Timeline:** Every permission change and every new startup item, with its date and the process responsible
@@ -85,7 +86,7 @@ permwatch connects the dots and gives you one clear alert.
 
 ## What it is not
 
-permwatch is **not a full antivirus.** It detects the malware Apple's signatures know about, but it has no signatures of its own and **it doesn't block anything in real time.** It shows you what is happening, explains it and helps you fix it. If you want to block connections, use a firewall such as LuLu or Little Snitch alongside it.
+permwatch is **not a replacement for a commercial antivirus with its own research team.** Its signatures come from Apple (XProtect) and Elastic Security and its server lists from abuse.ch, so it finds what these sources know. Real-time protection works with file system events: a new file is scanned within seconds, but a program cannot be stopped *before* it starts. That needs Apple's Endpoint Security permission, which we have applied for. Connections to known malicious servers are never blocked automatically; you are asked first.
 
 The rules are heuristics: they can raise false alarms (for example with developer tools) and can miss well-hidden malware.
 
@@ -104,6 +105,8 @@ permwatch **sends no data anywhere.** No analytics, no account, no cloud. Detail
 
 - [YARA](https://github.com/VirusTotal/yara) v4.5.8 by VirusTotal (BSD-3-Clause), used to run Apple’s XProtect signatures. Vendored in `app/vendor/yara`.
 - [SwiftTerm](https://github.com/migueldeicaza/SwiftTerm) v1.20.0 by Miguel de Icaza (MIT), used for the terminal. Vendored in `app/vendor/SwiftTerm`.
+- macOS malware rules from [Elastic Security protections-artifacts](https://github.com/elastic/protections-artifacts) (Elastic License 2.0). A copy ships in `app/Resources/rules/elastic` and is refreshed daily.
+- Malicious server lists: [URLhaus](https://urlhaus.abuse.ch) via [malware-filter](https://gitlab.com/malware-filter/urlhaus-filter) and [Feodo Tracker](https://feodotracker.abuse.ch) by abuse.ch (CC0), downloaded daily.
 
 ## Status
 

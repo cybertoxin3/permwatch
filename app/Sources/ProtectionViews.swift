@@ -191,7 +191,10 @@ struct NetworkView: View {
                     TableColumn(L("net.proto"), value: \.proto).width(50)
                     TableColumn(L("net.local"), value: \.local) { Text($0.local).font(.system(size: 11.5, design: .monospaced)) }
                     TableColumn(L("net.remote"), value: \.remoteSort) { c in
-                        Text(c.remote ?? "—").font(.system(size: 11.5, design: .monospaced))
+                        VStack(alignment: .leading, spacing: 1) {
+                            Text(c.remote ?? "—").font(.system(size: 11.5, design: .monospaced))
+                            if let h = c.host { Text(h).font(.system(size: 10.5)).foregroundStyle(.secondary).lineLimit(1) }
+                        }
                     }
                     TableColumn(L("net.state"), value: \.state) { c in
                         Text(c.state.contains("LISTEN") ? L("net.listening") : c.state).font(.system(size: 11.5))
@@ -210,6 +213,17 @@ struct NetworkView: View {
                         ForEach(Array(zip(c.rules, c.ruleArgs)), id: \.0) { r, a in
                             Text("• " + (a.isEmpty ? L(r) : L(r, a))).font(.system(size: 12))
                         }
+                        if let bad = c.intel {
+                            VStack(alignment: .leading, spacing: 6) {
+                                Text(L("intel.cardTitle")).font(.system(size: 12.5, weight: .bold)).foregroundStyle(.red)
+                                Text(L("intel.cardBody", bad, c.intelSource ?? "")).font(.system(size: 12))
+                                    .fixedSize(horizontal: false, vertical: true)
+                                Button(L("intel.known")) { ThreatIntel.shared.allow(bad); net.refresh() }.controlSize(.small)
+                            }
+                            .padding(10)
+                            .background(Color.red.opacity(0.08), in: RoundedRectangle(cornerRadius: 8))
+                        }
+                        if let h = c.host { Text(h).font(.system(size: 12, weight: .medium)).textSelection(.enabled) }
                         Text("\(c.name) (pid \(String(c.pid)))").font(.system(size: 12, design: .monospaced))
                         Text(procSignatureText(c.signature, team: nil)).font(.system(size: 12)).foregroundStyle(.secondary)
                         if let p = c.path {

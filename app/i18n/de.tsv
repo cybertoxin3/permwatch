@@ -587,3 +587,41 @@ block.settingsDesc	Blockiere Server unter Netzwerk oder Paketmitschnitt. Der Adm
 donate.title	permwatch unterstützen
 donate.desc	permwatch ist kostenlos, ohne Werbung, Konto oder Tracking. Wenn es dir geholfen hat, kannst du mir mit Krypto einen Kaffee spendieren.
 donate.button	Kaffee spendieren ☕
+nrule.intel	Auf einer Liste bekannter schädlicher Server: %@
+intel.failed	Einige Listen konnten nicht geladen werden: %@. Die bisherigen Listen bleiben in Gebrauch.
+intel.alertTitle	%@ spricht mit einem bekannten schädlichen Server
+intel.alertDetail	%1$@ steht auf der Liste von %2$@. Wenn du ihn nicht kennst, blockiere ihn.
+intel.cardTitle	Bekannter schädlicher Server
+intel.cardBody	%1$@ steht auf der Liste von %2$@ mit Servern, die Schadsoftware verbreiten oder steuern. Kennst du diesen Server? Wenn nicht, blockiere ihn unten. Wenn du dich absichtlich verbunden hast (z. B. für Sicherheitsforschung), wähle „Kenne ich“ und wir warnen nicht mehr.
+intel.known	Kenne ich, nicht warnen
+intel.setting	Prüfung auf schädliche Server und zusätzliche Signaturen
+intel.settingDesc	Einmal am Tag lädt permwatch Listen bekannter schädlicher Server (abuse.ch URLhaus und Feodo Tracker) und die macOS-Malware-Signaturen von Elastic. Über dich wird nichts gesendet. Verbindungen werden nie automatisch blockiert: Bei einem Treffer wirst du gefragt. Für Domainnamen ist der Administratormodus nötig (DNS-Antworten werden nur auf diesem Mac gelesen).
+intel.status	%1$@ Domains · %2$@ Adressen · aktualisiert %3$@
+intel.never	Listen noch nicht geladen
+intel.updateNow	Jetzt aktualisieren
+protect.settings	Schutz
+rt.setting	Echtzeitschutz
+rt.settingDesc	Prüft neue oder geänderte Dateien in Programme, Downloads, Anmeldeobjekten und den Ordnern, in denen sich Schadsoftware oft versteckt, innerhalb von Sekunden. Wird etwas gefunden, wirst du gewarnt und vor der Quarantäne gefragt.
+ransom.setting	Ransomware-Schutz
+ransom.settingDesc	Erkennt, wenn viele deiner Dokumente in kurzer Zeit verschlüsselt werden. Ist das verantwortliche Programm unsigniert, wird es sofort angehalten (umkehrbar); was danach passiert, entscheidest du.
+ransom.title	Anzeichen für Ransomware
+ransom.detail	%1$@ hat in den letzten 30 Sekunden %2$@ deiner Dokumente so verändert, dass sie verschlüsselt wirken.
+ransom.detailSuspended	%1$@ hat in den letzten 30 Sekunden %2$@ deiner Dokumente so verändert, dass sie verschlüsselt wirken. Das Programm wurde angehalten.
+ransom.explain	Ransomware verschlüsselt Dokumente und verlangt Geld für die Entschlüsselung. Wenn das kein dir bekanntes Verschlüsselungs- oder Backup-Programm ist, beende es und trenne deinen Mac vom Internet. Wenn du es kennst, lass es weiterlaufen.
+ransom.terminate	Programm beenden
+ransom.resume	Weiterlaufen lassen
+rt.on	Echtzeitschutz an · %1$@ Ordner überwacht · %2$@ Dateien geprüft
+rt.off	Echtzeitschutz ist aus (in den Einstellungen einschalten)
+rt.needsFDA	Festplattenvollzugriff für Downloads und Dokumente erteilen
+scan.quarantine	In Quarantäne
+scan.qTitle	%@ in Quarantäne verschieben?
+scan.qBody	Die Datei und die Anmeldeobjekte, die sie starten, werden in einen eigenen Ordner verschoben und können nicht mehr laufen. Bei einem Fehlalarm kannst du sie aus der Quarantäne wiederherstellen.
+scan.quarantined	%@ wurde in Quarantäne verschoben.
+scan.elastic	Elastic: %@ Regeln
+q.title	Quarantäne (%@)
+q.explain	Diese Dateien können nicht laufen. Ist eine dir bekannte Datei versehentlich hier gelandet, stelle sie wieder her.
+q.restore	Wiederherstellen
+q.delete	Endgültig löschen
+q.deleteTitle	%@ endgültig löschen?
+q.deleteBody	Das kann nicht rückgängig gemacht werden.
+q.restoreFailed	Wiederherstellen nicht möglich: %@

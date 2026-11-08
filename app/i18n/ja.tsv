@@ -587,3 +587,41 @@ block.settingsDesc	「ネットワーク」または「パケットキャプチ�
 donate.title	permwatch を応援
 donate.desc	permwatch は無料で、広告・アカウント・追跡はありません。役に立ったなら、暗号資産でコーヒーをおごってください。
 donate.button	コーヒーをおごる ☕
+nrule.intel	既知の悪意あるサーバーのリストに掲載: %@
+intel.failed	一部のリストをダウンロードできませんでした: %@。以前のリストを引き続き使用します。
+intel.alertTitle	%@ が既知の悪意あるサーバーと通信しています
+intel.alertDetail	%1$@ は %2$@ のリストに載っています。心当たりがなければブロックしてください。
+intel.cardTitle	既知の悪意あるサーバー
+intel.cardBody	%1$@ は、マルウェアを配布・操作するサーバーをまとめた %2$@ のリストに載っています。このサーバーに心当たりはありますか？なければ下でブロックしてください。意図的に接続した場合（セキュリティ調査など）は「知っている」を選ぶと、今後は警告しません。
+intel.known	知っている、警告しない
+intel.setting	悪意あるサーバーの確認と追加シグネチャ
+intel.settingDesc	permwatch は1日1回、既知の悪意あるサーバーのリスト（abuse.ch URLhaus と Feodo Tracker）と Elastic の macOS マルウェアシグネチャをダウンロードします。あなたに関する情報は一切送信されません。接続が自動でブロックされることはなく、一致した場合は確認を求めます。ドメイン名の表示には管理者モードが必要です（DNS 応答はこの Mac 上でのみ読み取ります）。
+intel.status	ドメイン %1$@ 件 · アドレス %2$@ 件 · 更新 %3$@
+intel.never	リストはまだダウンロードされていません
+intel.updateNow	今すぐ更新
+protect.settings	保護
+rt.setting	リアルタイム保護
+rt.settingDesc	アプリケーション、ダウンロード、ログイン項目、マルウェアが潜みやすいフォルダの新規・変更ファイルを数秒でスキャンします。見つかった場合は警告し、隔離する前に確認します。
+ransom.setting	ランサムウェア対策
+ransom.settingDesc	短時間に多数の書類が暗号化されると検知します。原因のプログラムが未署名ならすぐに一時停止します（元に戻せます）。その後の対応はあなたが決めます。
+ransom.title	ランサムウェアの兆候
+ransom.detail	直近30秒間に %1$@ があなたの書類 %2$@ 件を暗号化されたように見える形で変更しました。
+ransom.detailSuspended	直近30秒間に %1$@ があなたの書類 %2$@ 件を暗号化されたように見える形で変更しました。プログラムを一時停止しました。
+ransom.explain	ランサムウェアは書類を暗号化し、元に戻すために金銭を要求します。知っている暗号化・バックアップツールでなければ停止し、Mac をインターネットから切断してください。知っているものなら続行させてください。
+ransom.terminate	プログラムを停止
+ransom.resume	続行させる
+rt.on	リアルタイム保護オン · %1$@ フォルダを監視 · %2$@ ファイルをスキャン
+rt.off	リアルタイム保護はオフです（設定でオンにできます）
+rt.needsFDA	ダウンロードと書類のためにフルディスクアクセスを許可
+scan.quarantine	隔離する
+scan.qTitle	%@ を隔離しますか？
+scan.qBody	ファイルとそれを起動するログイン項目を別のフォルダに移動し、実行できない状態にします。誤検知の場合は隔離から復元できます。
+scan.quarantined	%@ を隔離しました。
+scan.elastic	Elastic: %@ ルール
+q.title	隔離 (%@)
+q.explain	これらのファイルは実行できません。知っているファイルが誤ってここに来た場合は復元してください。
+q.restore	復元
+q.delete	完全に削除
+q.deleteTitle	%@ を完全に削除しますか？
+q.deleteBody	この操作は取り消せません。
+q.restoreFailed	復元できませんでした: %@

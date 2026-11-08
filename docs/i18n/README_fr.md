@@ -63,7 +63,8 @@ permwatch relie les points et vous montre une seule alerte claire.
 ## Ce qu’il fait
 
 - 🛡 **Vue d’ensemble et vérification en un clic :** un verdict clair dès l’ouverture. « Vérifier mon Mac » lance l’analyse antimalware et contrôle le détournement du navigateur, l’interception du trafic (certificats racine, profils, proxy, DNS, VPN), les fuites VPN, l’accès à distance et les combinaisons d’autorisations typiques des logiciels espions. Chaque problème a un bouton de correction.
-- 🐞 **Analyse antimalware :** apps, éléments d’ouverture, programmes en cours et téléchargements sont vérifiés avec **les signatures XProtect d’Apple** via le moteur open source YARA. Une analyse rapide prend environ 10 secondes ; les nouveaux téléchargements sont analysés automatiquement.
+- 🐞 **Analyse antimalware :** Vérifie tes apps, éléments d'ouverture, programmes en cours et téléchargements avec les **signatures XProtect d'Apple** et les **règles ouvertes de logiciels malveillants macOS d'Elastic Security**, grâce au moteur open source YARA. Une analyse rapide prend environ 10 secondes. Ce qui est trouvé peut être mis en quarantaine avec les éléments d'ouverture qui le lancent : il ne peut plus s'exécuter, et tu peux le restaurer en cas de fausse alerte.
+- 🛡️ **Protection en temps réel :** Les fichiers nouveaux ou modifiés dans Applications, Téléchargements, les éléments d'ouverture et les dossiers où se cachent les logiciels malveillants sont analysés en quelques secondes. Tes documents sont surveillés contre les rançongiciels (beaucoup de fichiers chiffrés d'un coup) et le programme responsable est suspendu s'il n'est pas signé. Les connexions vers des serveurs figurant sur des listes connues (abuse.ch) sont signalées, et tu décides de les bloquer ou non.
 - 🔐 **Autorisations :** historique de chaque changement, autorisations restantes d’apps supprimées, révocation en un clic, désinstallation.
 - 🌐 **Réseau :** quelle app se connecte où, capture de paquets avec noms de processus et explications claires, blocage d’un serveur via le pare-feu intégré de macOS.
 - ⬇️ **Téléchargements, 🎙 micro et caméra, ⌨️ terminal** avec des commandes de sécurité prêtes à l’emploi.
@@ -74,7 +75,9 @@ permwatch relie les points et vous montre une seule alerte claire.
 
 ## Ce qu’il n’est pas
 
-permwatch **n’est pas un antivirus complet.** Il détecte les malwares connus des signatures d’Apple mais ne bloque pas les programmes en temps réel. Les règles sont heuristiques : fausses alertes et oublis restent possibles.
+permwatch **ne remplace pas un antivirus commercial doté de sa propre équipe de recherche.** Ses signatures viennent d'Apple (XProtect) et d'Elastic Security, ses listes de serveurs d'abuse.ch : il trouve donc ce que ces sources connaissent. La protection en temps réel s'appuie sur les événements du système de fichiers : un nouveau fichier est analysé en quelques secondes, mais un programme ne peut pas être arrêté *avant* son lancement. Il faut pour cela l'autorisation Endpoint Security d'Apple, que nous avons demandée. Les connexions vers des serveurs malveillants connus ne sont jamais bloquées automatiquement ; on te demande d'abord.
+
+Les règles sont heuristiques : elles peuvent déclencher de fausses alertes (par exemple avec des outils de développement) et manquer des logiciels malveillants bien cachés.
 
 ## Votre vie privée reste chez vous
 

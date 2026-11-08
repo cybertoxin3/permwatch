@@ -63,7 +63,8 @@ permwatch unisce i puntini e ti mostra un unico avviso chiaro.
 ## Cosa fa
 
 - 🛡 **Panoramica e controllo con un clic:** un verdetto chiaro all’apertura. «Controlla il Mac» avvia la scansione malware e verifica dirottamento del browser, intercettazione del traffico (certificati radice, profili, proxy, DNS, VPN), perdite della VPN, accesso remoto e combinazioni di permessi tipiche degli spyware. Ogni problema ha un pulsante per risolverlo.
-- 🐞 **Scansione malware:** app, elementi di login, programmi in esecuzione e download vengono controllati con **le firme XProtect di Apple** tramite il motore open source YARA. Una scansione rapida richiede circa 10 secondi; i nuovi download vengono analizzati automaticamente.
+- 🐞 **Scansione malware:** Controlla app, elementi di login, programmi in esecuzione e download con le **firme XProtect di Apple** e le **regole aperte per malware macOS di Elastic Security**, usando il motore open source YARA. Una scansione rapida dura circa 10 secondi. Ciò che viene trovato può essere messo in quarantena insieme agli elementi di login che lo avviano: non può più essere eseguito e puoi ripristinarlo se era un falso allarme.
+- 🛡️ **Protezione in tempo reale:** I file nuovi o modificati in Applicazioni, Download, elementi di login e nelle cartelle dove si nasconde il malware vengono analizzati in pochi secondi. I tuoi documenti sono sorvegliati contro il ransomware (molti file cifrati all'improvviso) e il programma responsabile viene sospeso se non è firmato. Le connessioni verso server in elenchi di malware noti (abuse.ch) vengono segnalate e decidi tu se bloccarle.
 - 🔐 **Permessi:** cronologia di ogni modifica, permessi rimasti di app eliminate, revoca con un clic, disinstallazione.
 - 🌐 **Rete:** quale app si collega dove, cattura pacchetti con nomi dei processi e spiegazioni chiare, blocco dei server con il firewall integrato di macOS.
 - ⬇️ **Download, 🎙 microfono e fotocamera, ⌨️ terminale** con comandi di sicurezza pronti.
@@ -74,7 +75,9 @@ permwatch unisce i puntini e ti mostra un unico avviso chiaro.
 
 ## Cosa non è
 
-permwatch **non è un antivirus completo.** Rileva il malware noto alle firme di Apple, ma non blocca i programmi in tempo reale. Le regole sono euristiche: falsi allarmi e mancate rilevazioni sono possibili.
+permwatch **non sostituisce un antivirus commerciale con un proprio team di ricerca.** Le firme provengono da Apple (XProtect) ed Elastic Security, gli elenchi di server da abuse.ch: trova quindi ciò che queste fonti conoscono. La protezione in tempo reale si basa sugli eventi del file system: un nuovo file viene analizzato in pochi secondi, ma un programma non può essere fermato *prima* che parta. Per questo serve l'autorizzazione Endpoint Security di Apple, che abbiamo richiesto. Le connessioni verso server dannosi noti non vengono mai bloccate automaticamente; prima ti viene chiesto.
+
+Le regole sono euristiche: possono dare falsi allarmi (ad esempio con strumenti per sviluppatori) e non rilevare malware ben nascosto.
 
 ## La tua privacy resta con te
 

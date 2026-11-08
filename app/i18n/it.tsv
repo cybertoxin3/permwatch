@@ -587,3 +587,41 @@ block.settingsDesc	Blocca i server dalle sezioni Rete o Cattura pacchetti. L’h
 donate.title	Sostieni permwatch
 donate.desc	permwatch è gratuito, senza pubblicità, account o tracciamento. Se ti è stato utile, puoi offrirmi un caffè in cripto.
 donate.button	Offrimi un caffè ☕
+nrule.intel	In un elenco di server dannosi noti: %@
+intel.failed	Alcuni elenchi non sono stati scaricati: %@. Restano in uso quelli precedenti.
+intel.alertTitle	%@ comunica con un server dannoso noto
+intel.alertDetail	%1$@ è nell'elenco %2$@. Se non lo riconosci, bloccalo.
+intel.cardTitle	Server dannoso noto
+intel.cardBody	%1$@ è nell'elenco %2$@ dei server che diffondono o controllano malware. Riconosci questo server? Se no, bloccalo qui sotto. Se ti sei collegato di proposito (ad esempio per ricerca sulla sicurezza), scegli «Lo conosco» e non ti avviseremo più.
+intel.known	Lo conosco, non avvisare
+intel.setting	Controllo dei server dannosi e firme aggiuntive
+intel.settingDesc	Una volta al giorno permwatch scarica elenchi di server dannosi noti (abuse.ch URLhaus e Feodo Tracker) e le firme malware per macOS di Elastic. Non viene inviato nulla su di te. Le connessioni non vengono mai bloccate automaticamente: in caso di corrispondenza ti viene chiesto. Per vedere i nomi di dominio serve la modalità amministratore (le risposte DNS vengono lette solo su questo Mac).
+intel.status	%1$@ domini · %2$@ indirizzi · aggiornato %3$@
+intel.never	Elenchi non ancora scaricati
+intel.updateNow	Aggiorna ora
+protect.settings	Protezione
+rt.setting	Protezione in tempo reale
+rt.settingDesc	Analizza in pochi secondi i file nuovi o modificati in Applicazioni, Download, elementi di login e nelle cartelle dove il malware si nasconde spesso. Se trova qualcosa ti avvisa e ti chiede prima di metterlo in quarantena.
+ransom.setting	Protezione dal ransomware
+ransom.settingDesc	Si accorge quando molti documenti vengono cifrati in poco tempo. Se il programma responsabile non è firmato viene sospeso subito (reversibile); poi decidi tu.
+ransom.title	Segni di ransomware
+ransom.detail	Negli ultimi 30 secondi %1$@ ha modificato %2$@ dei tuoi documenti in un modo che sembra una cifratura.
+ransom.detailSuspended	Negli ultimi 30 secondi %1$@ ha modificato %2$@ dei tuoi documenti in un modo che sembra una cifratura. Il programma è stato sospeso.
+ransom.explain	Il ransomware cifra i documenti e chiede denaro per sbloccarli. Se non è uno strumento di cifratura o backup che conosci, fermalo e scollega il Mac da internet. Se lo conosci, lascialo continuare.
+ransom.terminate	Ferma programma
+ransom.resume	Lascia continuare
+rt.on	Protezione in tempo reale attiva · %1$@ cartelle sorvegliate · %2$@ file analizzati
+rt.off	La protezione in tempo reale è disattivata (attivala nelle Impostazioni)
+rt.needsFDA	Concedi l'accesso completo al disco per Download e documenti
+scan.quarantine	Metti in quarantena
+scan.qTitle	Mettere %@ in quarantena?
+scan.qBody	Il file e gli elementi di login che lo avviano vengono spostati in una cartella separata e non possono più essere eseguiti. Se è un falso allarme puoi ripristinarlo dalla Quarantena.
+scan.quarantined	%@ è stato messo in quarantena.
+scan.elastic	Elastic: %@ regole
+q.title	Quarantena (%@)
+q.explain	Questi file non possono essere eseguiti. Se un file che conosci è finito qui per errore, ripristinalo.
+q.restore	Ripristina
+q.delete	Elimina definitivamente
+q.deleteTitle	Eliminare definitivamente %@?
+q.deleteBody	L'operazione non può essere annullata.
+q.restoreFailed	Impossibile ripristinare: %@

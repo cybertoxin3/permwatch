@@ -20,6 +20,10 @@ struct RootData {
     var xprotectLog = ""
     var blockedCount = 0
     var blockError: String?
+    /// DNS izleme: adres → (alan adı, soran süreç). Zararlı sunucu kontrolü açıkken dolar.
+    var dns: [String: (host: String, proc: String)] = [:]
+    var dnsActive = false
+    var dnsError: String?
 
     var fresh: Bool { Date().timeIntervalSince(ts) < 20 }
 }
@@ -248,6 +252,11 @@ final class RootBridge: ObservableObject {
                          profiles: j["profiles"] as? String ?? "", procs: procs)
         r.xprotectLog = j["xprotect"] as? String ?? ""
         if let b = j["block"] as? [String: Any] { r.blockedCount = b["count"] as? Int ?? 0; r.blockError = b["error"] as? String }
+        if let list = j["dns"] as? [[String: Any]] {
+            r.dnsActive = true
+            for e in list { if let ip = e["ip"] as? String, let h = e["host"] as? String { r.dns[ip] = (h, e["proc"] as? String ?? "") } }
+        }
+        r.dnsError = j["dnsError"] as? String
         if let c = j["capture"] as? [String: Any] {
             r.captureActive = c["active"] as? Bool ?? false
             r.captureDevice = c["device"] as? String

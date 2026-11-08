@@ -587,3 +587,41 @@ block.settingsDesc	Sunucuları Ağ veya Paket Yakalama bölümlerinden engelle. 
 donate.title	permwatch'ı destekle
 donate.desc	permwatch ücretsiz; reklam, hesap veya takip yok. İşine yaradıysa kriptoyla bana bir kahve ısmarlayabilirsin.
 donate.button	Bana bir kahve ısmarla ☕
+nrule.intel	Bilinen zararlı sunucu listesinde: %@
+intel.failed	Bazı listeler indirilemedi: %@. Önceki listeler kullanılmaya devam ediyor.
+intel.alertTitle	%@ bilinen zararlı bir sunucuyla konuşuyor
+intel.alertDetail	%1$@, %2$@ listesinde. Tanımıyorsan engelle.
+intel.cardTitle	Bilinen zararlı sunucu
+intel.cardBody	%1$@, zararlı yazılım dağıtan ya da yöneten sunucuların bulunduğu %2$@ listesinde. Bu sunucuyu tanıyor musun? Tanımıyorsan aşağıdan engelle. Bilerek bağlandıysan (ör. güvenlik araştırması) "Tanıyorum" de, bir daha uyarmayalım.
+intel.known	Tanıyorum, uyarma
+intel.setting	Zararlı sunucu kontrolü ve ek imzalar
+intel.settingDesc	permwatch günde bir kez bilinen zararlı sunucu listelerini (abuse.ch URLhaus ve Feodo Tracker) ve Elastic'in macOS zararlı imzalarını indirir. Seninle ilgili hiçbir şey gönderilmez. Bağlantılar asla otomatik engellenmez; eşleşme olursa sana sorulur. Alan adlarını görmek için yönetici modu gerekir (DNS yanıtları yalnızca bu Mac'te okunur).
+intel.status	%1$@ alan adı · %2$@ adres · güncellendi: %3$@
+intel.never	Listeler henüz indirilmedi
+intel.updateNow	Şimdi güncelle
+protect.settings	Koruma
+rt.setting	Gerçek zamanlı koruma
+rt.settingDesc	Uygulamalar, İndirilenler, başlangıç öğeleri ve zararlıların sık saklandığı klasörlerdeki yeni ya da değişen dosyaları saniyeler içinde tarar. Zararlı bulunursa uyarır ve karantinaya almadan önce sana sorar.
+ransom.setting	Fidye yazılımı koruması
+ransom.settingDesc	Belgelerinin kısa sürede toplu halde şifrelenmesini fark eder. Sorumlu program imzasızsa hemen askıya alınır (geri alınabilir); sonra ne olacağına sen karar verirsin.
+ransom.title	Fidye yazılımı belirtisi
+ransom.detail	%1$@ son 30 saniyede %2$@ belgeni şifrelenmiş gibi görünen şekilde değiştirdi.
+ransom.detailSuspended	%1$@ son 30 saniyede %2$@ belgeni şifrelenmiş gibi görünen şekilde değiştirdi. Program askıya alındı.
+ransom.explain	Fidye yazılımları belgeleri şifreler ve açmak için para ister. Bu program tanıdığın bir şifreleme ya da yedekleme aracı değilse durdur ve Mac'ini internetten ayır. Tanıyorsan devam ettir.
+ransom.terminate	Programı durdur
+ransom.resume	Devam ettir
+rt.on	Gerçek zamanlı koruma açık · %1$@ klasör izleniyor · %2$@ dosya tarandı
+rt.off	Gerçek zamanlı koruma kapalı (Ayarlar'dan açabilirsin)
+rt.needsFDA	İndirilenler ve belgeler için Tam Disk Erişimi ver
+scan.quarantine	Karantinaya al
+scan.qTitle	%@ karantinaya alınsın mı?
+scan.qBody	Dosya ve onu başlatan başlangıç öğeleri ayrı bir klasöre taşınır ve artık çalışamaz. Yanlış alarmsa Karantina'dan geri yükleyebilirsin.
+scan.quarantined	%@ karantinaya alındı.
+scan.elastic	Elastic: %@ kural
+q.title	Karantina (%@)
+q.explain	Bu dosyalar çalışamaz. Tanıdığın bir dosya yanlışlıkla buraya geldiyse geri yükle.
+q.restore	Geri yükle
+q.delete	Kalıcı olarak sil
+q.deleteTitle	%@ kalıcı olarak silinsin mi?
+q.deleteBody	Bu işlem geri alınamaz.
+q.restoreFailed	Geri yüklenemedi: %@

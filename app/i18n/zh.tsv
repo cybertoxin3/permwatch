@@ -587,3 +587,41 @@ block.settingsDesc	在“网络”或“数据包捕获”中阻止服务器。�
 donate.title	支持 permwatch
 donate.desc	permwatch 免费，没有广告、账户或跟踪。如果它帮到了你，可以用加密货币请我喝杯咖啡。
 donate.button	请我喝咖啡 ☕
+nrule.intel	位于已知恶意服务器列表中：%@
+intel.failed	部分列表无法下载：%@。仍在使用之前的列表。
+intel.alertTitle	%@ 正在与已知恶意服务器通信
+intel.alertDetail	%1$@ 在 %2$@ 列表中。如果你不认识它，请阻止。
+intel.cardTitle	已知恶意服务器
+intel.cardBody	%1$@ 在 %2$@ 列表中，该列表收录传播或控制恶意软件的服务器。你认识这个服务器吗？如果不认识，请在下方阻止。如果是你有意连接的（例如安全研究），选择“我认识”，我们将不再提醒。
+intel.known	我认识，不再提醒
+intel.setting	恶意服务器检查和额外特征库
+intel.settingDesc	permwatch 每天下载一次已知恶意服务器列表（abuse.ch URLhaus 和 Feodo Tracker）以及 Elastic 的 macOS 恶意软件特征。不会发送任何关于你的信息。连接永远不会被自动阻止：如有匹配会先询问你。查看域名需要管理员模式（DNS 应答仅在这台 Mac 上读取）。
+intel.status	%1$@ 个域名 · %2$@ 个地址 · 更新于 %3$@
+intel.never	尚未下载列表
+intel.updateNow	立即更新
+protect.settings	保护
+rt.setting	实时保护
+rt.settingDesc	在几秒内扫描“应用程序”“下载”、登录项以及恶意软件常藏身的文件夹中新建或更改的文件。发现问题时会提醒你，并在隔离前询问。
+ransom.setting	勒索软件防护
+ransom.settingDesc	发现短时间内大量文稿被加密。如果责任程序未签名，会立即暂停（可撤销）；之后由你决定。
+ransom.title	勒索软件迹象
+ransom.detail	过去 30 秒内，%1$@ 以疑似加密的方式更改了你的 %2$@ 个文稿。
+ransom.detailSuspended	过去 30 秒内，%1$@ 以疑似加密的方式更改了你的 %2$@ 个文稿。该程序已暂停。
+ransom.explain	勒索软件会加密文稿并索要赎金。如果这不是你熟悉的加密或备份工具，请停止它并断开 Mac 的网络连接。如果你认识它，就让它继续。
+ransom.terminate	停止程序
+ransom.resume	让它继续
+rt.on	实时保护已开启 · 监视 %1$@ 个文件夹 · 已扫描 %2$@ 个文件
+rt.off	实时保护已关闭（可在设置中开启）
+rt.needsFDA	为“下载”和文稿授予完全磁盘访问权限
+scan.quarantine	隔离
+scan.qTitle	要隔离 %@ 吗？
+scan.qBody	该文件及启动它的登录项会被移到单独的文件夹，且无法再运行。如果是误报，可以从隔离区恢复。
+scan.quarantined	%@ 已被隔离。
+scan.elastic	Elastic：%@ 条规则
+q.title	隔离区（%@）
+q.explain	这些文件无法运行。如果你认识的文件被误放到这里，请恢复它。
+q.restore	恢复
+q.delete	永久删除
+q.deleteTitle	要永久删除 %@ 吗？
+q.deleteBody	此操作无法撤销。
+q.restoreFailed	无法恢复：%@

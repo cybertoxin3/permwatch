@@ -128,7 +128,8 @@ enum PathUtil {
     static func abbreviate(_ p: String) -> String {
         var s = p
         if s.hasPrefix("file://"), let u = URL(string: s) { s = u.path }
-        if s.hasPrefix("/Users/") {
+        // Paylaşılan klasör kimsenin ev klasörü değil: olduğu gibi göster.
+        if s.hasPrefix("/Users/"), !s.hasPrefix("/Users/Shared/"), s != "/Users/Shared" {
             let rest = s.dropFirst("/Users/".count)
             if let slash = rest.firstIndex(of: "/") { return "~" + rest[slash...] }
             return "~"

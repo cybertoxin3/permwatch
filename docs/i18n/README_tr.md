@@ -62,7 +62,8 @@ permwatch zinciri birleştirir ve sana tek bir net uyarı gösterir.
 
 ## Neler yapar
 
-- 🐞 **Zararlı taraması:** Uygulamalarını, başlangıç öğelerini, çalışan programları ve indirilenleri **Apple'ın kendi XProtect zararlı imzalarıyla** (macOS'un güncel tuttuğu imzalar) açık kaynak YARA motoru kullanarak tarar. Hızlı tarama yaklaşık 10 saniye sürer. Yeni indirilenler otomatik taranır; bulunan zararlı, onu başlatan başlangıç öğeleriyle birlikte Çöp Sepeti'ne taşınabilir.
+- 🐞 **Zararlı taraması:** Uygulamalarını, başlangıç öğelerini, çalışan programları ve indirilenleri **Apple'ın XProtect imzaları** ve **Elastic Security'nin açık macOS zararlı kurallarıyla**, açık kaynak YARA motoru kullanarak tarar. Hızlı tarama yaklaşık 10 saniye sürer. Bulunan zararlı, onu başlatan başlangıç öğeleriyle birlikte karantinaya alınabilir: artık çalışamaz, yanlış alarmsa geri yüklenebilir.
+- 🛡️ **Gerçek zamanlı koruma:** Uygulamalar, İndirilenler, başlangıç öğeleri ve zararlıların saklandığı klasörlerdeki yeni ya da değişen dosyalar saniyeler içinde taranır. Belgelerin fidye yazılımına karşı izlenir (çok sayıda dosyanın birden şifrelenmesi); sorumlu program imzasızsa askıya alınır. Bilinen zararlı listelerindeki (abuse.ch) sunuculara giden bağlantılar işaretlenir; engelleyip engellememeye sen karar verirsin.
 - 🛡 **Genel bakış ve tek tıkla kontrol:** Açılışta net bir hüküm verir. "Mac'imi Kontrol Et" zararlı taramasını yapar ve şunları denetler: tarayıcı ele geçirme (her siteyi okuyabilen uzantılar, zorla uygulanan tarayıcı politikaları, değiştirilmiş arama motoru veya başlangıç sayfası), araya girme (güvenilen kök sertifikalar, yapılandırma profilleri, proxy, bilinmeyen DNS, VPN yapılandırmaları), uzaktan erişim (Ekran Paylaşımı, SSH, TeamViewer/AnyDesk/ToDesk benzeri araçlar), VPN ve DNS sızıntıları, Safari uzantıları ve casus yazılımı andıran izin kombinasyonları. Her bulgunun bir düzeltme düğmesi vardır.
 - 💡 **Öneriler:** Bütün bulguları sade dille açıklayan ve tek tıkla düzeltme sunan tek ekran. Silinmiş uygulamalardan kalan izinleri ve aylardır açmadığın uygulamalardaki izinleri bulur.
 - 🕒 **Zaman çizelgesi:** Her izin değişikliği ve her yeni başlangıç öğesi; tarihi ve sorumlu süreciyle
@@ -85,7 +86,7 @@ permwatch zinciri birleştirir ve sana tek bir net uyarı gösterir.
 
 ## Ne değildir
 
-permwatch **tam bir antivirüs değildir.** Apple'ın imzalarının bildiği zararlıları bulur ama kendi imza veritabanı yoktur ve **hiçbir şeyi anlık olarak engellemez.** Olanı gösterir, açıklar ve düzeltmene yardım eder. Bağlantıları engellemek istiyorsan yanında LuLu veya Little Snitch gibi bir güvenlik duvarı kullan.
+permwatch **kendi araştırma ekibi olan ücretli bir antivirüsün yerini tutmaz.** İmzaları Apple'dan (XProtect) ve Elastic Security'den, sunucu listeleri abuse.ch'den gelir; yani bu kaynakların bildiklerini bulur. Gerçek zamanlı koruma dosya sistemi olaylarıyla çalışır: yeni bir dosya saniyeler içinde taranır ama bir program *başlamadan önce* durdurulamaz. Bunun için Apple'ın Endpoint Security izni gerekir; başvurduk, bekliyoruz. Bilinen zararlı sunuculara giden bağlantılar asla otomatik engellenmez; önce sana sorulur.
 
 Kurallar sezgiseldir: yanlış alarm verebilir (ör. geliştirici araçlarında) ve iyi gizlenmiş zararlıları kaçırabilir.
 
@@ -104,6 +105,8 @@ permwatch **hiçbir yere veri göndermez.** Analiz yok, hesap yok, bulut yok. Ay
 
 - Apple'ın XProtect imzalarını çalıştırmak için VirusTotal'ın [YARA](https://github.com/VirusTotal/yara) v4.5.8 motoru (BSD-3). `app/vendor/yara` içinde.
 - Terminal için Miguel de Icaza'nın [SwiftTerm](https://github.com/migueldeicaza/SwiftTerm) v1.20.0 kütüphanesi (MIT). `app/vendor/SwiftTerm` içinde.
+- [Elastic Security protections-artifacts](https://github.com/elastic/protections-artifacts) macOS zararlı kuralları (Elastic License 2.0). Bir kopyası `app/Resources/rules/elastic` içinde gelir ve her gün güncellenir.
+- Zararlı sunucu listeleri: abuse.ch'nin [URLhaus](https://urlhaus.abuse.ch) ([malware-filter](https://gitlab.com/malware-filter/urlhaus-filter) aynası) ve [Feodo Tracker](https://feodotracker.abuse.ch) listeleri (CC0), her gün indirilir.
 
 ## Durum
 

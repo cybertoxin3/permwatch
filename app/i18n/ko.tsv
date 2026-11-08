@@ -587,3 +587,41 @@ block.settingsDesc	네트워크 또는 패킷 캡처에서 서버를 차단하�
 donate.title	permwatch 후원하기
 donate.desc	permwatch는 무료이며 광고, 계정, 추적이 없습니다. 도움이 되었다면 암호화폐로 커피 한 잔 사주세요.
 donate.button	커피 사주기 ☕
+nrule.intel	알려진 악성 서버 목록에 있음: %@
+intel.failed	일부 목록을 다운로드하지 못했습니다: %@. 이전 목록을 계속 사용합니다.
+intel.alertTitle	%@이(가) 알려진 악성 서버와 통신하고 있습니다
+intel.alertDetail	%1$@은(는) %2$@ 목록에 있습니다. 모르는 서버라면 차단하세요.
+intel.cardTitle	알려진 악성 서버
+intel.cardBody	%1$@은(는) 악성코드를 퍼뜨리거나 조종하는 서버를 모은 %2$@ 목록에 있습니다. 이 서버를 알고 있나요? 모른다면 아래에서 차단하세요. 일부러 연결했다면(예: 보안 연구) '알고 있음'을 선택하면 다시 경고하지 않습니다.
+intel.known	알고 있음, 경고 안 함
+intel.setting	악성 서버 확인 및 추가 시그니처
+intel.settingDesc	permwatch는 하루에 한 번 알려진 악성 서버 목록(abuse.ch URLhaus, Feodo Tracker)과 Elastic의 macOS 악성코드 시그니처를 다운로드합니다. 사용자에 관한 정보는 전송되지 않습니다. 연결은 절대 자동으로 차단되지 않으며, 일치하면 먼저 묻습니다. 도메인 이름을 보려면 관리자 모드가 필요합니다(DNS 응답은 이 Mac에서만 읽습니다).
+intel.status	도메인 %1$@개 · 주소 %2$@개 · %3$@ 업데이트
+intel.never	아직 목록을 다운로드하지 않았습니다
+intel.updateNow	지금 업데이트
+protect.settings	보호
+rt.setting	실시간 보호
+rt.settingDesc	응용 프로그램, 다운로드, 로그인 항목, 악성코드가 자주 숨는 폴더의 새 파일이나 변경된 파일을 몇 초 안에 검사합니다. 발견되면 경고하고 격리하기 전에 묻습니다.
+ransom.setting	랜섬웨어 보호
+ransom.settingDesc	짧은 시간에 많은 문서가 암호화되면 알아챕니다. 원인 프로그램이 서명되지 않았다면 즉시 일시 정지합니다(되돌릴 수 있음). 이후 조치는 사용자가 결정합니다.
+ransom.title	랜섬웨어 징후
+ransom.detail	지난 30초 동안 %1$@이(가) 문서 %2$@개를 암호화된 것처럼 보이게 변경했습니다.
+ransom.detailSuspended	지난 30초 동안 %1$@이(가) 문서 %2$@개를 암호화된 것처럼 보이게 변경했습니다. 프로그램을 일시 정지했습니다.
+ransom.explain	랜섬웨어는 문서를 암호화하고 풀어주는 대가로 돈을 요구합니다. 알고 있는 암호화나 백업 도구가 아니라면 중지하고 Mac을 인터넷에서 분리하세요. 알고 있다면 계속 진행하게 하세요.
+ransom.terminate	프로그램 중지
+ransom.resume	계속 진행
+rt.on	실시간 보호 켜짐 · 폴더 %1$@개 감시 · 파일 %2$@개 검사
+rt.off	실시간 보호가 꺼져 있습니다(설정에서 켤 수 있음)
+rt.needsFDA	다운로드와 문서를 위해 전체 디스크 접근 권한 부여
+scan.quarantine	격리
+scan.qTitle	%@을(를) 격리할까요?
+scan.qBody	파일과 이를 실행하는 로그인 항목이 별도 폴더로 이동되어 더 이상 실행되지 않습니다. 오탐이라면 격리함에서 복원할 수 있습니다.
+scan.quarantined	%@을(를) 격리했습니다.
+scan.elastic	Elastic: 규칙 %@개
+q.title	격리함 (%@)
+q.explain	이 파일들은 실행할 수 없습니다. 알고 있는 파일이 실수로 들어왔다면 복원하세요.
+q.restore	복원
+q.delete	영구 삭제
+q.deleteTitle	%@을(를) 영구 삭제할까요?
+q.deleteBody	이 작업은 되돌릴 수 없습니다.
+q.restoreFailed	복원하지 못했습니다: %@
