@@ -554,3 +554,10 @@ fix.confirm.policy	%1$@ tercihlerinden "%2$@" ayarı silinecek.
 ov.review	%@ konuya göz at
 chk.ext.summaryTitle	%1$@ %2$@ uzantısı her siteyi okuyabiliyor
 chk.ext.summaryBody	%@. Reklam engelleyiciler, parola yöneticileri ve çeviriciler buna ihtiyaç duyar; genelde sorun değil. Tanımadıklarını veya artık kullanmadıklarını kaldır: daha az uzantı, daha az risk demek.
+ov.cat.network	Ağ
+chk.leak.title	VPN sızıntısı: %@ program tünelin dışından bağlanıyor
+chk.leak.body	VPN'in açık (%1$@) ama bu programlar internete doğrudan %2$@ üzerinden bağlanıyor. Trafikleri ve gerçek IP adresin ağına ve internet sağlayıcına görünüyor. VPN uygulamasında kill switch veya "VPN olmadan bağlantıları engelle" seçeneğini aç.
+chk.dnsleak.title	VPN dışından DNS sızıntısı
+chk.dnsleak.body	%1$@ DNS sunucusuna VPN dışından, doğrudan %2$@ üzerinden gidiliyor. Ağın baktığın her siteyi görebilir. VPN'in kendi DNS'ini kullan veya DNS sızıntı korumasını aç.
+chk.leak.appleTitle	%@ Apple sistem servisi VPN'i atlıyor
+chk.leak.appleBody	%1$@, Apple ile doğrudan %2$@ üzerinden konuşuyor. VPN uygulaması tüm trafiği tünelden geçirmedikçe macOS bunu kendi bazı servisleri için bilerek yapar. Ağın Apple ile konuştuğunu görebilir ama neye göz attığını göremez. Bu senin için önemliyse VPN uygulamanda "tüm ağları dahil et" veya tam tünel seçeneğini ara.

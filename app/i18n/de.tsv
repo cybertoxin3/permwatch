@@ -554,3 +554,10 @@ fix.confirm.policy	Die Einstellung „%2$@“ wird aus den Einstellungen von %1$
 ov.review	%@ Punkte prüfen
 chk.ext.summaryTitle	%1$@ %2$@-Erweiterungen können jede Website lesen
 chk.ext.summaryBody	%@. Werbeblocker, Passwortmanager und Übersetzer brauchen das, meist also unbedenklich. Entferne unbekannte oder ungenutzte: weniger Erweiterungen, weniger Risiko.
+ov.cat.network	Netzwerk
+chk.leak.title	VPN-Leck: %@ Programme umgehen den Tunnel
+chk.leak.body	Dein VPN ist an (%1$@), aber diese Programme verbinden sich direkt über %2$@. Ihr Verkehr und deine echte IP sind für Netz und Provider sichtbar. Aktiviere im VPN den Kill Switch bzw. „Verbindungen ohne VPN blockieren“.
+chk.dnsleak.title	DNS-Leck außerhalb des VPN
+chk.dnsleak.body	Der DNS-Server %1$@ wird direkt über %2$@ erreicht, außerhalb des VPN. Dein Netz sieht jede aufgerufene Website. Nutze das DNS des VPN oder aktiviere dessen DNS-Leckschutz.
+chk.leak.appleTitle	%@ Apple-Systemdienste umgehen das VPN
+chk.leak.appleBody	%1$@ sprechen direkt über %2$@ mit Apple. macOS macht das absichtlich für einige eigene Dienste, solange das VPN nicht allen Verkehr tunnelt. Dein Netz sieht, dass du Apple kontaktierst, aber nicht, was du surfst. Wenn dir das wichtig ist, suche in der VPN-App nach „alle Netzwerke einbeziehen“ bzw. Full-Tunnel.

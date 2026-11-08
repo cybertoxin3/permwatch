@@ -554,3 +554,10 @@ fix.confirm.policy	The setting “%2$@” will be deleted from %1$@’s preferen
 ov.review	%@ things to review
 chk.ext.summaryTitle	%1$@ %2$@ extensions can read every site
 chk.ext.summaryBody	%@. Ad blockers, password managers and translators need this, so it’s usually fine. Remove the ones you don’t recognise or no longer use: fewer extensions means less that can go wrong.
+ov.cat.network	Network
+chk.leak.title	VPN leak: %@ programs bypass the tunnel
+chk.leak.body	Your VPN is on (%1$@), but these programs connect to the internet directly over %2$@. Their traffic and your real IP address are visible to your network and internet provider. Turn on the VPN app’s kill switch or “block connections without VPN” option.
+chk.dnsleak.title	DNS leak outside the VPN
+chk.dnsleak.body	The DNS server %1$@ is reached directly over %2$@, outside the VPN. Your network can see every site you look up. Use the VPN’s own DNS or enable its DNS leak protection.
+chk.leak.appleTitle	%@ Apple system services bypass the VPN
+chk.leak.appleBody	%1$@ talk to Apple directly over %2$@. macOS does this on purpose for some of its own services unless the VPN app routes all traffic through the tunnel. Your network can see that you contact Apple, but not what you browse. If that matters, look for “include all networks” or a full-tunnel option in your VPN app.

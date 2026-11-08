@@ -554,3 +554,10 @@ fix.confirm.policy	L’impostazione «%2$@» verrà eliminata dalle preferenze d
 ov.review	%@ punti da controllare
 chk.ext.summaryTitle	%1$@ estensioni di %2$@ possono leggere ogni sito
 chk.ext.summaryBody	%@. Blocchi pubblicità, gestori di password e traduttori ne hanno bisogno, quindi di solito va bene. Rimuovi quelle che non riconosci o non usi: meno estensioni, meno rischi.
+ov.cat.network	Rete
+chk.leak.title	Perdita VPN: %@ programmi aggirano il tunnel
+chk.leak.body	La VPN è attiva (%1$@), ma questi programmi si collegano direttamente tramite %2$@. Il loro traffico e il tuo IP reale sono visibili alla rete e al provider. Attiva il kill switch o «blocca connessioni senza VPN».
+chk.dnsleak.title	Perdita DNS fuori dalla VPN
+chk.dnsleak.body	Il server DNS %1$@ viene raggiunto direttamente tramite %2$@, fuori dalla VPN. La rete vede ogni sito cercato. Usa il DNS della VPN o attiva la protezione dalle perdite DNS.
+chk.leak.appleTitle	%@ servizi di sistema Apple aggirano la VPN
+chk.leak.appleBody	%1$@ comunicano con Apple direttamente tramite %2$@. macOS lo fa di proposito per alcuni suoi servizi, a meno che la VPN non instradi tutto nel tunnel. La rete vede che contatti Apple, non cosa navighi. Se ti interessa, cerca l’opzione tunnel completo nell’app VPN.

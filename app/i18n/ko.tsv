@@ -554,3 +554,10 @@ fix.confirm.policy	%1$@ 환경설정에서 '%2$@' 설정을 삭제합니다.
 ov.review	확인할 항목 %@개
 chk.ext.summaryTitle	%2$@ 확장 프로그램 %1$@개가 모든 사이트를 읽을 수 있음
 chk.ext.summaryBody	%@. 광고 차단기, 암호 관리자, 번역기에는 이 권한이 필요하므로 대개 괜찮습니다. 모르거나 더 이상 쓰지 않는 것은 제거하세요. 확장이 적을수록 위험도 줄어듭니다.
+ov.cat.network	네트워크
+chk.leak.title	VPN 누출: 프로그램 %@개가 터널을 우회
+chk.leak.body	VPN이 켜져 있지만(%1$@) 이 프로그램들은 %2$@로 인터넷에 직접 연결합니다. 트래픽과 실제 IP 주소가 네트워크와 인터넷 업체에 보입니다. VPN 앱에서 킬 스위치 또는 'VPN 없이 연결 차단'을 켜세요.
+chk.dnsleak.title	VPN 외부 DNS 누출
+chk.dnsleak.body	DNS 서버 %1$@에 VPN을 거치지 않고 %2$@로 직접 접속합니다. 네트워크가 조회하는 모든 사이트를 볼 수 있습니다. VPN의 DNS를 사용하거나 DNS 누출 보호를 켜세요.
+chk.leak.appleTitle	Apple 시스템 서비스 %@개가 VPN을 우회
+chk.leak.appleBody	%1$@이(가) %2$@로 Apple과 직접 통신합니다. VPN 앱이 모든 트래픽을 터널로 보내지 않으면 macOS는 일부 자체 서비스에 대해 의도적으로 이렇게 합니다. 네트워크는 Apple과 통신한다는 것은 알 수 있지만 무엇을 보는지는 모릅니다. 중요하다면 VPN 앱에서 전체 터널 옵션을 찾아보세요.

@@ -554,3 +554,10 @@ fix.confirm.policy	A configuração “%2$@” será apagada das preferências d
 ov.review	%@ itens para revisar
 chk.ext.summaryTitle	%1$@ extensões do %2$@ podem ler todos os sites
 chk.ext.summaryBody	%@. Bloqueadores de anúncios, gerenciadores de senhas e tradutores precisam disso, então geralmente está tudo bem. Remova as que não reconhece ou não usa: menos extensões, menos risco.
+ov.cat.network	Rede
+chk.leak.title	Vazamento de VPN: %@ programas contornam o túnel
+chk.leak.body	Sua VPN está ativa (%1$@), mas estes programas se conectam direto por %2$@. O tráfego e seu IP real ficam visíveis para a rede e o provedor. Ative o kill switch ou “bloquear conexões sem VPN”.
+chk.dnsleak.title	Vazamento de DNS fora da VPN
+chk.dnsleak.body	O servidor DNS %1$@ é acessado direto por %2$@, fora da VPN. Sua rede vê cada site consultado. Use o DNS da VPN ou ative a proteção contra vazamento.
+chk.leak.appleTitle	%@ serviços do sistema Apple contornam a VPN
+chk.leak.appleBody	%1$@ falam com a Apple direto por %2$@. O macOS faz isso de propósito para alguns serviços próprios, a menos que a VPN passe todo o tráfego pelo túnel. A rede vê que você contata a Apple, mas não o que navega. Se importar, procure a opção de túnel completo no app de VPN.

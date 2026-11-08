@@ -4,7 +4,7 @@ import Foundation
 /// Gerçek dünyadaki Mac tehditlerine yönelik kontroller: reklam yazılımı/tarayıcı ele geçirme,
 /// araya girme (MITM), uzaktan erişim ve casus yazılım belirtileri. Her bulgunun bir düzeltmesi var.
 struct Finding: Identifiable, Hashable {
-    enum Category: String, CaseIterable { case browser, mitm, remote, spyware }
+    enum Category: String, CaseIterable { case browser, mitm, remote, spyware, network }
     enum Fix: Hashable {
         case openURL(String)
         case openInBrowser(app: String, url: String)
@@ -35,7 +35,7 @@ final class SecurityChecks: ObservableObject {
     @Published private(set) var lastRun: Date?
     @Published var message: String?
 
-    func run(apps: [AppSummary], rootProfiles: String?) {
+    func run(apps: [AppSummary], rootProfiles: String?, rootLsof: String? = nil) {
         guard !running else { return }
         running = true
         let input = apps.map { ($0.key, $0.name, $0.services, $0.signatureText) }
@@ -52,6 +52,7 @@ final class SecurityChecks: ObservableObject {
             out += Checks.sharing()
             out += Checks.remoteApps()
             out += Checks.spyware(input)
+            out += Checks.vpnLeak(NetworkMonitor.collect(rootLsof: rootLsof))
             let result = Checks.summarizeExtensions(out)
             await MainActor.run {
                 self.findings = result
@@ -553,6 +554,93 @@ enum Checks {
         let user = NSUserName()
         let cmd = "/bin/launchctl bootout \(dom)/\(q(label)) ; /bin/mkdir -p \(q("/Users/\(user)/.Trash")) ; /bin/mv \(q(plist)) \(q("/Users/\(user)/.Trash/"))"
         return admin(cmd) ?? L("fix.done")
+    }
+
+    // MARK: VPN sızıntısı
+
+    struct RouteState { let tunnel: String; let physical: String; let physicalIP: String }
+
+    /// VPN etkin mi: internete giden yol bir tünel arayüzünden, varsayılan ağ geçidi fiziksel arayüzden.
+    static func routeState() -> RouteState? {
+        func iface(_ dest: String) -> String? {
+            Shell.run("/sbin/route", ["-n", "get", dest]).1.split(separator: "\n")
+                .first { $0.contains("interface:") }?.split(separator: ":").last?.trimmingCharacters(in: .whitespaces)
+        }
+        guard let out = iface("1.1.1.1"), ["utun", "ppp", "ipsec", "tun", "tap"].contains(where: out.hasPrefix),
+              let phys = iface("default"), !["utun", "ppp", "ipsec", "tun", "tap"].contains(where: phys.hasPrefix),
+              let ip = ipv4(of: phys) else { return nil }
+        return RouteState(tunnel: out, physical: phys, physicalIP: ip)
+    }
+
+    static func ipv4(of name: String) -> String? {
+        var head: UnsafeMutablePointer<ifaddrs>?
+        guard getifaddrs(&head) == 0 else { return nil }
+        defer { freeifaddrs(head) }
+        var p = head
+        while let a = p {
+            if String(cString: a.pointee.ifa_name) == name, let sa = a.pointee.ifa_addr, sa.pointee.sa_family == UInt8(AF_INET) {
+                var buf = [CChar](repeating: 0, count: Int(NI_MAXHOST))
+                getnameinfo(sa, socklen_t(sa.pointee.sa_len), &buf, socklen_t(buf.count), nil, 0, NI_NUMERICHOST)
+                return String(cString: buf)
+            }
+            p = a.pointee.ifa_next
+        }
+        return nil
+    }
+
+    /// VPN/tünel programları (kendi sunucularına fiziksel arayüzden bağlanmaları normaldir).
+    static let tunnelOwners = ["vpn", "wireguard", "amneziawg", "wg-", "openvpn", "v2ray", "xray", "sing-box", "singbox", "clash",
+                               "tun2socks", "happ", "nekoray", "hiddify", "outline", "mullvad", "nord", "proton", "surfshark",
+                               "tailscale", "zerotier", "warp", "cloudflare", "shadowsocks", "trojan", "hysteria", "incy",
+                               "nesessionmanager", "neagent", "networkextension"]
+
+    static func vpnLeak(_ conns: [ConnRow], route: RouteState? = routeState()) -> [Finding] {
+        guard let r = route else { return [] }
+        var leaks: [String: Set<String>] = [:]   // süreç → uzak adresler
+        var appleLeaks: [String: Set<String>] = [:]
+        for c in conns {
+            guard let remote = c.remote, c.local.hasPrefix(r.physicalIP + ":") else { continue }
+            let host = remote.components(separatedBy: ":").dropLast().joined(separator: ":").trimmingCharacters(in: CharacterSet(charactersIn: "[]"))
+            if Conversation.isLocal(host) || host.hasPrefix("224.") || host.hasPrefix("239.") || host == "255.255.255.255" { continue }
+            let low = (c.name + " " + (c.path ?? "")).lowercased()
+            if tunnelOwners.contains(where: low.contains) { continue }
+            let p = c.path ?? ""
+            if c.signature == "apple" || p.hasPrefix("/System/") || p.hasPrefix("/usr/libexec/") || p.hasPrefix("/usr/sbin/") {
+                appleLeaks[c.name, default: []].insert(host)
+            } else {
+                leaks[c.name, default: []].insert(host)
+            }
+        }
+        var out: [Finding] = []
+        if !appleLeaks.isEmpty {
+            out.append(Finding(id: "vpnleak.apple", category: .network, verdict: .info,
+                               title: L("chk.leak.appleTitle", appleLeaks.count.formatted()),
+                               body: L("chk.leak.appleBody", appleLeaks.keys.sorted().joined(separator: ", "), r.physical),
+                               fixes: [(L("chk.vpn.open"), .openURL("x-apple.systempreferences:com.apple.NetworkExtensionSettingsUI.NESettingsUIExtension"))]))
+        }
+        if !leaks.isEmpty {
+            let list = leaks.sorted { $0.key < $1.key }.prefix(8)
+                .map { "\($0.key) → \($0.value.sorted().prefix(3).joined(separator: ", "))" }.joined(separator: "\n")
+            out.append(Finding(id: "vpnleak.\(leaks.keys.sorted().joined(separator: ","))", category: .network, verdict: .caution,
+                               title: L("chk.leak.title", leaks.count.formatted()),
+                               body: L("chk.leak.body", r.tunnel, r.physical) + "\n\n" + list,
+                               fixes: [(L("chk.vpn.open"), .openURL("x-apple.systempreferences:com.apple.NetworkExtensionSettingsUI.NESettingsUIExtension"))]))
+        }
+        // DNS sızıntısı: tünel varken fiziksel arayüzden yönlendirilen herkese açık DNS sunucusu
+        var dnsLeaks: [String] = []
+        for line in Shell.run("/usr/sbin/scutil", ["--dns"]).1.split(separator: "\n") where line.contains("nameserver[") {
+            guard let ip = line.split(separator: ":", maxSplits: 1).last?.trimmingCharacters(in: .whitespaces),
+                  !Conversation.isLocal(ip), !ip.contains(":"), !dnsLeaks.contains(ip) else { continue }
+            let via = Shell.run("/sbin/route", ["-n", "get", ip]).1.split(separator: "\n")
+                .first { $0.contains("interface:") }?.split(separator: ":").last?.trimmingCharacters(in: .whitespaces)
+            if via == r.physical { dnsLeaks.append(ip) }
+        }
+        if !dnsLeaks.isEmpty {
+            out.append(Finding(id: "dnsleak.\(dnsLeaks.joined(separator: ","))", category: .network, verdict: .caution,
+                               title: L("chk.dnsleak.title"), body: L("chk.dnsleak.body", dnsLeaks.joined(separator: ", "), r.physical),
+                               fixes: [(L("chk.vpn.open"), .openURL("x-apple.systempreferences:com.apple.NetworkExtensionSettingsUI.NESettingsUIExtension"))]))
+        }
+        return out
     }
 
     // MARK: Casus yazılım belirtileri (izin kombinasyonları)

@@ -554,3 +554,10 @@ fix.confirm.policy	Le réglage « %2$@ » sera supprimé des préférences de %1
 ov.review	%@ points à vérifier
 chk.ext.summaryTitle	%1$@ extensions %2$@ peuvent lire tous les sites
 chk.ext.summaryBody	%@. Bloqueurs de pub, gestionnaires de mots de passe et traducteurs en ont besoin, c’est donc généralement normal. Supprimez celles que vous ne reconnaissez pas ou n’utilisez plus : moins d’extensions, moins de risques.
+ov.cat.network	Réseau
+chk.leak.title	Fuite VPN : %@ programmes contournent le tunnel
+chk.leak.body	Votre VPN est actif (%1$@), mais ces programmes se connectent directement via %2$@. Leur trafic et votre vraie IP sont visibles par le réseau et le fournisseur. Activez le kill switch ou « bloquer les connexions hors VPN ».
+chk.dnsleak.title	Fuite DNS hors du VPN
+chk.dnsleak.body	Le serveur DNS %1$@ est joint directement via %2$@, hors VPN. Votre réseau voit chaque site consulté. Utilisez le DNS du VPN ou activez sa protection contre les fuites DNS.
+chk.leak.appleTitle	%@ services système Apple contournent le VPN
+chk.leak.appleBody	%1$@ communiquent directement avec Apple via %2$@. macOS le fait volontairement pour certains de ses services, sauf si le VPN fait passer tout le trafic par le tunnel. Le réseau voit que vous contactez Apple, pas ce que vous consultez. Si c’est important, cherchez une option « tout le trafic » dans l’app VPN.

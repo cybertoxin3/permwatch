@@ -165,7 +165,8 @@ struct AdviceView: View {
     }
 
     private func runChecks() {
-        checks.run(apps: store.apps, rootProfiles: RootBridge.shared.active ? RootBridge.shared.data?.profiles : nil)
+        let root = RootBridge.shared.active ? RootBridge.shared.data : nil
+        checks.run(apps: store.apps, rootProfiles: root?.profiles, rootLsof: root?.lsof)
     }
 
     private func header(_ list: [AdviceItem]) -> some View {
@@ -200,7 +201,7 @@ struct AdviceView: View {
     private var checkItems: [AdviceItem] {
         checks.findings.map { f in
             let icon: String = ["browser": "globe", "mitm": "lock.trianglebadge.exclamationmark", "remote": "display.2",
-                                "spyware": "eye.trianglebadge.exclamationmark"][f.category.rawValue] ?? "exclamationmark.triangle"
+                                "spyware": "eye.trianglebadge.exclamationmark", "network": "network.badge.shield.half.filled"][f.category.rawValue] ?? "exclamationmark.triangle"
             func act(_ i: Int) -> (String, () -> Void)? {
                 guard i < f.fixes.count else { return nil }
                 let fx = f.fixes[i]

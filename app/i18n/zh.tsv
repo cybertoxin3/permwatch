@@ -554,3 +554,10 @@ fix.confirm.policy	将从 %1$@ 的偏好设置中删除“%2$@”。
 ov.review	%@ 项待检查
 chk.ext.summaryTitle	%1$@ 个 %2$@ 扩展可以读取所有网站
 chk.ext.summaryBody	%@。广告拦截器、密码管理器和翻译工具需要此权限,通常没问题。移除你不认识或不再使用的扩展:扩展越少,风险越小。
+ov.cat.network	网络
+chk.leak.title	VPN 泄漏:%@ 个程序绕过了隧道
+chk.leak.body	VPN 已开启(%1$@),但这些程序直接通过 %2$@ 连接互联网。它们的流量和你的真实 IP 对网络和运营商可见。请在 VPN 应用中开启 kill switch 或“阻止非 VPN 连接”。
+chk.dnsleak.title	VPN 外的 DNS 泄漏
+chk.dnsleak.body	DNS 服务器 %1$@ 直接通过 %2$@ 访问,绕过了 VPN。你的网络能看到你查询的每个网站。请使用 VPN 自带的 DNS 或开启 DNS 泄漏保护。
+chk.leak.appleTitle	%@ 个 Apple 系统服务绕过了 VPN
+chk.leak.appleBody	%1$@ 直接通过 %2$@ 与 Apple 通信。除非 VPN 应用将所有流量都通过隧道,macOS 会有意让部分自身服务这样做。你的网络能看到你在联系 Apple,但看不到你浏览的内容。如果在意,请在 VPN 应用中寻找“全隧道/包含所有网络”选项。

@@ -66,6 +66,20 @@ func check(_ cond: Bool, _ name: String) { if cond { print("✓ \(name)") } else
                               ("bundle:com.example.ok", "Recorder", ["kTCCServiceScreenCapture"], nil)])
     check(spy.count == 1 && spy[0].id == "spy.bundle:com.example.spy", "ekran + klavye izleme birlikte uyarı, tek izin değil")
 
+    // VPN sızıntısı (sentetik: tünel utun4, fiziksel en0 = 192.0.2.10)
+    func conn(_ name: String, _ local: String, _ remote: String) -> ConnRow {
+        ConnRow(id: name + remote, pid: 1, name: name, path: nil, proto: "TCP", local: local, remote: remote, state: "ESTABLISHED",
+                signature: "developer", rules: [], ruleArgs: [], risk: .normal)
+    }
+    let route = Checks.RouteState(tunnel: "utun4", physical: "en0", physicalIP: "192.0.2.10")
+    let leak = Checks.vpnLeak([conn("Safari", "192.0.2.10:50000", "93.184.216.34:443"),        // sızıntı
+                               conn("amneziawg-go", "192.0.2.10:51000", "185.193.125.59:40301"), // tünelin kendisi
+                               conn("Mail", "100.101.145.127:50001", "17.1.2.3:993"),             // tünel içinden
+                               conn("AirPlay", "192.0.2.10:7000", "192.168.1.20:7000")],          // yerel ağ
+                              route: route)
+    check(leak.contains { $0.id == "vpnleak.Safari" }, "tünel dışından bağlanan program sızıntı sayılır, VPN ve yerel ağ sayılmaz")
+    check(Checks.vpnLeak([conn("Safari", "192.0.2.10:1", "93.184.216.34:443")], route: nil).isEmpty, "VPN kapalıyken sızıntı yok")
+
     // Tarayıcı politikası (deneme alanı) tespiti ve silinmesi
     let dom = "com.permwatch.selftest"
     Shell.run("/usr/bin/defaults", ["write", dom, "HomepageLocation", "http://search-redirect.invalid"])
