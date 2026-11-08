@@ -625,3 +625,18 @@ q.delete	Eliminar definitivamente
 q.deleteTitle	¿Eliminar %@ definitivamente?
 q.deleteBody	Esta acción no se puede deshacer.
 q.restoreFailed	No se pudo restaurar: %@
+guard.setting	Bloquear el malware antes de que se ejecute
+guard.settingDesc	Cada programa se comprueba con las firmas de malware de Apple y Elastic antes de arrancar. El malware conocido se detiene antes de que pueda hacer nada. Los programas de Apple y los que marques como conocidos siempre se ejecutan. Requiere una aprobación única en Ítems de inicio y acceso total al disco para permwatch-guard.
+guard.enable	Activar
+guard.disable	Desactivar
+guard.off	Desactivado
+guard.needsApproval	Esperando tu aprobación en Ajustes del Sistema › General › Ítems de inicio.
+guard.needsFDA	permwatch-guard necesita acceso total al disco. Arrástralo desde la ventana del Finder a la lista y actívalo.
+guard.starting	Iniciando…
+guard.active	Activado · %1$@ firmas · %2$@ bloqueados
+guard.failed	No se pudo iniciar: %@
+guard.fdaButton	Mostrar permwatch-guard y abrir Acceso total al disco
+guard.approveButton	Abrir Ítems de inicio
+guard.blockedTitle	Bloqueado antes de ejecutarse: %@
+guard.blockedBody	Lo inició %@. El archivo sigue en tu Mac; ponlo en cuarentena desde la lista de abajo. Si conoces este programa y confías en él, permítelo.
+guard.allow	Lo conozco, dejar que se ejecute

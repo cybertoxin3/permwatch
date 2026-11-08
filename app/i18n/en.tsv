@@ -625,3 +625,18 @@ q.delete	Delete permanently
 q.deleteTitle	Permanently delete %@?
 q.deleteBody	This cannot be undone.
 q.restoreFailed	Could not restore: %@
+guard.setting	Block malware before it runs
+guard.settingDesc	Every program is checked against Apple's and Elastic's malware signatures before it starts. Known malware is stopped before it can do anything. Apple's own programs and programs you mark as known always run. Needs a one-time approval in Login Items and Full Disk Access for permwatch-guard.
+guard.enable	Turn on
+guard.disable	Turn off
+guard.off	Off
+guard.needsApproval	Waiting for your approval in System Settings › General › Login Items.
+guard.needsFDA	permwatch-guard needs Full Disk Access. Drag it from the Finder window into the Full Disk Access list and turn it on.
+guard.starting	Starting…
+guard.active	On · %1$@ signatures · %2$@ blocked
+guard.failed	Could not start: %@
+guard.fdaButton	Show permwatch-guard and open Full Disk Access
+guard.approveButton	Open Login Items
+guard.blockedTitle	Blocked before it ran: %@
+guard.blockedBody	It was started by %@. The file is still on your Mac; quarantine it from the list below. If you know this program and trust it, allow it.
+guard.allow	I know it, let it run

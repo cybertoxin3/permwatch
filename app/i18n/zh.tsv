@@ -625,3 +625,18 @@ q.delete	永久删除
 q.deleteTitle	要永久删除 %@ 吗？
 q.deleteBody	此操作无法撤销。
 q.restoreFailed	无法恢复：%@
+guard.setting	在恶意软件运行前阻止
+guard.settingDesc	每个程序在启动前都会用 Apple 和 Elastic 的恶意软件特征检查。已知恶意软件会在它做任何事之前被阻止。Apple 的程序和你标记为认识的程序总能运行。需要在“登录项”中批准一次，并为 permwatch-guard 授予完全磁盘访问权限。
+guard.enable	开启
+guard.disable	关闭
+guard.off	已关闭
+guard.needsApproval	正在等待你在“系统设置 › 通用 › 登录项”中批准。
+guard.needsFDA	permwatch-guard 需要完全磁盘访问权限。请从访达窗口把它拖到列表中并开启。
+guard.starting	正在启动…
+guard.active	已开启 · %1$@ 条特征 · 已阻止 %2$@ 个
+guard.failed	无法启动：%@
+guard.fdaButton	显示 permwatch-guard 并打开完全磁盘访问权限
+guard.approveButton	打开登录项
+guard.blockedTitle	运行前已阻止：%@
+guard.blockedBody	启动者：%@。文件仍在你的 Mac 上；可从下方列表将其隔离。如果你认识并信任这个程序，请允许它。
+guard.allow	我认识，允许运行

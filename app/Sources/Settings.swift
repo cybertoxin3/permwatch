@@ -1,3 +1,4 @@
+import ServiceManagement
 import AppKit
 import SwiftUI
 
@@ -55,6 +56,7 @@ struct SettingsView: View {
     @EnvironmentObject var updates: UpdateChecker
     @EnvironmentObject var intel: ThreatIntel
     @EnvironmentObject var realtime: RealtimeGuard
+    @ObservedObject private var guardSvc = GuardService.shared
     @ObservedObject private var blocks = BlockList.shared
 
     var body: some View {
@@ -137,6 +139,7 @@ struct SettingsView: View {
                 Toggle(L("rt.setting"), isOn: $realtime.enabled)
                 Text(L("rt.settingDesc")).font(.system(size: 11)).foregroundStyle(.secondary)
                     .fixedSize(horizontal: false, vertical: true)
+                if guardSvc.available { GuardRow() }
                 Toggle(L("ransom.setting"), isOn: $realtime.ransomEnabled)
                 Text(L("ransom.settingDesc")).font(.system(size: 11)).foregroundStyle(.secondary)
                     .fixedSize(horizontal: false, vertical: true)
@@ -203,5 +206,39 @@ struct SettingsView: View {
         .formStyle(.grouped)
         .frame(width: 520)
         .onChange(of: theme) { _, new in new.apply() }
+    }
+}
+
+/// Çalıştırmadan önce engelleme (Endpoint Security) satırı: Ayarlar ve Tarama ekranında.
+struct GuardRow: View {
+    @ObservedObject private var svc = GuardService.shared
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            HStack {
+                Circle().fill(svc.state == .active ? Color.green : (svc.state == .off ? Color.secondary : Color.orange))
+                    .frame(width: 8, height: 8)
+                Text(L("guard.setting")).font(.system(size: 13))
+                Spacer()
+                if svc.state == .off { Button(L("guard.enable")) { svc.enable() } }
+                else { Button(L("guard.disable")) { svc.disable() } }
+            }
+            Text(statusText).font(.system(size: 11)).foregroundStyle(svc.state == .active ? Color.secondary : Color.orange)
+                .fixedSize(horizontal: false, vertical: true)
+            if svc.state == .needsFullDisk { Button(L("guard.fdaButton")) { svc.showForFullDisk() }.controlSize(.small) }
+            if svc.state == .needsApproval { Button(L("guard.approveButton")) { SMAppService.openSystemSettingsLoginItems() }.controlSize(.small) }
+            Text(L("guard.settingDesc")).font(.system(size: 11)).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
+        }
+    }
+
+    private var statusText: String {
+        switch svc.state {
+        case .unavailable, .off: return L("guard.off")
+        case .needsApproval: return L("guard.needsApproval")
+        case .needsFullDisk: return L("guard.needsFDA")
+        case .starting: return L("guard.starting")
+        case .active: return L("guard.active", svc.ruleCount.formatted(), svc.blocked.formatted())
+        case .failed(let e): return L("guard.failed", e)
+        }
     }
 }

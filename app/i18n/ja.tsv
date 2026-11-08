@@ -625,3 +625,18 @@ q.delete	完全に削除
 q.deleteTitle	%@ を完全に削除しますか？
 q.deleteBody	この操作は取り消せません。
 q.restoreFailed	復元できませんでした: %@
+guard.setting	マルウェアを実行前にブロック
+guard.settingDesc	すべてのプログラムは起動前に Apple と Elastic のマルウェアシグネチャで確認されます。既知のマルウェアは何かをする前に停止されます。Apple のプログラムと、あなたが既知としたプログラムは常に実行されます。ログイン項目での1回の承認と、permwatch-guard へのフルディスクアクセスが必要です。
+guard.enable	オン
+guard.disable	オフ
+guard.off	オフ
+guard.needsApproval	システム設定 › 一般 › ログイン項目 での承認を待っています。
+guard.needsFDA	permwatch-guard にはフルディスクアクセスが必要です。Finder ウインドウからリストにドラッグしてオンにしてください。
+guard.starting	起動中…
+guard.active	オン · シグネチャ %1$@ 件 · ブロック %2$@ 件
+guard.failed	起動できませんでした: %@
+guard.fdaButton	permwatch-guard を表示してフルディスクアクセスを開く
+guard.approveButton	ログイン項目を開く
+guard.blockedTitle	実行前にブロック: %@
+guard.blockedBody	起動元: %@。ファイルはまだ Mac にあります。下のリストから隔離できます。このプログラムを知っていて信頼できるなら許可してください。
+guard.allow	知っている、実行を許可

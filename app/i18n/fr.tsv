@@ -625,3 +625,18 @@ q.delete	Supprimer définitivement
 q.deleteTitle	Supprimer définitivement %@ ?
 q.deleteBody	Cette action est irréversible.
 q.restoreFailed	Restauration impossible : %@
+guard.setting	Bloquer les logiciels malveillants avant leur lancement
+guard.settingDesc	Chaque programme est vérifié avec les signatures d'Apple et d'Elastic avant de démarrer. Un logiciel malveillant connu est arrêté avant de pouvoir agir. Les programmes d'Apple et ceux que tu marques comme connus s'exécutent toujours. Nécessite une approbation unique dans Ouverture et l'accès complet au disque pour permwatch-guard.
+guard.enable	Activer
+guard.disable	Désactiver
+guard.off	Désactivé
+guard.needsApproval	En attente de ton approbation dans Réglages Système › Général › Ouverture.
+guard.needsFDA	permwatch-guard a besoin de l'accès complet au disque. Fais-le glisser depuis la fenêtre du Finder dans la liste et active-le.
+guard.starting	Démarrage…
+guard.active	Activé · %1$@ signatures · %2$@ bloqués
+guard.failed	Démarrage impossible : %@
+guard.fdaButton	Afficher permwatch-guard et ouvrir l'accès complet au disque
+guard.approveButton	Ouvrir Ouverture
+guard.blockedTitle	Bloqué avant son lancement : %@
+guard.blockedBody	Lancé par %@. Le fichier est toujours sur ton Mac ; mets-le en quarantaine depuis la liste ci-dessous. Si tu connais ce programme et lui fais confiance, autorise-le.
+guard.allow	Je le connais, l'autoriser

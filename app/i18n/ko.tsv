@@ -625,3 +625,18 @@ q.delete	영구 삭제
 q.deleteTitle	%@을(를) 영구 삭제할까요?
 q.deleteBody	이 작업은 되돌릴 수 없습니다.
 q.restoreFailed	복원하지 못했습니다: %@
+guard.setting	악성코드를 실행 전에 차단
+guard.settingDesc	모든 프로그램은 시작하기 전에 Apple과 Elastic의 악성코드 시그니처로 확인됩니다. 알려진 악성코드는 아무것도 하기 전에 중지됩니다. Apple의 프로그램과 알고 있다고 표시한 프로그램은 항상 실행됩니다. 로그인 항목에서 한 번 승인하고 permwatch-guard에 전체 디스크 접근 권한을 주어야 합니다.
+guard.enable	켜기
+guard.disable	끄기
+guard.off	꺼짐
+guard.needsApproval	시스템 설정 › 일반 › 로그인 항목에서 승인을 기다리는 중입니다.
+guard.needsFDA	permwatch-guard에 전체 디스크 접근 권한이 필요합니다. Finder 창에서 목록으로 끌어다 놓고 켜세요.
+guard.starting	시작하는 중…
+guard.active	켜짐 · 시그니처 %1$@개 · 차단 %2$@개
+guard.failed	시작하지 못했습니다: %@
+guard.fdaButton	permwatch-guard 보기 및 전체 디스크 접근 열기
+guard.approveButton	로그인 항목 열기
+guard.blockedTitle	실행 전에 차단됨: %@
+guard.blockedBody	실행한 프로그램: %@. 파일은 아직 Mac에 있습니다. 아래 목록에서 격리하세요. 이 프로그램을 알고 신뢰한다면 허용하세요.
+guard.allow	알고 있음, 실행 허용

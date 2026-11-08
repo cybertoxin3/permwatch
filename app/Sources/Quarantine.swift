@@ -96,6 +96,8 @@ final class QuarantineStore: ObservableObject {
         try? fm.removeItem(atPath: Self.dir + "/" + item.id)
         items.removeAll { $0.id == item.id }
         save()
+        // Kullanıcı "tanıyorum" dedi: çalıştırmadan önce engelleme de bu dosyaya izin versin.
+        if GuardService.shared.available { item.files.keys.forEach(GuardService.shared.allow) }
         return nil
     }
 

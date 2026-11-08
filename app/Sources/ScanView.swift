@@ -5,6 +5,7 @@ struct ScanView: View {
     @EnvironmentObject var scanner: MalwareScanner
     @ObservedObject private var quarantine = QuarantineStore.shared
     @ObservedObject private var realtime = RealtimeGuard.shared
+    @ObservedObject private var guardSvc = GuardService.shared
     @State private var confirm: Detection?
     @State private var confirmDelete: QuarantineItem?
     @State private var qMessage: String?
@@ -14,6 +15,11 @@ struct ScanView: View {
             VStack(alignment: .leading, spacing: 18) {
                 header
                 realtimeStatus
+                if guardSvc.available {
+                    GuardRow().padding(10)
+                        .background(Color(nsColor: .controlBackgroundColor), in: RoundedRectangle(cornerRadius: 10))
+                }
+                ForEach(guardSvc.events) { guardCard($0) }
                 ForEach(realtime.ransomAlerts) { ransomCard($0) }
                 if scanner.running { progress }
                 if let e = scanner.error {
@@ -166,6 +172,23 @@ struct ScanView: View {
         }
         .padding(10)
         .background(Color(nsColor: .controlBackgroundColor), in: RoundedRectangle(cornerRadius: 10))
+    }
+
+    private func guardCard(_ e: GuardEvent) -> some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Label(L("guard.blockedTitle", e.name), systemImage: "hand.raised.fill").font(.system(size: 14, weight: .bold)).foregroundStyle(.red)
+            Text(PathUtil.abbreviate(e.path)).font(.system(size: 11.5, design: .monospaced)).textSelection(.enabled)
+            Text(L("guard.blockedBody", PathUtil.abbreviate(e.parent))).font(.system(size: 12)).foregroundStyle(.secondary)
+                .fixedSize(horizontal: false, vertical: true)
+            HStack(spacing: 8) {
+                Button(L("guard.allow")) { guardSvc.allow(e.path) }
+                Text(Fmt.relative(e.date)).font(.system(size: 10.5)).foregroundStyle(.tertiary)
+            }
+            .controlSize(.small)
+        }
+        .padding(14)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(Color.red.opacity(0.06), in: RoundedRectangle(cornerRadius: 12))
     }
 
     private func ransomCard(_ a: RansomAlert) -> some View {

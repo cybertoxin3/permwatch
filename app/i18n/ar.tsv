@@ -625,3 +625,18 @@ q.delete	حذف نهائي
 q.deleteTitle	هل تريد حذف %@ نهائيًا؟
 q.deleteBody	لا يمكن التراجع عن هذا الإجراء.
 q.restoreFailed	تعذّرت الاستعادة: %@
+guard.setting	احظر البرامج الضارة قبل تشغيلها
+guard.settingDesc	يُفحص كل برنامج بتواقيع Apple وElastic قبل أن يبدأ. يُوقف البرنامج الضار المعروف قبل أن يفعل أي شيء. تعمل برامج Apple والبرامج التي تحددها كمعروفة دائمًا. يتطلب موافقة لمرة واحدة في عناصر تسجيل الدخول والوصول الكامل إلى القرص لـ permwatch-guard.
+guard.enable	تشغيل
+guard.disable	إيقاف
+guard.off	متوقف
+guard.needsApproval	بانتظار موافقتك في إعدادات النظام › عام › عناصر تسجيل الدخول.
+guard.needsFDA	يحتاج permwatch-guard إلى الوصول الكامل إلى القرص. اسحبه من نافذة Finder إلى القائمة وفعّله.
+guard.starting	جارٍ البدء…
+guard.active	مفعّل · %1$@ توقيع · %2$@ محظور
+guard.failed	تعذّر البدء: %@
+guard.fdaButton	أظهر permwatch-guard وافتح الوصول الكامل إلى القرص
+guard.approveButton	افتح عناصر تسجيل الدخول
+guard.blockedTitle	حُظر قبل تشغيله: %@
+guard.blockedBody	شغّله: %@. ما زال الملف على جهازك؛ انقله إلى الحجر من القائمة أدناه. إن كنت تعرف هذا البرنامج وتثق به فاسمح له.
+guard.allow	أعرفه، اسمح بتشغيله

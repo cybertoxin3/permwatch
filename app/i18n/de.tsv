@@ -625,3 +625,18 @@ q.delete	Endgültig löschen
 q.deleteTitle	%@ endgültig löschen?
 q.deleteBody	Das kann nicht rückgängig gemacht werden.
 q.restoreFailed	Wiederherstellen nicht möglich: %@
+guard.setting	Schadsoftware vor dem Start blockieren
+guard.settingDesc	Jedes Programm wird vor dem Start mit den Malware-Signaturen von Apple und Elastic geprüft. Bekannte Schadsoftware wird gestoppt, bevor sie etwas tun kann. Apples eigene Programme und Programme, die du als bekannt markierst, laufen immer. Erfordert eine einmalige Freigabe unter Anmeldeobjekte und Festplattenvollzugriff für permwatch-guard.
+guard.enable	Einschalten
+guard.disable	Ausschalten
+guard.off	Aus
+guard.needsApproval	Wartet auf deine Freigabe unter Systemeinstellungen › Allgemein › Anmeldeobjekte.
+guard.needsFDA	permwatch-guard braucht Festplattenvollzugriff. Ziehe es aus dem Finder-Fenster in die Liste und schalte es ein.
+guard.starting	Wird gestartet …
+guard.active	An · %1$@ Signaturen · %2$@ blockiert
+guard.failed	Start nicht möglich: %@
+guard.fdaButton	permwatch-guard zeigen und Festplattenvollzugriff öffnen
+guard.approveButton	Anmeldeobjekte öffnen
+guard.blockedTitle	Vor dem Start blockiert: %@
+guard.blockedBody	Gestartet von %@. Die Datei ist noch auf deinem Mac; verschiebe sie unten in Quarantäne. Wenn du das Programm kennst und ihm vertraust, erlaube es.
+guard.allow	Kenne ich, ausführen lassen

@@ -625,3 +625,18 @@ q.delete	Kalıcı olarak sil
 q.deleteTitle	%@ kalıcı olarak silinsin mi?
 q.deleteBody	Bu işlem geri alınamaz.
 q.restoreFailed	Geri yüklenemedi: %@
+guard.setting	Zararlıyı çalışmadan önce engelle
+guard.settingDesc	Her program başlamadan önce Apple'ın ve Elastic'in zararlı imzalarıyla denetlenir. Bilinen bir zararlı hiçbir şey yapamadan durdurulur. Apple'ın kendi programları ve tanıdığını işaretlediğin programlar her zaman çalışır. Giriş Öğeleri'nde bir kez onay ve permwatch-guard için Tam Disk Erişimi gerekir.
+guard.enable	Aç
+guard.disable	Kapat
+guard.off	Kapalı
+guard.needsApproval	Sistem Ayarları › Genel › Giriş Öğeleri'nde onayın bekleniyor.
+guard.needsFDA	permwatch-guard'ın Tam Disk Erişimi'ne ihtiyacı var. Finder penceresinden Tam Disk Erişimi listesine sürükle ve aç.
+guard.starting	Başlatılıyor…
+guard.active	Açık · %1$@ imza · %2$@ engellendi
+guard.failed	Başlatılamadı: %@
+guard.fdaButton	permwatch-guard'ı göster ve Tam Disk Erişimi'ni aç
+guard.approveButton	Giriş Öğeleri'ni aç
+guard.blockedTitle	Çalışmadan engellendi: %@
+guard.blockedBody	Onu başlatan: %@. Dosya hâlâ Mac'inde; aşağıdaki listeden karantinaya alabilirsin. Bu programı tanıyor ve güveniyorsan çalışmasına izin ver.
+guard.allow	Tanıyorum, çalışsın
