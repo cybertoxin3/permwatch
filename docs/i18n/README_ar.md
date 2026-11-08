@@ -25,7 +25,7 @@
 
 [![build](https://github.com/cybertoxin3/permwatch/actions/workflows/build.yml/badge.svg)](https://github.com/cybertoxin3/permwatch/actions/workflows/build.yml)
 ![macOS](https://img.shields.io/badge/macOS-14%2B-black?logo=apple)
-![الحالة](https://img.shields.io/badge/%D8%A7%D9%84%D8%AD%D8%A7%D9%84%D8%A9-%D9%82%D9%8A%D8%AF%20%D8%A7%D9%84%D8%AA%D8%B7%D9%88%D9%8A%D8%B1-orange)
+[![الإصدار](https://img.shields.io/github/v/release/cybertoxin3/permwatch?label=%D8%A7%D9%84%D8%A5%D8%B5%D8%AF%D8%A7%D8%B1)](https://github.com/cybertoxin3/permwatch/releases/latest)
 
 </div>
 
@@ -104,7 +104,7 @@ permwatch **لا يغني عن برنامج مكافحة فيروسات تجار
 
 ## الحالة
 
-- ✅ تطبيق macOS بـ 13 لغة، موثّق من Apple.
+- ✅ تطبيق macOS لمعالجات Apple Silicon وIntel: فحص البرامج الضارة مع حماية في الوقت الفعلي وحجر، وحماية من برامج الفدية، وفحص الخوادم الضارة، والأذونات، وعناصر بدء التشغيل، وفحوص المتصفح والوصول عن بعد، والشبكة والتقاط الحزم. تصل التحديثات داخل التطبيق. متاح بـ 13 لغة.
 - ⏳ إذن Apple لـ Endpoint Security: قيد المراجعة.
 
 هل أنت مطوّر وتريد تجربة النواة؟ **[دليل المطوّر (بالإنجليزية) ←](../GELISTIRME_en.md)**

@@ -13,7 +13,7 @@ permwatch는 모든 권한 변경을 기록하고, 수상한 일이 생기면 �
 
 [![build](https://github.com/cybertoxin3/permwatch/actions/workflows/build.yml/badge.svg)](https://github.com/cybertoxin3/permwatch/actions/workflows/build.yml)
 ![macOS](https://img.shields.io/badge/macOS-14%2B-black?logo=apple)
-![상태](https://img.shields.io/badge/%EC%83%81%ED%83%9C-%EA%B0%9C%EB%B0%9C%20%EC%A4%91-orange)
+[![버전](https://img.shields.io/github/v/release/cybertoxin3/permwatch?label=%EB%B2%84%EC%A0%84)](https://github.com/cybertoxin3/permwatch/releases/latest)
 
 
 [![macOS용 다운로드](https://img.shields.io/badge/%E2%AC%87%EF%B8%8F_macOS%EC%9A%A9%20%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C-0A84FF?style=for-the-badge&logo=apple&logoColor=white)](https://github.com/cybertoxin3/permwatch/releases/latest)
@@ -98,7 +98,7 @@ permwatch는 **사용자에 관한 어떤 정보도 보내지 않습니다.** �
 
 ## 상태
 
-- ✅ 13개 언어를 지원하는 macOS 앱, Apple 공증 완료.
+- ✅ Apple Silicon 및 Intel용 macOS 앱: 실시간 보호와 격리를 갖춘 악성코드 검사, 랜섬웨어 보호, 악성 서버 확인, 권한, 로그인 항목, 브라우저 및 원격 접속 확인, 네트워크와 패킷 캡처. 업데이트는 앱 안에서 받습니다. 13개 언어 지원.
 - ⏳ Apple Endpoint Security 권한: 검토 중.
 
 개발자이고 핵심 엔진을 써 보고 싶다면: **[개발자 가이드(영어) →](../GELISTIRME_en.md)**

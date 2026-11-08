@@ -13,7 +13,7 @@ Her izin değişikliğinin kaydını tutar, şüpheli olanları anında haber ve
 
 [![build](https://github.com/cybertoxin3/permwatch/actions/workflows/build.yml/badge.svg)](https://github.com/cybertoxin3/permwatch/actions/workflows/build.yml)
 ![macOS](https://img.shields.io/badge/macOS-14%2B-black?logo=apple)
-![Durum](https://img.shields.io/badge/durum-geli%C5%9Ftirme%20a%C5%9Famas%C4%B1nda-orange)
+[![sürüm](https://img.shields.io/github/v/release/cybertoxin3/permwatch?label=s%C3%BCr%C3%BCm)](https://github.com/cybertoxin3/permwatch/releases/latest)
 
 
 [![macOS için indir](https://img.shields.io/badge/%E2%AC%87%EF%B8%8F_macOS%20i%C3%A7in%20indir-0A84FF?style=for-the-badge&logo=apple&logoColor=white)](https://github.com/cybertoxin3/permwatch/releases/latest)
@@ -112,7 +112,7 @@ permwatch **hiçbir yere veri göndermez.** Analiz yok, hesap yok, bulut yok. Ay
 
 ## Durum
 
-- ✅ macOS uygulaması: izinler, başlangıç öğeleri, süreçler, ağ, paket yakalama, indirilenler, öneriler. 13 dilde kullanılabilir.
+- ✅ Apple Silicon ve Intel için macOS uygulaması: gerçek zamanlı koruma ve karantinayla zararlı taraması, fidye yazılımı koruması, zararlı sunucu kontrolü, izinler, başlangıç öğeleri, tarayıcı ve uzaktan erişim kontrolleri, ağ ve paket yakalama. Güncellemeler uygulamanın içinde gelir. 13 dilde kullanılabilir.
 - ⏳ Apple Endpoint Security izni: başvuruldu, inceleniyor
 - ✅ Apple tarafından notarize edildi
 

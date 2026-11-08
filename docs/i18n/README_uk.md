@@ -13,7 +13,7 @@ permwatch веде журнал усіх змін дозволів і одраз
 
 [![build](https://github.com/cybertoxin3/permwatch/actions/workflows/build.yml/badge.svg)](https://github.com/cybertoxin3/permwatch/actions/workflows/build.yml)
 ![macOS](https://img.shields.io/badge/macOS-14%2B-black?logo=apple)
-![статус](https://img.shields.io/badge/%D1%81%D1%82%D0%B0%D1%82%D1%83%D1%81-%D1%83%20%D1%80%D0%BE%D0%B7%D1%80%D0%BE%D0%B1%D1%86%D1%96-orange)
+[![версія](https://img.shields.io/github/v/release/cybertoxin3/permwatch?label=%D0%B2%D0%B5%D1%80%D1%81%D1%96%D1%8F)](https://github.com/cybertoxin3/permwatch/releases/latest)
 
 
 [![Завантажити для macOS](https://img.shields.io/badge/%E2%AC%87%EF%B8%8F_%D0%97%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B8%D1%82%D0%B8%20%D0%B4%D0%BB%D1%8F%20macOS-0A84FF?style=for-the-badge&logo=apple&logoColor=white)](https://github.com/cybertoxin3/permwatch/releases/latest)
@@ -98,7 +98,7 @@ permwatch **нічого про вас не надсилає.** Немає ан�
 
 ## Статус
 
-- ✅ Програма для macOS 13 мовами, нотаризована Apple.
+- ✅ Застосунок для macOS на Apple Silicon та Intel: перевірка на шкідливі програми із захистом у реальному часі та карантином, захист від програм-вимагачів, перевірка шкідливих серверів, дозволи, обʼєкти входу, перевірки браузера й віддаленого доступу, мережа й захоплення пакетів. Оновлення надходять просто в застосунок. Доступно 13 мовами.
 - ⏳ Дозвіл Apple Endpoint Security: на розгляді.
 
 Ви розробник і хочете спробувати ядро? **[Посібник для розробників (англійською) →](../GELISTIRME_en.md)**

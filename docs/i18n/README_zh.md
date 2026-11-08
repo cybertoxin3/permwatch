@@ -13,7 +13,7 @@ permwatch 记录每一次权限变更，一旦发现可疑情况立即提醒你�
 
 [![build](https://github.com/cybertoxin3/permwatch/actions/workflows/build.yml/badge.svg)](https://github.com/cybertoxin3/permwatch/actions/workflows/build.yml)
 ![macOS](https://img.shields.io/badge/macOS-14%2B-black?logo=apple)
-![状态](https://img.shields.io/badge/%E7%8A%B6%E6%80%81-%E5%BC%80%E5%8F%91%E4%B8%AD-orange)
+[![版本](https://img.shields.io/github/v/release/cybertoxin3/permwatch?label=%E7%89%88%E6%9C%AC)](https://github.com/cybertoxin3/permwatch/releases/latest)
 
 
 [![下载 macOS 版](https://img.shields.io/badge/%E2%AC%87%EF%B8%8F_%E4%B8%8B%E8%BD%BD%20macOS%20%E7%89%88-0A84FF?style=for-the-badge&logo=apple&logoColor=white)](https://github.com/cybertoxin3/permwatch/releases/latest)
@@ -98,7 +98,7 @@ permwatch **不会发送任何关于你的信息。** 没有分析、没有账�
 
 ## 状态
 
-- ✅ 支持 13 种语言的 macOS 应用,已通过 Apple 公证。
+- ✅ 适用于 Apple Silicon 和 Intel 的 macOS 应用：带实时保护和隔离的恶意软件扫描、勒索软件防护、恶意服务器检查、权限、登录项、浏览器与远程访问检查、网络和数据包捕获。更新在应用内完成。支持 13 种语言。
 - ⏳ Apple Endpoint Security 授权:审核中。
 
 如果你是开发者，想试用核心引擎：**[开发者指南（英文）→](../GELISTIRME_en.md)**

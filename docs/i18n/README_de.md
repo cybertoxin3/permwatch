@@ -13,7 +13,7 @@ permwatch protokolliert jede Änderung an Berechtigungen und warnt dich sofort, 
 
 [![build](https://github.com/cybertoxin3/permwatch/actions/workflows/build.yml/badge.svg)](https://github.com/cybertoxin3/permwatch/actions/workflows/build.yml)
 ![macOS](https://img.shields.io/badge/macOS-14%2B-black?logo=apple)
-![Status](https://img.shields.io/badge/Status-in%20Entwicklung-orange)
+[![Version](https://img.shields.io/github/v/release/cybertoxin3/permwatch?label=Version)](https://github.com/cybertoxin3/permwatch/releases/latest)
 
 
 [![Für macOS laden](https://img.shields.io/badge/%E2%AC%87%EF%B8%8F_F%C3%BCr%20macOS%20laden-0A84FF?style=for-the-badge&logo=apple&logoColor=white)](https://github.com/cybertoxin3/permwatch/releases/latest)
@@ -98,7 +98,7 @@ permwatch **sendet nichts über dich.** Keine Analyse, kein Konto, keine Cloud. 
 
 ## Status
 
-- ✅ macOS-App in 13 Sprachen, von Apple notarisiert.
+- ✅ macOS-App für Apple Silicon und Intel: Malware-Scan mit Echtzeitschutz und Quarantäne, Ransomware-Schutz, Prüfung auf schädliche Server, Berechtigungen, Anmeldeobjekte, Browser- und Fernzugriffsprüfungen, Netzwerk und Paketaufzeichnung. Updates kommen direkt in der App. In 13 Sprachen verfügbar.
 - ⏳ Apple-Freigabe für Endpoint Security: in Prüfung.
 
 Entwickler und möchtest den Kern ausprobieren? **[Entwicklerhandbuch (Englisch) →](../GELISTIRME_en.md)**
