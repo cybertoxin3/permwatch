@@ -117,6 +117,8 @@ struct AdviceView: View {
     @State private var done: Set<String> = []
     @State private var message: String?
     @State private var confirm: AdviceItem?
+    @State private var crash = CrashReports.unseen()
+    @Environment(\.openWindow) private var openWindow
 
     var body: some View {
         let list = (items + checkItems).filter { !done.contains($0.id) }
@@ -269,6 +271,15 @@ struct AdviceView: View {
 
     private var items: [AdviceItem] {
         var out: [AdviceItem] = []
+        if let c = crash {
+            out.append(.init(id: "crash", verdict: .caution, icon: "exclamationmark.bubble",
+                             title: L("crash.title"), body: L("crash.body", Fmt.relative(c.date)),
+                             primary: (L("crash.report"), {
+                                 CrashReports.markSeen(); crash = nil
+                                 openWindow(id: "report"); NSApp.activate(ignoringOtherApps: true)
+                             }),
+                             secondary: (L("crash.ignore"), { CrashReports.markSeen(); crash = nil })))
+        }
         if store.needsFullDiskAccess || downloads.needsFullDisk {
             out.append(.init(id: "fda", verdict: .danger, icon: "lock.shield", title: L("fda.one.title"), body: L("fda.one.body"),
                              primary: (L("fda.open"), FullDisk.openSettings)))

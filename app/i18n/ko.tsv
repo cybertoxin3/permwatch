@@ -699,3 +699,8 @@ upd.sidebarDownloading	업데이트 다운로드 중 %@
 upd.sidebarReady	업데이트 준비됨
 upd.notifyTitle	permwatch %@ 다운로드됨
 upd.notifyBody	permwatch를 다시 시작하면 설치됩니다.
+crash.title	permwatch가 예기치 않게 종료됨
+crash.body	permwatch가 %@ 충돌했습니다. 짧은 요약을 보내 주시면 수정에 도움이 됩니다. 요약에는 사용자 이름, 파일, 개인 정보가 없습니다.
+crash.report	신고
+crash.ignore	신고 안 함
+report.includeCrash	마지막 충돌 요약 추가(개인 정보 없음)

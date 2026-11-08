@@ -699,3 +699,8 @@ upd.sidebarDownloading	Update downloading %@
 upd.sidebarReady	Update ready
 upd.notifyTitle	permwatch %@ has been downloaded
 upd.notifyBody	It will be installed when you restart permwatch.
+crash.title	permwatch quit unexpectedly
+crash.body	permwatch crashed %@. Sending us a short summary helps fix it. The summary contains no user name, files or personal data.
+crash.report	Report
+crash.ignore	Don't Report
+report.includeCrash	Add a summary of the last crash (no personal data)

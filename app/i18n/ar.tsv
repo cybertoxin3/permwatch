@@ -699,3 +699,8 @@ upd.sidebarDownloading	يُنزَّل التحديث %@
 upd.sidebarReady	التحديث جاهز
 upd.notifyTitle	نُزّل permwatch %@
 upd.notifyBody	سيُثبّت عند إعادة تشغيل permwatch.
+crash.title	أُغلق permwatch بشكل غير متوقع
+crash.body	تعطّل permwatch %@. إرسال ملخص قصير يساعدنا على الإصلاح. لا يحتوي الملخص على اسم مستخدم أو ملفات أو بيانات شخصية.
+crash.report	أبلغ
+crash.ignore	لا تبلغ
+report.includeCrash	أضف ملخص آخر تعطّل (دون بيانات شخصية)

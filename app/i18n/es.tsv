@@ -699,3 +699,8 @@ upd.sidebarDownloading	Descargando actualización %@
 upd.sidebarReady	Actualización lista
 upd.notifyTitle	Se descargó permwatch %@
 upd.notifyBody	Se instalará cuando reinicies permwatch.
+crash.title	permwatch se cerró inesperadamente
+crash.body	permwatch falló %@. Enviarnos un breve resumen nos ayuda a solucionarlo. El resumen no contiene nombre de usuario, archivos ni datos personales.
+crash.report	Informar
+crash.ignore	No informar
+report.includeCrash	Añadir un resumen del último fallo (sin datos personales)

@@ -699,3 +699,8 @@ upd.sidebarDownloading	Update wird geladen %@
 upd.sidebarReady	Update bereit
 upd.notifyTitle	permwatch %@ wurde geladen
 upd.notifyBody	Es wird beim Neustart von permwatch installiert.
+crash.title	permwatch wurde unerwartet beendet
+crash.body	permwatch ist %@ abgestürzt. Eine kurze Zusammenfassung hilft uns beim Beheben. Sie enthält keinen Benutzernamen, keine Dateien und keine persönlichen Daten.
+crash.report	Melden
+crash.ignore	Nicht melden
+report.includeCrash	Zusammenfassung des letzten Absturzes anhängen (keine persönlichen Daten)

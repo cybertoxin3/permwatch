@@ -699,3 +699,8 @@ upd.sidebarDownloading	Güncelleme iniyor %@
 upd.sidebarReady	Güncelleme hazır
 upd.notifyTitle	permwatch %@ indirildi
 upd.notifyBody	permwatch'ı yeniden başlattığında kurulacak.
+crash.title	permwatch beklenmedik şekilde kapandı
+crash.body	permwatch %@ çöktü. Bize kısa bir özet göndermen sorunu düzeltmemize yardım eder. Özette kullanıcı adı, dosya ya da kişisel bilgi yok.
+crash.report	Bildir
+crash.ignore	Bildirme
+report.includeCrash	Son çökmenin özetini ekle (kişisel bilgi yok)

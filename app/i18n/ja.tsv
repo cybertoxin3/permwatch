@@ -699,3 +699,8 @@ upd.sidebarDownloading	アップデートをダウンロード中 %@
 upd.sidebarReady	アップデートの準備完了
 upd.notifyTitle	permwatch %@ をダウンロードしました
 upd.notifyBody	permwatch の再起動時にインストールされます。
+crash.title	permwatch が予期せず終了しました
+crash.body	permwatch が %@ にクラッシュしました。短い概要を送っていただくと修正に役立ちます。概要にはユーザ名、ファイル、個人情報は含まれません。
+crash.report	報告する
+crash.ignore	報告しない
+report.includeCrash	直近のクラッシュの概要を追加（個人情報なし）

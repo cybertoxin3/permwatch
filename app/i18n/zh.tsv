@@ -699,3 +699,8 @@ upd.sidebarDownloading	正在下载更新 %@
 upd.sidebarReady	更新已就绪
 upd.notifyTitle	已下载 permwatch %@
 upd.notifyBody	将在你重新启动 permwatch 时安装。
+crash.title	permwatch 意外退出
+crash.body	permwatch %@ 崩溃了。发送一份简短摘要能帮助我们修复。摘要不含用户名、文件或个人数据。
+crash.report	报告
+crash.ignore	不报告
+report.includeCrash	附加上次崩溃的摘要（不含个人数据）

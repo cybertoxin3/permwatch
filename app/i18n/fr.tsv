@@ -699,3 +699,8 @@ upd.sidebarDownloading	Mise à jour en cours %@
 upd.sidebarReady	Mise à jour prête
 upd.notifyTitle	permwatch %@ a été téléchargé
 upd.notifyBody	Il sera installé au redémarrage de permwatch.
+crash.title	permwatch s'est fermé de façon inattendue
+crash.body	permwatch a planté %@. Nous envoyer un court résumé nous aide à corriger le problème. Le résumé ne contient ni nom d'utilisateur, ni fichiers, ni données personnelles.
+crash.report	Signaler
+crash.ignore	Ne pas signaler
+report.includeCrash	Ajouter un résumé du dernier plantage (sans données personnelles)

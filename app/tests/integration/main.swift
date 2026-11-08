@@ -222,6 +222,20 @@ func check(_ cond: Bool, _ name: String) { if cond { print("✓ \(name)") } else
     check(!report.contains(NSUserName()) && !report.contains(NSHomeDirectory()) && !report.localizedCaseInsensitiveContains(host)
           && !report.contains("Serial"), "raporda kullanıcı adı, ev klasörü, bilgisayar adı ve seri numarası yok")
 
+    // Çökme raporları: yalnızca permwatch'ın kendi raporları; özet kişisel bilgi içermez
+    check(CrashReports.isOurs("permwatch-2026-11-09-101500.ips") && !CrashReports.isOurs("permwatch-crashtest-2026-11-09-101500.ips")
+          && !CrashReports.isOurs("permwatch-root-2026-11-09-101500.ips") && !CrashReports.isOurs("Safari-2026-11-09-101500.ips"),
+          "çökme raporu adları doğru seçiliyor")
+    let crashDir = NSHomeDirectory() + "/Library/Logs/DiagnosticReports"
+    if let f = ((try? FileManager.default.contentsOfDirectory(atPath: crashDir)) ?? []).filter({ $0.hasPrefix("permwatch-crashtest-") && $0.hasSuffix(".ips") }).sorted().last,
+       let sum = CrashReports.summary(URL(fileURLWithPath: crashDir + "/" + f)) {
+        print(sum.split(separator: "\n").prefix(8).map { "    | " + $0 }.joined(separator: "\n"))
+        check(sum.contains("Exception:") && sum.contains("Crashed thread"), "çökme özeti hata türünü ve çöken çağrıları içeriyor")
+        check(!sum.contains(NSUserName()) && !sum.contains(NSHomeDirectory()), "çökme özetinde kullanıcı adı ve ev klasörü yok")
+    } else {
+        print("– gerçek çökme raporu yok, özet testi atlandı")
+    }
+
     print(failures == 0 ? "\nTüm bütünleşik testler geçti." : "\n\(failures) bütünleşik test başarısız.")
     exit(failures == 0 ? 0 : 1)
 } }

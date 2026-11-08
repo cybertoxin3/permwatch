@@ -699,3 +699,8 @@ upd.sidebarDownloading	Завантажується оновлення %@
 upd.sidebarReady	Оновлення готове
 upd.notifyTitle	permwatch %@ завантажено
 upd.notifyBody	Встановиться під час перезапуску permwatch.
+crash.title	permwatch несподівано завершився
+crash.body	permwatch аварійно завершився %@. Короткий підсумок допоможе нам виправити помилку. У ньому немає імені користувача, файлів чи особистих даних.
+crash.report	Повідомити
+crash.ignore	Не повідомляти
+report.includeCrash	Додати підсумок останнього збою (без особистих даних)

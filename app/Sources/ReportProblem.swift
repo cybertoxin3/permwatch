@@ -118,6 +118,13 @@ struct ReportProblemView: View {
     @State private var message = ""
     @State private var details = ""
     @State private var copied = false
+    @State private var crashSummary: String?
+    @State private var includeCrash = true
+
+    private var fullDetails: String {
+        guard includeCrash, let c = crashSummary else { return details }
+        return details + "\n\n— Last crash —\n" + c
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -135,23 +142,26 @@ struct ReportProblemView: View {
                 .overlay(RoundedRectangle(cornerRadius: 6).strokeBorder(Color.secondary.opacity(0.3)))
             Text(L("report.detailsTitle")).font(.system(size: 12, weight: .semibold))
             ScrollView {
-                Text(details.isEmpty ? L("report.collecting") : details)
+                Text(details.isEmpty ? L("report.collecting") : fullDetails)
                     .font(.system(size: 10.5, design: .monospaced)).textSelection(.enabled)
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
             .frame(height: 170)
             .padding(8)
             .background(Color(nsColor: .textBackgroundColor), in: RoundedRectangle(cornerRadius: 6))
+            if crashSummary != nil {
+                Toggle(L("report.includeCrash"), isOn: $includeCrash).font(.system(size: 12))
+            }
             Text(L("report.privacy")).font(.system(size: 11)).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
             HStack {
                 Button(copied ? L("report.copied") : L("report.copy")) {
                     NSPasteboard.general.clearContents()
-                    NSPasteboard.general.setString(message + "\n\n" + details, forType: .string)
+                    NSPasteboard.general.setString(message + "\n\n" + fullDetails, forType: .string)
                     copied = true
                 }
                 Spacer()
                 Button(L("confirm.cancel")) { dismiss() }.keyboardShortcut(.cancelAction)
-                Button(L("report.send")) { ProblemReport.compose(message: message, details: details); dismiss() }
+                Button(L("report.send")) { ProblemReport.compose(message: message, details: fullDetails); dismiss() }
                     .buttonStyle(.borderedProminent).keyboardShortcut(.defaultAction).disabled(details.isEmpty)
             }
         }
@@ -159,7 +169,10 @@ struct ReportProblemView: View {
         .frame(width: 560)
         .task {
             // system_profiler birkaç saniye sürebilir: arayüzü bekletmeden topla.
-            let (hw, posture) = await Task.detached { (ProblemReport.hardware(), SecurityPosture.evaluate()) }.value
+            let (hw, posture, crash) = await Task.detached {
+                (ProblemReport.hardware(), SecurityPosture.evaluate(), CrashReports.recent(days: 14).first.flatMap { CrashReports.summary($0.url) })
+            }.value
+            crashSummary = crash
             details = ProblemReport.diagnostics(hw: hw, posture: posture)
         }
     }
