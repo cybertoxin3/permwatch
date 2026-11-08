@@ -264,29 +264,49 @@ enum SystemScanner {
 
     /// `sfltool dumpbtm` çıktısından giriş öğeleri. LaunchAgent/Daemon'lar plist taramasında
     /// zaten var; burada yalnızca uygulama tipi ve oturum açma öğeleri (SMAppService) alınır.
+    /// `sfltool dumpbtm` çıktısından etkin arka plan öğeleri (SMAppService ile eklenen uygulamalar,
+    /// oturum açma öğeleri, ajanlar). Eski tip launchd öğeleri plist taramasıyla zaten bulunur.
+    /// Kapatılmış öğeler atlanır, kullanıcı başına tekrarlar birleştirilir, paket içi yardımcıların
+    /// göreli yolları üst uygulamanın konumuyla çözülür.
     static func btmItems(_ text: String) -> [Extra] {
-        var out: [Extra] = []
+        var records: [[String: String]] = []
         var cur: [String: String] = [:]
-        func flush() {
-            defer { cur = [:] }
-            guard let type = cur["Type"]?.lowercased(), type.hasPrefix("app") || type.hasPrefix("login item"),
-                  let name = cur["Name"] ?? cur["Bundle Identifier"] else { return }
-            let url = cur["URL"].flatMap { PathUtil.fromURL($0) }
-            let exe = cur["Executable Path"].flatMap { PathUtil.fromURL($0) }
-            let key = "btm:" + (cur["Identifier"] ?? name)
-            let disabled = (cur["Disposition"] ?? "").contains("disabled")
-            out.append(Extra(key: key, type: "btmItem", name: name + (disabled ? " ·  ⏸" : ""), location: url,
-                             exec: exe ?? cur["Bundle Identifier"], binary: exe ?? url,
-                             ts: Date().timeIntervalSince1970, note: nil))
-        }
         for raw in text.split(separator: "\n", omittingEmptySubsequences: false) {
             let line = raw.trimmingCharacters(in: .whitespaces)
-            if line.hasPrefix("#"), line.hasSuffix(":") { flush(); continue }
-            if let r = line.range(of: ": ") {
+            if (line.hasPrefix("#") && line.hasSuffix(":")) || line.hasPrefix("====") || line.hasPrefix("Records for") {
+                if !cur.isEmpty { records.append(cur) }
+                cur = [:]
+                continue
+            }
+            if let r = line.range(of: ": "), !line.hasPrefix("#") {
                 cur[String(line[..<r.lowerBound])] = String(line[r.upperBound...])
             }
         }
-        flush()
+        if !cur.isEmpty { records.append(cur) }
+
+        var urlByID: [String: String] = [:]
+        for r in records { if let id = r["Identifier"], let u = r["URL"], u.hasPrefix("file://") { urlByID[id] = u } }
+
+        var out: [Extra] = []
+        var seen = Set<String>()
+        for r in records {
+            guard let type = r["Type"]?.lowercased(),
+                  type.hasPrefix("app ") || type.hasPrefix("login item") || type.hasPrefix("agent") || type.hasPrefix("daemon"),
+                  let name = r["Name"] ?? r["Bundle Identifier"] else { continue }
+            let disp = r["Disposition"] ?? ""
+            guard disp.contains("enabled"), !disp.contains("disabled") else { continue }
+            var url = r["URL"].flatMap { $0 == "(null)" ? nil : $0 }
+            if let u = url, !u.hasPrefix("file://"), let parent = r["Parent Identifier"], let pu = urlByID[parent] {
+                url = (pu.hasSuffix("/") ? pu : pu + "/") + u
+            }
+            let loc = url.flatMap { PathUtil.fromURL($0) }
+            let exe = r["Executable Path"].flatMap { PathUtil.fromURL($0) }
+            let key = "btm:" + (r["Identifier"].map { $0.split(separator: ".", maxSplits: 1).last.map(String.init) ?? $0 } ?? name)
+            guard seen.insert(key).inserted else { continue }
+            out.append(Extra(key: key, type: "btmItem", name: name, location: loc,
+                             exec: exe ?? r["Bundle Identifier"], binary: exe ?? loc,
+                             ts: Date().timeIntervalSince1970, note: nil))
+        }
         return out
     }
 

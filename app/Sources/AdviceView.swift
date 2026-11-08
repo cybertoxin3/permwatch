@@ -19,6 +19,9 @@ final class Advisor: ObservableObject {
                                          "kTCCServiceListenEvent", "kTCCServicePostEvent"]
     nonisolated static let unusedDays = 90
 
+    /// Başarıyla kaldırılan öneriyi listeden çıkar (yeniden tarama bitene kadar geri gelmesin).
+    func drop(_ key: String) { unused.removeAll { $0.key == key } }
+
     func refresh(apps: [AppSummary]) {
         let input = apps.compactMap { a -> (String, String, [String])? in
             let s = a.services.filter(Self.sensitive.contains)
@@ -135,6 +138,7 @@ struct AdviceView: View {
         } message: {
             Text(L("adv.revokeConfirm"))
         }
+        .onChange(of: store.apps.count) { advisor.refresh(apps: store.apps) }
         .onAppear {
             advisor.refresh(apps: store.apps); posture.refresh()
             if Snapshot.section == "advice" {
@@ -253,10 +257,9 @@ struct AdviceView: View {
                              title: u.days == nil ? L("adv.gone.title", u.name) : L("adv.unused.title", u.name), body: body,
                              iconKey: u.key.hasPrefix("/") ? u.key : nil,
                              primary: (L("adv.revoke"), {
-                                 var msgs: [String] = []
-                                 for s in u.services { msgs.append(store.resetPermission(service: s, key: u.key)) }
-                                 message = "\(u.name): " + (msgs.first ?? "")
-                                 done.insert("unused.\(u.key)")
+                                 let r = store.revoke(services: u.services, key: u.key)
+                                 message = "\(u.name): " + r.message
+                                 if r.ok { done.insert("unused.\(u.key)"); advisor.drop(u.key) }
                              })))
         }
         if !packets.running && packets.packets.isEmpty {

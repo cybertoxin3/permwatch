@@ -423,3 +423,4 @@ uninstall.byName	Encontrado solo por el nombre. Puede ser de otra app; selecció
 pkt.storePayload	Guardar también el contenido (puede incluir contraseñas)
 x.unsigned.what	%1$@ no está firmado por un desarrollador conocido e intercambia datos con %2$@. La conexión puede estar cifrada, pero el cifrado solo oculta el contenido: no dice nada sobre si el programa o el servidor son de confianza. El malware habla con sus servidores de control exactamente así.
 x.unsigned.advice	Si instalaste este programa tú mismo (una herramienta de desarrollo, por ejemplo), puede estar bien. Si no lo reconoces, compruébalo con VirusTotal y ciérralo desde Apps en ejecución.
+pkt.waitingRoot	Esperando permiso de administrador…

@@ -4,7 +4,7 @@
 //  - Komut almaz (soket, argümanla komut yok); yalnızca sabit, salt-okunur bir komut listesini
 //    çalıştırır ve sonuçları root'a ait klasöre, başlatan kullanıcıya ait 0600 dosyalar olarak yazar.
 //  - Tek "girdi", kullanıcının kendi klasöründeki capture.on dosyasının var olup olmadığıdır:
-//    yalnızca paket yakalamayı açar/kapatır, içeriği okunmaz.
+//    yalnızca paket yakalamayı açar/kapatır, içeriği okunmaz. Paketler eksiksiz kaydedilir.
 //  - Başlatan permwatch süreci kapanınca kendiliğinden çıkar.
 //
 // Kullanım: permwatch-root <üst-pid>
@@ -91,16 +91,6 @@ func procArgs(_ pid: Int32) -> (args: [String], dyld: [String])? {
     return (args, Array(dyld))
 }
 
-/// capture.on içeriği: "payload=1" ise paket içeriği de saklanır (en fazla 64 bayt okunur, bağlantı izlenmez).
-func flagWantsPayload() -> Bool {
-    let fd = open(flagPath, O_RDONLY | O_NOFOLLOW)
-    guard fd >= 0 else { return false }
-    defer { close(fd) }
-    var buf = [UInt8](repeating: 0, count: 64)
-    let n = read(fd, &buf, buf.count)
-    return n > 0 && String(decoding: buf[0..<n], as: UTF8.self).contains("payload=1")
-}
-
 // MARK: - Paket yakalama (PKTAP: her paketle birlikte gönderen süreç)
 
 final class Capture {
@@ -181,7 +171,7 @@ while true {
     var st = stat()
     let wanted = lstat(flagPath, &st) == 0 && st.st_uid == owner
     if wanted, capture == nil, captureError == nil {
-        do { capture = try Capture(payload: flagWantsPayload()) } catch { captureError = (error as? CaptureError)?.message ?? "\(error)" }
+        do { capture = try Capture(payload: true) } catch { captureError = (error as? CaptureError)?.message ?? "\(error)" }
     } else if !wanted {
         capture?.stop(); capture = nil; captureError = nil
     }

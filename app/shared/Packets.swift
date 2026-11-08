@@ -52,16 +52,8 @@ enum PacketParser {
         let full = ["ARP", "ICMP", "ICMPv6"].contains(p.proto)
         let end = payload ? b.count : (p.payloadStart ?? (full ? b.count : min(b.count, frame + 40)))
         p.payloadStart = end
-        p.hex = Reader(b).hex(frame, max(0, min(160, end - frame)))
-        p.info = maskSecrets(p.info)
+        p.hex = Reader(b).hex(frame, max(0, min(payload ? 1024 : 160, end - frame)))
         return p
-    }
-
-    /// URL ve başlıklardaki parola/anahtar değerlerini gizler.
-    static func maskSecrets(_ s: String) -> String {
-        guard s.range(of: "(?i)(pass|pwd|token|secret|key|auth)", options: .regularExpression) != nil else { return s }
-        return s.replacingOccurrences(of: "(?i)((?:pass(?:word|wd)?|pwd|token|secret|api_?key|access_?key|auth)[a-z_]*=)[^&\\s]+",
-                                      with: "$1****", options: .regularExpression)
     }
 
     private static func parseFrame(link: Int32, _ b: UnsafeRawBufferPointer, wire: Int, ts: Double, seq: Int, frame outFrame: inout Int) -> Packet? {
@@ -427,13 +419,13 @@ final class CaptureEngine: @unchecked Sendable {
     /// Saniyede bundan fazla paket listeye özetlenmez (hepsi yine .pcap dosyasına yazılır).
     var maxPerSecond = 1500
     private(set) var skipped = 0
-    /// false: .pcap dosyasına ve özetlere yalnızca başlıklar yazılır.
-    var storePayload = false
+    /// true (varsayılan): paketler .pcap dosyasına eksiksiz yazılır. false: yalnızca başlıklar.
+    var storePayload = true
     var onPacket: (Packet) -> Void = { _ in }
 
     init(device: String) { self.device = device }
 
-    func open(snaplen: Int32 = 2048) throws {
+    func open(snaplen: Int32 = 65535) throws {
         var err = [CChar](repeating: 0, count: Int(PCAP_ERRBUF_SIZE))
         guard let h = pcap_create(device, &err) else { throw CaptureError(message: String(cString: err)) }
         pcap_set_snaplen(h, snaplen)

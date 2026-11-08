@@ -15,7 +15,9 @@ The only exception is one you trigger yourself. **"Check with VirusTotal"** open
 | Packet capture of the current session | `capture.pcap` in one of the folders above | your user account only (0600) |
 | Saved captures (only if you choose a folder) | the folder you chose | your user account only (0600) |
 
-**Packet contents are not saved by default.** Only headers are written: who talked to whom, when, which protocol, and the DNS name or TLS server name. The data inside packets, which could include passwords sent without encryption, is cut off before anything is written to disk. You can turn on **"Also save packet contents"** for a capture; that setting is off by default.
+**Packet captures are saved in full and nothing is masked.** That includes the data inside packets, so a capture can contain passwords that some app sent without encryption. Capture files are readable only by your user account (0600). Keep that in mind before you send a capture to someone.
+
+Packet capture always runs as root through the administrator helper (Apple's PKTAP), so every packet is recorded with the process that sent it.
 
 While administrator mode is capturing, a temporary live file (`packets.jsonl`) holds packet summaries. It is deleted when the capture stops.
 

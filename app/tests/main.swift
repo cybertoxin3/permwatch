@@ -36,13 +36,14 @@ if let p = parse(f1) {
     check(p.proc == "curl" && p.pid == 4242 && p.dir == "out" && p.iface == "utun4", "PKTAP: süreç, yön, arayüz")
     check(p.proto == "HTTP" && p.host == "neverssl.com", "HTTP isteği ve Host")
     check(p.flags == ["pkt.flag.cleartextCreds"], "şifresiz parola tespiti")
-    check(!p.info.contains("hunter2") && p.info.contains("password=****"), "URL'deki parola gizlenir")
+    check(p.info.contains("password=hunter2"), "hiçbir değer gizlenmez")
     check(p.payloadStart == 156 + 4 + 20 + 20, "uygulama verisinin başlangıcı")
     check((p.hex?.count ?? 0) == (4 + 20 + 20) * 2, "içerik kapalıyken hex yalnızca başlıklar")
     check(!(p.hex ?? "").contains("68756e74657232"), "parola hex dökümünde yok")
 } else { check(false, "HTTP paketi ayrıştırılamadı") }
 if let p = parse(f1, payload: true) {
-    check((p.hex?.count ?? 0) == min(160, f1.count - 156) * 2, "içerik açıkken çerçevenin ilk 160 baytı")
+    check((p.hex?.count ?? 0) == (f1.count - 156) * 2, "içerik açıkken çerçevenin tamamı")
+    check((p.hex ?? "").contains("68756e74657232"), "içerik açıkken parola dökümde")
 }
 
 // DNS yanıtı (sıkıştırmalı ad)
@@ -86,9 +87,8 @@ for _ in 0..<2000 {
 }
 check(true, "rastgele bozulmuş 2000 pakette çökme yok")
 
-// Gizleme
-check(PacketParser.maskSecrets("GET /a?token=abc&x=1") == "GET /a?token=****&x=1", "token gizleme")
-check(PacketParser.maskSecrets("GET /a?q=hello") == "GET /a?q=hello", "zararsız sorgu değişmez")
+// Motor varsayılanı: paketler eksiksiz kaydedilir
+check(CaptureEngine(device: "x").storePayload, "yakalama varsayılan olarak tam içerik kaydeder")
 
 // İzleyiciler
 check(Trackers.match("www.google-analytics.com")?.company == "Google", "izleyici: alt alan adı")

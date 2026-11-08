@@ -54,15 +54,15 @@ struct PacketsView: View {
                 if cap.running {
                     Button { cap.stop() } label: { Label(L("pkt.stop"), systemImage: "stop.fill") }
                         .tint(.red)
+                } else if cap.waitingForRoot {
+                    HStack(spacing: 6) {
+                        ProgressView().controlSize(.small)
+                        Text(L("pkt.waitingRoot")).font(.system(size: 12))
+                        Button(L("confirm.cancel")) { cap.cancelWaiting() }.controlSize(.small)
+                    }
                 } else {
                     Button { cap.start() } label: { Label(L("pkt.start"), systemImage: "record.circle") }
                         .buttonStyle(.borderedProminent)
-                }
-                if !root.active {
-                    Picker("", selection: $cap.localDevice) {
-                        ForEach(devices.contains(cap.localDevice) ? devices : [cap.localDevice] + devices, id: \.self) { Text($0).tag($0) }
-                    }
-                    .labelsHidden().frame(width: 110).disabled(cap.running)
                 }
                 Picker("", selection: $showConversations) {
                     Text(L("pkt.packets")).tag(false)
@@ -78,8 +78,6 @@ struct PacketsView: View {
                         Button(L("pkt.saveToFolder", PathUtil.abbreviate(dir))) { cap.copyCapture(toFolder: dir) }
                             .disabled(cap.pcapURL == nil)
                     }
-                    Divider()
-                    Toggle(L("pkt.storePayload"), isOn: $cap.storePayload).disabled(cap.running)
                     Divider()
                     Button(cap.saveFolder == nil ? L("pkt.autoFolder") : L("pkt.changeFolder")) { cap.chooseSaveFolder() }
                     if let dir = cap.saveFolder {
@@ -148,10 +146,7 @@ struct PacketsView: View {
         .padding(.horizontal, 16).padding(.vertical, 7)
     }
 
-    private var modeText: String {
-        if root.active { return L("pkt.modeRoot") }
-        return L("pkt.modeLocal", cap.localDevice)
-    }
+    private var modeText: String { L("pkt.modeRoot") }
 
     private var subtitle: String {
         var s = L("pkt.summary", cap.totalPackets.formatted(), ByteCountFormatter.string(fromByteCount: Int64(cap.totalBytes), countStyle: .file))
@@ -168,9 +163,7 @@ struct PacketsView: View {
                 if cap.needsRoot { Text(L("pkt.needRootBody")).font(.system(size: 12)).foregroundStyle(.secondary) }
             }
             Spacer()
-            if !root.active {
-                Button(L("pkt.enableRoot")) { root.enable() }.disabled(root.starting)
-            }
+            Button(L("pkt.start")) { cap.start() }.disabled(cap.waitingForRoot)
         }
         .padding(14)
         .background(Color.orange.opacity(0.08))
@@ -183,8 +176,7 @@ struct PacketsView: View {
             Text(L("pkt.emptyBody"))
         } actions: {
             if !cap.running {
-                Button(L("pkt.start")) { cap.start() }.buttonStyle(.borderedProminent)
-                if !root.active { Button(L("pkt.enableRoot")) { root.enable() }.disabled(root.starting) }
+                Button(L("pkt.start")) { cap.start() }.buttonStyle(.borderedProminent).disabled(cap.waitingForRoot)
             }
         }
     }

@@ -311,11 +311,20 @@ final class Store: ObservableObject {
     /// TCC iznini sıfırlar (tccutil). service nil ise uygulamanın bütün izinleri.
     /// İzin VERMEK mümkün değildir; macOS buna hiçbir uygulamaya izin vermez.
     func resetPermission(service: String?, key: String) -> String {
-        guard let id = bundleID(forKey: key) else { return L("reset.noBundle") }
-        let svc = service.map { $0.replacingOccurrences(of: "kTCCService", with: "") } ?? "All"
-        let (code, out) = Shell.run("/usr/bin/tccutil", ["reset", svc, id])
+        revoke(services: [service], key: key).message
+    }
+
+    /// Bir veya birden çok izni sıfırlar; hepsi başarılıysa ok = true.
+    func revoke(services: [String?], key: String) -> (ok: Bool, message: String) {
+        guard let id = bundleID(forKey: key) else { return (false, L("reset.noBundle")) }
+        var failures: [String] = []
+        for s in services {
+            let svc = s.map { $0.replacingOccurrences(of: "kTCCService", with: "") } ?? "All"
+            let (ok, out) = TCCReset.reset(service: svc, bundleID: id)
+            if !ok { failures.append(out.trimmingCharacters(in: .whitespacesAndNewlines)) }
+        }
         scanSystem()
-        return code == 0 ? L("reset.done") : L("reset.failed", out)
+        return failures.isEmpty ? (true, L("reset.done")) : (false, L("reset.failed", failures.joined(separator: "; ")))
     }
 
     func uninstall(_ items: [Uninstaller.Candidate], key: String, resetPermissions: Bool,
@@ -344,4 +353,53 @@ final class Store: ObservableObject {
 
 extension FileManager {
     func exists(_ p: String?) -> Bool { p.map { fileExists(atPath: $0) } ?? false }
+}
+
+
+/// tccutil ile izin sıfırlama. tccutil yalnızca Mac'te kurulu uygulamaların iznini sıfırlayabilir
+/// ("No such bundle identifier"); silinmiş bir uygulamanın kayıtlı kalan izni için aynı kimlikle
+/// boş, geçici bir paket oluşturulur, macOS'a tanıtılır, izin sıfırlanır ve paket hemen silinir.
+enum TCCReset {
+    static let lsregister = "/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister"
+
+    static func reset(service: String, bundleID id: String) -> (Bool, String) {
+        let (code, out) = Shell.run("/usr/bin/tccutil", ["reset", service, id])
+        if code == 0 { return (true, out) }
+        guard out.contains("No such bundle identifier"), NSWorkspace.shared.urlForApplication(withBundleIdentifier: id) == nil,
+              id.allSatisfy({ $0.isLetter || $0.isNumber || ".-_".contains($0) }), !id.isEmpty, id.count < 200 else {
+            return (false, out)
+        }
+        return withStub(id) { Shell.run("/usr/bin/tccutil", ["reset", service, id]) }
+    }
+
+    private static func withStub(_ id: String, _ body: () -> (Int32, String)) -> (Bool, String) {
+        let fm = FileManager.default
+        let dir = fm.homeDirectoryForCurrentUser.appendingPathComponent("Library/Application Support/permwatch/stubs")
+        let app = dir.appendingPathComponent(id + ".app")
+        defer {
+            Shell.run(lsregister, ["-u", app.path])
+            try? fm.removeItem(at: dir)
+        }
+        do {
+            try? fm.removeItem(at: app)
+            try fm.createDirectory(at: app.appendingPathComponent("Contents/MacOS"), withIntermediateDirectories: true)
+            let info: [String: Any] = ["CFBundleIdentifier": id, "CFBundleName": "permwatch-stub", "CFBundleExecutable": "stub",
+                                       "CFBundlePackageType": "APPL", "CFBundleVersion": "1", "LSUIElement": true]
+            let plist = try PropertyListSerialization.data(fromPropertyList: info, format: .xml, options: 0)
+            try plist.write(to: app.appendingPathComponent("Contents/Info.plist"))
+            let exe = app.appendingPathComponent("Contents/MacOS/stub")
+            try Data("#!/bin/sh\nexit 0\n".utf8).write(to: exe)
+            try fm.setAttributes([.posixPermissions: 0o755], ofItemAtPath: exe.path)
+        } catch {
+            return (false, error.localizedDescription)
+        }
+        Shell.run("/usr/bin/codesign", ["-f", "-s", "-", app.path])
+        Shell.run(lsregister, ["-f", "-R", app.path])
+        for _ in 0..<20 {
+            if NSWorkspace.shared.urlForApplication(withBundleIdentifier: id) != nil { break }
+            Thread.sleep(forTimeInterval: 0.25)
+        }
+        let (code, out) = body()
+        return (code == 0, out)
+    }
 }

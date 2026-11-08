@@ -18,7 +18,6 @@ final class PacketMonitor: ObservableObject {
     @Published private(set) var totalBytes = 0
     @Published private(set) var totalPackets = 0
     @Published private(set) var skipped = 0
-    @Published var localDevice: String = PacketMonitor.defaultDevice()
     /// IP → ad (yakalanan DNS yanıtlarından ve TLS SNI'dan, Wireshark'ın "yakalanan DNS ile çöz" seçeneği gibi).
     @Published private(set) var names: [String: String] = [:]
     /// Her yakalama durdurulunca .pcap dosyasının tarih-saatli kopyasının konacağı klasör (boşsa kapalı).
@@ -26,10 +25,9 @@ final class PacketMonitor: ObservableObject {
         didSet { UserDefaults.standard.set(saveFolder, forKey: Self.saveFolderKey) }
     }
     @Published private(set) var lastSaved: URL?
-    /// Paket içeriğini de sakla (varsayılan kapalı: yalnızca başlıklar; parolalar diske yazılmaz).
-    @Published var storePayload = UserDefaults.standard.bool(forKey: "captureStorePayload") {
-        didSet { UserDefaults.standard.set(storePayload, forKey: "captureStorePayload") }
-    }
+    /// Yönetici izni bekleniyor (yakalama her zaman root olarak çalışır).
+    @Published private(set) var waitingForRoot = false
+    private var rootWait: Timer?
     @Published private(set) var saveError: String?
     nonisolated static let saveFolderKey = "captureSaveFolder"
 
@@ -77,52 +75,48 @@ final class PacketMonitor: ObservableObject {
 
     static func devices() -> [String] { CaptureEngine.devices().map(\.name) }
 
-    /// İnternete giden trafiğin geçtiği arayüz (VPN açıksa tünel arayüzü).
-    nonisolated static func defaultDevice() -> String {
-        let out = Shell.run("/sbin/route", ["-n", "get", "1.1.1.1"]).1
-        for line in out.split(separator: "\n") where line.contains("interface:") {
-            return line.split(separator: ":").last.map { $0.trimmingCharacters(in: .whitespaces) } ?? "en0"
-        }
-        return "en0"
-    }
-
     // MARK: Başlat / durdur
 
+    /// Yakalama her zaman yönetici modunda (root, PKTAP: bütün arayüzler, her pakette gönderen süreç)
+    /// çalışır. Yönetici modu kapalıysa önce macOS'un şifre penceresi açılır, yardımcı hazır olunca başlar.
     func start() {
-        guard !running else { return }
+        guard !running, !waitingForRoot else { return }
         error = nil
         lastSaved = nil
         saveError = nil
         needsRoot = false
-        startedAt = Date()
-        if RootBridge.shared.active {
-            try? FileManager.default.createDirectory(at: Self.userDir, withIntermediateDirectories: true)
-            FileManager.default.createFile(atPath: Self.flagURL.path, contents: Data((storePayload ? "payload=1" : "payload=0").utf8),
-                                           attributes: [.posixPermissions: 0o600])
-            tail = Tail(path: RootBridge.packetsPath, notBefore: startedAt)
-            mode = .root
-            device = "pktap"
-        } else {
-            let e = CaptureEngine(device: localDevice)
-            do {
-                try e.open()
-            } catch {
-                let msg = (error as? CaptureError)?.message ?? "\(error)"
-                needsRoot = msg.localizedCaseInsensitiveContains("permission") || msg.contains("Operation not permitted")
-                self.error = msg
-                return
+        let root = RootBridge.shared
+        if root.active { beginRoot(); return }
+        waitingForRoot = true
+        root.enable()
+        let began = Date()
+        rootWait = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] t in
+            MainActor.assumeIsolated {
+                guard let self else { t.invalidate(); return }
+                if root.active {
+                    t.invalidate(); self.waitingForRoot = false; self.beginRoot()
+                } else if let e = root.lastError, !root.starting {
+                    t.invalidate(); self.waitingForRoot = false; self.needsRoot = true; self.error = e
+                } else if Date().timeIntervalSince(began) > 120 {
+                    t.invalidate(); self.waitingForRoot = false; self.needsRoot = true; self.error = L("pkt.rootGone")
+                }
             }
-            try? FileManager.default.createDirectory(at: Self.userDir, withIntermediateDirectories: true)
-            e.storePayload = storePayload
-            e.dump(to: Self.localPcap.path)
-            chmod(Self.localPcap.path, 0o600)
-            let box = inbox
-            e.onPacket = { box.put($0) }
-            e.start()
-            engine = e
-            mode = .local
-            device = localDevice
         }
+    }
+
+    func cancelWaiting() {
+        rootWait?.invalidate()
+        waitingForRoot = false
+    }
+
+    private func beginRoot() {
+        startedAt = Date()
+        try? FileManager.default.createDirectory(at: Self.userDir, withIntermediateDirectories: true)
+        FileManager.default.createFile(atPath: Self.flagURL.path, contents: Data("payload=1".utf8),
+                                       attributes: [.posixPermissions: 0o600])
+        tail = Tail(path: RootBridge.packetsPath, notBefore: startedAt)
+        mode = .root
+        device = "pktap"
         running = true
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { [weak self] _ in
             MainActor.assumeIsolated { self?.tick() }
