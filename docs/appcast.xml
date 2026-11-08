@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
+    <channel>
+        <title>permwatch</title>
+        <link>https://github.com/cybertoxin3/permwatch</link>
+        <item>
+            <title>permwatch 0.4.0</title>
+            <pubDate>Sun, 08 Nov 2026 21:17:41 +0000</pubDate>
+            <sparkle:version>5</sparkle:version>
+            <sparkle:shortVersionString>0.4.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[**permwatch 0.4.0**
+- Updates now arrive inside the app: see what's new, tap Update, and watch the download progress.
+- Simple mode: only the sections you need. Turn on Advanced mode for the rest.
+- A short welcome guide on first launch.
+- Settings are now inside the main window too.
+- Help › Report a Problem: send us an email with the technical details already filled in.
+
+**Türkçe**
+- Güncellemeler artık uygulamanın içinde: neler yeni, Güncelle'ye bas, indirmeyi yüzdesiyle izle.
+- Basit mod: yalnızca ihtiyacın olan bölümler. Gerisi için Gelişmiş mod.
+- İlk açılışta kısa bir rehber. Ayarlar artık ana pencerede de.
+- Yardım › Bize Bildir: teknik bilgileri hazır bir e-postayla bize yaz.]]></description>
+            <sparkle:fullReleaseNotesLink>https://github.com/cybertoxin3/permwatch/releases/tag/v0.4.0</sparkle:fullReleaseNotesLink>
+            <enclosure url="https://github.com/cybertoxin3/permwatch/releases/download/v0.4.0/permwatch-0.4.0.zip" sparkle:edSignature="c5hg3Vj1+NVyhKtYKnkBa0r1lzTQpl/IvARBDgVH+cLEJoy6SX8hWZWedHrs9IEoefie8PyOC2SXSeRL6JHUDA==" length="5449775" type="application/octet-stream"/>
+        </item>
+    </channel>
+</rss>
