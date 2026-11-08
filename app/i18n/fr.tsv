@@ -662,3 +662,15 @@ nav.advancedMode	Mode avancé
 nav.advancedHelp	Affiche la chronologie, les processus, le réseau, la capture de paquets et le terminal.
 upd.checkNow	Rechercher les mises à jour…
 upd.auto	Télécharger et installer les mises à jour automatiquement
+report.menu	Signaler un problème…
+report.title	Signaler un problème
+report.lead	Dis-nous ce qui s'est passé. Ton app de messagerie ouvre un message pour %@ avec les détails ci-dessous, pour que nous comprenions plus vite. Rien n'est envoyé tant que tu n'appuies pas sur Envoyer dans ta messagerie.
+report.placeholder	Que s'est-il passé ? Qu'attendais-tu ?
+report.detailsTitle	Détails techniques ajoutés à l'e-mail
+report.collecting	Collecte…
+report.privacy	Aucun nom d'utilisateur, nom d'ordinateur, numéro de série, fichier ou historique de navigation n'est inclus. Tu peux modifier l'e-mail avant de l'envoyer.
+report.copy	Copier
+report.copied	Copié
+report.send	Écrire l'e-mail
+report.subject	signalement de problème
+report.settingDesc	Un bug ou quelque chose de pas clair ? Écris-nous un e-mail avec les détails techniques déjà remplis.

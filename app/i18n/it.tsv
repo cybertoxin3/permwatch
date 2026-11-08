@@ -662,3 +662,15 @@ nav.advancedMode	Modalità avanzata
 nav.advancedHelp	Mostra cronologia, processi, rete, cattura dei pacchetti e terminale.
 upd.checkNow	Controlla aggiornamenti…
 upd.auto	Scarica e installa gli aggiornamenti automaticamente
+report.menu	Segnala un problema…
+report.title	Segnala un problema
+report.lead	Raccontaci cosa è successo. La tua app di posta apre un messaggio per %@ con i dettagli qui sotto, così capiamo il problema più in fretta. Non viene inviato nulla finché non premi Invia nella tua app di posta.
+report.placeholder	Cosa è successo? Cosa ti aspettavi?
+report.detailsTitle	Dettagli tecnici aggiunti all'e-mail
+report.collecting	Raccolta in corso…
+report.privacy	Non vengono inclusi nome utente, nome del computer, numero di serie, file o cronologia di navigazione. Puoi modificare l'e-mail prima di inviarla.
+report.copy	Copia
+report.copied	Copiato
+report.send	Scrivi e-mail
+report.subject	segnalazione di problema
+report.settingDesc	Hai trovato un errore o qualcosa di poco chiaro? Scrivici un'e-mail con i dettagli tecnici già compilati.

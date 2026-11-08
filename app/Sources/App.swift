@@ -61,6 +61,7 @@ struct PermwatchApp: App {
             CommandGroup(after: .appInfo) {
                 Button(L("upd.checkNow")) { updates.checkNow() }
             }
+            CommandGroup(replacing: .help) { ReportMenuButton() }
         }
 
         MenuBarExtra {
@@ -73,6 +74,13 @@ struct PermwatchApp: App {
             Image(systemName: store.openAlerts > 0 ? "exclamationmark.shield.fill" : "checkmark.shield")
         }
         .menuBarExtraStyle(.window)
+
+        Window(L("report.title"), id: "report") {
+            ReportProblemView()
+                .preferredColorScheme(theme.colorScheme)
+        }
+        .windowResizability(.contentSize)
+        .defaultPosition(.center)
 
         Settings {
             SettingsView()

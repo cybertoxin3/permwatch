@@ -15,6 +15,8 @@ The malware scan and real-time protection run entirely on your Mac with Apple's 
 
 **Quarantine.** Quarantined files are kept in `~/Library/Application Support/permwatch/Quarantine` with execution permissions removed, until you restore or delete them.
 
+**Report a Problem** (Help menu and Settings) opens a message in your own mail app, addressed to the developer, with technical details already filled in: permwatch version, Mac model and chip, memory, free disk space, macOS version, language and region, security settings (SIP, Gatekeeper, FileVault, firewall), which permwatch permissions and protections are on, signature counts, and the date of the last scan. It never includes your user name, computer name, serial number, file names or browsing data. You see the full text before anything is sent, you can edit it, and nothing is sent unless you press Send in your mail app.
+
 The only exception is one you trigger yourself. **"Check with VirusTotal"** opens your browser at `virustotal.com/gui/file/<SHA-256>`. Only the file's hash is in the address; the file itself is never uploaded.
 
 ## What is stored on your Mac

@@ -662,3 +662,15 @@ nav.advancedMode	高级模式
 nav.advancedHelp	显示时间线、进程、网络、数据包捕获和终端。
 upd.checkNow	检查更新…
 upd.auto	自动下载并安装更新
+report.menu	报告问题…
+report.title	报告问题
+report.lead	告诉我们发生了什么。你的邮件应用会打开一封发给 %@ 的邮件，并附上下面的信息，帮助我们更快了解问题。在你点按邮件应用中的“发送”之前，不会发送任何内容。
+report.placeholder	发生了什么？你原本期望怎样？
+report.detailsTitle	附加到邮件的技术信息
+report.collecting	正在收集…
+report.privacy	不会包含用户名、电脑名称、序列号、文件或浏览记录。发送前你可以编辑邮件。
+report.copy	拷贝
+report.copied	已拷贝
+report.send	撰写邮件
+report.subject	问题报告
+report.settingDesc	发现错误或不清楚的地方？发一封已填好技术信息的邮件给我们。

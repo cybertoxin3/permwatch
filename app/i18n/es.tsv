@@ -662,3 +662,15 @@ nav.advancedMode	Modo avanzado
 nav.advancedHelp	Muestra la cronología, los procesos, la red, la captura de paquetes y el terminal.
 upd.checkNow	Buscar actualizaciones…
 upd.auto	Descargar e instalar actualizaciones automáticamente
+report.menu	Informar de un problema…
+report.title	Informar de un problema
+report.lead	Cuéntanos qué pasó. Tu app de correo abrirá un mensaje para %@ con los detalles de abajo, para que entendamos el problema más rápido. No se envía nada hasta que pulses Enviar en tu app de correo.
+report.placeholder	¿Qué pasó? ¿Qué esperabas?
+report.detailsTitle	Detalles técnicos añadidos al correo
+report.collecting	Recopilando…
+report.privacy	No se incluyen nombre de usuario, nombre del ordenador, número de serie, archivos ni historial de navegación. Puedes editar el correo antes de enviarlo.
+report.copy	Copiar
+report.copied	Copiado
+report.send	Escribir correo
+report.subject	informe de problema
+report.settingDesc	¿Encontraste un error o algo poco claro? Escríbenos un correo con los detalles técnicos ya rellenados.

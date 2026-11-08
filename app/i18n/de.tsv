@@ -662,3 +662,15 @@ nav.advancedMode	Erweiterter Modus
 nav.advancedHelp	Zeigt Verlauf, Prozesse, Netzwerk, Paketaufzeichnung und Terminal.
 upd.checkNow	Nach Updates suchen …
 upd.auto	Updates automatisch laden und installieren
+report.menu	Problem melden …
+report.title	Problem melden
+report.lead	Beschreibe, was passiert ist. Deine Mail-App öffnet eine Nachricht an %@ mit den Details unten, damit wir das Problem schneller verstehen. Es wird nichts gesendet, bevor du in der Mail-App auf Senden klickst.
+report.placeholder	Was ist passiert? Was hast du erwartet?
+report.detailsTitle	Technische Angaben in der E-Mail
+report.collecting	Wird gesammelt …
+report.privacy	Benutzername, Computername, Seriennummer, Dateien und Browserdaten werden nicht angehängt. Du kannst die E-Mail vor dem Senden bearbeiten.
+report.copy	Kopieren
+report.copied	Kopiert
+report.send	E-Mail schreiben
+report.subject	Problemmeldung
+report.settingDesc	Fehler gefunden oder etwas unklar? Schreib uns eine E-Mail, in der die technischen Angaben schon ausgefüllt sind.

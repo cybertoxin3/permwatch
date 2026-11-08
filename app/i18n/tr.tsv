@@ -662,3 +662,15 @@ nav.advancedMode	Gelişmiş mod
 nav.advancedHelp	Zaman çizelgesini, süreçleri, ağı, paket yakalamayı ve terminali gösterir.
 upd.checkNow	Güncellemeleri Denetle…
 upd.auto	Güncellemeleri otomatik indir ve kur
+report.menu	Bize Bildir…
+report.title	Bize bildir
+report.lead	Ne olduğunu anlat. Posta uygulaman %@ adresine, aşağıdaki bilgilerin eklendiği bir ileti açar; böylece sorunu daha hızlı anlarız. Posta uygulamanda Gönder'e basmadan hiçbir şey gönderilmez.
+report.placeholder	Ne oldu? Ne olmasını bekliyordun?
+report.detailsTitle	E-postaya eklenen teknik bilgiler
+report.collecting	Toplanıyor…
+report.privacy	Kullanıcı adı, bilgisayar adı, seri numarası, dosyaların ya da tarama geçmişin eklenmez. Göndermeden önce e-postayı düzenleyebilirsin.
+report.copy	Kopyala
+report.copied	Kopyalandı
+report.send	E-posta Yaz
+report.subject	sorun bildirimi
+report.settingDesc	Bir hata ya da anlaşılmayan bir şey mi buldun? Teknik bilgileri hazır doldurulmuş bir e-postayla bize yaz.

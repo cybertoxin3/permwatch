@@ -662,3 +662,15 @@ nav.advancedMode	Advanced mode
 nav.advancedHelp	Shows the timeline, processes, network, packet capture and terminal.
 upd.checkNow	Check for Updates…
 upd.auto	Download and install updates automatically
+report.menu	Report a Problem…
+report.title	Report a problem
+report.lead	Tell us what happened. Your mail app opens a message to %@ with the details below, so we can understand the problem faster. Nothing is sent until you press Send in your mail app.
+report.placeholder	What happened? What did you expect?
+report.detailsTitle	Technical details added to the email
+report.collecting	Collecting…
+report.privacy	No user name, computer name, serial number, files or browsing data are included. You can edit the email before sending it.
+report.copy	Copy
+report.copied	Copied
+report.send	Write Email
+report.subject	problem report
+report.settingDesc	Found a bug or something unclear? Send us an email with the technical details already filled in.

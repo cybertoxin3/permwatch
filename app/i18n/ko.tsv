@@ -662,3 +662,15 @@ nav.advancedMode	고급 모드
 nav.advancedHelp	타임라인, 프로세스, 네트워크, 패킷 캡처, 터미널을 표시합니다.
 upd.checkNow	업데이트 확인…
 upd.auto	업데이트 자동 다운로드 및 설치
+report.menu	문제 신고…
+report.title	문제 신고
+report.lead	무슨 일이 있었는지 알려 주세요. 메일 앱이 아래 정보가 담긴 %@ 앞 메시지를 열어 문제를 더 빨리 파악할 수 있습니다. 메일 앱에서 보내기를 누르기 전에는 아무것도 전송되지 않습니다.
+report.placeholder	무슨 일이 있었나요? 어떻게 되기를 기대했나요?
+report.detailsTitle	메일에 추가되는 기술 정보
+report.collecting	수집 중…
+report.privacy	사용자 이름, 컴퓨터 이름, 일련 번호, 파일, 검색 기록은 포함되지 않습니다. 보내기 전에 메일을 수정할 수 있습니다.
+report.copy	복사
+report.copied	복사됨
+report.send	메일 작성
+report.subject	문제 신고
+report.settingDesc	버그나 이해하기 어려운 점이 있나요? 기술 정보가 미리 채워진 메일로 알려 주세요.

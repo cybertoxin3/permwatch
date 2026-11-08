@@ -662,3 +662,15 @@ nav.advancedMode	詳細モード
 nav.advancedHelp	タイムライン、プロセス、ネットワーク、パケットキャプチャ、ターミナルを表示します。
 upd.checkNow	アップデートを確認…
 upd.auto	アップデートを自動でダウンロードしてインストール
+report.menu	問題を報告…
+report.title	問題を報告
+report.lead	何が起きたかお知らせください。メールアプリで %@ 宛てのメッセージが開き、下の詳細が入力済みになるので、問題を早く把握できます。メールアプリで送信を押すまで何も送られません。
+report.placeholder	何が起きましたか？どうなると思っていましたか？
+report.detailsTitle	メールに追加される技術情報
+report.collecting	収集中…
+report.privacy	ユーザ名、コンピュータ名、シリアル番号、ファイル、閲覧履歴は含まれません。送信前にメールを編集できます。
+report.copy	コピー
+report.copied	コピーしました
+report.send	メールを作成
+report.subject	問題の報告
+report.settingDesc	不具合やわかりにくい点がありましたか？技術情報が入力済みのメールでお知らせください。

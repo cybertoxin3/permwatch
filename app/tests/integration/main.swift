@@ -207,6 +207,15 @@ func check(_ cond: Bool, _ name: String) { if cond { print("✓ \(name)") } else
     check(!RansomDetector.suspicious(path: rdir + "/film.mp4.part", renamed: true), "yarım indirme (.part) şüpheli değil")
     try? FileManager.default.removeItem(atPath: rdir)
 
+    // "Bize bildir": gerekli bilgiler var, kişisel bilgiler yok
+    let report = ProblemReport.diagnostics(hw: ProblemReport.hardware(), posture: SecurityPosture.evaluate())
+    print(report.split(separator: "\n").map { "    | " + $0 }.joined(separator: "\n"))
+    check(["Version:", "Model:", "Chip:", "macOS:", "Memory:", "Full Disk Access:", "Real-time:", "Signatures:"].allSatisfy(report.contains),
+          "rapor sürüm, model, çip, macOS ve koruma durumunu içeriyor")
+    let host = ProcessInfo.processInfo.hostName.components(separatedBy: ".").first ?? "-"
+    check(!report.contains(NSUserName()) && !report.contains(NSHomeDirectory()) && !report.localizedCaseInsensitiveContains(host)
+          && !report.contains("Serial"), "raporda kullanıcı adı, ev klasörü, bilgisayar adı ve seri numarası yok")
+
     print(failures == 0 ? "\nTüm bütünleşik testler geçti." : "\n\(failures) bütünleşik test başarısız.")
     exit(failures == 0 ? 0 : 1)
 } }

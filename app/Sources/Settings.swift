@@ -161,6 +161,17 @@ struct SettingsView: View {
             }
 
             Section {
+                HStack {
+                    Text(L("report.settingDesc")).font(.system(size: 11.5)).foregroundStyle(.secondary)
+                        .fixedSize(horizontal: false, vertical: true)
+                    Spacer()
+                    ReportMenuButton()
+                }
+            } header: {
+                Text(L("report.title"))
+            }
+
+            Section {
                 Toggle(L("upd.setting"), isOn: $updates.enabled)
                 if updates.usesSparkle && updates.enabled { Toggle(L("upd.auto"), isOn: $updates.autoInstall) }
                 Text(L("upd.settingDesc", UpdateChecker.current)).font(.system(size: 11)).foregroundStyle(.secondary)
