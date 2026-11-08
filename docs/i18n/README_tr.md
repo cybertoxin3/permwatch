@@ -57,6 +57,7 @@ permwatch zinciri birleştirir ve sana tek bir net uyarı gösterir.
 ## Neler yapar
 
 - 🐞 **Zararlı taraması:** Uygulamalarını, başlangıç öğelerini, çalışan programları ve indirilenleri **Apple'ın kendi XProtect zararlı imzalarıyla** (macOS'un güncel tuttuğu imzalar) açık kaynak YARA motoru kullanarak tarar. Hızlı tarama yaklaşık 10 saniye sürer. Yeni indirilenler otomatik taranır; bulunan zararlı, onu başlatan başlangıç öğeleriyle birlikte Çöp Sepeti'ne taşınabilir.
+- 🛡 **Genel bakış ve tek tıkla kontrol:** Açılışta net bir hüküm verir. "Mac'imi Kontrol Et" zararlı taramasını yapar ve şunları denetler: tarayıcı ele geçirme (her siteyi okuyabilen uzantılar, zorla uygulanan tarayıcı politikaları, değiştirilmiş arama motoru veya başlangıç sayfası), araya girme (güvenilen kök sertifikalar, yapılandırma profilleri, proxy, bilinmeyen DNS, VPN yapılandırmaları), uzaktan erişim (Ekran Paylaşımı, SSH, TeamViewer/AnyDesk/ToDesk benzeri araçlar) ve casus yazılımı andıran izin kombinasyonları. Her bulgunun bir düzeltme düğmesi vardır.
 - 💡 **Öneriler:** Bütün bulguları sade dille açıklayan ve tek tıkla düzeltme sunan tek ekran. Silinmiş uygulamalardan kalan izinleri ve aylardır açmadığın uygulamalardaki izinleri bulur.
 - 🕒 **Zaman çizelgesi:** Her izin değişikliği ve her yeni başlangıç öğesi; tarihi ve sorumlu süreciyle
 - 🚨 **Uyarılar:** İmzasız başlangıç programları, şüpheli izin örüntüleri ve Gatekeeper atlatma girişimleri. Yeni bir şey olduğunda ekranın üstünde küçük bir pencere açılır.

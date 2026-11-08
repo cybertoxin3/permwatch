@@ -480,3 +480,69 @@ scan.about	permwatch 使用开源 YARA 引擎,将文件与 Apple 自己的 XProt
 scan.stale	上次扫描已超过一周
 scan.adviceBody	快速扫描约需 10 秒,会用 Apple 自己的恶意软件签名检查应用、登录项和正在运行的程序。
 scan.progressFull	已检查 %1$@ 个文件 · 已扫描 %2$@ 个程序和脚本
+nav.overview	概览
+nav.yourMac	你的 Mac
+nav.advanced	高级
+ov.check	检查我的 Mac
+ov.checking	正在检查…
+ov.good	你的 Mac 状况良好
+ov.goodBody	没有恶意软件、被劫持的浏览器、意外的证书或远程访问。permwatch 会继续监控。
+ov.issues	%1$@ 项紧急 · %2$@ 项待检查
+ov.lastCheck	上次检查 %@
+ov.never	尚未检查
+ov.cat.browser	浏览器
+ov.cat.mitm	拦截
+ov.cat.remote	远程访问
+ov.cat.spyware	间谍软件迹象
+fix.done	已完成。
+fix.notFound	未找到需要更改的内容。
+chk.ext.title	%1$@(%2$@ 扩展)
+chk.ext.allSites	它可以读取并修改你访问的每个网站。
+chk.ext.power	它还拥有强大的权限:%@(控制页面、重定向流量、管理其他扩展或捕获屏幕)。
+chk.ext.sideloaded	它不是从官方商店安装的,这是广告软件的常见迹象。
+chk.ext.advice	如果你不认识或不再使用它,请移除。
+chk.ext.open	在浏览器中打开
+chk.policy.title	%@ 设置被强制应用
+chk.policy.managed	某配置描述文件强制设置:%@。广告软件借此安装扩展、更改搜索引擎或重定向流量,而且无法在浏览器中撤销。
+chk.policy.user	策略“%1$@”被写入浏览器设置:%2$@。广告软件常以此锁定主页、搜索引擎或扩展。
+chk.policy.remove	移除策略
+chk.profiles.open	打开设备管理
+chk.search.title	%@ 使用了不常见的搜索引擎
+chk.search.body	搜索被发送到 %@。浏览器劫持程序会更改搜索引擎以展示广告并收集搜索内容。如果不是你选的,请改回来。
+chk.search.fix	打开浏览器设置
+chk.home.title	%@ 打开了可疑的启动页
+chk.home.body	启动时打开 %@。这类网站常由广告软件设置,用于重定向你的搜索。
+chk.proxy.title	已设置系统代理
+chk.proxy.body	你的网页流量经过 %@。你没有设置的代理可以读取并修改未加密流量,并看到你访问的每个网站。
+chk.proxy.local	你的流量经过本地代理(%@)。VPN 和隐私类应用通常会这样做;如果你没有使用,请检查。
+chk.network.open	打开网络设置
+chk.dns.title	正在使用未知的 DNS 服务器
+chk.dns.body	你的 Mac 向 %@ 查询网站地址。DNS 服务器的运营者能看到你访问的所有网站,并可能将你引向假网站。如果不是你设置的且不是来自 VPN,请更改。
+chk.cert.title	手动信任的证书:%@
+chk.cert.ssl	%1$@ 个证书被作为根证书信任(%2$@)。持有密钥的人可以签发你的 Mac 接受的证书并读取加密流量。如果是你使用的公司或学校网络则没问题;否则请移除信任。
+chk.cert.limited	%1$@ 个证书仅用于有限用途(%2$@),例如 Wi‑Fi 登录。风险较低。
+chk.cert.fix	移除信任
+chk.profile.title	配置描述文件:%@
+chk.profile.body	配置描述文件可以更改系统设置。如果是公司或学校安装的则没问题;否则请移除。
+chk.profile.risky	此描述文件安装了 %@——可拦截或重定向流量的证书、代理、DNS 或浏览器策略。除非是你的组织安装的,否则请移除。
+chk.profile.remove	移除描述文件
+chk.vpn.title	已安装 %@ 个 VPN 配置
+chk.vpn.body	%@。连接时 VPN 提供商能看到你的所有流量。免费 VPN 常靠这些数据赚钱。请移除不用的。
+chk.vpn.open	打开 VPN 设置
+chk.share.ssh	远程登录(SSH)已开启
+chk.share.screen	屏幕共享已开启
+chk.share.ard	远程管理已开启
+chk.share.files	文件共享已开启
+chk.share.rdp	远程桌面服务器正在监听
+chk.share.body	你的 Mac 正在通过端口 %@ 接受来自网络的连接。如果不用,请关闭:开放的共享服务是公共 Wi‑Fi 上常见的攻击入口。
+chk.share.open	打开共享设置
+chk.remote.title	远程访问工具:%@
+chk.remote.running	它正在运行(%@)。知道其 ID 和密码的人可以查看并控制你的 Mac。骗子常要求受害者安装此类工具。如果不是你自己安装的,请退出并删除。
+chk.remote.installed	已安装(%@)。运行时,知道其 ID 和密码的人可以查看并控制你的 Mac。不用的话请删除。
+chk.launch.disable	停止并从启动项中移除
+chk.spy.title	%@ 可以监视并控制你的 Mac
+chk.spy.body	它同时拥有这些权限:%@。远程协助和自动化工具需要它们,间谍软件也一样。如果你不清楚原因,请撤销。
+chk.spy.screen	查看屏幕
+chk.spy.keys	记录按键
+chk.spy.control	控制鼠标和应用
+chk.spy.mic	通过麦克风收听

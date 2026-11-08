@@ -480,3 +480,69 @@ scan.about	permwatch, dosyaları Apple'ın kendi XProtect zararlı imzalarıyla 
 scan.stale	Son zararlı taraması bir haftadan eski
 scan.adviceBody	Hızlı tarama yaklaşık 10 saniye sürer; uygulamaları, başlangıç öğelerini ve çalışan programları Apple'ın kendi zararlı imzalarıyla kontrol eder.
 scan.progressFull	%1$@ dosya incelendi · %2$@ program ve betik tarandı
+nav.overview	Genel Bakış
+nav.yourMac	Mac'in
+nav.advanced	Gelişmiş
+ov.check	Mac'imi Kontrol Et
+ov.checking	Kontrol ediliyor…
+ov.good	Mac'in iyi görünüyor
+ov.goodBody	Zararlı yok, ele geçirilmiş tarayıcı yok, beklenmedik sertifika veya uzaktan erişim yok. permwatch izlemeye devam ediyor.
+ov.issues	%1$@ acil · %2$@ göz atılacak
+ov.lastCheck	Son kontrol %@
+ov.never	Henüz kontrol edilmedi
+ov.cat.browser	Tarayıcı
+ov.cat.mitm	Araya girme
+ov.cat.remote	Uzaktan erişim
+ov.cat.spyware	Casus yazılım belirtisi
+fix.done	Yapıldı.
+fix.notFound	Değiştirilecek bir şey bulunamadı.
+chk.ext.title	%1$@ (%2$@ uzantısı)
+chk.ext.allSites	Ziyaret ettiğin her web sitesini okuyup değiştirebilir.
+chk.ext.power	Ayrıca güçlü izinleri var: %@ (sayfaları kontrol etme, trafiği yönlendirme, diğer uzantıları yönetme veya ekranı yakalama).
+chk.ext.sideloaded	Resmi mağazadan yüklenmemiş; bu reklam yazılımlarının sık görülen bir işaretidir.
+chk.ext.advice	Tanımıyorsan veya artık kullanmıyorsan kaldır.
+chk.ext.open	Tarayıcıda Aç
+chk.policy.title	%@ ayarları zorla uygulanıyor
+chk.policy.managed	Bir yapılandırma profili şunları zorluyor: %@. Reklam yazılımları bunu uzantı yüklemek, arama motorunu değiştirmek veya trafiği yönlendirmek için kullanır; tarayıcıdan geri alamazsın.
+chk.policy.user	"%1$@" politikası tarayıcı ayarlarına yazılmış: %2$@. Reklam yazılımları ana sayfayı, arama motorunu veya uzantıları kilitlemek için sık sık bunu yapar.
+chk.policy.remove	Politikayı Kaldır
+chk.profiles.open	Aygıt Yönetimi'ni Aç
+chk.search.title	%@ alışılmadık bir arama motoru kullanıyor
+chk.search.body	Aramalar %@ adresine gidiyor. Tarayıcı korsanları reklam göstermek ve aramalarını toplamak için arama motorunu değiştirir. Sen seçmediysen geri değiştir.
+chk.search.fix	Tarayıcı Ayarlarını Aç
+chk.home.title	%@ şüpheli bir başlangıç sayfası açıyor
+chk.home.body	%@ ile açılıyor. Bu tür siteler genellikle aramalarını yönlendirmek için reklam yazılımları tarafından ayarlanır.
+chk.proxy.title	Sistem proxy'si ayarlı
+chk.proxy.body	Web trafiğin %@ üzerinden geçiyor. Senin kurmadığın bir proxy şifresiz trafiği okuyup değiştirebilir ve ziyaret ettiğin her siteyi görebilir.
+chk.proxy.local	Web trafiğin yerel bir proxy'den geçiyor (%@). VPN ve gizlilik uygulamaları genelde bunu yapar; kullanmıyorsan kontrol et.
+chk.network.open	Ağ Ayarlarını Aç
+chk.dns.title	Bilinmeyen DNS sunucusu kullanılıyor
+chk.dns.body	Mac'in web sitesi adreslerini %@ sunucusuna soruyor. Bir DNS sunucusunu işleten, ziyaret ettiğin her siteyi görür ve seni sahte sitelere yönlendirebilir. Sen ayarlamadıysan ve VPN'inden gelmiyorsa değiştir.
+chk.cert.title	Elle güvenilmiş sertifika: %@
+chk.cert.ssl	%1$@ sertifika kök olarak güvenilir (%2$@). Anahtarı elinde tutan, Mac'inin kabul edeceği sertifikalar üretip şifreli trafiğini okuyabilir. Kullandığın bir şirket veya üniversite ağı içinse sorun yok; değilse güveni kaldır.
+chk.cert.limited	%1$@ sertifika yalnızca sınırlı amaçlar için güvenilir (%2$@), örneğin Wi-Fi girişi. Düşük risk.
+chk.cert.fix	Güveni Kaldır
+chk.profile.title	Yapılandırma profili: %@
+chk.profile.body	Yapılandırma profili sistem ayarlarını değiştirebilir. Şirketin veya okulun yüklediyse sorun yok; değilse kaldır.
+chk.profile.risky	Bu profil %@ yüklüyor: trafiğini araya girip okuyabilen veya yönlendirebilen sertifika, proxy, DNS ya da tarayıcı politikaları. Kurumun yüklemediyse kaldır.
+chk.profile.remove	Profili Kaldır
+chk.vpn.title	%@ VPN yapılandırması kurulu
+chk.vpn.body	%@. Bağlıyken VPN sağlayıcısı tüm trafiğini görür. Ücretsiz VPN'ler çoğu zaman bu veriden para kazanır. Kullanmadıklarını kaldır.
+chk.vpn.open	VPN Ayarlarını Aç
+chk.share.ssh	Uzaktan Giriş (SSH) açık
+chk.share.screen	Ekran Paylaşımı açık
+chk.share.ard	Uzaktan Yönetim açık
+chk.share.files	Dosya Paylaşımı açık
+chk.share.rdp	Bir uzak masaüstü sunucusu dinliyor
+chk.share.body	Mac'in ağdan %@ portundan bağlantı kabul ediyor. Kullanmıyorsan kapat; açık paylaşım servisleri halka açık Wi-Fi'da saldırganların sık kullandığı bir giriş yoludur.
+chk.share.open	Paylaşma Ayarlarını Aç
+chk.remote.title	Uzaktan erişim aracı: %@
+chk.remote.running	Şu an çalışıyor (%@). Kimliğini ve şifresini bilen biri Mac'ini görebilir ve kontrol edebilir. Dolandırıcılar kurbanlarından sıklıkla bu tür araçları kurmalarını ister. Kendin için kurmadıysan kapat ve kaldır.
+chk.remote.installed	Kurulu (%@). Çalışırken kimliğini ve şifresini bilen biri Mac'ini görebilir ve kontrol edebilir. Kullanmıyorsan kaldır.
+chk.launch.disable	Durdur ve Başlangıçtan Kaldır
+chk.spy.title	%@ Mac'ini izleyip kontrol edebilir
+chk.spy.body	Şu izinlerin hepsine birlikte sahip: %@. Uzaktan destek ve otomasyon araçları bunlara ihtiyaç duyar ama casus yazılımlar da öyle. Neden hepsine ihtiyacı olduğunu bilmiyorsan kaldır.
+chk.spy.screen	ekranını görme
+chk.spy.keys	tuş vuruşlarını kaydetme
+chk.spy.control	fareyi ve uygulamaları kontrol etme
+chk.spy.mic	mikrofonu dinleme

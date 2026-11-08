@@ -57,6 +57,7 @@ permwatch connects the dots and gives you one clear alert.
 ## What it does
 
 - 🐞 **Malware scan:** Checks your apps, login items, running programs and downloads against **Apple’s own XProtect malware signatures** (the ones macOS keeps up to date), using the open-source YARA engine. A quick scan takes about 10 seconds. New downloads are scanned automatically, and anything found can be moved to the Trash together with the login items that start it.
+- 🛡 **Overview and one-click check:** Opens with a clear verdict. "Check My Mac" runs the malware scan and checks for browser hijacking (extensions that can read every site, forced browser policies, changed search engine or start page), traffic interception (trusted root certificates, configuration profiles, proxies, unknown DNS, VPN configurations), remote access (Screen Sharing, SSH, TeamViewer/AnyDesk/ToDesk-style tools) and spyware-like permission combinations. Every finding has a fix button.
 - 💡 **Recommendations:** One screen that explains every finding in plain language and offers a one-click fix. It finds permissions left behind by deleted apps and permissions in apps you haven't opened for months.
 - 🕒 **Timeline:** Every permission change and every new startup item, with its date and the process responsible
 - 🚨 **Alerts:** Unsigned startup programs, suspicious permission patterns, Gatekeeper bypasses, and a small pop-up at the top of the screen when something new appears

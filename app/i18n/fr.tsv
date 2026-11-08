@@ -480,3 +480,69 @@ scan.about	permwatch compare les fichiers aux signatures XProtect d’Apple — 
 scan.stale	Dernière analyse il y a plus d’une semaine
 scan.adviceBody	Une analyse rapide prend environ 10 secondes et vérifie apps, éléments d’ouverture et programmes en cours avec les signatures d’Apple.
 scan.progressFull	%1$@ fichiers examinés · %2$@ programmes et scripts analysés
+nav.overview	Vue d’ensemble
+nav.yourMac	Votre Mac
+nav.advanced	Avancé
+ov.check	Vérifier mon Mac
+ov.checking	Vérification…
+ov.good	Votre Mac semble en bon état
+ov.goodBody	Aucun malware, navigateur détourné, certificat inattendu ni accès à distance. permwatch continue de veiller.
+ov.issues	%1$@ urgents · %2$@ à vérifier
+ov.lastCheck	Dernière vérification %@
+ov.never	Pas encore vérifié
+ov.cat.browser	Navigateur
+ov.cat.mitm	Interception
+ov.cat.remote	Accès à distance
+ov.cat.spyware	Signes d’espionnage
+fix.done	Terminé.
+fix.notFound	Rien à modifier.
+chk.ext.title	%1$@ (extension %2$@)
+chk.ext.allSites	Elle peut lire et modifier tous les sites que vous visitez.
+chk.ext.power	Elle a aussi des autorisations puissantes : %@ (contrôler les pages, rediriger le trafic, gérer d’autres extensions ou capturer l’écran).
+chk.ext.sideloaded	Elle ne vient pas de la boutique officielle, un signe fréquent d’adware.
+chk.ext.advice	Si vous ne la reconnaissez pas ou ne l’utilisez plus, supprimez-la.
+chk.ext.open	Ouvrir dans le navigateur
+chk.policy.title	Des réglages de %@ sont imposés
+chk.policy.managed	Un profil de configuration impose : %@. Les adwares s’en servent pour installer des extensions, changer le moteur de recherche ou rediriger le trafic, sans possibilité d’annuler dans le navigateur.
+chk.policy.user	La stratégie « %1$@ » a été écrite dans les réglages du navigateur : %2$@. Les adwares font souvent cela pour verrouiller la page d’accueil, le moteur de recherche ou les extensions.
+chk.policy.remove	Supprimer la stratégie
+chk.profiles.open	Ouvrir la gestion de l’appareil
+chk.search.title	%@ utilise un moteur de recherche inhabituel
+chk.search.body	Les recherches vont vers %@. Les pirates de navigateur changent le moteur pour afficher des pubs et collecter vos recherches. Si ce n’est pas votre choix, revenez en arrière.
+chk.search.fix	Ouvrir les réglages du navigateur
+chk.home.title	%@ ouvre une page de démarrage suspecte
+chk.home.body	Il démarre sur %@. Ce type de site est souvent installé par un adware pour rediriger vos recherches.
+chk.proxy.title	Un proxy système est configuré
+chk.proxy.body	Votre trafic web passe par %@. Un proxy que vous n’avez pas configuré peut lire et modifier le trafic non chiffré et voir tous les sites visités.
+chk.proxy.local	Votre trafic passe par un proxy local (%@). Les VPN et apps de confidentialité le font souvent ; sinon, vérifiez.
+chk.network.open	Ouvrir les réglages réseau
+chk.dns.title	Serveur DNS inconnu utilisé
+chk.dns.body	Votre Mac demande les adresses des sites à %@. Qui gère un serveur DNS voit tous vos sites et peut vous envoyer vers des faux. Si vous ne l’avez pas réglé et qu’il ne vient pas de votre VPN, changez-le.
+chk.cert.title	Certificat approuvé manuellement : %@
+chk.cert.ssl	%1$@ certificat(s) sont approuvés comme racine (%2$@). Le détenteur de la clé peut créer des certificats acceptés par votre Mac et lire le trafic chiffré. Normal pour un réseau d’entreprise ou d’université que vous utilisez ; sinon, retirez la confiance.
+chk.cert.limited	%1$@ certificat(s) approuvés pour des usages limités (%2$@), par exemple la connexion Wi‑Fi. Risque faible.
+chk.cert.fix	Retirer la confiance
+chk.profile.title	Profil de configuration : %@
+chk.profile.body	Un profil peut modifier les réglages système. Normal si votre entreprise ou école l’a installé ; sinon, supprimez-le.
+chk.profile.risky	Ce profil installe %@ : certificats, proxy, DNS ou stratégies de navigateur capables d’intercepter ou rediriger votre trafic. Supprimez-le sauf s’il vient de votre organisation.
+chk.profile.remove	Supprimer le profil
+chk.vpn.title	%@ configurations VPN installées
+chk.vpn.body	%@. Une fois connecté, le fournisseur VPN voit tout votre trafic. Les VPN gratuits monétisent souvent ces données. Supprimez ceux que vous n’utilisez pas.
+chk.vpn.open	Ouvrir les réglages VPN
+chk.share.ssh	La session à distance (SSH) est activée
+chk.share.screen	Le partage d’écran est activé
+chk.share.ard	La gestion à distance est activée
+chk.share.files	Le partage de fichiers est activé
+chk.share.rdp	Un serveur de bureau à distance écoute
+chk.share.body	Votre Mac accepte des connexions sur le port %@ depuis le réseau. Si vous ne l’utilisez pas, désactivez-le : les services de partage ouverts sont une porte d’entrée fréquente sur les Wi‑Fi publics.
+chk.share.open	Ouvrir les réglages de partage
+chk.remote.title	Outil d’accès à distance : %@
+chk.remote.running	Il est en cours d’exécution (%@). Quiconque a son identifiant et mot de passe peut voir et contrôler votre Mac. Les escrocs demandent souvent d’installer ce type d’outil. Si vous ne l’avez pas installé pour vous, quittez-le et supprimez-le.
+chk.remote.installed	Il est installé (%@). Lorsqu’il fonctionne, quiconque a son identifiant et mot de passe peut voir et contrôler votre Mac. Supprimez-le si vous ne l’utilisez pas.
+chk.launch.disable	Arrêter et retirer du démarrage
+chk.spy.title	%@ peut observer et contrôler votre Mac
+chk.spy.body	Il cumule ces autorisations : %@. Les outils d’assistance à distance et d’automatisation en ont besoin, mais les logiciels espions aussi. Si vous ignorez pourquoi, révoquez-les.
+chk.spy.screen	voir l’écran
+chk.spy.keys	enregistrer les frappes
+chk.spy.control	contrôler la souris et les apps
+chk.spy.mic	écouter via le micro

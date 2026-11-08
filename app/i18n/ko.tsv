@@ -480,3 +480,69 @@ scan.about	permwatch는 오픈 소스 YARA 엔진으로 파일을 Apple의 XProt
 scan.stale	마지막 검사가 일주일 넘게 지났습니다
 scan.adviceBody	빠른 검사는 약 10초가 걸리며 앱, 로그인 항목, 실행 중인 프로그램을 Apple 시그니처로 확인합니다.
 scan.progressFull	파일 %1$@개 확인 · 프로그램 및 스크립트 %2$@개 검사
+nav.overview	개요
+nav.yourMac	내 Mac
+nav.advanced	고급
+ov.check	내 Mac 검사
+ov.checking	검사 중…
+ov.good	Mac 상태가 양호합니다
+ov.goodBody	악성 코드, 탈취된 브라우저, 예상치 못한 인증서나 원격 접근이 없습니다. permwatch가 계속 감시합니다.
+ov.issues	긴급 %1$@개 · 확인 %2$@개
+ov.lastCheck	마지막 검사 %@
+ov.never	아직 검사하지 않음
+ov.cat.browser	브라우저
+ov.cat.mitm	가로채기
+ov.cat.remote	원격 접근
+ov.cat.spyware	스파이웨어 징후
+fix.done	완료했습니다.
+fix.notFound	변경할 항목이 없습니다.
+chk.ext.title	%1$@(%2$@ 확장 프로그램)
+chk.ext.allSites	방문하는 모든 웹사이트를 읽고 변경할 수 있습니다.
+chk.ext.power	강력한 권한도 있습니다: %@(페이지 제어, 트래픽 우회, 다른 확장 관리, 화면 캡처).
+chk.ext.sideloaded	공식 스토어에서 설치되지 않았습니다. 애드웨어의 흔한 징후입니다.
+chk.ext.advice	모르거나 더 이상 사용하지 않으면 제거하세요.
+chk.ext.open	브라우저에서 열기
+chk.policy.title	%@ 설정이 강제 적용되고 있습니다
+chk.policy.managed	구성 프로파일이 강제합니다: %@. 애드웨어는 이를 이용해 확장 설치, 검색 엔진 변경, 트래픽 우회를 하며 브라우저에서 되돌릴 수 없습니다.
+chk.policy.user	정책 '%1$@'이(가) 브라우저 설정에 기록되었습니다: %2$@. 애드웨어는 홈페이지, 검색 엔진, 확장을 고정하려고 자주 이렇게 합니다.
+chk.policy.remove	정책 제거
+chk.profiles.open	기기 관리 열기
+chk.search.title	%@이(가) 흔치 않은 검색 엔진을 사용
+chk.search.body	검색이 %@(으)로 전송됩니다. 브라우저 하이재커는 광고 표시와 검색 수집을 위해 검색 엔진을 바꿉니다. 직접 선택하지 않았다면 되돌리세요.
+chk.search.fix	브라우저 설정 열기
+chk.home.title	%@이(가) 의심스러운 시작 페이지를 엽니다
+chk.home.body	%@(으)로 시작합니다. 이런 사이트는 검색을 우회시키려는 애드웨어가 자주 설정합니다.
+chk.proxy.title	시스템 프록시가 설정됨
+chk.proxy.body	웹 트래픽이 %@을(를) 거칩니다. 직접 설정하지 않은 프록시는 암호화되지 않은 트래픽을 읽고 바꿀 수 있으며 방문한 모든 사이트를 볼 수 있습니다.
+chk.proxy.local	트래픽이 로컬 프록시(%@)를 거칩니다. 보통 VPN·개인정보 보호 앱이 이렇게 합니다. 사용하지 않는다면 확인하세요.
+chk.network.open	네트워크 설정 열기
+chk.dns.title	알 수 없는 DNS 서버 사용 중
+chk.dns.body	Mac이 %@에 웹사이트 주소를 묻고 있습니다. DNS 서버 운영자는 방문하는 모든 사이트를 보고 가짜 사이트로 보낼 수 있습니다. 직접 설정하지 않았고 VPN 것도 아니라면 변경하세요.
+chk.cert.title	수동으로 신뢰한 인증서: %@
+chk.cert.ssl	인증서 %1$@개가 루트로 신뢰됩니다(%2$@). 키를 가진 사람은 Mac이 받아들이는 인증서를 만들어 암호화된 트래픽을 읽을 수 있습니다. 사용하는 회사·대학 네트워크용이라면 괜찮지만 아니라면 신뢰를 제거하세요.
+chk.cert.limited	인증서 %1$@개는 제한된 용도로만 신뢰됩니다(%2$@). 예: Wi‑Fi 로그인. 위험 낮음.
+chk.cert.fix	신뢰 제거
+chk.profile.title	구성 프로파일: %@
+chk.profile.body	구성 프로파일은 시스템 설정을 바꿀 수 있습니다. 회사나 학교가 설치했다면 괜찮지만 아니라면 제거하세요.
+chk.profile.risky	이 프로파일은 %@을(를) 설치합니다. 트래픽을 가로채거나 우회할 수 있는 인증서, 프록시, DNS, 브라우저 정책입니다. 조직이 설치한 것이 아니라면 제거하세요.
+chk.profile.remove	프로파일 제거
+chk.vpn.title	VPN 구성 %@개 설치됨
+chk.vpn.body	%@. 연결되어 있는 동안 VPN 업체는 모든 트래픽을 봅니다. 무료 VPN은 그 데이터로 돈을 버는 경우가 많습니다. 사용하지 않는 것은 제거하세요.
+chk.vpn.open	VPN 설정 열기
+chk.share.ssh	원격 로그인(SSH) 켜짐
+chk.share.screen	화면 공유 켜짐
+chk.share.ard	원격 관리 켜짐
+chk.share.files	파일 공유 켜짐
+chk.share.rdp	원격 데스크톱 서버가 대기 중
+chk.share.body	Mac이 네트워크에서 포트 %@로 연결을 받고 있습니다. 사용하지 않으면 끄세요. 열린 공유 서비스는 공용 Wi‑Fi에서 흔한 침입 경로입니다.
+chk.share.open	공유 설정 열기
+chk.remote.title	원격 접근 도구: %@
+chk.remote.running	지금 실행 중입니다(%@). ID와 암호를 아는 사람은 Mac을 보고 제어할 수 있습니다. 사기범은 피해자에게 이런 도구를 설치하게 하는 경우가 많습니다. 직접 설치한 것이 아니라면 종료하고 제거하세요.
+chk.remote.installed	설치되어 있습니다(%@). 실행 중에는 ID와 암호를 아는 사람이 Mac을 보고 제어할 수 있습니다. 사용하지 않으면 제거하세요.
+chk.launch.disable	중지하고 시작 항목에서 제거
+chk.spy.title	%@이(가) Mac을 감시하고 제어할 수 있음
+chk.spy.body	다음 권한을 모두 가지고 있습니다: %@. 원격 지원·자동화 도구에 필요하지만 스파이웨어도 마찬가지입니다. 왜 필요한지 모르면 취소하세요.
+chk.spy.screen	화면 보기
+chk.spy.keys	키 입력 기록
+chk.spy.control	마우스와 앱 제어
+chk.spy.mic	마이크로 듣기

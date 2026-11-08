@@ -97,6 +97,7 @@ struct AdviceItem: Identifiable {
     var iconKey: String? = nil
     var primary: (title: String, run: () -> Void)? = nil
     var secondary: (title: String, run: () -> Void)? = nil
+    var category: String? = nil
 }
 
 struct AdviceView: View {
@@ -109,30 +110,38 @@ struct AdviceView: View {
     @EnvironmentObject var advisor: Advisor
     @EnvironmentObject var center: ThreatCenter
     @EnvironmentObject var scanner: MalwareScanner
+    @EnvironmentObject var checks: SecurityChecks
     @State private var done: Set<String> = []
     @State private var message: String?
     @State private var confirm: AdviceItem?
 
     var body: some View {
-        let list = items.filter { !done.contains($0.id) }
+        let list = (items + checkItems).filter { !done.contains($0.id) }
+        let order: [Explanation.Verdict] = [.danger, .caution, .info, .ok]
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
                 header(list)
-                if let m = message {
+                if let m = message ?? checks.message {
                     Text(m).font(.system(size: 12)).foregroundStyle(.secondary)
                 }
-                if list.isEmpty {
-                    ContentUnavailableView(L("adv.allGood"), systemImage: "checkmark.seal.fill",
-                                           description: Text(L("adv.allGoodBody")))
+                if list.isEmpty && checks.lastRun != nil {
+                    ContentUnavailableView(L("ov.good"), systemImage: "checkmark.seal.fill", description: Text(L("ov.goodBody")))
                         .frame(maxWidth: .infinity)
                 }
-                ForEach(list) { card($0) }
+                ForEach(order, id: \.self) { v in
+                    let group = list.filter { $0.verdict == v }
+                    if !group.isEmpty {
+                        Text(v.label.uppercased(with: .current)).font(.system(size: 11, weight: .bold)).foregroundStyle(v.color)
+                            .padding(.top, 6)
+                        ForEach(group) { card($0) }
+                    }
+                }
             }
             .padding(24)
-            .frame(maxWidth: 820, alignment: .leading)
+            .frame(maxWidth: 860, alignment: .leading)
             .frame(maxWidth: .infinity)
         }
-        .navigationTitle(L("nav.advice"))
+        .navigationTitle(L("nav.overview"))
         .confirmationDialog(confirm?.title ?? "", isPresented: Binding(get: { confirm != nil }, set: { if !$0 { confirm = nil } })) {
             Button(L("adv.revoke"), role: .destructive) { confirm?.primary?.run(); confirm = nil }
             Button(L("confirm.cancel"), role: .cancel) { confirm = nil }
@@ -142,28 +151,60 @@ struct AdviceView: View {
         .onChange(of: store.apps.count) { advisor.refresh(apps: store.apps) }
         .onAppear {
             advisor.refresh(apps: store.apps); posture.refresh()
+            if checks.lastRun == nil { runChecks() }
             if Snapshot.section == "advice" {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 8) { advisor.refresh(apps: store.apps) }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 14) {
-                    FileHandle.standardError.write(Data("durum: apps=\(store.apps.count) checks=\(posture.checks.map { "\($0.id)=\($0.state)" }) unused=\(advisor.unused.count) items=\(store.items.count)\n".utf8))
-                    for i in items { FileHandle.standardError.write(Data("öneri: [\(i.verdict.label)] \(i.title) — \(i.body.prefix(90))\n".utf8)) }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 16) {
+                    for i in (items + checkItems) { FileHandle.standardError.write(Data("öneri: [\(i.verdict.label)] \(i.title) — \(i.body.prefix(110))\n".utf8)) }
                     NSApp.terminate(nil)
                 }
             }
         }
     }
 
+    private func runChecks() {
+        checks.run(apps: store.apps, rootProfiles: RootBridge.shared.active ? RootBridge.shared.data?.profiles : nil)
+    }
+
     private func header(_ list: [AdviceItem]) -> some View {
         let urgent = list.filter { $0.verdict == .danger }.count
-        return HStack(spacing: 16) {
-            Image(systemName: list.isEmpty ? "checkmark.seal.fill" : "lightbulb.max.fill")
-                .font(.system(size: 38)).foregroundStyle(list.isEmpty ? Color.green : (urgent > 0 ? Color.red : Color.orange))
+        let review = list.filter { $0.verdict == .caution }.count
+        let busy = checks.running || scanner.running
+        let color: Color = urgent > 0 ? .red : (review > 0 ? .orange : .green)
+        return HStack(spacing: 18) {
+            ZStack {
+                Circle().fill(color.opacity(0.15)).frame(width: 74, height: 74)
+                Image(systemName: urgent > 0 ? "exclamationmark.shield.fill" : (review > 0 ? "shield.lefthalf.filled" : "checkmark.shield.fill"))
+                    .font(.system(size: 34)).foregroundStyle(color)
+            }
             VStack(alignment: .leading, spacing: 4) {
-                Text(L("nav.advice")).font(.system(size: 20, weight: .bold))
-                Text(list.isEmpty ? L("adv.allGood") : L("adv.count", list.count.formatted(), urgent.formatted()))
-                    .foregroundStyle(.secondary)
+                Text(urgent + review == 0 ? L("ov.good") : L("ov.issues", urgent.formatted(), review.formatted()))
+                    .font(.system(size: 21, weight: .bold))
+                Text(checks.lastRun.map { L("ov.lastCheck", Fmt.relative($0)) } ?? L("ov.never"))
+                    .font(.system(size: 12)).foregroundStyle(.secondary)
             }
             Spacer()
+            if busy {
+                HStack(spacing: 8) { ProgressView().controlSize(.small); Text(L("ov.checking")).font(.system(size: 12)) }
+            } else {
+                Button { runChecks(); scanner.start(.quick) } label: { Label(L("ov.check"), systemImage: "checkmark.shield") }
+                    .buttonStyle(.borderedProminent).controlSize(.large)
+            }
+        }
+    }
+
+    /// Kontrol bulgularını kartlara çevir.
+    private var checkItems: [AdviceItem] {
+        checks.findings.map { f in
+            let icon: String = ["browser": "globe", "mitm": "lock.trianglebadge.exclamationmark", "remote": "display.2",
+                                "spyware": "eye.trianglebadge.exclamationmark"][f.category.rawValue] ?? "exclamationmark.triangle"
+            func act(_ i: Int) -> (String, () -> Void)? {
+                guard i < f.fixes.count else { return nil }
+                let fx = f.fixes[i]
+                return (fx.title, { MainActor.assumeIsolated { checks.apply(fx.fix, store: store) { runChecks() } } })
+            }
+            return AdviceItem(id: "chk." + f.id, verdict: f.verdict, icon: icon, title: f.title,
+                              body: f.body, iconKey: f.iconKey, primary: act(0), secondary: act(1), category: L("ov.cat." + f.category.rawValue))
         }
     }
 
@@ -178,12 +219,16 @@ struct AdviceView: View {
                 HStack {
                     Text(a.title).font(.system(size: 14, weight: .semibold))
                     Spacer()
-                    Text(a.verdict.label).font(.system(size: 11, weight: .semibold)).foregroundStyle(a.verdict.color)
+                    if let c = a.category {
+                        Text(c).font(.system(size: 10.5, weight: .medium)).foregroundStyle(.secondary)
+                            .padding(.horizontal, 6).padding(.vertical, 2)
+                            .background(Color.secondary.opacity(0.1), in: RoundedRectangle(cornerRadius: 4))
+                    }
                 }
                 Text(a.body).font(.system(size: 12.5)).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
                 HStack(spacing: 8) {
                     if let p = a.primary {
-                        Button(p.title) { if a.id.hasPrefix("unused.") { confirm = a } else { p.run() } }
+                        Button(p.title) { if a.id.hasPrefix("unused.") || a.id.hasPrefix("chk.spy.") { confirm = a } else { p.run() } }
                             .buttonStyle(.borderedProminent).tint(a.verdict.color)
                     }
                     if let s = a.secondary { Button(s.title) { s.run() } }
@@ -272,10 +317,6 @@ struct AdviceView: View {
                                  message = "\(u.name): " + r.message
                                  if r.ok { done.insert("unused.\(u.key)"); advisor.drop(u.key) }
                              })))
-        }
-        if !packets.running && packets.packets.isEmpty {
-            out.append(.init(id: "pkt.try", verdict: .info, icon: "waveform.path.ecg", title: L("adv.capture.title"),
-                             body: L("adv.capture.body"), primary: (L("pkt.start"), { go(.packets); packets.start() })))
         }
         return out
     }

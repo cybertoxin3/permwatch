@@ -120,7 +120,7 @@ struct MainView: View {
         switch section {
         case .timeline: return L("nav.timeline")
         case .alerts: return L("nav.alerts")
-        case .advice: return L("nav.advice")
+        case .advice: return L("nav.overview")
         case .scan: return L("nav.scan")
         case .apps: return L("nav.apps")
         case .running: return L("nav.running")
@@ -179,29 +179,29 @@ struct Sidebar: View {
 
     var body: some View {
         List(selection: $section) {
-            Label(L("nav.timeline"), systemImage: "list.bullet").badge(store.items.count).tag(SidebarItem.timeline)
-            Label(L("nav.alerts"), systemImage: "exclamationmark.triangle").badge(store.openAlerts).tag(SidebarItem.alerts)
-            Label(L("nav.advice"), systemImage: "lightbulb").tag(SidebarItem.advice)
+            Label(L("nav.overview"), systemImage: "checkmark.shield").tag(SidebarItem.advice)
             Label(L("nav.scan"), systemImage: "ladybug").badge(scanner.detections.count).tag(SidebarItem.scan)
-            Label(L("nav.apps"), systemImage: "square.grid.2x2").tag(SidebarItem.apps)
-            Label(L("nav.running"), systemImage: "cpu").badge(monitor.suspicious).tag(SidebarItem.running)
+            Label(L("nav.alerts"), systemImage: "exclamationmark.triangle").badge(store.openAlerts).tag(SidebarItem.alerts)
 
-            Section(L("nav.protection")) {
-                Label(L("nav.security"), systemImage: "checkmark.shield").badge(posture.issues).tag(SidebarItem.security)
+            Section(L("nav.yourMac")) {
+                Label(L("nav.apps"), systemImage: "square.grid.2x2").tag(SidebarItem.apps)
+                Label(L("nav.running"), systemImage: "cpu").badge(monitor.suspicious).tag(SidebarItem.running)
+                Label(L("nav.security"), systemImage: "lock.shield").badge(posture.issues).tag(SidebarItem.security)
                 Label(L("nav.downloads"), systemImage: "arrow.down.circle").badge(downloads.risky).tag(SidebarItem.downloads)
-                Label(L("nav.network"), systemImage: "network").badge(network.risky).tag(SidebarItem.network)
-                Label(L("nav.packets"), systemImage: "waveform.path.ecg").tag(SidebarItem.packets)
-                Label(L("nav.terminal"), systemImage: "apple.terminal").tag(SidebarItem.terminal)
             }
             Section(L("nav.permissions")) {
                 Label(L("nav.micCamera"), systemImage: "mic").tag(SidebarItem.category(.micCamera))
                 Label(L("nav.screen"), systemImage: "rectangle.dashed.badge.record").tag(SidebarItem.category(.screen))
                 Label(L("nav.accessibility"), systemImage: "accessibility").tag(SidebarItem.category(.accessibility))
                 Label(L("nav.fullDisk"), systemImage: "internaldrive").tag(SidebarItem.category(.fullDisk))
-            }
-            Section(L("nav.persistence")) {
                 Label(L("nav.loginItems"), systemImage: "power").badge(store.loginItemCount).tag(SidebarItem.loginItems)
+            }
+            Section(L("nav.advanced")) {
+                Label(L("nav.timeline"), systemImage: "list.bullet").tag(SidebarItem.timeline)
                 Label(L("nav.processes"), systemImage: "terminal").tag(SidebarItem.processes)
+                Label(L("nav.network"), systemImage: "network").badge(network.risky).tag(SidebarItem.network)
+                Label(L("nav.packets"), systemImage: "waveform.path.ecg").tag(SidebarItem.packets)
+                Label(L("nav.terminal"), systemImage: "apple.terminal").tag(SidebarItem.terminal)
             }
         }
         .listStyle(.sidebar)

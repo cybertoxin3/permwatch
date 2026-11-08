@@ -480,3 +480,69 @@ scan.about	permwatch checks files against Apple’s own XProtect malware signatu
 scan.stale	Last malware scan was more than a week ago
 scan.adviceBody	A quick scan takes about 10 seconds and checks apps, login items and running programs with Apple’s own malware signatures.
 scan.progressFull	%1$@ files examined · %2$@ programs and scripts scanned
+nav.overview	Overview
+nav.yourMac	Your Mac
+nav.advanced	Advanced
+ov.check	Check My Mac
+ov.checking	Checking…
+ov.good	Your Mac looks good
+ov.goodBody	No malware, no hijacked browser, no unexpected certificates or remote access. permwatch keeps watching.
+ov.issues	%1$@ urgent · %2$@ to review
+ov.lastCheck	Last checked %@
+ov.never	Not checked yet
+ov.cat.browser	Browser
+ov.cat.mitm	Interception
+ov.cat.remote	Remote access
+ov.cat.spyware	Spyware signs
+fix.done	Done.
+fix.notFound	Nothing to change was found.
+chk.ext.title	%1$@ (%2$@ extension)
+chk.ext.allSites	It can read and change every website you visit.
+chk.ext.power	It also has powerful permissions: %@ (control pages, redirect traffic, manage other extensions or capture the screen).
+chk.ext.sideloaded	It was not installed from the official store, a common sign of adware.
+chk.ext.advice	If you don’t recognise it or no longer use it, remove it.
+chk.ext.open	Open in Browser
+chk.policy.title	%@ settings are being forced
+chk.policy.managed	A configuration profile forces: %@. Adware uses this to install extensions, change the search engine or redirect traffic, and you can’t undo it in the browser.
+chk.policy.user	The policy “%1$@” was written into your browser settings: %2$@. Adware often does this to lock your homepage, search engine or extensions.
+chk.policy.remove	Remove Policy
+chk.profiles.open	Open Device Management
+chk.search.title	%@ uses an unusual search engine
+chk.search.body	Searches go to %@. Browser hijackers change the search engine to show ads and collect what you search for. If you didn’t choose it, switch back.
+chk.search.fix	Open Browser Settings
+chk.home.title	%@ opens a suspicious start page
+chk.home.body	It starts with %@. Sites like this are often set by adware to redirect your searches.
+chk.proxy.title	A system proxy is set
+chk.proxy.body	Your web traffic goes through %@. A proxy you didn’t set up can read and change unencrypted traffic and see every site you visit.
+chk.proxy.local	Your web traffic goes through a local proxy (%@). VPN and privacy apps usually do this; if you don’t use one, check it.
+chk.network.open	Open Network Settings
+chk.dns.title	Unknown DNS server in use
+chk.dns.body	Your Mac asks %@ for website addresses. Whoever runs a DNS server sees every site you visit and can send you to fake ones. If you didn’t set it and it isn’t from your VPN, change it.
+chk.cert.title	Manually trusted certificate: %@
+chk.cert.ssl	%1$@ certificate(s) are trusted as a root (%2$@). Whoever holds the key can create certificates your Mac accepts and read encrypted traffic. Fine for a company or university network you use; otherwise remove the trust.
+chk.cert.limited	%1$@ certificate(s) are trusted only for limited uses (%2$@), for example Wi-Fi login. Low risk.
+chk.cert.fix	Remove Trust
+chk.profile.title	Configuration profile: %@
+chk.profile.body	A configuration profile can change system settings. Fine if your company or school installed it; otherwise remove it.
+chk.profile.risky	This profile installs %@ — certificates, proxy, DNS or browser policies that can intercept or redirect your traffic. Remove it unless your organisation installed it.
+chk.profile.remove	Remove Profile
+chk.vpn.title	%@ VPN configurations installed
+chk.vpn.body	%@. While connected, a VPN provider sees all your traffic. Free VPNs often make money from that data. Remove the ones you don’t use.
+chk.vpn.open	Open VPN Settings
+chk.share.ssh	Remote Login (SSH) is on
+chk.share.screen	Screen Sharing is on
+chk.share.ard	Remote Management is on
+chk.share.files	File Sharing is on
+chk.share.rdp	A remote desktop server is listening
+chk.share.body	Your Mac accepts connections on port %@ from the network. If you don’t use this, turn it off: open sharing services are a common way in for attackers on public Wi-Fi.
+chk.share.open	Open Sharing Settings
+chk.remote.title	Remote access tool: %@
+chk.remote.running	It is running now (%@). Someone with its ID and password can see and control your Mac. Scammers often ask victims to install tools like this. If you didn’t set it up for yourself, quit it and remove it.
+chk.remote.installed	It is installed (%@). Someone with its ID and password can see and control your Mac while it runs. Remove it if you don’t use it.
+chk.launch.disable	Stop and Remove from Startup
+chk.spy.title	%@ can watch and control your Mac
+chk.spy.body	It has these permissions together: %@. Remote-support and automation tools need them, but so does spyware. If you don’t know why it needs all of them, revoke them.
+chk.spy.screen	see your screen
+chk.spy.keys	record your keystrokes
+chk.spy.control	control the mouse and apps
+chk.spy.mic	listen through the microphone

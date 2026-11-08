@@ -12,6 +12,7 @@ struct PermwatchApp: App {
     @StateObject private var advisor = Advisor()
     @StateObject private var terminals = TerminalStore()
     @StateObject private var scanner = MalwareScanner.shared
+    @StateObject private var checks = SecurityChecks()
     @StateObject private var center = ThreatCenter.shared
     @AppStorage(Theme.storageKey) private var theme: Theme = .system
 
@@ -34,6 +35,7 @@ struct PermwatchApp: App {
                 .environmentObject(advisor)
                 .environmentObject(terminals)
                 .environmentObject(scanner)
+                .environmentObject(checks)
                 .environmentObject(RootBridge.shared)
                 .environmentObject(center)
                 .frame(minWidth: 1100, minHeight: 640)

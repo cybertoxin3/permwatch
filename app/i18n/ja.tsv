@@ -480,3 +480,69 @@ scan.about	permwatch は、macOS が使用し自動更新している Apple の 
 scan.stale	前回のスキャンから 1 週間以上経っています
 scan.adviceBody	クイックスキャンは約 10 秒で、アプリ、ログイン項目、実行中のプログラムを Apple のシグネチャで確認します。
 scan.progressFull	%1$@ ファイルを確認 · %2$@ 個のプログラムとスクリプトをスキャン
+nav.overview	概要
+nav.yourMac	この Mac
+nav.advanced	詳細
+ov.check	Mac をチェック
+ov.checking	チェック中…
+ov.good	Mac は良好です
+ov.goodBody	マルウェア、乗っ取られたブラウザ、想定外の証明書やリモートアクセスはありません。permwatch は監視を続けます。
+ov.issues	緊急 %1$@ 件 · 確認 %2$@ 件
+ov.lastCheck	前回のチェック %@
+ov.never	まだチェックしていません
+ov.cat.browser	ブラウザ
+ov.cat.mitm	傍受
+ov.cat.remote	リモートアクセス
+ov.cat.spyware	スパイウェアの兆候
+fix.done	完了しました。
+fix.notFound	変更する対象が見つかりません。
+chk.ext.title	%1$@(%2$@ 拡張機能)
+chk.ext.allSites	アクセスするすべてのサイトを読み取り・変更できます。
+chk.ext.power	強力な権限もあります: %@(ページの操作、通信の転送、他の拡張機能の管理、画面のキャプチャ)。
+chk.ext.sideloaded	公式ストアからインストールされていません。アドウェアによくある兆候です。
+chk.ext.advice	心当たりがない、または使っていないなら削除しましょう。
+chk.ext.open	ブラウザで開く
+chk.policy.title	%@ の設定が強制されています
+chk.policy.managed	構成プロファイルが強制しています: %@。アドウェアはこれで拡張機能のインストール、検索エンジンの変更、通信の転送を行い、ブラウザからは元に戻せません。
+chk.policy.user	ポリシー「%1$@」がブラウザ設定に書き込まれています: %2$@。アドウェアはホームページ、検索エンジン、拡張機能を固定するためによくこれを行います。
+chk.policy.remove	ポリシーを削除
+chk.profiles.open	デバイス管理を開く
+chk.search.title	%@ が見慣れない検索エンジンを使用
+chk.search.body	検索は %@ に送られています。ブラウザハイジャッカーは広告表示や検索内容の収集のために検索エンジンを変更します。自分で選んでいなければ元に戻しましょう。
+chk.search.fix	ブラウザ設定を開く
+chk.home.title	%@ が不審なスタートページを開きます
+chk.home.body	%@ で起動します。このようなサイトは検索を転送するためにアドウェアが設定することがよくあります。
+chk.proxy.title	システムプロキシが設定されています
+chk.proxy.body	Web 通信が %@ を経由しています。自分で設定していないプロキシは暗号化されていない通信を読み書きでき、訪問先のサイトもすべて見えます。
+chk.proxy.local	通信はローカルプロキシ(%@)を経由しています。VPN やプライバシー系アプリが通常行うものです。使っていなければ確認しましょう。
+chk.network.open	ネットワーク設定を開く
+chk.dns.title	不明な DNS サーバを使用中
+chk.dns.body	Mac は %@ にサイトのアドレスを問い合わせています。DNS サーバの運営者は訪問先をすべて把握でき、偽サイトへ誘導することもできます。自分で設定しておらず VPN のものでもなければ変更しましょう。
+chk.cert.title	手動で信頼された証明書: %@
+chk.cert.ssl	%1$@ 件の証明書がルートとして信頼されています(%2$@)。鍵の保有者は Mac が受け入れる証明書を作成でき、暗号化された通信を読めます。利用中の会社や大学のネットワーク用なら問題ありません。そうでなければ信頼を解除しましょう。
+chk.cert.limited	%1$@ 件の証明書は限定用途のみで信頼されています(%2$@)。例: Wi‑Fi ログイン。リスクは低いです。
+chk.cert.fix	信頼を解除
+chk.profile.title	構成プロファイル: %@
+chk.profile.body	構成プロファイルはシステム設定を変更できます。会社や学校が入れたものなら問題ありません。そうでなければ削除しましょう。
+chk.profile.risky	このプロファイルは %@ をインストールします。通信を傍受・転送できる証明書、プロキシ、DNS、ブラウザポリシーです。組織が入れたものでなければ削除しましょう。
+chk.profile.remove	プロファイルを削除
+chk.vpn.title	%@ 件の VPN 構成がインストールされています
+chk.vpn.body	%@。接続中、VPN 事業者はすべての通信を見られます。無料 VPN はそのデータで収益を得ることが多いです。使っていないものは削除しましょう。
+chk.vpn.open	VPN 設定を開く
+chk.share.ssh	リモートログイン(SSH)がオン
+chk.share.screen	画面共有がオン
+chk.share.ard	リモートマネージメントがオン
+chk.share.files	ファイル共有がオン
+chk.share.rdp	リモートデスクトップサーバが待ち受け中
+chk.share.body	Mac はネットワークからポート %@ で接続を受け付けています。使っていなければオフにしましょう。公共 Wi‑Fi では開いた共有サービスが攻撃の入口になりがちです。
+chk.share.open	共有設定を開く
+chk.remote.title	リモートアクセスツール: %@
+chk.remote.running	現在実行中です(%@)。ID とパスワードを知る人は Mac を見て操作できます。詐欺師は被害者にこのようなツールを入れさせることがよくあります。自分で設定したものでなければ終了して削除しましょう。
+chk.remote.installed	インストールされています(%@)。実行中は ID とパスワードを知る人が Mac を見て操作できます。使っていなければ削除しましょう。
+chk.launch.disable	停止して起動項目から削除
+chk.spy.title	%@ は Mac を監視・操作できます
+chk.spy.body	次の権限をまとめて持っています: %@。リモートサポートや自動化ツールにも必要ですが、スパイウェアも同じです。なぜ必要か分からなければ取り消しましょう。
+chk.spy.screen	画面の閲覧
+chk.spy.keys	キー入力の記録
+chk.spy.control	マウスとアプリの操作
+chk.spy.mic	マイクでの聴取
