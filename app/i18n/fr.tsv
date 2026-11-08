@@ -546,3 +546,8 @@ chk.spy.screen	voir l’écran
 chk.spy.keys	enregistrer les frappes
 chk.spy.control	contrôler la souris et les apps
 chk.spy.mic	écouter via le micro
+fix.confirm.launch	Le service sera arrêté et ce fichier placé dans la corbeille :\n%@\n\nVérifiez qu’il appartient bien à l’app indiquée.
+fix.confirm.trash	Éléments placés dans la corbeille :\n%@
+fix.confirm.profile	Le profil « %@ » sera supprimé. macOS demandera votre mot de passe.
+fix.confirm.cert	Votre Mac ne fera plus confiance à « %@ » ; le certificat est conservé. S’il sert au Wi‑Fi de l’entreprise ou de l’école, il faudra peut-être lui refaire confiance pour vous connecter.
+fix.confirm.policy	Le réglage « %2$@ » sera supprimé des préférences de %1$@.

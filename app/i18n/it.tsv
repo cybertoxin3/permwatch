@@ -546,3 +546,8 @@ chk.spy.screen	vedere lo schermo
 chk.spy.keys	registrare i tasti
 chk.spy.control	controllare mouse e app
 chk.spy.mic	ascoltare dal microfono
+fix.confirm.launch	Il servizio verrà fermato e questo file spostato nel Cestino:\n%@\n\nVerifica che appartenga davvero all’app indicata.
+fix.confirm.trash	Verrà spostato nel Cestino:\n%@
+fix.confirm.profile	Il profilo «%@» verrà rimosso. macOS chiederà la password.
+fix.confirm.cert	Il Mac smetterà di considerare attendibile «%@»; il certificato resta. Se serve per il Wi‑Fi aziendale o universitario, potresti doverlo riattivare per connetterti.
+fix.confirm.policy	L’impostazione «%2$@» verrà eliminata dalle preferenze di %1$@.

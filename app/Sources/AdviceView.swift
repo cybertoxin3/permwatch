@@ -98,6 +98,8 @@ struct AdviceItem: Identifiable {
     var primary: (title: String, run: () -> Void)? = nil
     var secondary: (title: String, run: () -> Void)? = nil
     var category: String? = nil
+    /// Kalıcı değişiklik yapan düzeltmelerde onayda gösterilecek metin (tam olarak ne değişecek).
+    var confirmText: String? = nil
 }
 
 struct AdviceView: View {
@@ -143,10 +145,10 @@ struct AdviceView: View {
         }
         .navigationTitle(L("nav.overview"))
         .confirmationDialog(confirm?.title ?? "", isPresented: Binding(get: { confirm != nil }, set: { if !$0 { confirm = nil } })) {
-            Button(L("adv.revoke"), role: .destructive) { confirm?.primary?.run(); confirm = nil }
+            Button(confirm?.primary?.title ?? L("adv.revoke"), role: .destructive) { confirm?.primary?.run(); confirm = nil }
             Button(L("confirm.cancel"), role: .cancel) { confirm = nil }
         } message: {
-            Text(L("adv.revokeConfirm"))
+            Text(confirm?.confirmText ?? L("adv.revokeConfirm"))
         }
         .onChange(of: store.apps.count) { advisor.refresh(apps: store.apps) }
         .onAppear {
@@ -203,8 +205,21 @@ struct AdviceView: View {
                 let fx = f.fixes[i]
                 return (fx.title, { MainActor.assumeIsolated { checks.apply(fx.fix, store: store) { runChecks() } } })
             }
+            var confirm: String?
+            if let first = f.fixes.first {
+                switch first.fix {
+                case .disableLaunchItem(let p): confirm = L("fix.confirm.launch", PathUtil.abbreviate(p))
+                case .trash(let ps): confirm = L("fix.confirm.trash", ps.map(PathUtil.abbreviate).joined(separator: "\n"))
+                case .removeProfile(let id): confirm = L("fix.confirm.profile", id)
+                case .untrustCert(let n, _): confirm = L("fix.confirm.cert", n)
+                case .deleteDefault(let d, let k): confirm = L("fix.confirm.policy", d, k)
+                case .revoke: confirm = L("adv.revokeConfirm")
+                default: confirm = nil
+                }
+            }
             return AdviceItem(id: "chk." + f.id, verdict: f.verdict, icon: icon, title: f.title,
-                              body: f.body, iconKey: f.iconKey, primary: act(0), secondary: act(1), category: L("ov.cat." + f.category.rawValue))
+                              body: f.body, iconKey: f.iconKey, primary: act(0), secondary: act(1),
+                              category: L("ov.cat." + f.category.rawValue), confirmText: confirm)
         }
     }
 
@@ -228,7 +243,7 @@ struct AdviceView: View {
                 Text(a.body).font(.system(size: 12.5)).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
                 HStack(spacing: 8) {
                     if let p = a.primary {
-                        Button(p.title) { if a.id.hasPrefix("unused.") || a.id.hasPrefix("chk.spy.") { confirm = a } else { p.run() } }
+                        Button(p.title) { if a.id.hasPrefix("unused.") || a.confirmText != nil { confirm = a } else { p.run() } }
                             .buttonStyle(.borderedProminent).tint(a.verdict.color)
                     }
                     if let s = a.secondary { Button(s.title) { s.run() } }

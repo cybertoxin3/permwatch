@@ -546,3 +546,8 @@ chk.spy.screen	查看屏幕
 chk.spy.keys	记录按键
 chk.spy.control	控制鼠标和应用
 chk.spy.mic	通过麦克风收听
+fix.confirm.launch	这将停止该服务并把以下文件移到废纸篓:\n%@\n\n请确认它确实属于上面提到的应用。
+fix.confirm.trash	以下内容将移到废纸篓:\n%@
+fix.confirm.profile	将移除描述文件“%@”。macOS 会要求输入密码。
+fix.confirm.cert	你的 Mac 将不再信任“%@”,证书本身会保留。如果它用于公司或学校 Wi‑Fi,可能需要重新信任才能连接。
+fix.confirm.policy	将从 %1$@ 的偏好设置中删除“%2$@”。

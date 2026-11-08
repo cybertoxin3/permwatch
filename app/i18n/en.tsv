@@ -546,3 +546,8 @@ chk.spy.screen	see your screen
 chk.spy.keys	record your keystrokes
 chk.spy.control	control the mouse and apps
 chk.spy.mic	listen through the microphone
+fix.confirm.launch	This will stop the service and move this file to the Trash:\n%@\n\nCheck that it really belongs to the app named above.
+fix.confirm.trash	These will be moved to the Trash:\n%@
+fix.confirm.profile	The configuration profile “%@” will be removed. macOS asks for your password.
+fix.confirm.cert	Your Mac will stop trusting “%@”. The certificate itself is kept. If it is for your company or school Wi-Fi, you may need to trust it again to connect.
+fix.confirm.policy	The setting “%2$@” will be deleted from %1$@’s preferences.

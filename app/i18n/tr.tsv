@@ -546,3 +546,8 @@ chk.spy.screen	ekranını görme
 chk.spy.keys	tuş vuruşlarını kaydetme
 chk.spy.control	fareyi ve uygulamaları kontrol etme
 chk.spy.mic	mikrofonu dinleme
+fix.confirm.launch	Bu, servisi durdurup şu dosyayı Çöp Sepeti'ne taşıyacak:\n%@\n\nGerçekten yukarıda adı geçen uygulamaya ait olduğunu kontrol et.
+fix.confirm.trash	Şunlar Çöp Sepeti'ne taşınacak:\n%@
+fix.confirm.profile	"%@" yapılandırma profili kaldırılacak. macOS şifreni soracak.
+fix.confirm.cert	Mac'in "%@" sertifikasına güvenmeyi bırakacak; sertifikanın kendisi silinmez. Şirket veya okul Wi-Fi'ın içinse bağlanmak için yeniden güvenmen gerekebilir.
+fix.confirm.policy	%1$@ tercihlerinden "%2$@" ayarı silinecek.

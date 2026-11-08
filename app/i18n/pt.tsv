@@ -546,3 +546,8 @@ chk.spy.screen	ver a tela
 chk.spy.keys	registrar teclas
 chk.spy.control	controlar o mouse e apps
 chk.spy.mic	ouvir pelo microfone
+fix.confirm.launch	O serviço será parado e este arquivo movido para o Lixo:\n%@\n\nConfira se ele realmente pertence ao app citado.
+fix.confirm.trash	Será movido para o Lixo:\n%@
+fix.confirm.profile	O perfil “%@” será removido. O macOS pedirá sua senha.
+fix.confirm.cert	Seu Mac deixará de confiar em “%@”; o certificado é mantido. Se for do Wi‑Fi da empresa ou escola, talvez precise confiar de novo para conectar.
+fix.confirm.policy	A configuração “%2$@” será apagada das preferências de %1$@.

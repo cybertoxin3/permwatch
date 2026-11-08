@@ -33,7 +33,8 @@ def norm(specs):
 
 
 def esc(s):
-    return s.replace("\\", "\\\\").replace('"', '\\"')
+    # "\n" (ters bölü + n) satır sonu olarak korunur; diğer ters bölüler kaçışlanır.
+    return s.replace("\\n", "\0").replace("\\", "\\\\").replace("\0", "\\n").replace('"', '\\"')
 
 
 def main(src_dir, res_dir):

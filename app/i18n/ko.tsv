@@ -546,3 +546,8 @@ chk.spy.screen	화면 보기
 chk.spy.keys	키 입력 기록
 chk.spy.control	마우스와 앱 제어
 chk.spy.mic	마이크로 듣기
+fix.confirm.launch	서비스를 중지하고 다음 파일을 휴지통으로 옮깁니다:\n%@\n\n정말 위에 표시된 앱의 것인지 확인하세요.
+fix.confirm.trash	다음 항목을 휴지통으로 옮깁니다:\n%@
+fix.confirm.profile	구성 프로파일 '%@'을(를) 제거합니다. macOS가 암호를 묻습니다.
+fix.confirm.cert	Mac이 '%@'을(를) 더 이상 신뢰하지 않습니다. 인증서 자체는 유지됩니다. 회사·학교 Wi‑Fi용이라면 연결하려면 다시 신뢰해야 할 수 있습니다.
+fix.confirm.policy	%1$@ 환경설정에서 '%2$@' 설정을 삭제합니다.
