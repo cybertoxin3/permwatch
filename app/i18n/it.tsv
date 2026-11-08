@@ -424,3 +424,4 @@ pkt.storePayload	Salva anche il contenuto dei pacchetti (può includere password
 x.unsigned.what	%1$@ non è firmato da uno sviluppatore noto e scambia dati con %2$@. La connessione può essere cifrata, ma la cifratura nasconde solo il contenuto: non dice nulla sull’affidabilità del programma o del server. I malware parlano con i loro server di controllo proprio così.
 x.unsigned.advice	Se hai installato tu questo programma (ad esempio uno strumento di sviluppo) può andare bene. Se non lo riconosci, controllalo con VirusTotal e chiudilo da App in esecuzione.
 pkt.waitingRoot	In attesa dell’autorizzazione amministratore…
+pkt.noPktap	Nomi dei processi non disponibili (impossibile attivare PKTAP: %@). I pacchetti vengono comunque catturati.

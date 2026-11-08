@@ -101,16 +101,22 @@ final class Capture {
     private var written = 0
     let device: String
     var skipped: Int { engine.skipped }
+    var linkType: Int32 { engine.linkType }
+
+    /// PKTAP (süreç bilgisi) açılamadıysa nedeni; yakalama yine de süreç bilgisiz sürer.
+    private(set) var pktapError: String?
 
     init(payload: Bool) throws {
         var lastError = "pktap"
-        for dev in ["pktap,all", "pktap"] {
+        for (dev, pk) in [("pktap,all", true), ("pktap", true), ("pktap,all", false), ("pktap", false)] {
             let e = CaptureEngine(device: dev)
+            e.wantPktap = pk
             do {
                 try e.open()
                 e.storePayload = payload
                 engine = e
                 device = dev
+                if !pk { pktapError = lastError }
                 unlink(packetsPath)
                 fd = openOwned(packetsPath, append: true)
                 if e.dump(to: pcapPath) { chown(pcapPath, owner, ownerGid); chmod(pcapPath, 0o600) }
@@ -204,7 +210,11 @@ while true {
         ]
         doc.merge(medium) { a, _ in a }
         var cap: [String: Any] = ["active": capture != nil]
-        if let c = capture { cap["device"] = c.device; cap["skipped"] = c.skipped; cap["pcap"] = pcapPath; cap["packets"] = packetsPath }
+        if let c = capture {
+            cap["device"] = c.device; cap["skipped"] = c.skipped; cap["pcap"] = pcapPath; cap["packets"] = packetsPath
+            cap["linktype"] = Int(c.linkType)
+            if let pe = c.pktapError { cap["pktapError"] = pe }
+        }
         if let e = captureError { cap["error"] = e }
         doc["capture"] = cap
         if let data = try? JSONSerialization.data(withJSONObject: doc) { writeAtomic(data, to: outPath) }

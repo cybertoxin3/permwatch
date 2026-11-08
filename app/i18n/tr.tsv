@@ -424,3 +424,4 @@ pkt.storePayload	Paket içeriğini de kaydet (parolalar içerebilir)
 x.unsigned.what	%1$@ bilinen bir geliştirici tarafından imzalanmamış ve %2$@ ile veri alışverişi yapıyor. Bağlantı şifreli olabilir ama şifreleme yalnızca içeriği gizler; programın ya da sunucunun güvenilir olup olmadığı hakkında hiçbir şey söylemez. Zararlılar da kontrol sunucularıyla tam olarak böyle konuşur.
 x.unsigned.advice	Bu programı kendin kurduysan (örneğin bir geliştirici aracı) sorun olmayabilir. Tanımıyorsan VirusTotal ile kontrol et ve Çalışan Uygulamalar'dan kapat.
 pkt.waitingRoot	Yönetici izni bekleniyor…
+pkt.noPktap	Süreç adları alınamadı (PKTAP açılamadı: %@). Paketler yine de yakalanıyor.

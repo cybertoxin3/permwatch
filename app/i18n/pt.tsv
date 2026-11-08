@@ -424,3 +424,4 @@ pkt.storePayload	Salvar também o conteúdo dos pacotes (pode incluir senhas)
 x.unsigned.what	%1$@ não é assinado por um desenvolvedor conhecido e está trocando dados com %2$@. A conexão pode ser criptografada, mas a criptografia só esconde o conteúdo: não diz nada sobre se o programa ou o servidor são confiáveis. Malware fala com seus servidores de controle exatamente assim.
 x.unsigned.advice	Se você mesmo instalou este programa (uma ferramenta de desenvolvimento, por exemplo), pode estar tudo bem. Se não o reconhece, verifique no VirusTotal e encerre-o em Apps em execução.
 pkt.waitingRoot	Aguardando permissão de administrador…
+pkt.noPktap	Nomes de processo indisponíveis (não foi possível ativar o PKTAP: %@). Os pacotes continuam sendo capturados.

@@ -27,6 +27,8 @@ final class PacketMonitor: ObservableObject {
     @Published private(set) var lastSaved: URL?
     /// Yönetici izni bekleniyor (yakalama her zaman root olarak çalışır).
     @Published private(set) var waitingForRoot = false
+    /// Yönetici modunda PKTAP açılamadıysa (süreç bilgisi yok) nedeni.
+    @Published private(set) var noProcessInfo: String?
     private var rootWait: Timer?
     @Published private(set) var saveError: String?
     nonisolated static let saveFolderKey = "captureSaveFolder"
@@ -242,6 +244,7 @@ final class PacketMonitor: ObservableObject {
             if let d = RootBridge.shared.data {
                 if let e = d.captureError { error = e; stop(); return }
                 skipped = d.captureSkipped
+                noProcessInfo = d.capturePktapError
             } else if Date().timeIntervalSince(startedAt) > 15 {
                 error = L("pkt.rootGone"); stop(); return
             }

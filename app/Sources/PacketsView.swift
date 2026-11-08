@@ -101,6 +101,10 @@ struct PacketsView: View {
                 }
                 Text(modeText).font(.system(size: 11)).foregroundStyle(.secondary).lineLimit(1)
             }
+            if let e = cap.noProcessInfo, cap.running {
+                Label(L("pkt.noPktap", e), systemImage: "exclamationmark.triangle")
+                    .font(.system(size: 11)).foregroundStyle(.orange)
+            }
             if let u = cap.lastSaved {
                 HStack(spacing: 6) {
                     Image(systemName: "checkmark.circle.fill").foregroundStyle(.green)

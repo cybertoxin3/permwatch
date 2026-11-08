@@ -92,6 +92,11 @@ enum PacketParser {
             l3 = off + 4
         case 12, 14, 101, 228, 229:  // ham IP
             guard r.has(off, 1) else { return nil }
+            // macOS "pktap,all" PKTAP'sız açılınca tünel/loopback çerçevelerini 4 baytlık NULL başlığıyla
+            // bırakabiliyor: bunu tanı.
+            if r.has(off, 5), [2, 24, 28, 30].contains(r.le32(off)), [4, 6].contains(r.u8(off + 4) >> 4) {
+                off += 4
+            }
             ethType = r.u8(off) >> 4 == 6 ? 0x86DD : 0x0800
             l3 = off
         default:
@@ -421,6 +426,10 @@ final class CaptureEngine: @unchecked Sendable {
     private(set) var skipped = 0
     /// true (varsayılan): paketler .pcap dosyasına eksiksiz yazılır. false: yalnızca başlıklar.
     var storePayload = true
+    /// Apple uzantısı: her pakete PKTAP başlığı (süreç adı/PID, arayüz, yön) eklenir ve .pcap dosyası
+    /// LINKTYPE_PKTAP olarak yazılır. Olmadan "pktap,all" başlıkları atar, farklı bağlantı türlerini
+    /// tek bir "ham IP" dosyasına karıştırır ve süreç bilgisi kaybolur.
+    var wantPktap = false
     var onPacket: (Packet) -> Void = { _ in }
 
     init(device: String) { self.device = device }
@@ -433,6 +442,14 @@ final class CaptureEngine: @unchecked Sendable {
         pcap_set_timeout(h, 250)
         pcap_set_immediate_mode(h, 1)
         pcap_set_buffer_size(h, 8 << 20)
+        if wantPktap {
+            typealias SetWant = @convention(c) (OpaquePointer?, Int32) -> Int32
+            guard let lib = dlopen("/usr/lib/libpcap.A.dylib", RTLD_NOW), let sym = dlsym(lib, "pcap_set_want_pktap") else {
+                pcap_close(h)
+                throw CaptureError(message: "pcap_set_want_pktap")
+            }
+            _ = unsafeBitCast(sym, to: SetWant.self)(h, 1)
+        }
         let rc = pcap_activate(h)
         if rc < 0 {
             let msg = String(cString: pcap_geterr(h))
@@ -441,6 +458,11 @@ final class CaptureEngine: @unchecked Sendable {
         }
         handle = h
         linkType = pcap_datalink(h)
+        if wantPktap, linkType != PacketParser.dltPktapApple, linkType != PacketParser.dltPktap {
+            pcap_close(h)
+            handle = nil
+            throw CaptureError(message: "PKTAP etkinleşmedi (DLT \(linkType))")
+        }
     }
 
     /// Ham paketleri Wireshark'ın açabileceği .pcap dosyasına da yaz.
@@ -480,8 +502,14 @@ final class CaptureEngine: @unchecked Sendable {
                                            payload: storePayload)
                 if let d = dumper {
                     var h = hdr.pointee
-                    if !storePayload { h.caplen = UInt32(min(Int(h.caplen), p?.payloadStart ?? 64)) }
-                    pcap_dump(UnsafeMutablePointer<UInt8>(d), &h, data)
+                    var start = data
+                    // Ham IP dosyasına NULL başlıklı çerçeve yazma: başlığı at, dosya tutarlı kalsın.
+                    if [12, 14, 101].contains(linkType), h.caplen > 5,
+                       [2, 24, 28, 30].contains(Reader(buf).le32(0)), [4, 6].contains(data[4] >> 4) {
+                        start = data + 4; h.caplen -= 4; h.len -= 4
+                    }
+                    if !storePayload { h.caplen = UInt32(min(Int(h.caplen), max(0, (p?.payloadStart ?? 64) - (start - data)))) }
+                    pcap_dump(UnsafeMutablePointer<UInt8>(d), &h, start)
                 }
                 let s = Int(ts)
                 if s != second { second = s; inSecond = 0 }

@@ -424,3 +424,4 @@ pkt.storePayload	Enregistrer aussi le contenu des paquets (peut contenir des mot
 x.unsigned.what	%1$@ n’est pas signé par un développeur connu et échange des données avec %2$@. La connexion est peut-être chiffrée, mais le chiffrement ne fait que cacher le contenu : il ne dit rien de la fiabilité du programme ou du serveur. C’est exactement ainsi qu’un malware parle à son serveur de contrôle.
 x.unsigned.advice	Si vous avez installé ce programme vous-même (un outil de développement, par exemple), cela peut être normal. Sinon, vérifiez-le avec VirusTotal et quittez-le depuis Apps en cours.
 pkt.waitingRoot	En attente de l’autorisation administrateur…
+pkt.noPktap	Noms de processus indisponibles (PKTAP n’a pas pu être activé : %@). Les paquets sont tout de même capturés.

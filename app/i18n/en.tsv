@@ -424,3 +424,4 @@ pkt.storePayload	Also save packet contents (may include passwords)
 x.unsigned.what	%1$@ is not signed by a known developer and is exchanging data with %2$@. The connection may be encrypted, but encryption only hides the content: it says nothing about whether the program or the server can be trusted. Malware talks to its control servers exactly like this.
 x.unsigned.advice	If you installed this program yourself (a developer tool, for example) this can be fine. If you don’t recognise it, check it with VirusTotal and quit it from Running Apps.
 pkt.waitingRoot	Waiting for administrator permission…
+pkt.noPktap	Process names unavailable (PKTAP could not be enabled: %@). Packets are still captured.

@@ -14,6 +14,7 @@ struct RootData {
     var captureDevice: String?
     var captureError: String?
     var captureSkipped = 0
+    var capturePktapError: String?
 
     var fresh: Bool { Date().timeIntervalSince(ts) < 20 }
 }
@@ -165,6 +166,7 @@ final class RootBridge: ObservableObject {
             r.captureDevice = c["device"] as? String
             r.captureError = c["error"] as? String
             r.captureSkipped = c["skipped"] as? Int ?? 0
+            r.capturePktapError = c["pktapError"] as? String
         }
         return r
     }

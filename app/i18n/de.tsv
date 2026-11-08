@@ -424,3 +424,4 @@ pkt.storePayload	Auch Paketinhalte sichern (kann Passwörter enthalten)
 x.unsigned.what	%1$@ ist nicht von einem bekannten Entwickler signiert und tauscht Daten mit %2$@ aus. Die Verbindung mag verschlüsselt sein, aber Verschlüsselung verbirgt nur den Inhalt – sie sagt nichts darüber, ob Programm oder Server vertrauenswürdig sind. Genau so spricht Malware mit ihren Steuerservern.
 x.unsigned.advice	Wenn du das Programm selbst installiert hast (z. B. ein Entwicklerwerkzeug), kann das in Ordnung sein. Kennst du es nicht, prüfe es mit VirusTotal und beende es unter „Laufende Apps“.
 pkt.waitingRoot	Warte auf Administratorrechte …
+pkt.noPktap	Prozessnamen nicht verfügbar (PKTAP ließ sich nicht aktivieren: %@). Pakete werden trotzdem mitgeschnitten.
