@@ -11,8 +11,10 @@ action.showInFinder	Afficher dans le Finder
 action.trust	Marquer comme fiable
 action.uninstall	Désinstaller…
 action.untrust	Retirer la confiance
+action.virustotal	Rechercher sur VirusTotal
 alert.evasion	contournement de Gatekeeper
 alert.execution	exécution suspecte
+alert.network	connexion suspecte
 alert.permission	autorisation suspecte
 alert.persistence	persistance suspecte
 alert.process	processus suspect
@@ -20,8 +22,15 @@ app.firstSeen	vue pour la première fois %@
 app.noLoginItem	Pas d’élément d’ouverture
 apps.subtitle	Quelle app accède à quoi
 btm.agent	agent (utilisateur)
+btm.authPlugin	plug-in d’autorisation
+btm.browserExt	extension de navigateur
+btm.cron	tâche cron
 btm.daemon	daemon (système)
+btm.kext	extension du noyau
+btm.loginHook	login hook
 btm.loginItem	Élément d’ouverture
+btm.shell	fichier de démarrage du shell
+btm.sysExt	extension système
 col.cpu	Processeur %
 col.memory	Mémoire
 col.name	Nom
@@ -37,6 +46,14 @@ confirm.trash.title	Placer « %@ » dans la corbeille ?
 detail.chain	Chaîne de cette app
 detail.empty	Sélectionnez un événement
 detail.triggered	Règles déclenchées :
+dl.accepted	Gatekeeper : autorisé
+dl.empty	Aucune app ni programme d’installation téléchargé ces 30 derniers jours.
+dl.notNotarized	non notarisé
+dl.notQuarantined	pas de marqueur de quarantaine
+dl.quarantined	en quarantaine
+dl.rejected	Gatekeeper bloquerait ce fichier
+dl.subtitle	Les apps et programmes d’installation sont vérifiés dès leur arrivée dans Téléchargements
+dl.threatTitle	téléchargement à risque
 empty.body	Ouvrez un fichier JSON Lines produit par l’outil en ligne de commande permwatch.
 empty.title	Aucun événement
 ev.btm.agent	Nouveau LaunchAgent ajouté
@@ -46,6 +63,7 @@ ev.btm.remove	Élément de démarrage supprimé
 ev.exec	%@ exécuté
 ev.exec.first	%@ lancé pour la première fois
 ev.gatekeeper	Gatekeeper contourné pour %@
+ev.persist	%1$@ : %2$@
 ev.quarantine	Marqueur de quarantaine supprimé
 ev.tcc.denied	%1$@ → %2$@ refusé
 ev.tcc.granted	%1$@ → %2$@ accordé
@@ -79,6 +97,14 @@ filter.all	Tout
 filter.loginItems	Ouverture
 filter.permissions	Autorisations
 filter.processes	Processus
+media.camera	Caméra
+media.cameraOff	Caméra éteinte
+media.cameraOn	Caméra allumée
+media.history	Cette session
+media.micIdle	Micro non utilisé
+media.micInUse	Micro utilisé par : %@
+media.now	maintenant
+media.threat	app non signée utilisant le micro
 menu.loadDemo	Charger les données de démo
 menu.loginItems	éléments d’ouverture
 menu.openAlerts	alertes ouvertes
@@ -93,15 +119,29 @@ menu.watching	journal surveillé
 nav.accessibility	Accessibilité
 nav.alerts	Alertes
 nav.apps	Apps
+nav.downloads	Gardien des téléchargements
 nav.fullDisk	Accès complet au disque
 nav.loginItems	Éléments d’ouverture
 nav.micCamera	Micro et caméra
+nav.network	Réseau
 nav.permissions	Autorisations
 nav.persistence	Persistance
 nav.processes	Processus
+nav.protection	Protection
 nav.running	Processus en cours
 nav.screen	Enregistrement de l’écran
+nav.security	État de la sécurité
 nav.timeline	Chronologie
+net.listening	en écoute
+net.local	Local
+net.onlyOwn	Sans droits d’administrateur, seuls vos processus sont visibles.
+net.process	Processus
+net.proto	Proto
+net.remote	Distant
+net.state	État
+nrule.badPort	Utilise un port courant des portes dérobées (%@)
+nrule.unsignedListener	Un programme non signé attend des connexions entrantes
+nrule.unsignedOutbound	Un programme non signé a une connexion internet ouverte
 open.message	Choisissez un journal JSON Lines écrit par l’outil permwatch
 proc.count	%ld processus
 proc.filter.suspicious	Suspects
@@ -127,13 +167,17 @@ reset.noBundle	Ce programme n’a pas d’identifiant de paquet ; son autorisati
 risk.caution	Attention
 risk.high	Risque élevé
 risk.normal	Normal
+rule.authPlugin	Un plug-in tiers fait partie de la chaîne d’autorisation de connexion
+rule.cronJob	Une tâche cron planifiée exécute une commande
 rule.dyld	Lancé avec des variables d’injection DYLD_*
 rule.gatekeeper	L’utilisateur a contourné Gatekeeper pour ce fichier
 rule.hiddenTarget	Le fichier cible est dans un dossier caché
+rule.loginHook	Un login hook exécute un script à chaque connexion
 rule.lolbinFromUnsigned	Un outil système a été lancé par une app non signée
 rule.nightHidden	Lancé en pleine nuit depuis un dossier caché
 rule.quarantine	Le marqueur de quarantaine a été supprimé, Gatekeeper est contourné
 rule.rapidGrants	La même app a obtenu accessibilité et enregistrement de l’écran en 2 minutes
+rule.shellSuspicious	Un fichier de démarrage du shell télécharge ou décode du code et l’exécute
 rule.startupWeakSignature	L’élément de démarrage lance un script ou un programme signé ad hoc
 rule.tccAdhoc	Autorisation accordée à une app signée ad hoc
 rule.tccUnsigned	Autorisation accordée à une app non signée
@@ -141,6 +185,18 @@ rule.unsignedDownload	Une app non signée s’est lancée pour la première fois
 rule.unsignedPersistence	Un processus non signé a ajouté un élément de démarrage
 rule.unsignedStartupBinary	L’élément de démarrage lance un programme non signé
 search.prompt	Rechercher : app, chemin, Team ID…
+sec.filevault	Chiffrement FileVault
+sec.firewall	Coupe-feu
+sec.fix	Ouvrir les réglages
+sec.gatekeeper	Gatekeeper
+sec.off	Désactivé
+sec.on	Activé
+sec.score	%1$ld protections actives sur %2$ld
+sec.sip	Protection de l’intégrité du système
+sec.unknown	Vérification impossible
+sec.updates	Réponses de sécurité et fichiers de données automatiques
+sec.xprotect	Définitions de logiciels malveillants XProtect
+sec.xprotectAge	Version %1$@ · mise à jour %2$@
 settings.appearance	Apparence
 sig.adhoc	signée ad hoc
 sig.apple	Apple
@@ -191,6 +247,9 @@ tag.trusted	Fiable
 theme.dark	Sombre
 theme.light	Clair
 theme.system	Système
+threat.dismiss	Ignorer
+threat.more	+%ld autres
+threat.review	Examiner
 uninstall.blocked	macOS protège cette app ; elle ne peut pas être supprimée.
 uninstall.body	L’app est d’abord quittée, puis les éléments choisis sont placés dans la corbeille. Ils ne sont supprimés définitivement que lorsque vous videz la corbeille.
 uninstall.confirm	Placer dans la corbeille

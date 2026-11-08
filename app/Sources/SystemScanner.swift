@@ -27,6 +27,7 @@ enum SystemScanner {
     struct Snapshot: Codable, Equatable {
         var tcc: [String: Int] = [:]        // "servis|istemci" → auth_value
         var plists: [String: String] = [:]  // plist yolu → çalıştırılan dosya
+        var extras: [String: String]? = [:] // genişletilmiş kalıcılık: anahtar → tür
     }
 
     struct Result {
@@ -92,6 +93,22 @@ enum SystemScanner {
             }
         }
 
+        // MARK: Genişletilmiş kalıcılık (cron, kabuk dosyaları, uzantılar, eklentiler…)
+        var extrasMap: [String: String] = [:]
+        for x in extraPersistence() {
+            extrasMap[x.key] = x.type
+            var e = RawEvent(ts: x.ts, event: "btm_launch_item_add")
+            e.origin = "scan"
+            e.label = x.name
+            e.note = x.note
+            e.item = BTMItem(type: x.type, legacy: false, managed: false, uid: nil,
+                             url: x.location.map { URL(fileURLWithPath: $0).absoluteString }, app_url: nil)
+            e.executable_path = x.exec
+            if let p = x.binary { e.instigator = processInfo(forPath: p) }
+            events.append(e)
+        }
+        snap.extras = extrasMap
+
         // MARK: Kaybolanlar (önceki taramada vardı, şimdi yok)
         var removed = removedLog
         if let prev = previous {
@@ -117,8 +134,135 @@ enum SystemScanner {
                 e.instigator = processInfo(forPath: exe)
                 removed.append(e)
             }
+            for (key, type) in prev.extras ?? [:] where extrasMap[key] == nil {
+                var e = RawEvent(ts: now, event: "btm_launch_item_remove")
+                e.origin = "scan"
+                e.label = (key as NSString).lastPathComponent
+                e.item = BTMItem(type: type, legacy: false, managed: false, uid: nil,
+                                 url: key.hasPrefix("/") ? URL(fileURLWithPath: key).absoluteString : nil, app_url: nil)
+                removed.append(e)
+            }
         }
         return Result(events: events + removed, snapshot: snap, tccReadable: readable)
+    }
+
+    // MARK: - Genişletilmiş kalıcılık
+
+    struct Extra {
+        var key: String          // değişiklik takibi için benzersiz anahtar
+        var type: String         // cron | shell | browserExt | sysExt | authPlugin | kext | loginHook
+        var name: String
+        var location: String?    // dosya/klasör
+        var exec: String?        // çalıştırılan komut ya da satır
+        var binary: String?      // imzası kontrol edilecek dosya
+        var ts: Double
+        var note: String?
+    }
+
+    /// Kabuk dosyasında "kod indirip çalıştırma" kalıpları.
+    private static let shellPatterns: [NSRegularExpression] = [
+        #"(curl|wget)[^\n|]*\|\s*(ba|z)?sh"#, #"base64\s+(-d|--decode|-D)"#, #"osascript\s"#,
+        #"eval\s+"?\$\((curl|wget)"#, #"python3?\s+-c\s"#, #"nohup\s.+&\s*$"#,
+    ].compactMap { try? NSRegularExpression(pattern: $0, options: [.caseInsensitive, .anchorsMatchLines]) }
+
+    static func extraPersistence() -> [Extra] {
+        let fm = FileManager.default
+        let home = NSHomeDirectory()
+        func mtime(_ p: String) -> Double {
+            ((try? fm.attributesOfItem(atPath: p))?[.modificationDate] as? Date)?.timeIntervalSince1970
+                ?? Date().timeIntervalSince1970
+        }
+        func ctime(_ p: String) -> Double {
+            ((try? fm.attributesOfItem(atPath: p))?[.creationDate] as? Date)?.timeIntervalSince1970 ?? mtime(p)
+        }
+        var out: [Extra] = []
+
+        // cron (yalnızca kendi kullanıcımız; root crontab için yönetici yetkisi gerekir)
+        let (code, cron) = Shell.run("/usr/bin/crontab", ["-l"])
+        if code == 0 {
+            for line in cron.split(separator: "\n").map(String.init)
+            where !line.trimmingCharacters(in: .whitespaces).isEmpty && !line.hasPrefix("#") && !line.contains("=") {
+                out.append(Extra(key: "cron:" + line, type: "cron", name: "crontab", location: nil, exec: line,
+                                 binary: nil, ts: Date().timeIntervalSince1970, note: "cronJob"))
+            }
+        }
+
+        // Kabuk başlangıç dosyaları
+        for f in [".zshrc", ".zprofile", ".zshenv", ".zlogin", ".bash_profile", ".bashrc", ".profile"] {
+            let p = home + "/" + f
+            guard let text = try? String(contentsOfFile: p, encoding: .utf8) else { continue }
+            let range = NSRange(text.startIndex..., in: text)
+            let hit = shellPatterns.lazy.compactMap { $0.firstMatch(in: text, range: range) }.first
+            var line: String?
+            if let h = hit, let r = Range(h.range, in: text) { line = String(text[text.lineRange(for: r)]).trimmingCharacters(in: .whitespacesAndNewlines) }
+            out.append(Extra(key: p, type: "shell", name: f, location: p, exec: line, binary: nil, ts: mtime(p),
+                             note: line == nil ? nil : "shellSuspicious"))
+        }
+
+        // Tarayıcı uzantıları (Chromium tabanlılar)
+        let browsers = ["Google/Chrome", "BraveSoftware/Brave-Browser", "Microsoft Edge"]
+        for b in browsers {
+            let base = home + "/Library/Application Support/" + b
+            guard let profiles = try? fm.contentsOfDirectory(atPath: base) else { continue }
+            for prof in profiles where prof == "Default" || prof.hasPrefix("Profile ") {
+                let extDir = base + "/" + prof + "/Extensions"
+                for id in (try? fm.contentsOfDirectory(atPath: extDir)) ?? [] where id.count == 32 {
+                    let idDir = extDir + "/" + id
+                    guard let ver = ((try? fm.contentsOfDirectory(atPath: idDir)) ?? []).sorted().last else { continue }
+                    let dir = idDir + "/" + ver
+                    let name = extensionName(dir) ?? id
+                    out.append(Extra(key: idDir, type: "browserExt", name: "\(name) (\(b.components(separatedBy: "/").last ?? b))",
+                                     location: dir, exec: nil, binary: nil, ts: ctime(idDir), note: nil))
+                }
+            }
+        }
+
+        // Sistem uzantıları (DriverKit, ağ, Endpoint Security…)
+        let (_, sx) = Shell.run("/usr/bin/systemextensionsctl", ["list"])
+        for line in sx.split(separator: "\n").map(String.init) where line.contains("[") && line.contains("\t") {
+            let cols = line.split(separator: "\t").map { $0.trimmingCharacters(in: .whitespaces) }
+            guard cols.count >= 5 else { continue }
+            let bundle = cols[3].components(separatedBy: " (").first ?? cols[3]
+            out.append(Extra(key: "sysext:" + bundle, type: "sysExt", name: cols[4], location: nil,
+                             exec: "\(bundle) · \(cols[2]) \(cols.last ?? "")", binary: nil,
+                             ts: Date().timeIntervalSince1970, note: nil))
+        }
+
+        // Yetkilendirme eklentileri ve kernel uzantıları (üçüncü taraf klasörleri)
+        for (dir, type, note) in [("/Library/Security/SecurityAgentPlugins", "authPlugin", "authPlugin"),
+                                  ("/Library/Extensions", "kext", nil as String?)] {
+            for n in (try? fm.contentsOfDirectory(atPath: dir)) ?? [] where n.hasSuffix(".bundle") || n.hasSuffix(".kext") {
+                let p = dir + "/" + n
+                let exe = Bundle(path: p)?.executablePath
+                out.append(Extra(key: p, type: type, name: n, location: p, exec: exe, binary: exe ?? p,
+                                 ts: ctime(p), note: note))
+            }
+        }
+
+        // Login hook (eski yöntem ama hâlâ çalışıyor)
+        let (hc, hook) = Shell.run("/usr/bin/defaults", ["read", "com.apple.loginwindow", "LoginHook"])
+        if hc == 0, !hook.isEmpty {
+            out.append(Extra(key: "loginhook:" + hook, type: "loginHook", name: "LoginHook", location: hook,
+                             exec: hook, binary: hook, ts: mtime(hook), note: "loginHook"))
+        }
+        return out
+    }
+
+    private static func extensionName(_ dir: String) -> String? {
+        guard let data = FileManager.default.contents(atPath: dir + "/manifest.json"),
+              let m = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+              var name = m["name"] as? String else { return nil }
+        if name.hasPrefix("__MSG_"), name.hasSuffix("__") {
+            let key = String(name.dropFirst(6).dropLast(2)).lowercased()
+            let loc = (m["default_locale"] as? String) ?? "en"
+            if let d = FileManager.default.contents(atPath: "\(dir)/_locales/\(loc)/messages.json"),
+               let msgs = try? JSONSerialization.jsonObject(with: d) as? [String: Any],
+               let entry = msgs.first(where: { $0.key.lowercased() == key })?.value as? [String: Any],
+               let msg = entry["message"] as? String {
+                name = msg
+            }
+        }
+        return name
     }
 
     // MARK: - TCC okuma

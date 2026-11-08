@@ -25,13 +25,14 @@ enum Risk: Int, Comparable {
 enum Kind { case exec, btmAdd, btmRemove, quarantine, gatekeeper, tcc }
 
 enum Rule: String {
-    case unsignedPersistence, unsignedStartupBinary, startupWeakSignature, rapidGrants, hiddenTarget, nightHidden, tccUnsigned, tccAdhoc,
+    case unsignedPersistence, unsignedStartupBinary, startupWeakSignature, rapidGrants,
+         shellSuspicious, cronJob, authPlugin, loginHook, hiddenTarget, nightHidden, tccUnsigned, tccAdhoc,
          quarantine, unsignedDownload, dyld, gatekeeper, lolbinFromUnsigned
 
     var risk: Risk {
         switch self {
-        case .unsignedPersistence, .unsignedStartupBinary, .rapidGrants, .hiddenTarget, .nightHidden, .tccUnsigned, .dyld: return .high
-        case .tccAdhoc, .startupWeakSignature, .quarantine, .unsignedDownload, .gatekeeper, .lolbinFromUnsigned: return .caution
+        case .unsignedPersistence, .unsignedStartupBinary, .rapidGrants, .shellSuspicious, .hiddenTarget, .nightHidden, .tccUnsigned, .dyld: return .high
+        case .tccAdhoc, .startupWeakSignature, .cronJob, .authPlugin, .loginHook, .quarantine, .unsignedDownload, .gatekeeper, .lolbinFromUnsigned: return .caution
         }
     }
 
@@ -187,6 +188,7 @@ enum Text10n {
         switch t {
         case "agent": return L("btm.agent")
         case "daemon": return L("btm.daemon")
+        case "cron", "shell", "browserExt", "sysExt", "authPlugin", "kext", "loginHook": return L("btm.\(t)")
         default: return L("btm.loginItem")
         }
     }
@@ -251,6 +253,7 @@ enum Analyzer {
         var helperOwner: [String: String] = [:]   // BTM executable → uygulama anahtarı
         var bundleKey: [String: String] = [:]     // signing_id → uygulama anahtarı
         var seenExec = Set<String>()
+        let extraTypes: Set<String> = ["cron", "shell", "browserExt", "sysExt", "authPlugin", "kext", "loginHook"]
         var usedIDs = Set<Int>()
         var quarantined: [String] = []           // karantinası silinen yollar
         var items: [Item] = []
@@ -349,6 +352,42 @@ enum Analyzer {
                 }
                 if let c = t?.cdhash { fields.append(Field(label: "cdhash", value: c, mono: true)) }
                 reveal = path
+
+            case "btm_launch_item_add" where extraTypes.contains(e.item?.type ?? ""),
+                 "btm_launch_item_remove" where extraTypes.contains(e.item?.type ?? ""):
+                // Genişletilmiş kalıcılık: cron, kabuk dosyası, tarayıcı/sistem/kernel uzantısı, eklenti, login hook
+                let add = e.event == "btm_launch_item_add"
+                kind = add ? .btmAdd : .btmRemove
+                let type = e.item?.type ?? ""
+                let loc = PathUtil.fromURL(e.item?.url)
+                key = loc ?? e.executable_path ?? (e.label ?? type)
+                let label = e.label ?? PathUtil.displayName(key)
+                touch(key, name: label, date: d)
+                name = label
+                let typeText = Text10n.btmType(type)
+                title = add ? L("ev.persist", typeText, label) : "\(L("ev.btm.remove")) · \(label)"
+                rules = (e.note ?? "").split(separator: ",").compactMap { Rule(rawValue: String($0)) }
+                let owner = e.instigator
+                if add, let sig = owner?.signature {
+                    if sig == "unsigned" && owner?.script != true { rules.append(.unsignedStartupBinary) }
+                    else if sig == "adhoc" || owner?.script == true { rules.append(.startupWeakSignature) }
+                    // Apple'a ait yetkilendirme eklentisi şüpheli değildir.
+                    if sig == "apple" { rules.removeAll { $0 == .authPlugin } }
+                }
+                if let l = loc { sub.append(PathUtil.abbreviate(l)) }
+                if let x = e.executable_path, x != loc { sub.append(PathUtil.abbreviate(x)) }
+                fields.append(Field(label: L("field.itemType"), value: typeText))
+                if let l = loc { fields.append(Field(label: L("field.path"), value: PathUtil.abbreviate(l), mono: true)) }
+                if let x = e.executable_path {
+                    fields.append(Field(label: L("field.executes"), value: x, mono: true,
+                                        warn: rules.contains(.shellSuspicious)))
+                }
+                if let o = owner {
+                    fields.append(Field(label: L("field.signature"),
+                                        value: o.script == true ? L("sig.script") : (Text10n.signature(o.signature, team: o.team_id) ?? "—"),
+                                        mono: true, warn: o.signature == "unsigned"))
+                }
+                reveal = loc
 
             case "btm_launch_item_add", "btm_launch_item_remove":
                 let add = e.event == "btm_launch_item_add"

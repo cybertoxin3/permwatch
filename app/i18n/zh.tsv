@@ -11,8 +11,10 @@ action.showInFinder	在访达中显示
 action.trust	标记为可信
 action.uninstall	卸载…
 action.untrust	取消信任
+action.virustotal	在 VirusTotal 上查询
 alert.evasion	绕过 Gatekeeper
 alert.execution	可疑的执行
+alert.network	可疑的连接
 alert.permission	可疑的权限
 alert.persistence	可疑的持久化
 alert.process	可疑进程
@@ -20,8 +22,15 @@ app.firstSeen	首次发现：%@
 app.noLoginItem	无登录项
 apps.subtitle	哪个应用能访问什么
 btm.agent	agent（用户）
+btm.authPlugin	授权插件
+btm.browserExt	浏览器扩展
+btm.cron	cron 任务
 btm.daemon	daemon（系统）
+btm.kext	内核扩展
+btm.loginHook	登录钩子
 btm.loginItem	登录项
+btm.shell	Shell 启动文件
+btm.sysExt	系统扩展
 col.cpu	CPU %
 col.memory	内存
 col.name	名称
@@ -37,6 +46,14 @@ confirm.trash.title	将“%@”移到废纸篓？
 detail.chain	该应用的事件链
 detail.empty	选择一个事件
 detail.triggered	触发的规则：
+dl.accepted	Gatekeeper：允许
+dl.empty	过去 30 天没有下载应用或安装器。
+dl.notNotarized	未公证
+dl.notQuarantined	无隔离标记
+dl.quarantined	已隔离
+dl.rejected	Gatekeeper 会阻止此文件
+dl.subtitle	“下载”中的应用和安装器到达后立即检查
+dl.threatTitle	有风险的下载
 empty.body	打开由 permwatch 命令行工具生成的 JSON Lines 文件。
 empty.title	没有事件
 ev.btm.agent	新增 LaunchAgent
@@ -46,6 +63,7 @@ ev.btm.remove	启动项已移除
 ev.exec	%@ 已执行
 ev.exec.first	%@ 首次运行
 ev.gatekeeper	已为 %@ 绕过 Gatekeeper
+ev.persist	%1$@：%2$@
 ev.quarantine	隔离标记已移除
 ev.tcc.denied	%1$@ → 已拒绝%2$@
 ev.tcc.granted	%1$@ → 已授予%2$@
@@ -79,6 +97,14 @@ filter.all	全部
 filter.loginItems	登录项
 filter.permissions	权限变更
 filter.processes	进程
+media.camera	摄像头
+media.cameraOff	摄像头已关闭
+media.cameraOn	摄像头已开启
+media.history	本次会话
+media.micIdle	麦克风未在使用
+media.micInUse	正在使用麦克风：%@
+media.now	现在
+media.threat	未签名的应用正在使用麦克风
 menu.loadDemo	载入演示数据
 menu.loginItems	登录项
 menu.openAlerts	未处理警报
@@ -93,15 +119,29 @@ menu.watching	正在监视日志
 nav.accessibility	辅助功能
 nav.alerts	警报
 nav.apps	应用
+nav.downloads	下载守卫
 nav.fullDisk	完全磁盘访问权限
 nav.loginItems	登录项
 nav.micCamera	麦克风与摄像头
+nav.network	网络
 nav.permissions	权限
 nav.persistence	持久化
 nav.processes	进程
+nav.protection	保护
 nav.running	正在运行的进程
 nav.screen	屏幕录制
+nav.security	安全状态
 nav.timeline	时间线
+net.listening	监听中
+net.local	本地
+net.onlyOwn	没有管理员权限时只能看到你自己的进程。
+net.process	进程
+net.proto	协议
+net.remote	远程
+net.state	状态
+nrule.badPort	使用后门常用端口 (%@)
+nrule.unsignedListener	未签名的程序正在监听传入连接
+nrule.unsignedOutbound	未签名的程序有打开的互联网连接
 open.message	选择由 permwatch 命令行工具写入的 JSON Lines 日志
 proc.count	%ld 个进程
 proc.filter.suspicious	可疑
@@ -127,13 +167,17 @@ reset.noBundle	此程序没有包标识符，只能在系统设置中更改其�
 risk.caution	注意
 risk.high	高风险
 risk.normal	正常
+rule.authPlugin	登录授权链中有第三方插件
+rule.cronJob	计划的 cron 任务会运行命令
 rule.dyld	使用 DYLD_* 注入变量启动
 rule.gatekeeper	用户为此文件绕过了 Gatekeeper
 rule.hiddenTarget	目标文件位于隐藏文件夹中
+rule.loginHook	登录钩子在每次登录时运行脚本
 rule.lolbinFromUnsigned	系统工具由未签名的应用启动
 rule.nightHidden	深夜从隐藏文件夹运行
 rule.quarantine	隔离标记被移除，绕过了 Gatekeeper
 rule.rapidGrants	同一应用在 2 分钟内获得了辅助功能和屏幕录制权限
+rule.shellSuspicious	Shell 启动文件下载或解码代码并运行
 rule.startupWeakSignature	启动项运行了脚本或临时签名的程序
 rule.tccAdhoc	权限被授予临时签名的应用
 rule.tccUnsigned	权限被授予未签名的应用
@@ -141,6 +185,18 @@ rule.unsignedDownload	未签名的应用首次从“下载”文件夹运行
 rule.unsignedPersistence	未签名的进程添加了启动项
 rule.unsignedStartupBinary	启动项运行了未签名的程序
 search.prompt	搜索：应用、路径、Team ID…
+sec.filevault	FileVault 磁盘加密
+sec.firewall	防火墙
+sec.fix	打开设置
+sec.gatekeeper	Gatekeeper
+sec.off	关闭
+sec.on	开启
+sec.score	%2$ld 项保护中已开启 %1$ld 项
+sec.sip	系统完整性保护
+sec.unknown	无法检查
+sec.updates	自动安全响应和数据文件
+sec.xprotect	XProtect 恶意软件定义
+sec.xprotectAge	版本 %1$@ · 更新于 %2$@
 settings.appearance	外观
 sig.adhoc	临时签名
 sig.apple	Apple
@@ -191,6 +247,9 @@ tag.trusted	可信
 theme.dark	深色
 theme.light	浅色
 theme.system	跟随系统
+threat.dismiss	忽略
+threat.more	另有 %ld 个
+threat.review	查看
 uninstall.blocked	macOS 保护此应用，无法移除。
 uninstall.body	先退出该应用，然后将所选项目移到废纸篓。只有清倒废纸篓后才会被永久删除。
 uninstall.confirm	移到废纸篓

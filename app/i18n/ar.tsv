@@ -11,8 +11,10 @@ action.showInFinder	إظهار في Finder
 action.trust	وضع علامة موثوق
 action.uninstall	إلغاء التثبيت…
 action.untrust	إلغاء الثقة
+action.virustotal	البحث في VirusTotal
 alert.evasion	تجاوز Gatekeeper
 alert.execution	تشغيل مشبوه
+alert.network	اتصال مشبوه
 alert.permission	إذن مشبوه
 alert.persistence	استمرارية مشبوهة
 alert.process	عملية مشبوهة
@@ -20,8 +22,15 @@ app.firstSeen	رُصد أول مرة %@
 app.noLoginItem	لا عنصر دخول
 apps.subtitle	أي تطبيق يصل إلى ماذا
 btm.agent	agent (مستخدم)
+btm.authPlugin	مكون تفويض إضافي
+btm.browserExt	إضافة متصفح
+btm.cron	مهمة cron
 btm.daemon	daemon (نظام)
+btm.kext	امتداد النواة
+btm.loginHook	خطاف تسجيل الدخول
 btm.loginItem	عنصر تسجيل الدخول
+btm.shell	ملف بدء الصدفة
+btm.sysExt	امتداد النظام
 col.cpu	المعالج %
 col.memory	الذاكرة
 col.name	الاسم
@@ -37,6 +46,14 @@ confirm.trash.title	هل تريد نقل «%@» إلى سلة المهملات؟
 detail.chain	سلسلة هذا التطبيق
 detail.empty	اختر حدثًا
 detail.triggered	القواعد المُفعَّلة:
+dl.accepted	Gatekeeper: مسموح
+dl.empty	لم تُنزَّل أي تطبيقات أو برامج تثبيت خلال آخر 30 يومًا.
+dl.notNotarized	غير موثّق
+dl.notQuarantined	لا توجد علامة عزل
+dl.quarantined	معزول
+dl.rejected	سيحظر Gatekeeper هذا الملف
+dl.subtitle	تُفحص التطبيقات وبرامج التثبيت في التنزيلات فور وصولها
+dl.threatTitle	تنزيل محفوف بالمخاطر
 empty.body	افتح ملف JSON Lines أنشأته أداة سطر الأوامر permwatch.
 empty.title	لا توجد أحداث
 ev.btm.agent	إضافة LaunchAgent جديد
@@ -46,6 +63,7 @@ ev.btm.remove	أُزيل عنصر بدء التشغيل
 ev.exec	تم تشغيل %@
 ev.exec.first	تشغيل %@ لأول مرة
 ev.gatekeeper	تم تجاوز Gatekeeper لـ %@
+ev.persist	%1$@: %2$@
 ev.quarantine	أُزيلت علامة العزل
 ev.tcc.denied	%1$@ ← رُفض %2$@
 ev.tcc.granted	%1$@ ← مُنح %2$@
@@ -79,6 +97,14 @@ filter.all	الكل
 filter.loginItems	عناصر الدخول
 filter.permissions	تغييرات الأذونات
 filter.processes	العمليات
+media.camera	الكاميرا
+media.cameraOff	الكاميرا متوقفة
+media.cameraOn	الكاميرا تعمل
+media.history	هذه الجلسة
+media.micIdle	الميكروفون غير مستخدم
+media.micInUse	يستخدم الميكروفون: %@
+media.now	الآن
+media.threat	تطبيق غير موقّع يستخدم الميكروفون
 menu.loadDemo	تحميل البيانات التجريبية
 menu.loginItems	عناصر دخول
 menu.openAlerts	تنبيهات مفتوحة
@@ -93,15 +119,29 @@ menu.watching	يراقب السجل
 nav.accessibility	تسهيلات الاستخدام
 nav.alerts	التنبيهات
 nav.apps	التطبيقات
+nav.downloads	حارس التنزيلات
 nav.fullDisk	الوصول الكامل إلى القرص
 nav.loginItems	عناصر تسجيل الدخول
 nav.micCamera	الميكروفون والكاميرا
+nav.network	الشبكة
 nav.permissions	الأذونات
 nav.persistence	الاستمرارية
 nav.processes	العمليات
+nav.protection	الحماية
 nav.running	العمليات قيد التشغيل
 nav.screen	تسجيل الشاشة
+nav.security	حالة الأمان
 nav.timeline	الخط الزمني
+net.listening	يستمع
+net.local	محلي
+net.onlyOwn	بدون صلاحيات المسؤول تظهر عملياتك فقط.
+net.process	العملية
+net.proto	البروتوكول
+net.remote	بعيد
+net.state	الحالة
+nrule.badPort	يستخدم منفذًا شائعًا لدى الأبواب الخلفية (%@)
+nrule.unsignedListener	برنامج غير موقّع ينتظر اتصالات واردة
+nrule.unsignedOutbound	لدى برنامج غير موقّع اتصال مفتوح بالإنترنت
 open.message	اختر سجل JSON Lines كتبته أداة permwatch
 proc.count	%ld عملية
 proc.filter.suspicious	مشبوهة
@@ -127,13 +167,17 @@ reset.noBundle	لا يملك هذا البرنامج معرّف حزمة، لذ�
 risk.caution	تنبيه
 risk.high	خطورة عالية
 risk.normal	عادي
+rule.authPlugin	يوجد مكون إضافي لجهة خارجية في سلسلة تفويض تسجيل الدخول
+rule.cronJob	مهمة cron مجدولة تشغّل أمرًا
 rule.dyld	شُغّل مع متغيرات حقن DYLD_*
 rule.gatekeeper	تجاوز المستخدم Gatekeeper لهذا الملف
 rule.hiddenTarget	الملف الهدف في مجلد مخفي
+rule.loginHook	خطاف تسجيل دخول يشغّل برنامجًا نصيًا عند كل تسجيل دخول
 rule.lolbinFromUnsigned	شغّل تطبيق غير موقّع أداة نظام
 rule.nightHidden	تشغيل ليلي من مجلد مخفي
 rule.quarantine	أُزيلت علامة العزل وجرى تجاوز Gatekeeper
 rule.rapidGrants	حصل التطبيق نفسه على تسهيلات الاستخدام وتسجيل الشاشة خلال دقيقتين
+rule.shellSuspicious	ملف بدء الصدفة ينزّل شيفرة أو يفك ترميزها ثم يشغّلها
 rule.startupWeakSignature	عنصر بدء التشغيل يشغّل برنامجًا نصيًا أو برنامجًا بتوقيع مخصص
 rule.tccAdhoc	مُنح إذن لتطبيق بتوقيع مخصص
 rule.tccUnsigned	مُنح إذن لتطبيق غير موقّع
@@ -141,6 +185,18 @@ rule.unsignedDownload	تطبيق غير موقّع يعمل لأول مرة من
 rule.unsignedPersistence	أضافت عملية غير موقّعة عنصر بدء تشغيل
 rule.unsignedStartupBinary	عنصر بدء التشغيل يشغّل برنامجًا غير موقّع
 search.prompt	بحث: تطبيق، مسار، Team ID…
+sec.filevault	تشفير القرص FileVault
+sec.firewall	جدار الحماية
+sec.fix	فتح الإعدادات
+sec.gatekeeper	Gatekeeper
+sec.off	متوقف
+sec.on	يعمل
+sec.score	%1$ld من %2$ld من وسائل الحماية تعمل
+sec.sip	حماية سلامة النظام
+sec.unknown	تعذّر الفحص
+sec.updates	استجابات الأمان وملفات البيانات التلقائية
+sec.xprotect	تعريفات البرامج الضارة في XProtect
+sec.xprotectAge	الإصدار %1$@ · حُدّث %2$@
 settings.appearance	المظهر
 sig.adhoc	توقيع مخصص
 sig.apple	Apple
@@ -191,6 +247,9 @@ tag.trusted	موثوق
 theme.dark	داكن
 theme.light	فاتح
 theme.system	النظام
+threat.dismiss	تجاهل
+threat.more	+%ld أخرى
+threat.review	مراجعة
 uninstall.blocked	يحمي macOS هذا التطبيق؛ لا يمكن إزالته.
 uninstall.body	يُغلق التطبيق أولًا، ثم تُنقل العناصر المحددة إلى سلة المهملات. لا تُحذف نهائيًا إلا عند إفراغ سلة المهملات.
 uninstall.confirm	نقل إلى سلة المهملات

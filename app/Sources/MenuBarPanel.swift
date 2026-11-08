@@ -2,6 +2,8 @@ import SwiftUI
 
 struct MenuBarPanel: View {
     @EnvironmentObject var store: Store
+    @EnvironmentObject var media: MediaMonitor
+    @EnvironmentObject var center: ThreatCenter
     @Environment(\.openWindow) private var openWindow
 
     var body: some View {
@@ -24,6 +26,19 @@ struct MenuBarPanel: View {
             }
             .padding(.horizontal, 14)
             .padding(.bottom, 12)
+
+            if media.inUse {
+                HStack(spacing: 8) {
+                    if !media.micUsers.isEmpty {
+                        Label(L("media.micInUse", media.micUsers.map(\.name).joined(separator: ", ")), systemImage: "mic.fill")
+                            .foregroundStyle(.orange)
+                    }
+                    if media.cameraOn { Label(L("media.cameraOn"), systemImage: "video.fill").foregroundStyle(.green) }
+                }
+                .font(.system(size: 12, weight: .medium))
+                .padding(.horizontal, 14)
+                .padding(.bottom, 10)
+            }
 
             Text(L("menu.recent").uppercased(with: .current))
                 .font(.system(size: 11, weight: .semibold))
@@ -52,6 +67,7 @@ struct MenuBarPanel: View {
                     openWindow(id: "main")
                     NSApp.activate(ignoringOtherApps: true)
                 }
+                .onAppear { center.openMainWindow = { [openWindow] in openWindow(id: "main") } }
                 .buttonStyle(.link)
                 Spacer()
                 SettingsLink { Text(L("menu.settings")) }

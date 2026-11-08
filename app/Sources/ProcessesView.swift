@@ -19,6 +19,7 @@ func procSignatureText(_ sig: String?, team: String?) -> String {
 
 struct ProcessesView: View {
     @EnvironmentObject var monitor: ProcessMonitor
+    @EnvironmentObject var center: ThreatCenter
     @State private var filter: ProcFilter = .all
     @State private var search = ""
     @State private var selection: Int32?
@@ -83,8 +84,13 @@ struct ProcessesView: View {
         }
         .navigationTitle(L("nav.running"))
         .searchable(text: $search, placement: .toolbar, prompt: L("search.prompt"))
-        .onAppear { monitor.visible = true; monitor.refresh() }
+        .onAppear { monitor.visible = true; monitor.refresh(); applyFocus() }
+        .onChange(of: center.navToken) { applyFocus() }
         .onDisappear { monitor.visible = false }
+    }
+
+    private func applyFocus() {
+        if case .process(let pid) = center.navFocus { filter = .all; search = ""; selection = pid }
     }
 
     private var rows: [ProcRow] {
@@ -162,6 +168,7 @@ struct ProcDetail: View {
                 FlowLayout(spacing: 8) {
                     if let p = row.path, FileManager.default.fileExists(atPath: p) {
                         Button(L("action.showInFinder")) { store.reveal(p) }
+                        Button(L("action.virustotal")) { Lookup.virusTotal(path: row.appPath ?? p) }
                     }
                     if row.isOwn {
                         Button(L("action.quit")) { message = monitor.quit(row, force: false) }

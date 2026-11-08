@@ -234,8 +234,16 @@ final class Store: ObservableObject {
         let a = Analyzer.run(raw, trusted: trusted)
         items = a.items
         apps = a.apps
+        let high = items.filter { $0.risk == .high }
         if notifyNew {
-            for it in items where it.risk == .high && !before.contains(it.id) { notify(it) }
+            for it in high where !before.contains(it.id) {
+                ThreatCenter.shared.report(Threat(
+                    id: "item-\(it.id)", risk: it.risk, title: "\(it.risk.label): \(it.alertHeader)",
+                    detail: ([it.title] + it.rules.prefix(1).map(\.text)).joined(separator: " · "),
+                    iconKey: it.appKey, section: .timeline, focus: .item(it.id)))
+            }
+        } else {
+            ThreatCenter.shared.markSeen(high.map { "item-\($0.id)" })
         }
     }
 

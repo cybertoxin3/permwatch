@@ -11,8 +11,10 @@ action.showInFinder	Finder に表示
 action.trust	信頼済みにする
 action.uninstall	アンインストール…
 action.untrust	信頼を解除
+action.virustotal	VirusTotal で調べる
 alert.evasion	Gatekeeper の回避
 alert.execution	不審な実行
+alert.network	不審な接続
 alert.permission	不審なアクセス権
 alert.persistence	不審な永続化
 alert.process	不審なプロセス
@@ -20,8 +22,15 @@ app.firstSeen	初回検出: %@
 app.noLoginItem	ログイン項目なし
 apps.subtitle	どのアプリが何にアクセスできるか
 btm.agent	agent(ユーザー)
+btm.authPlugin	認証プラグイン
+btm.browserExt	ブラウザ拡張機能
+btm.cron	cron ジョブ
 btm.daemon	daemon(システム)
+btm.kext	カーネル拡張
+btm.loginHook	ログインフック
 btm.loginItem	ログイン項目
+btm.shell	シェル起動ファイル
+btm.sysExt	システム拡張
 col.cpu	CPU %
 col.memory	メモリ
 col.name	名前
@@ -37,6 +46,14 @@ confirm.trash.title	“%@”をゴミ箱に入れますか?
 detail.chain	このアプリの経過
 detail.empty	イベントを選択してください
 detail.triggered	該当したルール:
+dl.accepted	Gatekeeper: 許可
+dl.empty	過去30日間にダウンロードされたアプリやインストーラはありません。
+dl.notNotarized	公証なし
+dl.notQuarantined	隔離フラグなし
+dl.quarantined	隔離済み
+dl.rejected	Gatekeeper はこのファイルをブロックします
+dl.subtitle	ダウンロードに届いたアプリとインストーラをすぐに確認します
+dl.threatTitle	危険なダウンロード
 empty.body	permwatch コマンドラインツールが出力した JSON Lines ファイルを開いてください。
 empty.title	イベントはありません
 ev.btm.agent	新しい LaunchAgent が追加されました
@@ -46,6 +63,7 @@ ev.btm.remove	起動項目が削除されました
 ev.exec	%@ が実行されました
 ev.exec.first	%@ が初めて起動しました
 ev.gatekeeper	%@ で Gatekeeper が回避されました
+ev.persist	%1$@: %2$@
 ev.quarantine	隔離フラグが削除されました
 ev.tcc.denied	%1$@ → %2$@ を拒否
 ev.tcc.granted	%1$@ → %2$@ を許可
@@ -79,6 +97,14 @@ filter.all	すべて
 filter.loginItems	ログイン項目
 filter.permissions	アクセス権の変更
 filter.processes	プロセス
+media.camera	カメラ
+media.cameraOff	カメラ オフ
+media.cameraOn	カメラ オン
+media.history	このセッション
+media.micIdle	マイクは使用されていません
+media.micInUse	マイクを使用中: %@
+media.now	現在
+media.threat	署名のないアプリがマイクを使用中
 menu.loadDemo	デモデータを読み込む
 menu.loginItems	ログイン項目
 menu.openAlerts	未解決のアラート
@@ -93,15 +119,29 @@ menu.watching	ログを監視中
 nav.accessibility	アクセシビリティ
 nav.alerts	アラート
 nav.apps	アプリ
+nav.downloads	ダウンロード監視
 nav.fullDisk	フルディスクアクセス
 nav.loginItems	ログイン項目
 nav.micCamera	マイクとカメラ
+nav.network	ネットワーク
 nav.permissions	アクセス権
 nav.persistence	永続化
 nav.processes	プロセス
+nav.protection	保護
 nav.running	実行中のプロセス
 nav.screen	画面収録
+nav.security	セキュリティ状態
 nav.timeline	タイムライン
+net.listening	待ち受け中
+net.local	ローカル
+net.onlyOwn	管理者権限がない場合、自分のプロセスのみ表示されます。
+net.process	プロセス
+net.proto	プロト
+net.remote	リモート
+net.state	状態
+nrule.badPort	バックドアでよく使われるポートを使用 (%@)
+nrule.unsignedListener	署名のないプログラムが着信接続を待ち受けています
+nrule.unsignedOutbound	署名のないプログラムがインターネットに接続しています
 open.message	permwatch コマンドラインツールが書き出した JSON Lines ログを選択
 proc.count	%ld 個のプロセス
 proc.filter.suspicious	不審
@@ -127,13 +167,17 @@ reset.noBundle	このプログラムにはバンドル ID がないため、ア�
 risk.caution	注意
 risk.high	高リスク
 risk.normal	正常
+rule.authPlugin	ログイン認証チェーンにサードパーティのプラグインがあります
+rule.cronJob	スケジュールされた cron ジョブがコマンドを実行します
 rule.dyld	DYLD_* インジェクション変数付きで起動されました
 rule.gatekeeper	ユーザーがこのファイルの Gatekeeper を回避しました
 rule.hiddenTarget	対象ファイルが隠しフォルダにあります
+rule.loginHook	ログインフックがログインのたびにスクリプトを実行します
 rule.lolbinFromUnsigned	署名のないアプリがシステムツールを起動しました
 rule.nightHidden	深夜に隠しフォルダから実行されました
 rule.quarantine	隔離フラグが削除され、Gatekeeper が回避されました
 rule.rapidGrants	同じアプリが2分以内にアクセシビリティと画面収録を取得しました
+rule.shellSuspicious	シェル起動ファイルがコードをダウンロードまたはデコードして実行します
 rule.startupWeakSignature	起動項目がスクリプトまたはアドホック署名のプログラムを実行しています
 rule.tccAdhoc	アドホック署名のアプリにアクセス権が与えられました
 rule.tccUnsigned	署名のないアプリにアクセス権が与えられました
@@ -141,6 +185,18 @@ rule.unsignedDownload	署名のないアプリがダウンロードフォルダ�
 rule.unsignedPersistence	署名のないプロセスが起動項目を追加しました
 rule.unsignedStartupBinary	起動項目が署名のないプログラムを実行しています
 search.prompt	検索: アプリ、パス、Team ID…
+sec.filevault	FileVault ディスク暗号化
+sec.firewall	ファイアウォール
+sec.fix	設定を開く
+sec.gatekeeper	Gatekeeper
+sec.off	オフ
+sec.on	オン
+sec.score	%2$ld 件中 %1$ld 件の保護が有効
+sec.sip	システム整合性保護
+sec.unknown	確認できません
+sec.updates	セキュリティ対応とデータファイルの自動インストール
+sec.xprotect	XProtect マルウェア定義
+sec.xprotectAge	バージョン %1$@ · 更新: %2$@
 settings.appearance	外観
 sig.adhoc	アドホック署名
 sig.apple	Apple
@@ -191,6 +247,9 @@ tag.trusted	信頼済み
 theme.dark	ダーク
 theme.light	ライト
 theme.system	システム
+threat.dismiss	閉じる
+threat.more	他 %ld 件
+threat.review	確認
 uninstall.blocked	このアプリは macOS で保護されているため削除できません。
 uninstall.body	まずアプリを終了し、選択した項目をゴミ箱に移動します。完全に削除されるのはゴミ箱を空にしたときです。
 uninstall.confirm	ゴミ箱に入れる

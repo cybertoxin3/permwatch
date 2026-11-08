@@ -116,8 +116,10 @@ enum Shell {
         p.standardOutput = pipe
         p.standardError = pipe
         do { try p.run() } catch { return (-1, error.localizedDescription) }
+        // Önce oku, sonra bekle: çıktı boru tamponunu (64 KB) aşarsa aksi halde ikisi de kilitlenir.
+        let data = pipe.fileHandleForReading.readDataToEndOfFile()
         p.waitUntilExit()
-        let out = String(data: pipe.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8) ?? ""
+        let out = String(data: data, encoding: .utf8) ?? ""
         return (p.terminationStatus, out.trimmingCharacters(in: .whitespacesAndNewlines))
     }
 }

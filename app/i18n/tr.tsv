@@ -11,8 +11,10 @@ action.showInFinder	Finder'da göster
 action.trust	Güvenilir say
 action.uninstall	Kaldır…
 action.untrust	Güveni kaldır
+action.virustotal	VirusTotal'da ara
 alert.evasion	Gatekeeper atlatma
 alert.execution	şüpheli çalıştırma
+alert.network	şüpheli bağlantı
 alert.permission	şüpheli izin
 alert.persistence	şüpheli kalıcılık
 alert.process	şüpheli süreç
@@ -20,8 +22,15 @@ app.firstSeen	ilk görülme: %@
 app.noLoginItem	Giriş öğesi yok
 apps.subtitle	Hangi uygulama neye erişebiliyor
 btm.agent	agent (kullanıcı)
+btm.authPlugin	yetkilendirme eklentisi
+btm.browserExt	tarayıcı uzantısı
+btm.cron	cron görevi
 btm.daemon	daemon (sistem)
+btm.kext	kernel uzantısı
+btm.loginHook	login hook
 btm.loginItem	Giriş öğesi
+btm.shell	kabuk başlangıç dosyası
+btm.sysExt	sistem uzantısı
 col.cpu	CPU %
 col.memory	Bellek
 col.name	Ad
@@ -37,6 +46,14 @@ confirm.trash.title	“%@” Çöp Sepeti'ne taşınsın mı?
 detail.chain	Bu uygulamanın zinciri
 detail.empty	Bir olay seç
 detail.triggered	Tetiklenen kurallar:
+dl.accepted	Gatekeeper: izin veriyor
+dl.empty	Son 30 günde indirilen uygulama ya da kurulum dosyası yok.
+dl.notNotarized	notarize edilmemiş
+dl.notQuarantined	karantina bayrağı yok
+dl.quarantined	karantinada
+dl.rejected	Gatekeeper bu dosyayı engeller
+dl.subtitle	İndirilenler'e düşen uygulama ve kurulum dosyaları anında kontrol edilir
+dl.threatTitle	riskli indirme
 empty.body	permwatch komut satırı aracının ürettiği bir JSON Lines dosyası aç.
 empty.title	Olay yok
 ev.btm.agent	Yeni LaunchAgent eklendi
@@ -46,6 +63,7 @@ ev.btm.remove	Başlangıç öğesi kaldırıldı
 ev.exec	%@ çalıştırıldı
 ev.exec.first	%@ ilk kez çalıştı
 ev.gatekeeper	%@ için Gatekeeper atlatıldı
+ev.persist	%1$@: %2$@
 ev.quarantine	Karantina bayrağı silindi
 ev.tcc.denied	%1$@ → %2$@ reddedildi
 ev.tcc.granted	%1$@ → %2$@ izni verildi
@@ -79,6 +97,14 @@ filter.all	Tümü
 filter.loginItems	Giriş öğeleri
 filter.permissions	İzin değişiklikleri
 filter.processes	Süreçler
+media.camera	Kamera
+media.cameraOff	Kamera kapalı
+media.cameraOn	Kamera açık
+media.history	Bu oturum
+media.micIdle	Mikrofon kullanılmıyor
+media.micInUse	Mikrofonu kullanan: %@
+media.now	şimdi
+media.threat	mikrofonu imzasız uygulama kullanıyor
 menu.loadDemo	Demo Verisini Yükle
 menu.loginItems	giriş öğesi
 menu.openAlerts	açık uyarı
@@ -93,15 +119,29 @@ menu.watching	kayıt izleniyor
 nav.accessibility	Erişilebilirlik
 nav.alerts	Uyarılar
 nav.apps	Uygulamalar
+nav.downloads	İndirilenler Bekçisi
 nav.fullDisk	Tam Disk Erişimi
 nav.loginItems	Giriş Öğeleri
 nav.micCamera	Mikrofon ve Kamera
+nav.network	Ağ
 nav.permissions	İzinler
 nav.persistence	Kalıcılık
 nav.processes	Süreçler
+nav.protection	Koruma
 nav.running	Çalışan Süreçler
 nav.screen	Ekran Kaydı
+nav.security	Güvenlik Durumu
 nav.timeline	Zaman Çizelgesi
+net.listening	dinliyor
+net.local	Yerel
+net.onlyOwn	Yönetici yetkisi olmadan yalnızca kendi süreçlerin görünür.
+net.process	Süreç
+net.proto	Proto
+net.remote	Uzak
+net.state	Durum
+nrule.badPort	Arka kapıların sık kullandığı bir port kullanıyor (%@)
+nrule.unsignedListener	İmzasız bir program dışarıdan bağlantı bekliyor
+nrule.unsignedOutbound	İmzasız bir programın açık bir internet bağlantısı var
 open.message	permwatch komut satırı aracının yazdığı bir JSON Lines kaydı seç
 proc.count	%ld süreç
 proc.filter.suspicious	Şüpheli
@@ -127,13 +167,17 @@ reset.noBundle	Bu programın paket kimliği (bundle ID) yok; izni yalnızca Sist
 risk.caution	Dikkat
 risk.high	Yüksek risk
 risk.normal	Normal
+rule.authPlugin	Giriş yetkilendirme zincirinde üçüncü taraf bir eklenti var
+rule.cronJob	Zamanlanmış bir cron görevi komut çalıştırıyor
 rule.dyld	DYLD_* enjeksiyon değişkenleriyle başlatıldı
 rule.gatekeeper	Kullanıcı bu dosya için Gatekeeper'ı atlattı
 rule.hiddenTarget	Hedef dosya gizli bir klasörde
+rule.loginHook	Bir login hook her girişte betik çalıştırıyor
 rule.lolbinFromUnsigned	Bir sistem aracı imzasız bir uygulama tarafından çalıştırıldı
 rule.nightHidden	Gece yarısı gizli bir klasörden çalıştı
 rule.quarantine	Karantina bayrağı silindi, Gatekeeper atlatıldı
 rule.rapidGrants	Aynı uygulama 2 dakika içinde Erişilebilirlik ve Ekran Kaydı izni aldı
+rule.shellSuspicious	Kabuk başlangıç dosyası kod indirip ya da çözüp çalıştırıyor
 rule.startupWeakSignature	Başlangıç öğesi bir betik ya da ad-hoc imzalı bir program çalıştırıyor
 rule.tccAdhoc	Ad-hoc imzalı bir uygulamaya izin verildi
 rule.tccUnsigned	İmzasız bir uygulamaya izin verildi
@@ -141,6 +185,18 @@ rule.unsignedDownload	İmzasız bir uygulama İndirilenler'den ilk kez çalışt
 rule.unsignedPersistence	İmzasız bir süreç başlangıç öğesi ekledi
 rule.unsignedStartupBinary	Başlangıç öğesi imzasız bir program çalıştırıyor
 search.prompt	Ara: uygulama, yol, Team ID…
+sec.filevault	FileVault disk şifreleme
+sec.firewall	Güvenlik duvarı
+sec.fix	Ayarları Aç
+sec.gatekeeper	Gatekeeper
+sec.off	Kapalı
+sec.on	Açık
+sec.score	%2$ld korumanın %1$ld tanesi açık
+sec.sip	Sistem Bütünlüğü Koruması (SIP)
+sec.unknown	Kontrol edilemedi
+sec.updates	Otomatik güvenlik yanıtları ve veri dosyaları
+sec.xprotect	XProtect zararlı yazılım tanımları
+sec.xprotectAge	Sürüm %1$@ · güncelleme: %2$@
 settings.appearance	Görünüm
 sig.adhoc	ad-hoc imzalı
 sig.apple	Apple
@@ -191,6 +247,9 @@ tag.trusted	Güvenilir
 theme.dark	Koyu
 theme.light	Açık
 theme.system	Sistem
+threat.dismiss	Kapat
+threat.more	+%ld daha
+threat.review	İncele
 uninstall.blocked	macOS bu uygulamayı koruyor; kaldırılamaz.
 uninstall.body	Önce uygulama kapatılır, ardından seçilen öğeler Çöp Sepeti'ne taşınır. Çöp Sepeti'ni boşalttığında kalıcı olarak silinirler.
 uninstall.confirm	Çöp Sepeti'ne taşı

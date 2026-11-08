@@ -11,8 +11,10 @@ action.showInFinder	Im Finder zeigen
 action.trust	Als vertrauenswürdig markieren
 action.uninstall	Deinstallieren …
 action.untrust	Vertrauen entfernen
+action.virustotal	Auf VirusTotal prüfen
 alert.evasion	Gatekeeper umgangen
 alert.execution	verdächtige Ausführung
+alert.network	verdächtige Verbindung
 alert.permission	verdächtige Berechtigung
 alert.persistence	verdächtige Persistenz
 alert.process	verdächtiger Prozess
@@ -20,8 +22,15 @@ app.firstSeen	zuerst gesehen %@
 app.noLoginItem	Kein Anmeldeobjekt
 apps.subtitle	Welche App worauf zugreifen kann
 btm.agent	agent (Benutzer)
+btm.authPlugin	Autorisierungs-Plug-in
+btm.browserExt	Browsererweiterung
+btm.cron	Cron-Job
 btm.daemon	daemon (System)
+btm.kext	Kernel-Erweiterung
+btm.loginHook	Login-Hook
 btm.loginItem	Anmeldeobjekt
+btm.shell	Shell-Startdatei
+btm.sysExt	Systemerweiterung
 col.cpu	CPU %
 col.memory	Speicher
 col.name	Name
@@ -37,6 +46,14 @@ confirm.trash.title	„%@“ in den Papierkorb legen?
 detail.chain	Kette dieser App
 detail.empty	Wähle ein Ereignis
 detail.triggered	Ausgelöste Regeln:
+dl.accepted	Gatekeeper: erlaubt
+dl.empty	In den letzten 30 Tagen wurden keine Apps oder Installationsprogramme geladen.
+dl.notNotarized	nicht notarisiert
+dl.notQuarantined	kein Quarantäne-Flag
+dl.quarantined	in Quarantäne
+dl.rejected	Gatekeeper würde diese Datei blockieren
+dl.subtitle	Apps und Installer in „Downloads“ werden sofort geprüft
+dl.threatTitle	riskanter Download
 empty.body	Öffne eine JSON-Lines-Datei, die das permwatch-Kommandozeilentool erzeugt hat.
 empty.title	Keine Ereignisse
 ev.btm.agent	Neuer LaunchAgent hinzugefügt
@@ -46,6 +63,7 @@ ev.btm.remove	Startobjekt entfernt
 ev.exec	%@ ausgeführt
 ev.exec.first	%@ zum ersten Mal gestartet
 ev.gatekeeper	Gatekeeper für %@ umgangen
+ev.persist	%1$@: %2$@
 ev.quarantine	Quarantäne-Flag entfernt
 ev.tcc.denied	%1$@ → %2$@ abgelehnt
 ev.tcc.granted	%1$@ → %2$@ erteilt
@@ -79,6 +97,14 @@ filter.all	Alle
 filter.loginItems	Anmeldeobjekte
 filter.permissions	Berechtigungen
 filter.processes	Prozesse
+media.camera	Kamera
+media.cameraOff	Kamera aus
+media.cameraOn	Kamera an
+media.history	Diese Sitzung
+media.micIdle	Mikrofon nicht in Verwendung
+media.micInUse	Mikrofon wird verwendet: %@
+media.now	jetzt
+media.threat	unsignierte App nutzt das Mikrofon
 menu.loadDemo	Demodaten laden
 menu.loginItems	Anmeldeobjekte
 menu.openAlerts	offene Warnungen
@@ -93,15 +119,29 @@ menu.watching	Protokoll wird beobachtet
 nav.accessibility	Bedienungshilfen
 nav.alerts	Warnungen
 nav.apps	Apps
+nav.downloads	Download-Wächter
 nav.fullDisk	Festplattenvollzugriff
 nav.loginItems	Anmeldeobjekte
 nav.micCamera	Mikrofon & Kamera
+nav.network	Netzwerk
 nav.permissions	Berechtigungen
 nav.persistence	Persistenz
 nav.processes	Prozesse
+nav.protection	Schutz
 nav.running	Laufende Prozesse
 nav.screen	Bildschirmaufnahme
+nav.security	Sicherheitsstatus
 nav.timeline	Zeitleiste
+net.listening	wartet auf Verbindungen
+net.local	Lokal
+net.onlyOwn	Ohne Administratorrechte sind nur eigene Prozesse sichtbar.
+net.process	Prozess
+net.proto	Proto
+net.remote	Gegenstelle
+net.state	Status
+nrule.badPort	Nutzt einen typischen Backdoor-Port (%@)
+nrule.unsignedListener	Ein unsigniertes Programm wartet auf eingehende Verbindungen
+nrule.unsignedOutbound	Ein unsigniertes Programm hat eine offene Internetverbindung
 open.message	Wähle ein JSON-Lines-Protokoll des permwatch-Kommandozeilentools
 proc.count	%ld Prozesse
 proc.filter.suspicious	Verdächtig
@@ -127,13 +167,17 @@ reset.noBundle	Dieses Programm hat keine Bundle-ID, daher lässt sich seine Bere
 risk.caution	Achtung
 risk.high	Hohes Risiko
 risk.normal	Normal
+rule.authPlugin	Ein Drittanbieter-Plug-in ist Teil der Anmelde-Autorisierung
+rule.cronJob	Ein geplanter Cron-Job führt einen Befehl aus
 rule.dyld	Mit DYLD_*-Injektionsvariablen gestartet
 rule.gatekeeper	Der Nutzer hat Gatekeeper für diese Datei umgangen
 rule.hiddenTarget	Zieldatei liegt in einem versteckten Ordner
+rule.loginHook	Ein Login-Hook führt bei jeder Anmeldung ein Skript aus
 rule.lolbinFromUnsigned	Ein Systemwerkzeug wurde von einer unsignierten App gestartet
 rule.nightHidden	Mitten in der Nacht aus einem versteckten Ordner gestartet
 rule.quarantine	Das Quarantäne-Flag wurde entfernt, Gatekeeper umgangen
 rule.rapidGrants	Dieselbe App erhielt in 2 Minuten Bedienungshilfen und Bildschirmaufnahme
+rule.shellSuspicious	Eine Shell-Startdatei lädt oder dekodiert Code und führt ihn aus
 rule.startupWeakSignature	Startobjekt startet ein Skript oder ein ad-hoc-signiertes Programm
 rule.tccAdhoc	Berechtigung für eine ad-hoc-signierte App erteilt
 rule.tccUnsigned	Berechtigung für eine unsignierte App erteilt
@@ -141,6 +185,18 @@ rule.unsignedDownload	Eine unsignierte App wurde zum ersten Mal aus „Downloads
 rule.unsignedPersistence	Ein unsignierter Prozess hat ein Startobjekt hinzugefügt
 rule.unsignedStartupBinary	Startobjekt startet ein unsigniertes Programm
 search.prompt	Suchen: App, Pfad, Team-ID …
+sec.filevault	FileVault-Verschlüsselung
+sec.firewall	Firewall
+sec.fix	Einstellungen öffnen
+sec.gatekeeper	Gatekeeper
+sec.off	Aus
+sec.on	Ein
+sec.score	%1$ld von %2$ld Schutzfunktionen aktiv
+sec.sip	Systemintegritätsschutz
+sec.unknown	Nicht prüfbar
+sec.updates	Automatische Sicherheitsmaßnahmen und Datendateien
+sec.xprotect	XProtect-Malware-Definitionen
+sec.xprotectAge	Version %1$@ · aktualisiert %2$@
 settings.appearance	Erscheinungsbild
 sig.adhoc	ad-hoc-signiert
 sig.apple	Apple
@@ -191,6 +247,9 @@ tag.trusted	Vertrauenswürdig
 theme.dark	Dunkel
 theme.light	Hell
 theme.system	System
+threat.dismiss	Schließen
+threat.more	+%ld weitere
+threat.review	Prüfen
 uninstall.blocked	macOS schützt diese App; sie kann nicht entfernt werden.
 uninstall.body	Die App wird zuerst beendet, dann werden die ausgewählten Objekte in den Papierkorb gelegt. Endgültig gelöscht werden sie erst, wenn du den Papierkorb leerst.
 uninstall.confirm	In den Papierkorb

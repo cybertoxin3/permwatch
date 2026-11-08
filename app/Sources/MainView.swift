@@ -1,7 +1,7 @@
 import SwiftUI
 
 enum SidebarItem: Hashable {
-    case timeline, alerts, apps, running
+    case timeline, alerts, apps, running, security, downloads, network
     case category(Category)
     case loginItems, processes
 }
@@ -22,6 +22,8 @@ enum TimelineFilter: CaseIterable {
 struct MainView: View {
     @EnvironmentObject var store: Store
     @EnvironmentObject var monitor: ProcessMonitor
+    @EnvironmentObject var center: ThreatCenter
+    @Environment(\.openWindow) private var openWindow
     @State private var section: SidebarItem = .timeline
     @State private var filter: TimelineFilter = .all
     @State private var selection: Int?
@@ -38,11 +40,20 @@ struct MainView: View {
                 AppsView()
             } else if section == .running {
                 ProcessesView()
+            } else if section == .security {
+                SecurityView()
+            } else if section == .downloads {
+                DownloadsView()
+            } else if section == .network {
+                NetworkView()
             } else {
                 HStack(spacing: 0) {
-                    TimelineList(items: visibleItems, filter: $filter, selection: $selection,
-                                 showChips: section == .timeline)
-                        .frame(minWidth: 460)
+                    VStack(spacing: 0) {
+                        if section == .category(.micCamera) { MediaLiveCard() }
+                        TimelineList(items: visibleItems, filter: $filter, selection: $selection,
+                                     showChips: section == .timeline)
+                    }
+                    .frame(minWidth: 460)
                     Divider()
                     Group {
                         if let it = store.item(selection) {
@@ -58,11 +69,21 @@ struct MainView: View {
                 .searchable(text: $search, placement: .toolbar, prompt: L("search.prompt"))
             }
         }
+        .onChange(of: center.navToken) {
+            // Tehdit penceresinden "İncele": ilgili bölüme ve öğeye git.
+            if let s = center.navSection { section = s }
+            if case .item(let id) = center.navFocus {
+                filter = .all
+                search = ""
+                selection = id
+            }
+        }
         .onChange(of: store.trusted) { _, t in
             monitor.trusted = t
             monitor.refresh()
         }
         .onAppear {
+            center.openMainWindow = { [openWindow] in openWindow(id: "main") }
             monitor.trusted = store.trusted
             DispatchQueue.main.async { selectFirstAlert() }
             if Snapshot.section == "apps" { section = .apps }
@@ -88,6 +109,9 @@ struct MainView: View {
         case .alerts: return L("nav.alerts")
         case .apps: return L("nav.apps")
         case .running: return L("nav.running")
+        case .security: return L("nav.security")
+        case .downloads: return L("nav.downloads")
+        case .network: return L("nav.network")
         case .category(.micCamera): return L("nav.micCamera")
         case .category(.screen): return L("nav.screen")
         case .category(.accessibility): return L("nav.accessibility")
@@ -130,6 +154,9 @@ struct MainView: View {
 struct Sidebar: View {
     @EnvironmentObject var store: Store
     @EnvironmentObject var monitor: ProcessMonitor
+    @EnvironmentObject var posture: SecurityPosture
+    @EnvironmentObject var downloads: DownloadGuard
+    @EnvironmentObject var network: NetworkMonitor
     @Binding var section: SidebarItem
 
     var body: some View {
@@ -139,6 +166,11 @@ struct Sidebar: View {
             Label(L("nav.apps"), systemImage: "square.grid.2x2").tag(SidebarItem.apps)
             Label(L("nav.running"), systemImage: "cpu").badge(monitor.suspicious).tag(SidebarItem.running)
 
+            Section(L("nav.protection")) {
+                Label(L("nav.security"), systemImage: "checkmark.shield").badge(posture.issues).tag(SidebarItem.security)
+                Label(L("nav.downloads"), systemImage: "arrow.down.circle").badge(downloads.risky).tag(SidebarItem.downloads)
+                Label(L("nav.network"), systemImage: "network").badge(network.risky).tag(SidebarItem.network)
+            }
             Section(L("nav.permissions")) {
                 Label(L("nav.micCamera"), systemImage: "mic").tag(SidebarItem.category(.micCamera))
                 Label(L("nav.screen"), systemImage: "rectangle.dashed.badge.record").tag(SidebarItem.category(.screen))

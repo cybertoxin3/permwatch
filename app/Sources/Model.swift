@@ -84,6 +84,8 @@ struct RawEvent: Codable {
     var target_signing: TargetSigning?
     // "scan": CLI olayı değil, SystemScanner'ın bu Mac'in mevcut durumundan ürettiği kayıt
     var origin: String?
+    var label: String?       // tarama: genişletilmiş kalıcılık öğesinin görünen adı
+    var note: String?        // tarama: virgülle ayrılmış kural adları (ör. "shellSuspicious")
 
     var date: Date { Date(timeIntervalSince1970: ts) }
 }

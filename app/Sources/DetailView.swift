@@ -119,6 +119,9 @@ struct DetailView: View {
                     .disabled(trashed || !FileManager.default.exists(item.removablePlist))
             }
             if let p = item.revealPath {
+                if FileManager.default.fileExists(atPath: p) {
+                    Button(L("action.virustotal")) { Lookup.virusTotal(path: p) }
+                }
                 Button(L("action.showInFinder")) { store.reveal(p) }
                     .disabled(!FileManager.default.exists(p))
                     .help(FileManager.default.exists(p) ? "" : L("action.missingFile"))

@@ -11,8 +11,10 @@ action.showInFinder	Finder에서 보기
 action.trust	신뢰함으로 표시
 action.uninstall	제거…
 action.untrust	신뢰 해제
+action.virustotal	VirusTotal에서 조회
 alert.evasion	Gatekeeper 우회
 alert.execution	의심스러운 실행
+alert.network	의심스러운 연결
 alert.permission	의심스러운 권한
 alert.persistence	의심스러운 지속성
 alert.process	의심스러운 프로세스
@@ -20,8 +22,15 @@ app.firstSeen	처음 발견: %@
 app.noLoginItem	로그인 항목 없음
 apps.subtitle	어떤 앱이 무엇에 접근할 수 있는지
 btm.agent	agent(사용자)
+btm.authPlugin	인증 플러그인
+btm.browserExt	브라우저 확장 프로그램
+btm.cron	cron 작업
 btm.daemon	daemon(시스템)
+btm.kext	커널 확장
+btm.loginHook	로그인 훅
 btm.loginItem	로그인 항목
+btm.shell	셸 시작 파일
+btm.sysExt	시스템 확장
 col.cpu	CPU %
 col.memory	메모리
 col.name	이름
@@ -37,6 +46,14 @@ confirm.trash.title	‘%@’을(를) 휴지통으로 이동하겠습니까?
 detail.chain	이 앱의 이벤트 흐름
 detail.empty	이벤트를 선택하십시오
 detail.triggered	적용된 규칙:
+dl.accepted	Gatekeeper: 허용
+dl.empty	최근 30일 동안 다운로드한 앱이나 설치 프로그램이 없습니다.
+dl.notNotarized	공증되지 않음
+dl.notQuarantined	격리 플래그 없음
+dl.quarantined	격리됨
+dl.rejected	Gatekeeper가 이 파일을 차단합니다
+dl.subtitle	다운로드 폴더의 앱과 설치 프로그램을 도착 즉시 검사합니다
+dl.threatTitle	위험한 다운로드
 empty.body	permwatch 명령줄 도구가 생성한 JSON Lines 파일을 여십시오.
 empty.title	이벤트 없음
 ev.btm.agent	새 LaunchAgent 추가됨
@@ -46,6 +63,7 @@ ev.btm.remove	시동 항목 제거됨
 ev.exec	%@ 실행됨
 ev.exec.first	%@ 최초 실행
 ev.gatekeeper	%@에 대해 Gatekeeper 우회됨
+ev.persist	%1$@: %2$@
 ev.quarantine	격리 플래그 제거됨
 ev.tcc.denied	%1$@ → %2$@ 거부
 ev.tcc.granted	%1$@ → %2$@ 허용
@@ -79,6 +97,14 @@ filter.all	전체
 filter.loginItems	로그인 항목
 filter.permissions	권한 변경
 filter.processes	프로세스
+media.camera	카메라
+media.cameraOff	카메라 꺼짐
+media.cameraOn	카메라 켜짐
+media.history	이번 세션
+media.micIdle	마이크 사용 안 함
+media.micInUse	마이크 사용 중: %@
+media.now	지금
+media.threat	서명 없는 앱이 마이크 사용 중
 menu.loadDemo	데모 데이터 불러오기
 menu.loginItems	로그인 항목
 menu.openAlerts	미해결 경고
@@ -93,15 +119,29 @@ menu.watching	로그 감시 중
 nav.accessibility	손쉬운 사용
 nav.alerts	경고
 nav.apps	앱
+nav.downloads	다운로드 감시
 nav.fullDisk	전체 디스크 접근 권한
 nav.loginItems	로그인 항목
 nav.micCamera	마이크 및 카메라
+nav.network	네트워크
 nav.permissions	권한
 nav.persistence	지속성
 nav.processes	프로세스
+nav.protection	보호
 nav.running	실행 중인 프로세스
 nav.screen	화면 기록
+nav.security	보안 상태
 nav.timeline	타임라인
+net.listening	수신 대기
+net.local	로컬
+net.onlyOwn	관리자 권한 없이는 내 프로세스만 보입니다.
+net.process	프로세스
+net.proto	프로토
+net.remote	원격
+net.state	상태
+nrule.badPort	백도어가 자주 쓰는 포트 사용 (%@)
+nrule.unsignedListener	서명 없는 프로그램이 들어오는 연결을 기다림
+nrule.unsignedOutbound	서명 없는 프로그램이 인터넷에 연결되어 있음
 open.message	permwatch 명령줄 도구가 기록한 JSON Lines 로그를 선택하십시오
 proc.count	프로세스 %ld개
 proc.filter.suspicious	의심스러움
@@ -127,13 +167,17 @@ reset.noBundle	이 프로그램에는 번들 ID가 없으므로 권한은 시스
 risk.caution	주의
 risk.high	높은 위험
 risk.normal	정상
+rule.authPlugin	로그인 인증 체인에 타사 플러그인이 있음
+rule.cronJob	예약된 cron 작업이 명령을 실행함
 rule.dyld	DYLD_* 주입 변수와 함께 실행됨
 rule.gatekeeper	사용자가 이 파일에 대해 Gatekeeper를 우회함
 rule.hiddenTarget	대상 파일이 숨김 폴더에 있음
+rule.loginHook	로그인 훅이 로그인할 때마다 스크립트를 실행함
 rule.lolbinFromUnsigned	서명 없는 앱이 시스템 도구를 실행함
 rule.nightHidden	심야에 숨김 폴더에서 실행됨
 rule.quarantine	격리 플래그가 제거되어 Gatekeeper가 우회됨
 rule.rapidGrants	같은 앱이 2분 안에 손쉬운 사용과 화면 기록 권한을 얻음
+rule.shellSuspicious	셸 시작 파일이 코드를 다운로드하거나 디코딩해 실행함
 rule.startupWeakSignature	시동 항목이 스크립트 또는 애드혹 서명된 프로그램을 실행함
 rule.tccAdhoc	애드혹 서명된 앱에 권한이 허용됨
 rule.tccUnsigned	서명 없는 앱에 권한이 허용됨
@@ -141,6 +185,18 @@ rule.unsignedDownload	서명 없는 앱이 다운로드 폴더에서 처음 실�
 rule.unsignedPersistence	서명 없는 프로세스가 시동 항목을 추가함
 rule.unsignedStartupBinary	시동 항목이 서명 없는 프로그램을 실행함
 search.prompt	검색: 앱, 경로, Team ID…
+sec.filevault	FileVault 디스크 암호화
+sec.firewall	방화벽
+sec.fix	설정 열기
+sec.gatekeeper	Gatekeeper
+sec.off	끔
+sec.on	켬
+sec.score	보호 기능 %2$ld개 중 %1$ld개 켜짐
+sec.sip	시스템 무결성 보호
+sec.unknown	확인할 수 없음
+sec.updates	자동 보안 응답 및 데이터 파일
+sec.xprotect	XProtect 악성 코드 정의
+sec.xprotectAge	버전 %1$@ · 업데이트: %2$@
 settings.appearance	화면 모드
 sig.adhoc	애드혹 서명
 sig.apple	Apple
@@ -191,6 +247,9 @@ tag.trusted	신뢰함
 theme.dark	다크
 theme.light	라이트
 theme.system	시스템
+threat.dismiss	닫기
+threat.more	%ld개 더
+threat.review	검토
 uninstall.blocked	macOS가 이 앱을 보호하므로 제거할 수 없습니다.
 uninstall.body	먼저 앱을 종료한 다음 선택한 항목을 휴지통으로 이동합니다. 휴지통을 비울 때 영구적으로 삭제됩니다.
 uninstall.confirm	휴지통으로 이동

@@ -108,12 +108,11 @@ final class ProcessMonitor: ObservableObject {
             let k = "\(r.key)|\(r.rules.map(\.rawValue).joined())"
             if notified.contains(k) { continue }
             notified.insert(k)
-            if first { continue }   // açılışta zaten çalışanlar için bildirim yağdırma
-            let c = UNMutableNotificationContent()
-            c.title = "\(Risk.high.label): \(L("alert.process"))"
-            c.body = "\(r.name) (pid \(r.pid))\n" + r.rules.map(\.text).joined(separator: "\n")
-            c.sound = .default
-            UNUserNotificationCenter.current().add(UNNotificationRequest(identifier: "proc-\(k)", content: c, trigger: nil))
+            if first { continue }   // açılışta zaten çalışanlar için pencere yağdırma
+            ThreatCenter.shared.report(Threat(
+                id: "proc-\(k)", risk: .high, title: "\(Risk.high.label): \(L("alert.process"))",
+                detail: "\(r.name) (pid \(r.pid)) · " + (r.rules.first?.text ?? ""),
+                iconKey: r.appPath ?? r.path, section: .running, focus: .process(r.pid)))
         }
     }
 

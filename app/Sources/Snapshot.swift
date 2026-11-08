@@ -69,6 +69,38 @@ enum Snapshot {
             }
             return
         }
+        if section == "guards" {
+            for c in SecurityPosture.evaluate() { print("güvenlik\t\(c.id)\t\(c.state)\t\(c.detail ?? "")") }
+            print("mikrofon kullanan pid: \(MediaMonitor.micPIDs())  kamera açık: \(MediaMonitor.cameraRunning())")
+            let net = NetworkMonitor.collect()
+            print("ağ: \(net.count) bağlantı, riskli: \(net.filter { $0.risk >= .caution }.count), dinleyen: \(net.filter { $0.state.contains("LISTEN") }.count)")
+            for c in net where c.risk >= .caution { print("  ağ-risk\t\(c.name)\t\(c.remote ?? c.local)\t\(c.rules)") }
+            let dir = ProcessInfo.processInfo.environment["PERMWATCH_DL_TEST"] ?? (NSHomeDirectory() + "/Downloads")
+            for n in (try? FileManager.default.contentsOfDirectory(atPath: dir)) ?? []
+            where ["app", "pkg", "dmg"].contains((n as NSString).pathExtension.lowercased()) {
+                let d = DownloadGuard.assess(path: dir + "/" + n, date: Date())
+                print("indirme\t\(d.name)\tkabul=\(String(describing: d.accepted))\tkaynak=\(d.source ?? "-")\tkarantina=\(d.quarantined)\trisk=\(d.risk)")
+            }
+            let extras = SystemScanner.extraPersistence()
+            print("kalıcılık: " + Dictionary(grouping: extras, by: \.type).map { "\($0.key)=\($0.value.count)" }.sorted().joined(separator: " "))
+            for x in extras where x.note != nil { print("  işaretli\t\(x.type)\t\(x.name)\t\(x.note!)") }
+            exit(0)
+        }
+        if section == "hud" {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                ThreatCenter.shared.report(Threat(id: "test-hud", risk: .high, title: "\(Risk.high.label): \(L("alert.process"))",
+                    detail: "syslogd (pid 4242) · " + L("prule.masquerade"), iconKey: nil, section: .running, focus: .process(4242)))
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    guard let w = NSApp.windows.first(where: { $0 is NSPanel && $0.isVisible }), let v = w.contentView else { print("panel yok"); exit(2) }
+                    print("panel konumu: \(w.frame)  ekran: \(NSScreen.main?.visibleFrame ?? .zero)")
+                    let rep = v.bitmapImageRepForCachingDisplay(in: v.bounds)!
+                    v.cacheDisplay(in: v.bounds, to: rep)
+                    try? rep.representation(using: .png, properties: [:])?.write(to: URL(fileURLWithPath: path))
+                    exit(0)
+                }
+            }
+            return
+        }
         if section == "procdump" {
             // Çalışan süreçlerin özeti (test için)
             let (_, first) = ProcessMonitor.collect(prev: [:], trusted: [])

@@ -11,8 +11,10 @@ action.showInFinder	Показать в Finder
 action.trust	Доверять
 action.uninstall	Удалить…
 action.untrust	Отменить доверие
+action.virustotal	Проверить на VirusTotal
 alert.evasion	обход Gatekeeper
 alert.execution	подозрительный запуск
+alert.network	подозрительное подключение
 alert.permission	подозрительное разрешение
 alert.persistence	подозрительный автозапуск
 alert.process	подозрительный процесс
@@ -20,8 +22,15 @@ app.firstSeen	впервые замечено %@
 app.noLoginItem	Нет автозапуска
 apps.subtitle	Какое приложение к чему имеет доступ
 btm.agent	agent (пользователь)
+btm.authPlugin	плагин авторизации
+btm.browserExt	расширение браузера
+btm.cron	задание cron
 btm.daemon	daemon (система)
+btm.kext	расширение ядра
+btm.loginHook	login hook
 btm.loginItem	Объект входа
+btm.shell	файл запуска оболочки
+btm.sysExt	системное расширение
 col.cpu	ЦП %
 col.memory	Память
 col.name	Имя
@@ -37,6 +46,14 @@ confirm.trash.title	Переместить «%@» в Корзину?
 detail.chain	Цепочка этого приложения
 detail.empty	Выберите событие
 detail.triggered	Сработавшие правила:
+dl.accepted	Gatekeeper: разрешено
+dl.empty	За последние 30 дней не скачано приложений или установщиков.
+dl.notNotarized	без нотаризации
+dl.notQuarantined	нет флага карантина
+dl.quarantined	в карантине
+dl.rejected	Gatekeeper заблокирует этот файл
+dl.subtitle	Приложения и установщики в «Загрузках» проверяются сразу после появления
+dl.threatTitle	рискованная загрузка
 empty.body	Откройте файл JSON Lines, созданный утилитой permwatch.
 empty.title	Нет событий
 ev.btm.agent	Добавлен новый LaunchAgent
@@ -46,6 +63,7 @@ ev.btm.remove	Объект автозапуска удалён
 ev.exec	%@ запущен
 ev.exec.first	%@ запущен впервые
 ev.gatekeeper	Gatekeeper обойдён для %@
+ev.persist	%1$@: %2$@
 ev.quarantine	Удалён флаг карантина
 ev.tcc.denied	%1$@ → %2$@: отказано
 ev.tcc.granted	%1$@ → %2$@: разрешено
@@ -79,6 +97,14 @@ filter.all	Все
 filter.loginItems	Объекты входа
 filter.permissions	Разрешения
 filter.processes	Процессы
+media.camera	Камера
+media.cameraOff	Камера выключена
+media.cameraOn	Камера включена
+media.history	Текущий сеанс
+media.micIdle	Микрофон не используется
+media.micInUse	Микрофон использует: %@
+media.now	сейчас
+media.threat	микрофон использует неподписанное приложение
 menu.loadDemo	Загрузить демо-данные
 menu.loginItems	объектов входа
 menu.openAlerts	открытых оповещений
@@ -93,15 +119,29 @@ menu.watching	журнал отслеживается
 nav.accessibility	Универсальный доступ
 nav.alerts	Оповещения
 nav.apps	Приложения
+nav.downloads	Защита загрузок
 nav.fullDisk	Полный доступ к диску
 nav.loginItems	Объекты входа
 nav.micCamera	Микрофон и камера
+nav.network	Сеть
 nav.permissions	Разрешения
 nav.persistence	Автозапуск
 nav.processes	Процессы
+nav.protection	Защита
 nav.running	Запущенные процессы
 nav.screen	Запись экрана
+nav.security	Состояние безопасности
 nav.timeline	Хронология
+net.listening	прослушивание
+net.local	Локальный
+net.onlyOwn	Без прав администратора видны только ваши процессы.
+net.process	Процесс
+net.proto	Прот.
+net.remote	Удалённый
+net.state	Состояние
+nrule.badPort	Использует порт, типичный для бэкдоров (%@)
+nrule.unsignedListener	Неподписанная программа ожидает входящие подключения
+nrule.unsignedOutbound	У неподписанной программы открыто интернет-подключение
 open.message	Выберите журнал JSON Lines, записанный утилитой permwatch
 proc.count	Процессов: %ld
 proc.filter.suspicious	Подозрительные
@@ -127,13 +167,17 @@ reset.noBundle	У этой программы нет идентификатор�
 risk.caution	Внимание
 risk.high	Высокий риск
 risk.normal	Норма
+rule.authPlugin	В цепочке авторизации входа есть сторонний плагин
+rule.cronJob	Запланированное задание cron выполняет команду
 rule.dyld	Запущен с переменными инъекции DYLD_*
 rule.gatekeeper	Пользователь обошёл Gatekeeper для этого файла
 rule.hiddenTarget	Целевой файл находится в скрытой папке
+rule.loginHook	Login hook запускает скрипт при каждом входе
 rule.lolbinFromUnsigned	Системная утилита запущена неподписанным приложением
 rule.nightHidden	Ночной запуск из скрытой папки
 rule.quarantine	Флаг карантина удалён, Gatekeeper обойдён
 rule.rapidGrants	Одно приложение за 2 минуты получило универсальный доступ и запись экрана
+rule.shellSuspicious	Файл запуска оболочки скачивает или декодирует код и запускает его
 rule.startupWeakSignature	Объект автозапуска запускает скрипт или программу с ad-hoc подписью
 rule.tccAdhoc	Разрешение выдано приложению с ad-hoc подписью
 rule.tccUnsigned	Разрешение выдано неподписанному приложению
@@ -141,6 +185,18 @@ rule.unsignedDownload	Неподписанное приложение вперв
 rule.unsignedPersistence	Неподписанный процесс добавил объект автозапуска
 rule.unsignedStartupBinary	Объект автозапуска запускает неподписанную программу
 search.prompt	Поиск: приложение, путь, Team ID…
+sec.filevault	Шифрование диска FileVault
+sec.firewall	Брандмауэр
+sec.fix	Открыть настройки
+sec.gatekeeper	Gatekeeper
+sec.off	Выключено
+sec.on	Включено
+sec.score	Включено защит: %1$ld из %2$ld
+sec.sip	Защита целостности системы
+sec.unknown	Не удалось проверить
+sec.updates	Автоматические ответы безопасности и файлы данных
+sec.xprotect	Определения вредоносного ПО XProtect
+sec.xprotectAge	Версия %1$@ · обновлено %2$@
 settings.appearance	Оформление
 sig.adhoc	ad-hoc подпись
 sig.apple	Apple
@@ -191,6 +247,9 @@ tag.trusted	Доверенное
 theme.dark	Тёмное
 theme.light	Светлое
 theme.system	Как в системе
+threat.dismiss	Закрыть
+threat.more	ещё %ld
+threat.review	Открыть
 uninstall.blocked	macOS защищает это приложение; его нельзя удалить.
 uninstall.body	Сначала приложение будет закрыто, затем выбранные объекты переместятся в Корзину. Окончательно они удалятся, когда вы очистите Корзину.
 uninstall.confirm	Переместить в Корзину
