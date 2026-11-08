@@ -91,6 +91,12 @@ func check(_ cond: Bool, _ name: String) { if cond { print("✓ \(name)") } else
     check(UpdateChecker.isNewer("v0.10.0", than: "0.9.3") && !UpdateChecker.isNewer("0.2.0", than: "0.2.0") && !UpdateChecker.isNewer("v0.1.9", than: "0.2"),
           "sürüm karşılaştırma")
 
+    // Engelleme: yalnızca geçerli IP adresleri
+    check(BlockList.host(of: "93.184.216.34:443") == "93.184.216.34" && BlockList.host(of: "[2001:db8::1]:443") == "2001:db8::1",
+          "uç noktadan adres ayrılır")
+    check(BlockList.isIP("203.0.113.5") && BlockList.isIP("2001:db8::1") && !BlockList.isIP("example.com")
+          && !BlockList.isIP("1.2.3.4; rm -rf /") && !BlockList.isIP("1.2.3.4 } pass all"), "kural enjeksiyonu reddedilir")
+
     // VPN sızıntısı (sentetik: tünel utun4, fiziksel en0 = 192.0.2.10)
     func conn(_ name: String, _ local: String, _ remote: String) -> ConnRow {
         ConnRow(id: name + remote, pid: 1, name: name, path: nil, proto: "TCP", local: local, remote: remote, state: "ESTABLISHED",

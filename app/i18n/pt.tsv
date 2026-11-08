@@ -577,3 +577,10 @@ scan.xpTitle	Verificações da própria Apple em segundo plano (XProtect)
 scan.xpNeedsRoot	O macOS as executa em silêncio e guarda os resultados num log protegido. Ative o modo administrador para ver o que o XProtect detectou ou removeu nos últimos 3 dias.
 scan.xpNone	O XProtect não detectou nem removeu nada nos últimos 3 dias.
 scan.xpFound	O XProtect registrou %@ detecções ou remoções nos últimos 3 dias:
+block.add	Bloquear %@
+block.remove	Desbloquear
+block.needsRoot	O bloqueio usa o firewall do macOS e requer o modo administrador.
+block.active	Bloqueado: todo o tráfego de e para este endereço é descartado.
+block.settings	Servidores bloqueados
+block.none	Nenhum servidor bloqueado.
+block.settingsDesc	Bloqueie servidores nas seções Rede ou Captura de pacotes. O auxiliar de administrador aplica a lista ao firewall integrado do macOS (pf) em uma seção própria, sem alterar outros ajustes. Os bloqueios valem até você removê-los aqui ou reiniciar o Mac.

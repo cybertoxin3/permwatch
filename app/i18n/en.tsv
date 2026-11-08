@@ -577,3 +577,10 @@ scan.xpTitle	Apple’s own background scans (XProtect)
 scan.xpNeedsRoot	macOS runs these silently and keeps the results in a protected log. Turn on administrator mode to show what XProtect detected or removed in the last 3 days.
 scan.xpNone	No detections or removals by XProtect in the last 3 days.
 scan.xpFound	XProtect logged %@ detection or removal events in the last 3 days:
+block.add	Block %@
+block.remove	Unblock
+block.needsRoot	Blocking uses the macOS firewall and needs administrator mode.
+block.active	Blocked: all traffic to and from this address is dropped.
+block.settings	Blocked servers
+block.none	No servers blocked.
+block.settingsDesc	Block servers from the Network or Packet Capture sections. The administrator helper applies the list to the built-in macOS firewall (pf) in its own section, without changing your other firewall settings. Blocks stay until you remove them here or restart the Mac.

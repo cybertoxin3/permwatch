@@ -577,3 +577,10 @@ scan.xpTitle	Apple'ın kendi arka plan taramaları (XProtect)
 scan.xpNeedsRoot	macOS bunları sessizce çalıştırır ve sonuçları korunan bir günlükte tutar. XProtect'in son 3 günde neyi tespit ettiğini veya kaldırdığını görmek için yönetici modunu aç.
 scan.xpNone	XProtect son 3 günde hiçbir şey tespit etmedi veya kaldırmadı.
 scan.xpFound	XProtect son 3 günde %@ tespit veya kaldırma kaydı tuttu:
+block.add	%@ adresini engelle
+block.remove	Engeli Kaldır
+block.needsRoot	Engelleme macOS güvenlik duvarını kullanır ve yönetici modu gerektirir.
+block.active	Engellendi: bu adrese giden ve gelen tüm trafik düşürülüyor.
+block.settings	Engellenen sunucular
+block.none	Engellenen sunucu yok.
+block.settingsDesc	Sunucuları Ağ veya Paket Yakalama bölümlerinden engelle. Yönetici yardımcısı listeyi yerleşik macOS güvenlik duvarına (pf) kendi bölümünde uygular; diğer güvenlik duvarı ayarlarına dokunmaz. Engeller burada kaldırana veya Mac'i yeniden başlatana kadar sürer.

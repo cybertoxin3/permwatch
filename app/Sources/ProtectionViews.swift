@@ -163,6 +163,7 @@ struct DownloadsView: View {
 struct NetworkView: View {
     @EnvironmentObject var net: NetworkMonitor
     @EnvironmentObject var center: ThreatCenter
+    @ObservedObject private var blocks = BlockList.shared
     @State private var selection: String?
     @State private var onlyRisky = false
     @State private var sortOrder = [KeyPathComparator(\ConnRow.riskSort, order: .reverse)]
@@ -199,11 +200,13 @@ struct NetworkView: View {
                     TableColumn(L("col.risk"), value: \.riskSort) { c in if c.risk >= .caution { RiskTag(c.risk) } }
                         .width(86)
                 }
-                if let c = net.rows.first(where: { $0.id == selection }), !c.rules.isEmpty {
+                if let c = net.rows.first(where: { $0.id == selection }) {
                     Divider()
                     VStack(alignment: .leading, spacing: 10) {
-                        Label("\(c.risk.label): \(L("alert.network"))", systemImage: "exclamationmark.triangle")
-                            .font(.system(size: 13, weight: .bold)).foregroundStyle(c.risk.color)
+                        if !c.rules.isEmpty {
+                            Label("\(c.risk.label): \(L("alert.network"))", systemImage: "exclamationmark.triangle")
+                                .font(.system(size: 13, weight: .bold)).foregroundStyle(c.risk.color)
+                        }
                         ForEach(Array(zip(c.rules, c.ruleArgs)), id: \.0) { r, a in
                             Text("• " + (a.isEmpty ? L(r) : L(r, a))).font(.system(size: 12))
                         }
@@ -212,6 +215,7 @@ struct NetworkView: View {
                         if let p = c.path {
                             Button(L("action.virustotal")) { Lookup.virusTotal(path: PathUtil.appBundle(p) ?? p) }
                         }
+                        if let r = c.remote { BlockButton(ip: BlockList.host(of: r)) }
                         Spacer()
                     }
                     .padding(16)
@@ -271,5 +275,29 @@ struct MediaLiveCard: View {
         .overlay(RoundedRectangle(cornerRadius: 12).strokeBorder(Color.secondary.opacity(0.2)))
         .padding(.horizontal, 16)
         .padding(.top, 12)
+    }
+}
+
+
+/// "Bu sunucuyu engelle" — yönetici modu gerekir (kuralları root yardımcı uygular).
+struct BlockButton: View {
+    let ip: String
+    @ObservedObject private var blocks = BlockList.shared
+    @ObservedObject private var root = RootBridge.shared
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 4) {
+            if BlockList.isIP(ip) {
+                Button(blocks.contains(ip) ? L("block.remove") : L("block.add", ip)) { blocks.toggle(ip) }
+                    .tint(blocks.contains(ip) ? nil : .red)
+                    .disabled(!root.active && !blocks.contains(ip))
+                if !root.active {
+                    Text(L("block.needsRoot")).font(.system(size: 10.5)).foregroundStyle(.secondary)
+                        .fixedSize(horizontal: false, vertical: true)
+                } else if blocks.contains(ip) {
+                    Text(L("block.active")).font(.system(size: 10.5)).foregroundStyle(.red)
+                }
+            }
+        }
     }
 }

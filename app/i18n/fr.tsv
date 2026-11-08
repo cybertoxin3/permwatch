@@ -577,3 +577,10 @@ scan.xpTitle	Analyses d’Apple en arrière-plan (XProtect)
 scan.xpNeedsRoot	macOS les exécute discrètement et garde les résultats dans un journal protégé. Activez le mode administrateur pour voir ce que XProtect a détecté ou supprimé ces 3 derniers jours.
 scan.xpNone	XProtect n’a rien détecté ni supprimé ces 3 derniers jours.
 scan.xpFound	XProtect a enregistré %@ détections ou suppressions ces 3 derniers jours :
+block.add	Bloquer %@
+block.remove	Débloquer
+block.needsRoot	Le blocage utilise le pare-feu de macOS et nécessite le mode administrateur.
+block.active	Bloqué : tout le trafic vers et depuis cette adresse est rejeté.
+block.settings	Serveurs bloqués
+block.none	Aucun serveur bloqué.
+block.settingsDesc	Bloquez des serveurs depuis Réseau ou Capture de paquets. L’assistant administrateur applique la liste au pare-feu intégré de macOS (pf) dans sa propre section, sans modifier vos autres réglages. Les blocages restent jusqu’à leur suppression ici ou le redémarrage du Mac.

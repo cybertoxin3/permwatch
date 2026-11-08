@@ -577,3 +577,10 @@ scan.xpTitle	Apple 独自のバックグラウンドスキャン(XProtect)
 scan.xpNeedsRoot	macOS はこれらを目立たず実行し、結果を保護されたログに保存します。管理者モードをオンにすると、過去 3 日間に XProtect が検出・削除したものを表示します。
 scan.xpNone	過去 3 日間、XProtect による検出・削除はありません。
 scan.xpFound	過去 3 日間に XProtect が記録した検出・削除イベント: %@ 件
+block.add	%@ をブロック
+block.remove	ブロック解除
+block.needsRoot	ブロックには macOS のファイアウォールを使うため、管理者モードが必要です。
+block.active	ブロック中: このアドレスとの通信はすべて破棄されます。
+block.settings	ブロック中のサーバ
+block.none	ブロック中のサーバはありません。
+block.settingsDesc	「ネットワーク」または「パケットキャプチャ」でサーバをブロックできます。管理者ヘルパーが macOS 内蔵ファイアウォール(pf)の専用セクションに一覧を適用し、ほかの設定は変更しません。ここで解除するか Mac を再起動するまでブロックは続きます。

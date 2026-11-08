@@ -53,6 +53,76 @@ if daemon {
     setOwner(bsd.pbi_uid)
 }
 
+// MARK: - Engelleme (pf)
+//
+// Kullanıcının klasöründeki "blocklist" dosyasından YALNIZCA geçerli IP adresleri okunur (inet_pton,
+// en fazla 1000); kurallar sabit şablondan üretilir ve macOS'un zaten tanımlı "com.apple/*" bağlantı
+// noktasına yüklenir (pf.conf değişmez). pf, başka programları bozmamak için jetonla açılır.
+
+let pfAnchor = "com.apple/250.permwatch"
+var pfToken: String?
+var blockStamp: Double = -1
+var blockStatus: [String: Any] = [:]
+
+func validIP(_ s: String) -> Bool {
+    var a4 = in_addr(), a6 = in6_addr()
+    return inet_pton(AF_INET, s, &a4) == 1 || inet_pton(AF_INET6, s, &a6) == 1
+}
+
+func readBlocklist() -> (stamp: Double, ips: [String]) {
+    let path = home + "/Library/Application Support/permwatch/blocklist"
+    var st = stat()
+    guard lstat(path, &st) == 0, st.st_uid == owner, (st.st_mode & S_IFMT) == S_IFREG, st.st_size < 64 * 1024,
+          let text = try? String(contentsOfFile: path, encoding: .utf8) else { return (0, []) }
+    var ips: [String] = []
+    for line in text.split(separator: "\n") {
+        let s = line.trimmingCharacters(in: .whitespaces)
+        if validIP(s), !ips.contains(s) { ips.append(s) }
+        if ips.count >= 1000 { break }
+    }
+    return (Double(st.st_mtimespec.tv_sec) + Double(st.st_mtimespec.tv_nsec) / 1e9, ips)
+}
+
+func pfctl(_ args: [String], stdin: String? = nil) -> (Int32, String) {
+    let p = Process()
+    p.executableURL = URL(fileURLWithPath: "/sbin/pfctl")
+    p.arguments = args
+    let out = Pipe(), inp = Pipe()
+    p.standardOutput = out; p.standardError = out
+    if stdin != nil { p.standardInput = inp }
+    guard (try? p.run()) != nil else { return (-1, "pfctl") }
+    if let s = stdin { inp.fileHandleForWriting.write(Data(s.utf8)); try? inp.fileHandleForWriting.close() }
+    let data = out.fileHandleForReading.readDataToEndOfFile()
+    p.waitUntilExit()
+    return (p.terminationStatus, String(decoding: data, as: UTF8.self))
+}
+
+func applyBlocklist() {
+    let (stamp, ips) = readBlocklist()
+    guard stamp != blockStamp else { return }
+    blockStamp = stamp
+    if ips.isEmpty {
+        _ = pfctl(["-a", pfAnchor, "-F", "all"])
+        if let t = pfToken { _ = pfctl(["-X", t]); pfToken = nil }
+        blockStatus = ["count": 0]
+        return
+    }
+    let rules = """
+    table <permwatch_block> persist { \(ips.joined(separator: ", ")) }
+    block drop out quick to <permwatch_block>
+    block drop in quick from <permwatch_block>
+
+    """
+    let (rc, msg) = pfctl(["-a", pfAnchor, "-f", "-"], stdin: rules)
+    if rc != 0 { blockStatus = ["count": 0, "error": String(msg.prefix(300))]; return }
+    if pfToken == nil {
+        let (_, out) = pfctl(["-E"])
+        pfToken = out.split(separator: "\n").first { $0.contains("Token") }?.split(separator: ":").last?
+            .trimmingCharacters(in: .whitespaces)
+    }
+    blockStatus = ["count": ips.count]
+}
+
 /// Servis modunda: permwatch son 20 saniyede "buradayım" dedi mi? (Dosya kullanıcıya ait olmalı.)
 func appAlive() -> Bool {
     var st = stat()
@@ -225,6 +295,7 @@ while true {
         capture?.stop(); capture = nil; captureError = nil
     }
     capture?.flush()
+    applyBlocklist()
 
     // Yavaş değişenler dakikada bir.
     if tick % 60 == 0 {
@@ -232,7 +303,7 @@ while true {
         slow["cron"] = run("/usr/bin/crontab", ["-l", "-u", "root"])
         slow["profiles"] = run("/usr/bin/profiles", ["show", "-type", "configuration"])
         // Apple XProtect / XProtect Remediator: son 3 günün tespit ve temizleme kayıtları (saatte bir).
-        if tick % 720 == 0 {
+        if tick % 3600 == 0 {
             let log = run("/usr/bin/log", ["show", "--last", "3d", "--style", "compact", "--predicate",
                 "(subsystem BEGINSWITH \"com.apple.XProtect\" OR process BEGINSWITH \"XProtect\") AND (eventMessage CONTAINS[c] \"remediat\" OR eventMessage CONTAINS[c] \"detected\" OR eventMessage CONTAINS[c] \"malware found\")"])
             slow["xprotect"] = String(log.split(separator: "\n").filter { !$0.hasPrefix("Timestamp") && !$0.contains("Filtering the log") }.suffix(200).joined(separator: "\n"))
@@ -250,7 +321,7 @@ while true {
         medium["procs"] = procs
         medium["lsof"] = run("/usr/sbin/lsof", ["-nP", "-i", "-F", "pcfPnT"])
     }
-    let sig = "\(capture?.device ?? "-")|\(captureError ?? "")"
+    let sig = "\(capture?.device ?? "-")|\(captureError ?? "")|\(blockStatus["count"] ?? "-")"
     if tick % 5 == 0 || sig != lastSig {
         lastSig = sig
         var doc: [String: Any] = [
@@ -267,6 +338,7 @@ while true {
         }
         if let e = captureError { cap["error"] = e }
         doc["capture"] = cap
+        doc["block"] = blockStatus
         if let data = try? JSONSerialization.data(withJSONObject: doc) { writeAtomic(data, to: outPath) }
     }
     tick += 1

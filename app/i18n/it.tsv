@@ -577,3 +577,10 @@ scan.xpTitle	Scansioni in background di Apple (XProtect)
 scan.xpNeedsRoot	macOS le esegue in silenzio e conserva i risultati in un log protetto. Attiva la modalità amministratore per vedere cosa XProtect ha rilevato o rimosso negli ultimi 3 giorni.
 scan.xpNone	XProtect non ha rilevato né rimosso nulla negli ultimi 3 giorni.
 scan.xpFound	XProtect ha registrato %@ rilevamenti o rimozioni negli ultimi 3 giorni:
+block.add	Blocca %@
+block.remove	Sblocca
+block.needsRoot	Il blocco usa il firewall di macOS e richiede la modalità amministratore.
+block.active	Bloccato: tutto il traffico da e verso questo indirizzo viene scartato.
+block.settings	Server bloccati
+block.none	Nessun server bloccato.
+block.settingsDesc	Blocca i server dalle sezioni Rete o Cattura pacchetti. L’helper amministratore applica l’elenco al firewall integrato di macOS (pf) in una sezione dedicata, senza toccare le altre impostazioni. I blocchi restano finché non li rimuovi qui o riavvii il Mac.

@@ -577,3 +577,10 @@ scan.xpTitle	Apple 자체 백그라운드 검사(XProtect)
 scan.xpNeedsRoot	macOS는 이를 조용히 실행하고 결과를 보호된 로그에 보관합니다. 관리자 모드를 켜면 최근 3일간 XProtect가 탐지하거나 제거한 항목을 볼 수 있습니다.
 scan.xpNone	최근 3일간 XProtect의 탐지나 제거가 없습니다.
 scan.xpFound	최근 3일간 XProtect가 기록한 탐지·제거 이벤트 %@건:
+block.add	%@ 차단
+block.remove	차단 해제
+block.needsRoot	차단은 macOS 방화벽을 사용하며 관리자 모드가 필요합니다.
+block.active	차단됨: 이 주소와 주고받는 모든 트래픽이 차단됩니다.
+block.settings	차단된 서버
+block.none	차단된 서버가 없습니다.
+block.settingsDesc	네트워크 또는 패킷 캡처에서 서버를 차단하세요. 관리자 도우미가 macOS 내장 방화벽(pf)의 전용 영역에 목록을 적용하며 다른 방화벽 설정은 바꾸지 않습니다. 여기서 해제하거나 Mac을 재시동할 때까지 차단이 유지됩니다.

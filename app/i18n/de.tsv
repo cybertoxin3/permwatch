@@ -577,3 +577,10 @@ scan.xpTitle	Apples eigene Hintergrundscans (XProtect)
 scan.xpNeedsRoot	macOS führt sie still aus und speichert die Ergebnisse in einem geschützten Protokoll. Schalte den Administratormodus ein, um zu sehen, was XProtect in den letzten 3 Tagen gefunden oder entfernt hat.
 scan.xpNone	XProtect hat in den letzten 3 Tagen nichts gefunden oder entfernt.
 scan.xpFound	XProtect hat in den letzten 3 Tagen %@ Erkennungs- oder Entfernungsereignisse protokolliert:
+block.add	%@ blockieren
+block.remove	Freigeben
+block.needsRoot	Blockieren nutzt die macOS-Firewall und benötigt den Administratormodus.
+block.active	Blockiert: aller Verkehr von und zu dieser Adresse wird verworfen.
+block.settings	Blockierte Server
+block.none	Keine Server blockiert.
+block.settingsDesc	Blockiere Server unter Netzwerk oder Paketmitschnitt. Der Administrator-Helfer wendet die Liste in einem eigenen Bereich der integrierten macOS-Firewall (pf) an, ohne andere Einstellungen zu ändern. Sperren bleiben, bis du sie hier entfernst oder den Mac neu startest.

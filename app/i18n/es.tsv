@@ -577,3 +577,10 @@ scan.xpTitle	Análisis de Apple en segundo plano (XProtect)
 scan.xpNeedsRoot	macOS los ejecuta en silencio y guarda los resultados en un registro protegido. Activa el modo administrador para ver lo que XProtect detectó o eliminó en los últimos 3 días.
 scan.xpNone	XProtect no detectó ni eliminó nada en los últimos 3 días.
 scan.xpFound	XProtect registró %@ detecciones o eliminaciones en los últimos 3 días:
+block.add	Bloquear %@
+block.remove	Desbloquear
+block.needsRoot	El bloqueo usa el cortafuegos de macOS y requiere el modo administrador.
+block.active	Bloqueado: se descarta todo el tráfico hacia y desde esta dirección.
+block.settings	Servidores bloqueados
+block.none	No hay servidores bloqueados.
+block.settingsDesc	Bloquea servidores desde Red o Captura de paquetes. El asistente de administrador aplica la lista al cortafuegos integrado de macOS (pf) en su propia sección, sin cambiar tus otros ajustes. Los bloqueos duran hasta que los quites aquí o reinicies el Mac.

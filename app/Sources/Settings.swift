@@ -53,6 +53,7 @@ struct SettingsView: View {
     @EnvironmentObject var root: RootBridge
     @EnvironmentObject var packets: PacketMonitor
     @EnvironmentObject var updates: UpdateChecker
+    @ObservedObject private var blocks = BlockList.shared
 
     var body: some View {
         Form {
@@ -107,6 +108,26 @@ struct SettingsView: View {
                 Text(L("settings.captureFolder"))
             } footer: {
                 Text(L("settings.captureFolderDesc")).font(.system(size: 11)).foregroundStyle(.secondary)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+
+            Section {
+                if blocks.ips.isEmpty {
+                    Text(L("block.none")).foregroundStyle(.secondary)
+                }
+                ForEach(blocks.ips, id: \.self) { ip in
+                    HStack {
+                        Image(systemName: "nosign").foregroundStyle(.red)
+                        Text(ip).font(.system(size: 12, design: .monospaced))
+                        Spacer()
+                        Button { blocks.remove(ip) } label: { Image(systemName: "minus.circle") }.buttonStyle(.borderless)
+                    }
+                }
+                if let e = root.data?.blockError { Text(e).font(.system(size: 11)).foregroundStyle(.red) }
+            } header: {
+                Text(L("block.settings"))
+            } footer: {
+                Text(L("block.settingsDesc")).font(.system(size: 11)).foregroundStyle(.secondary)
                     .fixedSize(horizontal: false, vertical: true)
             }
 

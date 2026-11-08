@@ -577,3 +577,10 @@ scan.xpTitle	Apple 自身的后台扫描(XProtect)
 scan.xpNeedsRoot	macOS 会静默运行这些扫描,并将结果保存在受保护的日志中。打开管理员模式即可查看 XProtect 最近 3 天检测或移除的内容。
 scan.xpNone	XProtect 最近 3 天没有检测到或移除任何内容。
 scan.xpFound	XProtect 最近 3 天记录了 %@ 条检测或移除事件:
+block.add	阻止 %@
+block.remove	取消阻止
+block.needsRoot	阻止功能使用 macOS 防火墙,需要管理员模式。
+block.active	已阻止:与此地址往来的所有流量都会被丢弃。
+block.settings	已阻止的服务器
+block.none	没有被阻止的服务器。
+block.settingsDesc	在“网络”或“数据包捕获”中阻止服务器。管理员助手会在 macOS 内置防火墙(pf)的独立区域应用此列表,不会更改其他防火墙设置。阻止会一直有效,直到你在此移除或重启 Mac。

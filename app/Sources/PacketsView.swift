@@ -310,6 +310,7 @@ struct ConversationsPane: View {
                         if let path = cap.path(for: c.pid) {
                             Button(L("action.virustotal")) { Lookup.virusTotal(path: PathUtil.appBundle(path) ?? path) }.controlSize(.small)
                         }
+                        BlockButton(ip: c.remote).controlSize(.small)
                     }
                     .padding(16)
                     .frame(maxWidth: .infinity, alignment: .leading)
