@@ -165,7 +165,9 @@ func check(_ cond: Bool, _ name: String) { if cond { print("✓ \(name)") } else
           "Elastic macOS kuralları derlendi (\(YaraEngine.shared.extraCount))")
     let miner = NSHomeDirectory() + "/Library/Application Support/permwatch/selftest-miner-\(UUID().uuidString)"
     var body = Data([0xcf, 0xfa, 0xed, 0xfe])   // Mach-O başlığı (çalıştırılabilir değil)
-    body.append(Data("\0mining.set_target\0XMRIG_HOSTNAME\0Usage: xmrig [OPTIONS]\0XMRIG_VERSION\0".utf8))
+    // Metinler ters yazılı: test programının kendisi kurala takılıp koruma servisince engellenmesin.
+    let parts = ["tegrat_tes.gninim", "EMANTSOH_GIRMX", "]SNOITPO[ girmx :egasU", "NOISREV_GIRMX"].map { String($0.reversed()) }
+    body.append(Data(("\0" + parts.joined(separator: "\0") + "\0").utf8))
     FileManager.default.createFile(atPath: miner, contents: body, attributes: [.posixPermissions: 0o755])
     let hit = YaraEngine.shared.scan(miner)?.first { $0.name == "MacOS.Cryptominer.Xmrig" }
     check(hit != nil, "Elastic kuralı deneme dosyasını yakaladı")

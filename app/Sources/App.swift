@@ -40,6 +40,8 @@ struct PermwatchApp: App {
                 .environmentObject(updates)
                 .environmentObject(RootBridge.shared)
                 .environmentObject(center)
+                .environmentObject(ThreatIntel.shared)
+                .environmentObject(RealtimeGuard.shared)
                 .frame(minWidth: 1100, minHeight: 640)
                 .preferredColorScheme(theme.colorScheme)
                 .onAppear {

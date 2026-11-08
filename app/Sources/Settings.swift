@@ -49,6 +49,8 @@ enum Theme: String, CaseIterable, Identifiable {
 }
 
 struct SettingsView: View {
+    /// true: ana pencerenin içinde (kenar çubuğundan); false: macOS'un Ayarlar penceresinde.
+    var embedded = false
     @AppStorage(Theme.storageKey) private var theme: Theme = .system
     @EnvironmentObject var downloads: DownloadGuard
     @EnvironmentObject var root: RootBridge
@@ -58,6 +60,8 @@ struct SettingsView: View {
     @EnvironmentObject var realtime: RealtimeGuard
     @ObservedObject private var guardSvc = GuardService.shared
     @ObservedObject private var blocks = BlockList.shared
+    /// Paket yakalama ve engellenen sunucular yalnızca gelişmiş modda.
+    @AppStorage(Sidebar.advancedKey) private var advanced = false
 
     var body: some View {
         Form {
@@ -68,71 +72,6 @@ struct SettingsView: View {
                     }
                 }
                 .pickerStyle(.radioGroup)
-            }
-
-            Section {
-                ForEach(downloads.folders, id: \.path) { f in
-                    HStack {
-                        Image(systemName: "folder").foregroundStyle(.secondary)
-                        Text(PathUtil.abbreviate(f.path)).lineLimit(1).truncationMode(.middle)
-                        Spacer()
-                        if f.source.isEmpty {
-                            Button { downloads.removeFolder(f.path) } label: { Image(systemName: "minus.circle") }
-                                .buttonStyle(.borderless)
-                        } else {
-                            Text(f.source).font(.system(size: 11)).foregroundStyle(.secondary)
-                        }
-                    }
-                }
-                Button(L("settings.addFolder")) {
-                    let p = NSOpenPanel()
-                    p.canChooseDirectories = true
-                    p.canChooseFiles = false
-                    if p.runModal() == .OK, let u = p.url { downloads.addFolder(u.path) }
-                }
-            } header: {
-                Text(L("settings.downloads"))
-            } footer: {
-                Text(L("settings.downloadsDesc")).font(.system(size: 11)).foregroundStyle(.secondary)
-            }
-
-            Section {
-                HStack {
-                    Image(systemName: "folder").foregroundStyle(.secondary)
-                    Text(packets.saveFolder.map(PathUtil.abbreviate) ?? L("settings.captureOff"))
-                        .lineLimit(1).truncationMode(.middle)
-                        .foregroundStyle(packets.saveFolder == nil ? .secondary : .primary)
-                    Spacer()
-                    if packets.saveFolder != nil {
-                        Button { packets.saveFolder = nil } label: { Image(systemName: "minus.circle") }.buttonStyle(.borderless)
-                    }
-                    Button(L("pkt.chooseFolder")) { packets.chooseSaveFolder() }
-                }
-            } header: {
-                Text(L("settings.captureFolder"))
-            } footer: {
-                Text(L("settings.captureFolderDesc")).font(.system(size: 11)).foregroundStyle(.secondary)
-                    .fixedSize(horizontal: false, vertical: true)
-            }
-
-            Section {
-                if blocks.ips.isEmpty {
-                    Text(L("block.none")).foregroundStyle(.secondary)
-                }
-                ForEach(blocks.ips, id: \.self) { ip in
-                    HStack {
-                        Image(systemName: "nosign").foregroundStyle(.red)
-                        Text(ip).font(.system(size: 12, design: .monospaced))
-                        Spacer()
-                        Button { blocks.remove(ip) } label: { Image(systemName: "minus.circle") }.buttonStyle(.borderless)
-                    }
-                }
-                if let e = root.data?.blockError { Text(e).font(.system(size: 11)).foregroundStyle(.red) }
-            } header: {
-                Text(L("block.settings"))
-            } footer: {
-                Text(L("block.settingsDesc")).font(.system(size: 11)).foregroundStyle(.secondary)
-                    .fixedSize(horizontal: false, vertical: true)
             }
 
             Section {
@@ -162,34 +101,6 @@ struct SettingsView: View {
 
             Section {
                 HStack {
-                    Text(L("report.settingDesc")).font(.system(size: 11.5)).foregroundStyle(.secondary)
-                        .fixedSize(horizontal: false, vertical: true)
-                    Spacer()
-                    ReportMenuButton()
-                }
-            } header: {
-                Text(L("report.title"))
-            }
-
-            Section {
-                Toggle(L("upd.setting"), isOn: $updates.enabled)
-                if updates.usesSparkle && updates.enabled { Toggle(L("upd.auto"), isOn: $updates.autoInstall) }
-                Text(L("upd.settingDesc", UpdateChecker.current)).font(.system(size: 11)).foregroundStyle(.secondary)
-            }
-
-            Section {
-                HStack {
-                    Text(L("donate.desc")).font(.system(size: 11.5)).foregroundStyle(.secondary)
-                        .fixedSize(horizontal: false, vertical: true)
-                    Spacer()
-                    Link(L("donate.button"), destination: URL(string: "https://github.com/cybertoxin3/permwatch#-buy-me-a-coffee")!)
-                }
-            } header: {
-                Text(L("donate.title"))
-            }
-
-            Section {
-                HStack {
                     Circle().fill(root.active ? Color.green : Color.secondary).frame(width: 8, height: 8)
                     Text(root.active ? L("settings.rootActive") : L("settings.rootInactive"))
                     Spacer()
@@ -214,9 +125,105 @@ struct SettingsView: View {
                 Text(L("settings.rootDesc")).font(.system(size: 11)).foregroundStyle(.secondary)
                     .fixedSize(horizontal: false, vertical: true)
             }
+            Section {
+                ForEach(downloads.folders, id: \.path) { f in
+                    HStack {
+                        Image(systemName: "folder").foregroundStyle(.secondary)
+                        Text(PathUtil.abbreviate(f.path)).lineLimit(1).truncationMode(.middle)
+                        Spacer()
+                        if f.source.isEmpty {
+                            Button { downloads.removeFolder(f.path) } label: { Image(systemName: "minus.circle") }
+                                .buttonStyle(.borderless)
+                        } else {
+                            Text(f.source).font(.system(size: 11)).foregroundStyle(.secondary)
+                        }
+                    }
+                }
+                Button(L("settings.addFolder")) {
+                    let p = NSOpenPanel()
+                    p.canChooseDirectories = true
+                    p.canChooseFiles = false
+                    if p.runModal() == .OK, let u = p.url { downloads.addFolder(u.path) }
+                }
+            } header: {
+                Text(L("settings.downloads"))
+            } footer: {
+                Text(L("settings.downloadsDesc")).font(.system(size: 11)).foregroundStyle(.secondary)
+            }
+
+            if advanced {
+                Section {
+                    HStack {
+                        Image(systemName: "folder").foregroundStyle(.secondary)
+                        Text(packets.saveFolder.map(PathUtil.abbreviate) ?? L("settings.captureOff"))
+                            .lineLimit(1).truncationMode(.middle)
+                            .foregroundStyle(packets.saveFolder == nil ? .secondary : .primary)
+                        Spacer()
+                        if packets.saveFolder != nil {
+                            Button { packets.saveFolder = nil } label: { Image(systemName: "minus.circle") }.buttonStyle(.borderless)
+                        }
+                        Button(L("pkt.chooseFolder")) { packets.chooseSaveFolder() }
+                    }
+                } header: {
+                    Text(L("settings.captureFolder"))
+                } footer: {
+                    Text(L("settings.captureFolderDesc")).font(.system(size: 11)).foregroundStyle(.secondary)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+
+                Section {
+                    if blocks.ips.isEmpty {
+                        Text(L("block.none")).foregroundStyle(.secondary)
+                    }
+                    ForEach(blocks.ips, id: \.self) { ip in
+                        HStack {
+                            Image(systemName: "nosign").foregroundStyle(.red)
+                            Text(ip).font(.system(size: 12, design: .monospaced))
+                            Spacer()
+                            Button { blocks.remove(ip) } label: { Image(systemName: "minus.circle") }.buttonStyle(.borderless)
+                        }
+                    }
+                    if let e = root.data?.blockError { Text(e).font(.system(size: 11)).foregroundStyle(.red) }
+                } header: {
+                    Text(L("block.settings"))
+                } footer: {
+                    Text(L("block.settingsDesc")).font(.system(size: 11)).foregroundStyle(.secondary)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+
+            }
+            Section {
+                Toggle(L("upd.setting"), isOn: $updates.enabled)
+                if updates.usesSparkle && updates.enabled { Toggle(L("upd.auto"), isOn: $updates.autoInstall) }
+                Text(L("upd.settingDesc", UpdateChecker.current)).font(.system(size: 11)).foregroundStyle(.secondary)
+            }
+
+            Section {
+                HStack {
+                    Text(L("report.settingDesc")).font(.system(size: 11.5)).foregroundStyle(.secondary)
+                        .fixedSize(horizontal: false, vertical: true)
+                    Spacer()
+                    ReportMenuButton()
+                }
+            } header: {
+                Text(L("report.title"))
+            }
+
+            Section {
+                HStack {
+                    Text(L("donate.desc")).font(.system(size: 11.5)).foregroundStyle(.secondary)
+                        .fixedSize(horizontal: false, vertical: true)
+                    Spacer()
+                    Link(L("donate.button"), destination: URL(string: "https://github.com/cybertoxin3/permwatch#-buy-me-a-coffee")!)
+                }
+            } header: {
+                Text(L("donate.title"))
+            }
+
         }
         .formStyle(.grouped)
-        .frame(width: 520)
+        .frame(width: embedded ? nil : 520)
+        .frame(maxWidth: embedded ? 680 : nil)
         .onChange(of: theme) { _, new in new.apply() }
     }
 }

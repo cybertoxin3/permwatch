@@ -1,7 +1,7 @@
 import SwiftUI
 
 enum SidebarItem: Hashable {
-    case timeline, alerts, advice, scan, apps, running, security, downloads, network, packets, terminal
+    case timeline, alerts, advice, scan, apps, running, security, downloads, network, packets, terminal, settings
     case category(Category)
     case loginItems, processes
 }
@@ -55,6 +55,10 @@ struct MainView: View {
                 PacketsView()
             } else if section == .terminal {
                 TerminalSection()
+            } else if section == .settings {
+                // Form kendi içinde kayar; ortada, okunabilir genişlikte.
+                SettingsView(embedded: true).frame(maxWidth: .infinity)
+                    .navigationTitle(L("nav.settings"))
             } else {
                 HStack(spacing: 0) {
                     VStack(spacing: 0) {
@@ -105,6 +109,7 @@ struct MainView: View {
             if Snapshot.section == "packets" { section = .packets }
             if Snapshot.section == "advice" { section = .advice }
             if Snapshot.section == "terminal" { section = .terminal }
+            if Snapshot.section == "settings" { section = .settings }
             if Snapshot.section == "scan" || Snapshot.section == "scanrun" { section = .scan }
             Snapshot.scheduleIfRequested(store: store, selection: selection)
         }
@@ -134,6 +139,7 @@ struct MainView: View {
         case .network: return L("nav.network")
         case .packets: return L("nav.packets")
         case .terminal: return L("nav.terminal")
+        case .settings: return L("nav.settings")
         case .category(.micCamera): return L("nav.micCamera")
         case .category(.screen): return L("nav.screen")
         case .category(.accessibility): return L("nav.accessibility")
@@ -218,6 +224,7 @@ struct Sidebar: View {
                 // Basit modda da riskli bağlantı varsa Ağ görünsün.
                 Label(L("nav.network"), systemImage: "network").badge(network.risky).tag(SidebarItem.network)
             }
+            Label(L("nav.settings"), systemImage: "gearshape").tag(SidebarItem.settings)
         }
         .listStyle(.sidebar)
         .safeAreaInset(edge: .bottom) {
