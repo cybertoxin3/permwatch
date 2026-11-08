@@ -196,6 +196,7 @@ struct SettingsView: View {
             }
             Section {
                 Toggle(L("upd.setting"), isOn: $updates.enabled)
+                UpdateStatusRow()
                 Text(L("upd.settingDesc", UpdateChecker.current)).font(.system(size: 11)).foregroundStyle(.secondary)
             }
 

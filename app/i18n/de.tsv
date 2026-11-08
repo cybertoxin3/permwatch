@@ -704,3 +704,7 @@ crash.body	permwatch ist %@ abgestürzt. Eine kurze Zusammenfassung hilft uns be
 crash.report	Melden
 crash.ignore	Nicht melden
 report.includeCrash	Zusammenfassung des letzten Absturzes anhängen (keine persönlichen Daten)
+upd.refresh	Jetzt prüfen
+upd.checking	Wird geprüft …
+upd.lastCheck	Aktuell · zuletzt geprüft %@
+upd.neverChecked	Noch nicht geprüft

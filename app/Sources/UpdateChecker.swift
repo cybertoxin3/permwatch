@@ -73,10 +73,14 @@ final class UpdateChecker: NSObject, ObservableObject, SPUUpdaterDelegate, SPUUs
         u.automaticallyDownloadsUpdates = false
         updater = u
         // Uçtan uca deneme: PERMWATCH_FEED_URL'deki listeye hemen bak, bulunca indir ve kur.
-        if Self.testMode { DispatchQueue.main.asyncAfter(deadline: .now() + 3) { u.checkForUpdatesInBackground() } }
+        if Self.testInstall { DispatchQueue.main.asyncAfter(deadline: .now() + 3) { u.checkForUpdatesInBackground() } }
+        if Self.testValue == "refresh" { DispatchQueue.main.asyncAfter(deadline: .now() + 3) { self.refresh() } }
     }
 
-    nonisolated static let testMode = ProcessInfo.processInfo.environment["PERMWATCH_UPDATE_TEST"] == "1"
+    /// Deneme: "1" bulunca indirip kurar; "refresh" yalnızca Yenile düğmesine basılmış gibi denetler.
+    nonisolated static let testValue = ProcessInfo.processInfo.environment["PERMWATCH_UPDATE_TEST"]
+    nonisolated static let testMode = testValue != nil
+    nonisolated static let testInstall = testValue == "1"
     nonisolated static let testFeed = ProcessInfo.processInfo.environment["PERMWATCH_FEED_URL"]
 
     nonisolated func feedURLString(for updater: SPUUpdater) -> String? { Self.testFeed }
@@ -103,6 +107,21 @@ final class UpdateChecker: NSObject, ObservableObject, SPUUpdaterDelegate, SPUUs
             userInitiated = true
             u.checkForUpdates()
         } else { check(force: true) }
+    }
+
+    /// "Yenile" düğmesi: hemen denetle; sonuç uygulamanın içinde gösterilir (açılır pencere yok).
+    func refresh() {
+        guard let u = updater else { check(force: true); return }
+        guard u.canCheckForUpdates, phase != .downloading, phase != .extracting, phase != .installing else { return }
+        foundReply?(.dismiss); foundReply = nil
+        userInitiated = false
+        phase = .checking
+        u.checkForUpdates()
+    }
+
+    /// Son denetim zamanı (Sparkle ya da GitHub yedeği).
+    var lastChecked: Date? {
+        updater?.lastUpdateCheckDate ?? (UserDefaults.standard.object(forKey: Self.lastKey) as? Date)
     }
 
     /// Arka planda, pencere açmadan bak (Genel Bakış açılınca).
@@ -202,7 +221,7 @@ final class UpdateChecker: NSObject, ObservableObject, SPUUpdaterDelegate, SPUUs
             phase = .available
             // Önceden (arka planda) indirilmişse "Güncelle" doğrudan kuruluma geçer.
             if downloaded { received = length; expected = length }
-            if Self.testMode { DispatchQueue.main.asyncAfter(deadline: .now() + 6) { self.install() } }
+            if Self.testInstall { DispatchQueue.main.asyncAfter(deadline: .now() + 6) { self.install() } }
         }
     }
 
@@ -270,7 +289,7 @@ final class UpdateChecker: NSObject, ObservableObject, SPUUpdaterDelegate, SPUUs
         MainActor.assumeIsolated {
             readyReply = reply
             phase = .ready
-            if Self.testMode { DispatchQueue.main.asyncAfter(deadline: .now() + 6) { self.relaunch() } }
+            if Self.testInstall { DispatchQueue.main.asyncAfter(deadline: .now() + 6) { self.relaunch() } }
             ThreatCenter.shared.notifyUpdateReady(version: latest ?? "")
         }
     }

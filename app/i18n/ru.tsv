@@ -704,3 +704,7 @@ crash.body	permwatch аварийно завершился %@. Краткая с
 crash.report	Сообщить
 crash.ignore	Не сообщать
 report.includeCrash	Добавить сводку последнего сбоя (без личных данных)
+upd.refresh	Проверить сейчас
+upd.checking	Проверка…
+upd.lastCheck	Обновлено · последняя проверка %@
+upd.neverChecked	Ещё не проверялось

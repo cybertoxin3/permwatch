@@ -704,3 +704,7 @@ crash.body	permwatch %@ 崩溃了。发送一份简短摘要能帮助我们修�
 crash.report	报告
 crash.ignore	不报告
 report.includeCrash	附加上次崩溃的摘要（不含个人数据）
+upd.refresh	立即检查
+upd.checking	正在检查…
+upd.lastCheck	已是最新 · 上次检查 %@
+upd.neverChecked	尚未检查

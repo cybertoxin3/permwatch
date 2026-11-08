@@ -704,3 +704,7 @@ crash.body	permwatch a planté %@. Nous envoyer un court résumé nous aide à c
 crash.report	Signaler
 crash.ignore	Ne pas signaler
 report.includeCrash	Ajouter un résumé du dernier plantage (sans données personnelles)
+upd.refresh	Vérifier maintenant
+upd.checking	Vérification…
+upd.lastCheck	À jour · dernière vérification %@
+upd.neverChecked	Pas encore vérifié

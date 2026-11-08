@@ -704,3 +704,7 @@ crash.body	permwatch аварійно завершився %@. Короткий 
 crash.report	Повідомити
 crash.ignore	Не повідомляти
 report.includeCrash	Додати підсумок останнього збою (без особистих даних)
+upd.refresh	Перевірити зараз
+upd.checking	Перевірка…
+upd.lastCheck	Оновлено · остання перевірка %@
+upd.neverChecked	Ще не перевірялося

@@ -704,3 +704,7 @@ crash.body	permwatch %@ çöktü. Bize kısa bir özet göndermen sorunu düzelt
 crash.report	Bildir
 crash.ignore	Bildirme
 report.includeCrash	Son çökmenin özetini ekle (kişisel bilgi yok)
+upd.refresh	Şimdi denetle
+upd.checking	Denetleniyor…
+upd.lastCheck	Güncel · son kontrol: %@
+upd.neverChecked	Henüz denetlenmedi

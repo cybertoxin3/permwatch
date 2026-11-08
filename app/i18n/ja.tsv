@@ -704,3 +704,7 @@ crash.body	permwatch が %@ にクラッシュしました。短い概要を送�
 crash.report	報告する
 crash.ignore	報告しない
 report.includeCrash	直近のクラッシュの概要を追加（個人情報なし）
+upd.refresh	今すぐ確認
+upd.checking	確認中…
+upd.lastCheck	最新です · 最終確認 %@
+upd.neverChecked	まだ確認していません

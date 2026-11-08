@@ -704,3 +704,7 @@ crash.body	تعطّل permwatch %@. إرسال ملخص قصير يساعدنا 
 crash.report	أبلغ
 crash.ignore	لا تبلغ
 report.includeCrash	أضف ملخص آخر تعطّل (دون بيانات شخصية)
+upd.refresh	تحقّق الآن
+upd.checking	جارٍ التحقق…
+upd.lastCheck	محدّث · آخر تحقق %@
+upd.neverChecked	لم يُتحقق بعد

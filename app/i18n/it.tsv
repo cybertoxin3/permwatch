@@ -704,3 +704,7 @@ crash.body	permwatch si è arrestato %@. Inviarci un breve riepilogo ci aiuta a 
 crash.report	Segnala
 crash.ignore	Non segnalare
 report.includeCrash	Aggiungi un riepilogo dell'ultimo arresto (nessun dato personale)
+upd.refresh	Controlla ora
+upd.checking	Controllo in corso…
+upd.lastCheck	Aggiornato · ultimo controllo %@
+upd.neverChecked	Non ancora controllato

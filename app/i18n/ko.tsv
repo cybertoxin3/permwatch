@@ -704,3 +704,7 @@ crash.body	permwatch가 %@ 충돌했습니다. 짧은 요약을 보내 주시면
 crash.report	신고
 crash.ignore	신고 안 함
 report.includeCrash	마지막 충돌 요약 추가(개인 정보 없음)
+upd.refresh	지금 확인
+upd.checking	확인 중…
+upd.lastCheck	최신 상태 · 마지막 확인 %@
+upd.neverChecked	아직 확인하지 않음

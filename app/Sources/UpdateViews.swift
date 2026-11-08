@@ -16,7 +16,7 @@ struct UpdateCard: View {
                 VStack(alignment: .leading, spacing: 8) {
                     Label(L("upd.failed", msg), systemImage: "exclamationmark.triangle").foregroundStyle(.orange)
                         .font(.system(size: 12.5)).fixedSize(horizontal: false, vertical: true)
-                    Button(L("upd.retry")) { updates.checkNow() }.controlSize(.small)
+                    Button { updates.refresh() } label: { Label(L("upd.retry"), systemImage: "arrow.clockwise") }.controlSize(.small)
                 }
                 .padding(14)
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -43,6 +43,7 @@ struct UpdateCard: View {
                     Text(meta).font(.system(size: 12)).foregroundStyle(.secondary)
                 }
                 Spacer()
+                RefreshButton()
             }
             if let n = updates.notes, !n.isEmpty {
                 Text(L("upd.notesTitle")).font(.system(size: 12, weight: .semibold))
@@ -151,6 +152,51 @@ struct UpdateSidebarStatus: View {
                 .buttonStyle(.plain).foregroundStyle(.green)
         default:
             EmptyView()
+        }
+    }
+}
+
+/// Güncellemeleri hemen yeniden denetleyen düğme (kartta ve Ayarlar'da).
+struct RefreshButton: View {
+    @EnvironmentObject var updates: UpdateChecker
+    var title = false
+
+    var body: some View {
+        if updates.phase == .checking {
+            HStack(spacing: 6) {
+                ProgressView().controlSize(.small)
+                if title { Text(L("upd.checking")).font(.system(size: 12)) }
+            }
+        } else {
+            Button { updates.refresh() } label: {
+                if title { Label(L("upd.refresh"), systemImage: "arrow.clockwise") }
+                else { Image(systemName: "arrow.clockwise") }
+            }
+            .help(L("upd.refresh"))
+            .disabled([.downloading, .extracting, .installing].contains(updates.phase))
+        }
+    }
+}
+
+/// Ayarlar'daki güncelleme durumu satırı.
+struct UpdateStatusRow: View {
+    @EnvironmentObject var updates: UpdateChecker
+
+    var body: some View {
+        HStack {
+            Text(status).font(.system(size: 12)).foregroundStyle(.secondary)
+            Spacer()
+            RefreshButton(title: true)
+        }
+    }
+
+    private var status: String {
+        switch updates.phase {
+        case .checking: return L("upd.checking")
+        case .available, .downloading, .extracting, .ready: return L("upd.cardTitle", updates.latest ?? "")
+        case .failed(let m): return L("upd.failed", m)
+        default:
+            return updates.lastChecked.map { L("upd.lastCheck", Fmt.relative($0)) } ?? L("upd.neverChecked")
         }
     }
 }

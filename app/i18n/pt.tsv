@@ -704,3 +704,7 @@ crash.body	O permwatch travou %@. Enviar um breve resumo nos ajuda a corrigir. O
 crash.report	Relatar
 crash.ignore	Não relatar
 report.includeCrash	Incluir um resumo da última falha (sem dados pessoais)
+upd.refresh	Verificar agora
+upd.checking	Verificando…
+upd.lastCheck	Atualizado · última verificação %@
+upd.neverChecked	Ainda não verificado

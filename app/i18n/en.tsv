@@ -704,3 +704,7 @@ crash.body	permwatch crashed %@. Sending us a short summary helps fix it. The su
 crash.report	Report
 crash.ignore	Don't Report
 report.includeCrash	Add a summary of the last crash (no personal data)
+upd.refresh	Check Now
+upd.checking	Checking…
+upd.lastCheck	Up to date · last checked %@
+upd.neverChecked	Not checked yet
