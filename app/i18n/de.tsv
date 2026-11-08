@@ -552,3 +552,5 @@ fix.confirm.profile	Das Profil „%@“ wird entfernt. macOS fragt nach deinem P
 fix.confirm.cert	Dein Mac vertraut „%@“ nicht mehr; das Zertifikat bleibt erhalten. Ist es für das Firmen- oder Uni-WLAN, musst du ihm zum Verbinden evtl. wieder vertrauen.
 fix.confirm.policy	Die Einstellung „%2$@“ wird aus den Einstellungen von %1$@ gelöscht.
 ov.review	%@ Punkte prüfen
+chk.ext.summaryTitle	%1$@ %2$@-Erweiterungen können jede Website lesen
+chk.ext.summaryBody	%@. Werbeblocker, Passwortmanager und Übersetzer brauchen das, meist also unbedenklich. Entferne unbekannte oder ungenutzte: weniger Erweiterungen, weniger Risiko.

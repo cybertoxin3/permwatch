@@ -552,3 +552,5 @@ fix.confirm.profile	Se eliminará el perfil «%@». macOS pedirá tu contraseña
 fix.confirm.cert	Tu Mac dejará de confiar en «%@»; el certificado se conserva. Si es para el Wi‑Fi de tu empresa o centro, quizá debas volver a confiar en él para conectarte.
 fix.confirm.policy	Se eliminará el ajuste «%2$@» de las preferencias de %1$@.
 ov.review	%@ cosas por revisar
+chk.ext.summaryTitle	%1$@ extensiones de %2$@ pueden leer todos los sitios
+chk.ext.summaryBody	%@. Los bloqueadores de anuncios, gestores de contraseñas y traductores lo necesitan, así que suele estar bien. Elimina las que no reconozcas o ya no uses: menos extensiones, menos riesgo.

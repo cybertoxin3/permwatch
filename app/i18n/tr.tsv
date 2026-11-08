@@ -552,3 +552,5 @@ fix.confirm.profile	"%@" yapılandırma profili kaldırılacak. macOS şifreni s
 fix.confirm.cert	Mac'in "%@" sertifikasına güvenmeyi bırakacak; sertifikanın kendisi silinmez. Şirket veya okul Wi-Fi'ın içinse bağlanmak için yeniden güvenmen gerekebilir.
 fix.confirm.policy	%1$@ tercihlerinden "%2$@" ayarı silinecek.
 ov.review	%@ konuya göz at
+chk.ext.summaryTitle	%1$@ %2$@ uzantısı her siteyi okuyabiliyor
+chk.ext.summaryBody	%@. Reklam engelleyiciler, parola yöneticileri ve çeviriciler buna ihtiyaç duyar; genelde sorun değil. Tanımadıklarını veya artık kullanmadıklarını kaldır: daha az uzantı, daha az risk demek.

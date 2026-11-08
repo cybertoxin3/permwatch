@@ -52,7 +52,7 @@ final class SecurityChecks: ObservableObject {
             out += Checks.sharing()
             out += Checks.remoteApps()
             out += Checks.spyware(input)
-            let result = out
+            let result = Checks.summarizeExtensions(out)
             await MainActor.run {
                 self.findings = result
                 self.running = false
@@ -204,6 +204,29 @@ enum Checks {
                                    body: reasons.joined(separator: " ") + " " + L("chk.ext.advice"),
                                    fixes: [(L("chk.ext.open"), .openInBrowser(app: "Firefox", url: "about:addons"))]))
             }
+        }
+        return out
+    }
+
+    /// Yalnızca bilgi düzeyindeki uzantıları tarayıcı başına tek bir özet kartta toplar (gürültüyü azaltır).
+    static func summarizeExtensions(_ list: [Finding]) -> [Finding] {
+        var out: [Finding] = []
+        var groups: [String: [Finding]] = [:]
+        for f in list {
+            if f.id.hasPrefix("ext."), f.verdict == .info {
+                groups[String(f.id.split(separator: ".")[1]), default: []].append(f)
+            } else {
+                out.append(f)
+            }
+        }
+        for (browser, items) in groups.sorted(by: { $0.key < $1.key }) {
+            let names = items.map { $0.title.components(separatedBy: " (").first ?? $0.title }.sorted()
+            let app = chromium.first { $0.name == browser }
+            out.append(Finding(id: "ext.summary.\(browser)", category: .browser, verdict: .info,
+                               title: L("chk.ext.summaryTitle", items.count.formatted(), browser),
+                               body: L("chk.ext.summaryBody", names.joined(separator: ", ")),
+                               fixes: app.map { [(L("chk.ext.open"), Finding.Fix.openInBrowser(app: $0.app, url: $0.page.replacingOccurrences(of: "?id=", with: "")))] }
+                                   ?? (browser == "Firefox" ? [(L("chk.ext.open"), .openInBrowser(app: "Firefox", url: "about:addons"))] : [])))
         }
         return out
     }

@@ -552,3 +552,5 @@ fix.confirm.profile	The configuration profile “%@” will be removed. macOS as
 fix.confirm.cert	Your Mac will stop trusting “%@”. The certificate itself is kept. If it is for your company or school Wi-Fi, you may need to trust it again to connect.
 fix.confirm.policy	The setting “%2$@” will be deleted from %1$@’s preferences.
 ov.review	%@ things to review
+chk.ext.summaryTitle	%1$@ %2$@ extensions can read every site
+chk.ext.summaryBody	%@. Ad blockers, password managers and translators need this, so it’s usually fine. Remove the ones you don’t recognise or no longer use: fewer extensions means less that can go wrong.

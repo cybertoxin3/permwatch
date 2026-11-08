@@ -552,3 +552,5 @@ fix.confirm.profile	Le profil « %@ » sera supprimé. macOS demandera votre mot
 fix.confirm.cert	Votre Mac ne fera plus confiance à « %@ » ; le certificat est conservé. S’il sert au Wi‑Fi de l’entreprise ou de l’école, il faudra peut-être lui refaire confiance pour vous connecter.
 fix.confirm.policy	Le réglage « %2$@ » sera supprimé des préférences de %1$@.
 ov.review	%@ points à vérifier
+chk.ext.summaryTitle	%1$@ extensions %2$@ peuvent lire tous les sites
+chk.ext.summaryBody	%@. Bloqueurs de pub, gestionnaires de mots de passe et traducteurs en ont besoin, c’est donc généralement normal. Supprimez celles que vous ne reconnaissez pas ou n’utilisez plus : moins d’extensions, moins de risques.

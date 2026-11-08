@@ -552,3 +552,5 @@ fix.confirm.profile	将移除描述文件“%@”。macOS 会要求输入密码�
 fix.confirm.cert	你的 Mac 将不再信任“%@”,证书本身会保留。如果它用于公司或学校 Wi‑Fi,可能需要重新信任才能连接。
 fix.confirm.policy	将从 %1$@ 的偏好设置中删除“%2$@”。
 ov.review	%@ 项待检查
+chk.ext.summaryTitle	%1$@ 个 %2$@ 扩展可以读取所有网站
+chk.ext.summaryBody	%@。广告拦截器、密码管理器和翻译工具需要此权限,通常没问题。移除你不认识或不再使用的扩展:扩展越少,风险越小。
