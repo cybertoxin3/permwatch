@@ -318,3 +318,85 @@ col.info	Info
 col.host	Host
 col.port	Port
 col.packets	Packets
+dl.volume	External disk
+fda.one.title	Give permwatch Full Disk Access once
+fda.one.body	Without it macOS asks separately for Downloads, Desktop, Documents and every other folder, and permissions and login items stay invisible. With this single permission permwatch can check every folder and disk; it only reads, never changes your files. System Settings › Privacy & Security › Full Disk Access › turn on permwatch.
+tracker.kind.ads	advertising
+tracker.kind.analytics	usage analytics
+tracker.kind.telemetry	telemetry / crash reports
+tracker.kind.social	social network tracking
+verdict.ok	Normal
+verdict.info	Good to know
+verdict.caution	Check this
+verdict.danger	Act now
+x.title	What does this mean?
+x.someApp	An app
+x.creds.what	%1$@ sent a user name or password to %2$@ without encryption. Anyone on the same network (a café Wi-Fi, for example) could read it.
+x.creds.advice	Change this password, and change it everywhere you reuse it. Use the service only over https://, or stop using it if it doesn’t offer encryption.
+x.tracker.what	%1$@ is talking to %2$@, a %3$@ service. These services collect what you do in the app and often share it with advertisers.
+x.tracker.advice	Not dangerous, but it costs privacy. Look for “analytics”, “usage data” or “improve the product” in the app’s settings and turn it off; in browsers, a content blocker helps.
+x.http.what	%1$@ is using plain HTTP with %2$@. The connection is not encrypted: the pages, files and data can be read or changed on the way.
+x.http.advice	Don’t enter passwords or personal data here. If it’s a website, try https:// instead. If an app downloads updates this way, ask its developer or look for an alternative.
+x.plain.what	%@ is an old protocol without encryption: everything, including logins, travels as readable text.
+x.plain.advice	Switch to the encrypted version in the app’s account settings: SFTP instead of FTP, SSH instead of Telnet, and SSL/TLS for mail (ports 993, 995, 465).
+x.badport.what	Port %@ is often used by hacking tools and remote-control malware. Some legitimate programs use it too.
+x.badport.advice	If you don’t recognise the app, check it with VirusTotal and quit it from Running Apps.
+x.inbound.what	%1$@ is trying to open a connection to your Mac on port %2$@. A sharing service or server on your Mac may be reachable from the network.
+x.inbound.advice	Turn on the firewall (Security section) and switch off sharing services you don’t use in System Settings › General › Sharing.
+x.tls.hello	%1$@ is starting an encrypted connection to %2$@. Only the site name is visible; the content cannot be read by anyone on the way.
+x.encrypted	Encrypted traffic between %1$@ and %2$@. This is how it should be; nobody on the network can read it.
+x.ssh	An encrypted remote login (SSH). Someone is logging in to a computer, or into yours.
+x.ssh.advice	Fine if you started it. If the connection comes in to your Mac and you didn’t expect it, turn off Remote Login in System Settings › General › Sharing.
+x.dns.nx	The name %@ does not exist. The occasional typo is normal.
+x.dns.nx.advice	If one app asks for many random-looking names that don’t exist, it may be malware searching for its control server: check that app.
+x.dns.answer	The address book of the internet (DNS) answered: these are the server addresses for %@. Completely normal.
+x.dns.query	%1$@ is looking up the address of %2$@ before connecting. Every connection starts like this.
+x.local	Devices on your local network announcing themselves (printers, TVs, AirPlay, other Macs). Normal.
+x.arp	Devices on your network asking “who has this address?” so they can talk to each other. Normal.
+x.icmp	Network control messages, such as ping or “address unreachable”. Normal unless there are huge amounts.
+x.dhcp	Your Mac getting its network address from the router. Normal.
+x.ntp	Your Mac setting its clock from a time server. Normal.
+x.rst	A connection was closed abruptly. This happens often (a tab closed, a server busy) and is usually harmless.
+x.syn	%1$@ is opening a new connection to %2$@ (port %3$@).
+x.generic	Data between %1$@ and %2$@. Nothing unusual was found in this packet.
+x.upload.what	%1$@ sent %2$@ to %3$@ but received only %4$@. Apps that back up or sync files do this; other apps normally don’t.
+x.upload.advice	If you didn’t expect this app to upload files, quit it and check it with VirusTotal.
+pkt.insight.encrypted	%@ encrypted
+pkt.insight.encryptedHelp	Share of traffic nobody on the network can read. Higher is better.
+pkt.insight.trackers	%@ trackers
+pkt.insight.cleartext	%@ unencrypted connections
+pkt.insight.creds	%@ passwords in clear text
+pkt.convStats	%1$@ packets · sent %2$@ · received %3$@
+col.tracker	Tracker
+pkt.threat.upload	Large upload
+pkt.threat.uploadDetail	%1$@ sent %2$@ to %3$@ and received little back.
+nav.advice	Recommendations
+adv.allGood	Everything looks good
+adv.allGoodBody	permwatch keeps watching and will tell you as soon as something needs your attention.
+adv.count	%1$@ recommendations · %2$@ urgent
+adv.dismiss	Hide
+adv.posture.title	Turn on: %@
+adv.posture.sip	System Integrity Protection stops malware from changing macOS itself. It should never be off on a normal Mac. Turn it back on from Recovery mode with “csrutil enable”.
+adv.posture.gatekeeper	Gatekeeper checks that apps come from identified developers and were scanned by Apple before they open. With it off, any downloaded program can run without a warning.
+adv.posture.filevault	FileVault encrypts your disk. Without it, anyone who takes your Mac can read your files by removing the disk or starting from another drive.
+adv.posture.firewall	The firewall blocks unwanted incoming connections, for example on a café or hotel Wi-Fi. Turning it on doesn’t slow anything down and doesn’t affect your normal browsing.
+adv.posture.xprotect	XProtect is Apple’s built-in malware scanner. Its definitions look out of date; keep automatic security updates on so it learns about new threats.
+adv.posture.updates	Automatic security updates install fixes for actively exploited holes, often within days. Turn on “Install Security Responses and system files”.
+adv.alerts.title	%@ high-risk findings to review
+adv.alerts.body	Unsigned programs that start automatically, or apps that got sensitive permissions in an unusual way. Each one has its own explanation; mark the ones you recognise as trusted.
+adv.procs.title	%@ suspicious running programs
+adv.procs.body	Programs running from unusual places, pretending to be system processes, or whose file was deleted after starting. Open each one to see why and quit it if you don’t know it.
+adv.downloads.title	%@ risky downloads
+adv.downloads.body	Downloaded apps or installers that Apple’s Gatekeeper would reject, or whose quarantine mark was removed so macOS won’t check them. Don’t open them unless you trust the source; move them to the Trash otherwise.
+adv.network.title	%@ risky network connections
+adv.network.body	Unsigned programs connecting to the internet or waiting for incoming connections. Legitimate developer tools do this too, but malware does it all the time.
+adv.creds.body	During the capture, these apps sent login data without encryption: %@. Change those passwords and switch the apps to encrypted connections.
+adv.trackers.title	%@ apps send data to trackers
+adv.trackers.body	Seen in the packet capture. Turn off “analytics” or “share usage data” in these apps’ settings if you don’t want that.
+adv.unused.title	%@ still has sensitive permissions
+adv.unused.body	You haven’t opened it for %1$@ days, but it can still use: %2$@. Permissions you don’t need are an open door if the app is ever compromised. Revoking is safe: macOS will ask again next time the app really needs it.
+adv.gone.title	Leftover permission: %@
+adv.gone.body	This app is no longer on your Mac, but its permission is still recorded: %@. Another program with the same identity could inherit it. Revoke it.
+adv.revoke	Revoke Permissions
+adv.capture.title	See what your apps send
+adv.capture.body	Start a packet capture for a few minutes while you use your Mac normally. permwatch will show which apps talk to trackers, which use unencrypted connections and whether anything sends passwords in clear text, all explained in plain language.

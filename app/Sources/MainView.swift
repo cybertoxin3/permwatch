@@ -1,7 +1,7 @@
 import SwiftUI
 
 enum SidebarItem: Hashable {
-    case timeline, alerts, apps, running, security, downloads, network, packets
+    case timeline, alerts, advice, apps, running, security, downloads, network, packets
     case category(Category)
     case loginItems, processes
 }
@@ -36,6 +36,8 @@ struct MainView: View {
         } detail: {
             if store.needsFullDiskAccess && store.source == .system {
                 FullDiskAccessView()
+            } else if section == .advice {
+                AdviceView()
             } else if section == .apps {
                 AppsView()
             } else if section == .running {
@@ -92,6 +94,7 @@ struct MainView: View {
             if Snapshot.section == "apps" { section = .apps }
             if Snapshot.section == "running" { section = .running }
             if Snapshot.section == "packets" { section = .packets }
+            if Snapshot.section == "advice" { section = .advice }
             Snapshot.scheduleIfRequested(store: store, selection: selection)
         }
         .onChange(of: store.items.count) {
@@ -111,6 +114,7 @@ struct MainView: View {
         switch section {
         case .timeline: return L("nav.timeline")
         case .alerts: return L("nav.alerts")
+        case .advice: return L("nav.advice")
         case .apps: return L("nav.apps")
         case .running: return L("nav.running")
         case .security: return L("nav.security")
@@ -168,6 +172,7 @@ struct Sidebar: View {
         List(selection: $section) {
             Label(L("nav.timeline"), systemImage: "list.bullet").badge(store.items.count).tag(SidebarItem.timeline)
             Label(L("nav.alerts"), systemImage: "exclamationmark.triangle").badge(store.openAlerts).tag(SidebarItem.alerts)
+            Label(L("nav.advice"), systemImage: "lightbulb").tag(SidebarItem.advice)
             Label(L("nav.apps"), systemImage: "square.grid.2x2").tag(SidebarItem.apps)
             Label(L("nav.running"), systemImage: "cpu").badge(monitor.suspicious).tag(SidebarItem.running)
 

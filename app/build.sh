@@ -47,7 +47,17 @@ cat > "$APP/Contents/Info.plist" <<EOF
 </plist>
 EOF
 
-codesign --force --sign - "$APP"
+# İmza: macOS izinleri (Tam Disk Erişimi vb.) imzanın kimliğine bağlıdır. Geçici (ad-hoc) imza her
+# derlemede değişir ve macOS izni unutur; Developer ID / Apple Development sertifikası varsa onu kullan.
+# Elle seçmek için: PERMWATCH_SIGN="Developer ID Application: …" ./build.sh   (geçici imza için: PERMWATCH_SIGN=-)
+IDS=$(security find-identity -v -p codesigning 2>/dev/null || true)
+pick() { print -r -- "$IDS" | grep -m1 -oE "\"$1: [^\"]+\"" | tr -d '"' || true }
+SIGN=${PERMWATCH_SIGN:-$(pick "Developer ID Application")}
+SIGN=${SIGN:-$(pick "Apple Development")}
+SIGN=${SIGN:--}
+codesign --force --sign "$SIGN" --timestamp=none "$APP/Contents/MacOS/permwatch-root"
+codesign --force --sign "$SIGN" --timestamp=none "$APP"
+echo "imza: $SIGN"
 mkdir -p build
 rm -rf "$OUT"
 ditto "$APP" "$OUT"

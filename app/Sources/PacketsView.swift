@@ -18,10 +18,11 @@ struct PacketsView: View {
                 banner(e)
                 Divider()
             }
+            if !cap.packets.isEmpty { insights; Divider() }
             if cap.packets.isEmpty {
                 emptyState
             } else if showConversations {
-                ConversationsTable(rows: conversations)
+                ConversationsPane(rows: conversations)
             } else {
                 HStack(spacing: 0) {
                     packetTable
@@ -84,6 +85,35 @@ struct PacketsView: View {
         .padding(.horizontal, 16).padding(.vertical, 10)
     }
 
+    /// Tek bakışta: ne kadarı şifreli, kaç izleyici, şifresiz bağlantı var mı.
+    private var insights: some View {
+        let convs = conversations
+        let enc = cap.packets.filter { ["TLS", "QUIC", "SSH"].contains($0.proto) }.reduce(0) { $0 + $1.len }
+        let tcpudp = cap.packets.filter { $0.sport != nil }.reduce(0) { $0 + $1.len }
+        let pct = tcpudp == 0 ? 100 : Int((Double(enc) / Double(tcpudp) * 100).rounded())
+        let trackers = Set(convs.compactMap { Trackers.match($0.host)?.company })
+        let plain = convs.filter { !$0.protos.isDisjoint(with: ["HTTP", "FTP", "Telnet", "POP3", "IMAP", "SMTP"]) }.count
+        let creds = convs.filter(\.creds).count
+        return HStack(spacing: 16) {
+            Label(L("pkt.insight.encrypted", "\(pct)%"), systemImage: "lock.fill")
+                .foregroundStyle(pct >= 80 ? Color.green : Color.orange)
+                .help(L("pkt.insight.encryptedHelp"))
+            Button { filter = ""; showConversations = true } label: {
+                Label(L("pkt.insight.trackers", trackers.count.formatted()), systemImage: "eye.trianglebadge.exclamationmark")
+            }
+            .buttonStyle(.plain).foregroundStyle(trackers.isEmpty ? Color.secondary : Color.orange)
+            .help(trackers.sorted().joined(separator: ", "))
+            Label(L("pkt.insight.cleartext", plain.formatted()), systemImage: "lock.open")
+                .foregroundStyle(plain == 0 ? Color.secondary : Color.orange)
+            if creds > 0 {
+                Label(L("pkt.insight.creds", creds.formatted()), systemImage: "key.fill").foregroundStyle(.red)
+            }
+            Spacer()
+        }
+        .font(.system(size: 11.5, weight: .medium))
+        .padding(.horizontal, 16).padding(.vertical, 7)
+    }
+
     private var modeText: String {
         if root.active { return L("pkt.modeRoot") }
         return L("pkt.modeLocal", cap.localDevice)
@@ -144,6 +174,13 @@ struct PacketsView: View {
 
     private var packetTable: some View {
         Table(visible, selection: $selection) {
+            TableColumn("") { p in
+                let e = Explainer.packet(p, host: cap.names[p.dst], app: p.eproc ?? p.proc ?? "—")
+                if e.verdict == .caution || e.verdict == .danger {
+                    Image(systemName: e.verdict.icon).foregroundStyle(e.verdict.color).help(e.what)
+                }
+            }
+            .width(18)
             TableColumn(L("col.no")) { p in Text(String(p.seq)).monospacedDigit().foregroundStyle(.secondary) }
                 .width(56)
             TableColumn(L("col.time")) { p in
@@ -206,7 +243,7 @@ struct PacketsView: View {
             if remoteIsSrc { c.bytesIn += p.len } else { c.bytesOut += p.len }
             c.last = p.ts
             c.protos.insert(p.proto)
-            if c.host == nil { c.host = cap.names[ip] ?? (p.proto == "TLS" ? p.host : nil) }
+            if c.host == nil { c.host = cap.names[ip] ?? (p.proto == "TLS" || p.proto == "HTTP" ? p.host : nil) }
             if p.flags?.contains("pkt.flag.cleartextCreds") == true { c.creds = true }
             map[key] = c
         }
@@ -245,6 +282,9 @@ struct Conversation: Identifiable {
     var protos: Set<String> = []
     var creds = false
 
+    /// Çok veri gönderip az alan bağlantı (yükleme/sızdırma belirtisi olabilir).
+    var uploadHeavy: Bool { bytesOut > 20 << 20 && bytesOut > bytesIn * 5 }
+
     static func isLocal(_ ip: String) -> Bool {
         if ip.hasPrefix("10.") || ip.hasPrefix("192.168.") || ip.hasPrefix("127.") || ip.hasPrefix("169.254.")
             || ip.hasPrefix("fe80") || ip.hasPrefix("fd") || ip == "::1" { return true }
@@ -257,12 +297,60 @@ struct Conversation: Identifiable {
     }
 }
 
+struct ConversationsPane: View {
+    @EnvironmentObject var cap: PacketMonitor
+    let rows: [Conversation]
+    @State private var selection: String?
+
+    var body: some View {
+        HStack(spacing: 0) {
+            ConversationsTable(rows: rows, selection: $selection)
+            if let c = rows.first(where: { $0.id == selection }) {
+                Divider()
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 12) {
+                        HStack(spacing: 10) {
+                            AppIcon(name: c.proc, risk: .normal, key: cap.path(for: c.pid).map { PathUtil.appBundle($0) ?? $0 }, size: 32)
+                            VStack(alignment: .leading) {
+                                Text(c.proc).font(.system(size: 14, weight: .bold))
+                                Text(c.host ?? c.remote).font(.system(size: 12)).foregroundStyle(.secondary)
+                            }
+                        }
+                        ExplanationCard(e: Explainer.conversation(c))
+                        if let t = Trackers.match(c.host) {
+                            Label("\(t.company) · \(t.kindText)", systemImage: "eye.trianglebadge.exclamationmark")
+                                .font(.system(size: 12)).foregroundStyle(.orange)
+                        }
+                        Text(L("pkt.convStats", c.packets.formatted(),
+                               ByteCountFormatter.string(fromByteCount: Int64(c.bytesOut), countStyle: .file),
+                               ByteCountFormatter.string(fromByteCount: Int64(c.bytesIn), countStyle: .file)))
+                            .font(.system(size: 12)).foregroundStyle(.secondary)
+                        Text(c.remote + (c.port.map { ":\($0)" } ?? "")).font(.system(size: 11.5, design: .monospaced)).textSelection(.enabled)
+                        if let path = cap.path(for: c.pid) {
+                            Button(L("action.virustotal")) { Lookup.virusTotal(path: PathUtil.appBundle(path) ?? path) }.controlSize(.small)
+                        }
+                    }
+                    .padding(16)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                }
+                .frame(width: 340)
+            }
+        }
+    }
+}
+
 struct ConversationsTable: View {
     @EnvironmentObject var cap: PacketMonitor
     let rows: [Conversation]
+    @Binding var selection: String?
 
     var body: some View {
-        Table(rows) {
+        Table(rows, selection: $selection) {
+            TableColumn("") { c in
+                let e = Explainer.conversation(c)
+                Image(systemName: e.verdict.icon).foregroundStyle(e.verdict.color).help(e.what)
+            }
+            .width(18)
             TableColumn(L("net.process")) { c in
                 HStack(spacing: 6) {
                     AppIcon(name: c.proc, risk: c.creds ? .high : .normal,
@@ -283,7 +371,10 @@ struct ConversationsTable: View {
             TableColumn(L("col.packets")) { c in Text(c.packets.formatted()).monospacedDigit() }.width(70)
             TableColumn(L("pkt.out")) { c in Text(ByteCountFormatter.string(fromByteCount: Int64(c.bytesOut), countStyle: .file)).monospacedDigit() }.width(76)
             TableColumn(L("pkt.in")) { c in Text(ByteCountFormatter.string(fromByteCount: Int64(c.bytesIn), countStyle: .file)).monospacedDigit() }.width(76)
-            TableColumn(L("col.risk")) { c in if c.creds { RiskTag(.high) } }.width(80)
+            TableColumn(L("col.tracker")) { c in
+                if let t = Trackers.match(c.host) { Text(t.company).foregroundStyle(.orange).lineLimit(1) }
+            }
+            .width(min: 70, ideal: 110)
         }
         .font(.system(size: 11.5))
     }
@@ -298,15 +389,7 @@ struct PacketDetail: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 14) {
-                if let f = p.flags, !f.isEmpty {
-                    VStack(alignment: .leading, spacing: 4) {
-                        ForEach(f, id: \.self) { k in
-                            Label(L(k), systemImage: "exclamationmark.triangle.fill")
-                                .foregroundStyle(k == "pkt.flag.cleartextCreds" ? Color.red : Color.orange)
-                        }
-                    }
-                    .font(.system(size: 12, weight: .semibold))
-                }
+                ExplanationCard(e: Explainer.packet(p, host: cap.names[p.dst], app: p.eproc ?? p.proc ?? L("x.someApp")))
                 group(L("pkt.frame")) {
                     row(L("col.no"), String(p.seq))
                     row(L("col.time"), Fmt.packetTime.string(from: Date(timeIntervalSince1970: p.ts)))

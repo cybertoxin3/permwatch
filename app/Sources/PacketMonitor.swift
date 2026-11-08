@@ -36,6 +36,7 @@ final class PacketMonitor: ObservableObject {
     private var paths: [Int32: String] = [:]
     private var startedAt = Date()
     private var nextSeq = 0
+    private var flows: [String: (out: Int, inb: Int, warned: Bool)] = [:]
 
     init() {
         try? FileManager.default.removeItem(at: Self.flagURL)
@@ -114,6 +115,7 @@ final class PacketMonitor: ObservableObject {
 
     func clear() {
         packets.removeAll()
+        flows.removeAll()
         totalBytes = 0
         totalPackets = 0
     }
@@ -181,6 +183,19 @@ final class PacketMonitor: ObservableObject {
             }
             if p.proto == "TLS", let h = p.host { newNames[p.dst] = h }
             if p.flags?.contains("pkt.flag.cleartextCreds") == true { report(p) }
+            // Yükleme izleme: bir uygulama bir sunucuya çok veri gönderip az alıyorsa uyar.
+            if p.sport != nil {
+                let out = p.dir == "out" || (p.dir == nil && Conversation.isLocal(p.src))
+                let remote = out ? p.dst : p.src
+                let key = "\(p.eproc ?? p.proc ?? "?")|\(remote)"
+                var f = flows[key, default: (0, 0, false)]
+                if out { f.out += p.len } else { f.inb += p.len }
+                if !f.warned, f.out > 50 << 20, f.out > f.inb * 5 {
+                    f.warned = true
+                    reportUpload(p, remote: remote, bytes: f.out)
+                }
+                flows[key] = f
+            }
         }
         if newNames.count != names.count { names = newNames }
         totalPackets += batch.count
@@ -195,6 +210,17 @@ final class PacketMonitor: ObservableObject {
             id: "pkt.creds.\(who).\(host)", risk: .high,
             title: L("pkt.threat.creds"), detail: L("pkt.threat.credsDetail", who, host),
             iconKey: path(for: p.pid).map { PathUtil.appBundle($0) ?? $0 },
+            section: .packets, focus: .packet(p.seq)))
+    }
+
+    private func reportUpload(_ p: Packet, remote: String, bytes: Int) {
+        let who = p.eproc ?? p.proc ?? remote
+        let host = names[remote] ?? remote
+        ThreatCenter.shared.report(Threat(
+            id: "pkt.upload.\(who).\(remote)", risk: .caution,
+            title: L("pkt.threat.upload"),
+            detail: L("pkt.threat.uploadDetail", who, ByteCountFormatter.string(fromByteCount: Int64(bytes), countStyle: .file), host),
+            iconKey: path(for: p.epid ?? p.pid).map { PathUtil.appBundle($0) ?? $0 },
             section: .packets, focus: .packet(p.seq)))
     }
 

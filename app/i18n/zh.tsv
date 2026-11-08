@@ -318,3 +318,85 @@ col.info	信息
 col.host	主机
 col.port	端口
 col.packets	数据包
+dl.volume	外置磁盘
+fda.one.title	为 permwatch 授予一次完全磁盘访问权限
+fda.one.body	没有它,macOS 会针对下载、桌面、文稿等每个文件夹分别询问,权限和登录项也无法看到。有了这一项权限,permwatch 可以检查所有文件夹和磁盘;它只读取,从不修改你的文件。系统设置 › 隐私与安全性 › 完全磁盘访问权限 › 打开 permwatch。
+tracker.kind.ads	广告
+tracker.kind.analytics	使用分析
+tracker.kind.telemetry	遥测 / 崩溃报告
+tracker.kind.social	社交网络跟踪
+verdict.ok	正常
+verdict.info	须知
+verdict.caution	建议检查
+verdict.danger	立即处理
+x.title	这是什么意思?
+x.someApp	某个应用
+x.creds.what	%1$@ 未加密地向 %2$@ 发送了用户名或密码。同一网络中的任何人(例如咖啡馆 Wi‑Fi)都能读取。
+x.creds.advice	请更改此密码,以及所有重复使用它的地方。仅通过 https:// 使用该服务;若不支持加密,请停止使用。
+x.tracker.what	%1$@ 正在与 %2$@(%3$@)通信。这类服务会收集你在应用中的行为,并经常与广告商共享。
+x.tracker.advice	并不危险,但会损失隐私。在应用设置中查找“分析”“使用数据”或“改进产品”并关闭;浏览器中可使用内容拦截器。
+x.http.what	%1$@ 正在与 %2$@ 使用未加密的 HTTP。页面、文件和数据可能在传输中被读取或篡改。
+x.http.advice	不要在此输入密码或个人信息。如果是网站,请改用 https://。如果某个应用通过这种方式下载更新,请告知开发者或寻找替代品。
+x.plain.what	%@ 是没有加密的旧协议:包括登录信息在内的一切都以可读文本传输。
+x.plain.advice	在账户设置中改用加密版本:用 SFTP 代替 FTP,用 SSH 代替 Telnet,邮件使用 SSL/TLS(端口 993、995、465)。
+x.badport.what	端口 %@ 常被黑客工具和远程控制恶意软件使用,也有部分正常程序使用。
+x.badport.advice	如果你不认识这个应用,请用 VirusTotal 检查,并在“正在运行的应用”中退出它。
+x.inbound.what	%1$@ 正尝试通过端口 %2$@ 连接你的 Mac。你 Mac 上的某个共享服务或服务器可能可从网络访问。
+x.inbound.advice	打开防火墙(“安全”部分),并在系统设置 › 通用 › 共享 中关闭不用的共享服务。
+x.tls.hello	%1$@ 正在与 %2$@ 建立加密连接。只有网站名称可见,传输中的内容无人能读取。
+x.encrypted	%1$@ 与 %2$@ 之间的加密流量。这是正常的,网络上无人能读取。
+x.ssh	加密的远程登录(SSH)。有人正在登录某台计算机,或你的计算机。
+x.ssh.advice	如果是你发起的就没问题。如果有意外的连接进入你的 Mac,请在系统设置 › 通用 › 共享 中关闭“远程登录”。
+x.dns.nx	名称 %@ 不存在。偶尔输错是正常的。
+x.dns.nx.advice	如果某个应用查询大量随机且不存在的名称,可能是在寻找控制服务器的恶意软件:请检查该应用。
+x.dns.answer	互联网的“通讯录”(DNS)作出了回应:这些是 %@ 的服务器地址。完全正常。
+x.dns.query	%1$@ 在连接前查询 %2$@ 的地址。每个连接都是这样开始的。
+x.local	本地网络中的设备在广播自身(打印机、电视、AirPlay、其他 Mac)。正常。
+x.arp	网络中的设备在询问“谁拥有这个地址?”以便相互通信。正常。
+x.icmp	网络控制消息,例如 ping 或“地址不可达”。除非数量巨大,否则正常。
+x.dhcp	你的 Mac 正从路由器获取网络地址。正常。
+x.ntp	你的 Mac 正通过时间服务器校准时钟。正常。
+x.rst	连接被突然关闭。这很常见(关闭了标签页、服务器繁忙),通常无害。
+x.syn	%1$@ 正在与 %2$@ 建立新连接(端口 %3$@)。
+x.generic	%1$@ 与 %2$@ 之间的数据。此数据包中未发现异常。
+x.upload.what	%1$@ 向 %3$@ 发送了 %2$@,但只接收了 %4$@。备份或同步类应用会这样;其他应用通常不会。
+x.upload.advice	如果你没想到这个应用会上传文件,请退出它并用 VirusTotal 检查。
+pkt.insight.encrypted	%@ 已加密
+pkt.insight.encryptedHelp	网络上无人能读取的流量占比。越高越好。
+pkt.insight.trackers	%@ 个跟踪器
+pkt.insight.cleartext	%@ 个未加密连接
+pkt.insight.creds	%@ 个明文密码
+pkt.convStats	%1$@ 个数据包 · 发送 %2$@ · 接收 %3$@
+col.tracker	跟踪器
+pkt.threat.upload	大量上传
+pkt.threat.uploadDetail	%1$@ 向 %3$@ 发送了 %2$@,几乎没有收到回传。
+nav.advice	建议
+adv.allGood	一切正常
+adv.allGoodBody	permwatch 会持续监控,一旦有需要你关注的事情会立即通知你。
+adv.count	%1$@ 条建议 · %2$@ 条紧急
+adv.dismiss	隐藏
+adv.posture.title	请打开:%@
+adv.posture.sip	系统完整性保护可防止恶意软件修改 macOS 本身。普通 Mac 上绝不应关闭。请在恢复模式中运行“csrutil enable”重新开启。
+adv.posture.gatekeeper	Gatekeeper 会在打开应用前检查其是否来自已识别的开发者并经过 Apple 扫描。关闭后,任何下载的程序都能无警告运行。
+adv.posture.filevault	FileVault 会加密你的磁盘。没有它,拿走你 Mac 的人可通过其他磁盘启动来读取你的文件。
+adv.posture.firewall	防火墙会阻止不需要的传入连接,例如在咖啡馆或酒店 Wi‑Fi 上。开启它不会拖慢任何东西,也不影响正常上网。
+adv.posture.xprotect	XProtect 是 Apple 内置的恶意软件扫描器。其特征库似乎已过时;请保持自动安全更新开启。
+adv.posture.updates	自动安全更新会安装针对正被利用漏洞的修复,通常在几天内。请打开“安装安全响应和系统文件”。
+adv.alerts.title	%@ 项高风险发现待检查
+adv.alerts.body	自动启动的未签名程序,或以异常方式获得敏感权限的应用。每项都有说明;你认识的可标记为可信。
+adv.procs.title	%@ 个可疑的运行中程序
+adv.procs.body	从异常位置运行、伪装成系统进程或启动后文件被删除的程序。逐个打开查看原因,不认识的就退出。
+adv.downloads.title	%@ 个有风险的下载
+adv.downloads.body	Gatekeeper 会拒绝的下载应用或安装程序,或被移除了隔离标记以避开 macOS 检查的文件。除非信任来源,否则不要打开,并将其移到废纸篓。
+adv.network.title	%@ 个有风险的网络连接
+adv.network.body	连接互联网或等待传入连接的未签名程序。开发工具也会这样,但恶意软件总是如此。
+adv.creds.body	捕获期间,这些应用未加密地发送了登录信息:%@。请更改这些密码,并将应用切换为加密连接。
+adv.trackers.title	%@ 个应用向跟踪器发送数据
+adv.trackers.body	在数据包捕获中发现。如果不希望这样,请在这些应用的设置中关闭“分析”或“共享使用数据”。
+adv.unused.title	%@ 仍拥有敏感权限
+adv.unused.body	你已经 %1$@ 天没打开它了,但它仍可使用:%2$@。不需要的权限在应用被攻破时就是一扇敞开的门。撤销是安全的:应用真正需要时 macOS 会再次询问。
+adv.gone.title	残留权限:%@
+adv.gone.body	该应用已不在你的 Mac 上,但其权限仍有记录:%@。具有相同标识的其他程序可能继承它。请撤销。
+adv.revoke	撤销权限
+adv.capture.title	查看你的应用在发送什么
+adv.capture.body	在正常使用 Mac 时开启几分钟数据包捕获。permwatch 会用通俗的语言告诉你哪些应用在与跟踪器通信、哪些使用未加密连接,以及是否有程序以明文发送密码。

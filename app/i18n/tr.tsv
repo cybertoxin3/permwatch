@@ -318,3 +318,85 @@ col.info	Bilgi
 col.host	Sunucu
 col.port	Port
 col.packets	Paket
+dl.volume	Harici disk
+fda.one.title	permwatch'a bir kez Tam Disk Erişimi ver
+fda.one.body	Bu izin olmadan macOS İndirilenler, Masaüstü, Belgeler ve diğer her klasör için ayrı ayrı izin sorar; izinler ve giriş öğeleri de görünmez. Bu tek izinle permwatch her klasörü ve diski denetleyebilir; yalnızca okur, dosyalarını asla değiştirmez. Sistem Ayarları › Gizlilik ve Güvenlik › Tam Disk Erişimi › permwatch'ı aç.
+tracker.kind.ads	reklam
+tracker.kind.analytics	kullanım analizi
+tracker.kind.telemetry	telemetri / çökme raporu
+tracker.kind.social	sosyal ağ takibi
+verdict.ok	Normal
+verdict.info	Bilgi
+verdict.caution	Göz at
+verdict.danger	Hemen ilgilen
+x.title	Bu ne anlama geliyor?
+x.someApp	Bir uygulama
+x.creds.what	%1$@, %2$@ adresine kullanıcı adı veya parolayı şifrelemeden gönderdi. Aynı ağdaki herkes (örneğin bir kafenin Wi-Fi'ı) bunu okuyabilir.
+x.creds.advice	Bu parolayı ve aynı parolayı kullandığın her yerdeki parolanı değiştir. Hizmeti yalnızca https:// ile kullan; şifreleme sunmuyorsa kullanmayı bırak.
+x.tracker.what	%1$@, bir %3$@ hizmeti olan %2$@ ile konuşuyor. Bu hizmetler uygulamada ne yaptığını toplar ve çoğu zaman reklamcılarla paylaşır.
+x.tracker.advice	Tehlikeli değil ama gizliliğine mal olur. Uygulamanın ayarlarında "analiz", "kullanım verisi" veya "ürünü geliştir" seçeneğini bulup kapat; tarayıcılarda bir içerik engelleyici işe yarar.
+x.http.what	%1$@, %2$@ ile şifresiz HTTP kullanıyor. Bağlantı şifreli değil: sayfalar, dosyalar ve veriler yolda okunabilir veya değiştirilebilir.
+x.http.advice	Burada parola veya kişisel bilgi girme. Bir web sitesiyse https:// ile dene. Bir uygulama güncellemeleri böyle indiriyorsa geliştiricisine bildir veya alternatif ara.
+x.plain.what	%@ şifrelemesiz eski bir protokol: oturum açma bilgileri dahil her şey okunabilir metin olarak gider.
+x.plain.advice	Uygulamanın hesap ayarlarından şifreli sürüme geç: FTP yerine SFTP, Telnet yerine SSH, e-posta için SSL/TLS (993, 995, 465 portları).
+x.badport.what	%@ numaralı port sıklıkla hack araçları ve uzaktan kontrol zararlıları tarafından kullanılır. Bazı meşru programlar da kullanır.
+x.badport.advice	Uygulamayı tanımıyorsan VirusTotal ile kontrol et ve Çalışan Uygulamalar'dan kapat.
+x.inbound.what	%1$@, Mac'ine %2$@ portundan bağlantı açmaya çalışıyor. Mac'indeki bir paylaşım servisi veya sunucu ağdan erişilebilir olabilir.
+x.inbound.advice	Güvenlik duvarını aç (Güvenlik bölümü) ve kullanmadığın paylaşım servislerini Sistem Ayarları › Genel › Paylaşma'dan kapat.
+x.tls.hello	%1$@, %2$@ ile şifreli bir bağlantı başlatıyor. Yalnızca site adı görünür; içeriği yolda kimse okuyamaz.
+x.encrypted	%1$@ ile %2$@ arasında şifreli trafik. Olması gereken bu; ağdaki kimse okuyamaz.
+x.ssh	Şifreli bir uzaktan oturum (SSH). Biri bir bilgisayara ya da senin bilgisayarına giriş yapıyor.
+x.ssh.advice	Sen başlattıysan sorun yok. Bağlantı Mac'ine geliyorsa ve beklemiyorsan Sistem Ayarları › Genel › Paylaşma'dan Uzaktan Giriş'i kapat.
+x.dns.nx	%@ diye bir ad yok. Ara sıra yazım hatası normaldir.
+x.dns.nx.advice	Bir uygulama var olmayan, rastgele görünen çok sayıda ad soruyorsa kontrol sunucusunu arayan bir zararlı olabilir: o uygulamayı incele.
+x.dns.answer	İnternetin adres defteri (DNS) yanıt verdi: %@ için sunucu adresleri bunlar. Tamamen normal.
+x.dns.query	%1$@, bağlanmadan önce %2$@ adresini arıyor. Her bağlantı böyle başlar.
+x.local	Yerel ağındaki cihazlar kendini duyuruyor (yazıcılar, TV'ler, AirPlay, diğer Mac'ler). Normal.
+x.arp	Ağındaki cihazlar birbirleriyle konuşabilmek için "bu adres kimde?" diye soruyor. Normal.
+x.icmp	Ping veya "adrese ulaşılamıyor" gibi ağ kontrol mesajları. Çok büyük miktarlarda değilse normal.
+x.dhcp	Mac'in ağ adresini modemden alıyor. Normal.
+x.ntp	Mac'in saatini bir zaman sunucusundan ayarlıyor. Normal.
+x.rst	Bir bağlantı aniden kapatıldı. Sık olur (sekme kapatıldı, sunucu meşgul) ve genelde zararsızdır.
+x.syn	%1$@, %2$@ ile yeni bir bağlantı açıyor (port %3$@).
+x.generic	%1$@ ile %2$@ arasında veri. Bu pakette olağandışı bir şey bulunmadı.
+x.upload.what	%1$@, %3$@ adresine %2$@ gönderdi ama yalnızca %4$@ aldı. Yedekleme veya eşitleme yapan uygulamalar böyle davranır; diğerleri normalde yapmaz.
+x.upload.advice	Bu uygulamanın dosya yüklemesini beklemiyorsan kapat ve VirusTotal ile kontrol et.
+pkt.insight.encrypted	%@ şifreli
+pkt.insight.encryptedHelp	Ağdaki kimsenin okuyamadığı trafiğin oranı. Ne kadar yüksekse o kadar iyi.
+pkt.insight.trackers	%@ izleyici
+pkt.insight.cleartext	%@ şifresiz bağlantı
+pkt.insight.creds	%@ şifresiz parola
+pkt.convStats	%1$@ paket · gönderilen %2$@ · alınan %3$@
+col.tracker	İzleyici
+pkt.threat.upload	Büyük veri gönderimi
+pkt.threat.uploadDetail	%1$@, %3$@ adresine %2$@ gönderdi ve karşılığında çok az veri aldı.
+nav.advice	Öneriler
+adv.allGood	Her şey yolunda görünüyor
+adv.allGoodBody	permwatch izlemeye devam ediyor; ilgilenmen gereken bir şey olursa hemen haber verecek.
+adv.count	%1$@ öneri · %2$@ acil
+adv.dismiss	Gizle
+adv.posture.title	Aç: %@
+adv.posture.sip	Sistem Bütünlüğü Koruması, zararlıların macOS'un kendisini değiştirmesini engeller. Normal bir Mac'te asla kapalı olmamalı. Kurtarma modundan "csrutil enable" ile yeniden aç.
+adv.posture.gatekeeper	Gatekeeper, uygulamalar açılmadan önce bilinen geliştiricilerden geldiğini ve Apple tarafından tarandığını kontrol eder. Kapalıyken indirilen her program uyarı olmadan çalışabilir.
+adv.posture.filevault	FileVault diskini şifreler. Olmadan, Mac'ini alan biri diski çıkararak veya başka bir sürücüden başlatarak dosyalarını okuyabilir.
+adv.posture.firewall	Güvenlik duvarı, örneğin bir kafe veya otel Wi-Fi'ında istenmeyen gelen bağlantıları engeller. Açmak hiçbir şeyi yavaşlatmaz ve normal internet kullanımını etkilemez.
+adv.posture.xprotect	XProtect, Apple'ın yerleşik zararlı tarayıcısıdır. Tanımları eski görünüyor; yeni tehditleri öğrenmesi için otomatik güvenlik güncellemelerini açık tut.
+adv.posture.updates	Otomatik güvenlik güncellemeleri, aktif olarak istismar edilen açıkların düzeltmelerini çoğu zaman birkaç gün içinde yükler. "Güvenlik Yanıtlarını ve sistem dosyalarını yükle"yi aç.
+adv.alerts.title	İncelenmesi gereken %@ yüksek riskli bulgu
+adv.alerts.body	Otomatik başlayan imzasız programlar veya hassas izinleri alışılmadık şekilde almış uygulamalar. Her birinin kendi açıklaması var; tanıdıklarını güvenilir olarak işaretle.
+adv.procs.title	%@ şüpheli çalışan program
+adv.procs.body	Alışılmadık yerlerden çalışan, sistem süreci gibi görünen veya başladıktan sonra dosyası silinen programlar. Nedenini görmek için her birini aç; tanımıyorsan kapat.
+adv.downloads.title	%@ riskli indirme
+adv.downloads.body	Apple'ın Gatekeeper'ının reddedeceği veya macOS'un kontrol etmemesi için karantina işareti kaldırılmış indirilen uygulamalar ya da kurulum dosyaları. Kaynağa güvenmiyorsan açma; Çöp Sepeti'ne taşı.
+adv.network.title	%@ riskli ağ bağlantısı
+adv.network.body	İnternete bağlanan veya gelen bağlantı bekleyen imzasız programlar. Meşru geliştirici araçları da bunu yapar ama zararlılar sürekli yapar.
+adv.creds.body	Yakalama sırasında şu uygulamalar giriş bilgilerini şifresiz gönderdi: %@. O parolaları değiştir ve uygulamaları şifreli bağlantıya geçir.
+adv.trackers.title	%@ uygulama izleyicilere veri gönderiyor
+adv.trackers.body	Paket yakalamada görüldü. İstemiyorsan bu uygulamaların ayarlarından "analiz" veya "kullanım verisi paylaş" seçeneğini kapat.
+adv.unused.title	%@ hâlâ hassas izinlere sahip
+adv.unused.body	%1$@ gündür açmadın ama hâlâ şunları kullanabiliyor: %2$@. İhtiyacın olmayan izinler, uygulama bir gün ele geçirilirse açık kapıdır. Kaldırmak güvenli: uygulama gerçekten ihtiyaç duyduğunda macOS yeniden sorar.
+adv.gone.title	Artık izin: %@
+adv.gone.body	Bu uygulama artık Mac'inde yok ama izni hâlâ kayıtlı: %@. Aynı kimliğe sahip başka bir program bu izni devralabilir. Kaldır.
+adv.revoke	İzinleri Kaldır
+adv.capture.title	Uygulamalarının ne gönderdiğini gör
+adv.capture.body	Mac'ini normal kullanırken birkaç dakika paket yakalamayı başlat. permwatch hangi uygulamaların izleyicilerle konuştuğunu, hangilerinin şifresiz bağlantı kullandığını ve parolayı açık metin gönderen bir şey olup olmadığını sade bir dille gösterir.

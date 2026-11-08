@@ -91,7 +91,15 @@ struct DownloadsView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            if guardian.items.isEmpty {
+            if guardian.needsFullDisk {
+                ContentUnavailableView {
+                    Label(L("fda.one.title"), systemImage: "lock.shield")
+                } description: {
+                    Text(L("fda.one.body"))
+                } actions: {
+                    Button(L("fda.open")) { FullDisk.openSettings() }.buttonStyle(.borderedProminent)
+                }
+            } else if guardian.items.isEmpty {
                 ContentUnavailableView(L("nav.downloads"), systemImage: "arrow.down.circle",
                                        description: Text(L("dl.empty")))
             } else {

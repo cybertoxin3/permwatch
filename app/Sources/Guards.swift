@@ -108,9 +108,24 @@ struct DownloadItem: Identifiable, Equatable {
     let risk: Risk
 }
 
+/// Tam Disk Erişimi: tek izin, her klasör. Verilmeden İndirilenler/Masaüstü/Belgeler'e dokunmak
+/// macOS'un her klasör için ayrı ayrı izin sormasına yol açar; o yüzden önce bu denetlenir.
+enum FullDisk {
+    nonisolated static var granted: Bool {
+        let fd = Darwin.open(NSHomeDirectory() + "/Library/Application Support/com.apple.TCC/TCC.db", O_RDONLY)
+        if fd >= 0 { Darwin.close(fd); return true }
+        return false
+    }
+    static func openSettings() {
+        NSWorkspace.shared.open(URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_AllFiles")!)
+    }
+}
+
 @MainActor
 final class DownloadGuard: ObservableObject {
     @Published private(set) var items: [DownloadItem] = []
+    @Published private(set) var needsFullDisk = !FullDisk.granted
+    private var fdaTimer: Timer?
     @Published private(set) var folders: [(path: String, source: String)] = []
 
     static let customKey = "watchFolders"
@@ -123,6 +138,24 @@ final class DownloadGuard: ObservableObject {
     nonisolated private static let kinds: Set<String> = ["app", "pkg", "mpkg", "dmg"]
 
     init() {
+        if needsFullDisk {
+            // İzin gelene kadar korumalı klasörlere dokunma; gelince kendiliğinden başla.
+            fdaTimer = Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { [weak self] _ in
+                MainActor.assumeIsolated { self?.checkFullDisk() }
+            }
+        } else {
+            begin()
+        }
+    }
+
+    private func checkFullDisk() {
+        guard FullDisk.granted else { return }
+        fdaTimer?.invalidate(); fdaTimer = nil
+        needsFullDisk = false
+        begin()
+    }
+
+    private func begin() {
         rebuildFolders()
         startSpotlight()
         scan()
@@ -150,8 +183,17 @@ final class DownloadGuard: ObservableObject {
     // MARK: Klasörler: İndirilenler, Masaüstü, tarayıcıların ayarlı klasörleri, kullanıcının ekledikleri
 
     private func rebuildFolders() {
-        var list: [(String, String)] = [(NSHomeDirectory() + "/Downloads", "macOS"),
-                                        (NSHomeDirectory() + "/Desktop", "macOS")]
+        guard !needsFullDisk else { folders = []; return }
+        let h = NSHomeDirectory()
+        var list: [(String, String)] = [(h + "/Downloads", "macOS"), (h + "/Desktop", "macOS"), (h + "/Documents", "macOS"),
+                                        (h + "/Library/Mobile Documents/com~apple~CloudDocs", "iCloud Drive"),
+                                        (h + "/Library/Mobile Documents/com~apple~CloudDocs/Downloads", "iCloud Drive"),
+                                        (h + "/Library/Containers/com.apple.mail/Data/Library/Mail Downloads", "Mail")]
+        // Takılı diskler (USB vb.) kök klasörü
+        for v in (try? FileManager.default.contentsOfDirectory(atPath: "/Volumes")) ?? [] {
+            let p = "/Volumes/" + v
+            if (try? FileManager.default.destinationOfSymbolicLink(atPath: p)) == nil { list.append((p, L("dl.volume"))) }
+        }
         for (p, src) in Self.browserDownloadFolders() where !list.contains(where: { $0.0 == p }) { list.append((p, src)) }
         for p in customFolders where !list.contains(where: { $0.0 == p }) { list.append((p, "")) }
         folders = list.filter { FileManager.default.fileExists(atPath: $0.0) }.map { (path: $0.0, source: $0.1) }
@@ -255,6 +297,7 @@ final class DownloadGuard: ObservableObject {
     }
 
     func scan() {
+        guard !needsFullDisk else { return }
         let dirs = folders.map(\.path)
         let extra = spotlightPaths
         let cache = self.cache

@@ -90,6 +90,13 @@ final class ThreatCenter: ObservableObject {
         dismiss(t)
     }
 
+    /// Uygulama içinden bir bölüme git (Öneriler ekranındaki "İncele").
+    func navigate(section: SidebarItem, focus: Focus? = nil) {
+        navSection = section
+        navFocus = focus
+        navToken += 1
+    }
+
     func dismiss(_ t: Threat) {
         queue.removeAll { $0.id == t.id }
         if queue.isEmpty { hidePanel() }

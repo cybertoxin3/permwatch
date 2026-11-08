@@ -318,3 +318,85 @@ col.info	Info
 col.host	Host
 col.port	Porta
 col.packets	Pacchetti
+dl.volume	Disco esterno
+fda.one.title	Concedi una volta a permwatch l’accesso completo al disco
+fda.one.body	Senza di esso macOS chiede separatamente per Download, Scrivania, Documenti e ogni cartella, e permessi ed elementi di login restano invisibili. Con questo unico permesso permwatch controlla ogni cartella e disco; legge soltanto e non modifica mai i file. Impostazioni di Sistema › Privacy e sicurezza › Accesso completo al disco › attiva permwatch.
+tracker.kind.ads	pubblicità
+tracker.kind.analytics	analisi d’uso
+tracker.kind.telemetry	telemetria / report di crash
+tracker.kind.social	tracciamento social
+verdict.ok	Normale
+verdict.info	Da sapere
+verdict.caution	Da controllare
+verdict.danger	Intervieni ora
+x.title	Che cosa significa?
+x.someApp	Un’app
+x.creds.what	%1$@ ha inviato un nome utente o una password a %2$@ senza cifratura. Chiunque sulla stessa rete (ad esempio il Wi‑Fi di un bar) potrebbe leggerli.
+x.creds.advice	Cambia questa password, ovunque la riutilizzi. Usa il servizio solo con https:// oppure smetti di usarlo se non offre cifratura.
+x.tracker.what	%1$@ comunica con %2$@ (%3$@). Questi servizi raccolgono ciò che fai nell’app e spesso lo condividono con gli inserzionisti.
+x.tracker.advice	Non è pericoloso, ma costa privacy. Cerca «analisi», «dati di utilizzo» o «migliora il prodotto» nelle impostazioni dell’app e disattivalo; nel browser aiuta un blocco contenuti.
+x.http.what	%1$@ usa HTTP non cifrato con %2$@. Pagine, file e dati possono essere letti o modificati lungo il percorso.
+x.http.advice	Non inserire password o dati personali qui. Se è un sito, prova https://. Se un’app scarica aggiornamenti così, segnalalo allo sviluppatore o cerca un’alternativa.
+x.plain.what	%@ è un vecchio protocollo senza cifratura: tutto, compresi gli accessi, viaggia come testo leggibile.
+x.plain.advice	Passa alla versione cifrata nelle impostazioni dell’account: SFTP invece di FTP, SSH invece di Telnet e SSL/TLS per la posta (porte 993, 995, 465).
+x.badport.what	La porta %@ è spesso usata da strumenti di hacking e malware di controllo remoto, a volte anche da programmi legittimi.
+x.badport.advice	Se non riconosci l’app, controllala con VirusTotal e chiudila da App in esecuzione.
+x.inbound.what	%1$@ sta cercando di aprire una connessione al tuo Mac sulla porta %2$@. Un servizio di condivisione o un server sul Mac potrebbe essere raggiungibile dalla rete.
+x.inbound.advice	Attiva il firewall (sezione Sicurezza) e disattiva le condivisioni inutilizzate in Impostazioni di Sistema › Generali › Condivisione.
+x.tls.hello	%1$@ sta avviando una connessione cifrata con %2$@. È visibile solo il nome del sito; nessuno può leggere il contenuto lungo il percorso.
+x.encrypted	Traffico cifrato tra %1$@ e %2$@. È così che deve essere; nessuno sulla rete può leggerlo.
+x.ssh	Un accesso remoto cifrato (SSH). Qualcuno sta accedendo a un computer, o al tuo.
+x.ssh.advice	Va bene se l’hai avviato tu. Se la connessione arriva al tuo Mac e non te l’aspettavi, disattiva Login remoto in Impostazioni di Sistema › Generali › Condivisione.
+x.dns.nx	Il nome %@ non esiste. Un refuso occasionale è normale.
+x.dns.nx.advice	Se un’app chiede molti nomi casuali inesistenti, potrebbe essere malware che cerca il suo server di controllo: controlla quell’app.
+x.dns.answer	La rubrica di internet (DNS) ha risposto: questi sono gli indirizzi dei server di %@. Del tutto normale.
+x.dns.query	%1$@ cerca l’indirizzo di %2$@ prima di connettersi. Ogni connessione inizia così.
+x.local	Dispositivi della rete locale che si annunciano (stampanti, TV, AirPlay, altri Mac). Normale.
+x.arp	Dispositivi della rete chiedono «chi ha questo indirizzo?» per parlarsi. Normale.
+x.icmp	Messaggi di controllo della rete, come ping o «indirizzo irraggiungibile». Normale salvo in quantità enormi.
+x.dhcp	Il Mac ottiene l’indirizzo di rete dal router. Normale.
+x.ntp	Il Mac regola l’orologio con un server orario. Normale.
+x.rst	Una connessione è stata chiusa bruscamente. Succede spesso (scheda chiusa, server occupato) ed è di solito innocuo.
+x.syn	%1$@ apre una nuova connessione con %2$@ (porta %3$@).
+x.generic	Dati tra %1$@ e %2$@. Nulla di insolito in questo pacchetto.
+x.upload.what	%1$@ ha inviato %2$@ a %3$@ ma ha ricevuto solo %4$@. Le app di backup o sincronizzazione lo fanno; le altre di solito no.
+x.upload.advice	Se non ti aspettavi che questa app caricasse file, chiudila e controllala con VirusTotal.
+pkt.insight.encrypted	%@ cifrato
+pkt.insight.encryptedHelp	Quota di traffico che nessuno sulla rete può leggere. Più è alta, meglio è.
+pkt.insight.trackers	%@ tracker
+pkt.insight.cleartext	%@ connessioni non cifrate
+pkt.insight.creds	%@ password in chiaro
+pkt.convStats	%1$@ pacchetti · inviati %2$@ · ricevuti %3$@
+col.tracker	Tracker
+pkt.threat.upload	Caricamento consistente
+pkt.threat.uploadDetail	%1$@ ha inviato %2$@ a %3$@ ricevendo poco in cambio.
+nav.advice	Consigli
+adv.allGood	Sembra tutto a posto
+adv.allGoodBody	permwatch continua a sorvegliare e ti avviserà appena qualcosa richiederà attenzione.
+adv.count	%1$@ consigli · %2$@ urgenti
+adv.dismiss	Nascondi
+adv.posture.title	Attiva: %@
+adv.posture.sip	La Protezione dell’integrità del sistema impedisce ai malware di modificare macOS. Non dovrebbe mai essere disattivata su un Mac normale. Riattivala dalla modalità di recupero con «csrutil enable».
+adv.posture.gatekeeper	Gatekeeper verifica prima dell’apertura che le app provengano da sviluppatori identificati e siano state analizzate da Apple. Senza di esso qualsiasi programma scaricato si avvia senza avvisi.
+adv.posture.filevault	FileVault cifra il disco. Senza di esso chiunque prenda il tuo Mac può leggere i file avviando da un’altra unità.
+adv.posture.firewall	Il firewall blocca le connessioni in entrata indesiderate, ad esempio sul Wi‑Fi di un bar o hotel. Attivarlo non rallenta nulla e non influisce sulla navigazione normale.
+adv.posture.xprotect	XProtect è l’antimalware integrato di Apple. Le definizioni sembrano vecchie; tieni attivi gli aggiornamenti di sicurezza automatici.
+adv.posture.updates	Gli aggiornamenti di sicurezza automatici correggono falle sfruttate attivamente, spesso in pochi giorni. Attiva «Installa risposte di sicurezza e file di sistema».
+adv.alerts.title	%@ elementi ad alto rischio da controllare
+adv.alerts.body	Programmi non firmati che si avviano da soli o app che hanno ottenuto permessi sensibili in modo insolito. Ognuno ha la sua spiegazione; segna come attendibili quelli che riconosci.
+adv.procs.title	%@ programmi sospetti in esecuzione
+adv.procs.body	Programmi avviati da posizioni insolite, che si spacciano per processi di sistema o il cui file è stato eliminato dopo l’avvio. Aprili per vedere il motivo e chiudi quelli che non conosci.
+adv.downloads.title	%@ download rischiosi
+adv.downloads.body	App o installer scaricati che Gatekeeper rifiuterebbe, o a cui è stato tolto il segno di quarantena perché macOS non li controlli. Non aprirli se non ti fidi della fonte; altrimenti spostali nel Cestino.
+adv.network.title	%@ connessioni di rete rischiose
+adv.network.body	Programmi non firmati che si collegano a internet o attendono connessioni in entrata. Lo fanno anche gli strumenti di sviluppo, ma i malware continuamente.
+adv.creds.body	Durante la cattura queste app hanno inviato credenziali senza cifratura: %@. Cambia quelle password e passa le app a connessioni cifrate.
+adv.trackers.title	%@ app inviano dati ai tracker
+adv.trackers.body	Visto nella cattura. Se non lo vuoi, disattiva «analisi» o «condividi dati di utilizzo» nelle impostazioni di queste app.
+adv.unused.title	%@ ha ancora permessi sensibili
+adv.unused.body	Non la apri da %1$@ giorni, ma può ancora usare: %2$@. I permessi che non servono sono una porta aperta se l’app venisse compromessa. Revocarli è sicuro: macOS chiederà di nuovo quando servirà davvero.
+adv.gone.title	Permesso residuo: %@
+adv.gone.body	Questa app non è più sul Mac, ma il suo permesso è ancora registrato: %@. Un altro programma con la stessa identità potrebbe ereditarlo. Revocalo.
+adv.revoke	Revoca permessi
+adv.capture.title	Guarda cosa inviano le tue app
+adv.capture.body	Avvia una cattura per qualche minuto mentre usi normalmente il Mac. permwatch mostrerà in parole semplici quali app parlano con tracker, quali usano connessioni non cifrate e se qualcosa invia password in chiaro.
