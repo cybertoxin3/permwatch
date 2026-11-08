@@ -80,10 +80,23 @@ enum Snapshot {
             }
             return
         }
+        if section == "dlguard" {
+            // DownloadGuard'ı gerçek haliyle çalıştırır (Spotlight + klasörler) ve sonucu yazar.
+            let g = DownloadGuard()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 8) {
+                print("izlenen klasörler: " + g.folders.map { "\(PathUtil.abbreviate($0.path))[\($0.source)]" }.joined(separator: ", "))
+                for i in g.items {
+                    print("bulundu\t\(PathUtil.abbreviate(i.path))\tkabul=\(String(describing: i.accepted))\tkaynak=\(i.source ?? "-")\trisk=\(i.risk)")
+                }
+                print("toplam: \(g.items.count)")
+                exit(0)
+            }
+            return
+        }
         if section == "guards" {
             for c in SecurityPosture.evaluate() { print("güvenlik\t\(c.id)\t\(c.state)\t\(c.detail ?? "")") }
             print("mikrofon kullanan pid: \(MediaMonitor.micPIDs())  kamera açık: \(MediaMonitor.cameraRunning())")
-            let net = NetworkMonitor.collect()
+            let net = NetworkMonitor.collect(rootLsof: RootBridge.parse()?.lsof)
             print("ağ: \(net.count) bağlantı, riskli: \(net.filter { $0.risk >= .caution }.count), dinleyen: \(net.filter { $0.state.contains("LISTEN") }.count)")
             for c in net where c.risk >= .caution { print("  ağ-risk\t\(c.name)\t\(c.remote ?? c.local)\t\(c.rules)") }
             let dir = ProcessInfo.processInfo.environment["PERMWATCH_DL_TEST"] ?? (NSHomeDirectory() + "/Downloads")

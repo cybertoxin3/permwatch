@@ -24,11 +24,13 @@ apps.subtitle	哪个应用能访问什么
 btm.agent	agent（用户）
 btm.authPlugin	授权插件
 btm.browserExt	浏览器扩展
+btm.btmItem	登录项
 btm.cron	cron 任务
 btm.daemon	daemon（系统）
 btm.kext	内核扩展
 btm.loginHook	登录钩子
 btm.loginItem	登录项
+btm.profile	配置描述文件
 btm.shell	Shell 启动文件
 btm.sysExt	系统扩展
 col.cpu	CPU %
@@ -52,7 +54,7 @@ dl.notNotarized	未公证
 dl.notQuarantined	无隔离标记
 dl.quarantined	已隔离
 dl.rejected	Gatekeeper 会阻止此文件
-dl.subtitle	“下载”中的应用和安装器到达后立即检查
+dl.subtitle	下载的应用和安装器无论保存在哪里都会被检查
 dl.threatTitle	有风险的下载
 empty.body	打开由 permwatch 命令行工具生成的 JSON Lines 文件。
 empty.title	没有事件
@@ -132,6 +134,7 @@ nav.running	正在运行的进程
 nav.screen	屏幕录制
 nav.security	安全状态
 nav.timeline	时间线
+net.allVisible	管理员模式：所有进程均可见。
 net.listening	监听中
 net.local	本地
 net.onlyOwn	没有管理员权限时只能看到你自己的进程。
@@ -175,6 +178,7 @@ rule.hiddenTarget	目标文件位于隐藏文件夹中
 rule.loginHook	登录钩子在每次登录时运行脚本
 rule.lolbinFromUnsigned	系统工具由未签名的应用启动
 rule.nightHidden	深夜从隐藏文件夹运行
+rule.profileInstalled	已安装配置描述文件，它可以更改系统设置
 rule.quarantine	隔离标记被移除，绕过了 Gatekeeper
 rule.rapidGrants	同一应用在 2 分钟内获得了辅助功能和屏幕录制权限
 rule.shellSuspicious	Shell 启动文件下载或解码代码并运行
@@ -197,7 +201,18 @@ sec.unknown	无法检查
 sec.updates	自动安全响应和数据文件
 sec.xprotect	XProtect 恶意软件定义
 sec.xprotectAge	版本 %1$@ · 更新于 %2$@
+settings.addFolder	添加文件夹…
 settings.appearance	外观
+settings.downloads	下载文件夹
+settings.downloadsDesc	permwatch 会监视这些文件夹（包括浏览器中设置的），并通过聚焦找到下载到 Mac 任何位置的应用。
+settings.root	管理员模式
+settings.rootActive	已开启：所有进程均可见
+settings.rootDesc	以 root 身份运行一个只读的小助手，让 permwatch 能看到所有进程的网络连接和参数、所有登录项、root 的 crontab 和配置描述文件。macOS 会询问你的密码。助手不接受任何命令，并在 permwatch 退出时停止。
+settings.rootDisable	关闭
+settings.rootEnable	开启…
+settings.rootFailed	无法启动：%@
+settings.rootInactive	关闭
+settings.rootPrompt	permwatch 想要启动只读的管理员助手。
 sig.adhoc	临时签名
 sig.apple	Apple
 sig.developer	开发者 · %@

@@ -90,8 +90,9 @@ final class ProcessMonitor: ObservableObject {
         busy = true
         let prev = prevCPU
         let trusted = self.trusted
+        let rootProcs = RootBridge.shared.active ? RootBridge.shared.data?.procs : nil
         Task.detached(priority: .utility) {
-            let (rows, cpu) = ProcessMonitor.collect(prev: prev, trusted: trusted)
+            let (rows, cpu) = ProcessMonitor.collect(prev: prev, trusted: trusted, rootProcs: rootProcs)
             await MainActor.run {
                 self.prevCPU = cpu
                 self.rows = rows
@@ -176,7 +177,8 @@ final class ProcessMonitor: ObservableObject {
         return v
     }
 
-    nonisolated static func collect(prev: [Int32: (ns: UInt64, at: UInt64)], trusted: Set<String>)
+    nonisolated static func collect(prev: [Int32: (ns: UInt64, at: UInt64)], trusted: Set<String>,
+                                    rootProcs: [Int32: (args: [String], dyld: [String])]? = nil)
         -> ([ProcRow], [Int32: (ns: UInt64, at: UInt64)]) {
         let count = proc_listallpids(nil, 0)
         guard count > 0 else { return ([], [:]) }
@@ -223,8 +225,9 @@ final class ProcessMonitor: ObservableObject {
                 }
             }
             let full = procArgsFull(b.pid)
-            let args = full.args
-            let dyld = full.env.filter { $0.hasPrefix("DYLD_") }
+            let rp = rootProcs?[b.pid]
+            let args = full.args ?? rp?.args
+            let dyld = full.args != nil ? full.env.filter { $0.hasPrefix("DYLD_") } : (rp?.dyld ?? [])
             // Dosyası silinmiş süreçlerde proc_pidpath boş döner; başlatılan yolu kullan.
             let b = b.path == nil && full.exec?.hasPrefix("/") == true
                 ? Base(pid: b.pid, ppid: b.ppid, uid: b.uid, name: b.name, path: full.exec, started: b.started) : b

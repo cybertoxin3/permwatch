@@ -58,6 +58,8 @@ struct PermwatchApp: App {
 
         Settings {
             SettingsView()
+                .environmentObject(downloads)
+                .environmentObject(RootBridge.shared)
                 .preferredColorScheme(theme.colorScheme)
         }
     }

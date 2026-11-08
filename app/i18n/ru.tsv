@@ -24,11 +24,13 @@ apps.subtitle	Какое приложение к чему имеет досту�
 btm.agent	agent (пользователь)
 btm.authPlugin	плагин авторизации
 btm.browserExt	расширение браузера
+btm.btmItem	объект входа
 btm.cron	задание cron
 btm.daemon	daemon (система)
 btm.kext	расширение ядра
 btm.loginHook	login hook
 btm.loginItem	Объект входа
+btm.profile	профиль конфигурации
 btm.shell	файл запуска оболочки
 btm.sysExt	системное расширение
 col.cpu	ЦП %
@@ -52,7 +54,7 @@ dl.notNotarized	без нотаризации
 dl.notQuarantined	нет флага карантина
 dl.quarantined	в карантине
 dl.rejected	Gatekeeper заблокирует этот файл
-dl.subtitle	Приложения и установщики в «Загрузках» проверяются сразу после появления
+dl.subtitle	Скачанные приложения и установщики проверяются, где бы они ни оказались
 dl.threatTitle	рискованная загрузка
 empty.body	Откройте файл JSON Lines, созданный утилитой permwatch.
 empty.title	Нет событий
@@ -132,6 +134,7 @@ nav.running	Запущенные процессы
 nav.screen	Запись экрана
 nav.security	Состояние безопасности
 nav.timeline	Хронология
+net.allVisible	Режим администратора: видны все процессы.
 net.listening	прослушивание
 net.local	Локальный
 net.onlyOwn	Без прав администратора видны только ваши процессы.
@@ -175,6 +178,7 @@ rule.hiddenTarget	Целевой файл находится в скрытой �
 rule.loginHook	Login hook запускает скрипт при каждом входе
 rule.lolbinFromUnsigned	Системная утилита запущена неподписанным приложением
 rule.nightHidden	Ночной запуск из скрытой папки
+rule.profileInstalled	Установлен профиль конфигурации; он может менять системные настройки
 rule.quarantine	Флаг карантина удалён, Gatekeeper обойдён
 rule.rapidGrants	Одно приложение за 2 минуты получило универсальный доступ и запись экрана
 rule.shellSuspicious	Файл запуска оболочки скачивает или декодирует код и запускает его
@@ -197,7 +201,18 @@ sec.unknown	Не удалось проверить
 sec.updates	Автоматические ответы безопасности и файлы данных
 sec.xprotect	Определения вредоносного ПО XProtect
 sec.xprotectAge	Версия %1$@ · обновлено %2$@
+settings.addFolder	Добавить папку…
 settings.appearance	Оформление
+settings.downloads	Папки загрузок
+settings.downloadsDesc	permwatch следит за этими папками (включая заданные в браузерах) и находит скачанные приложения в любом месте Mac через Spotlight.
+settings.root	Режим администратора
+settings.rootActive	Включено: видны все процессы
+settings.rootDesc	Запускает небольшой помощник только для чтения от имени root, чтобы permwatch видел сетевые подключения и аргументы всех процессов, все объекты входа, crontab root и профили конфигурации. macOS запросит пароль. Помощник не принимает команд и останавливается при выходе из permwatch.
+settings.rootDisable	Выключить
+settings.rootEnable	Включить…
+settings.rootFailed	Не удалось запустить: %@
+settings.rootInactive	Выключено
+settings.rootPrompt	permwatch хочет запустить помощника администратора только для чтения.
 sig.adhoc	ad-hoc подпись
 sig.apple	Apple
 sig.developer	разработчик · %@

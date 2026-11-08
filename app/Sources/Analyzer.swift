@@ -26,13 +26,13 @@ enum Kind { case exec, btmAdd, btmRemove, quarantine, gatekeeper, tcc }
 
 enum Rule: String {
     case unsignedPersistence, unsignedStartupBinary, startupWeakSignature, rapidGrants,
-         shellSuspicious, cronJob, authPlugin, loginHook, hiddenTarget, nightHidden, tccUnsigned, tccAdhoc,
+         shellSuspicious, cronJob, authPlugin, loginHook, profileInstalled, hiddenTarget, nightHidden, tccUnsigned, tccAdhoc,
          quarantine, unsignedDownload, dyld, gatekeeper, lolbinFromUnsigned
 
     var risk: Risk {
         switch self {
         case .unsignedPersistence, .unsignedStartupBinary, .rapidGrants, .shellSuspicious, .hiddenTarget, .nightHidden, .tccUnsigned, .dyld: return .high
-        case .tccAdhoc, .startupWeakSignature, .cronJob, .authPlugin, .loginHook, .quarantine, .unsignedDownload, .gatekeeper, .lolbinFromUnsigned: return .caution
+        case .tccAdhoc, .startupWeakSignature, .cronJob, .authPlugin, .loginHook, .profileInstalled, .quarantine, .unsignedDownload, .gatekeeper, .lolbinFromUnsigned: return .caution
         }
     }
 
@@ -188,7 +188,8 @@ enum Text10n {
         switch t {
         case "agent": return L("btm.agent")
         case "daemon": return L("btm.daemon")
-        case "cron", "shell", "browserExt", "sysExt", "authPlugin", "kext", "loginHook": return L("btm.\(t)")
+        case "cron", "shell", "browserExt", "sysExt", "authPlugin", "kext", "loginHook", "btmItem", "profile":
+            return L("btm.\(t)")
         default: return L("btm.loginItem")
         }
     }
@@ -253,7 +254,8 @@ enum Analyzer {
         var helperOwner: [String: String] = [:]   // BTM executable → uygulama anahtarı
         var bundleKey: [String: String] = [:]     // signing_id → uygulama anahtarı
         var seenExec = Set<String>()
-        let extraTypes: Set<String> = ["cron", "shell", "browserExt", "sysExt", "authPlugin", "kext", "loginHook"]
+        let extraTypes: Set<String> = ["cron", "shell", "browserExt", "sysExt", "authPlugin", "kext", "loginHook",
+                                       "btmItem", "profile"]
         var usedIDs = Set<Int>()
         var quarantined: [String] = []           // karantinası silinen yollar
         var items: [Item] = []

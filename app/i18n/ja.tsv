@@ -24,11 +24,13 @@ apps.subtitle	どのアプリが何にアクセスできるか
 btm.agent	agent(ユーザー)
 btm.authPlugin	認証プラグイン
 btm.browserExt	ブラウザ拡張機能
+btm.btmItem	ログイン項目
 btm.cron	cron ジョブ
 btm.daemon	daemon(システム)
 btm.kext	カーネル拡張
 btm.loginHook	ログインフック
 btm.loginItem	ログイン項目
+btm.profile	構成プロファイル
 btm.shell	シェル起動ファイル
 btm.sysExt	システム拡張
 col.cpu	CPU %
@@ -52,7 +54,7 @@ dl.notNotarized	公証なし
 dl.notQuarantined	隔離フラグなし
 dl.quarantined	隔離済み
 dl.rejected	Gatekeeper はこのファイルをブロックします
-dl.subtitle	ダウンロードに届いたアプリとインストーラをすぐに確認します
+dl.subtitle	ダウンロードしたアプリとインストーラを、保存先に関係なく確認します
 dl.threatTitle	危険なダウンロード
 empty.body	permwatch コマンドラインツールが出力した JSON Lines ファイルを開いてください。
 empty.title	イベントはありません
@@ -132,6 +134,7 @@ nav.running	実行中のプロセス
 nav.screen	画面収録
 nav.security	セキュリティ状態
 nav.timeline	タイムライン
+net.allVisible	管理者モード: すべてのプロセスが見えます。
 net.listening	待ち受け中
 net.local	ローカル
 net.onlyOwn	管理者権限がない場合、自分のプロセスのみ表示されます。
@@ -175,6 +178,7 @@ rule.hiddenTarget	対象ファイルが隠しフォルダにあります
 rule.loginHook	ログインフックがログインのたびにスクリプトを実行します
 rule.lolbinFromUnsigned	署名のないアプリがシステムツールを起動しました
 rule.nightHidden	深夜に隠しフォルダから実行されました
+rule.profileInstalled	構成プロファイルがインストールされています。システム設定を変更できます
 rule.quarantine	隔離フラグが削除され、Gatekeeper が回避されました
 rule.rapidGrants	同じアプリが2分以内にアクセシビリティと画面収録を取得しました
 rule.shellSuspicious	シェル起動ファイルがコードをダウンロードまたはデコードして実行します
@@ -197,7 +201,18 @@ sec.unknown	確認できません
 sec.updates	セキュリティ対応とデータファイルの自動インストール
 sec.xprotect	XProtect マルウェア定義
 sec.xprotectAge	バージョン %1$@ · 更新: %2$@
+settings.addFolder	フォルダを追加…
 settings.appearance	外観
+settings.downloads	ダウンロードフォルダ
+settings.downloadsDesc	permwatch はこれらのフォルダ(ブラウザで設定したものを含む)を監視し、Spotlight で Mac のどこにダウンロードされたアプリも見つけます。
+settings.root	管理者モード
+settings.rootActive	有効: すべてのプロセスが見えます
+settings.rootDesc	読み取り専用の小さなヘルパーを root として実行し、すべてのプロセスのネットワーク接続と引数、すべてのログイン項目、root の crontab、構成プロファイルを permwatch が確認できるようにします。macOS がパスワードを求めます。ヘルパーはコマンドを受け付けず、permwatch の終了時に停止します。
+settings.rootDisable	オフにする
+settings.rootEnable	オンにする…
+settings.rootFailed	開始できませんでした: %@
+settings.rootInactive	オフ
+settings.rootPrompt	permwatch が読み取り専用の管理者ヘルパーを起動しようとしています。
 sig.adhoc	アドホック署名
 sig.apple	Apple
 sig.developer	デベロッパ · %@

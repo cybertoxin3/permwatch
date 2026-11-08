@@ -24,11 +24,13 @@ apps.subtitle	Which app can access what
 btm.agent	agent (user)
 btm.authPlugin	authorization plugin
 btm.browserExt	browser extension
+btm.btmItem	login item
 btm.cron	cron job
 btm.daemon	daemon (system)
 btm.kext	kernel extension
 btm.loginHook	login hook
 btm.loginItem	Login item
+btm.profile	configuration profile
 btm.shell	shell startup file
 btm.sysExt	system extension
 col.cpu	CPU %
@@ -52,7 +54,7 @@ dl.notNotarized	not notarized
 dl.notQuarantined	no quarantine flag
 dl.quarantined	quarantined
 dl.rejected	Gatekeeper would block this file
-dl.subtitle	Apps and installers in Downloads are checked as soon as they arrive
+dl.subtitle	Downloaded apps and installers are checked wherever they land
 dl.threatTitle	risky download
 empty.body	Open a JSON Lines file produced by the permwatch CLI.
 empty.title	No events
@@ -132,6 +134,7 @@ nav.running	Running Processes
 nav.screen	Screen Recording
 nav.security	Security Status
 nav.timeline	Timeline
+net.allVisible	Administrator mode: every process is visible.
 net.listening	listening
 net.local	Local
 net.onlyOwn	Only your own processes are visible without administrator rights.
@@ -175,6 +178,7 @@ rule.hiddenTarget	Target file is in a hidden folder
 rule.loginHook	A login hook runs a script at every login
 rule.lolbinFromUnsigned	A system tool was launched by an unsigned app
 rule.nightHidden	Ran from a hidden folder in the middle of the night
+rule.profileInstalled	A configuration profile is installed; it can change system settings
 rule.quarantine	The quarantine flag was removed, bypassing Gatekeeper
 rule.rapidGrants	The same app got Accessibility and Screen Recording within 2 minutes
 rule.shellSuspicious	A shell startup file downloads or decodes code and runs it
@@ -197,7 +201,18 @@ sec.unknown	Could not be checked
 sec.updates	Automatic security responses and data files
 sec.xprotect	XProtect malware definitions
 sec.xprotectAge	Version %1$@ · updated %2$@
+settings.addFolder	Add Folder…
 settings.appearance	Appearance
+settings.downloads	Download folders
+settings.downloadsDesc	permwatch watches these folders, including the ones set in your browsers, and also finds downloaded apps anywhere on your Mac through Spotlight.
+settings.root	Administrator mode
+settings.rootActive	Active: every process is visible
+settings.rootDesc	Runs a small read-only helper as root so permwatch can see every process’s network connections and arguments, all login items, the root crontab and configuration profiles. macOS asks for your password. The helper takes no commands and stops when permwatch quits.
+settings.rootDisable	Turn Off
+settings.rootEnable	Turn On…
+settings.rootFailed	Could not start: %@
+settings.rootInactive	Off
+settings.rootPrompt	permwatch wants to start its read-only administrator helper.
 sig.adhoc	ad-hoc signed
 sig.apple	Apple
 sig.developer	developer · %@

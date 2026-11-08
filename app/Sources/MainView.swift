@@ -84,6 +84,7 @@ struct MainView: View {
         }
         .onAppear {
             center.openMainWindow = { [openWindow] in openWindow(id: "main") }
+            RootBridge.shared.resumeIfNeeded()
             monitor.trusted = store.trusted
             DispatchQueue.main.async { selectFirstAlert() }
             if Snapshot.section == "apps" { section = .apps }

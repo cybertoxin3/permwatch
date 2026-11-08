@@ -15,6 +15,8 @@ mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
 
 swiftc -parse-as-library -O -target "$ARCH-apple-macos14" \
     Sources/*.swift -o "$APP/Contents/MacOS/permwatch"
+# Yönetici modu yardımcısı (ayrı, küçük, girdisiz bir program)
+swiftc -O -target "$ARCH-apple-macos14" helper/main.swift -o "$APP/Contents/MacOS/permwatch-root"
 
 cp Resources/sample-events.jsonl Resources/AppIcon.icns "$APP/Contents/Resources/"
 python3 -I tools/build_strings.py i18n "$APP/Contents/Resources"

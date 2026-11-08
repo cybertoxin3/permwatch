@@ -24,11 +24,13 @@ apps.subtitle	أي تطبيق يصل إلى ماذا
 btm.agent	agent (مستخدم)
 btm.authPlugin	مكون تفويض إضافي
 btm.browserExt	إضافة متصفح
+btm.btmItem	عنصر تسجيل الدخول
 btm.cron	مهمة cron
 btm.daemon	daemon (نظام)
 btm.kext	امتداد النواة
 btm.loginHook	خطاف تسجيل الدخول
 btm.loginItem	عنصر تسجيل الدخول
+btm.profile	ملف تكوين
 btm.shell	ملف بدء الصدفة
 btm.sysExt	امتداد النظام
 col.cpu	المعالج %
@@ -52,7 +54,7 @@ dl.notNotarized	غير موثّق
 dl.notQuarantined	لا توجد علامة عزل
 dl.quarantined	معزول
 dl.rejected	سيحظر Gatekeeper هذا الملف
-dl.subtitle	تُفحص التطبيقات وبرامج التثبيت في التنزيلات فور وصولها
+dl.subtitle	تُفحص التطبيقات وبرامج التثبيت المنزّلة أينما وُضعت
 dl.threatTitle	تنزيل محفوف بالمخاطر
 empty.body	افتح ملف JSON Lines أنشأته أداة سطر الأوامر permwatch.
 empty.title	لا توجد أحداث
@@ -132,6 +134,7 @@ nav.running	العمليات قيد التشغيل
 nav.screen	تسجيل الشاشة
 nav.security	حالة الأمان
 nav.timeline	الخط الزمني
+net.allVisible	وضع المسؤول: كل العمليات مرئية.
 net.listening	يستمع
 net.local	محلي
 net.onlyOwn	بدون صلاحيات المسؤول تظهر عملياتك فقط.
@@ -175,6 +178,7 @@ rule.hiddenTarget	الملف الهدف في مجلد مخفي
 rule.loginHook	خطاف تسجيل دخول يشغّل برنامجًا نصيًا عند كل تسجيل دخول
 rule.lolbinFromUnsigned	شغّل تطبيق غير موقّع أداة نظام
 rule.nightHidden	تشغيل ليلي من مجلد مخفي
+rule.profileInstalled	يوجد ملف تكوين مثبّت ويمكنه تغيير إعدادات النظام
 rule.quarantine	أُزيلت علامة العزل وجرى تجاوز Gatekeeper
 rule.rapidGrants	حصل التطبيق نفسه على تسهيلات الاستخدام وتسجيل الشاشة خلال دقيقتين
 rule.shellSuspicious	ملف بدء الصدفة ينزّل شيفرة أو يفك ترميزها ثم يشغّلها
@@ -197,7 +201,18 @@ sec.unknown	تعذّر الفحص
 sec.updates	استجابات الأمان وملفات البيانات التلقائية
 sec.xprotect	تعريفات البرامج الضارة في XProtect
 sec.xprotectAge	الإصدار %1$@ · حُدّث %2$@
+settings.addFolder	إضافة مجلد…
 settings.appearance	المظهر
+settings.downloads	مجلدات التنزيل
+settings.downloadsDesc	يراقب permwatch هذه المجلدات (بما فيها المضبوطة في متصفحاتك)، ويعثر عبر Spotlight على التطبيقات المنزّلة في أي مكان على جهازك.
+settings.root	وضع المسؤول
+settings.rootActive	يعمل: كل العمليات مرئية
+settings.rootDesc	يشغّل مساعدًا صغيرًا للقراءة فقط بصلاحيات root ليرى permwatch اتصالات الشبكة ووسائط كل العمليات، وكل عناصر تسجيل الدخول، وcrontab الخاص بـ root، وملفات التكوين. سيطلب macOS كلمة السر. لا يتلقى المساعد أي أوامر ويتوقف عند إنهاء permwatch.
+settings.rootDisable	إيقاف
+settings.rootEnable	تشغيل…
+settings.rootFailed	تعذّر البدء: %@
+settings.rootInactive	متوقف
+settings.rootPrompt	يريد permwatch تشغيل مساعد المسؤول للقراءة فقط.
 sig.adhoc	توقيع مخصص
 sig.apple	Apple
 sig.developer	مطوّر · %@

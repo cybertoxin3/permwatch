@@ -24,11 +24,13 @@ apps.subtitle	Qué app accede a qué
 btm.agent	agent (usuario)
 btm.authPlugin	plugin de autorización
 btm.browserExt	extensión del navegador
+btm.btmItem	ítem de inicio
 btm.cron	tarea cron
 btm.daemon	daemon (sistema)
 btm.kext	extensión del kernel
 btm.loginHook	login hook
 btm.loginItem	Ítem de inicio
+btm.profile	perfil de configuración
 btm.shell	archivo de inicio del shell
 btm.sysExt	extensión del sistema
 col.cpu	CPU %
@@ -52,7 +54,7 @@ dl.notNotarized	sin notarizar
 dl.notQuarantined	sin marca de cuarentena
 dl.quarantined	en cuarentena
 dl.rejected	Gatekeeper bloquearía este archivo
-dl.subtitle	Las apps e instaladores de Descargas se revisan al llegar
+dl.subtitle	Las apps e instaladores descargados se revisan dondequiera que lleguen
 dl.threatTitle	descarga de riesgo
 empty.body	Abre un archivo JSON Lines generado por la herramienta de línea de comandos permwatch.
 empty.title	Sin eventos
@@ -132,6 +134,7 @@ nav.running	Procesos en ejecución
 nav.screen	Grabación de pantalla
 nav.security	Estado de seguridad
 nav.timeline	Cronología
+net.allVisible	Modo administrador: todos los procesos son visibles.
 net.listening	escuchando
 net.local	Local
 net.onlyOwn	Sin permisos de administrador solo se ven tus procesos.
@@ -175,6 +178,7 @@ rule.hiddenTarget	El archivo de destino está en una carpeta oculta
 rule.loginHook	Un login hook ejecuta un script en cada inicio de sesión
 rule.lolbinFromUnsigned	Una herramienta del sistema fue lanzada por una app sin firma
 rule.nightHidden	Se ejecutó de madrugada desde una carpeta oculta
+rule.profileInstalled	Hay un perfil de configuración instalado; puede cambiar ajustes del sistema
 rule.quarantine	Se eliminó la marca de cuarentena, esquivando Gatekeeper
 rule.rapidGrants	La misma app obtuvo accesibilidad y grabación de pantalla en 2 minutos
 rule.shellSuspicious	Un archivo de inicio del shell descarga o decodifica código y lo ejecuta
@@ -197,7 +201,18 @@ sec.unknown	No se pudo comprobar
 sec.updates	Respuestas de seguridad y archivos de datos automáticos
 sec.xprotect	Definiciones de malware de XProtect
 sec.xprotectAge	Versión %1$@ · actualizada %2$@
+settings.addFolder	Añadir carpeta…
 settings.appearance	Apariencia
+settings.downloads	Carpetas de descargas
+settings.downloadsDesc	permwatch vigila estas carpetas (incluidas las configuradas en tus navegadores) y, con Spotlight, encuentra apps descargadas en cualquier lugar del Mac.
+settings.root	Modo administrador
+settings.rootActive	Activo: todos los procesos son visibles
+settings.rootDesc	Ejecuta como root un pequeño asistente de solo lectura para que permwatch vea las conexiones de red y argumentos de todos los procesos, todos los ítems de inicio, el crontab de root y los perfiles de configuración. macOS pide tu contraseña. El asistente no recibe comandos y se detiene al cerrar permwatch.
+settings.rootDisable	Desactivar
+settings.rootEnable	Activar…
+settings.rootFailed	No se pudo iniciar: %@
+settings.rootInactive	Desactivado
+settings.rootPrompt	permwatch quiere iniciar su asistente de administrador de solo lectura.
 sig.adhoc	firma ad hoc
 sig.apple	Apple
 sig.developer	desarrollador · %@

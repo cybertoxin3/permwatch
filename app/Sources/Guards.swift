@@ -111,30 +111,140 @@ struct DownloadItem: Identifiable, Equatable {
 @MainActor
 final class DownloadGuard: ObservableObject {
     @Published private(set) var items: [DownloadItem] = []
+    @Published private(set) var folders: [(path: String, source: String)] = []
 
-    private let dir = NSHomeDirectory() + "/Downloads"
-    private var watcher: DispatchSourceFileSystemObject?
+    static let customKey = "watchFolders"
+    private var watchers: [DispatchSourceFileSystemObject] = []
     private var pending: DispatchWorkItem?
     private var cache: [String: DownloadItem] = [:]   // yol+tarih → sonuç
     private var initialDone = false
+    private var query: NSMetadataQuery?
+    private var spotlightPaths = Set<String>()
     nonisolated private static let kinds: Set<String> = ["app", "pkg", "mpkg", "dmg"]
 
     init() {
+        rebuildFolders()
+        startSpotlight()
         scan()
-        let fd = Darwin.open(dir, O_EVTONLY)
-        if fd >= 0 {
-            let src = DispatchSource.makeFileSystemObjectSource(fileDescriptor: fd, eventMask: [.write, .rename, .delete],
-                                                                queue: .main)
-            src.setEventHandler { [weak self] in
-                MainActor.assumeIsolated { self?.schedule() }
-            }
-            src.setCancelHandler { Darwin.close(fd) }
-            src.resume()
-            watcher = src
-        }
     }
 
     var risky: Int { items.filter { $0.risk >= .caution }.count }
+
+    var customFolders: [String] { UserDefaults.standard.stringArray(forKey: Self.customKey) ?? [] }
+
+    func addFolder(_ path: String) {
+        var c = customFolders
+        guard !c.contains(path) else { return }
+        c.append(path)
+        UserDefaults.standard.set(c, forKey: Self.customKey)
+        rebuildFolders()
+        scan()
+    }
+
+    func removeFolder(_ path: String) {
+        UserDefaults.standard.set(customFolders.filter { $0 != path }, forKey: Self.customKey)
+        rebuildFolders()
+        scan()
+    }
+
+    // MARK: Klasörler: İndirilenler, Masaüstü, tarayıcıların ayarlı klasörleri, kullanıcının ekledikleri
+
+    private func rebuildFolders() {
+        var list: [(String, String)] = [(NSHomeDirectory() + "/Downloads", "macOS"),
+                                        (NSHomeDirectory() + "/Desktop", "macOS")]
+        for (p, src) in Self.browserDownloadFolders() where !list.contains(where: { $0.0 == p }) { list.append((p, src)) }
+        for p in customFolders where !list.contains(where: { $0.0 == p }) { list.append((p, "")) }
+        folders = list.filter { FileManager.default.fileExists(atPath: $0.0) }.map { (path: $0.0, source: $0.1) }
+
+        watchers.forEach { $0.cancel() }
+        watchers = []
+        for f in folders {
+            let fd = Darwin.open(f.path, O_EVTONLY)
+            guard fd >= 0 else { continue }
+            let src = DispatchSource.makeFileSystemObjectSource(fileDescriptor: fd, eventMask: [.write, .rename, .delete],
+                                                                queue: .main)
+            src.setEventHandler { [weak self] in MainActor.assumeIsolated { self?.schedule() } }
+            src.setCancelHandler { Darwin.close(fd) }
+            src.resume()
+            watchers.append(src)
+        }
+    }
+
+    /// Tarayıcıların ayarlarındaki indirme klasörleri.
+    nonisolated static func browserDownloadFolders() -> [(String, String)] {
+        let home = NSHomeDirectory()
+        var out: [(String, String)] = []
+        // Safari (sandbox içindeki tercih dosyası; Tam Disk Erişimi ile okunur)
+        for plist in [home + "/Library/Containers/com.apple.Safari/Data/Library/Preferences/com.apple.Safari.plist",
+                      home + "/Library/Preferences/com.apple.Safari.plist"] {
+            if let d = NSDictionary(contentsOfFile: plist), let p = d["DownloadsPath"] as? String {
+                out.append(((p as NSString).expandingTildeInPath, "Safari"))
+                break
+            }
+        }
+        // Chromium tabanlılar: Preferences içindeki download.default_directory
+        for (dir, name) in [("Google/Chrome", "Chrome"), ("BraveSoftware/Brave-Browser", "Brave"),
+                            ("Microsoft Edge", "Edge"), ("Arc/User Data", "Arc")] {
+            let base = home + "/Library/Application Support/" + dir
+            for prof in ((try? FileManager.default.contentsOfDirectory(atPath: base)) ?? [])
+            where prof == "Default" || prof.hasPrefix("Profile ") {
+                guard let data = FileManager.default.contents(atPath: base + "/" + prof + "/Preferences"),
+                      let j = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+                      let dl = j["download"] as? [String: Any],
+                      let p = dl["default_directory"] as? String else { continue }
+                out.append((p, name))
+            }
+        }
+        // Firefox: prefs.js içindeki browser.download.dir
+        let ff = home + "/Library/Application Support/Firefox/Profiles"
+        for prof in (try? FileManager.default.contentsOfDirectory(atPath: ff)) ?? [] {
+            guard let text = try? String(contentsOfFile: ff + "/" + prof + "/prefs.js", encoding: .utf8),
+                  let r = text.range(of: "user_pref(\"browser.download.dir\", \"") else { continue }
+            let rest = text[r.upperBound...]
+            if let e = rest.firstIndex(of: "\"") { out.append((String(rest[..<e]), "Firefox")) }
+        }
+        return out
+    }
+
+    // MARK: Spotlight: indirme klasörü nerede olursa olsun "nereden indirildi" bilgisi olan dosyalar
+
+    private func startSpotlight() {
+        let q = NSMetadataQuery()
+        // mdfind ile birebir aynı Spotlight sorgusu (dış diskler dahil bütün yerel birimler).
+        q.predicate = NSPredicate(fromMetadataQueryString: Self.spotlightQuery)
+        q.searchScopes = [NSMetadataQueryLocalComputerScope]
+        let nc = NotificationCenter.default
+        for n in [NSNotification.Name.NSMetadataQueryDidFinishGathering, .NSMetadataQueryDidUpdate] {
+            nc.addObserver(forName: n, object: q, queue: .main) { [weak self] _ in
+                MainActor.assumeIsolated { self?.collectSpotlight() }
+            }
+        }
+        q.start()
+        query = q
+    }
+
+    nonisolated static let spotlightQuery = """
+        kMDItemWhereFroms == "*" && kMDItemFSCreationDate >= $time.today(-30) && \
+        (kMDItemContentTypeTree == "com.apple.application-bundle" || \
+         kMDItemContentTypeTree == "com.apple.installer-package*" || \
+         kMDItemContentTypeTree == "public.disk-image" || kMDItemContentTypeTree == "com.apple.disk-image*")
+        """
+
+    private func collectSpotlight() {
+        guard let q = query else { return }
+        q.disableUpdates()
+        var paths = Set<String>()
+        for i in 0..<q.resultCount {
+            if let item = q.result(at: i) as? NSMetadataItem, let p = item.value(forAttribute: NSMetadataItemPathKey) as? String {
+                paths.insert(p)
+            }
+        }
+        q.enableUpdates()
+        if paths != spotlightPaths {
+            spotlightPaths = paths
+            schedule()
+        }
+    }
 
     private func schedule() {
         pending?.cancel()
@@ -145,15 +255,21 @@ final class DownloadGuard: ObservableObject {
     }
 
     func scan() {
-        let dir = self.dir
+        let dirs = folders.map(\.path)
+        let extra = spotlightPaths
         let cache = self.cache
         Task.detached(priority: .utility) {
             let fm = FileManager.default
-            let names = (try? fm.contentsOfDirectory(atPath: dir)) ?? []
             let limit = Date().addingTimeInterval(-30 * 86_400)
+            var candidates = extra
+            for dir in dirs {
+                for n in (try? fm.contentsOfDirectory(atPath: dir)) ?? []
+                where DownloadGuard.kinds.contains((n as NSString).pathExtension.lowercased()) {
+                    candidates.insert(dir + "/" + n)
+                }
+            }
             var out: [DownloadItem] = []
-            for n in names where DownloadGuard.kinds.contains((n as NSString).pathExtension.lowercased()) {
-                let p = dir + "/" + n
+            for p in candidates {
                 guard let attrs = try? fm.attributesOfItem(atPath: p),
                       let date = (attrs[.creationDate] as? Date) ?? (attrs[.modificationDate] as? Date),
                       date > limit else { continue }
@@ -374,8 +490,9 @@ final class NetworkMonitor: ObservableObject {
     func refresh() {
         guard !busy else { return }
         busy = true
+        let rootLsof = RootBridge.shared.active ? RootBridge.shared.data?.lsof : nil
         Task.detached(priority: .utility) {
-            let r = NetworkMonitor.collect()
+            let r = NetworkMonitor.collect(rootLsof: rootLsof)
             await MainActor.run {
                 self.rows = r
                 self.busy = false
@@ -393,8 +510,9 @@ final class NetworkMonitor: ObservableObject {
     }
 
     /// lsof -F: yönetici yetkisi olmadan yalnızca kendi kullanıcının süreçleri görünür.
-    nonisolated static func collect() -> [ConnRow] {
-        let (_, out) = Shell.run("/usr/sbin/lsof", ["-nP", "-i", "-F", "pcfPnT"])
+    /// rootLsof: yönetici modu açıksa yardımcının root olarak aldığı çıktı (bütün süreçler).
+    nonisolated static func collect(rootLsof: String? = nil) -> [ConnRow] {
+        let out = rootLsof ?? Shell.run("/usr/sbin/lsof", ["-nP", "-i", "-F", "pcfPnT"]).1
         var rows: [ConnRow] = []
         var pid: Int32 = 0, cmd = "", proto = "", name = "", state = "", fd = ""
         var sigCache: [Int32: (String?, String?)] = [:]

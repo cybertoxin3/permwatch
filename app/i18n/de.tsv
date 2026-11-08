@@ -24,11 +24,13 @@ apps.subtitle	Welche App worauf zugreifen kann
 btm.agent	agent (Benutzer)
 btm.authPlugin	Autorisierungs-Plug-in
 btm.browserExt	Browsererweiterung
+btm.btmItem	Anmeldeobjekt
 btm.cron	Cron-Job
 btm.daemon	daemon (System)
 btm.kext	Kernel-Erweiterung
 btm.loginHook	Login-Hook
 btm.loginItem	Anmeldeobjekt
+btm.profile	Konfigurationsprofil
 btm.shell	Shell-Startdatei
 btm.sysExt	Systemerweiterung
 col.cpu	CPU %
@@ -52,7 +54,7 @@ dl.notNotarized	nicht notarisiert
 dl.notQuarantined	kein Quarantäne-Flag
 dl.quarantined	in Quarantäne
 dl.rejected	Gatekeeper würde diese Datei blockieren
-dl.subtitle	Apps und Installer in „Downloads“ werden sofort geprüft
+dl.subtitle	Geladene Apps und Installer werden geprüft, egal wo sie landen
 dl.threatTitle	riskanter Download
 empty.body	Öffne eine JSON-Lines-Datei, die das permwatch-Kommandozeilentool erzeugt hat.
 empty.title	Keine Ereignisse
@@ -132,6 +134,7 @@ nav.running	Laufende Prozesse
 nav.screen	Bildschirmaufnahme
 nav.security	Sicherheitsstatus
 nav.timeline	Zeitleiste
+net.allVisible	Administratormodus: alle Prozesse sichtbar.
 net.listening	wartet auf Verbindungen
 net.local	Lokal
 net.onlyOwn	Ohne Administratorrechte sind nur eigene Prozesse sichtbar.
@@ -175,6 +178,7 @@ rule.hiddenTarget	Zieldatei liegt in einem versteckten Ordner
 rule.loginHook	Ein Login-Hook führt bei jeder Anmeldung ein Skript aus
 rule.lolbinFromUnsigned	Ein Systemwerkzeug wurde von einer unsignierten App gestartet
 rule.nightHidden	Mitten in der Nacht aus einem versteckten Ordner gestartet
+rule.profileInstalled	Ein Konfigurationsprofil ist installiert; es kann Systemeinstellungen ändern
 rule.quarantine	Das Quarantäne-Flag wurde entfernt, Gatekeeper umgangen
 rule.rapidGrants	Dieselbe App erhielt in 2 Minuten Bedienungshilfen und Bildschirmaufnahme
 rule.shellSuspicious	Eine Shell-Startdatei lädt oder dekodiert Code und führt ihn aus
@@ -197,7 +201,18 @@ sec.unknown	Nicht prüfbar
 sec.updates	Automatische Sicherheitsmaßnahmen und Datendateien
 sec.xprotect	XProtect-Malware-Definitionen
 sec.xprotectAge	Version %1$@ · aktualisiert %2$@
+settings.addFolder	Ordner hinzufügen …
 settings.appearance	Erscheinungsbild
+settings.downloads	Download-Ordner
+settings.downloadsDesc	permwatch überwacht diese Ordner (auch die in deinen Browsern eingestellten) und findet geladene Apps per Spotlight überall auf deinem Mac.
+settings.root	Administratormodus
+settings.rootActive	Aktiv: alle Prozesse sichtbar
+settings.rootDesc	Startet einen kleinen, nur lesenden Helfer als root, damit permwatch Netzwerkverbindungen und Argumente aller Prozesse, alle Anmeldeobjekte, die root-Crontab und Konfigurationsprofile sieht. macOS fragt nach deinem Passwort. Der Helfer nimmt keine Befehle an und endet, wenn permwatch beendet wird.
+settings.rootDisable	Ausschalten
+settings.rootEnable	Einschalten …
+settings.rootFailed	Start fehlgeschlagen: %@
+settings.rootInactive	Aus
+settings.rootPrompt	permwatch möchte seinen nur lesenden Administrator-Helfer starten.
 sig.adhoc	ad-hoc-signiert
 sig.apple	Apple
 sig.developer	Entwickler · %@

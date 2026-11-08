@@ -159,9 +159,10 @@ final class Store: ObservableObject {
         if scanning { rescanRequested = true; return }
         scanning = true
         let url = Self.stateURL
+        let root = RootBridge.shared.active ? RootBridge.shared.data : nil
         Task.detached(priority: .utility) {
             let prev = (try? Data(contentsOf: url)).flatMap { try? JSONDecoder().decode(State.self, from: $0) }
-            let r = SystemScanner.scan(previous: prev?.snapshot, removedLog: prev?.removed ?? [])
+            let r = SystemScanner.scan(previous: prev?.snapshot, removedLog: prev?.removed ?? [], root: root)
             let removed = r.events.filter { $0.update == "delete" || $0.event == "btm_launch_item_remove" }
             // TCC okunamadıysa izin anlık görüntüsünü ezme (yoksa her şey "kaldırıldı" görünür).
             var snap = r.snapshot

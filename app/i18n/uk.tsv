@@ -24,11 +24,13 @@ apps.subtitle	Яка програма до чого має доступ
 btm.agent	agent (користувач)
 btm.authPlugin	плагін авторизації
 btm.browserExt	розширення браузера
+btm.btmItem	об’єкт входу
 btm.cron	завдання cron
 btm.daemon	daemon (система)
 btm.kext	розширення ядра
 btm.loginHook	login hook
 btm.loginItem	Об’єкт входу
+btm.profile	профіль конфігурації
 btm.shell	файл запуску оболонки
 btm.sysExt	системне розширення
 col.cpu	ЦП %
@@ -52,7 +54,7 @@ dl.notNotarized	без нотаризації
 dl.notQuarantined	немає прапорця карантину
 dl.quarantined	у карантині
 dl.rejected	Gatekeeper заблокує цей файл
-dl.subtitle	Програми й інсталятори в «Завантаженнях» перевіряються одразу
+dl.subtitle	Завантажені програми й інсталятори перевіряються, де б вони не опинилися
 dl.threatTitle	ризиковане завантаження
 empty.body	Відкрийте файл JSON Lines, створений утилітою permwatch.
 empty.title	Немає подій
@@ -132,6 +134,7 @@ nav.running	Запущені процеси
 nav.screen	Запис екрана
 nav.security	Стан безпеки
 nav.timeline	Хронологія
+net.allVisible	Режим адміністратора: видно всі процеси.
 net.listening	прослуховування
 net.local	Локальна
 net.onlyOwn	Без прав адміністратора видно лише ваші процеси.
@@ -175,6 +178,7 @@ rule.hiddenTarget	Цільовий файл у прихованій теці
 rule.loginHook	Login hook запускає скрипт під час кожного входу
 rule.lolbinFromUnsigned	Системну утиліту запустила непідписана програма
 rule.nightHidden	Нічний запуск із прихованої теки
+rule.profileInstalled	Встановлено профіль конфігурації; він може змінювати системні параметри
 rule.quarantine	Прапорець карантину видалено, Gatekeeper обійдено
 rule.rapidGrants	Одна програма за 2 хвилини отримала доступність і запис екрана
 rule.shellSuspicious	Файл запуску оболонки завантажує або декодує код і запускає його
@@ -197,7 +201,18 @@ sec.unknown	Не вдалося перевірити
 sec.updates	Автоматичні відповіді безпеки та файли даних
 sec.xprotect	Визначення шкідливого ПЗ XProtect
 sec.xprotectAge	Версія %1$@ · оновлено %2$@
+settings.addFolder	Додати теку…
 settings.appearance	Вигляд
+settings.downloads	Теки завантажень
+settings.downloadsDesc	permwatch стежить за цими теками (зокрема заданими в браузерах) і через Spotlight знаходить завантажені програми будь-де на Mac.
+settings.root	Режим адміністратора
+settings.rootActive	Увімкнено: видно всі процеси
+settings.rootDesc	Запускає невеликий помічник лише для читання від імені root, щоб permwatch бачив мережеві з’єднання й аргументи всіх процесів, усі об’єкти входу, crontab root і профілі конфігурації. macOS запитає пароль. Помічник не приймає команд і зупиняється, коли permwatch закривається.
+settings.rootDisable	Вимкнути
+settings.rootEnable	Увімкнути…
+settings.rootFailed	Не вдалося запустити: %@
+settings.rootInactive	Вимкнено
+settings.rootPrompt	permwatch хоче запустити помічника адміністратора лише для читання.
 sig.adhoc	ad-hoc підпис
 sig.apple	Apple
 sig.developer	розробник · %@

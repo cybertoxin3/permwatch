@@ -24,11 +24,13 @@ apps.subtitle	어떤 앱이 무엇에 접근할 수 있는지
 btm.agent	agent(사용자)
 btm.authPlugin	인증 플러그인
 btm.browserExt	브라우저 확장 프로그램
+btm.btmItem	로그인 항목
 btm.cron	cron 작업
 btm.daemon	daemon(시스템)
 btm.kext	커널 확장
 btm.loginHook	로그인 훅
 btm.loginItem	로그인 항목
+btm.profile	구성 프로파일
 btm.shell	셸 시작 파일
 btm.sysExt	시스템 확장
 col.cpu	CPU %
@@ -52,7 +54,7 @@ dl.notNotarized	공증되지 않음
 dl.notQuarantined	격리 플래그 없음
 dl.quarantined	격리됨
 dl.rejected	Gatekeeper가 이 파일을 차단합니다
-dl.subtitle	다운로드 폴더의 앱과 설치 프로그램을 도착 즉시 검사합니다
+dl.subtitle	다운로드한 앱과 설치 프로그램을 저장 위치와 관계없이 검사합니다
 dl.threatTitle	위험한 다운로드
 empty.body	permwatch 명령줄 도구가 생성한 JSON Lines 파일을 여십시오.
 empty.title	이벤트 없음
@@ -132,6 +134,7 @@ nav.running	실행 중인 프로세스
 nav.screen	화면 기록
 nav.security	보안 상태
 nav.timeline	타임라인
+net.allVisible	관리자 모드: 모든 프로세스가 보입니다.
 net.listening	수신 대기
 net.local	로컬
 net.onlyOwn	관리자 권한 없이는 내 프로세스만 보입니다.
@@ -175,6 +178,7 @@ rule.hiddenTarget	대상 파일이 숨김 폴더에 있음
 rule.loginHook	로그인 훅이 로그인할 때마다 스크립트를 실행함
 rule.lolbinFromUnsigned	서명 없는 앱이 시스템 도구를 실행함
 rule.nightHidden	심야에 숨김 폴더에서 실행됨
+rule.profileInstalled	구성 프로파일이 설치되어 있으며 시스템 설정을 바꿀 수 있음
 rule.quarantine	격리 플래그가 제거되어 Gatekeeper가 우회됨
 rule.rapidGrants	같은 앱이 2분 안에 손쉬운 사용과 화면 기록 권한을 얻음
 rule.shellSuspicious	셸 시작 파일이 코드를 다운로드하거나 디코딩해 실행함
@@ -197,7 +201,18 @@ sec.unknown	확인할 수 없음
 sec.updates	자동 보안 응답 및 데이터 파일
 sec.xprotect	XProtect 악성 코드 정의
 sec.xprotectAge	버전 %1$@ · 업데이트: %2$@
+settings.addFolder	폴더 추가…
 settings.appearance	화면 모드
+settings.downloads	다운로드 폴더
+settings.downloadsDesc	permwatch는 이 폴더들(브라우저에서 설정한 폴더 포함)을 감시하고, Spotlight로 Mac 어디에 다운로드된 앱이든 찾아냅니다.
+settings.root	관리자 모드
+settings.rootActive	켜짐: 모든 프로세스가 보임
+settings.rootDesc	읽기 전용 소형 도우미를 root로 실행해 permwatch가 모든 프로세스의 네트워크 연결과 인수, 모든 로그인 항목, root crontab, 구성 프로파일을 볼 수 있게 합니다. macOS가 암호를 묻습니다. 도우미는 명령을 받지 않으며 permwatch가 종료되면 멈춥니다.
+settings.rootDisable	끄기
+settings.rootEnable	켜기…
+settings.rootFailed	시작할 수 없음: %@
+settings.rootInactive	끔
+settings.rootPrompt	permwatch가 읽기 전용 관리자 도우미를 시작하려고 합니다.
 sig.adhoc	애드혹 서명
 sig.apple	Apple
 sig.developer	개발자 · %@

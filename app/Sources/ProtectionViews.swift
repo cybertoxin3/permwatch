@@ -99,7 +99,11 @@ struct DownloadsView: View {
                     HStack(spacing: 12) {
                         AppIcon(name: i.name, risk: i.risk, key: i.path, size: 34)
                         VStack(alignment: .leading, spacing: 3) {
-                            Text(i.name).font(.system(size: 13, weight: .semibold)).lineLimit(1)
+                            HStack(spacing: 6) {
+                                Text(i.name).font(.system(size: 13, weight: .semibold)).lineLimit(1)
+                                Text(PathUtil.abbreviate(PathUtil.parentDir(i.path)))
+                                    .font(.system(size: 11)).foregroundStyle(.secondary).lineLimit(1).truncationMode(.middle)
+                            }
                             HStack(spacing: 6) {
                                 Label(i.accepted == false ? L("dl.rejected") : (i.accepted == true ? L("dl.accepted") : "—"),
                                       systemImage: i.accepted == false ? "xmark.octagon" : "checkmark.seal")
@@ -161,7 +165,8 @@ struct NetworkView: View {
                 Chip(title: L("filter.all"), selected: !onlyRisky) { onlyRisky = false }
                 Chip(title: L("proc.filter.suspicious"), selected: onlyRisky) { onlyRisky = true }
                 Spacer()
-                Text(L("net.onlyOwn")).font(.system(size: 11)).foregroundStyle(.secondary)
+                Text(RootBridge.shared.active ? L("net.allVisible") : L("net.onlyOwn"))
+                    .font(.system(size: 11)).foregroundStyle(.secondary)
             }
             .padding(.horizontal, 16).padding(.vertical, 10)
             Divider()

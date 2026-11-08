@@ -24,11 +24,13 @@ apps.subtitle	Hangi uygulama neye erişebiliyor
 btm.agent	agent (kullanıcı)
 btm.authPlugin	yetkilendirme eklentisi
 btm.browserExt	tarayıcı uzantısı
+btm.btmItem	giriş öğesi
 btm.cron	cron görevi
 btm.daemon	daemon (sistem)
 btm.kext	kernel uzantısı
 btm.loginHook	login hook
 btm.loginItem	Giriş öğesi
+btm.profile	konfigürasyon profili
 btm.shell	kabuk başlangıç dosyası
 btm.sysExt	sistem uzantısı
 col.cpu	CPU %
@@ -52,7 +54,7 @@ dl.notNotarized	notarize edilmemiş
 dl.notQuarantined	karantina bayrağı yok
 dl.quarantined	karantinada
 dl.rejected	Gatekeeper bu dosyayı engeller
-dl.subtitle	İndirilenler'e düşen uygulama ve kurulum dosyaları anında kontrol edilir
+dl.subtitle	İndirilen uygulama ve kurulum dosyaları nereye düşerse düşsün kontrol edilir
 dl.threatTitle	riskli indirme
 empty.body	permwatch komut satırı aracının ürettiği bir JSON Lines dosyası aç.
 empty.title	Olay yok
@@ -132,6 +134,7 @@ nav.running	Çalışan Süreçler
 nav.screen	Ekran Kaydı
 nav.security	Güvenlik Durumu
 nav.timeline	Zaman Çizelgesi
+net.allVisible	Yönetici modu: bütün süreçler görünüyor.
 net.listening	dinliyor
 net.local	Yerel
 net.onlyOwn	Yönetici yetkisi olmadan yalnızca kendi süreçlerin görünür.
@@ -175,6 +178,7 @@ rule.hiddenTarget	Hedef dosya gizli bir klasörde
 rule.loginHook	Bir login hook her girişte betik çalıştırıyor
 rule.lolbinFromUnsigned	Bir sistem aracı imzasız bir uygulama tarafından çalıştırıldı
 rule.nightHidden	Gece yarısı gizli bir klasörden çalıştı
+rule.profileInstalled	Bir konfigürasyon profili yüklü; sistem ayarlarını değiştirebilir
 rule.quarantine	Karantina bayrağı silindi, Gatekeeper atlatıldı
 rule.rapidGrants	Aynı uygulama 2 dakika içinde Erişilebilirlik ve Ekran Kaydı izni aldı
 rule.shellSuspicious	Kabuk başlangıç dosyası kod indirip ya da çözüp çalıştırıyor
@@ -197,7 +201,18 @@ sec.unknown	Kontrol edilemedi
 sec.updates	Otomatik güvenlik yanıtları ve veri dosyaları
 sec.xprotect	XProtect zararlı yazılım tanımları
 sec.xprotectAge	Sürüm %1$@ · güncelleme: %2$@
+settings.addFolder	Klasör Ekle…
 settings.appearance	Görünüm
+settings.downloads	İndirme klasörleri
+settings.downloadsDesc	permwatch bu klasörleri (tarayıcılarında ayarlı olanlar dahil) izler; ayrıca Spotlight ile Mac'inin herhangi bir yerine indirilen uygulamaları da bulur.
+settings.root	Yönetici modu
+settings.rootActive	Açık: bütün süreçler görünüyor
+settings.rootDesc	Küçük, salt-okunur bir yardımcıyı root olarak çalıştırır; böylece permwatch bütün süreçlerin ağ bağlantılarını ve argümanlarını, bütün giriş öğelerini, root crontab'ını ve konfigürasyon profillerini görebilir. macOS şifreni sorar. Yardımcı dışarıdan komut almaz ve permwatch kapanınca durur.
+settings.rootDisable	Kapat
+settings.rootEnable	Aç…
+settings.rootFailed	Başlatılamadı: %@
+settings.rootInactive	Kapalı
+settings.rootPrompt	permwatch salt-okunur yönetici yardımcısını başlatmak istiyor.
 sig.adhoc	ad-hoc imzalı
 sig.apple	Apple
 sig.developer	geliştirici · %@

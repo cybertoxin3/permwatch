@@ -38,7 +38,7 @@ enum SystemScanner {
 
     /// Mevcut durumu okur; önceki anlık görüntüyle karşılaştırıp silinen izin ve
     /// başlangıç öğeleri için "kaldırıldı" olayları üretir.
-    static func scan(previous: Snapshot?, removedLog: [RawEvent]) -> Result {
+    static func scan(previous: Snapshot?, removedLog: [RawEvent], root: RootData? = nil) -> Result {
         var events: [RawEvent] = []
         var snap = Snapshot()
         let now = Date().timeIntervalSince1970
@@ -95,7 +95,7 @@ enum SystemScanner {
 
         // MARK: Genişletilmiş kalıcılık (cron, kabuk dosyaları, uzantılar, eklentiler…)
         var extrasMap: [String: String] = [:]
-        for x in extraPersistence() {
+        for x in extraPersistence(root: root) {
             extrasMap[x.key] = x.type
             var e = RawEvent(ts: x.ts, event: "btm_launch_item_add")
             e.origin = "scan"
@@ -165,7 +165,7 @@ enum SystemScanner {
         #"eval\s+"?\$\((curl|wget)"#, #"python3?\s+-c\s"#, #"nohup\s.+&\s*$"#,
     ].compactMap { try? NSRegularExpression(pattern: $0, options: [.caseInsensitive, .anchorsMatchLines]) }
 
-    static func extraPersistence() -> [Extra] {
+    static func extraPersistence(root: RootData? = nil) -> [Extra] {
         let fm = FileManager.default
         let home = NSHomeDirectory()
         func mtime(_ p: String) -> Double {
@@ -239,6 +239,20 @@ enum SystemScanner {
             }
         }
 
+        // Yönetici modu: bütün giriş öğeleri (SMAppService dahil), root cron, profiller
+        if let r = root, r.fresh {
+            out += btmItems(r.btm)
+            for line in r.cron.split(separator: "\n").map(String.init)
+            where !line.trimmingCharacters(in: .whitespaces).isEmpty && !line.hasPrefix("#") && !line.contains("=") {
+                out.append(Extra(key: "rootcron:" + line, type: "cron", name: "crontab (root)", location: nil, exec: line,
+                                 binary: nil, ts: Date().timeIntervalSince1970, note: "cronJob"))
+            }
+            for name in profileNames(r.profiles) {
+                out.append(Extra(key: "profile:" + name, type: "profile", name: name, location: nil, exec: nil,
+                                 binary: nil, ts: Date().timeIntervalSince1970, note: "profileInstalled"))
+            }
+        }
+
         // Login hook (eski yöntem ama hâlâ çalışıyor)
         let (hc, hook) = Shell.run("/usr/bin/defaults", ["read", "com.apple.loginwindow", "LoginHook"])
         if hc == 0, !hook.isEmpty {
@@ -246,6 +260,42 @@ enum SystemScanner {
                              exec: hook, binary: hook, ts: mtime(hook), note: "loginHook"))
         }
         return out
+    }
+
+    /// `sfltool dumpbtm` çıktısından giriş öğeleri. LaunchAgent/Daemon'lar plist taramasında
+    /// zaten var; burada yalnızca uygulama tipi ve oturum açma öğeleri (SMAppService) alınır.
+    static func btmItems(_ text: String) -> [Extra] {
+        var out: [Extra] = []
+        var cur: [String: String] = [:]
+        func flush() {
+            defer { cur = [:] }
+            guard let type = cur["Type"]?.lowercased(), type.hasPrefix("app") || type.hasPrefix("login item"),
+                  let name = cur["Name"] ?? cur["Bundle Identifier"] else { return }
+            let url = cur["URL"].flatMap { PathUtil.fromURL($0) }
+            let exe = cur["Executable Path"].flatMap { PathUtil.fromURL($0) }
+            let key = "btm:" + (cur["Identifier"] ?? name)
+            let disabled = (cur["Disposition"] ?? "").contains("disabled")
+            out.append(Extra(key: key, type: "btmItem", name: name + (disabled ? " ·  ⏸" : ""), location: url,
+                             exec: exe ?? cur["Bundle Identifier"], binary: exe ?? url,
+                             ts: Date().timeIntervalSince1970, note: nil))
+        }
+        for raw in text.split(separator: "\n", omittingEmptySubsequences: false) {
+            let line = raw.trimmingCharacters(in: .whitespaces)
+            if line.hasPrefix("#"), line.hasSuffix(":") { flush(); continue }
+            if let r = line.range(of: ": ") {
+                cur[String(line[..<r.lowerBound])] = String(line[r.upperBound...])
+            }
+        }
+        flush()
+        return out
+    }
+
+    /// `profiles show -type configuration` çıktısından profil adları.
+    static func profileNames(_ text: String) -> [String] {
+        text.split(separator: "\n").compactMap { l in
+            guard let r = l.range(of: "attribute: name: ") else { return nil }
+            return String(l[r.upperBound...]).trimmingCharacters(in: .whitespaces)
+        }
     }
 
     private static func extensionName(_ dir: String) -> String? {

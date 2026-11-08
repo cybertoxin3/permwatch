@@ -24,11 +24,13 @@ apps.subtitle	Quale app accede a cosa
 btm.agent	agent (utente)
 btm.authPlugin	plugin di autorizzazione
 btm.browserExt	estensione del browser
+btm.btmItem	elemento di login
 btm.cron	job cron
 btm.daemon	daemon (sistema)
 btm.kext	estensione del kernel
 btm.loginHook	login hook
 btm.loginItem	Elemento login
+btm.profile	profilo di configurazione
 btm.shell	file di avvio della shell
 btm.sysExt	estensione di sistema
 col.cpu	CPU %
@@ -52,7 +54,7 @@ dl.notNotarized	non notarizzato
 dl.notQuarantined	nessun flag di quarantena
 dl.quarantined	in quarantena
 dl.rejected	Gatekeeper bloccherebbe questo file
-dl.subtitle	App e installer in Download vengono controllati appena arrivano
+dl.subtitle	App e installer scaricati vengono controllati ovunque arrivino
 dl.threatTitle	download rischioso
 empty.body	Apri un file JSON Lines prodotto dallo strumento da riga di comando permwatch.
 empty.title	Nessun evento
@@ -132,6 +134,7 @@ nav.running	Processi in esecuzione
 nav.screen	Registrazione schermo
 nav.security	Stato della sicurezza
 nav.timeline	Cronologia
+net.allVisible	Modalità amministratore: tutti i processi sono visibili.
 net.listening	in ascolto
 net.local	Locale
 net.onlyOwn	Senza diritti di amministratore sono visibili solo i tuoi processi.
@@ -175,6 +178,7 @@ rule.hiddenTarget	Il file di destinazione si trova in una cartella nascosta
 rule.loginHook	Un login hook esegue uno script a ogni login
 rule.lolbinFromUnsigned	Uno strumento di sistema è stato avviato da un’app non firmata
 rule.nightHidden	Avviata nel cuore della notte da una cartella nascosta
+rule.profileInstalled	È installato un profilo di configurazione; può cambiare le impostazioni di sistema
 rule.quarantine	Il flag di quarantena è stato rimosso, aggirando Gatekeeper
 rule.rapidGrants	La stessa app ha ottenuto Accessibilità e registrazione schermo in 2 minuti
 rule.shellSuspicious	Un file di avvio della shell scarica o decodifica codice e lo esegue
@@ -197,7 +201,18 @@ sec.unknown	Impossibile verificare
 sec.updates	Risposte di sicurezza e file di dati automatici
 sec.xprotect	Definizioni malware di XProtect
 sec.xprotectAge	Versione %1$@ · aggiornata %2$@
+settings.addFolder	Aggiungi cartella…
 settings.appearance	Aspetto
+settings.downloads	Cartelle di download
+settings.downloadsDesc	permwatch controlla queste cartelle (anche quelle impostate nei browser) e trova con Spotlight le app scaricate ovunque sul Mac.
+settings.root	Modalità amministratore
+settings.rootActive	Attivo: tutti i processi sono visibili
+settings.rootDesc	Esegue come root un piccolo helper di sola lettura così permwatch vede connessioni di rete e argomenti di tutti i processi, tutti gli elementi di login, il crontab di root e i profili di configurazione. macOS chiede la password. L’helper non riceve comandi e si ferma quando chiudi permwatch.
+settings.rootDisable	Disattiva
+settings.rootEnable	Attiva…
+settings.rootFailed	Impossibile avviare: %@
+settings.rootInactive	Disattivato
+settings.rootPrompt	permwatch vuole avviare il suo helper amministratore di sola lettura.
 sig.adhoc	firma ad hoc
 sig.apple	Apple
 sig.developer	sviluppatore · %@

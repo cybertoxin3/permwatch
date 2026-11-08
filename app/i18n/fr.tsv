@@ -24,11 +24,13 @@ apps.subtitle	Quelle app accède à quoi
 btm.agent	agent (utilisateur)
 btm.authPlugin	plug-in d’autorisation
 btm.browserExt	extension de navigateur
+btm.btmItem	élément d’ouverture
 btm.cron	tâche cron
 btm.daemon	daemon (système)
 btm.kext	extension du noyau
 btm.loginHook	login hook
 btm.loginItem	Élément d’ouverture
+btm.profile	profil de configuration
 btm.shell	fichier de démarrage du shell
 btm.sysExt	extension système
 col.cpu	Processeur %
@@ -52,7 +54,7 @@ dl.notNotarized	non notarisé
 dl.notQuarantined	pas de marqueur de quarantaine
 dl.quarantined	en quarantaine
 dl.rejected	Gatekeeper bloquerait ce fichier
-dl.subtitle	Les apps et programmes d’installation sont vérifiés dès leur arrivée dans Téléchargements
+dl.subtitle	Les apps et programmes d’installation téléchargés sont vérifiés où qu’ils arrivent
 dl.threatTitle	téléchargement à risque
 empty.body	Ouvrez un fichier JSON Lines produit par l’outil en ligne de commande permwatch.
 empty.title	Aucun événement
@@ -132,6 +134,7 @@ nav.running	Processus en cours
 nav.screen	Enregistrement de l’écran
 nav.security	État de la sécurité
 nav.timeline	Chronologie
+net.allVisible	Mode administrateur : tous les processus sont visibles.
 net.listening	en écoute
 net.local	Local
 net.onlyOwn	Sans droits d’administrateur, seuls vos processus sont visibles.
@@ -175,6 +178,7 @@ rule.hiddenTarget	Le fichier cible est dans un dossier caché
 rule.loginHook	Un login hook exécute un script à chaque connexion
 rule.lolbinFromUnsigned	Un outil système a été lancé par une app non signée
 rule.nightHidden	Lancé en pleine nuit depuis un dossier caché
+rule.profileInstalled	Un profil de configuration est installé ; il peut modifier les réglages du système
 rule.quarantine	Le marqueur de quarantaine a été supprimé, Gatekeeper est contourné
 rule.rapidGrants	La même app a obtenu accessibilité et enregistrement de l’écran en 2 minutes
 rule.shellSuspicious	Un fichier de démarrage du shell télécharge ou décode du code et l’exécute
@@ -197,7 +201,18 @@ sec.unknown	Vérification impossible
 sec.updates	Réponses de sécurité et fichiers de données automatiques
 sec.xprotect	Définitions de logiciels malveillants XProtect
 sec.xprotectAge	Version %1$@ · mise à jour %2$@
+settings.addFolder	Ajouter un dossier…
 settings.appearance	Apparence
+settings.downloads	Dossiers de téléchargement
+settings.downloadsDesc	permwatch surveille ces dossiers (y compris ceux réglés dans vos navigateurs) et trouve aussi via Spotlight les apps téléchargées n’importe où sur votre Mac.
+settings.root	Mode administrateur
+settings.rootActive	Actif : tous les processus sont visibles
+settings.rootDesc	Lance en root un petit assistant en lecture seule pour que permwatch voie les connexions réseau et arguments de tous les processus, tous les éléments d’ouverture, la crontab root et les profils de configuration. macOS demande votre mot de passe. L’assistant ne reçoit aucune commande et s’arrête quand permwatch quitte.
+settings.rootDisable	Désactiver
+settings.rootEnable	Activer…
+settings.rootFailed	Démarrage impossible : %@
+settings.rootInactive	Désactivé
+settings.rootPrompt	permwatch souhaite lancer son assistant administrateur en lecture seule.
 sig.adhoc	signée ad hoc
 sig.apple	Apple
 sig.developer	développeur · %@
