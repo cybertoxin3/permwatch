@@ -571,3 +571,5 @@ upd.open	Laden
 upd.setting	Nach neuen Versionen suchen
 upd.settingDesc	Einmal täglich fragt permwatch GitHub nach der neuesten Versionsnummer. Über dich oder deinen Mac wird nichts gesendet. Diese Version: %@.
 settings.rootApprove	Noch ein Schritt: In Systemeinstellungen › Allgemein › Anmeldeobjekte & Erweiterungen „permwatch“ unter „Im Hintergrund erlauben“ einschalten. Danach fragt macOS nicht mehr nach dem Passwort.
+net.first.title	%@ hat sich mit einem neuen Server verbunden
+net.first.detail	%@ · Dieses unsignierte Programm hat noch nie mit diesem Server gesprochen.

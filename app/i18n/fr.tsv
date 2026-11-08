@@ -571,3 +571,5 @@ upd.open	Télécharger
 upd.setting	Rechercher les nouvelles versions
 upd.settingDesc	Une fois par jour, permwatch demande à GitHub le dernier numéro de version. Rien sur vous ou votre Mac n’est envoyé. Cette version : %@.
 settings.rootApprove	Dernière étape : dans Réglages Système › Général › Ouverture et extensions, activez « permwatch » sous « Autoriser en arrière-plan ». macOS ne demandera plus votre mot de passe.
+net.first.title	%@ s’est connecté à un nouveau serveur
+net.first.detail	%@ · Ce programme non signé n’avait jamais contacté ce serveur.

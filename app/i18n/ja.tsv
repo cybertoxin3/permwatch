@@ -571,3 +571,5 @@ upd.open	ダウンロード
 upd.setting	新しいバージョンを確認
 upd.settingDesc	permwatch は 1 日 1 回、GitHub に最新のバージョン番号を問い合わせます。あなたや Mac に関する情報は送信されません。このバージョン: %@。
 settings.rootApprove	あと 1 手順: システム設定 › 一般 › ログイン項目と機能拡張で、「バックグラウンドでの実行を許可」の「permwatch」をオンにしてください。以後 macOS はパスワードを求めません。
+net.first.title	%@ が新しいサーバに接続しました
+net.first.detail	%@ · この未署名のプログラムは、このサーバと通信したことがありません。

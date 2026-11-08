@@ -571,3 +571,5 @@ upd.open	İndir
 upd.setting	Yeni sürümleri denetle
 upd.settingDesc	permwatch günde bir kez GitHub'a en son sürüm numarasını sorar. Seninle veya Mac'inle ilgili hiçbir şey gönderilmez. Bu sürüm: %@.
 settings.rootApprove	Son bir adım: Sistem Ayarları › Genel › Giriş Öğeleri ve Uzantılar'da "Arka Planda İzin Ver" altındaki "permwatch"ı aç. Bundan sonra macOS şifreni bir daha sormaz.
+net.first.title	%@ yeni bir sunucuya bağlandı
+net.first.detail	%@ · Bu imzasız program bu sunucuyla daha önce hiç konuşmamıştı.

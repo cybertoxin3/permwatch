@@ -571,3 +571,5 @@ upd.open	下载
 upd.setting	检查新版本
 upd.settingDesc	permwatch 每天向 GitHub 查询一次最新版本号。不会发送任何关于你或你的 Mac 的信息。当前版本:%@。
 settings.rootApprove	还差一步:在系统设置 › 通用 › 登录项与扩展中,打开“允许在后台”下的“permwatch”。之后 macOS 不会再要求输入密码。
+net.first.title	%@ 连接到了一个新服务器
+net.first.detail	%@ · 这个未签名的程序以前从未与该服务器通信。

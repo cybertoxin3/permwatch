@@ -551,8 +551,36 @@ final class NetworkMonitor: ObservableObject {
                     if self.first { ThreatCenter.shared.markSeen([t.id]) } else { ThreatCenter.shared.report(t) }
                 }
                 self.first = false
+                self.noteFirstSeen(r)
             }
         }
+    }
+
+    // MARK: İlk kez görülen bağlantılar (imzasız programlar)
+
+    private var seenConnections = Set(UserDefaults.standard.stringArray(forKey: "seenConnections") ?? [])
+    private var seenBaseline = UserDefaults.standard.bool(forKey: "seenConnectionsBaseline")
+
+    /// İmzasız bir program daha önce hiç konuşmadığı bir sunucuya bağlanırsa bildirir. İlk çalıştırmada
+    /// mevcut bağlantılar sessizce "bilinen" sayılır.
+    private func noteFirstSeen(_ rows: [ConnRow]) {
+        var added = false
+        for c in rows where (c.signature == "unsigned" || c.signature == "adhoc") && PathUtil.homebrewFormula(c.path) == nil {
+            guard let remote = c.remote else { continue }
+            let host = remote.components(separatedBy: ":").dropLast().joined(separator: ":").trimmingCharacters(in: CharacterSet(charactersIn: "[]"))
+            if host.isEmpty || Conversation.isLocal(host) { continue }
+            let key = (c.path ?? c.name) + "|" + host
+            guard seenConnections.insert(key).inserted else { continue }
+            added = true
+            if seenBaseline {
+                ThreatCenter.shared.report(Threat(id: "first.\(key)", risk: .caution, title: L("net.first.title", c.name),
+                                                  detail: L("net.first.detail", host),
+                                                  iconKey: c.path.map { PathUtil.appBundle($0) ?? $0 }, section: .network,
+                                                  focus: .connection(c.id)))
+            }
+        }
+        if added { UserDefaults.standard.set(Array(seenConnections.suffix(5000)), forKey: "seenConnections") }
+        if !seenBaseline { seenBaseline = true; UserDefaults.standard.set(true, forKey: "seenConnectionsBaseline") }
     }
 
     /// lsof -F: yönetici yetkisi olmadan yalnızca kendi kullanıcının süreçleri görünür.
