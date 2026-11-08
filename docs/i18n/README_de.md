@@ -12,7 +12,7 @@ Kamera, Mikrofon, Bildschirmaufnahme, Anmeldeobjekte.<br>
 permwatch protokolliert jede Änderung an Berechtigungen und warnt dich sofort, wenn etwas verdächtig ist.
 
 [![build](https://github.com/cybertoxin3/permwatch/actions/workflows/build.yml/badge.svg)](https://github.com/cybertoxin3/permwatch/actions/workflows/build.yml)
-![macOS](https://img.shields.io/badge/macOS-13%2B-black?logo=apple)
+![macOS](https://img.shields.io/badge/macOS-14%2B-black?logo=apple)
 ![Status](https://img.shields.io/badge/Status-in%20Entwicklung-orange)
 
 </div>
@@ -56,35 +56,40 @@ permwatch verbindet die Punkte und zeigt dir eine einzige, klare Warnung.
 
 ## Was es kann
 
-- 🕒 **Zeitleiste:** Jede Berechtigungsänderung und jedes neue Startobjekt, mit Datum und verantwortlichem Prozess
-- 🚨 **Intelligente Warnungen:** Unsignierte Apps, nächtliche Aktivität, Versuche, Gatekeeper zu umgehen
-- 🔍 **App-Ansicht:** Alle Berechtigungen einer App auf einer Karte
-- 🧬 **Signaturprüfung:** Apple, ein bekannter Entwickler oder eine unbekannte Quelle?
-- 📍 **In der Menüleiste:** Bleibt im Hintergrund und meldet sich, wenn es darauf ankommt
+- 🛡 **Übersicht und Prüfung mit einem Klick:** klares Urteil beim Start. „Mac prüfen“ startet den Malware-Scan und prüft Browser-Hijacking, Abfangen von Verkehr (Root-Zertifikate, Profile, Proxy, DNS, VPN), VPN-Lecks, Fernzugriff und spywareartige Rechte-Kombinationen. Jeder Fund hat einen Knopf zum Beheben.
+- 🐞 **Malware-Scan:** Apps, Autostart, laufende Programme und Downloads werden mit **Apples eigenen XProtect-Signaturen** über die Open-Source-Engine YARA geprüft. Ein Schnellscan dauert etwa 10 Sekunden; neue Downloads werden automatisch gescannt.
+- 🔐 **Berechtigungen:** Verlauf jeder Änderung, übrig gebliebene Rechte gelöschter Apps, Widerrufen mit einem Klick, Apps deinstallieren.
+- 🌐 **Netzwerk:** welche App wohin verbindet, Paketmitschnitt mit Prozessnamen und verständlichen Erklärungen, Server mit der integrierten macOS-Firewall blockieren.
+- ⬇️ **Downloads, 🎙 Mikrofon und Kamera, ⌨️ Terminal** mit fertigen Sicherheitsbefehlen.
 
 <p align="center">
   <img src="../images/apps_de.png" alt="permwatch App-Ansicht" width="900">
 </p>
 
+## Was es nicht ist
+
+permwatch ist **kein vollständiger Virenscanner.** Es findet Malware, die Apples Signaturen kennen, blockiert aber keine Programme in Echtzeit. Die Regeln sind Heuristiken: Fehlalarme und übersehene Funde sind möglich.
+
 ## Deine Privatsphäre bleibt bei dir
 
-permwatch **sendet keinerlei Daten.** Keine Analysen, kein Konto, keine Cloud.
-Alle Aufzeichnungen bleiben auf deinem Mac. Von einem Datenschutz-Tool würdest du nichts anderes erwarten.
+permwatch **sendet nichts über dich.** Keine Analyse, kein Konto, keine Cloud. Details: **[PRIVACY.md](../../PRIVACY.md)**
 
 ## So funktioniert es
 
-permwatch nutzt **Endpoint Security**, Apples offizielle Schnittstelle für Sicherheitssoftware.
-Der Kern ist in C geschrieben. Er **beobachtet** nur und greift nie in dein System ein.
+- Liest die macOS-Berechtigungsdatenbank und Anmeldeobjekte (mit Festplattenvollzugriff) und überwacht Änderungen.
+- Der optionale **Administratormodus** wird nach einer einmaligen Bestätigung als Systemdienst (SMAppService) installiert; macOS prüft die Signatur.
+- Der Paketmitschnitt nutzt libpcap und Apples PKTAP (Prozess pro Paket).
+- Ein Endpoint-Security-Kern (C) für Echtzeitereignisse ist fertig und wartet auf Apples Freigabe.
+
+## Fremder Code
+
+- [YARA](https://github.com/VirusTotal/yara) v4.5.8 (BSD-3-Clause)
+- [SwiftTerm](https://github.com/migueldeicaza/SwiftTerm) v1.20.0 (MIT)
 
 ## Status
 
-permwatch befindet sich in aktiver Entwicklung.
-
-- ✅ Kern, der Ereignisse erfasst (Kommandozeile)
-- ⏳ Endpoint-Security-Berechtigung von Apple: beantragt, in Prüfung
-- 🛠 macOS-App und Oberfläche: in Gestaltung
-
-> Die Bilder oben sind Designvorschauen. „Konvertix“ im Szenario ist eine erfundene App.
+- ✅ macOS-App in 13 Sprachen, von Apple notarisiert.
+- ⏳ Apple-Freigabe für Endpoint Security: in Prüfung.
 
 Entwickler und möchtest den Kern ausprobieren? **[Entwicklerhandbuch (Englisch) →](../GELISTIRME_en.md)**
 

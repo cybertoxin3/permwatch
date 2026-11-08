@@ -57,17 +57,21 @@ permwatch connects the dots and gives you one clear alert.
 ## What it does
 
 - 🐞 **Malware scan:** Checks your apps, login items, running programs and downloads against **Apple’s own XProtect malware signatures** (the ones macOS keeps up to date), using the open-source YARA engine. A quick scan takes about 10 seconds. New downloads are scanned automatically, and anything found can be moved to the Trash together with the login items that start it.
-- 🛡 **Overview and one-click check:** Opens with a clear verdict. "Check My Mac" runs the malware scan and checks for browser hijacking (extensions that can read every site, forced browser policies, changed search engine or start page), traffic interception (trusted root certificates, configuration profiles, proxies, unknown DNS, VPN configurations), remote access (Screen Sharing, SSH, TeamViewer/AnyDesk/ToDesk-style tools) and spyware-like permission combinations. Every finding has a fix button.
+- 🛡 **Overview and one-click check:** Opens with a clear verdict. "Check My Mac" runs the malware scan and checks for browser hijacking (extensions that can read every site, forced browser policies, changed search engine or start page), traffic interception (trusted root certificates, configuration profiles, proxies, unknown DNS, VPN configurations), remote access (Screen Sharing, SSH, TeamViewer/AnyDesk/ToDesk-style tools), VPN and DNS leaks, Safari extensions and spyware-like permission combinations. Every finding has a fix button.
 - 💡 **Recommendations:** One screen that explains every finding in plain language and offers a one-click fix. It finds permissions left behind by deleted apps and permissions in apps you haven't opened for months.
 - 🕒 **Timeline:** Every permission change and every new startup item, with its date and the process responsible
 - 🚨 **Alerts:** Unsigned startup programs, suspicious permission patterns, Gatekeeper bypasses, and a small pop-up at the top of the screen when something new appears
 - 🔍 **Apps:** All the permissions an app holds, on a single card. Revoke a permission or move the app to the Trash.
 - 🧠 **Running apps:** A task manager that flags programs running from odd places, pretending to be system processes, or whose file was deleted
 - 🌐 **Network:** Which app is connected where, with warnings for unsigned programs
-- 📦 **Packet capture:** Like Wireshark, but every packet shows the app that sent it and a plain-language explanation. It spots trackers, unencrypted connections and passwords sent in clear text. Captures are saved as .pcap files you can open in Wireshark.
+- 📦 **Packet capture:** Like Wireshark, but every packet shows the app that sent it and a plain-language explanation. It spots trackers, unencrypted connections and passwords sent in clear text. Captures are saved as .pcap files you can open in Wireshark. Any server can be blocked with one click using the built-in macOS firewall.
 - ⬇️ **Downloads:** Checks downloaded apps and installers anywhere on your Mac, including USB disks, with Gatekeeper
 - 🎙 **Microphone and camera:** Who is using them right now, and a history
 - ⌨️ **Terminal:** A real terminal inside the app (tabs, colours, full-screen programs) with a menu of ready-made security commands
+
+<p align="center">
+  <img src="docs/images/scan_en.png" alt="permwatch malware scan" width="900">
+</p>
 
 <p align="center">
   <img src="docs/images/apps_en.png" alt="permwatch app view" width="900">
@@ -86,7 +90,7 @@ permwatch **sends no data anywhere.** No analytics, no account, no cloud. Detail
 ## How it works
 
 - Reads macOS's permission database and startup items (with Full Disk Access) and watches them for changes
-- Optional **administrator mode** runs a small read-only helper as root. Before it starts, the helper is copied to `/Library/PrivilegedHelperTools` and its code signature is verified against the developer's Team ID.
+- Optional **administrator mode** installs a small helper as a system service (SMAppService) after a one-time approval in System Settings; macOS verifies its signature. It only works while permwatch is open and takes no commands; the only input it reads is a list of IP addresses to block, which it validates.
 - Packet capture uses libpcap. With administrator mode it uses Apple's PKTAP, which attaches the sending process to each packet.
 - An Endpoint Security engine (C) for real-time events is ready and waiting for Apple's entitlement.
 
@@ -99,7 +103,7 @@ permwatch **sends no data anywhere.** No analytics, no account, no cloud. Detail
 
 - ✅ macOS app: permissions, startup items, processes, network, packet capture, downloads, recommendations. Available in 13 languages.
 - ⏳ Apple Endpoint Security entitlement: requested, under review
-- ⏳ Notarized release: in preparation
+- ✅ Notarized by Apple
 
 Developer and want to try the core? **[Developer guide →](docs/GELISTIRME_en.md)**
 

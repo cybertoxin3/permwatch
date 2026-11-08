@@ -12,7 +12,7 @@
 permwatch는 모든 권한 변경을 기록하고, 수상한 일이 생기면 바로 알려 줍니다.
 
 [![build](https://github.com/cybertoxin3/permwatch/actions/workflows/build.yml/badge.svg)](https://github.com/cybertoxin3/permwatch/actions/workflows/build.yml)
-![macOS](https://img.shields.io/badge/macOS-13%2B-black?logo=apple)
+![macOS](https://img.shields.io/badge/macOS-14%2B-black?logo=apple)
 ![상태](https://img.shields.io/badge/%EC%83%81%ED%83%9C-%EA%B0%9C%EB%B0%9C%20%EC%A4%91-orange)
 
 </div>
@@ -56,35 +56,40 @@ permwatch는 이 점들을 연결해 하나의 명확한 경고로 알려 줍니
 
 ## 기능
 
-- 🕒 **타임라인:** 모든 권한 변경과 새 시동 항목을 날짜, 원인 프로세스와 함께 기록
-- 🚨 **스마트 경고:** 서명 없는 앱, 심야 활동, Gatekeeper 우회 시도
-- 🔍 **앱별 보기:** 앱이 가진 모든 권한을 카드 한 장으로
-- 🧬 **서명 확인:** Apple인가요, 알려진 개발자인가요, 아니면 출처 불명인가요?
-- 📍 **메뉴 막대에서:** 평소에는 조용히, 필요할 때는 확실하게
+- 🛡 **개요와 원클릭 검사:** 실행하면 명확한 판정을 보여 줍니다. '내 Mac 검사'는 악성 코드 검사를 실행하고 브라우저 탈취, 트래픽 가로채기(루트 인증서, 프로파일, 프록시, DNS, VPN), VPN 누출, 원격 접근, 스파이웨어 특유의 권한 조합을 확인합니다. 모든 항목에 수정 버튼이 있습니다.
+- 🐞 **악성 코드 검사:** 오픈 소스 YARA 엔진으로 앱, 로그인 항목, 실행 중인 프로그램, 다운로드를 **Apple의 XProtect 시그니처**와 대조합니다. 빠른 검사는 약 10초가 걸리며 새 다운로드는 자동으로 검사합니다.
+- 🔐 **권한:** 모든 변경 기록, 삭제된 앱에 남은 권한, 원클릭 취소, 앱 제거.
+- 🌐 **네트워크:** 어떤 앱이 어디에 연결하는지, 프로세스 이름과 쉬운 설명이 붙은 패킷 캡처, macOS 내장 방화벽으로 서버 차단.
+- ⬇️ **다운로드, 🎙 마이크와 카메라, ⌨️ 터미널**(보안 명령 포함).
 
 <p align="center">
   <img src="../images/apps_ko.png" alt="permwatch 앱 보기" width="900">
 </p>
 
-## 개인정보는 당신 곁에
+## 이것이 아닌 것
 
-permwatch는 **어떤 데이터도 외부로 보내지 않습니다.** 분석도, 계정도, 클라우드도 없습니다.
-모든 기록은 당신의 Mac에만 남습니다. 개인정보 보호 도구라면 당연한 일이죠.
+permwatch는 **완전한 백신이 아닙니다.** Apple 시그니처가 아는 악성 코드는 찾지만 프로그램을 실시간으로 차단하지는 않습니다. 규칙은 휴리스틱이라 오탐과 미탐이 있을 수 있습니다.
+
+## 개인정보는 내 Mac에
+
+permwatch는 **사용자에 관한 어떤 정보도 보내지 않습니다.** 분석, 계정, 클라우드가 없습니다. 자세히: **[PRIVACY.md](../../PRIVACY.md)**
 
 ## 작동 방식
 
-permwatch는 보안 소프트웨어를 위한 Apple의 공식 프레임워크인 **Endpoint Security**를 사용합니다.
-핵심 엔진은 C로 작성되었습니다. 오직 **관찰만** 하며 시스템 동작에는 절대 개입하지 않습니다.
+- macOS 권한 데이터베이스와 로그인 항목을 (전체 디스크 접근 권한으로) 읽고 변경을 감시합니다.
+- 선택 사항인 **관리자 모드**는 한 번 승인하면 시스템 서비스(SMAppService)로 설치되며 서명은 macOS가 확인합니다.
+- 패킷 캡처는 libpcap과 Apple PKTAP(패킷별 프로세스)를 사용합니다.
+- 실시간 이벤트용 Endpoint Security 엔진(C)이 준비되어 Apple의 승인을 기다리고 있습니다.
 
-## 현재 상태
+## 서드파티 코드
 
-permwatch는 활발히 개발 중입니다.
+- [YARA](https://github.com/VirusTotal/yara) v4.5.8 (BSD-3-Clause)
+- [SwiftTerm](https://github.com/migueldeicaza/SwiftTerm) v1.20.0 (MIT)
 
-- ✅ 이벤트를 수집하는 핵심 엔진(명령줄)
-- ⏳ Apple Endpoint Security 권한: 신청 완료, 심사 중
-- 🛠 macOS 앱과 인터페이스: 디자인 단계
+## 상태
 
-> 위 이미지는 디자인 미리보기입니다. 시나리오의 "Konvertix"는 가상의 앱입니다.
+- ✅ 13개 언어를 지원하는 macOS 앱, Apple 공증 완료.
+- ⏳ Apple Endpoint Security 권한: 검토 중.
 
 개발자이고 핵심 엔진을 써 보고 싶다면: **[개발자 가이드(영어) →](../GELISTIRME_en.md)**
 

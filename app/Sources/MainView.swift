@@ -100,7 +100,7 @@ struct MainView: View {
             if Snapshot.section == "packets" { section = .packets }
             if Snapshot.section == "advice" { section = .advice }
             if Snapshot.section == "terminal" { section = .terminal }
-            if Snapshot.section == "scan" { section = .scan }
+            if Snapshot.section == "scan" || Snapshot.section == "scanrun" { section = .scan }
             Snapshot.scheduleIfRequested(store: store, selection: selection)
         }
         .onChange(of: store.items.count) {

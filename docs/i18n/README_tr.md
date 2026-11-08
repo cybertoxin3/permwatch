@@ -57,17 +57,21 @@ permwatch zinciri birleştirir ve sana tek bir net uyarı gösterir.
 ## Neler yapar
 
 - 🐞 **Zararlı taraması:** Uygulamalarını, başlangıç öğelerini, çalışan programları ve indirilenleri **Apple'ın kendi XProtect zararlı imzalarıyla** (macOS'un güncel tuttuğu imzalar) açık kaynak YARA motoru kullanarak tarar. Hızlı tarama yaklaşık 10 saniye sürer. Yeni indirilenler otomatik taranır; bulunan zararlı, onu başlatan başlangıç öğeleriyle birlikte Çöp Sepeti'ne taşınabilir.
-- 🛡 **Genel bakış ve tek tıkla kontrol:** Açılışta net bir hüküm verir. "Mac'imi Kontrol Et" zararlı taramasını yapar ve şunları denetler: tarayıcı ele geçirme (her siteyi okuyabilen uzantılar, zorla uygulanan tarayıcı politikaları, değiştirilmiş arama motoru veya başlangıç sayfası), araya girme (güvenilen kök sertifikalar, yapılandırma profilleri, proxy, bilinmeyen DNS, VPN yapılandırmaları), uzaktan erişim (Ekran Paylaşımı, SSH, TeamViewer/AnyDesk/ToDesk benzeri araçlar) ve casus yazılımı andıran izin kombinasyonları. Her bulgunun bir düzeltme düğmesi vardır.
+- 🛡 **Genel bakış ve tek tıkla kontrol:** Açılışta net bir hüküm verir. "Mac'imi Kontrol Et" zararlı taramasını yapar ve şunları denetler: tarayıcı ele geçirme (her siteyi okuyabilen uzantılar, zorla uygulanan tarayıcı politikaları, değiştirilmiş arama motoru veya başlangıç sayfası), araya girme (güvenilen kök sertifikalar, yapılandırma profilleri, proxy, bilinmeyen DNS, VPN yapılandırmaları), uzaktan erişim (Ekran Paylaşımı, SSH, TeamViewer/AnyDesk/ToDesk benzeri araçlar), VPN ve DNS sızıntıları, Safari uzantıları ve casus yazılımı andıran izin kombinasyonları. Her bulgunun bir düzeltme düğmesi vardır.
 - 💡 **Öneriler:** Bütün bulguları sade dille açıklayan ve tek tıkla düzeltme sunan tek ekran. Silinmiş uygulamalardan kalan izinleri ve aylardır açmadığın uygulamalardaki izinleri bulur.
 - 🕒 **Zaman çizelgesi:** Her izin değişikliği ve her yeni başlangıç öğesi; tarihi ve sorumlu süreciyle
 - 🚨 **Uyarılar:** İmzasız başlangıç programları, şüpheli izin örüntüleri ve Gatekeeper atlatma girişimleri. Yeni bir şey olduğunda ekranın üstünde küçük bir pencere açılır.
 - 🔍 **Uygulamalar:** Bir uygulamanın sahip olduğu bütün izinler tek kartta. İzni kaldırabilir veya uygulamayı Çöp Sepeti'ne taşıyabilirsin.
 - 🧠 **Çalışan uygulamalar:** Garip yerlerden çalışan, sistem süreci gibi görünen veya dosyası silinmiş programları işaretleyen görev yöneticisi
 - 🌐 **Ağ:** Hangi uygulama nereye bağlı; imzasız programlar için uyarı
-- 📦 **Paket yakalama:** Wireshark gibi, ama her pakette onu gönderen uygulama ve sade dilde bir açıklama var. İzleyicileri, şifresiz bağlantıları ve açık metin gönderilen parolaları yakalar. Kayıtlar Wireshark'ta açılabilen .pcap dosyaları olarak saklanır.
+- 📦 **Paket yakalama:** Wireshark gibi, ama her pakette onu gönderen uygulama ve sade dilde bir açıklama var. İzleyicileri, şifresiz bağlantıları ve açık metin gönderilen parolaları yakalar. Kayıtlar Wireshark'ta açılabilen .pcap dosyaları olarak saklanır. Herhangi bir sunucu, yerleşik macOS güvenlik duvarıyla tek tıkla engellenebilir.
 - ⬇️ **İndirilenler:** Mac'inin her yerindeki (USB diskler dahil) indirilmiş uygulama ve kurulum dosyalarını Gatekeeper ile denetler
 - 🎙 **Mikrofon ve kamera:** Şu an kim kullanıyor, geçmişiyle birlikte
 - ⌨️ **Terminal:** Uygulamanın içinde gerçek bir terminal (sekmeler, renkler, tam ekran programlar) ve hazır güvenlik komutları menüsü
+
+<p align="center">
+  <img src="../images/scan_tr.png" alt="permwatch zararlı taraması" width="900">
+</p>
 
 <p align="center">
   <img src="../images/apps.png" alt="permwatch uygulama görünümü" width="900">
@@ -86,7 +90,7 @@ permwatch **hiçbir yere veri göndermez.** Analiz yok, hesap yok, bulut yok. Ay
 ## Nasıl çalışır
 
 - macOS'un izin veritabanını ve başlangıç öğelerini okur (Tam Disk Erişimi ile) ve değişiklikleri izler
-- İsteğe bağlı **yönetici modu**, küçük ve salt-okunur bir yardımcıyı root olarak çalıştırır. Yardımcı başlamadan önce `/Library/PrivilegedHelperTools`'a kopyalanır ve kod imzası geliştiricinin Team ID'sine göre doğrulanır.
+- İsteğe bağlı **yönetici modu**, Sistem Ayarları'nda bir kez onaylandıktan sonra küçük bir yardımcıyı sistem servisi (SMAppService) olarak kurar; imzasını macOS doğrular. Yalnızca permwatch açıkken çalışır ve komut almaz; okuduğu tek girdi, doğruladığı engellenecek IP adresleri listesidir.
 - Paket yakalama libpcap kullanır. Yönetici modunda Apple'ın PKTAP'ını kullanır; bu, her pakete onu gönderen süreci ekler.
 - Gerçek zamanlı olaylar için Endpoint Security motoru (C) hazır ve Apple'ın iznini bekliyor.
 
@@ -99,7 +103,7 @@ permwatch **hiçbir yere veri göndermez.** Analiz yok, hesap yok, bulut yok. Ay
 
 - ✅ macOS uygulaması: izinler, başlangıç öğeleri, süreçler, ağ, paket yakalama, indirilenler, öneriler. 13 dilde kullanılabilir.
 - ⏳ Apple Endpoint Security izni: başvuruldu, inceleniyor
-- ⏳ Notarize edilmiş sürüm: hazırlanıyor
+- ✅ Apple tarafından notarize edildi
 
 Geliştiriciysen ve çekirdeği denemek istiyorsan: **[Geliştirici rehberi →](../GELISTIRME.md)**
 

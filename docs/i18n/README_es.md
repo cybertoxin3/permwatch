@@ -12,7 +12,7 @@ Cámara, micrófono, grabación de pantalla, ítems de inicio.<br>
 permwatch registra cada cambio de permisos y te avisa en cuanto algo no cuadra.
 
 [![build](https://github.com/cybertoxin3/permwatch/actions/workflows/build.yml/badge.svg)](https://github.com/cybertoxin3/permwatch/actions/workflows/build.yml)
-![macOS](https://img.shields.io/badge/macOS-13%2B-black?logo=apple)
+![macOS](https://img.shields.io/badge/macOS-14%2B-black?logo=apple)
 ![estado](https://img.shields.io/badge/estado-en%20desarrollo-orange)
 
 </div>
@@ -56,35 +56,40 @@ permwatch une los puntos y te muestra una sola alerta clara.
 
 ## Qué hace
 
-- 🕒 **Cronología:** cada cambio de permisos y cada nuevo ítem de inicio, con su fecha y el proceso responsable
-- 🚨 **Alertas inteligentes:** apps sin firma, actividad de madrugada, intentos de esquivar Gatekeeper
-- 🔍 **Vista por app:** todos los permisos de una app en una sola tarjeta
-- 🧬 **Comprobación de firma:** ¿Apple, un desarrollador conocido o una fuente desconocida?
-- 📍 **En la barra de menús:** no molesta, pero habla cuando importa
+- 🛡 **Resumen y comprobación con un clic:** un veredicto claro al abrir. «Comprobar mi Mac» lanza el análisis de malware y revisa el secuestro del navegador, la intercepción del tráfico (certificados raíz, perfiles, proxy, DNS, VPN), fugas de VPN, acceso remoto y combinaciones de permisos típicas de spyware. Cada hallazgo tiene un botón para solucionarlo.
+- 🐞 **Análisis de malware:** apps, ítems de inicio, programas en ejecución y descargas se revisan con **las propias firmas XProtect de Apple** mediante el motor de código abierto YARA. Un análisis rápido tarda unos 10 segundos; las descargas nuevas se analizan solas.
+- 🔐 **Permisos:** historial de cada cambio, permisos que quedaron de apps borradas, revocar con un clic, desinstalar apps.
+- 🌐 **Red:** qué app se conecta a dónde, captura de paquetes con nombres de proceso y explicaciones claras, bloqueo de servidores con el cortafuegos integrado de macOS.
+- ⬇️ **Descargas, 🎙 micrófono y cámara, ⌨️ terminal** con comandos de seguridad listos para usar.
 
 <p align="center">
   <img src="../images/apps_es.png" alt="Vista de apps de permwatch" width="900">
 </p>
 
+## Qué no es
+
+permwatch **no es un antivirus completo.** Detecta el malware que conocen las firmas de Apple, pero no bloquea programas en tiempo real. Las reglas son heurísticas: puede haber falsas alarmas y omisiones.
+
 ## Tu privacidad se queda contigo
 
-permwatch **no envía ningún dato.** Sin analíticas, sin cuentas, sin nube.
-Todo se queda en tu Mac. Es lo mínimo que esperarías de una herramienta de privacidad.
+permwatch **no envía nada sobre ti.** Sin análisis, sin cuenta, sin nube. Detalles: **[PRIVACY.md](../../PRIVACY.md)**
 
 ## Cómo funciona
 
-permwatch usa **Endpoint Security**, el framework oficial de Apple para software de seguridad.
-El núcleo está escrito en C. Solo **observa** y nunca interfiere con el funcionamiento del sistema.
+- Lee la base de datos de permisos de macOS y los ítems de inicio (con acceso total al disco) y vigila los cambios.
+- El **modo administrador** opcional se instala como servicio del sistema (SMAppService) tras una sola aprobación; macOS verifica la firma.
+- La captura de paquetes usa libpcap y PKTAP de Apple (proceso por paquete).
+- Un motor Endpoint Security (C) para eventos en tiempo real está listo y espera la autorización de Apple.
+
+## Código de terceros
+
+- [YARA](https://github.com/VirusTotal/yara) v4.5.8 (BSD-3-Clause)
+- [SwiftTerm](https://github.com/migueldeicaza/SwiftTerm) v1.20.0 (MIT)
 
 ## Estado
 
-permwatch está en desarrollo activo.
-
-- ✅ Motor que captura eventos (línea de comandos)
-- ⏳ Permiso de Endpoint Security de Apple: solicitado, en revisión
-- 🛠 App para macOS e interfaz: en diseño
-
-> Las imágenes de arriba son vistas previas del diseño. «Konvertix» es una app ficticia.
+- ✅ App para macOS en 13 idiomas, notarizada por Apple.
+- ⏳ Autorización de Endpoint Security de Apple: en revisión.
 
 ¿Eres desarrollador y quieres probar el núcleo? **[Guía para desarrolladores (en inglés) →](../GELISTIRME_en.md)**
 

@@ -12,7 +12,7 @@ Câmera, microfone, gravação de tela, itens de início.<br>
 O permwatch registra cada mudança de permissão e avisa você assim que algo parecer estranho.
 
 [![build](https://github.com/cybertoxin3/permwatch/actions/workflows/build.yml/badge.svg)](https://github.com/cybertoxin3/permwatch/actions/workflows/build.yml)
-![macOS](https://img.shields.io/badge/macOS-13%2B-black?logo=apple)
+![macOS](https://img.shields.io/badge/macOS-14%2B-black?logo=apple)
 ![status](https://img.shields.io/badge/status-em%20desenvolvimento-orange)
 
 </div>
@@ -56,35 +56,40 @@ O permwatch liga os pontos e mostra um único alerta claro.
 
 ## O que ele faz
 
-- 🕒 **Linha do tempo:** cada mudança de permissão e cada novo item de início, com data e o processo responsável
-- 🚨 **Alertas inteligentes:** apps sem assinatura, atividade de madrugada, tentativas de contornar o Gatekeeper
-- 🔍 **Visão por app:** todas as permissões de um app em um único cartão
-- 🧬 **Verificação de assinatura:** Apple, um desenvolvedor conhecido ou uma fonte desconhecida?
-- 📍 **Na barra de menus:** não atrapalha, mas avisa quando importa
+- 🛡 **Visão geral e verificação com um clique:** um veredito claro ao abrir. “Verificar meu Mac” faz a verificação de malware e checa sequestro do navegador, interceptação de tráfego (certificados raiz, perfis, proxy, DNS, VPN), vazamentos de VPN, acesso remoto e combinações de permissões típicas de spyware. Cada achado tem um botão de correção.
+- 🐞 **Verificação de malware:** apps, itens de início, programas em execução e downloads são verificados com **as próprias assinaturas XProtect da Apple** pelo mecanismo de código aberto YARA. Uma verificação rápida leva cerca de 10 segundos; novos downloads são verificados automaticamente.
+- 🔐 **Permissões:** histórico de cada mudança, permissões que sobraram de apps apagados, revogar com um clique, desinstalar apps.
+- 🌐 **Rede:** qual app se conecta aonde, captura de pacotes com nomes de processo e explicações claras, bloqueio de servidores pelo firewall integrado do macOS.
+- ⬇️ **Downloads, 🎙 microfone e câmera, ⌨️ terminal** com comandos de segurança prontos.
 
 <p align="center">
   <img src="../images/apps_pt.png" alt="Visão de apps do permwatch" width="900">
 </p>
 
+## O que ele não é
+
+O permwatch **não é um antivírus completo.** Ele detecta o malware conhecido pelas assinaturas da Apple, mas não bloqueia programas em tempo real. As regras são heurísticas: alarmes falsos e falhas são possíveis.
+
 ## Sua privacidade fica com você
 
-O permwatch **não envia nenhum dado.** Sem análises, sem conta, sem nuvem.
-Todos os registros ficam no seu Mac. É o mínimo que se espera de uma ferramenta de privacidade.
+O permwatch **não envia nada sobre você.** Sem análises, sem conta, sem nuvem. Detalhes: **[PRIVACY.md](../../PRIVACY.md)**
 
 ## Como funciona
 
-O permwatch usa o **Endpoint Security**, o framework oficial da Apple para software de segurança.
-O núcleo é escrito em C. Ele apenas **observa** e nunca interfere no funcionamento do sistema.
+- Lê o banco de permissões do macOS e os itens de início (com Acesso Total ao Disco) e acompanha as mudanças.
+- O **modo administrador** opcional é instalado como serviço do sistema (SMAppService) após uma única aprovação; o macOS verifica a assinatura.
+- A captura de pacotes usa libpcap e o PKTAP da Apple (processo por pacote).
+- Um mecanismo Endpoint Security (C) para eventos em tempo real está pronto e aguarda a autorização da Apple.
+
+## Código de terceiros
+
+- [YARA](https://github.com/VirusTotal/yara) v4.5.8 (BSD-3-Clause)
+- [SwiftTerm](https://github.com/migueldeicaza/SwiftTerm) v1.20.0 (MIT)
 
 ## Status
 
-O permwatch está em desenvolvimento ativo.
-
-- ✅ Motor que captura eventos (linha de comando)
-- ⏳ Permissão de Endpoint Security da Apple: solicitada, em análise
-- 🛠 App para macOS e interface: em design
-
-> As imagens acima são prévias de design. "Konvertix" no cenário é um app fictício.
+- ✅ App para macOS em 13 idiomas, notarizado pela Apple.
+- ⏳ Autorização Endpoint Security da Apple: em análise.
 
 É desenvolvedor e quer testar o núcleo? **[Guia do desenvolvedor (em inglês) →](../GELISTIRME_en.md)**
 

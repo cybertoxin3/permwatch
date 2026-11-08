@@ -29,6 +29,7 @@ struct ScanView: View {
             .frame(maxWidth: .infinity)
         }
         .navigationTitle(L("nav.scan"))
+        .onAppear { if Snapshot.section == "scanrun", !scanner.running { scanner.start(.quick) } }
         .confirmationDialog(confirm.map { L("scan.removeTitle", $0.name) } ?? "",
                             isPresented: Binding(get: { confirm != nil }, set: { if !$0 { confirm = nil } })) {
             Button(L("scan.remove"), role: .destructive) { if let d = confirm { scanner.remove(d) }; confirm = nil }

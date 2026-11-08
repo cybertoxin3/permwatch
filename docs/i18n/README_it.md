@@ -12,7 +12,7 @@ Fotocamera, microfono, registrazione schermo, elementi di login.<br>
 permwatch registra ogni modifica alle autorizzazioni e ti avvisa appena qualcosa non torna.
 
 [![build](https://github.com/cybertoxin3/permwatch/actions/workflows/build.yml/badge.svg)](https://github.com/cybertoxin3/permwatch/actions/workflows/build.yml)
-![macOS](https://img.shields.io/badge/macOS-13%2B-black?logo=apple)
+![macOS](https://img.shields.io/badge/macOS-14%2B-black?logo=apple)
 ![stato](https://img.shields.io/badge/stato-in%20sviluppo-orange)
 
 </div>
@@ -56,35 +56,40 @@ permwatch unisce i puntini e ti mostra un unico avviso chiaro.
 
 ## Cosa fa
 
-- 🕒 **Cronologia:** ogni modifica alle autorizzazioni e ogni nuovo elemento di avvio, con data e processo responsabile
-- 🚨 **Avvisi intelligenti:** app non firmate, attività notturna, tentativi di aggirare Gatekeeper
-- 🔍 **Vista per app:** tutte le autorizzazioni di un'app in un'unica scheda
-- 🧬 **Controllo della firma:** Apple, uno sviluppatore noto o una fonte sconosciuta?
-- 📍 **Nella barra dei menu:** non disturba, ma parla quando serve
+- 🛡 **Panoramica e controllo con un clic:** un verdetto chiaro all’apertura. «Controlla il Mac» avvia la scansione malware e verifica dirottamento del browser, intercettazione del traffico (certificati radice, profili, proxy, DNS, VPN), perdite della VPN, accesso remoto e combinazioni di permessi tipiche degli spyware. Ogni problema ha un pulsante per risolverlo.
+- 🐞 **Scansione malware:** app, elementi di login, programmi in esecuzione e download vengono controllati con **le firme XProtect di Apple** tramite il motore open source YARA. Una scansione rapida richiede circa 10 secondi; i nuovi download vengono analizzati automaticamente.
+- 🔐 **Permessi:** cronologia di ogni modifica, permessi rimasti di app eliminate, revoca con un clic, disinstallazione.
+- 🌐 **Rete:** quale app si collega dove, cattura pacchetti con nomi dei processi e spiegazioni chiare, blocco dei server con il firewall integrato di macOS.
+- ⬇️ **Download, 🎙 microfono e fotocamera, ⌨️ terminale** con comandi di sicurezza pronti.
 
 <p align="center">
   <img src="../images/apps_it.png" alt="Vista app di permwatch" width="900">
 </p>
 
+## Cosa non è
+
+permwatch **non è un antivirus completo.** Rileva il malware noto alle firme di Apple, ma non blocca i programmi in tempo reale. Le regole sono euristiche: falsi allarmi e mancate rilevazioni sono possibili.
+
 ## La tua privacy resta con te
 
-permwatch **non invia alcun dato.** Niente analisi, niente account, niente cloud.
-Tutti i registri restano sul tuo Mac. È il minimo per uno strumento di privacy.
+permwatch **non invia nulla su di te.** Niente analisi, account o cloud. Dettagli: **[PRIVACY.md](../../PRIVACY.md)**
 
 ## Come funziona
 
-permwatch usa **Endpoint Security**, il framework ufficiale di Apple per i software di sicurezza.
-Il nucleo è scritto in C. Si limita a **osservare** e non interferisce mai con il sistema.
+- Legge il database dei permessi di macOS e gli elementi di login (con accesso completo al disco) e ne osserva i cambiamenti.
+- La **modalità amministratore** opzionale si installa come servizio di sistema (SMAppService) dopo una sola approvazione; macOS verifica la firma.
+- La cattura pacchetti usa libpcap e PKTAP di Apple (processo per pacchetto).
+- Un motore Endpoint Security (C) per eventi in tempo reale è pronto e attende l’autorizzazione di Apple.
+
+## Codice di terze parti
+
+- [YARA](https://github.com/VirusTotal/yara) v4.5.8 (BSD-3-Clause)
+- [SwiftTerm](https://github.com/migueldeicaza/SwiftTerm) v1.20.0 (MIT)
 
 ## Stato
 
-permwatch è in sviluppo attivo.
-
-- ✅ Motore che cattura gli eventi (riga di comando)
-- ⏳ Autorizzazione Endpoint Security di Apple: richiesta, in revisione
-- 🛠 App per macOS e interfaccia: in fase di design
-
-> Le immagini sopra sono anteprime di design. "Konvertix" nello scenario è un'app di fantasia.
+- ✅ App per macOS in 13 lingue, notarizzata da Apple.
+- ⏳ Autorizzazione Endpoint Security di Apple: in revisione.
 
 Sei uno sviluppatore e vuoi provare il motore? **[Guida per sviluppatori (in inglese) →](../GELISTIRME_en.md)**
 
