@@ -15,6 +15,12 @@ permwatch registra cada cambio de permisos y te avisa en cuanto algo no cuadra.
 ![macOS](https://img.shields.io/badge/macOS-14%2B-black?logo=apple)
 ![estado](https://img.shields.io/badge/estado-en%20desarrollo-orange)
 
+
+[![Descargar para macOS](https://img.shields.io/badge/%E2%AC%87%EF%B8%8F_Descargar%20para%20macOS-0A84FF?style=for-the-badge&logo=apple&logoColor=white)](https://github.com/cybertoxin3/permwatch/releases/latest)
+
+<sub>Apple Silicon (M1 o posterior) · macOS 14 o posterior · gratis</sub><br>
+<sub>Abre el zip y arrastra **permwatch** a la carpeta Aplicaciones.</sub>
+
 </div>
 
 ---

@@ -15,6 +15,12 @@ permwatch는 모든 권한 변경을 기록하고, 수상한 일이 생기면 �
 ![macOS](https://img.shields.io/badge/macOS-14%2B-black?logo=apple)
 ![상태](https://img.shields.io/badge/%EC%83%81%ED%83%9C-%EA%B0%9C%EB%B0%9C%20%EC%A4%91-orange)
 
+
+[![macOS용 다운로드](https://img.shields.io/badge/%E2%AC%87%EF%B8%8F_macOS%EC%9A%A9%20%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C-0A84FF?style=for-the-badge&logo=apple&logoColor=white)](https://github.com/cybertoxin3/permwatch/releases/latest)
+
+<sub>Apple Silicon(M1 이상) · macOS 14 이상 · 무료</sub><br>
+<sub>zip을 열고 **permwatch**를 응용 프로그램 폴더로 드래그하세요.</sub>
+
 </div>
 
 ---

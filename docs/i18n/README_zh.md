@@ -15,6 +15,12 @@ permwatch 记录每一次权限变更，一旦发现可疑情况立即提醒你�
 ![macOS](https://img.shields.io/badge/macOS-14%2B-black?logo=apple)
 ![状态](https://img.shields.io/badge/%E7%8A%B6%E6%80%81-%E5%BC%80%E5%8F%91%E4%B8%AD-orange)
 
+
+[![下载 macOS 版](https://img.shields.io/badge/%E2%AC%87%EF%B8%8F_%E4%B8%8B%E8%BD%BD%20macOS%20%E7%89%88-0A84FF?style=for-the-badge&logo=apple&logoColor=white)](https://github.com/cybertoxin3/permwatch/releases/latest)
+
+<sub>Apple Silicon（M1 或更新）· macOS 14 或更新 · 免费</sub><br>
+<sub>打开 zip，将 **permwatch** 拖到“应用程序”文件夹。</sub>
+
 </div>
 
 ---

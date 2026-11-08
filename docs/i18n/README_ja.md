@@ -15,6 +15,12 @@ permwatch はアクセス権の変更をすべて記録し、怪しい動きが�
 ![macOS](https://img.shields.io/badge/macOS-14%2B-black?logo=apple)
 ![ステータス](https://img.shields.io/badge/%E3%82%B9%E3%83%86%E3%83%BC%E3%82%BF%E3%82%B9-%E9%96%8B%E7%99%BA%E4%B8%AD-orange)
 
+
+[![macOS 版をダウンロード](https://img.shields.io/badge/%E2%AC%87%EF%B8%8F_macOS%20%E7%89%88%E3%82%92%E3%83%80%E3%82%A6%E3%83%B3%E3%83%AD%E3%83%BC%E3%83%89-0A84FF?style=for-the-badge&logo=apple&logoColor=white)](https://github.com/cybertoxin3/permwatch/releases/latest)
+
+<sub>Apple Silicon（M1 以降）· macOS 14 以降 · 無料</sub><br>
+<sub>zip を開き、**permwatch** を「アプリケーション」フォルダにドラッグします。</sub>
+
 </div>
 
 ---

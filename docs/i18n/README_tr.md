@@ -15,6 +15,12 @@ Her izin değişikliğinin kaydını tutar, şüpheli olanları anında haber ve
 ![macOS](https://img.shields.io/badge/macOS-14%2B-black?logo=apple)
 ![Durum](https://img.shields.io/badge/durum-geli%C5%9Ftirme%20a%C5%9Famas%C4%B1nda-orange)
 
+
+[![macOS için indir](https://img.shields.io/badge/%E2%AC%87%EF%B8%8F_macOS%20i%C3%A7in%20indir-0A84FF?style=for-the-badge&logo=apple&logoColor=white)](https://github.com/cybertoxin3/permwatch/releases/latest)
+
+<sub>Apple Silicon (M1 ve sonrası) · macOS 14 ve sonrası · ücretsiz</sub><br>
+<sub>Zip'i aç ve **permwatch**'ı Uygulamalar klasörüne sürükle.</sub>
+
 </div>
 
 ---

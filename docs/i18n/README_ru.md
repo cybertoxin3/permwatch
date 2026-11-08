@@ -15,6 +15,12 @@ permwatch ведёт журнал всех изменений разрешени
 ![macOS](https://img.shields.io/badge/macOS-14%2B-black?logo=apple)
 ![Статус](https://img.shields.io/badge/%D1%81%D1%82%D0%B0%D1%82%D1%83%D1%81-%D0%B2%20%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B5-orange)
 
+
+[![Скачать для macOS](https://img.shields.io/badge/%E2%AC%87%EF%B8%8F_%D0%A1%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C%20%D0%B4%D0%BB%D1%8F%20macOS-0A84FF?style=for-the-badge&logo=apple&logoColor=white)](https://github.com/cybertoxin3/permwatch/releases/latest)
+
+<sub>Apple Silicon (M1 и новее) · macOS 14 и новее · бесплатно</sub><br>
+<sub>Откройте zip и перетащите **permwatch** в папку «Программы».</sub>
+
 </div>
 
 ---

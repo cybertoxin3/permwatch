@@ -2,6 +2,12 @@
 
 [Türkçe](README_tr.md) · [English](../../README.md) · [Русский](README_ru.md) · [Deutsch](README_de.md) · [Français](README_fr.md) · [Español](README_es.md) · [Português](README_pt.md) · [Italiano](README_it.md) · [Українська](README_uk.md) · [日本語](README_ja.md) · [简体中文](README_zh.md) · [한국어](README_ko.md) · **العربية**
 
+
+[![تنزيل لنظام macOS](https://img.shields.io/badge/%E2%AC%87%EF%B8%8F_%D8%AA%D9%86%D8%B2%D9%8A%D9%84%20%D9%84%D9%86%D8%B8%D8%A7%D9%85%20macOS-0A84FF?style=for-the-badge&logo=apple&logoColor=white)](https://github.com/cybertoxin3/permwatch/releases/latest)
+
+<sub>Apple Silicon (M1 أو أحدث) · macOS 14 أو أحدث · مجاني</sub><br>
+<sub>افتح ملف zip واسحب **permwatch** إلى مجلد التطبيقات.</sub>
+
 </div>
 
 <div dir="rtl">

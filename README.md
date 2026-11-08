@@ -15,6 +15,12 @@ permwatch keeps a record of every permission change and alerts you the moment so
 ![macOS](https://img.shields.io/badge/macOS-14%2B-black?logo=apple)
 ![Status](https://img.shields.io/badge/status-in%20development-orange)
 
+
+[![Download for macOS](https://img.shields.io/badge/%E2%AC%87%EF%B8%8F_Download%20for%20macOS-0A84FF?style=for-the-badge&logo=apple&logoColor=white)](https://github.com/cybertoxin3/permwatch/releases/latest)
+
+<sub>Apple Silicon (M1 or later) · macOS 14 or later · free</sub><br>
+<sub>Open the zip and drag **permwatch** to your Applications folder.</sub>
+
 </div>
  
 ---
