@@ -13,8 +13,20 @@ OUT=build/permwatch.app
 ARCH=${ARCH:-$(uname -m)}
 mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
 
+# SwiftTerm (vendor/, MIT): terminal bölümü. Ayrı modül olarak derlenir; kaynak değişmedikçe önbellekten.
+ST_SRC=(vendor/SwiftTerm/Sources/**/*.swift)
+ST_KEY=$(cat "${ST_SRC[@]}" | shasum | cut -c1-16)
+ST_DIR=build/.swiftterm/$ARCH-$ST_KEY
+if [[ ! -f "$ST_DIR/libSwiftTerm.a" ]]; then
+    echo "SwiftTerm derleniyor (bir kez, yaklaşık 1 dakika)…"
+    rm -rf build/.swiftterm; mkdir -p "$ST_DIR"
+    swiftc -parse-as-library -O -target "$ARCH-apple-macos14" -module-name SwiftTerm -emit-library -static \
+        -emit-module -emit-module-path "$ST_DIR/SwiftTerm.swiftmodule" "${ST_SRC[@]}" -o "$ST_DIR/libSwiftTerm.a"
+fi
+
 # shared/: paket yakalama motoru (libpcap), hem uygulamaya hem yardımcıya derlenir.
 swiftc -parse-as-library -O -target "$ARCH-apple-macos14" -import-objc-header shared/bridge.h \
+    -I "$ST_DIR" -L "$ST_DIR" -lSwiftTerm \
     Sources/*.swift shared/*.swift -lpcap -o "$APP/Contents/MacOS/permwatch"
 # Yönetici modu yardımcısı (ayrı, küçük, girdisiz bir program)
 swiftc -O -target "$ARCH-apple-macos14" -import-objc-header shared/bridge.h \

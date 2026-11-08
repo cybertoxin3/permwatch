@@ -426,3 +426,24 @@ x.unsigned.advice	إن ثبّتّ هذا البرنامج بنفسك (أداة �
 pkt.waitingRoot	بانتظار إذن المسؤول…
 pkt.noPktap	أسماء العمليات غير متاحة (تعذّر تفعيل PKTAP: %@). ما زالت الحزم تُلتقط.
 pkt.saving	جارٍ حفظ الالتقاط…
+nav.terminal	الطرفية
+term.newTab	علامة تبويب جديدة (⌘T)
+term.commands	الأوامر
+term.commandsHelp	أوامر أمان مفيدة. يُكتب الأمر دون تنفيذه؛ اضغط Return لتشغيله.
+term.smaller	نص أصغر (⌘−)
+term.larger	نص أكبر (⌘+)
+term.ended	انتهت الصدفة (رمز الخروج %@).
+term.restart	ابدأ من جديد
+term.note	تعمل هذه الطرفية بحسابك وترث الوصول الكامل إلى القرص من permwatch: يمكن للأوامر هنا قراءة أي ملف. ولا يزال sudo يطلب كلمة المرور.
+term.cmd.connections	الاتصالات النشطة
+term.cmd.listening	البرامج التي تنتظر الاتصالات
+term.cmd.tccLive	طلبات الأذونات المباشرة (سجل TCC)
+term.cmd.loginItems	كل عناصر بدء التشغيل والخلفية
+term.cmd.posture	إعدادات الأمان (SIP وGatekeeper وFileVault وجدار الحماية)
+term.cmd.signature	افحص توقيع تطبيق (أضف مسارًا)
+term.cmd.gatekeeper	هل يسمح به Gatekeeper؟ (أضف مسارًا)
+term.cmd.quarantine	معلومات الحجر والمصدر لملف (أضف مسارًا)
+term.cmd.dns	خوادم DNS المستخدمة
+term.cmd.profiles	ملفات التعريف المثبّتة
+term.cmd.updates	تحديثات البرامج المتاحة
+term.cmd.pktap	التقاط الحزم مع أسماء العمليات (tcpdump)

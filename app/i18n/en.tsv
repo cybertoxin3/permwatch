@@ -426,3 +426,24 @@ x.unsigned.advice	If you installed this program yourself (a developer tool, for 
 pkt.waitingRoot	Waiting for administrator permission…
 pkt.noPktap	Process names unavailable (PKTAP could not be enabled: %@). Packets are still captured.
 pkt.saving	Saving capture…
+nav.terminal	Terminal
+term.newTab	New Tab (⌘T)
+term.commands	Commands
+term.commandsHelp	Useful security commands. The command is typed for you but not run; press Return to run it.
+term.smaller	Smaller Text (⌘−)
+term.larger	Larger Text (⌘+)
+term.ended	The shell ended (exit code %@).
+term.restart	Start Again
+term.note	This terminal runs as you and inherits permwatch’s Full Disk Access: commands here can read every file. sudo still asks for your password.
+term.cmd.connections	Active connections
+term.cmd.listening	Programs listening for connections
+term.cmd.tccLive	Live permission requests (TCC log)
+term.cmd.loginItems	All login and background items
+term.cmd.posture	Security settings (SIP, Gatekeeper, FileVault, firewall)
+term.cmd.signature	Check an app’s signature (add a path)
+term.cmd.gatekeeper	Would Gatekeeper allow it? (add a path)
+term.cmd.quarantine	Show a file’s quarantine and origin (add a path)
+term.cmd.dns	DNS servers in use
+term.cmd.profiles	Installed configuration profiles
+term.cmd.updates	Available software updates
+term.cmd.pktap	Packet capture with process names (tcpdump)

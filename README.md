@@ -65,6 +65,7 @@ permwatch connects the dots and gives you one clear alert.
 - 📦 **Packet capture:** Like Wireshark, but every packet shows the app that sent it and a plain-language explanation. It spots trackers, unencrypted connections and passwords sent in clear text. Captures are saved as .pcap files you can open in Wireshark.
 - ⬇️ **Downloads:** Checks downloaded apps and installers anywhere on your Mac, including USB disks, with Gatekeeper
 - 🎙 **Microphone and camera:** Who is using them right now, and a history
+- ⌨️ **Terminal:** A real terminal inside the app (tabs, colours, full-screen programs) with a menu of ready-made security commands
 
 <p align="center">
   <img src="docs/images/apps_en.png" alt="permwatch app view" width="900">
@@ -86,6 +87,10 @@ permwatch **sends no data anywhere.** No analytics, no account, no cloud. Detail
 - Optional **administrator mode** runs a small read-only helper as root. Before it starts, the helper is copied to `/Library/PrivilegedHelperTools` and its code signature is verified against the developer's Team ID.
 - Packet capture uses libpcap. With administrator mode it uses Apple's PKTAP, which attaches the sending process to each packet.
 - An Endpoint Security engine (C) for real-time events is ready and waiting for Apple's entitlement.
+
+## Third-party code
+
+- [SwiftTerm](https://github.com/migueldeicaza/SwiftTerm) v1.20.0 by Miguel de Icaza (MIT), used for the terminal. Vendored in `app/vendor/SwiftTerm`.
 
 ## Status
 

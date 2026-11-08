@@ -426,3 +426,24 @@ x.unsigned.advice	如果是你自己安装的程序(例如开发工具),可能�
 pkt.waitingRoot	正在等待管理员权限…
 pkt.noPktap	无法获取进程名称(无法启用 PKTAP:%@)。数据包仍在捕获。
 pkt.saving	正在保存捕获…
+nav.terminal	终端
+term.newTab	新标签页 (⌘T)
+term.commands	命令
+term.commandsHelp	实用的安全命令。命令会被输入但不会执行;按回车运行。
+term.smaller	缩小文字 (⌘−)
+term.larger	放大文字 (⌘+)
+term.ended	Shell 已结束(退出码 %@)。
+term.restart	重新启动
+term.note	此终端以你的身份运行,并继承 permwatch 的完全磁盘访问权限:这里的命令可以读取所有文件。sudo 仍会要求输入密码。
+term.cmd.connections	活动连接
+term.cmd.listening	监听连接的程序
+term.cmd.tccLive	实时权限请求(TCC 日志)
+term.cmd.loginItems	所有登录项和后台项目
+term.cmd.posture	安全设置(SIP、Gatekeeper、FileVault、防火墙)
+term.cmd.signature	检查应用签名(添加路径)
+term.cmd.gatekeeper	Gatekeeper 会允许吗?(添加路径)
+term.cmd.quarantine	文件的隔离属性和来源(添加路径)
+term.cmd.dns	正在使用的 DNS 服务器
+term.cmd.profiles	已安装的配置描述文件
+term.cmd.updates	可用的软件更新
+term.cmd.pktap	带进程名称的数据包捕获(tcpdump)

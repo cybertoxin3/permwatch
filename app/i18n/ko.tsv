@@ -426,3 +426,24 @@ x.unsigned.advice	직접 설치한 프로그램(예: 개발 도구)이라면 괜
 pkt.waitingRoot	관리자 권한을 기다리는 중…
 pkt.noPktap	프로세스 이름을 가져올 수 없음(PKTAP 활성화 실패: %@). 패킷은 계속 캡처됩니다.
 pkt.saving	캡처 저장 중…
+nav.terminal	터미널
+term.newTab	새 탭 (⌘T)
+term.commands	명령
+term.commandsHelp	유용한 보안 명령. 명령이 입력되지만 실행되지는 않습니다. Return을 눌러 실행하세요.
+term.smaller	글자 작게 (⌘−)
+term.larger	글자 크게 (⌘+)
+term.ended	셸이 종료되었습니다(종료 코드 %@).
+term.restart	다시 시작
+term.note	이 터미널은 내 계정으로 실행되며 permwatch의 전체 디스크 접근 권한을 이어받습니다. 여기서 실행한 명령은 모든 파일을 읽을 수 있습니다. sudo는 여전히 암호를 묻습니다.
+term.cmd.connections	활성 연결
+term.cmd.listening	연결 대기 중인 프로그램
+term.cmd.tccLive	실시간 권한 요청(TCC 로그)
+term.cmd.loginItems	모든 로그인 및 백그라운드 항목
+term.cmd.posture	보안 설정(SIP, Gatekeeper, FileVault, 방화벽)
+term.cmd.signature	앱 서명 확인(경로 추가)
+term.cmd.gatekeeper	Gatekeeper가 허용할까?(경로 추가)
+term.cmd.quarantine	파일의 격리 및 출처 정보(경로 추가)
+term.cmd.dns	사용 중인 DNS 서버
+term.cmd.profiles	설치된 구성 프로파일
+term.cmd.updates	사용 가능한 소프트웨어 업데이트
+term.cmd.pktap	프로세스 이름 포함 패킷 캡처(tcpdump)

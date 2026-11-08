@@ -426,3 +426,24 @@ x.unsigned.advice	Wenn du das Programm selbst installiert hast (z. B. ein Entwic
 pkt.waitingRoot	Warte auf Administratorrechte …
 pkt.noPktap	Prozessnamen nicht verfügbar (PKTAP ließ sich nicht aktivieren: %@). Pakete werden trotzdem mitgeschnitten.
 pkt.saving	Mitschnitt wird gesichert …
+nav.terminal	Terminal
+term.newTab	Neuer Tab (⌘T)
+term.commands	Befehle
+term.commandsHelp	Nützliche Sicherheitsbefehle. Der Befehl wird eingetippt, aber nicht ausgeführt; drücke Return.
+term.smaller	Kleiner (⌘−)
+term.larger	Größer (⌘+)
+term.ended	Die Shell wurde beendet (Exit-Code %@).
+term.restart	Neu starten
+term.note	Dieses Terminal läuft als du und erbt den Festplattenvollzugriff von permwatch: Befehle hier können jede Datei lesen. sudo fragt weiterhin nach dem Passwort.
+term.cmd.connections	Aktive Verbindungen
+term.cmd.listening	Programme, die auf Verbindungen warten
+term.cmd.tccLive	Berechtigungsanfragen live (TCC-Protokoll)
+term.cmd.loginItems	Alle Anmelde- und Hintergrundobjekte
+term.cmd.posture	Sicherheitseinstellungen (SIP, Gatekeeper, FileVault, Firewall)
+term.cmd.signature	Signatur einer App prüfen (Pfad anhängen)
+term.cmd.gatekeeper	Würde Gatekeeper es erlauben? (Pfad anhängen)
+term.cmd.quarantine	Quarantäne und Herkunft einer Datei (Pfad anhängen)
+term.cmd.dns	Verwendete DNS-Server
+term.cmd.profiles	Installierte Konfigurationsprofile
+term.cmd.updates	Verfügbare Softwareupdates
+term.cmd.pktap	Paketmitschnitt mit Prozessnamen (tcpdump)

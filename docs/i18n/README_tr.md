@@ -65,6 +65,7 @@ permwatch zinciri birleştirir ve sana tek bir net uyarı gösterir.
 - 📦 **Paket yakalama:** Wireshark gibi, ama her pakette onu gönderen uygulama ve sade dilde bir açıklama var. İzleyicileri, şifresiz bağlantıları ve açık metin gönderilen parolaları yakalar. Kayıtlar Wireshark'ta açılabilen .pcap dosyaları olarak saklanır.
 - ⬇️ **İndirilenler:** Mac'inin her yerindeki (USB diskler dahil) indirilmiş uygulama ve kurulum dosyalarını Gatekeeper ile denetler
 - 🎙 **Mikrofon ve kamera:** Şu an kim kullanıyor, geçmişiyle birlikte
+- ⌨️ **Terminal:** Uygulamanın içinde gerçek bir terminal (sekmeler, renkler, tam ekran programlar) ve hazır güvenlik komutları menüsü
 
 <p align="center">
   <img src="../images/apps.png" alt="permwatch uygulama görünümü" width="900">
@@ -86,6 +87,10 @@ permwatch **hiçbir yere veri göndermez.** Analiz yok, hesap yok, bulut yok. Ay
 - İsteğe bağlı **yönetici modu**, küçük ve salt-okunur bir yardımcıyı root olarak çalıştırır. Yardımcı başlamadan önce `/Library/PrivilegedHelperTools`'a kopyalanır ve kod imzası geliştiricinin Team ID'sine göre doğrulanır.
 - Paket yakalama libpcap kullanır. Yönetici modunda Apple'ın PKTAP'ını kullanır; bu, her pakete onu gönderen süreci ekler.
 - Gerçek zamanlı olaylar için Endpoint Security motoru (C) hazır ve Apple'ın iznini bekliyor.
+
+## Üçüncü taraf kod
+
+- Terminal için Miguel de Icaza'nın [SwiftTerm](https://github.com/migueldeicaza/SwiftTerm) v1.20.0 kütüphanesi (MIT). `app/vendor/SwiftTerm` içinde.
 
 ## Durum
 

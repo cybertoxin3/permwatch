@@ -426,3 +426,24 @@ x.unsigned.advice	Если вы установили программу сами
 pkt.waitingRoot	Ожидание прав администратора…
 pkt.noPktap	Имена процессов недоступны (PKTAP не включился: %@). Пакеты всё равно захватываются.
 pkt.saving	Сохранение захвата…
+nav.terminal	Терминал
+term.newTab	Новая вкладка (⌘T)
+term.commands	Команды
+term.commandsHelp	Полезные команды безопасности. Команда вводится, но не выполняется; нажмите Return.
+term.smaller	Мельче (⌘−)
+term.larger	Крупнее (⌘+)
+term.ended	Оболочка завершилась (код выхода %@).
+term.restart	Запустить снова
+term.note	Терминал работает от вашего имени и наследует полный доступ к диску permwatch: команды здесь могут читать любые файлы. sudo всё равно спрашивает пароль.
+term.cmd.connections	Активные соединения
+term.cmd.listening	Программы, ожидающие подключений
+term.cmd.tccLive	Запросы разрешений в реальном времени (журнал TCC)
+term.cmd.loginItems	Все объекты входа и фоновые объекты
+term.cmd.posture	Настройки безопасности (SIP, Gatekeeper, FileVault, брандмауэр)
+term.cmd.signature	Проверить подпись приложения (добавьте путь)
+term.cmd.gatekeeper	Пропустит ли Gatekeeper? (добавьте путь)
+term.cmd.quarantine	Карантин и источник файла (добавьте путь)
+term.cmd.dns	Используемые DNS-серверы
+term.cmd.profiles	Установленные профили конфигурации
+term.cmd.updates	Доступные обновления ПО
+term.cmd.pktap	Захват пакетов с именами процессов (tcpdump)

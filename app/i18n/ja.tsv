@@ -426,3 +426,24 @@ x.unsigned.advice	自分でインストールしたプログラム(開発ツー�
 pkt.waitingRoot	管理者の許可を待っています…
 pkt.noPktap	プロセス名を取得できません(PKTAP を有効にできません: %@)。パケットのキャプチャは続いています。
 pkt.saving	キャプチャを保存中…
+nav.terminal	ターミナル
+term.newTab	新規タブ (⌘T)
+term.commands	コマンド
+term.commandsHelp	便利なセキュリティコマンド。入力されるだけで実行はされません。Return で実行します。
+term.smaller	文字を小さく (⌘−)
+term.larger	文字を大きく (⌘+)
+term.ended	シェルが終了しました(終了コード %@)。
+term.restart	再起動
+term.note	このターミナルはあなたの権限で動作し、permwatch のフルディスクアクセスを引き継ぎます。ここでのコマンドはすべてのファイルを読めます。sudo は引き続きパスワードを求めます。
+term.cmd.connections	アクティブな接続
+term.cmd.listening	接続を待ち受けているプログラム
+term.cmd.tccLive	権限リクエストをリアルタイム表示(TCC ログ)
+term.cmd.loginItems	すべてのログイン項目とバックグラウンド項目
+term.cmd.posture	セキュリティ設定(SIP、Gatekeeper、FileVault、ファイアウォール)
+term.cmd.signature	アプリの署名を確認(パスを追加)
+term.cmd.gatekeeper	Gatekeeper は許可する?(パスを追加)
+term.cmd.quarantine	ファイルの隔離属性と入手元(パスを追加)
+term.cmd.dns	使用中の DNS サーバ
+term.cmd.profiles	インストール済みの構成プロファイル
+term.cmd.updates	利用可能なソフトウェアアップデート
+term.cmd.pktap	プロセス名付きパケットキャプチャ(tcpdump)

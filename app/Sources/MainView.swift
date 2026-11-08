@@ -1,7 +1,7 @@
 import SwiftUI
 
 enum SidebarItem: Hashable {
-    case timeline, alerts, advice, apps, running, security, downloads, network, packets
+    case timeline, alerts, advice, apps, running, security, downloads, network, packets, terminal
     case category(Category)
     case loginItems, processes
 }
@@ -50,6 +50,8 @@ struct MainView: View {
                 NetworkView()
             } else if section == .packets {
                 PacketsView()
+            } else if section == .terminal {
+                TerminalSection()
             } else {
                 HStack(spacing: 0) {
                     VStack(spacing: 0) {
@@ -95,6 +97,7 @@ struct MainView: View {
             if Snapshot.section == "running" { section = .running }
             if Snapshot.section == "packets" { section = .packets }
             if Snapshot.section == "advice" { section = .advice }
+            if Snapshot.section == "terminal" { section = .terminal }
             Snapshot.scheduleIfRequested(store: store, selection: selection)
         }
         .onChange(of: store.items.count) {
@@ -121,6 +124,7 @@ struct MainView: View {
         case .downloads: return L("nav.downloads")
         case .network: return L("nav.network")
         case .packets: return L("nav.packets")
+        case .terminal: return L("nav.terminal")
         case .category(.micCamera): return L("nav.micCamera")
         case .category(.screen): return L("nav.screen")
         case .category(.accessibility): return L("nav.accessibility")
@@ -181,6 +185,7 @@ struct Sidebar: View {
                 Label(L("nav.downloads"), systemImage: "arrow.down.circle").badge(downloads.risky).tag(SidebarItem.downloads)
                 Label(L("nav.network"), systemImage: "network").badge(network.risky).tag(SidebarItem.network)
                 Label(L("nav.packets"), systemImage: "waveform.path.ecg").tag(SidebarItem.packets)
+                Label(L("nav.terminal"), systemImage: "apple.terminal").tag(SidebarItem.terminal)
             }
             Section(L("nav.permissions")) {
                 Label(L("nav.micCamera"), systemImage: "mic").tag(SidebarItem.category(.micCamera))

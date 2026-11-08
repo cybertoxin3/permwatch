@@ -426,3 +426,24 @@ x.unsigned.advice	Se você mesmo instalou este programa (uma ferramenta de desen
 pkt.waitingRoot	Aguardando permissão de administrador…
 pkt.noPktap	Nomes de processo indisponíveis (não foi possível ativar o PKTAP: %@). Os pacotes continuam sendo capturados.
 pkt.saving	Salvando captura…
+nav.terminal	Terminal
+term.newTab	Nova aba (⌘T)
+term.commands	Comandos
+term.commandsHelp	Comandos úteis de segurança. O comando é digitado mas não executado; pressione Return.
+term.smaller	Texto menor (⌘−)
+term.larger	Texto maior (⌘+)
+term.ended	O shell terminou (código de saída %@).
+term.restart	Iniciar novamente
+term.note	Este terminal roda como você e herda o Acesso Total ao Disco do permwatch: os comandos aqui podem ler qualquer arquivo. O sudo continua pedindo sua senha.
+term.cmd.connections	Conexões ativas
+term.cmd.listening	Programas aguardando conexões
+term.cmd.tccLive	Pedidos de permissão ao vivo (log do TCC)
+term.cmd.loginItems	Todos os itens de início e em segundo plano
+term.cmd.posture	Ajustes de segurança (SIP, Gatekeeper, FileVault, firewall)
+term.cmd.signature	Verificar a assinatura de um app (adicione um caminho)
+term.cmd.gatekeeper	O Gatekeeper permitiria? (adicione um caminho)
+term.cmd.quarantine	Quarentena e origem de um arquivo (adicione um caminho)
+term.cmd.dns	Servidores DNS em uso
+term.cmd.profiles	Perfis de configuração instalados
+term.cmd.updates	Atualizações disponíveis
+term.cmd.pktap	Captura de pacotes com nomes de processo (tcpdump)

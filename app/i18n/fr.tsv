@@ -426,3 +426,24 @@ x.unsigned.advice	Si vous avez installé ce programme vous-même (un outil de d�
 pkt.waitingRoot	En attente de l’autorisation administrateur…
 pkt.noPktap	Noms de processus indisponibles (PKTAP n’a pas pu être activé : %@). Les paquets sont tout de même capturés.
 pkt.saving	Enregistrement de la capture…
+nav.terminal	Terminal
+term.newTab	Nouvel onglet (⌘T)
+term.commands	Commandes
+term.commandsHelp	Commandes de sécurité utiles. La commande est saisie mais pas exécutée ; appuyez sur Retour.
+term.smaller	Plus petit (⌘−)
+term.larger	Plus grand (⌘+)
+term.ended	Le shell s’est terminé (code de sortie %@).
+term.restart	Relancer
+term.note	Ce terminal s’exécute sous votre compte et hérite de l’accès complet au disque de permwatch : les commandes peuvent lire tous les fichiers. sudo demande toujours votre mot de passe.
+term.cmd.connections	Connexions actives
+term.cmd.listening	Programmes en écoute
+term.cmd.tccLive	Demandes d’autorisation en direct (journal TCC)
+term.cmd.loginItems	Tous les éléments d’ouverture et d’arrière-plan
+term.cmd.posture	Réglages de sécurité (SIP, Gatekeeper, FileVault, pare-feu)
+term.cmd.signature	Vérifier la signature d’une app (ajoutez un chemin)
+term.cmd.gatekeeper	Gatekeeper l’autoriserait-il ? (ajoutez un chemin)
+term.cmd.quarantine	Quarantaine et origine d’un fichier (ajoutez un chemin)
+term.cmd.dns	Serveurs DNS utilisés
+term.cmd.profiles	Profils de configuration installés
+term.cmd.updates	Mises à jour disponibles
+term.cmd.pktap	Capture de paquets avec noms de processus (tcpdump)

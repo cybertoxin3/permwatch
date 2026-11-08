@@ -25,5 +25,6 @@ While administrator mode is capturing, a temporary live file (`packets.jsonl`) h
 
 - **Full Disk Access:** to read macOS's permission database and to check downloads in every folder. permwatch only reads; it never changes your files.
 - **Administrator password (optional):** to start the read-only helper. The helper takes no commands, verifies its own signature before it runs, and stops when permwatch quits.
+- **Terminal:** the built-in terminal runs your own shell as your user. Like any program started by permwatch, it inherits permwatch's Full Disk Access, so commands run there can read every file. It never runs as root; `sudo` asks for your password as usual.
 - **Notifications:** to tell you about new findings.
 - **Automation (Finder):** only when you uninstall an app and macOS can't move it to the Trash directly.

@@ -426,3 +426,24 @@ x.unsigned.advice	Bu programı kendin kurduysan (örneğin bir geliştirici arac
 pkt.waitingRoot	Yönetici izni bekleniyor…
 pkt.noPktap	Süreç adları alınamadı (PKTAP açılamadı: %@). Paketler yine de yakalanıyor.
 pkt.saving	Kayıt kaydediliyor…
+nav.terminal	Terminal
+term.newTab	Yeni Sekme (⌘T)
+term.commands	Komutlar
+term.commandsHelp	İşe yarar güvenlik komutları. Komut senin için yazılır ama çalıştırılmaz; çalıştırmak için Enter'a bas.
+term.smaller	Küçük Yazı (⌘−)
+term.larger	Büyük Yazı (⌘+)
+term.ended	Kabuk kapandı (çıkış kodu %@).
+term.restart	Yeniden Başlat
+term.note	Bu terminal senin kullanıcınla çalışır ve permwatch'ın Tam Disk Erişimi'ni devralır: buradaki komutlar her dosyayı okuyabilir. sudo yine şifreni sorar.
+term.cmd.connections	Etkin bağlantılar
+term.cmd.listening	Bağlantı bekleyen programlar
+term.cmd.tccLive	Canlı izin istekleri (TCC günlüğü)
+term.cmd.loginItems	Tüm giriş ve arka plan öğeleri
+term.cmd.posture	Güvenlik ayarları (SIP, Gatekeeper, FileVault, güvenlik duvarı)
+term.cmd.signature	Bir uygulamanın imzasını kontrol et (yol ekle)
+term.cmd.gatekeeper	Gatekeeper izin verir mi? (yol ekle)
+term.cmd.quarantine	Bir dosyanın karantina ve kaynak bilgisi (yol ekle)
+term.cmd.dns	Kullanılan DNS sunucuları
+term.cmd.profiles	Yüklü yapılandırma profilleri
+term.cmd.updates	Mevcut yazılım güncellemeleri
+term.cmd.pktap	Süreç adlarıyla paket yakalama (tcpdump)
