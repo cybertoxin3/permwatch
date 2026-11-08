@@ -107,6 +107,23 @@ permwatch **hiçbir yere veri göndermez.** Analiz yok, hesap yok, bulut yok. Ay
 
 Geliştiriciysen ve çekirdeği denemek istiyorsan: **[Geliştirici rehberi →](../GELISTIRME.md)**
 
+## ☕ Bana bir kahve ısmarlar mısın?
+
+permwatch ücretsiz ve açık kaynak; reklam, hesap veya takip yok. İşine yaradıysa küçük bir bağış geliştirmenin sürmesini sağlar. Her coini yalnızca yanında yazan ağdan gönder.
+
+| Coin | Adres |
+|---|---|
+| Bitcoin (BTC) · Taproot | `bc1pyuwdr40733dtzkeefj6xu3asnncwa0a67q2q6sw7fuut4zfhx8yqf2ta3l` |
+| Bitcoin (BTC) · SegWit | `bc1qevw8l3pwfahysgmxy0vhv2srnk0dcyze7pggq8` |
+| Monero (XMR) | `42tsRvBWbPujgVpQdNy6Ba6ovKNcPkxQBKWn1rYcENDpAPTuvQ2ejxCXcUc5KJQTdkHicn4agR7GnYroSUGQLzVhL93KmTt` |
+| Ethereum (ETH) · Ethereum mainnet | `0xCD9ab39db50A830e157776a97bc9Ae21811e3177` |
+| Litecoin (LTC) · SegWit | `ltc1qx40ryzy34vf5977aq5uk3rpqm7err5jvf7gcwl` |
+| Litecoin (LTC) · Legacy | `LV6kxUc84QoHq7zGZBz1T38vwdcAXQPxR1` |
+| Dogecoin (DOGE) | `DTtZ7oJELg9hs43o1g97qVM676H46XorAT` |
+| Solana (SOL) | `5uwHKnCMFbFpob2ssypd69svUFCYZQePCwZcQfELckAD` |
+| Xelis (XEL) | `xel:h2mt8pc2059rgq3x67xhndqfm8xukrn49zx2la7qmjqnwhgftc4qqasdzay` |
+| Banano (BAN) | `ban_1teuphtrxw6rtr7ttr7iaxtaspm11wjqhjh6j84twcp6pcbiyb4cgzth9439` |
+
 ---
 
 <div align="center">

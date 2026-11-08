@@ -93,6 +93,23 @@ permwatch는 **사용자에 관한 어떤 정보도 보내지 않습니다.** �
 
 개발자이고 핵심 엔진을 써 보고 싶다면: **[개발자 가이드(영어) →](../GELISTIRME_en.md)**
 
+## ☕ 커피 한 잔 사주실래요?
+
+permwatch는 무료 오픈 소스이며 광고, 계정, 추적이 없습니다. 도움이 되었다면 작은 후원이 개발을 이어가게 합니다. 각 코인은 표시된 네트워크로만 보내 주세요.
+
+| 코인 | 주소 |
+|---|---|
+| Bitcoin (BTC) · Taproot | `bc1pyuwdr40733dtzkeefj6xu3asnncwa0a67q2q6sw7fuut4zfhx8yqf2ta3l` |
+| Bitcoin (BTC) · SegWit | `bc1qevw8l3pwfahysgmxy0vhv2srnk0dcyze7pggq8` |
+| Monero (XMR) | `42tsRvBWbPujgVpQdNy6Ba6ovKNcPkxQBKWn1rYcENDpAPTuvQ2ejxCXcUc5KJQTdkHicn4agR7GnYroSUGQLzVhL93KmTt` |
+| Ethereum (ETH) · Ethereum mainnet | `0xCD9ab39db50A830e157776a97bc9Ae21811e3177` |
+| Litecoin (LTC) · SegWit | `ltc1qx40ryzy34vf5977aq5uk3rpqm7err5jvf7gcwl` |
+| Litecoin (LTC) · Legacy | `LV6kxUc84QoHq7zGZBz1T38vwdcAXQPxR1` |
+| Dogecoin (DOGE) | `DTtZ7oJELg9hs43o1g97qVM676H46XorAT` |
+| Solana (SOL) | `5uwHKnCMFbFpob2ssypd69svUFCYZQePCwZcQfELckAD` |
+| Xelis (XEL) | `xel:h2mt8pc2059rgq3x67xhndqfm8xukrn49zx2la7qmjqnwhgftc4qqasdzay` |
+| Banano (BAN) | `ban_1teuphtrxw6rtr7ttr7iaxtaspm11wjqhjh6j84twcp6pcbiyb4cgzth9439` |
+
 ---
 
 <div align="center">
