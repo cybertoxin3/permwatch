@@ -389,7 +389,7 @@ final class MediaMonitor: ObservableObject {
 
     init() {
         poll()
-        timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { [weak self] _ in
+        timer = Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { [weak self] _ in
             MainActor.assumeIsolated { self?.poll() }
         }
     }
@@ -432,8 +432,9 @@ final class MediaMonitor: ObservableObject {
             history.insert(MediaSession(mic: false, name: L("media.camera"), pid: nil, path: nil, start: now), at: 0)
         }
         if history.count > 200 { history.removeLast(history.count - 200) }
-        micUsers = users
-        cameraOn = cam
+        // Yalnızca değiştiyse yayınla: her yoklamada arayüzü yeniden çizdirmesin.
+        if micUsers.map(\.pid) != users.map(\.pid) { micUsers = users }
+        if cameraOn != cam { cameraOn = cam }
     }
 
     /// macOS 14+: CoreAudio süreç nesneleri, hangi sürecin mikrofonu kullandığını söyler.
@@ -547,7 +548,7 @@ final class NetworkMonitor: ObservableObject {
         Task.detached(priority: .utility) {
             let r = NetworkMonitor.collect(rootLsof: rootLsof, dns: dns, intel: intel)
             await MainActor.run {
-                self.rows = r
+                if self.rows != r { self.rows = r }   // değişmediyse arayüzü yeniden çizdirme
                 self.busy = false
                 for c in r where c.intel != nil {
                     // Bilinen zararlı sunucu: otomatik engellenmez, kullanıcıya sorulur.

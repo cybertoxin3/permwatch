@@ -38,12 +38,14 @@ final class GuardService: ObservableObject {
     }
 
     func enable() {
+        statusCache = nil
         do { try service.register() } catch { state = .failed(error.localizedDescription) }
         if service.status == .requiresApproval { SMAppService.openSystemSettingsLoginItems() }
         refresh()
     }
 
     func disable() {
+        statusCache = nil
         try? service.unregister()
         refresh()
     }
@@ -64,9 +66,16 @@ final class GuardService: ObservableObject {
         events.removeAll { $0.path == path }
     }
 
+    private var statusCache: (SMAppService.Status, Date)?
+
     private func refresh() {
         guard available else { state = .unavailable; return }
-        switch service.status {
+        // Servis durumu bir sistem çağrısı: dakikada bir sor (açma/kapama sonrası hemen).
+        let status: SMAppService.Status
+        if let c = statusCache, Date().timeIntervalSince(c.1) < 60 { status = c.0 } else {
+            status = service.status; statusCache = (status, Date())
+        }
+        switch status {
         case .notRegistered, .notFound: state = .off; return
         case .requiresApproval: state = .needsApproval; return
         default: break
@@ -74,12 +83,15 @@ final class GuardService: ObservableObject {
         guard let d = FileManager.default.contents(atPath: Self.statusPath),
               let j = try? JSONSerialization.jsonObject(with: d) as? [String: Any] else { state = .starting; return }
         let fresh = Date().timeIntervalSince1970 - (j["ts"] as? Double ?? 0) < 40
-        ruleCount = j["rules"] as? Int ?? 0
-        blocked = j["blocked"] as? Int ?? 0
+        let rc = j["rules"] as? Int ?? 0, bl = j["blocked"] as? Int ?? 0
+        if ruleCount != rc { ruleCount = rc }
+        if blocked != bl { blocked = bl }
         if let e = j["error"] as? String, j["active"] as? Bool != true {
-            state = e == "fda" ? .needsFullDisk : .failed(e)
+            let ns: State = e == "fda" ? .needsFullDisk : .failed(e)
+            if state != ns { state = ns }
         } else {
-            state = fresh && j["active"] as? Bool == true ? .active : .starting
+            let ns: State = fresh && j["active"] as? Bool == true ? .active : .starting
+            if state != ns { state = ns }
         }
         readEvents()
     }

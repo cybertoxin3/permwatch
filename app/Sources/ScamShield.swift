@@ -238,18 +238,47 @@ final class ScamShield: ObservableObject {
         var buf = [CChar](repeating: 0, count: 4096)
         var found: [(Int32, String, String?, RemoteKind)] = []
         let me = getpid()
+        var alive = Set<UInt64>()
         for pid in pids.prefix(max(0, got)) where pid > 0 && pid != me {
-            var path: String?
-            if proc_pidpath(pid, &buf, UInt32(buf.count)) > 0 { path = String(cString: buf) }
-            var nameBuf = [CChar](repeating: 0, count: 256)
-            let pname = proc_name(pid, &nameBuf, UInt32(nameBuf.count)) > 0 ? String(cString: nameBuf) : ""
-            if let k = classify(path: path, name: pname) { found.append((pid, k.name, path, k.kind)) }
+            // Süreç kimliği: pid + başlangıç zamanı (pid yeniden kullanılabilir). Sınıflandırma süreç başına bir kez.
+            var info = proc_bsdshortinfo()
+            let key: UInt64
+            if proc_pidinfo(pid, PROC_PIDT_SHORTBSDINFO, 0, &info, Int32(MemoryLayout<proc_bsdshortinfo>.size)) > 0 {
+                key = UInt64(UInt32(bitPattern: pid)) << 32 | UInt64(info.pbsi_ppid)
+            } else { key = UInt64(UInt32(bitPattern: pid)) << 32 }
+            alive.insert(key)
+            let cached = classCache.get(key)
+            let hit: (String, String?, RemoteKind)?
+            if let c = cached { hit = c.hit } else {
+                var path: String?
+                if proc_pidpath(pid, &buf, UInt32(buf.count)) > 0 { path = String(cString: buf) }
+                var nameBuf = [CChar](repeating: 0, count: 256)
+                let pname = proc_name(pid, &nameBuf, UInt32(nameBuf.count)) > 0 ? String(cString: nameBuf) : ""
+                hit = classify(path: path, name: pname).map { ($0.name, path, $0.kind) }
+                classCache.set(key, hit)
+            }
+            if let h = hit { found.append((pid, h.0, h.1, h.2)) }
         }
+        classCache.retain(alive)
         guard !found.isEmpty else { return [] }
         // Trafik yalnızca aday süreçler için ölçülür (nettop, yönetici izni gerektirmez).
         let bytes = traffic(found.filter { $0.3 != .ssh }.map(\.0))
         return found.map { RemoteObservation(pid: $0.0, name: $0.1, path: $0.2, kind: $0.3, bytes: bytes[$0.0] ?? -1) }
     }
+
+    /// Süreç sınıflandırma önbelleği (yoklama başına yalnızca yeni süreçler incelenir).
+    final class ClassCache: @unchecked Sendable {
+        private let lock = NSLock()
+        private var map: [UInt64: (String, String?, RemoteKind)?] = [:]
+        func get(_ k: UInt64) -> (hit: (String, String?, RemoteKind)?, Void)? {
+            lock.lock(); defer { lock.unlock() }
+            guard let v = map[k] else { return nil }
+            return (v, ())
+        }
+        func set(_ k: UInt64, _ v: (String, String?, RemoteKind)?) { lock.lock(); map[k] = .some(v); lock.unlock() }
+        func retain(_ keys: Set<UInt64>) { lock.lock(); map = map.filter { keys.contains($0.key) }; lock.unlock() }
+    }
+    nonisolated static let classCache = ClassCache()
 
     /// Bir süreç uzaktan erişim yolu mu? (ad, tür)
     nonisolated static func classify(path: String?, name: String) -> (name: String, kind: RemoteKind)? {
@@ -292,7 +321,7 @@ final class ScamShield: ObservableObject {
 
     private func apply(_ s: [RemoteSession]) {
         let live = s.filter { !isAllowed($0.name) }
-        sessions = live
+        if sessions != live { sessions = live }
         if live.isEmpty {
             if var c = current, c.outcome == .open {
                 c.end = Date(); c.outcome = .ended

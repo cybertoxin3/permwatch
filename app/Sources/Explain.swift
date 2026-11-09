@@ -254,7 +254,10 @@ struct ExplanationCard: View {
 /// Bir adın metinde ayrı bir kelime olarak geçip geçmediği ("todesk", "Autodesk" içinde eşleşmez).
 enum WordMatch {
     static func matches(_ text: String, _ key: String) -> Bool {
-        let pattern = "(?<![a-z0-9])" + NSRegularExpression.escapedPattern(for: key.lowercased()) + "(?![a-z0-9])"
-        return text.lowercased().range(of: pattern, options: .regularExpression) != nil
+        let t = text.lowercased(), k = key.lowercased()
+        // Hızlı yol: alt dize hiç geçmiyorsa düzenli ifadeye gerek yok (çoğu durum).
+        guard t.contains(k) else { return false }
+        let pattern = "(?<![a-z0-9])" + NSRegularExpression.escapedPattern(for: k) + "(?![a-z0-9])"
+        return t.range(of: pattern, options: .regularExpression) != nil
     }
 }

@@ -95,7 +95,7 @@ final class ProcessMonitor: ObservableObject {
             let (rows, cpu) = ProcessMonitor.collect(prev: prev, trusted: trusted, rootProcs: rootProcs)
             await MainActor.run {
                 self.prevCPU = cpu
-                self.rows = rows
+                if self.rows != rows { self.rows = rows }
                 self.busy = false
                 self.notifyNew()
             }

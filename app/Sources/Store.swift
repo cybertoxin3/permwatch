@@ -104,7 +104,7 @@ final class Store: ObservableObject {
         timer = nil
         watchers.forEach { $0.cancel() }
         watchers = []
-        pendingScan?.cancel()
+        pendingScan?.cancel(); pendingScan = nil
     }
 
     // MARK: Canlı izleme
@@ -130,14 +130,17 @@ final class Store: ObservableObject {
         }
     }
 
-    /// Arka arkaya gelen değişiklikleri 1 saniyelik pencerede tek taramada birleştirir.
+    /// Arka arkaya gelen değişiklikleri birleştirir: en az 1 sn bekler ve iki tarama arasında en az 10 sn bırakır.
+    /// (macOS izin veritabanına sık sık kendisi yazar; her yazmada tam tarama pili gereksiz yere tüketir.)
     private func scheduleScan() {
-        pendingScan?.cancel()
+        if pendingScan != nil { return }   // zaten bekleyen bir tarama var: değişiklik ona dahil olur
+        let since = lastScan.map { Date().timeIntervalSince($0) } ?? 100
+        let delay = max(1, 10 - since)
         let w = DispatchWorkItem { [weak self] in
-            MainActor.assumeIsolated { self?.scanSystem() }
+            MainActor.assumeIsolated { self?.pendingScan = nil; self?.scanSystem() }
         }
         pendingScan = w
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: w)
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: w)
     }
 
     // MARK: Sistem taraması
