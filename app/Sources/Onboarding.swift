@@ -13,6 +13,7 @@ struct OnboardingView: View {
 
     @State private var step = 0
     @State private var fda = FullDisk.granted
+    @State private var startAtLogin = true
     private let timer = Timer.publish(every: 1.5, on: .main, in: .common).autoconnect()
 
     var body: some View {
@@ -68,6 +69,8 @@ struct OnboardingView: View {
 
     private func finish(check: Bool) {
         UserDefaults.standard.set(true, forKey: Self.doneKey)
+        UserDefaults.standard.set(true, forKey: LoginLaunch.askedKey)
+        if startAtLogin && !LoginLaunch.isEnabled { LoginLaunch.set(true) }
         if check {
             let root = RootBridge.shared.active ? RootBridge.shared.data : nil
             checks.run(apps: store.apps, rootProfiles: root?.profiles, rootLsof: root?.lsof)
@@ -109,6 +112,13 @@ struct OnboardingView: View {
         VStack(alignment: .leading, spacing: 16) {
             Text(L("onb.checkTitle")).font(.system(size: 22, weight: .bold))
             Text(L("onb.checkBody")).font(.system(size: 14)).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
+            VStack(alignment: .leading, spacing: 4) {
+                Toggle(L("login.setting"), isOn: $startAtLogin).font(.system(size: 13.5, weight: .medium))
+                Text(L("login.settingDesc")).font(.system(size: 12)).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
+                    .padding(.leading, 20)
+            }
+            .padding(12)
+            .background(Color(nsColor: .controlBackgroundColor), in: RoundedRectangle(cornerRadius: 10))
             Button(L("onb.skip")) { finish(check: false) }.buttonStyle(.link)
         }
     }

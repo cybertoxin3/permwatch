@@ -792,3 +792,8 @@ scam.change.app	New app: %@
 scam.change.launch	New login item: %@
 scam.change.extension	%1$@ extension added: %2$@
 scam.settingDesc	The moment someone connects to your computer remotely, a full-screen warning appears and you can disconnect with one button. Protection against phone scammers.
+login.setting	Start permwatch when my Mac starts
+login.settingDesc	Protections (Scam Shield, real-time protection) only work while permwatch is running. It starts quietly in the menu bar, without opening a window.
+login.adviceTitle	Protection stops when permwatch is closed
+login.adviceBody	Scam Shield and real-time protection only work while permwatch is running. Let it start with your Mac; it waits quietly in the menu bar.
+login.adviceButton	Start with My Mac

@@ -2,6 +2,7 @@ import SwiftUI
 
 @main
 struct PermwatchApp: App {
+    @NSApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
     @StateObject private var store = Store()
     @StateObject private var monitor = ProcessMonitor()
     @StateObject private var posture = SecurityPosture()

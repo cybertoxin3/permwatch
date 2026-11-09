@@ -792,3 +792,8 @@ scam.change.app	Neue App: %@
 scam.change.launch	Neues Anmeldeobjekt: %@
 scam.change.extension	%1$@-Erweiterung hinzugefügt: %2$@
 scam.settingDesc	Sobald sich jemand aus der Ferne mit deinem Computer verbindet, erscheint eine bildschirmfüllende Warnung und du kannst mit einem Klick trennen. Schutz vor Telefonbetrügern.
+login.setting	permwatch beim Start des Mac öffnen
+login.settingDesc	Die Schutzfunktionen (Betrugsschutz, Echtzeitschutz) arbeiten nur, solange permwatch läuft. Es startet leise in der Menüleiste, ohne Fenster.
+login.adviceTitle	Ohne permwatch kein Schutz
+login.adviceBody	Betrugsschutz und Echtzeitschutz arbeiten nur, solange permwatch läuft. Lass es mit deinem Mac starten; es wartet leise in der Menüleiste.
+login.adviceButton	Mit meinem Mac starten

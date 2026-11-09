@@ -792,3 +792,8 @@ scam.change.app	Yeni uygulama: %@
 scam.change.launch	Yeni başlangıç öğesi: %@
 scam.change.extension	%1$@ uzantısı eklendi: %2$@
 scam.settingDesc	Biri bilgisayarına uzaktan bağlandığı an ekranı kaplayan bir uyarı gösterir ve bağlantıyı tek tuşla keser. Telefon dolandırıcılarına karşı.
+login.setting	Mac açılınca permwatch'ı başlat
+login.settingDesc	Korumalar (Dolandırıcılık Kalkanı, gerçek zamanlı koruma) yalnızca permwatch çalışırken çalışır. Pencere açmadan, menü çubuğunda sessizce başlar.
+login.adviceTitle	permwatch kapalıyken koruma durur
+login.adviceBody	Dolandırıcılık Kalkanı ve gerçek zamanlı koruma yalnızca permwatch çalışırken çalışır. Mac'inle birlikte başlasın; menü çubuğunda sessizce bekler.
+login.adviceButton	Mac'imle Başlat

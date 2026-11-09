@@ -792,3 +792,8 @@ scam.change.app	Nueva app: %@
 scam.change.launch	Nuevo ítem de inicio: %@
 scam.change.extension	Extensión de %1$@ añadida: %2$@
 scam.settingDesc	En cuanto alguien se conecta a tu ordenador en remoto, aparece un aviso a pantalla completa y puedes cortar la conexión con un botón. Protección contra estafas telefónicas.
+login.setting	Abrir permwatch al iniciar el Mac
+login.settingDesc	Las protecciones (Escudo antiestafas, protección en tiempo real) solo funcionan mientras permwatch está abierto. Se inicia en silencio en la barra de menús, sin abrir ventanas.
+login.adviceTitle	La protección se detiene si permwatch está cerrado
+login.adviceBody	El Escudo antiestafas y la protección en tiempo real solo funcionan con permwatch abierto. Deja que se inicie con tu Mac; espera en silencio en la barra de menús.
+login.adviceButton	Iniciar con mi Mac

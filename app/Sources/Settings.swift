@@ -60,6 +60,7 @@ struct SettingsView: View {
     @EnvironmentObject var realtime: RealtimeGuard
     @ObservedObject private var guardSvc = GuardService.shared
     @ObservedObject private var scam = ScamShield.shared
+    @State private var loginOn = LoginLaunch.isEnabled
     @ObservedObject private var blocks = BlockList.shared
     /// Paket yakalama ve engellenen sunucular yalnızca gelişmiş modda.
     @AppStorage(Sidebar.advancedKey) private var advanced = false
@@ -76,6 +77,9 @@ struct SettingsView: View {
             }
 
             Section {
+                Toggle(L("login.setting"), isOn: Binding(get: { loginOn }, set: { if LoginLaunch.set($0) { loginOn = $0 } }))
+                Text(L("login.settingDesc")).font(.system(size: 11)).foregroundStyle(.secondary)
+                    .fixedSize(horizontal: false, vertical: true)
                 Toggle(L("nav.shield"), isOn: $scam.enabled)
                 Text(L("scam.settingDesc")).font(.system(size: 11)).foregroundStyle(.secondary)
                     .fixedSize(horizontal: false, vertical: true)

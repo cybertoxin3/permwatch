@@ -5,6 +5,7 @@ struct MenuBarPanel: View {
     @EnvironmentObject var media: MediaMonitor
     @EnvironmentObject var center: ThreatCenter
     @Environment(\.openWindow) private var openWindow
+    @ObservedObject private var shield = ScamShield.shared
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -26,6 +27,19 @@ struct MenuBarPanel: View {
             }
             .padding(.horizontal, 14)
             .padding(.bottom, 12)
+
+            // Dolandırıcılık Kalkanı durumu: sessizce çalışırken korunduğunu görebilmek için.
+            HStack(spacing: 6) {
+                Image(systemName: shield.sessions.isEmpty ? "phone.badge.waveform" : "exclamationmark.octagon.fill")
+                Text(shield.sessions.isEmpty ? (shield.enabled ? L("scam.statusOn") : "\(L("nav.shield")): \(L("scam.statusOff"))")
+                                             : L("scam.activeTitle"))
+                Spacer()
+                if !shield.sessions.isEmpty { Button(L("scam.showAlert")) { ScamAlertController.shared.show(shield) }.controlSize(.small) }
+            }
+            .font(.system(size: 12, weight: .medium))
+            .foregroundStyle(!shield.sessions.isEmpty ? .red : (shield.enabled ? .green : .secondary))
+            .padding(.horizontal, 14)
+            .padding(.bottom, 10)
 
             if media.inUse {
                 HStack(spacing: 8) {

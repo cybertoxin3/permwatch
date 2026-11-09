@@ -792,3 +792,8 @@ scam.change.app	Nuova app: %@
 scam.change.launch	Nuovo elemento di login: %@
 scam.change.extension	Estensione %1$@ aggiunta: %2$@
 scam.settingDesc	Appena qualcuno si collega al tuo computer da remoto, compare un avviso a tutto schermo e puoi interrompere la connessione con un pulsante. Protezione contro le truffe telefoniche.
+login.setting	Apri permwatch all'avvio del Mac
+login.settingDesc	Le protezioni (Scudo antitruffa, protezione in tempo reale) funzionano solo con permwatch aperto. Si avvia in silenzio nella barra dei menu, senza finestre.
+login.adviceTitle	Con permwatch chiuso la protezione si ferma
+login.adviceBody	Lo Scudo antitruffa e la protezione in tempo reale funzionano solo con permwatch aperto. Lascia che si avvii con il Mac; resta in silenzio nella barra dei menu.
+login.adviceButton	Avvia con il mio Mac

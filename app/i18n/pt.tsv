@@ -792,3 +792,8 @@ scam.change.app	Novo app: %@
 scam.change.launch	Novo item de início: %@
 scam.change.extension	Extensão do %1$@ adicionada: %2$@
 scam.settingDesc	Assim que alguém se conecta ao seu computador remotamente, aparece um alerta em tela cheia e você pode cortar a conexão com um botão. Proteção contra golpes por telefone.
+login.setting	Abrir o permwatch ao iniciar o Mac
+login.settingDesc	As proteções (Escudo antigolpe, proteção em tempo real) só funcionam com o permwatch aberto. Ele inicia em silêncio na barra de menus, sem abrir janela.
+login.adviceTitle	A proteção para quando o permwatch está fechado
+login.adviceBody	O Escudo antigolpe e a proteção em tempo real só funcionam com o permwatch aberto. Deixe-o iniciar com o Mac; ele espera em silêncio na barra de menus.
+login.adviceButton	Iniciar com meu Mac

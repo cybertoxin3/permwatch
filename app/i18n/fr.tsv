@@ -792,3 +792,8 @@ scam.change.app	Nouvelle app : %@
 scam.change.launch	Nouvel élément d'ouverture : %@
 scam.change.extension	Extension %1$@ ajoutée : %2$@
 scam.settingDesc	Dès que quelqu'un se connecte à ton ordinateur à distance, une alerte plein écran apparaît et tu peux couper la connexion en un clic. Protection contre les arnaques téléphoniques.
+login.setting	Ouvrir permwatch au démarrage du Mac
+login.settingDesc	Les protections (Bouclier anti-arnaque, protection en temps réel) ne fonctionnent que lorsque permwatch est ouvert. Il démarre discrètement dans la barre des menus, sans fenêtre.
+login.adviceTitle	La protection s'arrête si permwatch est fermé
+login.adviceBody	Le Bouclier anti-arnaque et la protection en temps réel ne fonctionnent que lorsque permwatch est ouvert. Laisse-le démarrer avec ton Mac ; il attend discrètement dans la barre des menus.
+login.adviceButton	Démarrer avec mon Mac

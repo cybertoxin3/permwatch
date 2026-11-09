@@ -792,3 +792,8 @@ scam.change.app	新しいアプリ: %@
 scam.change.launch	新しいログイン項目: %@
 scam.change.extension	%1$@ の拡張機能が追加されました: %2$@
 scam.settingDesc	誰かがあなたのコンピュータに遠隔接続した瞬間、画面全体に警告が表示され、ボタンひとつで切断できます。電話詐欺から守ります。
+login.setting	Mac の起動時に permwatch を開く
+login.settingDesc	保護機能（詐欺シールド、リアルタイム保護）は permwatch の実行中だけ動作します。ウインドウを開かず、メニューバーで静かに起動します。
+login.adviceTitle	permwatch を閉じると保護が止まります
+login.adviceBody	詐欺シールドとリアルタイム保護は permwatch の実行中だけ動作します。Mac と一緒に起動しておけば、メニューバーで静かに待機します。
+login.adviceButton	Mac と一緒に起動

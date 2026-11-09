@@ -792,3 +792,8 @@ scam.change.app	새 앱: %@
 scam.change.launch	새 로그인 항목: %@
 scam.change.extension	%1$@ 확장 프로그램 추가됨: %2$@
 scam.settingDesc	누군가 원격으로 컴퓨터에 연결하는 순간 전체 화면 경고가 나타나고 버튼 하나로 연결을 끊을 수 있습니다. 전화 사기 방지.
+login.setting	Mac을 켤 때 permwatch 열기
+login.settingDesc	보호 기능(사기 방지 실드, 실시간 보호)은 permwatch가 실행 중일 때만 작동합니다. 창 없이 메뉴 막대에서 조용히 시작합니다.
+login.adviceTitle	permwatch를 닫으면 보호가 멈춥니다
+login.adviceBody	사기 방지 실드와 실시간 보호는 permwatch가 실행 중일 때만 작동합니다. Mac과 함께 시작하도록 하세요. 메뉴 막대에서 조용히 대기합니다.
+login.adviceButton	Mac과 함께 시작

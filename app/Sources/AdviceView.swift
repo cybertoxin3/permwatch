@@ -271,6 +271,10 @@ struct AdviceView: View {
 
     private var items: [AdviceItem] {
         var out: [AdviceItem] = []
+        if !LoginLaunch.isEnabled && Snapshot.section == nil {
+            out.append(.init(id: "loginLaunch", verdict: .caution, icon: "power", title: L("login.adviceTitle"), body: L("login.adviceBody"),
+                             primary: (L("login.adviceButton"), { LoginLaunch.set(true); done.insert("loginLaunch") })))
+        }
         if let c = crash {
             out.append(.init(id: "crash", verdict: .caution, icon: "exclamationmark.bubble",
                              title: L("crash.title"), body: L("crash.body", Fmt.relative(c.date)),

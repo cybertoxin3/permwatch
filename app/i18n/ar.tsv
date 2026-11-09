@@ -792,3 +792,8 @@ scam.change.app	تطبيق جديد: %@
 scam.change.launch	عنصر بدء تشغيل جديد: %@
 scam.change.extension	أُضيفت إضافة %1$@: %2$@
 scam.settingDesc	بمجرد أن يتصل أحد بحاسوبك عن بعد يظهر تحذير يملأ الشاشة ويمكنك قطع الاتصال بزر واحد. حماية من المحتالين عبر الهاتف.
+login.setting	افتح permwatch عند تشغيل الـMac
+login.settingDesc	وسائل الحماية (درع الاحتيال والحماية في الوقت الفعلي) تعمل فقط أثناء تشغيل permwatch. يبدأ بهدوء في شريط القائمة دون فتح نافذة.
+login.adviceTitle	تتوقف الحماية عند إغلاق permwatch
+login.adviceBody	درع الاحتيال والحماية في الوقت الفعلي يعملان فقط أثناء تشغيل permwatch. دعه يبدأ مع جهازك؛ ينتظر بهدوء في شريط القائمة.
+login.adviceButton	ابدأ مع جهازي

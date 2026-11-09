@@ -792,3 +792,8 @@ scam.change.app	新应用：%@
 scam.change.launch	新登录项：%@
 scam.change.extension	已添加 %1$@ 扩展：%2$@
 scam.settingDesc	一旦有人远程连接你的电脑，就会出现全屏警告，你可以一键断开。防范电话诈骗。
+login.setting	Mac 启动时打开 permwatch
+login.settingDesc	防护功能（防诈骗护盾、实时保护）只在 permwatch 运行时有效。它会在菜单栏中静默启动，不打开窗口。
+login.adviceTitle	关闭 permwatch 后防护会停止
+login.adviceBody	防诈骗护盾和实时保护只在 permwatch 运行时有效。让它随 Mac 启动，它会在菜单栏中静静等待。
+login.adviceButton	随 Mac 启动
