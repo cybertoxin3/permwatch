@@ -25,14 +25,14 @@ Her izin değişikliğinin kaydını tutar, şüpheli olanları anında haber ve
 
 ---
 
-## 📞 Telefon dolandırıcılarını durdurur
+## 🖥️ Ekranını kimin gördüğünü bilir
 
-Biri seni polis, banka ya da teknik destek diye arar ve sana AnyDesk gibi bir program kurdurur. Sonra sen banka sitene girerken ekranını izler. Antivirüsler bunu durdurmaz, çünkü bu programlar zararlı yazılım değildir.
+Zoom, Teams, Meet, Discord, AnyDesk, bir kayıt programı: ekranını kaydeden ya da paylaşan ne ise permwatch onu ekranın üstündeki küçük bir göstergede adıyla bildirir. Bunu doğrudan macOS'tan okur; bu yüzden liste gerekmeden her uygulamada çalışır.
 
-**permwatch durdurur.** Biri Mac'ini uzaktan izlemeye ya da kontrol etmeye başladığı anda ekranı kaplayan bir uyarı çıkar ve sesli uyarır. Tek tuş bağlantıyı keser, programın sunucularını engeller ve izinlerini kaldırır. Bağlantı açıkken banka sitesine girilirse daha sert uyarır; sonrasında ne yapman gerektiğini adım adım söyler. AnyDesk ile başkasına yardım ederken uyarı çıkmaz: yalnızca senin ekranın dışarı gönderildiğinde çıkar.
+İşine karışmaz: derse ya da toplantıya katılmak etkilenmez. Ama "Tanıyorum" demediğin bir paylaşım sürerken bir **şifre alanına** yazmaya başlarsan (hangi site ya da uygulama olursa olsun) ya da banka, ödeme veya devlet sitesi açarsan, karşı taraf bilgilerini görmeden ekranı kaplayan bir uyarı seni durdurur. Tek tuş paylaşımı durdurur; sonrasında ne yapman gerektiğini söyler.
 
 <p align="center">
-  <img src="../images/scam_tr.png" alt="permwatch dolandırıcılık uyarısı" width="760">
+  <img src="../images/share_tr.png" alt="permwatch ekran paylaşımı uyarısı" width="760">
 </p>
 
 ## İzin verdin ve unuttun

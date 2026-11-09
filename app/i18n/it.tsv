@@ -708,92 +708,84 @@ upd.refresh	Controlla ora
 upd.checking	Controllo in corso…
 upd.lastCheck	Aggiornato · ultimo controllo %@
 upd.neverChecked	Non ancora controllato
-nav.shield	Scudo antitruffa
-scam.alert.title	STOP! Qualcuno può vedere o controllare il tuo computer in questo momento
-scam.alert.session	Connesso: %1$@ · iniziato %2$@
-scam.alert.body	Ti ha chiamato qualcuno dicendo di essere la polizia, un pubblico ministero, la tua banca, Apple o Microsoft? Non chiedono MAI di collegarsi al tuo computer, né soldi o password. È una truffa. Riattacca subito e interrompi la connessione qui sotto.
-scam.alert.bankTitle	Durante la connessione è stato aperto un sito bancario
-scam.alert.bankBody	%@ — non inserire password, dati della carta o codice di conferma. L'altra persona vede tutto.
-scam.disconnect	Interrompi connessione
-scam.cutInternet	Interrompi Internet (spegni Wi-Fi)
-scam.wifiDone	Wi-Fi spento
-scam.disconnectHint	Interrompere la connessione non cancella nulla. Se non sei sicuro, prima interrompi, poi rifletti.
-scam.knownTitle	Hai avviato tu questa connessione? (ad esempio il supporto della tua azienda)
-scam.allowHour	La conosco, consenti per 1 ora
-scam.allowAlways	Consenti sempre
-scam.knownHint	Per consentirla servono Touch ID o la password del Mac: la persona remota non può farlo con il mouse.
-scam.demoBanner	PROVA — questo non è un avviso reale
-scam.report.title	Connessione interrotta
-scam.report.subtitle	Nessuno può più vedere il tuo computer. Respira e segui questi passi in ordine.
-scam.report.done	Cosa è stato fatto
-scam.report.close	Chiudi e vedi il rapporto
-scam.steps.title	Cosa fare adesso
-scam.step1	Riattacca. Se richiamano, non rispondere: polizia, magistrati e banche veri non chiedono mai di collegarsi al tuo computer.
-scam.step2	Chiama subito la tua banca (numero sul retro della carta). Fai bloccare temporaneamente carte e home banking e controllare gli ultimi movimenti.
-scam.step3	Cambia le password da un altro dispositivo (ad esempio il telefono): prima l'e-mail, poi la banca, poi il resto.
-scam.step4	Rimuovi il programma di accesso remoto che ti hanno fatto installare e guarda l'elenco «Modifiche sul tuo Mac» in permwatch.
-scam.step5	Se hai inviato denaro o dato informazioni, denuncia alla polizia indicando il numero che ti ha chiamato.
-scam.step6	Avvisa familiari e amici: i truffatori provano lo stesso trucco con altri.
-scam.speech	Attenzione! Qualcuno può vedere o controllare il suo computer in questo momento. Potrebbe essere una truffa. Riattacchi e prema Interrompi connessione sullo schermo.
-scam.speechBank	Attenzione! Ha aperto un sito bancario. Non inserisca password o dati della carta. L'altra persona vede tutto.
-scam.notifyTitle	Qualcuno si è collegato al tuo computer
-scam.notifyBody	È iniziata una sessione remota con %@. Se non l'hai avviata tu, interrompila subito.
-scam.authReason	consentire questa connessione remota
-scam.act.killed	%@ è stato chiuso
-scam.act.killFailed	Impossibile chiudere %@ (è eseguito come amministratore)
-scam.act.needWifi	Non è stato possibile chiudere il programma: si consiglia di interrompere Internet.
-scam.act.blocked	%@ indirizzi di server bloccati
-scam.act.revoked	Rimossi i permessi di registrazione dello schermo e controllo per %@
-scam.act.loginItem	Elemento di login rimosso: %@
-scam.act.wifiOff	Wi-Fi spento
-scam.act.wifiFailed	Impossibile spegnere il Wi-Fi; scollega il cavo o spegnilo dal Centro di Controllo.
-scam.act.sharingSettings	Aperte le impostazioni di Condivisione per disattivare la Condivisione schermo.
-scam.act.sshSettings	Aperte le impostazioni di Condivisione per disattivare SSH (Login remoto).
-scam.kind.screenSharing	Condivisione schermo
-scam.statusOn	Attivo: le connessioni remote sono sorvegliate
-scam.statusOff	Disattivo
-scam.activeTitle	In questo momento è aperta una sessione remota
-scam.showAlert	Mostra avviso
-scam.howTitle	Come funziona questa truffa?
-scam.howBody	Qualcuno chiama fingendosi polizia, magistrato, banca o assistenza tecnica e dice «il tuo conto è in pericolo». Ti fa installare un programma come AnyDesk. Poi, mentre accedi alla banca, vede o controlla il tuo schermo e trasferisce i tuoi soldi sul suo conto. Gli antivirus non lo rilevano, perché questi programmi non sono malware.
-scam.whatTitle	Cosa fa permwatch?
-scam.what1	Appena inizia una vera sessione remota, copre tutto lo schermo con un avviso e ti avverte ad alta voce.
-scam.what2	Interrompe la connessione con un pulsante: chiude il programma, blocca i suoi server e rimuove i permessi di registrazione dello schermo e controllo.
-scam.what3	Se apri un sito di banca, pagamenti o identità durante la connessione, avvisa in modo ancora più deciso.
-scam.what4	Dopo ti dice passo per passo cosa fare e mostra cosa è cambiato sul tuo Mac.
-scam.tryAlert	Prova l'avviso
-scam.tryHint	Guarda com'è l'avviso (prova; non viene chiuso nulla).
-scam.watchTools	Programmi di accesso remoto
-scam.noTools	Nessun programma di accesso remoto installato. Se qualcuno te ne fa installare uno, verrai avvisato alla prima connessione.
-scam.toolsInstalled	Installati: %@. Se non li hai installati tu, rimuovili. Se li usi, vedrai un avviso all'inizio di una sessione.
-scam.watchSharing	Condivisione schermo e SSH
-scam.watchSharingBody	Sono sorvegliate anche le connessioni remote di macOS.
-scam.bankTitle	Avviso sito bancario
-scam.bankDNSOn	Attivo: vengono notati i siti di banche, pagamenti e identità aperti durante una connessione.
-scam.bankDNSOff	Funziona controllando la scheda attiva del browser. Con la modalità amministratore funziona per tutte le app.
-scam.browserPermission	Consenti accesso al browser
-scam.browserHint	macOS chiede una volta per ogni browser aperto, così nessuna domanda compare nel momento peggiore.
-scam.speak	Avviso vocale
-scam.historyTitle	Avvisi precedenti
-scam.outcome.open	In corso
-scam.outcome.disconnected	Connessione interrotta
-scam.outcome.allowed	Consentita
-scam.outcome.ended	Terminata da sola
-scam.openReport	Apri rapporto
-scam.hideReport	Nascondi rapporto
-scam.deleteTitle	Eliminare questo record?
-scam.allowedTitle	Connessioni consentite
-scam.allowedUntil	Fino alle %@
-scam.allowedAlways	Sempre
-scam.changesTitle	Modifiche sul tuo Mac durante l'avviso
-scam.changesHint	App, elementi di login ed estensioni del browser aggiunti da 15 minuti prima dell'avviso. Rimuovi ciò che non riconosci.
-scam.noChanges	Nessuna nuova app, elemento di login o estensione del browser trovati.
-scam.change.app	Nuova app: %@
-scam.change.launch	Nuovo elemento di login: %@
-scam.change.extension	Estensione %1$@ aggiunta: %2$@
-scam.settingDesc	Appena qualcuno si collega al tuo computer da remoto, compare un avviso a tutto schermo e puoi interrompere la connessione con un pulsante. Protezione contro le truffe telefoniche.
 login.setting	Apri permwatch all'avvio del Mac
 login.settingDesc	Le protezioni (Scudo antitruffa, protezione in tempo reale) funzionano solo con permwatch aperto. Si avvia in silenzio nella barra dei menu, senza finestre.
 login.adviceTitle	Con permwatch chiuso la protezione si ferma
 login.adviceBody	Lo Scudo antitruffa e la protezione in tempo reale funzionano solo con permwatch aperto. Lascia che si avvii con il Mac; resta in silenzio nella barra dei menu.
 login.adviceButton	Avvia con il mio Mac
+nav.shield	Protezione condivisione schermo
+sg.statusOn	Attiva: vengono mostrate le app che registrano lo schermo
+sg.statusOff	disattivata
+sg.settingDesc	Mostra in alto quale app sta registrando o condividendo lo schermo. Se inizi a digitare una password o i dati della carta durante una condivisione che non riconosci, ti ferma. Non interferisce con riunioni su Zoom, Teams e simili.
+sg.hud.title	Il tuo schermo è condiviso: %@
+sg.hud.hint	Se la riconosci, premi «La conosco»; sarai avvisato quando inserisci dati.
+sg.known	La conosco
+sg.trustAlways	Fidati sempre
+sg.stop	Interrompi condivisione
+sg.stopApp	Chiudi %@
+sg.openPage	Apri in permwatch
+sg.alert.title	STOP! Il tuo schermo è visibile a qualcun altro in questo momento
+sg.alert.sharing	%1$@ condivide il tuo schermo · dalle: %2$@
+sg.alert.body	Non digitare password, numeri di carta o codici di verifica mentre lo schermo è condiviso: l'altra parte vede tutto ciò che scrivi. Se non hai avviato tu questa condivisione o qualcuno ti sta guidando, interrompila subito.
+sg.cutInternet	Taglia internet (spegni il Wi-Fi)
+sg.wifiDone	Wi-Fi spento
+sg.knownTitle	Se hai avviato tu questa condivisione e ti fidi:
+sg.authHint	Per i programmi di controllo remoto è richiesto Touch ID o la password del Mac, così l'altra persona non può premere «La conosco» con il mouse.
+sg.authReason	fidarsi di una condivisione remota
+sg.demoBanner	DEMO — non è un avviso reale
+sg.trigger.password	Hai iniziato a scrivere in un campo password in %@
+sg.trigger.site	È stato aperto un sito di pagamenti, banca o identità: %@
+sg.speech	Attenzione. Il tuo schermo è condiviso. Non inserire la password o i dati della carta.
+sg.notifyTitle	Inserimento dati con schermo condiviso (%@)
+sg.report.title	Condivisione interrotta
+sg.report.subtitle	Il tuo schermo non è più visibile a nessuno.
+sg.report.done	Cosa è stato fatto
+sg.report.close	Chiudi
+sg.steps.title	Se hai inserito dati, cosa fare ora
+sg.step1	Cambia subito la password digitata da un altro dispositivo (es. il telefono), e ovunque usi la stessa.
+sg.step2	Se hai inserito dati della carta o un codice, chiama la banca al numero sul retro della carta e falla bloccare temporaneamente.
+sg.step3	Se ti hanno fatto installare un programma, rimuovilo e controlla sotto l'elenco «Modifiche sul Mac».
+sg.step4	Se hai inviato denaro o qualcuno ti stava guidando, denuncia alla polizia.
+sg.nowTitle	Stanno usando lo schermo ora
+sg.noSharing	Nessuna app sta condividendo o registrando lo schermo ora.
+sg.kind.remote	controllo remoto
+sg.kind.capture	registrazione / condivisione schermo
+sg.kind.screenSharing	Condivisione schermo di macOS
+sg.acknowledged	riconosciuta
+sg.howTitle	Come funziona
+sg.howBody	macOS annota nel log di sistema ogni app che cattura lo schermo: Zoom, Teams, Meet, Discord, AnyDesk, registratori… permwatch lo legge e mostra chi registra con un piccolo indicatore in alto. Partecipare a una riunione o a una lezione, o aiutare qualcuno, non viene ostacolato.
+sg.what1	Se inizi a scrivere in un campo password durante una condivisione sconosciuta (su qualsiasi sito o app), compare un avviso a schermo intero.
+sg.what2	Un avviso compare anche quando si aprono siti di banche, pagamenti, cripto o della pubblica amministrazione.
+sg.what3	Una condivisione segnata «La conosco» non genera mai avvisi; «Fidati sempre» non chiede più per quell'app.
+sg.tryAlert	Prova l'avviso
+sg.tryHint	Vedi com'è l'avviso; non viene chiuso nulla.
+sg.sitesTitle	Siti sensibili
+sg.sitesDNSOn	Protezione di rete attiva: i siti di banche e pagamenti sono riconosciuti in ogni browser.
+sg.sitesDNSOff	Protezione di rete disattivata: i siti sono riconosciuti solo dalla scheda del browser. L'avviso sul campo password funziona comunque.
+sg.browserPermission	Consenti accesso al browser
+sg.browserHint	Viene letto solo l'indirizzo della scheda aperta, e solo durante una condivisione.
+sg.speak	Leggi anche l'avviso ad alta voce
+sg.trustedTitle	Sempre attendibili
+sg.trustedHint	Queste app non generano avvisi quando condividono lo schermo.
+sg.historyTitle	Cronologia
+sg.deleteTitle	Eliminare questo record?
+sg.openReport	Apri rapporto
+sg.hideReport	Nascondi rapporto
+sg.outcome.open	avviso aperto
+sg.outcome.stopped	condivisione interrotta
+sg.outcome.acknowledged	riconosciuta, proseguito
+sg.outcome.ended	condivisione terminata
+sg.changesTitle	Cosa è cambiato sul Mac in quel momento
+sg.noChanges	Niente di nuovo nei 15 minuti prima dell'avviso.
+sg.changesHint	App installate, elementi di login ed estensioni del browser nuovi.
+sg.change.app	Nuova app: %@
+sg.change.launch	Nuovo elemento di login: %@
+sg.change.extension	Nuova estensione %1$@: %2$@
+sg.act.closed	%@ è stata chiusa
+sg.act.closeFailed	Impossibile chiudere %@ (in esecuzione come amministratore)
+sg.act.blocked	%@ indirizzi server bloccati
+sg.act.revoked	Permessi di registrazione e controllo rimossi per %@
+sg.act.loginItem	Elemento di login rimosso: %@
+sg.act.sharingSettings	Impostazioni di condivisione aperte: disattiva Condivisione schermo
+sg.act.wifiOff	Wi-Fi spento
+sg.act.wifiFailed	Impossibile spegnere il Wi-Fi

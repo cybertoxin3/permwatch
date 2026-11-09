@@ -708,92 +708,84 @@ upd.refresh	Verificar agora
 upd.checking	Verificando…
 upd.lastCheck	Atualizado · última verificação %@
 upd.neverChecked	Ainda não verificado
-nav.shield	Escudo antigolpe
-scam.alert.title	PARE! Alguém pode ver ou controlar seu computador agora
-scam.alert.session	Conectado: %1$@ · começou %2$@
-scam.alert.body	Alguém ligou dizendo ser a polícia, um promotor, seu banco, a Apple ou a Microsoft? Eles NUNCA pedem para se conectar ao seu computador, nem pedem dinheiro ou senhas. É golpe. Desligue agora e corte a conexão abaixo.
-scam.alert.bankTitle	Um site de banco foi aberto durante a conexão
-scam.alert.bankBody	%@ — não digite sua senha, dados do cartão ou código de confirmação. A outra pessoa vê tudo.
-scam.disconnect	Cortar conexão
-scam.cutInternet	Cortar a Internet (desligar Wi-Fi)
-scam.wifiDone	Wi-Fi desligado
-scam.disconnectHint	Cortar a conexão não apaga nada. Na dúvida, corte primeiro e pense depois.
-scam.knownTitle	Foi você quem iniciou esta conexão? (por exemplo, o suporte da sua empresa)
-scam.allowHour	Eu conheço, permitir por 1 hora
-scam.allowAlways	Sempre permitir
-scam.knownHint	Para permitir é preciso Touch ID ou a senha do Mac; a pessoa remota não consegue fazer isso com o mouse.
-scam.demoBanner	TESTE — este não é um alerta real
-scam.report.title	Conexão cortada
-scam.report.subtitle	Ninguém mais consegue ver seu computador. Respire e siga estes passos em ordem.
-scam.report.done	O que foi feito
-scam.report.close	Fechar e ver o relatório
-scam.steps.title	O que fazer agora
-scam.step1	Desligue. Se ligarem de novo, não atenda: polícia, promotores e bancos de verdade nunca pedem para se conectar ao seu computador.
-scam.step2	Ligue já para o seu banco (número no verso do cartão). Peça o bloqueio temporário dos cartões e do internet banking e a verificação das últimas transações.
-scam.step3	Troque suas senhas usando outro aparelho (por exemplo, o celular): primeiro o e-mail, depois o banco, depois o resto.
-scam.step4	Remova o programa de acesso remoto que mandaram você instalar e veja a lista "Mudanças no seu Mac" no permwatch.
-scam.step5	Se você enviou dinheiro ou passou informações, registre um boletim de ocorrência com o número que ligou.
-scam.step6	Avise sua família e amigos: golpistas tentam o mesmo truque com outras pessoas.
-scam.speech	Atenção! Alguém pode ver ou controlar seu computador agora. Pode ser um golpe. Desligue o telefone e clique em Cortar conexão na tela.
-scam.speechBank	Atenção! Você abriu um site de banco. Não digite sua senha nem os dados do cartão. A outra pessoa vê tudo.
-scam.notifyTitle	Alguém se conectou ao seu computador
-scam.notifyBody	Uma sessão remota começou com %@. Se não foi você, corte a conexão agora.
-scam.authReason	permitir esta conexão remota
-scam.act.killed	%@ foi fechado
-scam.act.killFailed	Não foi possível fechar %@ (roda como administrador)
-scam.act.needWifi	O programa não pôde ser fechado; recomenda-se cortar a Internet.
-scam.act.blocked	%@ endereços de servidor bloqueados
-scam.act.revoked	Permissões de gravação de tela e controle removidas de %@
-scam.act.loginItem	Item de início removido: %@
-scam.act.wifiOff	Wi-Fi desligado
-scam.act.wifiFailed	Não foi possível desligar o Wi-Fi; desconecte o cabo ou desligue pela Central de Controle.
-scam.act.sharingSettings	Ajustes de Compartilhamento abertos para você desligar o Compartilhamento de Tela.
-scam.act.sshSettings	Ajustes de Compartilhamento abertos para você desligar o SSH (Sessão Remota).
-scam.kind.screenSharing	Compartilhamento de Tela
-scam.statusOn	Ativado: conexões remotas são vigiadas
-scam.statusOff	Desativado
-scam.activeTitle	Há uma sessão remota aberta agora
-scam.showAlert	Mostrar alerta
-scam.howTitle	Como funciona esse golpe?
-scam.howBody	Alguém liga fingindo ser a polícia, um promotor, seu banco ou o suporte técnico e diz "sua conta está em perigo". Pede para você instalar um programa como o AnyDesk. Depois, enquanto você entra no banco, vê ou controla sua tela e transfere seu dinheiro para a conta dele. Antivírus não detectam isso, porque esses programas não são malware.
-scam.whatTitle	O que o permwatch faz?
-scam.what1	Assim que começa uma sessão remota real, cobre a tela inteira com um alerta e avisa você em voz alta.
-scam.what2	Corta a conexão com um botão: fecha o programa, bloqueia seus servidores e remove as permissões de gravação de tela e controle.
-scam.what3	Se você abrir um site de banco, pagamento ou identidade durante a conexão, o alerta fica ainda mais forte.
-scam.what4	Depois diz passo a passo o que fazer e mostra o que mudou no seu Mac.
-scam.tryAlert	Testar o alerta
-scam.tryHint	Veja como é o alerta (teste; nada é fechado).
-scam.watchTools	Programas de acesso remoto
-scam.noTools	Nenhum programa de acesso remoto instalado. Se alguém fizer você instalar um, você será avisado na primeira conexão.
-scam.toolsInstalled	Instalados: %@. Se não foi você que instalou, remova-os. Se você os usa, verá um alerta quando uma sessão começar.
-scam.watchSharing	Compartilhamento de Tela e SSH
-scam.watchSharingBody	As conexões remotas do próprio macOS também são vigiadas.
-scam.bankTitle	Alerta de site de banco
-scam.bankDNSOn	Ativado: sites de banco, pagamento e identidade abertos durante uma conexão são percebidos.
-scam.bankDNSOff	Funciona verificando a aba ativa do navegador. Com o modo administrador, funciona para todos os apps.
-scam.browserPermission	Permitir acesso ao navegador
-scam.browserHint	O macOS pergunta uma vez para cada navegador aberto, para nenhuma pergunta aparecer na pior hora.
-scam.speak	Alerta falado
-scam.historyTitle	Alertas anteriores
-scam.outcome.open	Em andamento
-scam.outcome.disconnected	Conexão cortada
-scam.outcome.allowed	Permitida
-scam.outcome.ended	Terminou sozinha
-scam.openReport	Abrir relatório
-scam.hideReport	Ocultar relatório
-scam.deleteTitle	Apagar este registro?
-scam.allowedTitle	Conexões permitidas
-scam.allowedUntil	Até %@
-scam.allowedAlways	Sempre
-scam.changesTitle	Mudanças no seu Mac durante o alerta
-scam.changesHint	Apps, itens de início e extensões de navegador adicionados desde 15 minutos antes do alerta. Remova o que você não reconhecer.
-scam.noChanges	Nenhum app, item de início ou extensão de navegador novo encontrado.
-scam.change.app	Novo app: %@
-scam.change.launch	Novo item de início: %@
-scam.change.extension	Extensão do %1$@ adicionada: %2$@
-scam.settingDesc	Assim que alguém se conecta ao seu computador remotamente, aparece um alerta em tela cheia e você pode cortar a conexão com um botão. Proteção contra golpes por telefone.
 login.setting	Abrir o permwatch ao iniciar o Mac
 login.settingDesc	As proteções (Escudo antigolpe, proteção em tempo real) só funcionam com o permwatch aberto. Ele inicia em silêncio na barra de menus, sem abrir janela.
 login.adviceTitle	A proteção para quando o permwatch está fechado
 login.adviceBody	O Escudo antigolpe e a proteção em tempo real só funcionam com o permwatch aberto. Deixe-o iniciar com o Mac; ele espera em silêncio na barra de menus.
 login.adviceButton	Iniciar com meu Mac
+nav.shield	Proteção de partilha de ecrã
+sg.statusOn	Ativada: as apps que gravam o seu ecrã são mostradas
+sg.statusOff	desativada
+sg.settingDesc	Mostra no topo do ecrã qual app está a gravar ou partilhar o seu ecrã. Se começar a escrever uma palavra-passe ou dados do cartão durante uma partilha que não reconhece, impede-o. Não interfere com reuniões no Zoom, Teams, etc.
+sg.hud.title	O seu ecrã está a ser partilhado: %@
+sg.hud.hint	Se a reconhece, toque em «Conheço»; será avisado ao introduzir dados.
+sg.known	Conheço
+sg.trustAlways	Confiar sempre
+sg.stop	Parar partilha
+sg.stopApp	Fechar %@
+sg.openPage	Abrir no permwatch
+sg.alert.title	PARE! O seu ecrã está visível para outra pessoa neste momento
+sg.alert.sharing	%1$@ está a partilhar o seu ecrã · desde: %2$@
+sg.alert.body	Não escreva palavras-passe, números de cartão nem códigos de verificação com o ecrã partilhado: a outra parte vê tudo o que escreve. Se não iniciou esta partilha ou alguém o está a orientar, pare-a agora.
+sg.cutInternet	Cortar a internet (desligar Wi-Fi)
+sg.wifiDone	Wi-Fi desligado
+sg.knownTitle	Se iniciou esta partilha e confia nela:
+sg.authHint	Em programas de controlo remoto é pedido o Touch ID ou a palavra-passe do Mac, para que a outra pessoa não possa clicar em «Conheço» com o rato.
+sg.authReason	confiar numa partilha remota
+sg.demoBanner	DEMO — não é um aviso real
+sg.trigger.password	Começou a escrever num campo de palavra-passe em %@
+sg.trigger.site	Foi aberto um site de pagamentos, banco ou identidade: %@
+sg.speech	Cuidado. O seu ecrã está a ser partilhado. Não introduza a palavra-passe nem os dados do cartão.
+sg.notifyTitle	Introdução de dados com o ecrã partilhado (%@)
+sg.report.title	Partilha parada
+sg.report.subtitle	O seu ecrã já não está visível para ninguém.
+sg.report.done	O que foi feito
+sg.report.close	Fechar
+sg.steps.title	Se introduziu dados, o que fazer agora
+sg.step1	Altere já a palavra-passe que escreveu a partir de outro dispositivo (ex.: o telemóvel), e em todos os sítios onde a usa.
+sg.step2	Se introduziu dados do cartão ou um código, ligue ao banco pelo número no verso do cartão e peça o bloqueio temporário.
+sg.step3	Se o fizeram instalar um programa, remova-o e veja abaixo a lista «Alterações no Mac».
+sg.step4	Se enviou dinheiro ou alguém o estava a orientar, apresente queixa à polícia.
+sg.nowTitle	A usar o ecrã agora
+sg.noSharing	Nenhuma app está a partilhar ou gravar o seu ecrã agora.
+sg.kind.remote	controlo remoto
+sg.kind.capture	gravação / partilha de ecrã
+sg.kind.screenSharing	Partilha de ecrã do macOS
+sg.acknowledged	reconhecida
+sg.howTitle	Como funciona
+sg.howBody	O macOS regista no registo do sistema cada app que captura o seu ecrã: Zoom, Teams, Meet, Discord, AnyDesk, gravadores… o permwatch lê isso e mostra quem está a gravar com um pequeno indicador no topo do ecrã. Participar numa reunião ou aula, ou ajudar alguém, não é afetado.
+sg.what1	Se começar a escrever num campo de palavra-passe durante uma partilha desconhecida (em qualquer site ou app), aparece um aviso em ecrã inteiro.
+sg.what2	Também aparece um aviso ao abrir sites de bancos, pagamentos, cripto ou serviços públicos.
+sg.what3	Uma partilha marcada «Conheço» nunca gera avisos; «Confiar sempre» deixa de perguntar por essa app.
+sg.tryAlert	Experimentar o aviso
+sg.tryHint	Veja como é o aviso; nada é fechado.
+sg.sitesTitle	Sites sensíveis
+sg.sitesDNSOn	Proteção de rede ativada: sites de bancos e pagamentos são reconhecidos em todos os navegadores.
+sg.sitesDNSOff	Proteção de rede desativada: os sites só são reconhecidos pelo separador do navegador. O aviso de campo de palavra-passe continua a funcionar.
+sg.browserPermission	Permitir acesso ao navegador
+sg.browserHint	Só é lido o endereço do separador aberto, e só durante uma partilha.
+sg.speak	Dizer também o aviso em voz alta
+sg.trustedTitle	Sempre de confiança
+sg.trustedHint	Estas apps não geram avisos ao partilhar o ecrã.
+sg.historyTitle	Histórico
+sg.deleteTitle	Eliminar este registo?
+sg.openReport	Abrir relatório
+sg.hideReport	Ocultar relatório
+sg.outcome.open	aviso aberto
+sg.outcome.stopped	partilha parada
+sg.outcome.acknowledged	reconhecida, continuou
+sg.outcome.ended	partilha terminada
+sg.changesTitle	O que mudou no Mac nesse momento
+sg.noChanges	Nada de novo nos 15 minutos antes do aviso.
+sg.changesHint	Apps instaladas, itens de arranque e extensões do navegador novos.
+sg.change.app	Nova app: %@
+sg.change.launch	Novo item de arranque: %@
+sg.change.extension	Nova extensão do %1$@: %2$@
+sg.act.closed	%@ foi fechado
+sg.act.closeFailed	Não foi possível fechar %@ (a correr como administrador)
+sg.act.blocked	%@ endereços de servidor bloqueados
+sg.act.revoked	Permissões de gravação e controlo removidas para %@
+sg.act.loginItem	Item de arranque removido: %@
+sg.act.sharingSettings	Definições de partilha abertas: desligue a Partilha de ecrã
+sg.act.wifiOff	Wi-Fi desligado
+sg.act.wifiFailed	Não foi possível desligar o Wi-Fi

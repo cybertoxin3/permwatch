@@ -56,7 +56,7 @@ struct MainView: View {
             } else if section == .terminal {
                 TerminalSection()
             } else if section == .shield {
-                ScamShieldView()
+                ShareGuardView()
             } else if section == .settings {
                 // Form kendi içinde kayar; ortada, okunabilir genişlikte.
                 SettingsView(embedded: true).frame(maxWidth: .infinity)
@@ -198,7 +198,7 @@ struct Sidebar: View {
     var body: some View {
         List(selection: $section) {
             Label(L("nav.overview"), systemImage: "checkmark.shield").tag(SidebarItem.advice)
-            Label(L("nav.shield"), systemImage: "phone.badge.waveform").tag(SidebarItem.shield)
+            Label(L("nav.shield"), systemImage: "rectangle.dashed.badge.record").tag(SidebarItem.shield)
             Label(L("nav.scan"), systemImage: "ladybug").badge(scanner.detections.count).tag(SidebarItem.scan)
             Label(L("nav.alerts"), systemImage: "exclamationmark.triangle").badge(store.openAlerts).tag(SidebarItem.alerts)
 

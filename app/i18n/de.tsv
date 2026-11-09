@@ -708,92 +708,84 @@ upd.refresh	Jetzt prüfen
 upd.checking	Wird geprüft …
 upd.lastCheck	Aktuell · zuletzt geprüft %@
 upd.neverChecked	Noch nicht geprüft
-nav.shield	Betrugsschutz
-scam.alert.title	STOPP! Jemand kann gerade deinen Computer sehen oder steuern
-scam.alert.session	Verbunden: %1$@ · begonnen %2$@
-scam.alert.body	Hat dich jemand angerufen, der sich als Polizei, Staatsanwalt, deine Bank, Apple oder Microsoft ausgibt? Diese verlangen NIE, sich mit deinem Computer zu verbinden, und fragen nie nach Geld oder Passwörtern. Das ist Betrug. Leg sofort auf und trenne unten die Verbindung.
-scam.alert.bankTitle	Während der Verbindung wurde eine Bank-Website geöffnet
-scam.alert.bankBody	%@ — gib kein Passwort, keine Kartendaten und keinen Bestätigungscode ein. Die andere Person sieht alles.
-scam.disconnect	Verbindung trennen
-scam.cutInternet	Internet trennen (WLAN aus)
-scam.wifiDone	WLAN ist aus
-scam.disconnectHint	Das Trennen löscht nichts. Wenn du unsicher bist: zuerst trennen, dann nachdenken.
-scam.knownTitle	Hast du diese Verbindung selbst gestartet? (z. B. der Support deines Arbeitgebers)
-scam.allowHour	Kenne ich, 1 Stunde erlauben
-scam.allowAlways	Immer erlauben
-scam.knownHint	Zum Erlauben sind Touch ID oder dein Mac-Passwort nötig – die entfernte Person kann das nicht mit der Maus tun.
-scam.demoBanner	TEST – das ist keine echte Warnung
-scam.report.title	Verbindung getrennt
-scam.report.subtitle	Niemand kann deinen Computer mehr sehen. Atme durch und erledige diese Schritte der Reihe nach.
-scam.report.done	Was erledigt wurde
-scam.report.close	Schließen und Bericht ansehen
-scam.steps.title	Was du jetzt tun solltest
-scam.step1	Leg auf. Rufen sie wieder an, geh nicht ran: Echte Polizei, Staatsanwälte und Banken wollen sich nie mit deinem Computer verbinden.
-scam.step2	Ruf sofort deine Bank an (Nummer auf der Rückseite deiner Karte). Lass Karten und Onlinebanking vorläufig sperren und die letzten Buchungen prüfen.
-scam.step3	Ändere deine Passwörter von einem anderen Gerät aus (z. B. dem Handy): zuerst E-Mail, dann Bank, dann den Rest.
-scam.step4	Entferne das Fernzugriffsprogramm, das du installieren solltest, und sieh dir in permwatch die Liste „Änderungen auf deinem Mac“ an.
-scam.step5	Wenn du Geld überwiesen oder Daten genannt hast, erstatte Anzeige bei der Polizei und nenne die Nummer des Anrufers.
-scam.step6	Warne Familie und Freunde: Betrüger versuchen denselben Trick bei anderen.
-scam.speech	Achtung! Jemand kann gerade Ihren Computer sehen oder steuern. Das kann Betrug sein. Legen Sie auf und drücken Sie auf dem Bildschirm auf Verbindung trennen.
-scam.speechBank	Achtung! Sie haben eine Bank-Website geöffnet. Geben Sie kein Passwort und keine Kartendaten ein. Die andere Person sieht alles.
-scam.notifyTitle	Jemand hat sich mit deinem Computer verbunden
-scam.notifyBody	Eine Fernsitzung mit %@ hat begonnen. Wenn du sie nicht gestartet hast, trenne sofort.
-scam.authReason	diese Fernverbindung erlauben
-scam.act.killed	%@ wurde beendet
-scam.act.killFailed	%@ konnte nicht beendet werden (läuft als Administrator)
-scam.act.needWifi	Das Programm konnte nicht beendet werden – trenne am besten das Internet.
-scam.act.blocked	%@ Serveradressen blockiert
-scam.act.revoked	Bildschirmaufnahme- und Steuerungsrechte für %@ entfernt
-scam.act.loginItem	Anmeldeobjekt entfernt: %@
-scam.act.wifiOff	WLAN ausgeschaltet
-scam.act.wifiFailed	WLAN konnte nicht ausgeschaltet werden; zieh das Kabel oder schalte es im Kontrollzentrum aus.
-scam.act.sharingSettings	Freigaben-Einstellungen geöffnet, damit du die Bildschirmfreigabe ausschalten kannst.
-scam.act.sshSettings	Freigaben-Einstellungen geöffnet, damit du SSH (Entfernte Anmeldung) ausschalten kannst.
-scam.kind.screenSharing	Bildschirmfreigabe
-scam.statusOn	An: Fernverbindungen werden überwacht
-scam.statusOff	Aus
-scam.activeTitle	Gerade ist eine Fernsitzung offen
-scam.showAlert	Warnung anzeigen
-scam.howTitle	Wie funktioniert dieser Betrug?
-scam.howBody	Jemand ruft an, gibt sich als Polizei, Staatsanwalt, Bank oder technischer Support aus und sagt „Ihr Konto ist in Gefahr“. Du sollst ein Programm wie AnyDesk installieren. Während du dich dann bei deiner Bank anmeldest, sieht oder steuert er deinen Bildschirm und überweist dein Geld auf sein Konto. Virenscanner erkennen das nicht, denn diese Programme sind keine Schadsoftware.
-scam.whatTitle	Was macht permwatch?
-scam.what1	Sobald eine echte Fernsitzung beginnt, bedeckt eine Warnung den ganzen Bildschirm und du wirst laut gewarnt.
-scam.what2	Trennt mit einem Klick: beendet das Programm, blockiert seine Server und entfernt seine Rechte für Bildschirmaufnahme und Steuerung.
-scam.what3	Öffnest du während der Verbindung eine Bank-, Zahlungs- oder Behördenseite, warnt es noch deutlicher.
-scam.what4	Danach sagt es dir Schritt für Schritt, was zu tun ist, und zeigt, was sich auf deinem Mac geändert hat.
-scam.tryAlert	Warnung ausprobieren
-scam.tryHint	Sieh dir an, wie die Warnung aussieht (Test; nichts wird beendet).
-scam.watchTools	Fernzugriffsprogramme
-scam.noTools	Kein Fernzugriffsprogramm installiert. Lässt dich jemand eines installieren, wirst du bei der ersten Verbindung gewarnt.
-scam.toolsInstalled	Installiert: %@. Hast du sie nicht selbst installiert, entferne sie. Nutzt du sie, erscheint beim Start einer Sitzung eine Warnung.
-scam.watchSharing	Bildschirmfreigabe und SSH
-scam.watchSharingBody	Auch die eigenen Fernverbindungen von macOS werden überwacht.
-scam.bankTitle	Warnung bei Bank-Websites
-scam.bankDNSOn	An: Bank-, Zahlungs- und Ausweisseiten, die während einer Verbindung geöffnet werden, werden erkannt.
-scam.bankDNSOff	Prüft den aktiven Browser-Tab. Mit Administratormodus funktioniert es für alle Apps.
-scam.browserPermission	Browserzugriff erlauben
-scam.browserHint	macOS fragt für jeden offenen Browser einmal, damit im Ernstfall keine Frage auftaucht.
-scam.speak	Warnung vorlesen
-scam.historyTitle	Frühere Warnungen
-scam.outcome.open	Läuft
-scam.outcome.disconnected	Getrennt
-scam.outcome.allowed	Erlaubt
-scam.outcome.ended	Von selbst beendet
-scam.openReport	Bericht öffnen
-scam.hideReport	Bericht ausblenden
-scam.deleteTitle	Diesen Eintrag löschen?
-scam.allowedTitle	Erlaubte Verbindungen
-scam.allowedUntil	Bis %@
-scam.allowedAlways	Immer
-scam.changesTitle	Änderungen auf deinem Mac während der Warnung
-scam.changesHint	Apps, Anmeldeobjekte und Browser-Erweiterungen, die seit 15 Minuten vor der Warnung hinzugekommen sind. Entferne alles, was du nicht kennst.
-scam.noChanges	Keine neue App, kein neues Anmeldeobjekt und keine neue Browser-Erweiterung gefunden.
-scam.change.app	Neue App: %@
-scam.change.launch	Neues Anmeldeobjekt: %@
-scam.change.extension	%1$@-Erweiterung hinzugefügt: %2$@
-scam.settingDesc	Sobald sich jemand aus der Ferne mit deinem Computer verbindet, erscheint eine bildschirmfüllende Warnung und du kannst mit einem Klick trennen. Schutz vor Telefonbetrügern.
 login.setting	permwatch beim Start des Mac öffnen
 login.settingDesc	Die Schutzfunktionen (Betrugsschutz, Echtzeitschutz) arbeiten nur, solange permwatch läuft. Es startet leise in der Menüleiste, ohne Fenster.
 login.adviceTitle	Ohne permwatch kein Schutz
 login.adviceBody	Betrugsschutz und Echtzeitschutz arbeiten nur, solange permwatch läuft. Lass es mit deinem Mac starten; es wartet leise in der Menüleiste.
 login.adviceButton	Mit meinem Mac starten
+nav.shield	Bildschirmfreigabe-Schutz
+sg.statusOn	An: Apps, die deinen Bildschirm aufnehmen, werden angezeigt
+sg.statusOff	aus
+sg.settingDesc	Zeigt oben am Bildschirm, welche App deinen Bildschirm aufnimmt oder teilt. Wenn du während einer unbekannten Freigabe ein Passwort oder Kartendaten eingeben willst, hält es dich auf. Stört keine Meetings in Zoom, Teams usw.
+sg.hud.title	Dein Bildschirm wird geteilt: %@
+sg.hud.hint	Wenn du es kennst, tippe auf „Kenne ich“; bei Eingaben wirst du gewarnt.
+sg.known	Kenne ich
+sg.trustAlways	Immer vertrauen
+sg.stop	Freigabe beenden
+sg.stopApp	%@ beenden
+sg.openPage	In permwatch öffnen
+sg.alert.title	STOPP! Dein Bildschirm ist gerade für jemand anderen sichtbar
+sg.alert.sharing	%1$@ teilt deinen Bildschirm · seit: %2$@
+sg.alert.body	Gib während der Freigabe kein Passwort, keine Kartennummer und keinen Bestätigungscode ein: die Gegenseite sieht alles, was du tippst. Wenn du diese Freigabe nicht gestartet hast oder dich jemand anleitet, beende sie sofort.
+sg.cutInternet	Internet trennen (WLAN aus)
+sg.wifiDone	WLAN ausgeschaltet
+sg.knownTitle	Wenn du diese Freigabe gestartet hast und ihr vertraust:
+sg.authHint	Bei Fernsteuerungsprogrammen wird Touch ID oder dein Mac-Passwort verlangt, damit die andere Person nicht mit der Maus auf „Kenne ich“ klicken kann.
+sg.authReason	einer Fernfreigabe vertrauen
+sg.demoBanner	DEMO – keine echte Warnung
+sg.trigger.password	Du tippst in ein Passwortfeld in %@
+sg.trigger.site	Eine Zahlungs-, Bank- oder Ausweisseite wurde geöffnet: %@
+sg.speech	Vorsicht. Dein Bildschirm wird geteilt. Gib kein Passwort und keine Kartendaten ein.
+sg.notifyTitle	Eingabe während der Bildschirmfreigabe (%@)
+sg.report.title	Freigabe beendet
+sg.report.subtitle	Dein Bildschirm ist für niemanden mehr sichtbar.
+sg.report.done	Erledigt
+sg.report.close	Schließen
+sg.steps.title	Wenn du Daten eingegeben hast: was jetzt zu tun ist
+sg.step1	Ändere das eingegebene Passwort sofort von einem anderen Gerät (z. B. dem Handy) – und überall, wo du es verwendest.
+sg.step2	Hast du Kartendaten oder einen Code eingegeben, ruf deine Bank unter der Nummer auf der Kartenrückseite an und lass die Karte vorübergehend sperren.
+sg.step3	Wurde dir ein Programm installiert, entferne es und prüfe unten die Liste „Änderungen am Mac“.
+sg.step4	Hast du Geld überwiesen oder hat dich jemand angeleitet, erstatte Anzeige bei der Polizei.
+sg.nowTitle	Nutzen gerade den Bildschirm
+sg.noSharing	Gerade teilt oder nimmt keine App deinen Bildschirm auf.
+sg.kind.remote	Fernsteuerung
+sg.kind.capture	Bildschirmaufnahme / -freigabe
+sg.kind.screenSharing	macOS-Bildschirmfreigabe
+sg.acknowledged	bekannt
+sg.howTitle	So funktioniert es
+sg.howBody	macOS protokolliert jede App, die deinen Bildschirm erfasst: Zoom, Teams, Meet, Discord, AnyDesk, Aufnahmeprogramme … permwatch liest das und zeigt oben mit einer kleinen Anzeige, wer aufnimmt. Meetings, Unterricht oder Hilfe für andere bleiben unberührt.
+sg.what1	Tippst du während einer unbekannten Freigabe in ein Passwortfeld (egal welche Seite oder App), erscheint eine bildschirmfüllende Warnung.
+sg.what2	Auch beim Öffnen von Bank-, Zahlungs-, Krypto- und Behördenseiten erscheint eine Warnung.
+sg.what3	Bei einer Freigabe mit „Kenne ich“ erscheint keine Warnung; „Immer vertrauen“ fragt bei dieser App nie wieder.
+sg.tryAlert	Warnung testen
+sg.tryHint	So sieht die Warnung aus; nichts wird geschlossen.
+sg.sitesTitle	Sensible Seiten
+sg.sitesDNSOn	Netzwerkschutz an: Bank- und Zahlungsseiten werden in jedem Browser erkannt.
+sg.sitesDNSOff	Netzwerkschutz aus: Seiten werden nur über den Browser-Tab erkannt. Die Passwortfeld-Warnung funktioniert trotzdem.
+sg.browserPermission	Browserzugriff erlauben
+sg.browserHint	Nur die Adresse des offenen Tabs wird gelesen, und nur während einer Freigabe.
+sg.speak	Warnung auch vorlesen
+sg.trustedTitle	Immer vertraut
+sg.trustedHint	Diese Apps lösen beim Teilen keine Warnung aus.
+sg.historyTitle	Verlauf
+sg.deleteTitle	Diesen Eintrag löschen?
+sg.openReport	Bericht öffnen
+sg.hideReport	Bericht ausblenden
+sg.outcome.open	Warnung offen
+sg.outcome.stopped	Freigabe beendet
+sg.outcome.acknowledged	bekannt, fortgesetzt
+sg.outcome.ended	Freigabe vorbei
+sg.changesTitle	Was sich damals am Mac geändert hat
+sg.noChanges	Nichts Neues in den 15 Minuten vor der Warnung.
+sg.changesHint	Neu installierte Apps, Anmeldeobjekte und Browsererweiterungen.
+sg.change.app	Neue App: %@
+sg.change.launch	Neues Anmeldeobjekt: %@
+sg.change.extension	Neue %1$@-Erweiterung: %2$@
+sg.act.closed	%@ wurde beendet
+sg.act.closeFailed	%@ konnte nicht beendet werden (läuft als Administrator)
+sg.act.blocked	%@ Serveradressen blockiert
+sg.act.revoked	Bildschirmaufnahme- und Steuerungsrechte für %@ entfernt
+sg.act.loginItem	Anmeldeobjekt entfernt: %@
+sg.act.sharingSettings	Freigabe-Einstellungen geöffnet: Bildschirmfreigabe ausschalten
+sg.act.wifiOff	WLAN ausgeschaltet
+sg.act.wifiFailed	WLAN konnte nicht ausgeschaltet werden

@@ -266,17 +266,43 @@ func check(_ cond: Bool, _ name: String) { if cond { print("✓ \(name)") } else
         var d3 = SessionDetector()
         check(d3.update([RemoteObservation(pid: 9, name: "SSH", path: nil, kind: .ssh, bytes: -1)], now: at(0)).count == 1, "SSH oturumu hemen sayılır")
     }
-    check(ScamShield.classify(path: "/Applications/AnyDesk.app/Contents/MacOS/AnyDesk", name: "AnyDesk")?.name == "AnyDesk"
-          && ScamShield.classify(path: "/Applications/ToDesk.app/Contents/MacOS/ToDesk_Service", name: "ToDesk_Service")?.name == "ToDesk"
-          && ScamShield.classify(path: "/Applications/Autodesk Fusion.app/Contents/MacOS/Autodesk Fusion", name: "Autodesk Fusion") == nil
-          && ScamShield.classify(path: nil, name: "sshd-session")?.kind == .ssh
-          && ScamShield.classify(path: nil, name: "screensharingd")?.kind == .screenSharing
-          && ScamShield.classify(path: "/usr/bin/ssh", name: "ssh") == nil,
+    check(ShareGuard.classify(path: "/Applications/AnyDesk.app/Contents/MacOS/AnyDesk", name: "AnyDesk")?.name == "AnyDesk"
+          && ShareGuard.classify(path: "/Applications/ToDesk.app/Contents/MacOS/ToDesk_Service", name: "ToDesk_Service")?.name == "ToDesk"
+          && ShareGuard.classify(path: "/Applications/Autodesk Fusion.app/Contents/MacOS/Autodesk Fusion", name: "Autodesk Fusion") == nil
+          && ShareGuard.classify(path: nil, name: "screensharingd")?.kind == .screenSharing
+          && ShareGuard.classify(path: "/usr/bin/ssh", name: "ssh") == nil,
           "uzaktan erişim süreçleri doğru tanınır (Autodesk karışmaz)")
     check(SensitiveSites.match("online.isbank.com.tr") == "isbank.com.tr" && SensitiveSites.match("www.garantibbva.com.tr") == "garantibbva.com.tr"
           && SensitiveSites.match("notisbank.com.tr") == nil && SensitiveSites.match("www.google.com") == nil
           && SensitiveSites.match("online.sberbank.ru") == "online.sberbank.ru",
           "banka alan adları (alt alan adlarıyla) eşleşir, benzerleri eşleşmez")
+
+    do {
+        // Gerçek replayd satırları (macOS 26, screencapture -V ile)
+        var p = CaptureLogParser()
+        p.feed("-[RPConnectionManager processNewConnection:]:197 accepted client connection PID: 439")
+        p.feed("-[RPClient initWithConnection:clientProxy:bundleIdentifier:]:125 0x97ec99040")
+        check(p.activePIDs.isEmpty, "bağlanmak paylaşım sayılmaz")
+        p.feed("-[RPClient captureSessionDidChange:withScreenAspectRatio:]:2024 client=0x97ec99040 captureSession=0x97e784000 aspectRatio=1.600000")
+        check(p.activePIDs == [439] && p.startedAt[439] != nil, "paylaşım başlayınca süreç bulunur")
+        p.feed("-[RPConnectionManager stop:transactionID:streamData:withCompletionHandler:]:1012")
+        check(p.activePIDs == [439], "yöneticinin stop satırı paylaşımı bitirmez")
+        p.feed("-[RPClient stop:transactionID:streamData:withCompletionHandler:]:1432 stream=0x97e784000 streamID=<private>")
+        check(p.activePIDs.isEmpty && p.startedAt.isEmpty, "stop ile paylaşım biter")
+        // İstemci ayrılınca bütün paylaşımları biter; ölü süreç unutulur
+        p.feed("accepted client connection PID: 500")
+        p.feed("-[RPClient initWithConnection:clientProxy:bundleIdentifier:]:125 0xabc1")
+        p.feed("-[RPClient captureSessionDidChange:withScreenAspectRatio:]:2024 client=0xabc1 captureSession=0xdef1 aspectRatio=1.6")
+        p.feed("-[RPClient invalidate]:167 0xabc1")
+        check(p.activePIDs.isEmpty, "istemci ayrılınca paylaşım biter")
+        p.feed("accepted client connection PID: 501")
+        p.feed("-[RPClient initWithConnection:clientProxy:bundleIdentifier:]:125 0xabc2")
+        p.feed("-[RPClient captureSessionDidChange:withScreenAspectRatio:]:2024 client=0xabc2 captureSession=0xdef2 aspectRatio=1.6")
+        p.forget { $0 == 501 }
+        check(p.activePIDs.isEmpty, "kapanan süreç unutulur")
+        check(ShareGuard.outermostApp("/Applications/Google Chrome.app/Contents/Frameworks/x.framework/Helpers/Google Chrome Helper.app/Contents/MacOS/Google Chrome Helper") == "/Applications/Google Chrome.app",
+              "yardımcı süreç ana uygulamaya bağlanır")
+    }
 
     print(failures == 0 ? "\nTüm bütünleşik testler geçti." : "\n\(failures) bütünleşik test başarısız.")
     exit(failures == 0 ? 0 : 1)

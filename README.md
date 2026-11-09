@@ -25,14 +25,14 @@ permwatch keeps a record of every permission change and alerts you the moment so
  
 ---
 
-## 📞 Stops phone scammers
+## 🖥️ Knows who is watching your screen
 
-Someone calls pretending to be the police, your bank or tech support, and has you install AnyDesk or a similar app. Then they watch your screen while you log in to your bank. Antivirus apps don't stop this, because these apps aren't malware.
+Zoom, Teams, Meet, Discord, AnyDesk, a screen recorder: whatever is recording or sharing your screen, permwatch names it in a small indicator at the top of the screen. It reads this from macOS itself, so it works for any app without a list.
 
-**permwatch does.** The moment someone starts viewing or controlling your Mac remotely, a full-screen warning appears and speaks out loud. One button closes the connection, blocks the app's servers and removes its permissions. Opening a bank site during the connection triggers an even stronger warning, and afterwards permwatch tells you exactly what to do. Helping someone else with AnyDesk doesn't trigger it: only your screen being sent out does.
+It stays out of the way: joining a class or a meeting is unaffected. But if a share you haven't marked "I know this" is running and you start typing into a **password field** (on any site or app), or open a banking, payment or government site, a full-screen warning stops you before the other side sees your details. One button stops the share; afterwards permwatch tells you what to do.
 
 <p align="center">
-  <img src="docs/images/scam_en.png" alt="permwatch scam warning" width="760">
+  <img src="docs/images/share_en.png" alt="permwatch screen share warning" width="760">
 </p>
 
 ## You clicked "Allow" and forgot

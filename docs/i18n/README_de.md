@@ -25,14 +25,14 @@ permwatch protokolliert jede Änderung an Berechtigungen und warnt dich sofort, 
 
 ---
 
-## 📞 Stoppt Telefonbetrüger
+## 🖥️ Weiß, wer deinen Bildschirm sieht
 
-Jemand ruft an, gibt sich als Polizei, Bank oder Support aus und lässt dich AnyDesk oder Ähnliches installieren. Dann sieht er deinen Bildschirm, während du dich bei deiner Bank anmeldest. Virenscanner verhindern das nicht, denn diese Programme sind keine Schadsoftware.
+Zoom, Teams, Meet, Discord, AnyDesk, ein Aufnahmeprogramm: Was auch immer deinen Bildschirm aufnimmt oder teilt, permwatch nennt es in einer kleinen Anzeige oben am Bildschirm. Die Information kommt direkt von macOS, daher funktioniert es mit jeder App, ohne Liste.
 
-**permwatch schon.** Sobald jemand deinen Mac aus der Ferne sieht oder steuert, erscheint eine bildschirmfüllende Warnung, auch per Sprache. Ein Klick trennt die Verbindung, blockiert die Server und entfernt die Rechte. Öffnest du währenddessen eine Bank-Website, wird die Warnung noch deutlicher, und danach sagt permwatch dir genau, was zu tun ist. Hilfst du selbst jemandem per AnyDesk, passiert nichts: nur wenn dein Bildschirm gesendet wird.
+Es stört nicht: Unterricht oder Meetings laufen normal. Läuft aber eine Freigabe, die du nicht mit „Kenne ich“ bestätigt hast, und du tippst in ein **Passwortfeld** (auf jeder Seite, in jeder App) oder öffnest eine Bank-, Zahlungs- oder Behördenseite, hält dich eine bildschirmfüllende Warnung auf, bevor die Gegenseite deine Daten sieht. Ein Knopf beendet die Freigabe; danach sagt dir permwatch, was zu tun ist.
 
 <p align="center">
-  <img src="../images/scam_en.png" alt="permwatch Betrugswarnung" width="760">
+  <img src="../images/share_en.png" alt="permwatch Warnung bei Bildschirmfreigabe" width="760">
 </p>
 
 ## Erlaubt und vergessen

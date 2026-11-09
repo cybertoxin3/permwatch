@@ -708,92 +708,84 @@ upd.refresh	Check Now
 upd.checking	Checking…
 upd.lastCheck	Up to date · last checked %@
 upd.neverChecked	Not checked yet
-nav.shield	Scam Shield
-scam.alert.title	STOP! Someone can see or control your computer right now
-scam.alert.session	Connected: %1$@ · started %2$@
-scam.alert.body	Did someone call you saying they are the police, a prosecutor, your bank, Apple or Microsoft? They NEVER ask to connect to your computer, and never ask for money or passwords. This is a scam. Hang up now and disconnect below.
-scam.alert.bankTitle	A bank website was opened during the connection
-scam.alert.bankBody	%@ — do not enter your password, card details or confirmation code. The other person can see everything.
-scam.disconnect	Disconnect
-scam.cutInternet	Cut the Internet (turn off Wi-Fi)
-scam.wifiDone	Wi-Fi is off
-scam.disconnectHint	Disconnecting deletes nothing. If you are not sure, disconnect first and think later.
-scam.knownTitle	Did you start this connection yourself? (for example, your workplace's support team)
-scam.allowHour	I know it, allow for 1 hour
-scam.allowAlways	Always allow
-scam.knownHint	Allowing needs Touch ID or your Mac password, so the remote person can't do it with the mouse.
-scam.demoBanner	TRIAL — this is not a real warning
-scam.report.title	Disconnected
-scam.report.subtitle	Nobody can see your computer any more. Take a breath and follow these steps in order.
-scam.report.done	What was done
-scam.report.close	Close and see the report
-scam.steps.title	What to do now
-scam.step1	Hang up. If they call again, don't answer: real police, prosecutors and banks never ask to connect to your computer.
-scam.step2	Call your bank right away (the number on the back of your card). Have your cards and online banking blocked for now and ask them to check recent transactions.
-scam.step3	Change your passwords from another device (for example your phone): email first, then your bank, then the rest.
-scam.step4	Remove the remote-access app they made you install, and look at the "Changes on your Mac" list in permwatch.
-scam.step5	If you sent money or gave information, report it to the police along with the caller's number.
-scam.step6	Warn your family and friends: scammers try the same trick on others.
-scam.speech	Warning! Someone can see or control your computer right now. This may be a scam. Hang up the phone and press Disconnect on the screen.
-scam.speechBank	Warning! You opened a bank website. Do not enter your password or card details. The other person can see everything.
-scam.notifyTitle	Someone connected to your computer
-scam.notifyBody	A remote session started with %@. If you didn't start it, disconnect now.
-scam.authReason	allow this remote connection
-scam.act.killed	%@ was closed
-scam.act.killFailed	Could not close %@ (it runs as administrator)
-scam.act.needWifi	The app could not be closed, so cutting the Internet is recommended.
-scam.act.blocked	%@ server addresses blocked
-scam.act.revoked	Screen recording and control permissions removed for %@
-scam.act.loginItem	Login item removed: %@
-scam.act.wifiOff	Wi-Fi turned off
-scam.act.wifiFailed	Could not turn off Wi-Fi; unplug the cable or turn it off in Control Center.
-scam.act.sharingSettings	Sharing settings opened so you can turn off Screen Sharing.
-scam.act.sshSettings	Sharing settings opened so you can turn off SSH (Remote Login).
-scam.kind.screenSharing	Screen Sharing
-scam.statusOn	On: remote connections are watched
-scam.statusOff	Off
-scam.activeTitle	A remote session is open right now
-scam.showAlert	Show warning
-scam.howTitle	How does this scam work?
-scam.howBody	Someone calls pretending to be the police, a prosecutor, your bank or tech support and says "your account is in danger". They have you install an app like AnyDesk. Then, while you log in to your bank, they watch or control your screen and send your money to their own account. Antivirus apps don't catch this, because these apps aren't malware.
-scam.whatTitle	What does permwatch do?
-scam.what1	The moment a real remote session starts, it covers your whole screen with a warning and warns you out loud.
-scam.what2	Disconnects with one button: closes the app, blocks its servers, and removes its screen-recording and control permissions.
-scam.what3	If you open a bank, payment or government ID site during the connection, it warns you even more strongly.
-scam.what4	Afterwards it tells you step by step what to do and shows what changed on your Mac.
-scam.tryAlert	Try the warning
-scam.tryHint	See what the warning looks like (trial; nothing is closed).
-scam.watchTools	Remote-access apps
-scam.noTools	No remote-access app is installed. If someone makes you install one, you'll be warned at the first connection.
-scam.toolsInstalled	Installed: %@. If you didn't install these, remove them. If you use them, you'll see a warning when a session starts.
-scam.watchSharing	Screen Sharing and SSH
-scam.watchSharingBody	macOS's own remote connections are watched too.
-scam.bankTitle	Bank site warning
-scam.bankDNSOn	On: bank, payment and ID sites opened during a connection are noticed.
-scam.bankDNSOff	Works by checking the browser's active tab. With admin mode on, it works for all apps.
-scam.browserPermission	Allow browser access
-scam.browserHint	macOS asks once for each open browser, so no question pops up at the worst moment.
-scam.speak	Speak the warning
-scam.historyTitle	Past warnings
-scam.outcome.open	Ongoing
-scam.outcome.disconnected	Disconnected
-scam.outcome.allowed	Allowed
-scam.outcome.ended	Ended on its own
-scam.openReport	Open report
-scam.hideReport	Hide report
-scam.deleteTitle	Delete this record?
-scam.allowedTitle	Allowed connections
-scam.allowedUntil	Until %@
-scam.allowedAlways	Always
-scam.changesTitle	Changes on your Mac during the warning
-scam.changesHint	Apps, login items and browser extensions added since 15 minutes before the warning. Remove anything you don't recognise.
-scam.noChanges	No new app, login item or browser extension found.
-scam.change.app	New app: %@
-scam.change.launch	New login item: %@
-scam.change.extension	%1$@ extension added: %2$@
-scam.settingDesc	The moment someone connects to your computer remotely, a full-screen warning appears and you can disconnect with one button. Protection against phone scammers.
 login.setting	Start permwatch when my Mac starts
 login.settingDesc	Protections (Scam Shield, real-time protection) only work while permwatch is running. It starts quietly in the menu bar, without opening a window.
 login.adviceTitle	Protection stops when permwatch is closed
 login.adviceBody	Scam Shield and real-time protection only work while permwatch is running. Let it start with your Mac; it waits quietly in the menu bar.
 login.adviceButton	Start with My Mac
+nav.shield	Screen Share Guard
+sg.statusOn	On: apps recording your screen are shown
+sg.statusOff	off
+sg.settingDesc	Shows which app is recording or sharing your screen at the top of the screen. If you start typing a password or card details while a share you don't recognise is running, it stops you. Doesn't interfere with meetings in Zoom, Teams and the like.
+sg.hud.title	Your screen is being shared: %@
+sg.hud.hint	If you recognise it, press "I know this"; you'll be warned when entering details.
+sg.known	I know this
+sg.trustAlways	Always trust
+sg.stop	Stop sharing
+sg.stopApp	Quit %@
+sg.openPage	Open in permwatch
+sg.alert.title	STOP! Your screen is visible to someone else right now
+sg.alert.sharing	%1$@ is sharing your screen · started: %2$@
+sg.alert.body	Don't type a password, card number or verification code while your screen is shared: the other side sees everything you type. If you didn't start this share, or someone is guiding you, stop it now.
+sg.cutInternet	Cut the internet (turn off Wi-Fi)
+sg.wifiDone	Wi-Fi turned off
+sg.knownTitle	If you started this share and trust it:
+sg.authHint	For remote-control tools Touch ID or your Mac password is required, so the other person can't click "I know this" with the mouse.
+sg.authReason	trust a remote share
+sg.demoBanner	DEMO — not a real warning
+sg.trigger.password	You started typing into a password field in %@
+sg.trigger.site	A payment, banking or identity site was opened: %@
+sg.speech	Careful. Your screen is being shared. Don't enter your password or card details.
+sg.notifyTitle	Entering details while the screen is shared (%@)
+sg.report.title	Sharing stopped
+sg.report.subtitle	Your screen is no longer visible to anyone.
+sg.report.done	What was done
+sg.report.close	Close
+sg.steps.title	If you entered details, what to do now
+sg.step1	Change the password you typed right away from another device (e.g. your phone), and everywhere you use the same password.
+sg.step2	If you entered card details or a verification code, call your bank on the number on the back of your card and have the card temporarily blocked.
+sg.step3	If you were made to install a program, remove it and check the "Changes on your Mac" list below.
+sg.step4	If you sent money or someone was guiding you, report it to the police.
+sg.nowTitle	Using the screen right now
+sg.noSharing	No app is sharing or recording your screen right now.
+sg.kind.remote	remote control
+sg.kind.capture	screen recording / sharing
+sg.kind.screenSharing	macOS Screen Sharing
+sg.acknowledged	recognised
+sg.howTitle	How it works
+sg.howBody	macOS records every app that captures your screen in the system log: Zoom, Teams, Meet, Discord, AnyDesk, recording apps… permwatch reads it and shows who is recording with a small indicator at the top of the screen. Joining a meeting or class, or helping someone, isn't affected.
+sg.what1	If you start typing into a password field while a share you don't recognise is running (on any site or app), a full-screen warning appears.
+sg.what2	A warning also appears when banking, payment, crypto or government sites are opened.
+sg.what3	A share you marked "I know this" never triggers a warning; "Always trust" stops asking about that app.
+sg.tryAlert	Try the warning
+sg.tryHint	See what the warning looks like; nothing is closed.
+sg.sitesTitle	Sensitive sites
+sg.sitesDNSOn	Network protection is on: banking and payment sites are recognised in every browser.
+sg.sitesDNSOff	Network protection is off: sites are recognised only from the browser tab. The password-field warning still works.
+sg.browserPermission	Allow browser access
+sg.browserHint	Only the address of the open tab is read, and only while a share is running.
+sg.speak	Also speak the warning aloud
+sg.trustedTitle	Always trusted
+sg.trustedHint	No warning appears when these apps share the screen.
+sg.historyTitle	History
+sg.deleteTitle	Delete this record?
+sg.openReport	Open report
+sg.hideReport	Hide report
+sg.outcome.open	warning open
+sg.outcome.stopped	sharing stopped
+sg.outcome.acknowledged	recognised, continued
+sg.outcome.ended	sharing ended
+sg.changesTitle	What changed on your Mac at the time
+sg.noChanges	Nothing new in the 15 minutes before the warning.
+sg.changesHint	Newly installed apps, login items and browser extensions.
+sg.change.app	New app: %@
+sg.change.launch	New login item: %@
+sg.change.extension	New %1$@ extension: %2$@
+sg.act.closed	%@ was closed
+sg.act.closeFailed	%@ couldn't be closed (running as administrator)
+sg.act.blocked	%@ server addresses blocked
+sg.act.revoked	Screen recording and control permissions removed for %@
+sg.act.loginItem	Login item removed: %@
+sg.act.sharingSettings	Sharing settings opened: turn off Screen Sharing
+sg.act.wifiOff	Wi-Fi turned off
+sg.act.wifiFailed	Couldn't turn off Wi-Fi

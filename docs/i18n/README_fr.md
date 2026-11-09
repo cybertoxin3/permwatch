@@ -25,14 +25,14 @@ permwatch garde une trace de chaque changement d’autorisation et vous alerte d
 
 ---
 
-## 📞 Arrête les arnaqueurs au téléphone
+## 🖥️ Sait qui voit votre écran
 
-Quelqu'un appelle en se faisant passer pour la police, ta banque ou le support technique et te fait installer AnyDesk ou un logiciel similaire. Puis il regarde ton écran pendant que tu te connectes à ta banque. Les antivirus ne l'empêchent pas, car ces logiciels ne sont pas malveillants.
+Zoom, Teams, Meet, Discord, AnyDesk, un enregistreur d'écran : quoi qu'il enregistre ou partage votre écran, permwatch le nomme dans un petit indicateur en haut de l'écran. L'information vient directement de macOS, donc cela fonctionne avec n'importe quelle app, sans liste.
 
-**permwatch, si.** Dès que quelqu'un commence à voir ou contrôler ton Mac à distance, une alerte plein écran apparaît et parle. Un bouton coupe la connexion, bloque les serveurs du logiciel et retire ses autorisations. Ouvrir un site bancaire pendant la connexion déclenche une alerte encore plus ferme, puis permwatch t'indique quoi faire. Aider quelqu'un avec AnyDesk ne la déclenche pas : seulement quand ton écran est envoyé.
+Il ne gêne pas : rejoindre un cours ou une réunion n'est pas affecté. Mais si un partage que vous n'avez pas marqué « Je connais » est en cours et que vous commencez à taper dans un **champ de mot de passe** (sur n'importe quel site ou app), ou ouvrez un site de banque, de paiement ou d'administration, un avertissement plein écran vous arrête avant que l'autre ne voie vos informations. Un bouton arrête le partage ; ensuite permwatch vous dit quoi faire.
 
 <p align="center">
-  <img src="../images/scam_en.png" alt="alerte anti-arnaque permwatch" width="760">
+  <img src="../images/share_en.png" alt="avertissement de partage d'écran permwatch" width="760">
 </p>
 
 ## Vous avez autorisé, puis oublié

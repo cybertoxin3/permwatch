@@ -59,7 +59,7 @@ struct SettingsView: View {
     @EnvironmentObject var intel: ThreatIntel
     @EnvironmentObject var realtime: RealtimeGuard
     @ObservedObject private var guardSvc = GuardService.shared
-    @ObservedObject private var scam = ScamShield.shared
+    @ObservedObject private var scam = ShareGuard.shared
     @State private var loginOn = LoginLaunch.isEnabled
     @ObservedObject private var blocks = BlockList.shared
     /// Paket yakalama ve engellenen sunucular yalnızca gelişmiş modda.
@@ -81,7 +81,7 @@ struct SettingsView: View {
                 Text(L("login.settingDesc")).font(.system(size: 11)).foregroundStyle(.secondary)
                     .fixedSize(horizontal: false, vertical: true)
                 Toggle(L("nav.shield"), isOn: $scam.enabled)
-                Text(L("scam.settingDesc")).font(.system(size: 11)).foregroundStyle(.secondary)
+                Text(L("sg.settingDesc")).font(.system(size: 11)).foregroundStyle(.secondary)
                     .fixedSize(horizontal: false, vertical: true)
                 Toggle(L("rt.setting"), isOn: $realtime.enabled)
                 Text(L("rt.settingDesc")).font(.system(size: 11)).foregroundStyle(.secondary)

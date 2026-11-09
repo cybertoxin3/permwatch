@@ -25,14 +25,14 @@ O permwatch registra cada mudança de permissão e avisa você assim que algo pa
 
 ---
 
-## 📞 Para golpistas por telefone
+## 🖥️ Sabe quem está a ver o seu ecrã
 
-Alguém liga fingindo ser a polícia, seu banco ou o suporte técnico e faz você instalar o AnyDesk ou algo parecido. Depois vê sua tela enquanto você entra no banco. Antivírus não impedem isso, porque esses programas não são malware.
+Zoom, Teams, Meet, Discord, AnyDesk, um gravador de ecrã: seja o que for que grave ou partilhe o seu ecrã, o permwatch indica-o num pequeno indicador no topo do ecrã. A informação vem diretamente do macOS, por isso funciona com qualquer app, sem listas.
 
-**O permwatch impede.** Assim que alguém começa a ver ou controlar seu Mac remotamente, aparece um alerta em tela cheia que também fala. Um botão corta a conexão, bloqueia os servidores do programa e remove as permissões. Abrir um site de banco durante a conexão gera um alerta ainda mais forte, e depois o permwatch diz exatamente o que fazer. Ajudar alguém pelo AnyDesk não dispara o alerta: só quando sua tela é enviada.
+Não atrapalha: participar numa aula ou reunião não é afetado. Mas se estiver a decorrer uma partilha que não marcou como «Conheço» e começar a escrever num **campo de palavra-passe** (em qualquer site ou app), ou abrir um site de banco, pagamentos ou serviços públicos, um aviso em ecrã inteiro trava-o antes que a outra parte veja os seus dados. Um botão para a partilha; depois o permwatch diz-lhe o que fazer.
 
 <p align="center">
-  <img src="../images/scam_en.png" alt="alerta antigolpe do permwatch" width="760">
+  <img src="../images/share_en.png" alt="aviso de partilha de ecrã do permwatch" width="760">
 </p>
 
 ## Você permitiu e esqueceu

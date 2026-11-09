@@ -708,92 +708,84 @@ upd.refresh	Şimdi denetle
 upd.checking	Denetleniyor…
 upd.lastCheck	Güncel · son kontrol: %@
 upd.neverChecked	Henüz denetlenmedi
-nav.shield	Dolandırıcılık Kalkanı
-scam.alert.title	DUR! Şu an biri bilgisayarını görüyor veya kontrol ediyor
-scam.alert.session	Bağlı: %1$@ · başladı: %2$@
-scam.alert.body	Seni polis, savcı, banka, Apple ya da Microsoft diye arayan biri mi? Bunlar ASLA bilgisayarına bağlanmak istemez, senden para ya da şifre istemez. Bu bir dolandırıcılık. Telefonu hemen kapat ve aşağıdan bağlantıyı kes.
-scam.alert.bankTitle	Bağlantı açıkken bir banka sitesine girildi
-scam.alert.bankBody	%@ — şifreni, kart bilgini ya da onay kodunu girme. Karşındaki kişi her şeyi görüyor.
-scam.disconnect	Bağlantıyı Kes
-scam.cutInternet	İnterneti Kes (Wi-Fi'yi kapat)
-scam.wifiDone	Wi-Fi kapatıldı
-scam.disconnectHint	Bağlantıyı kesmek hiçbir şeyi silmez. Emin değilsen önce kes, sonra düşün.
-scam.knownTitle	Bu bağlantıyı sen mi başlattın? (ör. iş yerinin destek ekibi)
-scam.allowHour	Tanıyorum, 1 saat izin ver
-scam.allowAlways	Her zaman izin ver
-scam.knownHint	İzin vermek için Touch ID ya da Mac parolan istenir; uzaktaki kişi bunu fareyle yapamaz.
-scam.demoBanner	DENEME — bu gerçek bir uyarı değil
-scam.report.title	Bağlantı kesildi
-scam.report.subtitle	Artık kimse bilgisayarını göremiyor. Şimdi sakin ol ve aşağıdakileri sırayla yap.
-scam.report.done	Yapılanlar
-scam.report.close	Kapat ve raporu gör
-scam.steps.title	Şimdi ne yapmalısın
-scam.step1	Telefonu kapat. Yeniden ararlarsa açma: gerçek polis, savcı ya da banka bilgisayarına bağlanmak istemez.
-scam.step2	Bankanı hemen ara (kartının arkasındaki numaradan). Kartlarını ve internet bankacılığını geçici olarak kapattır, son işlemleri kontrol ettir.
-scam.step3	Şifrelerini başka bir cihazdan (ör. telefonundan) değiştir: önce e-posta, sonra banka, sonra diğerleri.
-scam.step4	Sana kurdurulan uzaktan erişim programını kaldır ve permwatch'taki "Mac'inde değişenler" listesine bak.
-scam.step5	Para gönderdiysen ya da bilgi verdiysen polise başvur ve arayan numarayı bildir.
-scam.step6	Yakınlarını uyar: dolandırıcılar aynı yöntemi başkalarına da dener.
-scam.speech	Dikkat! Şu an biri bilgisayarınızı görüyor veya kontrol ediyor. Bu bir dolandırıcılık olabilir. Telefonu kapatın ve ekrandaki Bağlantıyı Kes düğmesine basın.
-scam.speechBank	Dikkat! Bir banka sitesine girdiniz. Şifrenizi ve kart bilginizi girmeyin. Karşınızdaki kişi her şeyi görüyor.
-scam.notifyTitle	Biri bilgisayarına bağlandı
-scam.notifyBody	%@ ile uzaktan bir oturum başladı. Bunu sen başlatmadıysan hemen bağlantıyı kes.
-scam.authReason	bu uzaktan bağlantıya izin vermek
-scam.act.killed	%@ kapatıldı
-scam.act.killFailed	%@ kapatılamadı (yönetici olarak çalışıyor)
-scam.act.needWifi	Program kapatılamadığı için interneti kesmen önerilir.
-scam.act.blocked	%@ sunucu adresi engellendi
-scam.act.revoked	%@ için ekran kaydı ve kontrol izinleri kaldırıldı
-scam.act.loginItem	Başlangıç öğesi kaldırıldı: %@
-scam.act.wifiOff	Wi-Fi kapatıldı
-scam.act.wifiFailed	Wi-Fi kapatılamadı; kabloyu çek ya da Denetim Merkezi'nden kapat.
-scam.act.sharingSettings	Ekran Paylaşımı'nı kapatman için Paylaşma ayarları açıldı.
-scam.act.sshSettings	SSH'yi (Uzaktan Giriş) kapatman için Paylaşma ayarları açıldı.
-scam.kind.screenSharing	Ekran Paylaşımı
-scam.statusOn	Açık: uzaktan bağlantılar izleniyor
-scam.statusOff	Kapalı
-scam.activeTitle	Şu an bir uzaktan oturum açık
-scam.showAlert	Uyarıyı göster
-scam.howTitle	Bu dolandırıcılık nasıl işler?
-scam.howBody	Biri seni polis, savcı, banka ya da teknik destek diye arar ve "hesabın tehlikede" der. Sana AnyDesk gibi bir program kurdurur. Sonra sen banka sitesine girerken ekranını izler ya da kontrol eder ve paranı kendi hesabına gönderir. Antivirüsler bunu yakalamaz, çünkü bu programlar zararlı değildir.
-scam.whatTitle	permwatch ne yapar?
-scam.what1	Gerçek bir uzaktan oturum başladığı anda ekranının tamamını kaplayan bir uyarı gösterir ve sesli uyarır.
-scam.what2	Tek tuşla bağlantıyı keser: programı kapatır, sunucularını engeller, ekran kaydı ve kontrol izinlerini kaldırır.
-scam.what3	Bağlantı açıkken banka, ödeme ya da e-Devlet gibi bir siteye girersen daha sert uyarır.
-scam.what4	Sonrasında ne yapman gerektiğini adım adım söyler ve Mac'inde neyin değiştiğini gösterir.
-scam.tryAlert	Uyarıyı dene
-scam.tryHint	Uyarının nasıl göründüğünü gör (deneme; hiçbir şey kapatılmaz).
-scam.watchTools	Uzaktan erişim programları
-scam.noTools	Kurulu uzaktan erişim programı yok. Biri kurdurursa ilk bağlantıda uyarılırsın.
-scam.toolsInstalled	Kurulu: %@. Bunları sen kurmadıysan kaldır. Kullanıyorsan oturum başladığında uyarı çıkar.
-scam.watchSharing	Ekran Paylaşımı ve SSH
-scam.watchSharingBody	macOS'un kendi uzaktan bağlantıları da izlenir.
-scam.bankTitle	Banka sitesi uyarısı
-scam.bankDNSOn	Açık: bağlantı sırasında açılan banka, ödeme ve kimlik siteleri fark edilir.
-scam.bankDNSOff	Tarayıcının etkin sekmesine bakarak çalışır. Yönetici modu açıksa bütün uygulamalar için çalışır.
-scam.browserPermission	Tarayıcı iznini ver
-scam.browserHint	Açık tarayıcıların için macOS bir kez izin sorar; böylece gerçek bir anda soru çıkmaz.
-scam.speak	Sesli uyar
-scam.historyTitle	Geçmiş uyarılar
-scam.outcome.open	Sürüyor
-scam.outcome.disconnected	Bağlantı kesildi
-scam.outcome.allowed	İzin verildi
-scam.outcome.ended	Kendiliğinden sona erdi
-scam.openReport	Raporu aç
-scam.hideReport	Raporu gizle
-scam.deleteTitle	Bu kayıt silinsin mi?
-scam.allowedTitle	İzin verilen bağlantılar
-scam.allowedUntil	%@ saatine kadar
-scam.allowedAlways	Her zaman
-scam.changesTitle	Uyarı sırasında Mac'inde değişenler
-scam.changesHint	Uyarıdan 15 dakika öncesinden bu yana eklenen uygulamalar, başlangıç öğeleri ve tarayıcı uzantıları. Tanımadığın bir şey varsa kaldır.
-scam.noChanges	Yeni uygulama, başlangıç öğesi ya da tarayıcı uzantısı bulunmadı.
-scam.change.app	Yeni uygulama: %@
-scam.change.launch	Yeni başlangıç öğesi: %@
-scam.change.extension	%1$@ uzantısı eklendi: %2$@
-scam.settingDesc	Biri bilgisayarına uzaktan bağlandığı an ekranı kaplayan bir uyarı gösterir ve bağlantıyı tek tuşla keser. Telefon dolandırıcılarına karşı.
 login.setting	Mac açılınca permwatch'ı başlat
 login.settingDesc	Korumalar (Dolandırıcılık Kalkanı, gerçek zamanlı koruma) yalnızca permwatch çalışırken çalışır. Pencere açmadan, menü çubuğunda sessizce başlar.
 login.adviceTitle	permwatch kapalıyken koruma durur
 login.adviceBody	Dolandırıcılık Kalkanı ve gerçek zamanlı koruma yalnızca permwatch çalışırken çalışır. Mac'inle birlikte başlasın; menü çubuğunda sessizce bekler.
 login.adviceButton	Mac'imle Başlat
+nav.shield	Ekran Paylaşımı Koruması
+sg.statusOn	Açık: ekranı kaydeden uygulamalar gösteriliyor
+sg.statusOff	kapalı
+sg.settingDesc	Ekranını kaydeden ya da paylaşan uygulamayı ekranın üstünde gösterir. Tanımadığın bir paylaşım sürerken şifre ya da kart bilgisi girmeye kalkarsan seni durdurur. Zoom, Teams gibi toplantılara karışmaz.
+sg.hud.title	Ekranın paylaşılıyor: %@
+sg.hud.hint	Tanıyorsan "Tanıyorum"a bas; bilgi girerken uyarılırsın.
+sg.known	Tanıyorum
+sg.trustAlways	Her zaman güven
+sg.stop	Paylaşımı durdur
+sg.stopApp	%@ uygulamasını kapat
+sg.openPage	permwatch'ta aç
+sg.alert.title	DUR! Ekranın şu an başkasına görünüyor
+sg.alert.sharing	%1$@ ekranını paylaşıyor · başladı: %2$@
+sg.alert.body	Ekranın paylaşılırken şifre, kart numarası ya da onay kodu girme: karşı taraf yazdığın her şeyi görür. Bu paylaşımı sen başlatmadıysan ya da birisi seni yönlendiriyorsa hemen durdur.
+sg.cutInternet	İnterneti kes (Wi-Fi'yi kapat)
+sg.wifiDone	Wi-Fi kapatıldı
+sg.knownTitle	Bu paylaşımı sen başlattıysan ve güveniyorsan:
+sg.authHint	Uzaktan kontrol programlarında Touch ID ya da Mac parolası istenir; böylece karşıdaki kişi fareyle "Tanıyorum"a basamaz.
+sg.authReason	uzaktan paylaşıma güvenmek
+sg.demoBanner	DENEME — gerçek bir uyarı değil
+sg.trigger.password	%@ içinde bir şifre alanına yazmaya başladın
+sg.trigger.site	Ödeme, banka ya da kimlik sitesi açıldı: %@
+sg.speech	Dikkat. Ekranın paylaşılıyor. Şifreni ya da kart bilgini girme.
+sg.notifyTitle	Ekran paylaşılırken bilgi girişi (%@)
+sg.report.title	Paylaşım durduruldu
+sg.report.subtitle	Artık ekranın kimseye görünmüyor.
+sg.report.done	Yapılanlar
+sg.report.close	Kapat
+sg.steps.title	Bilgi girdiysen şimdi ne yapmalısın
+sg.step1	Girdiğin şifreyi başka bir cihazdan (ör. telefonundan) hemen değiştir; aynı şifreyi kullandığın her yerde de.
+sg.step2	Kart bilgisi ya da onay kodu girdiysen bankanı kartının arkasındaki numaradan ara ve kartı geçici olarak kapattır.
+sg.step3	Sana bir program kurdurulduysa kaldır ve aşağıdaki "Mac'inde değişenler" listesine bak.
+sg.step4	Para gönderdiysen ya da biri seni yönlendirdiyse polise başvur.
+sg.nowTitle	Şu an ekranı kullananlar
+sg.noSharing	Şu an ekranını paylaşan ya da kaydeden bir uygulama yok.
+sg.kind.remote	uzaktan kontrol
+sg.kind.capture	ekran kaydı / paylaşımı
+sg.kind.screenSharing	macOS Ekran Paylaşımı
+sg.acknowledged	tanındı
+sg.howTitle	Nasıl çalışır
+sg.howBody	macOS ekranını kaydeden her uygulamayı sistem kaydına yazar: Zoom, Teams, Meet, Discord, AnyDesk, kayıt programları… permwatch bunu okur ve kimin kaydettiğini ekranın üstünde küçük bir göstergeyle bildirir. Toplantıya, derse katılmak ya da birine yardım etmek etkilenmez.
+sg.what1	Tanımadığın bir paylaşım sürerken bir şifre alanına yazmaya başlarsan (hangi site ya da uygulama olursa olsun) ekranı kaplayan bir uyarı çıkar.
+sg.what2	Banka, ödeme, kripto ve devlet (ör. e-Devlet) siteleri açılınca da uyarı çıkar.
+sg.what3	"Tanıyorum" dediğin paylaşımda hiçbir uyarı çıkmaz; "Her zaman güven" o uygulamayı bir daha sormaz.
+sg.tryAlert	Uyarıyı dene
+sg.tryHint	Uyarının nasıl göründüğünü görürsün; hiçbir şey kapatılmaz.
+sg.sitesTitle	Hassas siteler
+sg.sitesDNSOn	Ağ koruması açık: banka ve ödeme siteleri tüm tarayıcılarda tanınır.
+sg.sitesDNSOff	Ağ koruması kapalı: siteler yalnızca tarayıcı sekmesinden tanınır. Şifre alanı uyarısı yine çalışır.
+sg.browserPermission	Tarayıcı izni ver
+sg.browserHint	Yalnızca paylaşım sürerken açık sekmenin adresi okunur.
+sg.speak	Uyarıyı sesli de söyle
+sg.trustedTitle	Her zaman güvenilenler
+sg.trustedHint	Bu uygulamalar ekranı paylaşırken uyarı çıkmaz.
+sg.historyTitle	Geçmiş
+sg.deleteTitle	Bu kayıt silinsin mi?
+sg.openReport	Raporu aç
+sg.hideReport	Raporu gizle
+sg.outcome.open	uyarı açık
+sg.outcome.stopped	paylaşım durduruldu
+sg.outcome.acknowledged	tanındı, devam edildi
+sg.outcome.ended	paylaşım bitti
+sg.changesTitle	O sırada Mac'inde değişenler
+sg.noChanges	Uyarıdan önceki 15 dakikada yeni bir şey yok.
+sg.changesHint	Yeni kurulan uygulamalar, başlangıç öğeleri ve tarayıcı uzantıları.
+sg.change.app	Yeni uygulama: %@
+sg.change.launch	Yeni başlangıç öğesi: %@
+sg.change.extension	Yeni %1$@ uzantısı: %2$@
+sg.act.closed	%@ kapatıldı
+sg.act.closeFailed	%@ kapatılamadı (yönetici olarak çalışıyor)
+sg.act.blocked	%@ sunucu adresi engellendi
+sg.act.revoked	%@ için ekran kaydı ve kontrol izinleri kaldırıldı
+sg.act.loginItem	Başlangıç öğesi kaldırıldı: %@
+sg.act.sharingSettings	Paylaşım ayarları açıldı: Ekran Paylaşımı'nı kapat
+sg.act.wifiOff	Wi-Fi kapatıldı
+sg.act.wifiFailed	Wi-Fi kapatılamadı

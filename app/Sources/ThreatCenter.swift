@@ -151,14 +151,14 @@ final class ThreatCenter: ObservableObject {
         }, completionHandler: { p.orderOut(nil) })
     }
 
-    /// Dolandırıcılık Kalkanı: uzaktan oturum başladı.
-    func notifyScam(tools: String) {
+    /// Ekran paylaşılırken bilgi girişi (şifre alanı ya da banka/ödeme sitesi).
+    func notifyShareSensitive(apps: String, what: String) {
         let c = UNMutableNotificationContent()
-        c.title = L("scam.notifyTitle")
-        c.body = L("scam.notifyBody", tools)
+        c.title = L("sg.notifyTitle", apps)
+        c.body = what
         c.sound = .defaultCritical
         c.interruptionLevel = .timeSensitive
-        UNUserNotificationCenter.current().add(UNNotificationRequest(identifier: "scam.\(Date().timeIntervalSince1970)", content: c, trigger: nil))
+        UNUserNotificationCenter.current().add(UNNotificationRequest(identifier: "share.\(Date().timeIntervalSince1970)", content: c, trigger: nil))
     }
 
     /// Güncelleme indirildi: kullanıcı başka bir uygulamadaysa da haberi olsun.

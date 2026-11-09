@@ -708,92 +708,84 @@ upd.refresh	今すぐ確認
 upd.checking	確認中…
 upd.lastCheck	最新です · 最終確認 %@
 upd.neverChecked	まだ確認していません
-nav.shield	詐欺シールド
-scam.alert.title	止まって！今、誰かがあなたのコンピュータを見ているか操作しています
-scam.alert.session	接続中: %1$@ · 開始 %2$@
-scam.alert.body	警察、検察、銀行、Apple、Microsoft を名乗る人から電話がありましたか？彼らがあなたのコンピュータへの接続を求めることは決してありません。お金やパスワードを求めることもありません。これは詐欺です。すぐに電話を切り、下で接続を切断してください。
-scam.alert.bankTitle	接続中に銀行のサイトが開かれました
-scam.alert.bankBody	%@ — パスワード、カード情報、確認コードを入力しないでください。相手はすべて見ています。
-scam.disconnect	接続を切断
-scam.cutInternet	インターネットを切断（Wi-Fi をオフ）
-scam.wifiDone	Wi-Fi をオフにしました
-scam.disconnectHint	切断しても何も削除されません。迷ったら、まず切断してから考えてください。
-scam.knownTitle	この接続はあなたが始めたものですか？（例：職場のサポート担当）
-scam.allowHour	知っている、1時間許可
-scam.allowAlways	常に許可
-scam.knownHint	許可には Touch ID か Mac のパスワードが必要です。遠隔の相手はマウスで許可できません。
-scam.demoBanner	テスト — これは本物の警告ではありません
-scam.report.title	接続を切断しました
-scam.report.subtitle	もう誰もあなたのコンピュータを見ることはできません。落ち着いて、次の手順を順番に行ってください。
-scam.report.done	実行したこと
-scam.report.close	閉じてレポートを見る
-scam.steps.title	今すぐやること
-scam.step1	電話を切ってください。再びかかってきても出ないでください。本物の警察・検察・銀行がコンピュータへの接続を求めることはありません。
-scam.step2	すぐに銀行に電話してください（カード裏面の番号）。カードとネットバンキングを一時停止してもらい、最近の取引を確認してもらってください。
-scam.step3	別の端末（スマートフォンなど）からパスワードを変更してください。まずメール、次に銀行、その後その他。
-scam.step4	インストールさせられた遠隔操作アプリを削除し、permwatch の「Mac での変更」リストを確認してください。
-scam.step5	送金したり情報を伝えたりした場合は、かけてきた番号を添えて警察に相談してください。
-scam.step6	家族や友人に知らせてください。詐欺師は同じ手口を他の人にも使います。
-scam.speech	注意！今、誰かがあなたのコンピュータを見ているか操作しています。詐欺の可能性があります。電話を切り、画面の「接続を切断」を押してください。
-scam.speechBank	注意！銀行のサイトを開きました。パスワードやカード情報を入力しないでください。相手はすべて見ています。
-scam.notifyTitle	誰かがあなたのコンピュータに接続しました
-scam.notifyBody	%@ で遠隔セッションが始まりました。あなたが始めたものでなければ、今すぐ切断してください。
-scam.authReason	この遠隔接続を許可する
-scam.act.killed	%@ を終了しました
-scam.act.killFailed	%@ を終了できませんでした（管理者として実行中）
-scam.act.needWifi	アプリを終了できなかったため、インターネットの切断をおすすめします。
-scam.act.blocked	%@ 件のサーバアドレスをブロックしました
-scam.act.revoked	%@ の画面収録と操作の権限を取り消しました
-scam.act.loginItem	ログイン項目を削除しました: %@
-scam.act.wifiOff	Wi-Fi をオフにしました
-scam.act.wifiFailed	Wi-Fi をオフにできませんでした。ケーブルを抜くか、コントロールセンターでオフにしてください。
-scam.act.sharingSettings	画面共有をオフにできるよう共有設定を開きました。
-scam.act.sshSettings	SSH（リモートログイン）をオフにできるよう共有設定を開きました。
-scam.kind.screenSharing	画面共有
-scam.statusOn	オン: 遠隔接続を見守っています
-scam.statusOff	オフ
-scam.activeTitle	現在、遠隔セッションが開いています
-scam.showAlert	警告を表示
-scam.howTitle	この詐欺の手口
-scam.howBody	警察、検察、銀行、テクニカルサポートを名乗る人が電話で「口座が危険です」と言い、AnyDesk などのアプリをインストールさせます。あなたが銀行にログインしている間に画面を見たり操作したりして、お金を自分の口座に送ります。これらのアプリはマルウェアではないため、ウイルス対策ソフトは検出しません。
-scam.whatTitle	permwatch がすること
-scam.what1	本物の遠隔セッションが始まった瞬間、画面全体を警告で覆い、音声でも知らせます。
-scam.what2	ボタンひとつで切断：アプリを終了し、サーバをブロックし、画面収録と操作の権限を取り消します。
-scam.what3	接続中に銀行・決済・行政サイトを開くと、さらに強く警告します。
-scam.what4	その後、やるべきことを順番に伝え、Mac で何が変わったかを表示します。
-scam.tryAlert	警告を試す
-scam.tryHint	警告の見た目を確認できます（テスト。何も終了しません）。
-scam.watchTools	遠隔操作アプリ
-scam.noTools	遠隔操作アプリはインストールされていません。誰かにインストールさせられても、最初の接続で警告します。
-scam.toolsInstalled	インストール済み: %@。自分で入れたものでなければ削除してください。使っている場合は、セッション開始時に警告が出ます。
-scam.watchSharing	画面共有と SSH
-scam.watchSharingBody	macOS 自体の遠隔接続も見守ります。
-scam.bankTitle	銀行サイトの警告
-scam.bankDNSOn	オン: 接続中に開かれた銀行・決済・本人確認サイトを検知します。
-scam.bankDNSOff	ブラウザのアクティブなタブを確認して動作します。管理者モードではすべてのアプリで動作します。
-scam.browserPermission	ブラウザへのアクセスを許可
-scam.browserHint	開いているブラウザごとに macOS が一度だけ確認します。いざという時に確認が出ないようにするためです。
-scam.speak	音声で警告
-scam.historyTitle	過去の警告
-scam.outcome.open	進行中
-scam.outcome.disconnected	切断しました
-scam.outcome.allowed	許可しました
-scam.outcome.ended	自然に終了
-scam.openReport	レポートを開く
-scam.hideReport	レポートを隠す
-scam.deleteTitle	この記録を削除しますか？
-scam.allowedTitle	許可した接続
-scam.allowedUntil	%@ まで
-scam.allowedAlways	常に
-scam.changesTitle	警告中に Mac で変わったこと
-scam.changesHint	警告の 15 分前から追加されたアプリ、ログイン項目、ブラウザ拡張機能。心当たりのないものは削除してください。
-scam.noChanges	新しいアプリ、ログイン項目、ブラウザ拡張機能は見つかりませんでした。
-scam.change.app	新しいアプリ: %@
-scam.change.launch	新しいログイン項目: %@
-scam.change.extension	%1$@ の拡張機能が追加されました: %2$@
-scam.settingDesc	誰かがあなたのコンピュータに遠隔接続した瞬間、画面全体に警告が表示され、ボタンひとつで切断できます。電話詐欺から守ります。
 login.setting	Mac の起動時に permwatch を開く
 login.settingDesc	保護機能（詐欺シールド、リアルタイム保護）は permwatch の実行中だけ動作します。ウインドウを開かず、メニューバーで静かに起動します。
 login.adviceTitle	permwatch を閉じると保護が止まります
 login.adviceBody	詐欺シールドとリアルタイム保護は permwatch の実行中だけ動作します。Mac と一緒に起動しておけば、メニューバーで静かに待機します。
 login.adviceButton	Mac と一緒に起動
+nav.shield	画面共有ガード
+sg.statusOn	オン：画面を録画しているアプリを表示
+sg.statusOff	オフ
+sg.settingDesc	画面を録画・共有しているアプリを画面上部に表示します。知らない共有中にパスワードやカード情報を入力しようとすると止めます。Zoom や Teams などの会議には干渉しません。
+sg.hud.title	画面が共有されています：%@
+sg.hud.hint	心当たりがあれば「知っている」を押してください。情報入力時に警告します。
+sg.known	知っている
+sg.trustAlways	常に信頼
+sg.stop	共有を停止
+sg.stopApp	%@ を終了
+sg.openPage	permwatch で開く
+sg.alert.title	ストップ！ 今あなたの画面は他の人に見えています
+sg.alert.sharing	%1$@ が画面を共有中 · 開始：%2$@
+sg.alert.body	画面共有中はパスワード、カード番号、確認コードを入力しないでください。相手には入力内容がすべて見えます。この共有を自分で始めていない、または誰かに指示されているなら、今すぐ停止してください。
+sg.cutInternet	インターネットを切断（Wi-Fi をオフ）
+sg.wifiDone	Wi-Fi をオフにしました
+sg.knownTitle	この共有を自分で始めて信頼している場合：
+sg.authHint	リモート操作ツールでは Touch ID または Mac のパスワードが必要です。相手がマウスで「知っている」を押せないようにするためです。
+sg.authReason	リモート共有を信頼する
+sg.demoBanner	デモ — 本当の警告ではありません
+sg.trigger.password	%@ のパスワード欄に入力し始めました
+sg.trigger.site	決済・銀行・本人確認サイトが開かれました：%@
+sg.speech	注意。画面が共有されています。パスワードやカード情報を入力しないでください。
+sg.notifyTitle	画面共有中の情報入力（%@）
+sg.report.title	共有を停止しました
+sg.report.subtitle	あなたの画面はもう誰にも見えていません。
+sg.report.done	実行したこと
+sg.report.close	閉じる
+sg.steps.title	情報を入力した場合、今すべきこと
+sg.step1	入力したパスワードを別のデバイス（スマホなど）からすぐに変更し、同じパスワードを使っている所もすべて変更してください。
+sg.step2	カード情報やコードを入力した場合は、カード裏面の番号で銀行に電話し、カードを一時停止してもらってください。
+sg.step3	プログラムをインストールさせられた場合は削除し、下の「Mac の変更」一覧を確認してください。
+sg.step4	送金した、または誰かに指示されていた場合は警察に相談してください。
+sg.nowTitle	今画面を使っているもの
+sg.noSharing	今、画面を共有・録画しているアプリはありません。
+sg.kind.remote	リモート操作
+sg.kind.capture	画面録画 / 共有
+sg.kind.screenSharing	macOS 画面共有
+sg.acknowledged	確認済み
+sg.howTitle	しくみ
+sg.howBody	macOS は画面をキャプチャするすべてのアプリをシステムログに記録します：Zoom、Teams、Meet、Discord、AnyDesk、録画アプリ… permwatch はそれを読み取り、誰が録画しているかを画面上部の小さな表示で知らせます。会議や授業への参加、誰かの手伝いには影響しません。
+sg.what1	知らない共有中にパスワード欄へ入力し始めると（どのサイト・アプリでも）、全画面の警告が表示されます。
+sg.what2	銀行・決済・暗号資産・行政サイトを開いたときも警告します。
+sg.what3	「知っている」とした共有では警告は出ません。「常に信頼」にするとそのアプリについて今後は尋ねません。
+sg.tryAlert	警告を試す
+sg.tryHint	警告の見た目を確認できます。何も終了しません。
+sg.sitesTitle	重要なサイト
+sg.sitesDNSOn	ネットワーク保護オン：銀行・決済サイトはすべてのブラウザで認識されます。
+sg.sitesDNSOff	ネットワーク保護オフ：サイトはブラウザのタブからのみ認識されます。パスワード欄の警告は引き続き動作します。
+sg.browserPermission	ブラウザへのアクセスを許可
+sg.browserHint	読み取るのは開いているタブのアドレスのみ、共有中のみです。
+sg.speak	警告を音声でも読み上げる
+sg.trustedTitle	常に信頼
+sg.trustedHint	これらのアプリが画面を共有しても警告は出ません。
+sg.historyTitle	履歴
+sg.deleteTitle	この記録を削除しますか？
+sg.openReport	レポートを開く
+sg.hideReport	レポートを隠す
+sg.outcome.open	警告中
+sg.outcome.stopped	共有を停止
+sg.outcome.acknowledged	確認済み、続行
+sg.outcome.ended	共有終了
+sg.changesTitle	その時 Mac で変わったこと
+sg.noChanges	警告前の 15 分間に新しいものはありません。
+sg.changesHint	新しくインストールされたアプリ、ログイン項目、ブラウザ拡張機能。
+sg.change.app	新しいアプリ：%@
+sg.change.launch	新しいログイン項目：%@
+sg.change.extension	新しい %1$@ 拡張機能：%2$@
+sg.act.closed	%@ を終了しました
+sg.act.closeFailed	%@ を終了できませんでした（管理者として実行中）
+sg.act.blocked	%@ 件のサーバーアドレスをブロックしました
+sg.act.revoked	%@ の画面収録と操作の権限を削除しました
+sg.act.loginItem	ログイン項目を削除しました：%@
+sg.act.sharingSettings	共有設定を開きました：画面共有をオフにしてください
+sg.act.wifiOff	Wi-Fi をオフにしました
+sg.act.wifiFailed	Wi-Fi をオフにできませんでした

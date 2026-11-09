@@ -5,7 +5,7 @@ struct MenuBarPanel: View {
     @EnvironmentObject var media: MediaMonitor
     @EnvironmentObject var center: ThreatCenter
     @Environment(\.openWindow) private var openWindow
-    @ObservedObject private var shield = ScamShield.shared
+    @ObservedObject private var shield = ShareGuard.shared
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -28,16 +28,16 @@ struct MenuBarPanel: View {
             .padding(.horizontal, 14)
             .padding(.bottom, 12)
 
-            // Dolandırıcılık Kalkanı durumu: sessizce çalışırken korunduğunu görebilmek için.
+            // Ekran paylaşımı koruması: kim ekranı kaydediyor/paylaşıyor.
             HStack(spacing: 6) {
-                Image(systemName: shield.sessions.isEmpty ? "phone.badge.waveform" : "exclamationmark.octagon.fill")
-                Text(shield.sessions.isEmpty ? (shield.enabled ? L("scam.statusOn") : "\(L("nav.shield")): \(L("scam.statusOff"))")
-                                             : L("scam.activeTitle"))
+                Image(systemName: shield.captures.isEmpty ? "rectangle.dashed.badge.record" : "record.circle")
+                Text(shield.captures.isEmpty ? (shield.enabled ? L("sg.statusOn") : "\(L("nav.shield")): \(L("sg.statusOff"))")
+                                             : L("sg.hud.title", shield.captures.map(\.name).joined(separator: ", ")))
+                    .lineLimit(1)
                 Spacer()
-                if !shield.sessions.isEmpty { Button(L("scam.showAlert")) { ScamAlertController.shared.show(shield) }.controlSize(.small) }
             }
             .font(.system(size: 12, weight: .medium))
-            .foregroundStyle(!shield.sessions.isEmpty ? .red : (shield.enabled ? .green : .secondary))
+            .foregroundStyle(!shield.unacknowledged.isEmpty ? .red : (shield.enabled ? .green : .secondary))
             .padding(.horizontal, 14)
             .padding(.bottom, 10)
 

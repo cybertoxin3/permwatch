@@ -25,14 +25,14 @@ permwatch registra ogni modifica alle autorizzazioni e ti avvisa appena qualcosa
 
 ---
 
-## 📞 Ferma i truffatori al telefono
+## 🖥️ Sa chi vede il tuo schermo
 
-Qualcuno chiama fingendosi polizia, banca o assistenza tecnica e ti fa installare AnyDesk o simili. Poi guarda il tuo schermo mentre accedi alla banca. Gli antivirus non lo impediscono, perché questi programmi non sono malware.
+Zoom, Teams, Meet, Discord, AnyDesk, un registratore dello schermo: qualunque cosa registri o condivida il tuo schermo, permwatch la nomina in un piccolo indicatore in alto. L'informazione arriva direttamente da macOS, quindi funziona con qualsiasi app, senza elenchi.
 
-**permwatch sì.** Appena qualcuno inizia a vedere o controllare il tuo Mac da remoto, compare un avviso a tutto schermo che parla anche. Un pulsante interrompe la connessione, blocca i server del programma e ne rimuove i permessi. Aprire un sito bancario durante la connessione fa scattare un avviso ancora più forte, e poi permwatch ti dice esattamente cosa fare. Aiutare qualcuno con AnyDesk non lo attiva: solo quando viene inviato il tuo schermo.
+Non intralcia: partecipare a una lezione o a una riunione non cambia. Ma se è in corso una condivisione che non hai segnato «La conosco» e inizi a scrivere in un **campo password** (su qualsiasi sito o app), o apri un sito di banca, pagamenti o della pubblica amministrazione, un avviso a schermo intero ti ferma prima che l'altra parte veda i tuoi dati. Un pulsante interrompe la condivisione; poi permwatch ti dice cosa fare.
 
 <p align="center">
-  <img src="../images/scam_en.png" alt="avviso antitruffa di permwatch" width="760">
+  <img src="../images/share_en.png" alt="avviso di condivisione schermo di permwatch" width="760">
 </p>
 
 ## Hai autorizzato e dimenticato
