@@ -42,12 +42,14 @@ struct PermwatchApp: App {
                 .environmentObject(center)
                 .environmentObject(ThreatIntel.shared)
                 .environmentObject(RealtimeGuard.shared)
+                .environmentObject(ScamShield.shared)
                 .frame(minWidth: 1100, minHeight: 640)
                 .preferredColorScheme(theme.colorScheme)
                 .onAppear {
                     theme.apply()
                     store.requestNotificationPermission()
                     RealtimeGuard.shared.start()
+                    _ = ScamShield.shared
                     ThreatIntel.shared.update()
                 }
         }

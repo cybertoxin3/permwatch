@@ -25,6 +25,16 @@ permwatch protokolliert jede Änderung an Berechtigungen und warnt dich sofort, 
 
 ---
 
+## 📞 Stoppt Telefonbetrüger
+
+Jemand ruft an, gibt sich als Polizei, Bank oder Support aus und lässt dich AnyDesk oder Ähnliches installieren. Dann sieht er deinen Bildschirm, während du dich bei deiner Bank anmeldest. Virenscanner verhindern das nicht, denn diese Programme sind keine Schadsoftware.
+
+**permwatch schon.** Sobald jemand deinen Mac aus der Ferne sieht oder steuert, erscheint eine bildschirmfüllende Warnung, auch per Sprache. Ein Klick trennt die Verbindung, blockiert die Server und entfernt die Rechte. Öffnest du währenddessen eine Bank-Website, wird die Warnung noch deutlicher, und danach sagt permwatch dir genau, was zu tun ist. Hilfst du selbst jemandem per AnyDesk, passiert nichts: nur wenn dein Bildschirm gesendet wird.
+
+<p align="center">
+  <img src="../images/scam_en.png" alt="permwatch Betrugswarnung" width="760">
+</p>
+
 ## Erlaubt und vergessen
 
 „Bildschirmaufnahme erlauben.“ „Zugriff auf Bedienungshilfen erforderlich.“ „Beim Anmelden öffnen?“

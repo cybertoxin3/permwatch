@@ -708,3 +708,87 @@ upd.refresh	지금 확인
 upd.checking	확인 중…
 upd.lastCheck	최신 상태 · 마지막 확인 %@
 upd.neverChecked	아직 확인하지 않음
+nav.shield	사기 방지 실드
+scam.alert.title	멈추세요! 지금 누군가 컴퓨터를 보거나 조종하고 있습니다
+scam.alert.session	연결됨: %1$@ · 시작 %2$@
+scam.alert.body	경찰, 검찰, 은행, Apple, Microsoft라며 전화한 사람이 있나요? 이들은 절대 컴퓨터에 연결하자고 하지 않으며 돈이나 비밀번호를 요구하지 않습니다. 이건 사기입니다. 지금 전화를 끊고 아래에서 연결을 끊으세요.
+scam.alert.bankTitle	연결 중에 은행 사이트가 열렸습니다
+scam.alert.bankBody	%@ — 비밀번호, 카드 정보, 인증 코드를 입력하지 마세요. 상대방이 모든 것을 보고 있습니다.
+scam.disconnect	연결 끊기
+scam.cutInternet	인터넷 끊기(Wi-Fi 끄기)
+scam.wifiDone	Wi-Fi 꺼짐
+scam.disconnectHint	연결을 끊어도 아무것도 삭제되지 않습니다. 확실하지 않다면 먼저 끊고 나중에 생각하세요.
+scam.knownTitle	이 연결을 직접 시작했나요? (예: 회사 지원팀)
+scam.allowHour	알고 있음, 1시간 허용
+scam.allowAlways	항상 허용
+scam.knownHint	허용하려면 Touch ID나 Mac 암호가 필요합니다. 원격 상대는 마우스로 할 수 없습니다.
+scam.demoBanner	테스트 — 실제 경고가 아닙니다
+scam.report.title	연결이 끊겼습니다
+scam.report.subtitle	이제 아무도 컴퓨터를 볼 수 없습니다. 진정하고 아래 단계를 순서대로 하세요.
+scam.report.done	수행한 작업
+scam.report.close	닫고 보고서 보기
+scam.steps.title	지금 해야 할 일
+scam.step1	전화를 끊으세요. 다시 걸려 와도 받지 마세요. 진짜 경찰, 검찰, 은행은 컴퓨터 연결을 요구하지 않습니다.
+scam.step2	즉시 은행에 전화하세요(카드 뒷면 번호). 카드와 인터넷 뱅킹을 임시로 정지하고 최근 거래를 확인해 달라고 하세요.
+scam.step3	다른 기기(예: 휴대폰)에서 비밀번호를 바꾸세요. 먼저 이메일, 그다음 은행, 그다음 나머지.
+scam.step4	설치하라고 한 원격 접속 프로그램을 삭제하고 permwatch의 'Mac의 변경 사항' 목록을 확인하세요.
+scam.step5	돈을 보냈거나 정보를 알려 줬다면 전화한 번호와 함께 경찰에 신고하세요.
+scam.step6	가족과 친구에게 알리세요. 사기범은 같은 수법을 다른 사람에게도 씁니다.
+scam.speech	주의! 지금 누군가 컴퓨터를 보거나 조종하고 있습니다. 사기일 수 있습니다. 전화를 끊고 화면의 연결 끊기를 누르세요.
+scam.speechBank	주의! 은행 사이트를 열었습니다. 비밀번호와 카드 정보를 입력하지 마세요. 상대방이 모든 것을 보고 있습니다.
+scam.notifyTitle	누군가 컴퓨터에 연결했습니다
+scam.notifyBody	%@(으)로 원격 세션이 시작되었습니다. 직접 시작하지 않았다면 지금 연결을 끊으세요.
+scam.authReason	이 원격 연결 허용
+scam.act.killed	%@ 종료됨
+scam.act.killFailed	%@을(를) 종료하지 못했습니다(관리자 권한으로 실행 중)
+scam.act.needWifi	프로그램을 종료하지 못해 인터넷을 끊는 것이 좋습니다.
+scam.act.blocked	서버 주소 %@개 차단됨
+scam.act.revoked	%@의 화면 기록 및 제어 권한을 해제했습니다
+scam.act.loginItem	로그인 항목 제거됨: %@
+scam.act.wifiOff	Wi-Fi 꺼짐
+scam.act.wifiFailed	Wi-Fi를 끄지 못했습니다. 케이블을 뽑거나 제어 센터에서 끄세요.
+scam.act.sharingSettings	화면 공유를 끌 수 있도록 공유 설정을 열었습니다.
+scam.act.sshSettings	SSH(원격 로그인)를 끌 수 있도록 공유 설정을 열었습니다.
+scam.kind.screenSharing	화면 공유
+scam.statusOn	켜짐: 원격 연결을 감시 중
+scam.statusOff	꺼짐
+scam.activeTitle	지금 원격 세션이 열려 있습니다
+scam.showAlert	경고 보기
+scam.howTitle	이 사기는 어떻게 이루어지나요?
+scam.howBody	누군가 경찰, 검찰, 은행, 기술 지원을 사칭해 전화로 '계좌가 위험하다'고 합니다. AnyDesk 같은 프로그램을 설치하게 합니다. 그런 다음 당신이 은행에 로그인하는 동안 화면을 보거나 조종해 돈을 자기 계좌로 보냅니다. 이런 프로그램은 악성코드가 아니어서 백신이 잡지 못합니다.
+scam.whatTitle	permwatch가 하는 일
+scam.what1	실제 원격 세션이 시작되는 순간 화면 전체를 경고로 덮고 소리로도 알립니다.
+scam.what2	버튼 하나로 연결을 끊습니다: 프로그램을 종료하고, 서버를 차단하고, 화면 기록 및 제어 권한을 해제합니다.
+scam.what3	연결 중에 은행, 결제, 정부 인증 사이트를 열면 더 강하게 경고합니다.
+scam.what4	이후 해야 할 일을 단계별로 알려 주고 Mac에서 바뀐 것을 보여 줍니다.
+scam.tryAlert	경고 체험하기
+scam.tryHint	경고가 어떻게 보이는지 확인하세요(테스트, 아무것도 종료되지 않음).
+scam.watchTools	원격 접속 프로그램
+scam.noTools	설치된 원격 접속 프로그램이 없습니다. 누군가 설치하게 하면 첫 연결 때 경고합니다.
+scam.toolsInstalled	설치됨: %@. 직접 설치하지 않았다면 삭제하세요. 사용 중이라면 세션이 시작될 때 경고가 나타납니다.
+scam.watchSharing	화면 공유 및 SSH
+scam.watchSharingBody	macOS 자체 원격 연결도 감시합니다.
+scam.bankTitle	은행 사이트 경고
+scam.bankDNSOn	켜짐: 연결 중에 열린 은행, 결제, 본인 인증 사이트를 감지합니다.
+scam.bankDNSOff	브라우저의 활성 탭을 확인해 작동합니다. 관리자 모드에서는 모든 앱에 대해 작동합니다.
+scam.browserPermission	브라우저 접근 허용
+scam.browserHint	열려 있는 브라우저마다 macOS가 한 번만 묻습니다. 결정적인 순간에 질문이 뜨지 않도록 미리 허용하세요.
+scam.speak	음성 경고
+scam.historyTitle	지난 경고
+scam.outcome.open	진행 중
+scam.outcome.disconnected	연결 끊김
+scam.outcome.allowed	허용됨
+scam.outcome.ended	저절로 종료됨
+scam.openReport	보고서 열기
+scam.hideReport	보고서 숨기기
+scam.deleteTitle	이 기록을 삭제할까요?
+scam.allowedTitle	허용된 연결
+scam.allowedUntil	%@까지
+scam.allowedAlways	항상
+scam.changesTitle	경고 중 Mac의 변경 사항
+scam.changesHint	경고 15분 전부터 추가된 앱, 로그인 항목, 브라우저 확장 프로그램입니다. 모르는 것은 삭제하세요.
+scam.noChanges	새 앱, 로그인 항목, 브라우저 확장 프로그램이 없습니다.
+scam.change.app	새 앱: %@
+scam.change.launch	새 로그인 항목: %@
+scam.change.extension	%1$@ 확장 프로그램 추가됨: %2$@
+scam.settingDesc	누군가 원격으로 컴퓨터에 연결하는 순간 전체 화면 경고가 나타나고 버튼 하나로 연결을 끊을 수 있습니다. 전화 사기 방지.

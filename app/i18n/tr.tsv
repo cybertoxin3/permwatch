@@ -708,3 +708,87 @@ upd.refresh	Şimdi denetle
 upd.checking	Denetleniyor…
 upd.lastCheck	Güncel · son kontrol: %@
 upd.neverChecked	Henüz denetlenmedi
+nav.shield	Dolandırıcılık Kalkanı
+scam.alert.title	DUR! Şu an biri bilgisayarını görüyor veya kontrol ediyor
+scam.alert.session	Bağlı: %1$@ · başladı: %2$@
+scam.alert.body	Seni polis, savcı, banka, Apple ya da Microsoft diye arayan biri mi? Bunlar ASLA bilgisayarına bağlanmak istemez, senden para ya da şifre istemez. Bu bir dolandırıcılık. Telefonu hemen kapat ve aşağıdan bağlantıyı kes.
+scam.alert.bankTitle	Bağlantı açıkken bir banka sitesine girildi
+scam.alert.bankBody	%@ — şifreni, kart bilgini ya da onay kodunu girme. Karşındaki kişi her şeyi görüyor.
+scam.disconnect	Bağlantıyı Kes
+scam.cutInternet	İnterneti Kes (Wi-Fi'yi kapat)
+scam.wifiDone	Wi-Fi kapatıldı
+scam.disconnectHint	Bağlantıyı kesmek hiçbir şeyi silmez. Emin değilsen önce kes, sonra düşün.
+scam.knownTitle	Bu bağlantıyı sen mi başlattın? (ör. iş yerinin destek ekibi)
+scam.allowHour	Tanıyorum, 1 saat izin ver
+scam.allowAlways	Her zaman izin ver
+scam.knownHint	İzin vermek için Touch ID ya da Mac parolan istenir; uzaktaki kişi bunu fareyle yapamaz.
+scam.demoBanner	DENEME — bu gerçek bir uyarı değil
+scam.report.title	Bağlantı kesildi
+scam.report.subtitle	Artık kimse bilgisayarını göremiyor. Şimdi sakin ol ve aşağıdakileri sırayla yap.
+scam.report.done	Yapılanlar
+scam.report.close	Kapat ve raporu gör
+scam.steps.title	Şimdi ne yapmalısın
+scam.step1	Telefonu kapat. Yeniden ararlarsa açma: gerçek polis, savcı ya da banka bilgisayarına bağlanmak istemez.
+scam.step2	Bankanı hemen ara (kartının arkasındaki numaradan). Kartlarını ve internet bankacılığını geçici olarak kapattır, son işlemleri kontrol ettir.
+scam.step3	Şifrelerini başka bir cihazdan (ör. telefonundan) değiştir: önce e-posta, sonra banka, sonra diğerleri.
+scam.step4	Sana kurdurulan uzaktan erişim programını kaldır ve permwatch'taki "Mac'inde değişenler" listesine bak.
+scam.step5	Para gönderdiysen ya da bilgi verdiysen polise başvur ve arayan numarayı bildir.
+scam.step6	Yakınlarını uyar: dolandırıcılar aynı yöntemi başkalarına da dener.
+scam.speech	Dikkat! Şu an biri bilgisayarınızı görüyor veya kontrol ediyor. Bu bir dolandırıcılık olabilir. Telefonu kapatın ve ekrandaki Bağlantıyı Kes düğmesine basın.
+scam.speechBank	Dikkat! Bir banka sitesine girdiniz. Şifrenizi ve kart bilginizi girmeyin. Karşınızdaki kişi her şeyi görüyor.
+scam.notifyTitle	Biri bilgisayarına bağlandı
+scam.notifyBody	%@ ile uzaktan bir oturum başladı. Bunu sen başlatmadıysan hemen bağlantıyı kes.
+scam.authReason	bu uzaktan bağlantıya izin vermek
+scam.act.killed	%@ kapatıldı
+scam.act.killFailed	%@ kapatılamadı (yönetici olarak çalışıyor)
+scam.act.needWifi	Program kapatılamadığı için interneti kesmen önerilir.
+scam.act.blocked	%@ sunucu adresi engellendi
+scam.act.revoked	%@ için ekran kaydı ve kontrol izinleri kaldırıldı
+scam.act.loginItem	Başlangıç öğesi kaldırıldı: %@
+scam.act.wifiOff	Wi-Fi kapatıldı
+scam.act.wifiFailed	Wi-Fi kapatılamadı; kabloyu çek ya da Denetim Merkezi'nden kapat.
+scam.act.sharingSettings	Ekran Paylaşımı'nı kapatman için Paylaşma ayarları açıldı.
+scam.act.sshSettings	SSH'yi (Uzaktan Giriş) kapatman için Paylaşma ayarları açıldı.
+scam.kind.screenSharing	Ekran Paylaşımı
+scam.statusOn	Açık: uzaktan bağlantılar izleniyor
+scam.statusOff	Kapalı
+scam.activeTitle	Şu an bir uzaktan oturum açık
+scam.showAlert	Uyarıyı göster
+scam.howTitle	Bu dolandırıcılık nasıl işler?
+scam.howBody	Biri seni polis, savcı, banka ya da teknik destek diye arar ve "hesabın tehlikede" der. Sana AnyDesk gibi bir program kurdurur. Sonra sen banka sitesine girerken ekranını izler ya da kontrol eder ve paranı kendi hesabına gönderir. Antivirüsler bunu yakalamaz, çünkü bu programlar zararlı değildir.
+scam.whatTitle	permwatch ne yapar?
+scam.what1	Gerçek bir uzaktan oturum başladığı anda ekranının tamamını kaplayan bir uyarı gösterir ve sesli uyarır.
+scam.what2	Tek tuşla bağlantıyı keser: programı kapatır, sunucularını engeller, ekran kaydı ve kontrol izinlerini kaldırır.
+scam.what3	Bağlantı açıkken banka, ödeme ya da e-Devlet gibi bir siteye girersen daha sert uyarır.
+scam.what4	Sonrasında ne yapman gerektiğini adım adım söyler ve Mac'inde neyin değiştiğini gösterir.
+scam.tryAlert	Uyarıyı dene
+scam.tryHint	Uyarının nasıl göründüğünü gör (deneme; hiçbir şey kapatılmaz).
+scam.watchTools	Uzaktan erişim programları
+scam.noTools	Kurulu uzaktan erişim programı yok. Biri kurdurursa ilk bağlantıda uyarılırsın.
+scam.toolsInstalled	Kurulu: %@. Bunları sen kurmadıysan kaldır. Kullanıyorsan oturum başladığında uyarı çıkar.
+scam.watchSharing	Ekran Paylaşımı ve SSH
+scam.watchSharingBody	macOS'un kendi uzaktan bağlantıları da izlenir.
+scam.bankTitle	Banka sitesi uyarısı
+scam.bankDNSOn	Açık: bağlantı sırasında açılan banka, ödeme ve kimlik siteleri fark edilir.
+scam.bankDNSOff	Tarayıcının etkin sekmesine bakarak çalışır. Yönetici modu açıksa bütün uygulamalar için çalışır.
+scam.browserPermission	Tarayıcı iznini ver
+scam.browserHint	Açık tarayıcıların için macOS bir kez izin sorar; böylece gerçek bir anda soru çıkmaz.
+scam.speak	Sesli uyar
+scam.historyTitle	Geçmiş uyarılar
+scam.outcome.open	Sürüyor
+scam.outcome.disconnected	Bağlantı kesildi
+scam.outcome.allowed	İzin verildi
+scam.outcome.ended	Kendiliğinden sona erdi
+scam.openReport	Raporu aç
+scam.hideReport	Raporu gizle
+scam.deleteTitle	Bu kayıt silinsin mi?
+scam.allowedTitle	İzin verilen bağlantılar
+scam.allowedUntil	%@ saatine kadar
+scam.allowedAlways	Her zaman
+scam.changesTitle	Uyarı sırasında Mac'inde değişenler
+scam.changesHint	Uyarıdan 15 dakika öncesinden bu yana eklenen uygulamalar, başlangıç öğeleri ve tarayıcı uzantıları. Tanımadığın bir şey varsa kaldır.
+scam.noChanges	Yeni uygulama, başlangıç öğesi ya da tarayıcı uzantısı bulunmadı.
+scam.change.app	Yeni uygulama: %@
+scam.change.launch	Yeni başlangıç öğesi: %@
+scam.change.extension	%1$@ uzantısı eklendi: %2$@
+scam.settingDesc	Biri bilgisayarına uzaktan bağlandığı an ekranı kaplayan bir uyarı gösterir ve bağlantıyı tek tuşla keser. Telefon dolandırıcılarına karşı.

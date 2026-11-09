@@ -25,6 +25,16 @@ O permwatch registra cada mudança de permissão e avisa você assim que algo pa
 
 ---
 
+## 📞 Para golpistas por telefone
+
+Alguém liga fingindo ser a polícia, seu banco ou o suporte técnico e faz você instalar o AnyDesk ou algo parecido. Depois vê sua tela enquanto você entra no banco. Antivírus não impedem isso, porque esses programas não são malware.
+
+**O permwatch impede.** Assim que alguém começa a ver ou controlar seu Mac remotamente, aparece um alerta em tela cheia que também fala. Um botão corta a conexão, bloqueia os servidores do programa e remove as permissões. Abrir um site de banco durante a conexão gera um alerta ainda mais forte, e depois o permwatch diz exatamente o que fazer. Ajudar alguém pelo AnyDesk não dispara o alerta: só quando sua tela é enviada.
+
+<p align="center">
+  <img src="../images/scam_en.png" alt="alerta antigolpe do permwatch" width="760">
+</p>
+
 ## Você permitiu e esqueceu
 
 "Permitir gravação de tela." "Acesso de acessibilidade necessário." "Abrir ao iniciar sessão?"

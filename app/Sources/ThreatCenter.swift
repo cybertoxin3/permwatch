@@ -151,6 +151,16 @@ final class ThreatCenter: ObservableObject {
         }, completionHandler: { p.orderOut(nil) })
     }
 
+    /// Dolandırıcılık Kalkanı: uzaktan oturum başladı.
+    func notifyScam(tools: String) {
+        let c = UNMutableNotificationContent()
+        c.title = L("scam.notifyTitle")
+        c.body = L("scam.notifyBody", tools)
+        c.sound = .defaultCritical
+        c.interruptionLevel = .timeSensitive
+        UNUserNotificationCenter.current().add(UNNotificationRequest(identifier: "scam.\(Date().timeIntervalSince1970)", content: c, trigger: nil))
+    }
+
     /// Güncelleme indirildi: kullanıcı başka bir uygulamadaysa da haberi olsun.
     func notifyUpdateReady(version: String) {
         let c = UNMutableNotificationContent()

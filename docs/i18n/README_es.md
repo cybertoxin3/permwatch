@@ -25,6 +25,16 @@ permwatch registra cada cambio de permisos y te avisa en cuanto algo no cuadra.
 
 ---
 
+## 📞 Frena a los estafadores telefónicos
+
+Alguien llama haciéndose pasar por la policía, tu banco o soporte técnico y te hace instalar AnyDesk o algo parecido. Luego mira tu pantalla mientras entras en tu banco. Los antivirus no lo impiden, porque esos programas no son malware.
+
+**permwatch sí.** En cuanto alguien empieza a ver o controlar tu Mac en remoto, aparece un aviso a pantalla completa que también habla. Un botón corta la conexión, bloquea los servidores del programa y quita sus permisos. Si abres una web bancaria durante la conexión, el aviso es aún más fuerte, y después permwatch te dice exactamente qué hacer. Ayudar a otra persona con AnyDesk no lo activa: solo cuando se envía tu pantalla.
+
+<p align="center">
+  <img src="../images/scam_en.png" alt="aviso antiestafa de permwatch" width="760">
+</p>
+
 ## Lo permitiste y lo olvidaste
 
 «Permitir grabación de pantalla». «Se requiere acceso de accesibilidad». «¿Abrir al iniciar sesión?»

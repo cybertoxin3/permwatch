@@ -708,3 +708,87 @@ upd.refresh	Controlla ora
 upd.checking	Controllo in corso…
 upd.lastCheck	Aggiornato · ultimo controllo %@
 upd.neverChecked	Non ancora controllato
+nav.shield	Scudo antitruffa
+scam.alert.title	STOP! Qualcuno può vedere o controllare il tuo computer in questo momento
+scam.alert.session	Connesso: %1$@ · iniziato %2$@
+scam.alert.body	Ti ha chiamato qualcuno dicendo di essere la polizia, un pubblico ministero, la tua banca, Apple o Microsoft? Non chiedono MAI di collegarsi al tuo computer, né soldi o password. È una truffa. Riattacca subito e interrompi la connessione qui sotto.
+scam.alert.bankTitle	Durante la connessione è stato aperto un sito bancario
+scam.alert.bankBody	%@ — non inserire password, dati della carta o codice di conferma. L'altra persona vede tutto.
+scam.disconnect	Interrompi connessione
+scam.cutInternet	Interrompi Internet (spegni Wi-Fi)
+scam.wifiDone	Wi-Fi spento
+scam.disconnectHint	Interrompere la connessione non cancella nulla. Se non sei sicuro, prima interrompi, poi rifletti.
+scam.knownTitle	Hai avviato tu questa connessione? (ad esempio il supporto della tua azienda)
+scam.allowHour	La conosco, consenti per 1 ora
+scam.allowAlways	Consenti sempre
+scam.knownHint	Per consentirla servono Touch ID o la password del Mac: la persona remota non può farlo con il mouse.
+scam.demoBanner	PROVA — questo non è un avviso reale
+scam.report.title	Connessione interrotta
+scam.report.subtitle	Nessuno può più vedere il tuo computer. Respira e segui questi passi in ordine.
+scam.report.done	Cosa è stato fatto
+scam.report.close	Chiudi e vedi il rapporto
+scam.steps.title	Cosa fare adesso
+scam.step1	Riattacca. Se richiamano, non rispondere: polizia, magistrati e banche veri non chiedono mai di collegarsi al tuo computer.
+scam.step2	Chiama subito la tua banca (numero sul retro della carta). Fai bloccare temporaneamente carte e home banking e controllare gli ultimi movimenti.
+scam.step3	Cambia le password da un altro dispositivo (ad esempio il telefono): prima l'e-mail, poi la banca, poi il resto.
+scam.step4	Rimuovi il programma di accesso remoto che ti hanno fatto installare e guarda l'elenco «Modifiche sul tuo Mac» in permwatch.
+scam.step5	Se hai inviato denaro o dato informazioni, denuncia alla polizia indicando il numero che ti ha chiamato.
+scam.step6	Avvisa familiari e amici: i truffatori provano lo stesso trucco con altri.
+scam.speech	Attenzione! Qualcuno può vedere o controllare il suo computer in questo momento. Potrebbe essere una truffa. Riattacchi e prema Interrompi connessione sullo schermo.
+scam.speechBank	Attenzione! Ha aperto un sito bancario. Non inserisca password o dati della carta. L'altra persona vede tutto.
+scam.notifyTitle	Qualcuno si è collegato al tuo computer
+scam.notifyBody	È iniziata una sessione remota con %@. Se non l'hai avviata tu, interrompila subito.
+scam.authReason	consentire questa connessione remota
+scam.act.killed	%@ è stato chiuso
+scam.act.killFailed	Impossibile chiudere %@ (è eseguito come amministratore)
+scam.act.needWifi	Non è stato possibile chiudere il programma: si consiglia di interrompere Internet.
+scam.act.blocked	%@ indirizzi di server bloccati
+scam.act.revoked	Rimossi i permessi di registrazione dello schermo e controllo per %@
+scam.act.loginItem	Elemento di login rimosso: %@
+scam.act.wifiOff	Wi-Fi spento
+scam.act.wifiFailed	Impossibile spegnere il Wi-Fi; scollega il cavo o spegnilo dal Centro di Controllo.
+scam.act.sharingSettings	Aperte le impostazioni di Condivisione per disattivare la Condivisione schermo.
+scam.act.sshSettings	Aperte le impostazioni di Condivisione per disattivare SSH (Login remoto).
+scam.kind.screenSharing	Condivisione schermo
+scam.statusOn	Attivo: le connessioni remote sono sorvegliate
+scam.statusOff	Disattivo
+scam.activeTitle	In questo momento è aperta una sessione remota
+scam.showAlert	Mostra avviso
+scam.howTitle	Come funziona questa truffa?
+scam.howBody	Qualcuno chiama fingendosi polizia, magistrato, banca o assistenza tecnica e dice «il tuo conto è in pericolo». Ti fa installare un programma come AnyDesk. Poi, mentre accedi alla banca, vede o controlla il tuo schermo e trasferisce i tuoi soldi sul suo conto. Gli antivirus non lo rilevano, perché questi programmi non sono malware.
+scam.whatTitle	Cosa fa permwatch?
+scam.what1	Appena inizia una vera sessione remota, copre tutto lo schermo con un avviso e ti avverte ad alta voce.
+scam.what2	Interrompe la connessione con un pulsante: chiude il programma, blocca i suoi server e rimuove i permessi di registrazione dello schermo e controllo.
+scam.what3	Se apri un sito di banca, pagamenti o identità durante la connessione, avvisa in modo ancora più deciso.
+scam.what4	Dopo ti dice passo per passo cosa fare e mostra cosa è cambiato sul tuo Mac.
+scam.tryAlert	Prova l'avviso
+scam.tryHint	Guarda com'è l'avviso (prova; non viene chiuso nulla).
+scam.watchTools	Programmi di accesso remoto
+scam.noTools	Nessun programma di accesso remoto installato. Se qualcuno te ne fa installare uno, verrai avvisato alla prima connessione.
+scam.toolsInstalled	Installati: %@. Se non li hai installati tu, rimuovili. Se li usi, vedrai un avviso all'inizio di una sessione.
+scam.watchSharing	Condivisione schermo e SSH
+scam.watchSharingBody	Sono sorvegliate anche le connessioni remote di macOS.
+scam.bankTitle	Avviso sito bancario
+scam.bankDNSOn	Attivo: vengono notati i siti di banche, pagamenti e identità aperti durante una connessione.
+scam.bankDNSOff	Funziona controllando la scheda attiva del browser. Con la modalità amministratore funziona per tutte le app.
+scam.browserPermission	Consenti accesso al browser
+scam.browserHint	macOS chiede una volta per ogni browser aperto, così nessuna domanda compare nel momento peggiore.
+scam.speak	Avviso vocale
+scam.historyTitle	Avvisi precedenti
+scam.outcome.open	In corso
+scam.outcome.disconnected	Connessione interrotta
+scam.outcome.allowed	Consentita
+scam.outcome.ended	Terminata da sola
+scam.openReport	Apri rapporto
+scam.hideReport	Nascondi rapporto
+scam.deleteTitle	Eliminare questo record?
+scam.allowedTitle	Connessioni consentite
+scam.allowedUntil	Fino alle %@
+scam.allowedAlways	Sempre
+scam.changesTitle	Modifiche sul tuo Mac durante l'avviso
+scam.changesHint	App, elementi di login ed estensioni del browser aggiunti da 15 minuti prima dell'avviso. Rimuovi ciò che non riconosci.
+scam.noChanges	Nessuna nuova app, elemento di login o estensione del browser trovati.
+scam.change.app	Nuova app: %@
+scam.change.launch	Nuovo elemento di login: %@
+scam.change.extension	Estensione %1$@ aggiunta: %2$@
+scam.settingDesc	Appena qualcuno si collega al tuo computer da remoto, compare un avviso a tutto schermo e puoi interrompere la connessione con un pulsante. Protezione contro le truffe telefoniche.

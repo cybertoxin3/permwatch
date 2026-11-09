@@ -25,6 +25,16 @@ permwatch registra ogni modifica alle autorizzazioni e ti avvisa appena qualcosa
 
 ---
 
+## 📞 Ferma i truffatori al telefono
+
+Qualcuno chiama fingendosi polizia, banca o assistenza tecnica e ti fa installare AnyDesk o simili. Poi guarda il tuo schermo mentre accedi alla banca. Gli antivirus non lo impediscono, perché questi programmi non sono malware.
+
+**permwatch sì.** Appena qualcuno inizia a vedere o controllare il tuo Mac da remoto, compare un avviso a tutto schermo che parla anche. Un pulsante interrompe la connessione, blocca i server del programma e ne rimuove i permessi. Aprire un sito bancario durante la connessione fa scattare un avviso ancora più forte, e poi permwatch ti dice esattamente cosa fare. Aiutare qualcuno con AnyDesk non lo attiva: solo quando viene inviato il tuo schermo.
+
+<p align="center">
+  <img src="../images/scam_en.png" alt="avviso antitruffa di permwatch" width="760">
+</p>
+
 ## Hai autorizzato e dimenticato
 
 "Consenti la registrazione dello schermo." "È richiesto l'accesso ad Accessibilità." "Aprire al login?"

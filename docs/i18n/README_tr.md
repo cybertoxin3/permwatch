@@ -25,6 +25,16 @@ Her izin değişikliğinin kaydını tutar, şüpheli olanları anında haber ve
 
 ---
 
+## 📞 Telefon dolandırıcılarını durdurur
+
+Biri seni polis, banka ya da teknik destek diye arar ve sana AnyDesk gibi bir program kurdurur. Sonra sen banka sitene girerken ekranını izler. Antivirüsler bunu durdurmaz, çünkü bu programlar zararlı yazılım değildir.
+
+**permwatch durdurur.** Biri Mac'ini uzaktan izlemeye ya da kontrol etmeye başladığı anda ekranı kaplayan bir uyarı çıkar ve sesli uyarır. Tek tuş bağlantıyı keser, programın sunucularını engeller ve izinlerini kaldırır. Bağlantı açıkken banka sitesine girilirse daha sert uyarır; sonrasında ne yapman gerektiğini adım adım söyler. AnyDesk ile başkasına yardım ederken uyarı çıkmaz: yalnızca senin ekranın dışarı gönderildiğinde çıkar.
+
+<p align="center">
+  <img src="../images/scam_tr.png" alt="permwatch dolandırıcılık uyarısı" width="760">
+</p>
+
 ## İzin verdin ve unuttun
 
 "Ekran kaydına izin ver." "Erişilebilirlik izni gerekiyor." "Girişte açılsın mı?"

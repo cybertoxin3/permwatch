@@ -236,6 +236,48 @@ func check(_ cond: Bool, _ name: String) { if cond { print("✓ \(name)") } else
         print("– gerçek çökme raporu yok, özet testi atlandı")
     }
 
+    // Dolandırıcılık Kalkanı: oturum tespiti
+    do {
+        var det = SessionDetector()
+        let t0 = Date(timeIntervalSince1970: 1_000_000)
+        func at(_ s: Double) -> Date { t0.addingTimeInterval(s) }
+        func any(_ bytes: Int64) -> [RemoteObservation] { [RemoteObservation(pid: 4242, name: "AnyDesk", path: "/Applications/AnyDesk.app/Contents/MacOS/AnyDesk", kind: .tool, bytes: bytes)] }
+        // Boşta: 3 sn'de ~600 bayt (sunucuya bağlı bekleme)
+        var b: Int64 = 10_000
+        var idleSessions = 0
+        for i in 0..<6 { b += 600; idleSessions += det.update(any(b), now: at(Double(i) * 3)).count }
+        check(idleSessions == 0, "boşta bekleyen AnyDesk uyarı vermez")
+        // Ekran akışı: 3 sn'de 450 KB (150 KB/sn)
+        b += 450_000; let first = det.update(any(b), now: at(18)).count
+        b += 450_000; let second = det.update(any(b), now: at(21))
+        check(first == 0 && second.count == 1 && second[0].name == "AnyDesk", "ekran akışı iki yoklamada oturum sayılır")
+        // Akış durur: 20 sn'den uzun sessizlik → oturum biter
+        var after = second
+        for i in 1...9 { b += 300; after = det.update(any(b), now: at(21 + Double(i) * 3)) }
+        check(after.isEmpty, "uzun sessizlikten sonra oturum biter")
+        // Süreç kapanınca hemen biter
+        b += 450_000; _ = det.update(any(b), now: at(60)); b += 450_000; _ = det.update(any(b), now: at(63))
+        check(det.update([], now: at(66)).isEmpty, "program kapanınca oturum biter")
+        // Ekran Paylaşımı ve SSH
+        var d2 = SessionDetector()
+        _ = d2.update([RemoteObservation(pid: 7, name: "Screen Sharing", path: nil, kind: .screenSharing, bytes: 0)], now: at(0))
+        let ss = d2.update([RemoteObservation(pid: 7, name: "Screen Sharing", path: nil, kind: .screenSharing, bytes: 200_000)], now: at(3))
+        check(ss.count == 1, "Ekran Paylaşımı trafiği oturum sayılır")
+        var d3 = SessionDetector()
+        check(d3.update([RemoteObservation(pid: 9, name: "SSH", path: nil, kind: .ssh, bytes: -1)], now: at(0)).count == 1, "SSH oturumu hemen sayılır")
+    }
+    check(ScamShield.classify(path: "/Applications/AnyDesk.app/Contents/MacOS/AnyDesk", name: "AnyDesk")?.name == "AnyDesk"
+          && ScamShield.classify(path: "/Applications/ToDesk.app/Contents/MacOS/ToDesk_Service", name: "ToDesk_Service")?.name == "ToDesk"
+          && ScamShield.classify(path: "/Applications/Autodesk Fusion.app/Contents/MacOS/Autodesk Fusion", name: "Autodesk Fusion") == nil
+          && ScamShield.classify(path: nil, name: "sshd-session")?.kind == .ssh
+          && ScamShield.classify(path: nil, name: "screensharingd")?.kind == .screenSharing
+          && ScamShield.classify(path: "/usr/bin/ssh", name: "ssh") == nil,
+          "uzaktan erişim süreçleri doğru tanınır (Autodesk karışmaz)")
+    check(SensitiveSites.match("online.isbank.com.tr") == "isbank.com.tr" && SensitiveSites.match("www.garantibbva.com.tr") == "garantibbva.com.tr"
+          && SensitiveSites.match("notisbank.com.tr") == nil && SensitiveSites.match("www.google.com") == nil
+          && SensitiveSites.match("online.sberbank.ru") == "online.sberbank.ru",
+          "banka alan adları (alt alan adlarıyla) eşleşir, benzerleri eşleşmez")
+
     print(failures == 0 ? "\nTüm bütünleşik testler geçti." : "\n\(failures) bütünleşik test başarısız.")
     exit(failures == 0 ? 0 : 1)
 } }

@@ -1,7 +1,7 @@
 import SwiftUI
 
 enum SidebarItem: Hashable {
-    case timeline, alerts, advice, scan, apps, running, security, downloads, network, packets, terminal, settings
+    case timeline, alerts, advice, scan, apps, running, security, downloads, network, packets, terminal, settings, shield
     case category(Category)
     case loginItems, processes
 }
@@ -55,6 +55,8 @@ struct MainView: View {
                 PacketsView()
             } else if section == .terminal {
                 TerminalSection()
+            } else if section == .shield {
+                ScamShieldView()
             } else if section == .settings {
                 // Form kendi içinde kayar; ortada, okunabilir genişlikte.
                 SettingsView(embedded: true).frame(maxWidth: .infinity)
@@ -110,6 +112,7 @@ struct MainView: View {
             if Snapshot.section == "advice" { section = .advice }
             if Snapshot.section == "terminal" { section = .terminal }
             if Snapshot.section == "settings" { section = .settings }
+            if Snapshot.section == "shield" { section = .shield }
             if Snapshot.section == "scan" || Snapshot.section == "scanrun" { section = .scan }
             Snapshot.scheduleIfRequested(store: store, selection: selection)
         }
@@ -140,6 +143,7 @@ struct MainView: View {
         case .packets: return L("nav.packets")
         case .terminal: return L("nav.terminal")
         case .settings: return L("nav.settings")
+        case .shield: return L("nav.shield")
         case .category(.micCamera): return L("nav.micCamera")
         case .category(.screen): return L("nav.screen")
         case .category(.accessibility): return L("nav.accessibility")
@@ -194,6 +198,7 @@ struct Sidebar: View {
     var body: some View {
         List(selection: $section) {
             Label(L("nav.overview"), systemImage: "checkmark.shield").tag(SidebarItem.advice)
+            Label(L("nav.shield"), systemImage: "phone.badge.waveform").tag(SidebarItem.shield)
             Label(L("nav.scan"), systemImage: "ladybug").badge(scanner.detections.count).tag(SidebarItem.scan)
             Label(L("nav.alerts"), systemImage: "exclamationmark.triangle").badge(store.openAlerts).tag(SidebarItem.alerts)
 

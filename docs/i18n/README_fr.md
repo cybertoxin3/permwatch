@@ -25,6 +25,16 @@ permwatch garde une trace de chaque changement d’autorisation et vous alerte d
 
 ---
 
+## 📞 Arrête les arnaqueurs au téléphone
+
+Quelqu'un appelle en se faisant passer pour la police, ta banque ou le support technique et te fait installer AnyDesk ou un logiciel similaire. Puis il regarde ton écran pendant que tu te connectes à ta banque. Les antivirus ne l'empêchent pas, car ces logiciels ne sont pas malveillants.
+
+**permwatch, si.** Dès que quelqu'un commence à voir ou contrôler ton Mac à distance, une alerte plein écran apparaît et parle. Un bouton coupe la connexion, bloque les serveurs du logiciel et retire ses autorisations. Ouvrir un site bancaire pendant la connexion déclenche une alerte encore plus ferme, puis permwatch t'indique quoi faire. Aider quelqu'un avec AnyDesk ne la déclenche pas : seulement quand ton écran est envoyé.
+
+<p align="center">
+  <img src="../images/scam_en.png" alt="alerte anti-arnaque permwatch" width="760">
+</p>
+
 ## Vous avez autorisé, puis oublié
 
 « Autoriser l’enregistrement de l’écran. » « Accès à l’accessibilité requis. » « Ouvrir à la connexion ? »

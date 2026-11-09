@@ -59,6 +59,7 @@ struct SettingsView: View {
     @EnvironmentObject var intel: ThreatIntel
     @EnvironmentObject var realtime: RealtimeGuard
     @ObservedObject private var guardSvc = GuardService.shared
+    @ObservedObject private var scam = ScamShield.shared
     @ObservedObject private var blocks = BlockList.shared
     /// Paket yakalama ve engellenen sunucular yalnızca gelişmiş modda.
     @AppStorage(Sidebar.advancedKey) private var advanced = false
@@ -75,6 +76,9 @@ struct SettingsView: View {
             }
 
             Section {
+                Toggle(L("nav.shield"), isOn: $scam.enabled)
+                Text(L("scam.settingDesc")).font(.system(size: 11)).foregroundStyle(.secondary)
+                    .fixedSize(horizontal: false, vertical: true)
                 Toggle(L("rt.setting"), isOn: $realtime.enabled)
                 Text(L("rt.settingDesc")).font(.system(size: 11)).foregroundStyle(.secondary)
                     .fixedSize(horizontal: false, vertical: true)

@@ -25,6 +25,16 @@ permwatch keeps a record of every permission change and alerts you the moment so
  
 ---
 
+## 📞 Stops phone scammers
+
+Someone calls pretending to be the police, your bank or tech support, and has you install AnyDesk or a similar app. Then they watch your screen while you log in to your bank. Antivirus apps don't stop this, because these apps aren't malware.
+
+**permwatch does.** The moment someone starts viewing or controlling your Mac remotely, a full-screen warning appears and speaks out loud. One button closes the connection, blocks the app's servers and removes its permissions. Opening a bank site during the connection triggers an even stronger warning, and afterwards permwatch tells you exactly what to do. Helping someone else with AnyDesk doesn't trigger it: only your screen being sent out does.
+
+<p align="center">
+  <img src="docs/images/scam_en.png" alt="permwatch scam warning" width="760">
+</p>
+
 ## You clicked "Allow" and forgot
 
 "Allow screen recording." "Accessibility access required." "Open at login?"
