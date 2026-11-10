@@ -881,16 +881,16 @@ vpn.noProfiles	Aún no hay conexiones. Pega abajo un enlace de conexión.
 vpn.paid	de pago
 vpn.own	mi servidor
 vpn.deleteTitle	¿Eliminar esta conexión?
-vpn.addTitle	Añadir un enlace de conexión
-vpn.addHint	Pega un enlace «vpn://» de Amnezia, un enlace Reality «vless://» o una configuración de AmneziaWG.
+vpn.addTitle	Pega tu enlace de conexión
+vpn.addHint	Pega el enlace de conexión de tu propio servidor privado o el enlace que recibiste tras la compra.
 vpn.paste	Pegar
 vpn.add	Añadir
-vpn.badLink	Enlace no reconocido. Debe ser un vpn:// de Amnezia, un vless:// o una configuración [Interface].
+vpn.badLink	Enlace no reconocido. Asegúrate de copiar y pegar el enlace de conexión completo.
 vpn.added	%ld conexiones añadidas.
 vpn.ownServer	Mi propio servidor
 vpn.planTitle	permwatch VPN: %ld $ al año
-vpn.planBody	Una VPN rápida y difícil de bloquear, con AmneziaWG y Xray Reality. Sin registros. Tras el pago, tu enlace de conexión se envía a tu correo.
-vpn.freeOwn	Gratis si tienes tu propio servidor (Amnezia o Xray): pega su enlace arriba.
+vpn.planBody	Una VPN rápida y difícil de bloquear. Sin registros. Tras el pago, tu enlace de conexión se envía a tu correo.
+vpn.freeOwn	Gratis si tienes tu propio servidor privado: pega su enlace de conexión arriba.
 vpn.buy	Comprar
 vpn.buyTitle	permwatch VPN · 1 año · %ld $
 vpn.buyStep1	1. Paga
@@ -903,7 +903,8 @@ vpn.buyStep2	2. Notifica el pago
 vpn.txField	ID de transacción (tx hash)
 vpn.txBad	Esto no parece un ID de transacción; cópialo de los detalles de la transacción en tu cartera.
 vpn.contactField	Tu correo o usuario de Telegram
-vpn.buyStep3	«Notificar pago» abre un mensaje listo en tu app de correo; pulsa enviar. Cuando el pago se vea en la cadena, tu enlace de conexión se enviará a esta dirección; pégalo en «Añadir un enlace de conexión».
+vpn.buyStep3	«Notificar pago» abre un mensaje listo en tu app de correo; pulsa enviar. Cuando se vea el pago, tu enlace de conexión se enviará a esta dirección; pégalo en «Pega tu enlace de conexión».
 vpn.notify	Notificar pago
 vpn.sent	Mensaje preparado; no olvides enviarlo.
 vpn.mailIntro	Hola, he pagado permwatch VPN:
+nav.back	Atrás

@@ -881,16 +881,16 @@ vpn.noProfiles	No connections yet. Paste a connection link below.
 vpn.paid	paid
 vpn.own	my server
 vpn.deleteTitle	Delete this connection?
-vpn.addTitle	Add a connection link
-vpn.addHint	Paste an Amnezia "vpn://" link, a "vless://" Reality link or an AmneziaWG configuration.
+vpn.addTitle	Paste your connection link
+vpn.addHint	Paste the connection link of your own private server, or the link sent to you after purchase.
 vpn.paste	Paste
 vpn.add	Add
-vpn.badLink	Link not recognised. It must be an Amnezia vpn://, a vless:// or an [Interface] configuration.
+vpn.badLink	Link not recognised. Make sure you copied and pasted the whole connection link.
 vpn.added	%ld connections added.
 vpn.ownServer	My own server
 vpn.planTitle	permwatch VPN — %ld $ a year
-vpn.planBody	A fast VPN that is hard to block, using AmneziaWG and Xray Reality. No logs. After payment your connection link is sent to your email.
-vpn.freeOwn	Free if you have your own server (Amnezia or Xray): just paste its link above.
+vpn.planBody	A fast VPN that is hard to block. No logs. After payment your connection link is sent to your email.
+vpn.freeOwn	Free if you have your own private server: just paste its connection link above.
 vpn.buy	Buy
 vpn.buyTitle	permwatch VPN · 1 year · %ld $
 vpn.buyStep1	1. Pay
@@ -903,7 +903,8 @@ vpn.buyStep2	2. Report the payment
 vpn.txField	Transaction ID (tx hash)
 vpn.txBad	This doesn't look like a transaction ID; copy it from the transaction details in your wallet.
 vpn.contactField	Your email or Telegram username
-vpn.buyStep3	Pressing "Report payment" opens a ready message in your mail app; press send. Once the payment is seen on chain, your connection link is sent to this address; paste it into "Add a connection link".
+vpn.buyStep3	Pressing "Report payment" opens a ready message in your mail app; press send. Once the payment is seen, your connection link is sent to this address; paste it into "Paste your connection link".
 vpn.notify	Report payment
 vpn.sent	Message prepared; don't forget to send it.
 vpn.mailIntro	Hello, I paid for permwatch VPN:
+nav.back	Back

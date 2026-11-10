@@ -881,16 +881,16 @@ vpn.noProfiles	아직 연결이 없습니다. 아래에 연결 링크를 붙여 
 vpn.paid	유료
 vpn.own	내 서버
 vpn.deleteTitle	이 연결을 삭제할까요?
-vpn.addTitle	연결 링크 추가
-vpn.addHint	Amnezia "vpn://" 링크, Reality "vless://" 링크 또는 AmneziaWG 구성을 붙여 넣으세요.
+vpn.addTitle	연결 링크 붙여넣기
+vpn.addHint	자신의 개인 서버 연결 링크 또는 구매 후 받은 연결 링크를 붙여 넣으세요.
 vpn.paste	붙여넣기
 vpn.add	추가
-vpn.badLink	링크를 인식할 수 없습니다. Amnezia vpn://, vless:// 또는 [Interface] 구성이어야 합니다.
+vpn.badLink	링크를 인식할 수 없습니다. 연결 링크 전체를 복사해 붙여 넣었는지 확인하세요.
 vpn.added	연결 %ld개를 추가했습니다.
 vpn.ownServer	내 서버
 vpn.planTitle	permwatch VPN — 연 %ld $
-vpn.planBody	AmneziaWG와 Xray Reality로 차단하기 어려운 빠른 VPN. 로그 없음. 결제 후 연결 링크가 이메일로 전송됩니다.
-vpn.freeOwn	자신의 서버(Amnezia 또는 Xray)가 있으면 무료: 위에 링크를 붙여 넣기만 하면 됩니다.
+vpn.planBody	차단하기 어려운 빠른 VPN. 로그 없음. 결제 후 연결 링크가 이메일로 전송됩니다.
+vpn.freeOwn	개인 서버가 있으면 무료: 위에 연결 링크를 붙여 넣기만 하면 됩니다.
 vpn.buy	구매
 vpn.buyTitle	permwatch VPN · 1년 · %ld $
 vpn.buyStep1	1. 결제
@@ -903,7 +903,8 @@ vpn.buyStep2	2. 결제 알리기
 vpn.txField	거래 ID (tx hash)
 vpn.txBad	거래 ID로 보이지 않습니다. 지갑의 거래 상세에서 복사하세요.
 vpn.contactField	이메일 또는 Telegram 사용자 이름
-vpn.buyStep3	"결제 알리기"를 누르면 메일 앱에 준비된 메시지가 열립니다. 보내기를 누르세요. 결제가 체인에서 확인되면 이 주소로 연결 링크가 전송됩니다. "연결 링크 추가"에 붙여 넣으세요.
+vpn.buyStep3	"결제 알리기"를 누르면 메일 앱에 준비된 메시지가 열립니다. 보내기를 누르세요. 결제가 확인되면 이 주소로 연결 링크가 전송됩니다. "연결 링크 붙여넣기"에 붙여 넣으세요.
 vpn.notify	결제 알리기
 vpn.sent	메시지가 준비되었습니다. 보내는 것을 잊지 마세요.
 vpn.mailIntro	안녕하세요, permwatch VPN 비용을 결제했습니다:
+nav.back	뒤로

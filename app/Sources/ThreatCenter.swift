@@ -92,6 +92,15 @@ final class ThreatCenter: ObservableObject {
     }
 
     /// Uygulama içinden bir bölüme git (Öneriler ekranındaki "İncele").
+    /// Bir önceki bölüm ("Geri" düğmesi için).
+    var previousSection: SidebarItem?
+
+    /// Bir önceki bölüme dön (yoksa Genel Bakış).
+    func goBack(from current: SidebarItem) {
+        let p = previousSection
+        navigate(section: p == nil || p == current ? .advice : p!)
+    }
+
     func navigate(section: SidebarItem, focus: Focus? = nil) {
         navSection = section
         navFocus = focus

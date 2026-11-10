@@ -881,16 +881,16 @@ vpn.noProfiles	还没有连接。请在下方粘贴连接链接。
 vpn.paid	付费
 vpn.own	我的服务器
 vpn.deleteTitle	删除此连接？
-vpn.addTitle	添加连接链接
-vpn.addHint	粘贴 Amnezia 的“vpn://”链接、Reality 的“vless://”链接或 AmneziaWG 配置。
+vpn.addTitle	粘贴连接链接
+vpn.addHint	粘贴你自己私人服务器的连接链接，或购买后发送给你的连接链接。
 vpn.paste	粘贴
 vpn.add	添加
-vpn.badLink	无法识别链接。必须是 Amnezia vpn://、vless:// 或 [Interface] 配置。
+vpn.badLink	无法识别链接。请确认已完整复制并粘贴连接链接。
 vpn.added	已添加 %ld 个连接。
 vpn.ownServer	我自己的服务器
 vpn.planTitle	permwatch VPN — 每年 %ld $
-vpn.planBody	使用 AmneziaWG 和 Xray Reality、难以被封锁的快速 VPN。不保留日志。付款后，连接链接会发送到你的邮箱。
-vpn.freeOwn	如果你有自己的服务器（Amnezia 或 Xray）则免费：只需把它的链接粘贴到上方。
+vpn.planBody	难以被封锁的快速 VPN。不保留日志。付款后，连接链接会发送到你的邮箱。
+vpn.freeOwn	如果你有自己的私人服务器则免费：只需把它的连接链接粘贴到上方。
 vpn.buy	购买
 vpn.buyTitle	permwatch VPN · 1 年 · %ld $
 vpn.buyStep1	1. 付款
@@ -903,7 +903,8 @@ vpn.buyStep2	2. 告知付款
 vpn.txField	交易 ID（tx hash）
 vpn.txBad	这看起来不像交易 ID；请从钱包的交易详情中复制。
 vpn.contactField	你的邮箱或 Telegram 用户名
-vpn.buyStep3	点“告知付款”会在邮件应用中打开一封准备好的邮件；请点发送。付款在链上确认后，连接链接会发送到这个地址；收到后粘贴到“添加连接链接”。
+vpn.buyStep3	点“告知付款”会在邮件应用中打开一封准备好的邮件；请点发送。确认付款后，连接链接会发送到这个地址；收到后粘贴到“粘贴连接链接”。
 vpn.notify	告知付款
 vpn.sent	邮件已准备好；别忘了发送。
 vpn.mailIntro	你好，我已支付 permwatch VPN：
+nav.back	返回

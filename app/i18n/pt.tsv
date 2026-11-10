@@ -881,16 +881,16 @@ vpn.noProfiles	Ainda não há ligações. Cole abaixo uma ligação de acesso.
 vpn.paid	paga
 vpn.own	o meu servidor
 vpn.deleteTitle	Eliminar esta ligação?
-vpn.addTitle	Adicionar uma ligação de acesso
-vpn.addHint	Cole uma ligação Amnezia «vpn://», uma ligação Reality «vless://» ou uma configuração AmneziaWG.
+vpn.addTitle	Cole a sua ligação de acesso
+vpn.addHint	Cole a ligação de acesso do seu próprio servidor privado ou a ligação enviada após a compra.
 vpn.paste	Colar
 vpn.add	Adicionar
-vpn.badLink	Ligação não reconhecida. Deve ser um vpn:// da Amnezia, um vless:// ou uma configuração [Interface].
+vpn.badLink	Ligação não reconhecida. Confirme que copiou e colou a ligação de acesso completa.
 vpn.added	%ld ligações adicionadas.
 vpn.ownServer	O meu servidor
 vpn.planTitle	permwatch VPN — %ld $ por ano
-vpn.planBody	Uma VPN rápida e difícil de bloquear, com AmneziaWG e Xray Reality. Sem registos. Após o pagamento, a ligação de acesso é enviada para o seu e-mail.
-vpn.freeOwn	Grátis se tiver o seu próprio servidor (Amnezia ou Xray): basta colar a ligação acima.
+vpn.planBody	Uma VPN rápida e difícil de bloquear. Sem registos. Após o pagamento, a ligação de acesso é enviada para o seu e-mail.
+vpn.freeOwn	Grátis se tiver o seu próprio servidor privado: basta colar a ligação de acesso acima.
 vpn.buy	Comprar
 vpn.buyTitle	permwatch VPN · 1 ano · %ld $
 vpn.buyStep1	1. Pagar
@@ -903,7 +903,8 @@ vpn.buyStep2	2. Comunicar o pagamento
 vpn.txField	ID da transação (tx hash)
 vpn.txBad	Isto não parece um ID de transação; copie-o dos detalhes da transação na sua carteira.
 vpn.contactField	O seu e-mail ou utilizador do Telegram
-vpn.buyStep3	«Comunicar pagamento» abre uma mensagem pronta na app Mail; carregue em enviar. Quando o pagamento aparecer na blockchain, a ligação de acesso é enviada para este endereço; cole-a em «Adicionar uma ligação de acesso».
+vpn.buyStep3	«Comunicar pagamento» abre uma mensagem pronta na app Mail; carregue em enviar. Quando o pagamento for visto, a ligação de acesso é enviada para este endereço; cole-a em «Cole a sua ligação de acesso».
 vpn.notify	Comunicar pagamento
 vpn.sent	Mensagem preparada; não se esqueça de a enviar.
 vpn.mailIntro	Olá, paguei o permwatch VPN:
+nav.back	Voltar

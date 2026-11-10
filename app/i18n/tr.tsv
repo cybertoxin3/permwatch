@@ -881,16 +881,16 @@ vpn.noProfiles	Henüz bağlantı yok. Aşağıya bir bağlantı linki yapıştı
 vpn.paid	ücretli
 vpn.own	kendi sunucum
 vpn.deleteTitle	Bu bağlantı silinsin mi?
-vpn.addTitle	Bağlantı linki ekle
-vpn.addHint	Amnezia'nın "vpn://" linkini, bir "vless://" Reality linkini ya da AmneziaWG yapılandırmasını yapıştır.
+vpn.addTitle	Bağlantı linkini yapıştır
+vpn.addHint	Kendi özel sunucunun bağlantı linkini ya da satın aldıktan sonra sana gönderilen bağlantı linkini buraya yapıştır.
 vpn.paste	Yapıştır
 vpn.add	Ekle
-vpn.badLink	Link tanınamadı. Amnezia vpn://, vless:// ya da [Interface] yapılandırması olmalı.
+vpn.badLink	Link tanınamadı. Bağlantı linkini eksiksiz kopyalayıp yapıştırdığından emin ol.
 vpn.added	%ld bağlantı eklendi.
 vpn.ownServer	Kendi sunucum
 vpn.planTitle	permwatch VPN — yıllık %ld $
-vpn.planBody	AmneziaWG ve Xray Reality ile, engellenmesi zor, hızlı bir VPN. Kayıt tutulmaz. Ödemeden sonra bağlantı linkin e-postana gönderilir.
-vpn.freeOwn	Kendi sunucun varsa (Amnezia ya da Xray) ücretsiz: linkini yukarıya yapıştırman yeterli.
+vpn.planBody	Engellenmesi zor, hızlı bir VPN. Kayıt tutulmaz. Ödemeden sonra bağlantı linkin e-postana gönderilir.
+vpn.freeOwn	Kendi özel sunucun varsa ücretsiz: bağlantı linkini yukarıya yapıştırman yeterli.
 vpn.buy	Satın al
 vpn.buyTitle	permwatch VPN · 1 yıl · %ld $
 vpn.buyStep1	1. Ödeme yap
@@ -903,7 +903,8 @@ vpn.buyStep2	2. Ödemeyi bildir
 vpn.txField	İşlem kodu (tx hash)
 vpn.txBad	Bu bir işlem koduna benzemiyor; cüzdanındaki işlem ayrıntılarından kopyala.
 vpn.contactField	E-posta ya da Telegram kullanıcı adın
-vpn.buyStep3	"Ödemeyi bildir"e basınca posta uygulamanda hazır bir ileti açılır; gönder'e bas. Ödeme zincirde görülünce bağlantı linkin bu adrese gönderilir; gelince "Bağlantı linki ekle"ye yapıştır.
+vpn.buyStep3	"Ödemeyi bildir"e basınca posta uygulamanda hazır bir ileti açılır; gönder'e bas. Ödeme görülünce bağlantı linkin bu adrese gönderilir; gelince "Bağlantı linkini yapıştır" bölümüne yapıştır.
 vpn.notify	Ödemeyi bildir
 vpn.sent	İleti hazırlandı; göndermeyi unutma.
 vpn.mailIntro	Merhaba, permwatch VPN için ödeme yaptım:
+nav.back	Geri

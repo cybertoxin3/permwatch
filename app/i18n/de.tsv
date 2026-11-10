@@ -881,16 +881,16 @@ vpn.noProfiles	Noch keine Verbindungen. Füge unten einen Verbindungslink ein.
 vpn.paid	bezahlt
 vpn.own	eigener Server
 vpn.deleteTitle	Diese Verbindung löschen?
-vpn.addTitle	Verbindungslink hinzufügen
-vpn.addHint	Füge einen Amnezia-„vpn://“-Link, einen „vless://“-Reality-Link oder eine AmneziaWG-Konfiguration ein.
+vpn.addTitle	Verbindungslink einfügen
+vpn.addHint	Füge den Verbindungslink deines eigenen privaten Servers oder den nach dem Kauf zugeschickten Link ein.
 vpn.paste	Einfügen
 vpn.add	Hinzufügen
-vpn.badLink	Link nicht erkannt. Es muss ein Amnezia-vpn://, ein vless:// oder eine [Interface]-Konfiguration sein.
+vpn.badLink	Link nicht erkannt. Achte darauf, den ganzen Verbindungslink zu kopieren und einzufügen.
 vpn.added	%ld Verbindungen hinzugefügt.
 vpn.ownServer	Eigener Server
 vpn.planTitle	permwatch VPN – %ld $ pro Jahr
-vpn.planBody	Ein schnelles, schwer zu blockierendes VPN mit AmneziaWG und Xray Reality. Keine Protokolle. Nach der Zahlung wird dein Verbindungslink per E-Mail geschickt.
-vpn.freeOwn	Kostenlos mit eigenem Server (Amnezia oder Xray): füge einfach den Link oben ein.
+vpn.planBody	Ein schnelles, schwer zu blockierendes VPN. Keine Protokolle. Nach der Zahlung wird dein Verbindungslink per E-Mail geschickt.
+vpn.freeOwn	Kostenlos mit eigenem privatem Server: füge einfach seinen Verbindungslink oben ein.
 vpn.buy	Kaufen
 vpn.buyTitle	permwatch VPN · 1 Jahr · %ld $
 vpn.buyStep1	1. Bezahlen
@@ -903,7 +903,8 @@ vpn.buyStep2	2. Zahlung melden
 vpn.txField	Transaktions-ID (Tx-Hash)
 vpn.txBad	Das sieht nicht wie eine Transaktions-ID aus; kopiere sie aus den Transaktionsdetails deiner Wallet.
 vpn.contactField	Deine E-Mail oder dein Telegram-Name
-vpn.buyStep3	„Zahlung melden“ öffnet eine fertige Nachricht in deiner Mail-App; drück auf Senden. Sobald die Zahlung auf der Blockchain sichtbar ist, wird dein Verbindungslink an diese Adresse geschickt; füge ihn unter „Verbindungslink hinzufügen“ ein.
+vpn.buyStep3	„Zahlung melden“ öffnet eine fertige Nachricht in deiner Mail-App; drück auf Senden. Sobald die Zahlung sichtbar ist, wird dein Verbindungslink an diese Adresse geschickt; füge ihn unter „Verbindungslink einfügen“ ein.
 vpn.notify	Zahlung melden
 vpn.sent	Nachricht vorbereitet; vergiss nicht, sie zu senden.
 vpn.mailIntro	Hallo, ich habe für permwatch VPN bezahlt:
+nav.back	Zurück

@@ -88,6 +88,7 @@ struct MainView: View {
                 .searchable(text: $search, placement: .toolbar, prompt: L("search.prompt"))
             }
         }
+        .onChange(of: section) { old, _ in center.previousSection = old }
         .onChange(of: center.navToken) {
             // Tehdit penceresinden "İncele": ilgili bölüme ve öğeye git.
             if let s = center.navSection { section = s }

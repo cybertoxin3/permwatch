@@ -29,7 +29,7 @@ struct VPNProfile: Codable, Identifiable, Equatable {
         var params: [String: String]  // jc, jmin, s1, h1, i1, header_protection_key…
     }
 
-    var kindLabel: String { kind == .awg ? "AmneziaWG" : "Xray Reality" }
+    var kindLabel: String { kind == .awg ? "AWG" : "Xray Reality" }
 
     /// Yönetici yardımcısına gidecek istek (vpn/want.json).
     func request() -> [String: Any] {
@@ -316,7 +316,7 @@ final class VPNManager: ObservableObject {
 // MARK: - Yıllık VPN aboneliği (kripto)
 
 enum VPNPlan {
-    static let priceUSD = 10
+    static let priceUSD = 25
     /// README'deki adreslerle aynı (Bana bir kahve ısmarlar mısın?).
     static let coins: [(name: String, network: String, address: String, stable: Bool)] = [
         ("USDT", "Ethereum (ERC-20)", "0xCD9ab39db50A830e157776a97bc9Ae21811e3177", true),

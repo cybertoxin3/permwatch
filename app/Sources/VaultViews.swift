@@ -25,6 +25,8 @@ struct VaultSetupView: View {
 
     var body: some View {
         VStack(spacing: 18) {
+            BackBar(from: .vault)
+            Spacer(minLength: 0)
             Image(systemName: "key.viewfinder").font(.system(size: 44)).foregroundStyle(Color.accentColor)
             Text(L("vault.setupTitle")).font(.system(size: 20, weight: .bold))
             Text(L("vault.setupBody")).font(.system(size: 13)).foregroundStyle(.secondary).multilineTextAlignment(.center)
@@ -41,8 +43,9 @@ struct VaultSetupView: View {
                 .frame(width: 380).fixedSize(horizontal: false, vertical: true)
             Button(L("vault.create"), action: create).buttonStyle(.borderedProminent).controlSize(.large)
                 .disabled(p1.isEmpty)
+            Spacer(minLength: 0)
         }
-        .padding(40).frame(maxWidth: .infinity, maxHeight: .infinity)
+        .padding(.horizontal, 40).padding(.vertical, 20).frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 
     private func create() {
@@ -62,6 +65,8 @@ struct VaultLockedView: View {
 
     var body: some View {
         VStack(spacing: 16) {
+            BackBar(from: .vault)
+            Spacer(minLength: 0)
             Image(systemName: "lock.fill").font(.system(size: 40)).foregroundStyle(.secondary)
             Text(L("vault.locked")).font(.system(size: 18, weight: .bold))
             SecureField(L("vault.master"), text: $pw).textFieldStyle(.roundedBorder).frame(width: 300)
@@ -74,8 +79,9 @@ struct VaultLockedView: View {
                 }
             }
             if working { ProgressView().controlSize(.small) }
+            Spacer(minLength: 0)
         }
-        .padding(40).frame(maxWidth: .infinity, maxHeight: .infinity)
+        .padding(.horizontal, 40).padding(.vertical, 20).frame(maxWidth: .infinity, maxHeight: .infinity)
         .onAppear { if vault.touchID { vault.unlockWithTouchID { _ in } } }
     }
 
@@ -340,6 +346,22 @@ struct StrengthBar: View {
             }
             .frame(height: 5)
             Text(password.isEmpty ? "" : label).font(.system(size: 11)).foregroundStyle(.secondary).frame(width: 60, alignment: .leading)
+        }
+    }
+}
+
+/// Sol üstte "‹ Geri": bir önceki bölüme döner.
+struct BackBar: View {
+    let from: SidebarItem
+
+    var body: some View {
+        HStack {
+            Button { ThreatCenter.shared.goBack(from: from) } label: {
+                Label(L("nav.back"), systemImage: "chevron.left")
+            }
+            .buttonStyle(.borderless)
+            .keyboardShortcut(.cancelAction)
+            Spacer()
         }
     }
 }

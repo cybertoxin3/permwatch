@@ -881,16 +881,16 @@ vpn.noProfiles	لا توجد اتصالات بعد. الصق رابط اتصال
 vpn.paid	مدفوع
 vpn.own	خادمي
 vpn.deleteTitle	حذف هذا الاتصال؟
-vpn.addTitle	إضافة رابط اتصال
-vpn.addHint	الصق رابط Amnezia ‏«vpn://» أو رابط Reality ‏«vless://» أو إعداد AmneziaWG.
+vpn.addTitle	الصق رابط الاتصال
+vpn.addHint	الصق رابط الاتصال الخاص بخادمك الخاص، أو الرابط الذي أُرسل إليك بعد الشراء.
 vpn.paste	لصق
 vpn.add	إضافة
-vpn.badLink	لم يُتعرّف على الرابط. يجب أن يكون vpn:// من Amnezia أو vless:// أو إعداد [Interface].
+vpn.badLink	لم يُتعرّف على الرابط. تأكد من نسخ رابط الاتصال كاملًا ولصقه.
 vpn.added	أُضيف %ld اتصال.
 vpn.ownServer	خادمي الخاص
 vpn.planTitle	permwatch VPN — %ld $ سنويًا
-vpn.planBody	VPN سريع يصعب حجبه، يعمل بـ AmneziaWG وXray Reality. بلا سجلات. بعد الدفع يُرسل رابط الاتصال إلى بريدك.
-vpn.freeOwn	مجاني إن كان لديك خادمك الخاص (Amnezia أو Xray): الصق رابطه أعلاه.
+vpn.planBody	VPN سريع يصعب حجبه. بلا سجلات. بعد الدفع يُرسل رابط الاتصال إلى بريدك.
+vpn.freeOwn	مجاني إن كان لديك خادم خاص: الصق رابط الاتصال الخاص به أعلاه.
 vpn.buy	شراء
 vpn.buyTitle	permwatch VPN · سنة · %ld $
 vpn.buyStep1	1. ادفع
@@ -903,7 +903,8 @@ vpn.buyStep2	2. أبلغ عن الدفع
 vpn.txField	معرّف المعاملة (tx hash)
 vpn.txBad	لا يبدو هذا معرّف معاملة؛ انسخه من تفاصيل المعاملة في محفظتك.
 vpn.contactField	بريدك الإلكتروني أو اسمك في Telegram
-vpn.buyStep3	يفتح «الإبلاغ عن الدفع» رسالة جاهزة في تطبيق البريد؛ اضغط إرسال. عندما يظهر الدفع على السلسلة يُرسل رابط الاتصال إلى هذا العنوان؛ الصقه في «إضافة رابط اتصال».
+vpn.buyStep3	يفتح «الإبلاغ عن الدفع» رسالة جاهزة في تطبيق البريد؛ اضغط إرسال. عندما يظهر الدفع يُرسل رابط الاتصال إلى هذا العنوان؛ الصقه في «الصق رابط الاتصال».
 vpn.notify	الإبلاغ عن الدفع
 vpn.sent	الرسالة جاهزة؛ لا تنسَ إرسالها.
 vpn.mailIntro	مرحبًا، دفعت مقابل permwatch VPN:
+nav.back	رجوع
