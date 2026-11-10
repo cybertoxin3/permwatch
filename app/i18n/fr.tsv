@@ -789,3 +789,7 @@ sg.act.loginItem	Élément d'ouverture supprimé : %@
 sg.act.sharingSettings	Réglages de partage ouverts : désactivez le partage d'écran
 sg.act.wifiOff	Wi-Fi désactivé
 sg.act.wifiFailed	Impossible de désactiver le Wi-Fi
+settings.language	Langue
+settings.languageSystem	Langue du système
+settings.languageRestart	La nouvelle langue s'applique après le redémarrage de permwatch.
+settings.restart	Redémarrer

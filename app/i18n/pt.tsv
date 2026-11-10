@@ -789,3 +789,7 @@ sg.act.loginItem	Item de arranque removido: %@
 sg.act.sharingSettings	Definições de partilha abertas: desligue a Partilha de ecrã
 sg.act.wifiOff	Wi-Fi desligado
 sg.act.wifiFailed	Não foi possível desligar o Wi-Fi
+settings.language	Idioma
+settings.languageSystem	Idioma do sistema
+settings.languageRestart	O novo idioma aplica-se após reiniciar o permwatch.
+settings.restart	Reiniciar

@@ -789,3 +789,7 @@ sg.act.loginItem	Başlangıç öğesi kaldırıldı: %@
 sg.act.sharingSettings	Paylaşım ayarları açıldı: Ekran Paylaşımı'nı kapat
 sg.act.wifiOff	Wi-Fi kapatıldı
 sg.act.wifiFailed	Wi-Fi kapatılamadı
+settings.language	Dil
+settings.languageSystem	Sistem dili
+settings.languageRestart	Yeni dil, permwatch yeniden başlatılınca uygulanır.
+settings.restart	Yeniden başlat

@@ -789,3 +789,7 @@ sg.act.loginItem	Об'єкт входу видалено: %@
 sg.act.sharingSettings	Відкрито налаштування спільного доступу: вимкніть «Спільний екран»
 sg.act.wifiOff	Wi-Fi вимкнено
 sg.act.wifiFailed	Не вдалося вимкнути Wi-Fi
+settings.language	Мова
+settings.languageSystem	Мова системи
+settings.languageRestart	Нова мова застосується після перезапуску permwatch.
+settings.restart	Перезапустити

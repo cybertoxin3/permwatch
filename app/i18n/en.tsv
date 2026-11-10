@@ -789,3 +789,7 @@ sg.act.loginItem	Login item removed: %@
 sg.act.sharingSettings	Sharing settings opened: turn off Screen Sharing
 sg.act.wifiOff	Wi-Fi turned off
 sg.act.wifiFailed	Couldn't turn off Wi-Fi
+settings.language	Language
+settings.languageSystem	System language
+settings.languageRestart	The new language applies after permwatch restarts.
+settings.restart	Restart

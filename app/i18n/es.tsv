@@ -789,3 +789,7 @@ sg.act.loginItem	Ítem de inicio eliminado: %@
 sg.act.sharingSettings	Ajustes de compartir abiertos: desactiva Compartir pantalla
 sg.act.wifiOff	Wi-Fi apagado
 sg.act.wifiFailed	No se pudo apagar el Wi-Fi
+settings.language	Idioma
+settings.languageSystem	Idioma del sistema
+settings.languageRestart	El nuevo idioma se aplica al reiniciar permwatch.
+settings.restart	Reiniciar

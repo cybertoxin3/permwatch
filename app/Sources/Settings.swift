@@ -76,6 +76,8 @@ struct SettingsView: View {
                 .pickerStyle(.radioGroup)
             }
 
+            LanguageSection()
+
             Section {
                 Toggle(L("login.setting"), isOn: Binding(get: { loginOn }, set: { if LoginLaunch.set($0) { loginOn = $0 } }))
                 Text(L("login.settingDesc")).font(.system(size: 11)).foregroundStyle(.secondary)
@@ -269,5 +271,52 @@ struct GuardRow: View {
         case .active: return L("guard.active", svc.ruleCount.formatted(), svc.blocked.formatted())
         case .failed(let e): return L("guard.failed", e)
         }
+    }
+}
+
+
+/// Uygulama dili: sistem dilinden bağımsız seçilebilir (yalnızca permwatch için; yeniden başlatınca uygulanır).
+struct LanguageSection: View {
+    static let languages: [(code: String, name: String)] = [
+        ("tr", "Türkçe"), ("en", "English"), ("de", "Deutsch"), ("es", "Español"), ("fr", "Français"),
+        ("it", "Italiano"), ("pt", "Português"), ("ru", "Русский"), ("uk", "Українська"), ("ar", "العربية"),
+        ("ja", "日本語"), ("ko", "한국어"), ("zh-Hans", "简体中文"),
+    ]
+    /// Açılıştaki seçim; değişince yeniden başlatma önerilir.
+    private static let initial = LanguageSection.current
+    @State private var selection = LanguageSection.current
+
+    static var current: String {
+        (UserDefaults.standard.persistentDomain(forName: Bundle.main.bundleIdentifier ?? "")?["AppleLanguages"] as? [String])?.first ?? ""
+    }
+
+    var body: some View {
+        Section {
+            Picker(L("settings.language"), selection: $selection) {
+                Text(L("settings.languageSystem")).tag("")
+                Divider()
+                ForEach(Self.languages, id: \.code) { Text($0.name).tag($0.code) }
+            }
+            .onChange(of: selection) { _, v in
+                if v.isEmpty { UserDefaults.standard.removeObject(forKey: "AppleLanguages") }
+                else { UserDefaults.standard.set([v], forKey: "AppleLanguages") }
+            }
+            if selection != Self.initial {
+                HStack {
+                    Text(L("settings.languageRestart")).font(.system(size: 11)).foregroundStyle(.secondary)
+                    Spacer()
+                    Button(L("settings.restart")) { Self.relaunch() }.controlSize(.small)
+                }
+            }
+        }
+    }
+
+    static func relaunch() {
+        let path = Bundle.main.bundlePath
+        let p = Process()
+        p.executableURL = URL(fileURLWithPath: "/bin/sh")
+        p.arguments = ["-c", "while kill -0 \(getpid()) 2>/dev/null; do sleep 0.2; done; /usr/bin/open \"$0\"", path]
+        try? p.run()
+        NSApp.terminate(nil)
     }
 }

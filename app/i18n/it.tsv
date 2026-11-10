@@ -789,3 +789,7 @@ sg.act.loginItem	Elemento di login rimosso: %@
 sg.act.sharingSettings	Impostazioni di condivisione aperte: disattiva Condivisione schermo
 sg.act.wifiOff	Wi-Fi spento
 sg.act.wifiFailed	Impossibile spegnere il Wi-Fi
+settings.language	Lingua
+settings.languageSystem	Lingua di sistema
+settings.languageRestart	La nuova lingua si applica dopo il riavvio di permwatch.
+settings.restart	Riavvia

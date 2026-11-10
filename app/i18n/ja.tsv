@@ -789,3 +789,7 @@ sg.act.loginItem	ログイン項目を削除しました：%@
 sg.act.sharingSettings	共有設定を開きました：画面共有をオフにしてください
 sg.act.wifiOff	Wi-Fi をオフにしました
 sg.act.wifiFailed	Wi-Fi をオフにできませんでした
+settings.language	言語
+settings.languageSystem	システムの言語
+settings.languageRestart	新しい言語は permwatch の再起動後に適用されます。
+settings.restart	再起動

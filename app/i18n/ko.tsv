@@ -789,3 +789,7 @@ sg.act.loginItem	로그인 항목 제거됨: %@
 sg.act.sharingSettings	공유 설정을 열었습니다: 화면 공유를 끄세요
 sg.act.wifiOff	Wi-Fi를 껐습니다
 sg.act.wifiFailed	Wi-Fi를 끌 수 없습니다
+settings.language	언어
+settings.languageSystem	시스템 언어
+settings.languageRestart	새 언어는 permwatch를 다시 시작하면 적용됩니다.
+settings.restart	다시 시작

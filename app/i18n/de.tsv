@@ -789,3 +789,7 @@ sg.act.loginItem	Anmeldeobjekt entfernt: %@
 sg.act.sharingSettings	Freigabe-Einstellungen geöffnet: Bildschirmfreigabe ausschalten
 sg.act.wifiOff	WLAN ausgeschaltet
 sg.act.wifiFailed	WLAN konnte nicht ausgeschaltet werden
+settings.language	Sprache
+settings.languageSystem	Systemsprache
+settings.languageRestart	Die neue Sprache gilt nach einem Neustart von permwatch.
+settings.restart	Neu starten

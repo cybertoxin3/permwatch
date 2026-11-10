@@ -789,3 +789,7 @@ sg.act.loginItem	Объект входа удалён: %@
 sg.act.sharingSettings	Открыты настройки общего доступа: выключите «Общий экран»
 sg.act.wifiOff	Wi-Fi выключен
 sg.act.wifiFailed	Не удалось выключить Wi-Fi
+settings.language	Язык
+settings.languageSystem	Язык системы
+settings.languageRestart	Новый язык применится после перезапуска permwatch.
+settings.restart	Перезапустить

@@ -789,3 +789,7 @@ sg.act.loginItem	أُزيل عنصر بدء التشغيل: %@
 sg.act.sharingSettings	فُتحت إعدادات المشاركة: أوقف مشاركة الشاشة
 sg.act.wifiOff	تم إيقاف Wi-Fi
 sg.act.wifiFailed	تعذّر إيقاف Wi-Fi
+settings.language	اللغة
+settings.languageSystem	لغة النظام
+settings.languageRestart	تُطبَّق اللغة الجديدة بعد إعادة تشغيل permwatch.
+settings.restart	إعادة التشغيل

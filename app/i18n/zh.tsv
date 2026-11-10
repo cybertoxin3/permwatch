@@ -789,3 +789,7 @@ sg.act.loginItem	已移除登录项：%@
 sg.act.sharingSettings	已打开共享设置：请关闭屏幕共享
 sg.act.wifiOff	已关闭 Wi-Fi
 sg.act.wifiFailed	无法关闭 Wi-Fi
+settings.language	语言
+settings.languageSystem	系统语言
+settings.languageRestart	新语言将在 permwatch 重新启动后生效。
+settings.restart	重新启动
