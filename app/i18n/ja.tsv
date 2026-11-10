@@ -793,3 +793,11 @@ settings.language	言語
 settings.languageSystem	システムの言語
 settings.languageRestart	新しい言語は permwatch の再起動後に適用されます。
 settings.restart	再起動
+ph.title	このサイトは偽物の可能性があります
+ph.lookalike	本物のアドレスは %@ です。これはそれに似た別のサイトです。
+ph.listed	このアドレスはフィッシングサイトのリストに載っています（%@）。
+ph.body	ここにパスワードやカード情報を入力しないでください。メール、SMS、広告から来た場合は偽物の可能性が高いです。本物のサイトへはアドレスを自分で入力して移動してください。
+ph.close	ページを閉じる
+ph.trust	このサイトを知っている、続ける
+ph.setting	偽サイト対策
+ph.settingDesc	Web サイトでパスワード欄をクリックした瞬間に permwatch がアドレスを確認します。銀行、行政サイト、有名ブランドを装っていれば、入力する前に警告します。

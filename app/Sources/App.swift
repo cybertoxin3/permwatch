@@ -51,6 +51,7 @@ struct PermwatchApp: App {
                     store.requestNotificationPermission()
                     RealtimeGuard.shared.start()
                     _ = ShareGuard.shared
+                    _ = PhishGuard.shared
                     ThreatIntel.shared.update()
                 }
         }

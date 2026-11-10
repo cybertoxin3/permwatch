@@ -793,3 +793,11 @@ settings.language	Language
 settings.languageSystem	System language
 settings.languageRestart	The new language applies after permwatch restarts.
 settings.restart	Restart
+ph.title	This site may be fake
+ph.lookalike	The real address is %@ — this is a different site that looks like it.
+ph.listed	This address is on a list of phishing sites (%@).
+ph.body	Don't type your password or card details here. If you got here from an email, text message or ad, it is most likely fake. Go to the real site by typing its address yourself.
+ph.close	Close the page
+ph.trust	I know this site, continue
+ph.setting	Fake site protection
+ph.settingDesc	The moment you click a password field on a website, permwatch checks the address. If it imitates a bank, a government site or a well-known brand, you're warned before you type.

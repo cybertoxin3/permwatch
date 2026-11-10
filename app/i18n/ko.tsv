@@ -793,3 +793,11 @@ settings.language	언어
 settings.languageSystem	시스템 언어
 settings.languageRestart	새 언어는 permwatch를 다시 시작하면 적용됩니다.
 settings.restart	다시 시작
+ph.title	이 사이트는 가짜일 수 있습니다
+ph.lookalike	진짜 주소는 %@입니다. 이 사이트는 그와 비슷한 다른 사이트입니다.
+ph.listed	이 주소는 피싱 사이트 목록에 있습니다 (%@).
+ph.body	여기에 비밀번호나 카드 정보를 입력하지 마세요. 이메일, 문자, 광고를 통해 왔다면 가짜일 가능성이 높습니다. 주소를 직접 입력해 진짜 사이트로 가세요.
+ph.close	페이지 닫기
+ph.trust	아는 사이트입니다, 계속
+ph.setting	가짜 사이트 보호
+ph.settingDesc	웹사이트에서 비밀번호 입력란을 클릭하는 순간 permwatch가 주소를 확인합니다. 은행, 정부 사이트, 유명 브랜드를 흉내 내면 입력하기 전에 경고합니다.

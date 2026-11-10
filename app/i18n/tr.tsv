@@ -793,3 +793,11 @@ settings.language	Dil
 settings.languageSystem	Sistem dili
 settings.languageRestart	Yeni dil, permwatch yeniden başlatılınca uygulanır.
 settings.restart	Yeniden başlat
+ph.title	Bu site sahte olabilir
+ph.lookalike	Gerçek adres %@ — bu ise ona benzeyen farklı bir site.
+ph.listed	Bu adres dolandırıcılık siteleri listesinde (%@).
+ph.body	Şifreni ya da kart bilgini buraya yazma. Bu sayfaya bir e-postadan, SMS'ten ya da reklamdan geldiysen büyük olasılıkla sahte. Gerçek siteye adresi kendin yazarak git.
+ph.close	Sayfayı kapat
+ph.trust	Bu siteyi tanıyorum, devam et
+ph.setting	Sahte site koruması
+ph.settingDesc	Bir sitede şifre alanına tıkladığın an adrese bakar; banka, e-Devlet ya da bilinen bir markayı taklit ediyorsa şifreyi yazmadan önce uyarır.

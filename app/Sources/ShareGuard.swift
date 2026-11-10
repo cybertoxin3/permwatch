@@ -584,6 +584,9 @@ final class ShareGuard: ObservableObject {
 enum SecureInput {
     @_silgen_name("IsSecureEventInputEnabled") private static func isEnabled() -> DarwinBoolean
 
+    /// Şu an bir şifre alanı odakta mı? (tek bir sistem çağrısı, maliyetsiz)
+    static var isOn: Bool { isEnabled().boolValue }
+
     /// Açıksa açan uygulama (ad, PID); kapalıysa nil. Paylaşım sürmüyorsa hiç çağrılmaz.
     static func owner() -> (name: String, pid: Int32)? {
         if ProcessInfo.processInfo.environment["PERMWATCH_SHARE_TEST_SECURE"] != nil { return ("Safari", 1) }
@@ -619,10 +622,26 @@ enum BrowserTab {
 
     @MainActor
     static func frontmostURLHost() -> String? {
-        guard let bid = NSWorkspace.shared.frontmostApplication?.bundleIdentifier, let src = scripts[bid] else { return nil }
+        guard let bid = NSWorkspace.shared.frontmostApplication?.bundleIdentifier else { return nil }
+        return host(bundleID: bid)
+    }
+
+    @MainActor
+    static func host(bundleID bid: String) -> String? {
+        guard let src = scripts[bid] else { return nil }
         var err: NSDictionary?
         guard let s = NSAppleScript(source: src)?.executeAndReturnError(&err).stringValue, let u = URL(string: s) else { return nil }
         return u.host
+    }
+
+    /// Etkin sekmeyi kapatır (sahte site uyarısında "Sayfayı kapat").
+    @MainActor
+    static func closeTab(bundleID bid: String) {
+        let src = bid == "com.apple.Safari"
+            ? "tell application id \"com.apple.Safari\" to close current tab of front window"
+            : "tell application id \"\(bid)\" to close active tab of front window"
+        var err: NSDictionary?
+        _ = NSAppleScript(source: src)?.executeAndReturnError(&err)
     }
 
     /// Ayarlardan "Tarayıcı iznini ver": kurulu tarayıcılar için izin sorusunu önceden çıkarır.

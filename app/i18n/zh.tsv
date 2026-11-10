@@ -793,3 +793,11 @@ settings.language	语言
 settings.languageSystem	系统语言
 settings.languageRestart	新语言将在 permwatch 重新启动后生效。
 settings.restart	重新启动
+ph.title	此网站可能是假冒的
+ph.lookalike	真实地址是 %@ —— 这是一个与之相似的其他网站。
+ph.listed	此地址在钓鱼网站列表中（%@）。
+ph.body	不要在这里输入密码或银行卡信息。如果你是通过邮件、短信或广告来到这里的，它很可能是假的。请自己输入地址访问真正的网站。
+ph.close	关闭页面
+ph.trust	我认识这个网站，继续
+ph.setting	假冒网站防护
+ph.settingDesc	当你在网站上点击密码框时，permwatch 会检查地址。如果它冒充银行、政务网站或知名品牌，会在你输入之前提醒你。

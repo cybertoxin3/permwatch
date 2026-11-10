@@ -19,6 +19,7 @@ final class ThreatIntel: ObservableObject {
     nonisolated static let dnsFlag = NSHomeDirectory() + "/Library/Application Support/permwatch/dnswatch.on"
 
     static let hostsURL = URL(string: "https://malware-filter.gitlab.io/malware-filter/urlhaus-filter-hosts.txt")!
+    static let phishURL = URL(string: "https://malware-filter.gitlab.io/malware-filter/phishing-filter-hosts.txt")!
     static let ipsURL = URL(string: "https://feodotracker.abuse.ch/downloads/ipblocklist_recommended.txt")!
     static let treeURL = URL(string: "https://api.github.com/repos/elastic/protections-artifacts/git/trees/main?recursive=1")!
     static let rawBase = "https://raw.githubusercontent.com/elastic/protections-artifacts/main/"
@@ -108,6 +109,10 @@ final class ThreatIntel: ObservableObject {
             let hosts = parseHosts(t)
             if hosts.count > 50 { try? hosts.joined(separator: "\n").write(toFile: dir + "/hosts.txt", atomically: true, encoding: .utf8) }
         } else { failed.append("URLhaus") }
+        if let d = await fetch(phishURL), let t = String(data: d, encoding: .utf8) {
+            let hosts = parseHosts(t)
+            if hosts.count > 50 { try? hosts.joined(separator: "\n").write(toFile: dir + "/phish.txt", atomically: true, encoding: .utf8) }
+        } else { failed.append("phishing-filter") }
         if let d = await fetch(ipsURL), let t = String(data: d, encoding: .utf8) {
             let ips = parseIPs(t)
             try? ips.joined(separator: "\n").write(toFile: dir + "/ips.txt", atomically: true, encoding: .utf8)
@@ -169,6 +174,7 @@ final class ThreatIntel: ObservableObject {
         private var domains = Set<String>()
         private var ips = Set<String>()
         private var allowed = Set<String>()
+        private var phish = Set<String>()
 
         var counts: (domains: Int, ips: Int) { lock.lock(); defer { lock.unlock() }; return (domains.count, ips.count) }
 
@@ -176,6 +182,21 @@ final class ThreatIntel: ObservableObject {
             let h = (try? String(contentsOfFile: ThreatIntel.dir + "/hosts.txt", encoding: .utf8)) ?? ""
             let i = (try? String(contentsOfFile: ThreatIntel.dir + "/ips.txt", encoding: .utf8)) ?? ""
             set(domains: h.split(separator: "\n").map(String.init), ips: i.split(separator: "\n").map(String.init))
+            let p = (try? String(contentsOfFile: ThreatIntel.dir + "/phish.txt", encoding: .utf8)) ?? ""
+            let ps = Set(p.split(separator: "\n").map(String.init))
+            lock.lock(); phish = ps; lock.unlock()
+        }
+
+        /// Sahte site listesinde mi (üst alan adlarıyla)? Kaynak adı döner.
+        func phishSource(_ host: String) -> String? {
+            lock.lock(); defer { lock.unlock() }
+            var h = host.lowercased()
+            if allowed.contains(h) { return nil }
+            while h.contains(".") {
+                if phish.contains(h) { return "OpenPhish / PhishTank" }
+                h = String(h.drop { $0 != "." }.dropFirst())
+            }
+            return nil
         }
 
         func set(domains d: [String], ips i: [String]) {
@@ -192,6 +213,7 @@ final class ThreatIntel: ObservableObject {
             if var h = host?.lowercased(), !allowed.contains(h) {
                 while h.contains(".") {
                     if domains.contains(h) { return (h, "URLhaus") }
+                    if phish.contains(h) { return (h, "OpenPhish / PhishTank") }
                     h = String(h.drop { $0 != "." }.dropFirst())
                 }
             }

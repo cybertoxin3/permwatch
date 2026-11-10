@@ -793,3 +793,11 @@ settings.language	Sprache
 settings.languageSystem	Systemsprache
 settings.languageRestart	Die neue Sprache gilt nach einem Neustart von permwatch.
 settings.restart	Neu starten
+ph.title	Diese Seite könnte gefälscht sein
+ph.lookalike	Die echte Adresse ist %@ – dies ist eine andere Seite, die ihr ähnelt.
+ph.listed	Diese Adresse steht auf einer Liste von Phishing-Seiten (%@).
+ph.body	Gib hier weder Passwort noch Kartendaten ein. Bist du über eine E-Mail, SMS oder Werbung hierher gekommen, ist sie höchstwahrscheinlich gefälscht. Tippe die Adresse der echten Seite selbst ein.
+ph.close	Seite schließen
+ph.trust	Ich kenne diese Seite, weiter
+ph.setting	Schutz vor gefälschten Seiten
+ph.settingDesc	Sobald du auf einer Website in ein Passwortfeld klickst, prüft permwatch die Adresse. Ahmt sie eine Bank, eine Behörde oder eine bekannte Marke nach, wirst du gewarnt, bevor du tippst.

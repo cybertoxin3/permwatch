@@ -304,6 +304,32 @@ func check(_ cond: Bool, _ name: String) { if cond { print("✓ \(name)") } else
               "yardımcı süreç ana uygulamaya bağlanır")
     }
 
+    do {
+        let none: (String) -> String? = { _ in nil }
+        let fakes = ["garantibbva-giris.com", "akbankgiris.com", "isbank.com.tr.hesap-onay.xyz", "paypa1.com", "garantibbvva.com",
+                     "yapikerdi.com.tr", "applesupport-id.com", "edevlet-odeme.net", "ziraatbankasi-musteri.online", "binance-wallet.top",
+                     "secure-paypal.info", "netfIix.com", "rnicrosoft.com"]
+        let real = ["online.isbank.com.tr", "www.garantibbva.com.tr", "appleid.apple.com", "www.google.com", "accounts.google.com",
+                    "amazon.co.uk", "www.amazon.de", "login.microsoftonline.com", "www.paypal.com", "github.com", "www.appleinsider.com",
+                    "pineapple.com", "revolt.chat", "finance.com", "www.reddit.com", "eksisozluk.com", "www.hurriyet.com.tr",
+                    "zoom.us", "discord.com", "www.akbanksanat.com", "giris.turkiye.gov.tr", "signin.aws.amazon.com", "amazonaws.com",
+                    "www.ing.com.tr", "notion.so", "www.figma.com", "slack.com", "medium.com", "web.whatsapp.com", "www.n11.com"]
+        let missed = fakes.filter { Phish.verdict($0, listed: none) == nil }
+        let wrong = real.filter { Phish.verdict($0, listed: none) != nil }
+        check(missed.isEmpty, "sahte siteler yakalanır \(missed)")
+        check(wrong.isEmpty, "gerçek siteler uyarı vermez \(wrong)")
+        check(Phish.verdict("tamamen-baska.xyz", listed: { _ in "OpenPhish" }) == .listed("OpenPhish"), "listedeki site yakalanır")
+        // İsteğe bağlı ölçüm: PERMWATCH_PHISH_EVAL=<klasör> (top10k.txt ve phish3k.txt)
+        if let dir = ProcessInfo.processInfo.environment["PERMWATCH_PHISH_EVAL"] {
+            let top = ((try? String(contentsOfFile: dir + "/top10k.txt", encoding: .utf8)) ?? "").split(separator: "\n").map(String.init)
+            let ph = ((try? String(contentsOfFile: dir + "/phish3k.txt", encoding: .utf8)) ?? "").split(separator: "\n").map(String.init)
+            let fp = top.filter { Phish.verdict($0, listed: none) != nil }
+            let caught = ph.filter { Phish.verdict($0, listed: none) != nil }
+            print("ÖLÇÜM yanlış alarm: \(fp.count)/\(top.count) → \(fp.map { "\($0)=\(Phish.verdict($0, listed: none)!)" })")
+            print("ÖLÇÜM liste olmadan yakalanan sahte: \(caught.count)/\(ph.count)")
+        }
+    }
+
     print(failures == 0 ? "\nTüm bütünleşik testler geçti." : "\n\(failures) bütünleşik test başarısız.")
     exit(failures == 0 ? 0 : 1)
 } }

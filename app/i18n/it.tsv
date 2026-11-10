@@ -793,3 +793,11 @@ settings.language	Lingua
 settings.languageSystem	Lingua di sistema
 settings.languageRestart	La nuova lingua si applica dopo il riavvio di permwatch.
 settings.restart	Riavvia
+ph.title	Questo sito potrebbe essere falso
+ph.lookalike	L'indirizzo vero è %@: questo è un altro sito che gli somiglia.
+ph.listed	Questo indirizzo è in un elenco di siti di phishing (%@).
+ph.body	Non digitare qui password o dati della carta. Se sei arrivato da un'email, un SMS o una pubblicità, è molto probabilmente falso. Vai al sito vero digitando tu l'indirizzo.
+ph.close	Chiudi la pagina
+ph.trust	Conosco questo sito, continua
+ph.setting	Protezione dai siti falsi
+ph.settingDesc	Appena fai clic su un campo password in un sito, permwatch controlla l'indirizzo. Se imita una banca, un sito della pubblica amministrazione o un marchio noto, ti avvisa prima che tu scriva.

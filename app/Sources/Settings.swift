@@ -60,6 +60,7 @@ struct SettingsView: View {
     @EnvironmentObject var realtime: RealtimeGuard
     @ObservedObject private var guardSvc = GuardService.shared
     @ObservedObject private var scam = ShareGuard.shared
+    @ObservedObject private var phish = PhishGuard.shared
     @State private var loginOn = LoginLaunch.isEnabled
     @ObservedObject private var blocks = BlockList.shared
     /// Paket yakalama ve engellenen sunucular yalnızca gelişmiş modda.
@@ -85,6 +86,13 @@ struct SettingsView: View {
                 Toggle(L("nav.shield"), isOn: $scam.enabled)
                 Text(L("sg.settingDesc")).font(.system(size: 11)).foregroundStyle(.secondary)
                     .fixedSize(horizontal: false, vertical: true)
+                Toggle(L("ph.setting"), isOn: $phish.enabled)
+                HStack(alignment: .firstTextBaseline) {
+                    Text(L("ph.settingDesc")).font(.system(size: 11)).foregroundStyle(.secondary)
+                        .fixedSize(horizontal: false, vertical: true)
+                    Spacer()
+                    Button(L("sg.tryAlert")) { phish.demo() }.controlSize(.small)
+                }
                 Toggle(L("rt.setting"), isOn: $realtime.enabled)
                 Text(L("rt.settingDesc")).font(.system(size: 11)).foregroundStyle(.secondary)
                     .fixedSize(horizontal: false, vertical: true)
