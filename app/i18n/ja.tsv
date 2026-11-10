@@ -724,7 +724,7 @@ sg.trustAlways	常に信頼
 sg.stop	共有を停止
 sg.stopApp	%@ を終了
 sg.openPage	permwatch で開く
-sg.alert.title	ストップ！ 今あなたの画面は他の人に見えています
+sg.alert.title	今、画面が共有されています
 sg.alert.sharing	%1$@ が画面を共有中 · 開始：%2$@
 sg.alert.body	画面共有中はパスワード、カード番号、確認コードを入力しないでください。相手には入力内容がすべて見えます。この共有を自分で始めていない、または誰かに指示されているなら、今すぐ停止してください。
 sg.cutInternet	インターネットを切断（Wi-Fi をオフ）

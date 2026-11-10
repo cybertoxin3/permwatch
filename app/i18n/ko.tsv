@@ -724,7 +724,7 @@ sg.trustAlways	항상 신뢰
 sg.stop	공유 중지
 sg.stopApp	%@ 종료
 sg.openPage	permwatch에서 열기
-sg.alert.title	멈추세요! 지금 다른 사람이 화면을 보고 있습니다
+sg.alert.title	지금 화면이 공유되고 있습니다
 sg.alert.sharing	%1$@이(가) 화면을 공유 중 · 시작: %2$@
 sg.alert.body	화면 공유 중에는 비밀번호, 카드 번호, 인증 코드를 입력하지 마세요. 상대방은 입력하는 모든 것을 봅니다. 이 공유를 직접 시작하지 않았거나 누군가 지시하고 있다면 지금 중지하세요.
 sg.cutInternet	인터넷 끊기 (Wi-Fi 끄기)

@@ -724,7 +724,7 @@ sg.trustAlways	Confiar siempre
 sg.stop	Dejar de compartir
 sg.stopApp	Cerrar %@
 sg.openPage	Abrir en permwatch
-sg.alert.title	¡ALTO! Ahora mismo otra persona ve tu pantalla
+sg.alert.title	Tu pantalla se está compartiendo ahora
 sg.alert.sharing	%1$@ comparte tu pantalla · desde: %2$@
 sg.alert.body	No escribas contraseñas, números de tarjeta ni códigos de verificación mientras compartes la pantalla: la otra parte ve todo lo que escribes. Si no iniciaste tú esta compartición o alguien te está guiando, detenla ahora.
 sg.cutInternet	Cortar internet (apagar Wi-Fi)

@@ -724,7 +724,7 @@ sg.trustAlways	Immer vertrauen
 sg.stop	Freigabe beenden
 sg.stopApp	%@ beenden
 sg.openPage	In permwatch öffnen
-sg.alert.title	STOPP! Dein Bildschirm ist gerade für jemand anderen sichtbar
+sg.alert.title	Dein Bildschirm wird gerade geteilt
 sg.alert.sharing	%1$@ teilt deinen Bildschirm · seit: %2$@
 sg.alert.body	Gib während der Freigabe kein Passwort, keine Kartennummer und keinen Bestätigungscode ein: die Gegenseite sieht alles, was du tippst. Wenn du diese Freigabe nicht gestartet hast oder dich jemand anleitet, beende sie sofort.
 sg.cutInternet	Internet trennen (WLAN aus)

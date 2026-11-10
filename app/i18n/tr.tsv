@@ -724,7 +724,7 @@ sg.trustAlways	Her zaman güven
 sg.stop	Paylaşımı durdur
 sg.stopApp	%@ uygulamasını kapat
 sg.openPage	permwatch'ta aç
-sg.alert.title	DUR! Ekranın şu an başkasına görünüyor
+sg.alert.title	Ekranın şu an paylaşılıyor
 sg.alert.sharing	%1$@ ekranını paylaşıyor · başladı: %2$@
 sg.alert.body	Ekranın paylaşılırken şifre, kart numarası ya da onay kodu girme: karşı taraf yazdığın her şeyi görür. Bu paylaşımı sen başlatmadıysan ya da birisi seni yönlendiriyorsa hemen durdur.
 sg.cutInternet	İnterneti kes (Wi-Fi'yi kapat)

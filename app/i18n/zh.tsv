@@ -724,7 +724,7 @@ sg.trustAlways	始终信任
 sg.stop	停止共享
 sg.stopApp	退出 %@
 sg.openPage	在 permwatch 中打开
-sg.alert.title	停！你的屏幕此刻正被他人看到
+sg.alert.title	你的屏幕正在被共享
 sg.alert.sharing	%1$@ 正在共享你的屏幕 · 开始于：%2$@
 sg.alert.body	屏幕共享期间不要输入密码、卡号或验证码：对方能看到你输入的一切。如果这不是你自己发起的共享，或有人在指导你操作，请立即停止。
 sg.cutInternet	断开网络（关闭 Wi-Fi）

@@ -724,7 +724,7 @@ sg.trustAlways	Fidati sempre
 sg.stop	Interrompi condivisione
 sg.stopApp	Chiudi %@
 sg.openPage	Apri in permwatch
-sg.alert.title	STOP! Il tuo schermo è visibile a qualcun altro in questo momento
+sg.alert.title	Il tuo schermo è condiviso in questo momento
 sg.alert.sharing	%1$@ condivide il tuo schermo · dalle: %2$@
 sg.alert.body	Non digitare password, numeri di carta o codici di verifica mentre lo schermo è condiviso: l'altra parte vede tutto ciò che scrivi. Se non hai avviato tu questa condivisione o qualcuno ti sta guidando, interrompila subito.
 sg.cutInternet	Taglia internet (spegni il Wi-Fi)

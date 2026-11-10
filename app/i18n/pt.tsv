@@ -724,7 +724,7 @@ sg.trustAlways	Confiar sempre
 sg.stop	Parar partilha
 sg.stopApp	Fechar %@
 sg.openPage	Abrir no permwatch
-sg.alert.title	PARE! O seu ecrã está visível para outra pessoa neste momento
+sg.alert.title	O seu ecrã está a ser partilhado neste momento
 sg.alert.sharing	%1$@ está a partilhar o seu ecrã · desde: %2$@
 sg.alert.body	Não escreva palavras-passe, números de cartão nem códigos de verificação com o ecrã partilhado: a outra parte vê tudo o que escreve. Se não iniciou esta partilha ou alguém o está a orientar, pare-a agora.
 sg.cutInternet	Cortar a internet (desligar Wi-Fi)

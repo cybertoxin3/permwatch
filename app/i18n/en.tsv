@@ -724,7 +724,7 @@ sg.trustAlways	Always trust
 sg.stop	Stop sharing
 sg.stopApp	Quit %@
 sg.openPage	Open in permwatch
-sg.alert.title	STOP! Your screen is visible to someone else right now
+sg.alert.title	Your screen is being shared right now
 sg.alert.sharing	%1$@ is sharing your screen · started: %2$@
 sg.alert.body	Don't type a password, card number or verification code while your screen is shared: the other side sees everything you type. If you didn't start this share, or someone is guiding you, stop it now.
 sg.cutInternet	Cut the internet (turn off Wi-Fi)

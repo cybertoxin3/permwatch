@@ -724,7 +724,7 @@ sg.trustAlways	Toujours faire confiance
 sg.stop	Arrêter le partage
 sg.stopApp	Quitter %@
 sg.openPage	Ouvrir dans permwatch
-sg.alert.title	STOP ! Votre écran est visible par quelqu'un d'autre en ce moment
+sg.alert.title	Votre écran est partagé en ce moment
 sg.alert.sharing	%1$@ partage votre écran · depuis : %2$@
 sg.alert.body	Ne tapez ni mot de passe, ni numéro de carte, ni code de vérification pendant le partage : l'autre personne voit tout ce que vous tapez. Si vous n'avez pas lancé ce partage ou si quelqu'un vous guide, arrêtez-le maintenant.
 sg.cutInternet	Couper Internet (désactiver le Wi-Fi)

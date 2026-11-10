@@ -139,33 +139,31 @@ struct ShareAlertView: View {
 
     var body: some View {
         ZStack {
-            (model.stage == .report ? Color(red: 0.05, green: 0.25, blue: 0.12) : Color(red: 0.45, green: 0.02, blue: 0.02))
-                .opacity(0.96).ignoresSafeArea()
+            // Ekranı hafifçe karartır: yazmaya devam etmeden önce kartı görmek için yeterli.
+            Color.black.opacity(0.4).ignoresSafeArea()
             if primary {
                 if scrollable {
-                    ScrollView { content.padding(48).frame(maxWidth: 900).frame(maxWidth: .infinity) }
+                    ScrollView { card.padding(40).frame(maxWidth: .infinity, minHeight: NSScreen.main?.frame.height ?? 800) }
                 } else {
-                    content.padding(48).frame(maxWidth: 900)
+                    card.padding(40)
                 }
-            } else {
-                VStack(spacing: 14) {
-                    Image(systemName: "exclamationmark.octagon.fill").font(.system(size: 80))
-                    Text(L("sg.alert.title")).font(.system(size: 34, weight: .heavy)).multilineTextAlignment(.center)
-                }
-                .foregroundStyle(.white).padding(40)
             }
         }
-        .environment(\.colorScheme, .dark)
     }
 
-    private var content: some View {
-        VStack(spacing: 22) {
+    private var card: some View {
+        VStack(spacing: 18) {
             if model.demo {
-                Text(L("sg.demoBanner")).font(.system(size: 14, weight: .bold)).padding(.horizontal, 14).padding(.vertical, 6)
-                    .background(.yellow, in: Capsule()).foregroundStyle(.black)
+                Text(L("sg.demoBanner")).font(.system(size: 11.5, weight: .semibold)).padding(.horizontal, 10).padding(.vertical, 4)
+                    .background(Color.yellow.opacity(0.85), in: Capsule()).foregroundStyle(.black)
             }
             if model.stage == .alert { alert } else { report }
         }
+        .padding(28)
+        .frame(width: 520)
+        .background(Color(nsColor: .windowBackgroundColor), in: RoundedRectangle(cornerRadius: 16))
+        .overlay(RoundedRectangle(cornerRadius: 16).strokeBorder(Color.primary.opacity(0.08)))
+        .shadow(color: .black.opacity(0.35), radius: 30, y: 10)
     }
 
     private var apps: [ScreenCapture] {
@@ -176,40 +174,38 @@ struct ShareAlertView: View {
     private var what: [String] { model.demo ? [L("sg.trigger.password", "Safari")] : (g.current?.sites ?? []) }
 
     private var alert: some View {
-        VStack(spacing: 20) {
-            Image(systemName: "exclamationmark.octagon.fill").font(.system(size: 92)).foregroundStyle(.white)
-                .symbolEffect(.pulse, options: .repeating)
-            Text(L("sg.alert.title")).font(.system(size: 38, weight: .heavy)).multilineTextAlignment(.center)
-            VStack(spacing: 6) {
-                ForEach(apps) { c in
-                    Text(L("sg.alert.sharing", c.name, Fmt.relative(min(c.start, Date().addingTimeInterval(-1)))))
-                        .font(.system(size: 17, weight: .semibold))
-                }
-                ForEach(what, id: \.self) { w in Text(w).font(.system(size: 16)).opacity(0.9) }
-            }
-            .padding(16).frame(maxWidth: .infinity)
-            .background(Color.black.opacity(0.3), in: RoundedRectangle(cornerRadius: 14))
-            Text(L("sg.alert.body")).font(.system(size: 20, weight: .semibold)).multilineTextAlignment(.center)
+        VStack(spacing: 16) {
+            Image(systemName: "exclamationmark.triangle.fill").font(.system(size: 40)).foregroundStyle(.orange)
+            Text(L("sg.alert.title")).font(.system(size: 19, weight: .bold)).multilineTextAlignment(.center)
                 .fixedSize(horizontal: false, vertical: true)
-            VStack(spacing: 12) {
-                Button { if model.demo { model.stage = .report } else { g.stopSharing(); ShareAlertController.shared.showReport() } } label: {
-                    Label(apps.count == 1 ? L("sg.stopApp", apps[0].name) : L("sg.stop"), systemImage: "xmark.circle.fill")
-                        .font(.system(size: 22, weight: .bold)).frame(maxWidth: 520).padding(.vertical, 12)
+            VStack(alignment: .leading, spacing: 6) {
+                ForEach(apps) { c in
+                    Label(L("sg.alert.sharing", c.name, Fmt.relative(min(c.start, Date().addingTimeInterval(-1)))), systemImage: "record.circle")
+                        .font(.system(size: 13, weight: .semibold))
                 }
-                .buttonStyle(.borderedProminent).tint(.white).foregroundStyle(Color(red: 0.6, green: 0, blue: 0))
+                ForEach(what, id: \.self) { w in Label(w, systemImage: "key.fill").font(.system(size: 13)).foregroundStyle(.secondary) }
+            }
+            .padding(12).frame(maxWidth: .infinity, alignment: .leading)
+            .background(Color.orange.opacity(0.1), in: RoundedRectangle(cornerRadius: 10))
+            Text(L("sg.alert.body")).font(.system(size: 13)).multilineTextAlignment(.center)
+                .fixedSize(horizontal: false, vertical: true)
+            VStack(spacing: 8) {
+                Button { if model.demo { model.stage = .report } else { g.stopSharing(); ShareAlertController.shared.showReport() } } label: {
+                    Text(apps.count == 1 ? L("sg.stopApp", apps[0].name) : L("sg.stop")).frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.borderedProminent).controlSize(.large).tint(.red)
                 .keyboardShortcut(.defaultAction)
                 Button {
                     if model.demo { model.wifiOff = true } else { model.wifiOff = g.cutInternet() }
                 } label: {
-                    Label(model.wifiOff ? L("sg.wifiDone") : L("sg.cutInternet"), systemImage: "wifi.slash")
-                        .font(.system(size: 16, weight: .semibold)).frame(maxWidth: 520).padding(.vertical, 6)
+                    Label(model.wifiOff ? L("sg.wifiDone") : L("sg.cutInternet"), systemImage: "wifi.slash").frame(maxWidth: .infinity)
                 }
-                .buttonStyle(.bordered).disabled(model.wifiOff)
+                .controlSize(.large).disabled(model.wifiOff)
             }
-            Divider().overlay(Color.white.opacity(0.3)).padding(.vertical, 4)
+            Divider()
             VStack(spacing: 8) {
-                Text(L("sg.knownTitle")).font(.system(size: 13, weight: .semibold)).opacity(0.85)
-                HStack(spacing: 12) {
+                Text(L("sg.knownTitle")).font(.system(size: 12)).foregroundStyle(.secondary)
+                HStack(spacing: 10) {
                     Button(L("sg.known")) {
                         if model.demo { ShareAlertController.shared.hide() } else { g.acknowledge(apps.map(\.key), always: false) }
                     }
@@ -217,42 +213,40 @@ struct ShareAlertView: View {
                         if model.demo { ShareAlertController.shared.hide() } else { g.acknowledge(apps.map(\.key), always: true) }
                     }
                 }
-                .controlSize(.small)
                 if apps.contains(where: \.isRemoteControl) {
-                    Text(L("sg.authHint")).font(.system(size: 11.5)).opacity(0.7).multilineTextAlignment(.center)
+                    Text(L("sg.authHint")).font(.system(size: 11)).foregroundStyle(.secondary).multilineTextAlignment(.center)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
             }
         }
-        .foregroundStyle(.white)
     }
 
     private var report: some View {
-        VStack(alignment: .leading, spacing: 18) {
-            HStack(spacing: 14) {
-                Image(systemName: "checkmark.shield.fill").font(.system(size: 56)).foregroundStyle(.green)
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(L("sg.report.title")).font(.system(size: 32, weight: .heavy))
-                    Text(L("sg.report.subtitle")).font(.system(size: 15)).opacity(0.85)
+        VStack(alignment: .leading, spacing: 16) {
+            HStack(spacing: 12) {
+                Image(systemName: "checkmark.circle.fill").font(.system(size: 34)).foregroundStyle(.green)
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(L("sg.report.title")).font(.system(size: 19, weight: .bold))
+                    Text(L("sg.report.subtitle")).font(.system(size: 13)).foregroundStyle(.secondary)
                 }
             }
             let actions = model.demo ? [L("sg.act.closed", "Zoom")] : g.lastActions
             if !actions.isEmpty {
-                VStack(alignment: .leading, spacing: 6) {
-                    Text(L("sg.report.done")).font(.system(size: 15, weight: .bold))
-                    ForEach(actions, id: \.self) { a in Label(a, systemImage: "checkmark").font(.system(size: 14)) }
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(L("sg.report.done")).font(.system(size: 13, weight: .semibold))
+                    ForEach(actions, id: \.self) { a in Label(a, systemImage: "checkmark").font(.system(size: 12.5)) }
                 }
             }
-            ShareStepsView(large: true)
+            ShareStepsView()
             HStack {
                 Spacer()
-                Button {
+                Button(L("sg.report.close")) {
                     ShareAlertController.shared.hide()
                     if !model.demo { NSApp.activate(ignoringOtherApps: true); ThreatCenter.shared.navigate(section: .shield) }
-                } label: { Text(L("sg.report.close")).font(.system(size: 17, weight: .semibold)).padding(.horizontal, 20).padding(.vertical, 6) }
-                .buttonStyle(.borderedProminent).tint(.green)
+                }
+                .buttonStyle(.borderedProminent).controlSize(.large)
             }
         }
-        .foregroundStyle(.white)
     }
 }
 
