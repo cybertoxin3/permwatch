@@ -4,26 +4,24 @@
         <title>permwatch</title>
         <link>https://github.com/cybertoxin3/permwatch</link>
         <item>
-            <title>permwatch 0.4.1</title>
-            <pubDate>Sun, 08 Nov 2026 22:25:14 +0000</pubDate>
-            <sparkle:version>6</sparkle:version>
-            <sparkle:shortVersionString>0.4.1</sparkle:shortVersionString>
+            <title>permwatch 0.5.0</title>
+            <pubDate>Tue, 10 Nov 2026 11:02:30 +0000</pubDate>
+            <sparkle:version>7</sparkle:version>
+            <sparkle:shortVersionString>0.5.0</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <description><![CDATA[**permwatch 0.4.1**
-- Now runs on Intel Macs too.
-- Uses about 4× less CPU in the background.
-- If permwatch ever crashes, you can send us a short summary (no personal data).
-- A refresh button for updates, in the update card and in Settings.
-- Blocked servers stay visible in Settings in simple mode.
+            <description><![CDATA[**permwatch 0.5.0**
+- New: Screen Share Guard. Whatever is recording or sharing your screen (Zoom, Teams, Meet, Discord, AnyDesk, a recorder…) is shown at the top of the screen.
+- If a share you don't recognise is running and you start typing a password, or open a banking or payment site, a warning stops you. Meetings and classes are not affected.
+- Replaces the old Scam Shield.
+- Choose the app language in Settings (13 languages).
 
 **Türkçe**
-- Artık Intel Mac'lerde de çalışıyor.
-- Arka planda yaklaşık 4 kat daha az işlemci kullanıyor.
-- permwatch çökerse bize kısa bir özet gönderebilirsin (kişisel bilgi yok).
-- Güncellemeler için Yenile düğmesi: güncelleme kartında ve Ayarlar'da.
-- Engellenen sunucular basit modda da Ayarlar'da görünüyor.]]></description>
-            <sparkle:fullReleaseNotesLink>https://github.com/cybertoxin3/permwatch/releases/tag/v0.4.1</sparkle:fullReleaseNotesLink>
-            <enclosure url="https://github.com/cybertoxin3/permwatch/releases/download/v0.4.1/permwatch-0.4.1.zip" sparkle:edSignature="FGz+EqLzVXkhW+NnHw45QI/qWIVdGpOOMjX3RTUhGRF+E+MtbfQSJ4UOSDHgw5XTUyw3qzQ040eIEf1lGhvQAw==" length="8409083" type="application/octet-stream"/>
+- Yeni: Ekran Paylaşımı Koruması. Ekranını kaydeden ya da paylaşan ne ise (Zoom, Teams, Meet, Discord, AnyDesk, kayıt programı…) ekranın üstünde gösterilir.
+- Tanımadığın bir paylaşım sürerken şifre yazmaya başlarsan ya da banka/ödeme sitesi açarsan bir uyarı seni durdurur. Toplantı ve dersler etkilenmez.
+- Eski Dolandırıcılık Kalkanı'nın yerini aldı.
+- Ayarlar'dan uygulama dilini seçebilirsin (13 dil).]]></description>
+            <sparkle:fullReleaseNotesLink>https://github.com/cybertoxin3/permwatch/releases/tag/v0.5.0</sparkle:fullReleaseNotesLink>
+            <enclosure url="https://github.com/cybertoxin3/permwatch/releases/download/v0.5.0/permwatch-0.5.0.zip" sparkle:edSignature="wWoYl08ZHDI1BvHIcBvMwLdeGaxxdlZTiN+KmJoJnyDtQw7BXazTAkpOx2fHPADMsUSAnObVEdGwfuWjEcyVDQ==" length="8909314" type="application/octet-stream"/>
         </item>
     </channel>
 </rss>
