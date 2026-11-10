@@ -801,3 +801,21 @@ ph.close	Chiudi la pagina
 ph.trust	Conosco questo sito, continua
 ph.setting	Protezione dai siti falsi
 ph.settingDesc	Appena fai clic su un campo password in un sito, permwatch controlla l'indirizzo. Se imita una banca, un sito della pubblica amministrazione o un marchio noto, ti avvisa prima che tu scriva.
+net.cardTitle	La tua rete
+net.openWifi	Wi-Fi non cifrato
+net.openWifiBody	Altri su questa rete possono vedere o modificare tutto ciò che invii. Niente banca né password qui; se serve, usa l'hotspot del telefono o una VPN affidabile.
+net.weakWifi	Wi-Fi con cifratura debole (%@)
+net.wifiOK	Il Wi-Fi è cifrato (%@)
+net.wifiOKDetail	Il tuo traffico non è esposto agli altri sulla rete.
+net.wired	Connessione via cavo
+net.wiredDetail	Nessuna cifratura Wi-Fi necessaria.
+net.arpSpoof	Un dispositivo si spaccia per il tuo router
+net.arpSpoofBody	Il dispositivo %@ si spaccia per il tuo router (ARP spoofing). Il traffico potrebbe passare da lì: non digitare password, esci dalla rete e riavvia il router.
+net.gwOK	Il router sembra autentico
+net.gwDetail	%1$@ · %2$@ — nessun altro dispositivo lo imita.
+net.devices	Dispositivi in rete: %ld
+net.scan	Scansiona rete
+net.router	router
+net.privateMAC	telefono o computer (indirizzo privato)
+net.new	nuovo
+net.devicesHint	Compaiono solo i dispositivi con cui il Mac ha comunicato o che hanno risposto a «Scansiona rete». Se a casa vedi un nuovo dispositivo sconosciuto, cambia la password del Wi-Fi.

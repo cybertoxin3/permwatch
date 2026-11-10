@@ -801,3 +801,21 @@ ph.close	Fermer la page
 ph.trust	Je connais ce site, continuer
 ph.setting	Protection contre les faux sites
 ph.settingDesc	Dès que vous cliquez dans un champ de mot de passe sur un site, permwatch vérifie l'adresse. S'il imite une banque, un site officiel ou une marque connue, vous êtes averti avant de taper.
+net.cardTitle	Votre réseau
+net.openWifi	Wi-Fi non chiffré
+net.openWifiBody	Les autres personnes sur ce réseau peuvent voir ou modifier tout ce que vous envoyez. Évitez la banque et les mots de passe ici ; au besoin, utilisez le partage de connexion de votre téléphone ou un VPN de confiance.
+net.weakWifi	Wi-Fi faiblement chiffré (%@)
+net.wifiOK	Le Wi-Fi est chiffré (%@)
+net.wifiOKDetail	Votre trafic n'est pas exposé aux autres sur le réseau.
+net.wired	Connexion filaire
+net.wiredDetail	Aucun chiffrement Wi-Fi nécessaire.
+net.arpSpoof	Un appareil se fait passer pour votre routeur
+net.arpSpoofBody	L'appareil %@ se fait passer pour votre routeur (usurpation ARP). Votre trafic passe peut-être par lui : ne tapez pas de mot de passe, quittez le réseau et redémarrez le routeur.
+net.gwOK	Le routeur semble authentique
+net.gwDetail	%1$@ · %2$@ — aucun autre appareil ne l'usurpe.
+net.devices	Appareils sur le réseau : %ld
+net.scan	Analyser le réseau
+net.router	routeur
+net.privateMAC	téléphone ou ordinateur (adresse privée)
+net.new	nouveau
+net.devicesHint	Seuls les appareils avec lesquels votre Mac a communiqué, ou qui ont répondu à « Analyser le réseau », apparaissent. Si vous voyez chez vous un nouvel appareil inconnu, changez le mot de passe Wi-Fi.

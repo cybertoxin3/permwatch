@@ -801,3 +801,21 @@ ph.close	关闭页面
 ph.trust	我认识这个网站，继续
 ph.setting	假冒网站防护
 ph.settingDesc	当你在网站上点击密码框时，permwatch 会检查地址。如果它冒充银行、政务网站或知名品牌，会在你输入之前提醒你。
+net.cardTitle	你连接的网络
+net.openWifi	未加密的 Wi-Fi
+net.openWifiBody	同一网络中的其他人可以看到或篡改你发送的所有内容。不要在这里操作银行或输入密码；如有必要，请使用手机热点或可信的 VPN。
+net.weakWifi	弱加密 Wi-Fi（%@）
+net.wifiOK	Wi-Fi 已加密（%@）
+net.wifiOKDetail	你的流量不会暴露给网络中的其他人。
+net.wired	有线连接
+net.wiredDetail	无需 Wi-Fi 加密。
+net.arpSpoof	有设备在冒充你的路由器
+net.arpSpoofBody	%@ 处的设备正在冒充你的路由器（ARP 欺骗）。你的流量可能经过它：不要输入密码，断开网络并重启路由器。
+net.gwOK	路由器看起来是真的
+net.gwDetail	%1$@ · %2$@ —— 没有其他设备冒充它。
+net.devices	网络中的设备：%ld
+net.scan	扫描网络
+net.router	路由器
+net.privateMAC	手机或电脑（私有地址）
+net.new	新
+net.devicesHint	只显示 Mac 通信过或响应“扫描网络”的设备。如果在家中看到不认识的新设备，请更改 Wi-Fi 密码。

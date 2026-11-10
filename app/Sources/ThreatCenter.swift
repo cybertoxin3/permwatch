@@ -10,6 +10,7 @@ enum Focus: Equatable {
     case connection(String)
     case packet(Int)
     case media
+    case none
 }
 
 struct Threat: Identifiable, Equatable {

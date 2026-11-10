@@ -330,6 +330,23 @@ func check(_ cond: Bool, _ name: String) { if cond { print("✓ \(name)") } else
         }
     }
 
+    do {
+        let arpText = """
+        ? (192.168.1.1) at 0:11:22:33:44:5 on en0 ifscope [ethernet]
+        ? (192.168.1.23) at 0:11:22:33:44:5 on en0 ifscope [ethernet]
+        ? (192.168.1.40) at a2:bb:cc:dd:ee:ff on en0 ifscope [ethernet]
+        ? (192.168.1.50) at 46:1c:14:4c:d4:c on en0 ifscope permanent [ethernet]
+        ? (224.0.0.251) at 1:0:5e:0:0:fb on en0 ifscope permanent [ethernet]
+        ? (10.0.0.1) at 0:aa:bb:cc:dd:ee on en5 ifscope [ethernet]
+        """
+        let arp = NetCheck.parseARP(arpText, iface: "en0")
+        check(arp.count == 3 && arp[0].mac == "00:11:22:33:44:05", "ARP tablosu okunur (kendi adresi, çok noktaya yayın ve başka arayüz hariç)")
+        check(NetCheck.gatewayIssues(gateway: "192.168.1.1", arp: arp) == [.arpSpoof("192.168.1.23")], "yönlendiriciyi taklit eden cihaz bulunur")
+        check(NetCheck.gatewayIssues(gateway: "192.168.1.1", arp: Array(arp.dropFirst(1).dropFirst(1)) + [arp[0]]).isEmpty, "taklit yoksa sorun yok")
+        check(LanDevice(ip: "1", mac: "a2:bb:cc:dd:ee:ff", isGateway: false, isNew: false).privateMAC
+              && !LanDevice(ip: "1", mac: "00:11:22:33:44:05", isGateway: false, isNew: false).privateMAC, "gizli donanım adresi tanınır")
+    }
+
     print(failures == 0 ? "\nTüm bütünleşik testler geçti." : "\n\(failures) bütünleşik test başarısız.")
     exit(failures == 0 ? 0 : 1)
 } }

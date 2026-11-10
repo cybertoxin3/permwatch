@@ -52,6 +52,7 @@ struct PermwatchApp: App {
                     RealtimeGuard.shared.start()
                     _ = ShareGuard.shared
                     _ = PhishGuard.shared
+                    _ = NetCheck.shared
                     ThreatIntel.shared.update()
                 }
         }

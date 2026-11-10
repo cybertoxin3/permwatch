@@ -801,3 +801,21 @@ ph.close	Close the page
 ph.trust	I know this site, continue
 ph.setting	Fake site protection
 ph.settingDesc	The moment you click a password field on a website, permwatch checks the address. If it imitates a bank, a government site or a well-known brand, you're warned before you type.
+net.cardTitle	Your network
+net.openWifi	Unencrypted Wi-Fi
+net.openWifiBody	Others on this network can see or change everything you send. Don't bank or type passwords here; if you must, use your phone's hotspot or a VPN you trust.
+net.weakWifi	Weakly encrypted Wi-Fi (%@)
+net.wifiOK	Wi-Fi is encrypted (%@)
+net.wifiOKDetail	Your traffic isn't open to others on the network.
+net.wired	Wired connection
+net.wiredDetail	No Wi-Fi encryption needed.
+net.arpSpoof	A device is impersonating your router
+net.arpSpoofBody	The device at %@ is pretending to be your router (ARP spoofing). Your traffic may be passing through it: don't type passwords, leave the network and restart your router.
+net.gwOK	Router looks genuine
+net.gwDetail	%1$@ · %2$@ — no other device is impersonating it.
+net.devices	Devices on the network: %ld
+net.scan	Scan network
+net.router	router
+net.privateMAC	phone or computer (private address)
+net.new	new
+net.devicesHint	Only devices your Mac has talked to, or that answered "Scan network", appear. If you see a new device at home you don't recognise, change your Wi-Fi password.

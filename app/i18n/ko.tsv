@@ -801,3 +801,21 @@ ph.close	페이지 닫기
 ph.trust	아는 사이트입니다, 계속
 ph.setting	가짜 사이트 보호
 ph.settingDesc	웹사이트에서 비밀번호 입력란을 클릭하는 순간 permwatch가 주소를 확인합니다. 은행, 정부 사이트, 유명 브랜드를 흉내 내면 입력하기 전에 경고합니다.
+net.cardTitle	연결된 네트워크
+net.openWifi	암호화되지 않은 Wi-Fi
+net.openWifiBody	이 네트워크의 다른 사람이 보내는 모든 것을 보거나 바꿀 수 있습니다. 여기서는 은행 업무나 비밀번호 입력을 하지 마세요. 필요하면 휴대폰 핫스팟이나 신뢰할 수 있는 VPN을 쓰세요.
+net.weakWifi	약하게 암호화된 Wi-Fi (%@)
+net.wifiOK	Wi-Fi가 암호화되어 있습니다 (%@)
+net.wifiOKDetail	트래픽이 네트워크의 다른 사람에게 노출되지 않습니다.
+net.wired	유선 연결
+net.wiredDetail	Wi-Fi 암호화가 필요 없습니다.
+net.arpSpoof	라우터를 사칭하는 기기가 있습니다
+net.arpSpoofBody	%@ 기기가 라우터를 사칭하고 있습니다 (ARP 스푸핑). 트래픽이 그 기기를 거칠 수 있습니다. 비밀번호를 입력하지 말고 네트워크에서 나간 뒤 라우터를 다시 시작하세요.
+net.gwOK	라우터가 정상으로 보입니다
+net.gwDetail	%1$@ · %2$@ — 사칭하는 기기가 없습니다.
+net.devices	네트워크의 기기: %ld
+net.scan	네트워크 스캔
+net.router	라우터
+net.privateMAC	휴대폰 또는 컴퓨터 (비공개 주소)
+net.new	새 기기
+net.devicesHint	Mac이 통신했거나 "네트워크 스캔"에 응답한 기기만 표시됩니다. 집에서 모르는 새 기기가 보이면 Wi-Fi 비밀번호를 바꾸세요.

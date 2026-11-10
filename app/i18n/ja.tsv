@@ -801,3 +801,21 @@ ph.close	ページを閉じる
 ph.trust	このサイトを知っている、続ける
 ph.setting	偽サイト対策
 ph.settingDesc	Web サイトでパスワード欄をクリックした瞬間に permwatch がアドレスを確認します。銀行、行政サイト、有名ブランドを装っていれば、入力する前に警告します。
+net.cardTitle	接続中のネットワーク
+net.openWifi	暗号化されていない Wi-Fi
+net.openWifiBody	このネットワーク上の他人が、あなたの送信内容を見たり改ざんしたりできます。ここでは銀行の操作やパスワード入力をしないでください。必要ならスマホのテザリングか信頼できる VPN を使ってください。
+net.weakWifi	暗号化の弱い Wi-Fi（%@）
+net.wifiOK	Wi-Fi は暗号化されています（%@）
+net.wifiOKDetail	通信はネットワーク上の他人に見えません。
+net.wired	有線接続
+net.wiredDetail	Wi-Fi の暗号化は不要です。
+net.arpSpoof	ルーターになりすましている機器があります
+net.arpSpoofBody	%@ の機器がルーターになりすましています（ARP スプーフィング）。通信がその機器を経由している可能性があります。パスワードを入力せず、ネットワークから離れてルーターを再起動してください。
+net.gwOK	ルーターは本物のようです
+net.gwDetail	%1$@ · %2$@ — なりすましている機器はありません。
+net.devices	ネットワーク上の機器：%ld
+net.scan	ネットワークをスキャン
+net.router	ルーター
+net.privateMAC	スマホまたはコンピュータ（プライベートアドレス）
+net.new	新規
+net.devicesHint	Mac が通信した機器、または「ネットワークをスキャン」に応答した機器だけが表示されます。自宅で見知らぬ新しい機器があれば Wi-Fi のパスワードを変更してください。

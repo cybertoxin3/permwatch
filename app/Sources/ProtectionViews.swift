@@ -48,6 +48,7 @@ struct SecurityView: View {
                 }
                 .background(Color(nsColor: .controlBackgroundColor), in: RoundedRectangle(cornerRadius: 12))
                 .overlay(RoundedRectangle(cornerRadius: 12).strokeBorder(Color.secondary.opacity(0.2)))
+                NetCheckCard()
             }
             .padding(24)
             .frame(maxWidth: 760, alignment: .leading)

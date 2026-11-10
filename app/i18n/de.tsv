@@ -801,3 +801,21 @@ ph.close	Seite schließen
 ph.trust	Ich kenne diese Seite, weiter
 ph.setting	Schutz vor gefälschten Seiten
 ph.settingDesc	Sobald du auf einer Website in ein Passwortfeld klickst, prüft permwatch die Adresse. Ahmt sie eine Bank, eine Behörde oder eine bekannte Marke nach, wirst du gewarnt, bevor du tippst.
+net.cardTitle	Dein Netzwerk
+net.openWifi	Unverschlüsseltes WLAN
+net.openWifiBody	Andere in diesem Netz können alles sehen oder verändern, was du sendest. Kein Online-Banking und keine Passwörter hier; nutze notfalls den Hotspot deines Handys oder ein VPN, dem du vertraust.
+net.weakWifi	Schwach verschlüsseltes WLAN (%@)
+net.wifiOK	WLAN ist verschlüsselt (%@)
+net.wifiOKDetail	Dein Datenverkehr ist für andere im Netz nicht offen.
+net.wired	Kabelverbindung
+net.wiredDetail	Keine WLAN-Verschlüsselung nötig.
+net.arpSpoof	Ein Gerät gibt sich als dein Router aus
+net.arpSpoofBody	Das Gerät unter %@ gibt sich als dein Router aus (ARP-Spoofing). Dein Datenverkehr läuft womöglich darüber: keine Passwörter eingeben, Netz verlassen und Router neu starten.
+net.gwOK	Router wirkt echt
+net.gwDetail	%1$@ · %2$@ – kein anderes Gerät gibt sich als er aus.
+net.devices	Geräte im Netzwerk: %ld
+net.scan	Netzwerk scannen
+net.router	Router
+net.privateMAC	Handy oder Computer (private Adresse)
+net.new	neu
+net.devicesHint	Es erscheinen nur Geräte, mit denen dein Mac kommuniziert hat oder die auf „Netzwerk scannen“ geantwortet haben. Siehst du zu Hause ein unbekanntes neues Gerät, ändere dein WLAN-Passwort.

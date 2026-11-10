@@ -801,3 +801,21 @@ ph.close	Sayfayı kapat
 ph.trust	Bu siteyi tanıyorum, devam et
 ph.setting	Sahte site koruması
 ph.settingDesc	Bir sitede şifre alanına tıkladığın an adrese bakar; banka, e-Devlet ya da bilinen bir markayı taklit ediyorsa şifreyi yazmadan önce uyarır.
+net.cardTitle	Bağlı olduğun ağ
+net.openWifi	Şifresiz Wi-Fi ağı
+net.openWifiBody	Bu ağda gönderdiğin her şeyi aynı ağdaki başkaları görebilir ya da değiştirebilir. Banka işlemi yapma, şifre girme; gerekiyorsa telefonunun internetini ya da güvendiğin bir VPN'i kullan.
+net.weakWifi	Zayıf şifrelemeli Wi-Fi (%@)
+net.wifiOK	Wi-Fi şifreli (%@)
+net.wifiOKDetail	Ağdaki trafiğin başkalarına açık değil.
+net.wired	Kablolu bağlantı
+net.wiredDetail	Wi-Fi şifrelemesi gerekmiyor.
+net.arpSpoof	Yönlendiriciyi taklit eden bir cihaz var
+net.arpSpoofBody	%@ adresindeki cihaz kendini yönlendiricin gibi gösteriyor (ARP zehirlenmesi). Trafiğin onun üzerinden geçiyor olabilir: şifre girme, ağdan ayrıl ve yönlendiricini yeniden başlat.
+net.gwOK	Yönlendirici gerçek görünüyor
+net.gwDetail	%1$@ · %2$@ — başka bir cihaz onu taklit etmiyor.
+net.devices	Ağdaki cihazlar: %ld
+net.scan	Ağı tara
+net.router	yönlendirici
+net.privateMAC	telefon ya da bilgisayar (gizli adres)
+net.new	yeni
+net.devicesHint	Yalnızca Mac'inin konuştuğu ya da "Ağı tara" ile yanıt veren cihazlar görünür. Evinde tanımadığın yeni bir cihaz görürsen Wi-Fi şifreni değiştir.
