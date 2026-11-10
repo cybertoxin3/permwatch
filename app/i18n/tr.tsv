@@ -819,3 +819,91 @@ net.router	yönlendirici
 net.privateMAC	telefon ya da bilgisayar (gizli adres)
 net.new	yeni
 net.devicesHint	Yalnızca Mac'inin konuştuğu ya da "Ağı tara" ile yanıt veren cihazlar görünür. Evinde tanımadığın yeni bir cihaz görürsen Wi-Fi şifreni değiştir.
+nav.vault	Şifreler
+nav.vpn	VPN
+vault.setupTitle	Şifre kasası oluştur
+vault.setupBody	Şifrelerin bu Mac'te AES-256 ile şifrelenmiş olarak saklanır. Kasayı yalnızca ana parolan (ya da Touch ID) açar; permwatch dahil hiç kimse içini göremez.
+vault.master	Ana parola
+vault.masterAgain	Ana parola (tekrar)
+vault.noRecovery	Ana parolayı unutursan kasa açılamaz; kurtarma yolu yoktur. Bir yere yaz ya da akılda kalıcı uzun bir cümle seç.
+vault.create	Kasayı oluştur
+vault.tooShort	Ana parola en az 10 karakter olmalı.
+vault.mismatch	Parolalar aynı değil.
+vault.locked	Kasa kilitli
+vault.unlock	Kilidi aç
+vault.wrong	Ana parola yanlış.
+vault.authReason	şifre kasasını açmak
+vault.search	Ara
+vault.add	Yeni kayıt
+vault.import	Tarayıcıdan içe aktar (CSV)…
+vault.imported	%ld kayıt içe aktarıldı.
+vault.settings	Kasa ayarları…
+vault.lock	Kilitle
+vault.empty	Henüz kayıt yok. "+" ile ekle ya da tarayıcından dışa aktardığın CSV dosyasını içe aktar.
+vault.count	%ld kayıt
+vault.edit	Düzenle
+vault.username	Kullanıcı adı
+vault.password	Şifre
+vault.url	Adres
+vault.title	Ad
+vault.notes	Notlar
+vault.copyHint	Kopyala (30 saniye sonra panodan silinir)
+vault.reused	Bu şifreyi başka bir yerde de kullanıyorsun.
+vault.pwnedCheck	Sızıntılarda var mı?
+vault.pwned	Bu şifre %ld kez sızdırılmış verilerde görülmüş: hemen değiştir.
+vault.notPwned	Bilinen sızıntılarda yok.
+vault.pwnedHint	Yalnızca şifrenin özetinin ilk 5 karakteri gönderilir (Have I Been Pwned); şifre Mac'inden çıkmaz.
+vault.delete	Sil
+vault.deleteTitle	Bu kayıt silinsin mi?
+vault.generate	Güçlü şifre üret
+vault.length	Uzunluk: %ld
+vault.save	Kaydet
+vault.touchID	Touch ID ile aç
+vault.touchIDHint	Kasa anahtarı Anahtar Zinciri'nde tutulur ve yalnızca Touch ID ya da Mac parolan doğrulanınca kullanılır. Kasa 5 dakika işlem yapılmazsa ve ekran kilitlenince kendiliğinden kilitlenir.
+vault.changeMaster	Ana parolayı değiştir
+vault.oldMaster	Şu anki ana parola
+vault.change	Değiştir
+vault.changed	Ana parola değiştirildi.
+vault.weak	zayıf
+vault.fair	orta
+vault.good	iyi
+vault.strong	güçlü
+vpn.connected	Bağlı
+vpn.connecting	Bağlanıyor…
+vpn.error	Bağlanamadı
+vpn.off	Bağlı değil
+vpn.connect	Bağlan
+vpn.disconnect	Bağlantıyı kes
+vpn.needAdmin	VPN için yönetici modu gerekiyor: Ayarlar'dan aç (bir kez Mac parolası sorulur).
+vpn.noEngine	Bu derlemede VPN motorları yok (geliştirici: app/tools/build_vpn.sh).
+vpn.profiles	Bağlantılar
+vpn.noProfiles	Henüz bağlantı yok. Aşağıya bir bağlantı linki yapıştır.
+vpn.paid	ücretli
+vpn.own	kendi sunucum
+vpn.deleteTitle	Bu bağlantı silinsin mi?
+vpn.addTitle	Bağlantı linki ekle
+vpn.addHint	Amnezia'nın "vpn://" linkini, bir "vless://" Reality linkini ya da AmneziaWG yapılandırmasını yapıştır.
+vpn.paste	Yapıştır
+vpn.add	Ekle
+vpn.badLink	Link tanınamadı. Amnezia vpn://, vless:// ya da [Interface] yapılandırması olmalı.
+vpn.added	%ld bağlantı eklendi.
+vpn.ownServer	Kendi sunucum
+vpn.planTitle	permwatch VPN — yıllık %ld $
+vpn.planBody	AmneziaWG ve Xray Reality ile, engellenmesi zor, hızlı bir VPN. Kayıt tutulmaz. Ödemeden sonra bağlantı linkin e-postana gönderilir.
+vpn.freeOwn	Kendi sunucun varsa (Amnezia ya da Xray) ücretsiz: linkini yukarıya yapıştırman yeterli.
+vpn.buy	Satın al
+vpn.buyTitle	permwatch VPN · 1 yıl · %ld $
+vpn.buyStep1	1. Ödeme yap
+vpn.copyAddress	Adresi kopyala
+vpn.copied	Kopyalandı
+vpn.networkWarn	Yalnızca %@ ağından gönder; başka ağdan gönderilen para kaybolur.
+vpn.amountStable	Tam %1$ld %2$@ gönder.
+vpn.amountOther	%ld $ değerinde gönder (gönderdiğin andaki kurla).
+vpn.buyStep2	2. Ödemeyi bildir
+vpn.txField	İşlem kodu (tx hash)
+vpn.txBad	Bu bir işlem koduna benzemiyor; cüzdanındaki işlem ayrıntılarından kopyala.
+vpn.contactField	E-posta ya da Telegram kullanıcı adın
+vpn.buyStep3	"Ödemeyi bildir"e basınca posta uygulamanda hazır bir ileti açılır; gönder'e bas. Ödeme zincirde görülünce bağlantı linkin bu adrese gönderilir; gelince "Bağlantı linki ekle"ye yapıştır.
+vpn.notify	Ödemeyi bildir
+vpn.sent	İleti hazırlandı; göndermeyi unutma.
+vpn.mailIntro	Merhaba, permwatch VPN için ödeme yaptım:

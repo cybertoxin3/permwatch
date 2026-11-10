@@ -1,3 +1,4 @@
+import Compression
 // Bütünleşik testler: kontrollerin ayrıştırıcıları ve düzeltme eylemleri gerçek sistemde, zararsız
 // deneme öğeleriyle. Çalıştır: make test-integration (önce make app).
 import AppKit
@@ -345,6 +346,56 @@ func check(_ cond: Bool, _ name: String) { if cond { print("✓ \(name)") } else
         check(NetCheck.gatewayIssues(gateway: "192.168.1.1", arp: Array(arp.dropFirst(1).dropFirst(1)) + [arp[0]]).isEmpty, "taklit yoksa sorun yok")
         check(LanDevice(ip: "1", mac: "a2:bb:cc:dd:ee:ff", isGateway: false, isNew: false).privateMAC
               && !LanDevice(ip: "1", mac: "00:11:22:33:44:05", isGateway: false, isNew: false).privateMAC, "gizli donanım adresi tanınır")
+    }
+
+    do {
+        // Amnezia vpn:// linki: JSON → qCompress (4 bayt boyut + zlib) → base64url
+        let wg = "[Interface]\nPrivateKey = cHJpdmF0ZWtleXByaXZhdGVrZXlwcml2YXRla2V5MTI=\nAddress = 10.8.1.5/32\nDNS = 1.1.1.1, 1.0.0.1\nJc = 4\nJmin = 10\nJmax = 50\nS1 = 86\nS2 = 12\nH1 = 1234567\nH2 = 100-200\nI1 = <b 0xc0ffee>\nHeaderProtectionKey = abcd\n\n[Peer]\nPublicKey = cHVibGlja2V5cHVibGlja2V5cHVibGlja2V5cHViMTI=\nPresharedKey = cHNrcHNrcHNrcHNrcHNrcHNrcHNrcHNrcHNrcHNrMTI=\nAllowedIPs = 0.0.0.0/0, ::/0\nEndpoint = 203.0.113.7:51820\nPersistentKeepalive = 25\n"
+        let awgLast = String(data: try! JSONSerialization.data(withJSONObject: ["config": wg, "hostName": "203.0.113.7"]), encoding: .utf8)!
+        let xrayCfg: [String: Any] = ["inbounds": [["protocol": "socks", "port": 10808]],
+                                      "outbounds": [["protocol": "vless", "settings": ["vnext": [["address": "203.0.113.7", "port": 443, "users": [["id": "u-u-i-d", "flow": "xtls-rprx-vision"]]]]],
+                                                     "streamSettings": ["security": "reality", "realitySettings": ["publicKey": "PBK", "shortId": "ab"]]],
+                                                    ["protocol": "freedom"]]]
+        let xrayLast = String(data: try! JSONSerialization.data(withJSONObject: xrayCfg), encoding: .utf8)!
+        let server: [String: Any] = ["hostName": "203.0.113.7", "description": "Test VPN", "dns1": "9.9.9.9", "dns2": "",
+                                     "containers": [["container": "amnezia-awg", "awg": ["last_config": awgLast, "port": "51820"]],
+                                                    ["container": "amnezia-xray", "xray": ["last_config": xrayLast]]]]
+        let json = try! JSONSerialization.data(withJSONObject: server)
+        var deflated = Data(count: json.count + 64)
+        let n = deflated.withUnsafeMutableBytes { d in json.withUnsafeBytes { s in
+            compression_encode_buffer(d.bindMemory(to: UInt8.self).baseAddress!, json.count + 64, s.bindMemory(to: UInt8.self).baseAddress!, json.count, nil, COMPRESSION_ZLIB) } }
+        var q = Data([UInt8(json.count >> 24 & 255), UInt8(json.count >> 16 & 255), UInt8(json.count >> 8 & 255), UInt8(json.count & 255), 0x78, 0x9c])
+        q.append(deflated.prefix(n)); q.append(contentsOf: [0, 0, 0, 0])
+        let link = "vpn://" + q.base64EncodedString().replacingOccurrences(of: "+", with: "-").replacingOccurrences(of: "/", with: "_").replacingOccurrences(of: "=", with: "")
+        let ps = (try? VPNLink.parse(link)) ?? []
+        let a = ps.first { $0.kind == .awg }, x = ps.first { $0.kind == .xray }
+        check(ps.count == 2 && a?.name == "Test VPN" && a?.server == "203.0.113.7", "Amnezia linki iki profile çözülür (AWG + Xray)")
+        check(a?.awg?.params["jc"] == "4" && a?.awg?.params["h2"] == "100-200" && a?.awg?.params["i1"] == "<b 0xc0ffee>"
+              && a?.awg?.params["header_protection_key"] == "abcd" && a?.awg?.endpoint == "203.0.113.7:51820"
+              && a?.awg?.presharedKey != nil && a?.awg?.keepalive == 25 && a?.dns == ["1.1.1.1", "1.0.0.1"], "AmneziaWG parametreleri eksiksiz okunur")
+        let xo = x?.xrayOutbound.flatMap { try? JSONSerialization.jsonObject(with: Data($0.utf8)) as? [String: Any] }
+        check(xo?["protocol"] as? String == "vless" && x?.dns == ["9.9.9.9"], "Xray yapılandırmasından VLESS çıkışı alınır")
+        let v = try? VPNLink.parse("vless://11111111-2222-3333-4444-555555555555@vpn.example.com:443?security=reality&sni=www.microsoft.com&fp=chrome&pbk=PUBKEY&sid=6ba8&flow=xtls-rprx-vision&type=tcp#Benim%20Sunucum")
+        let vo = v?.first?.xrayOutbound.flatMap { try? JSONSerialization.jsonObject(with: Data($0.utf8)) as? [String: Any] }
+        let rs = (vo?["streamSettings"] as? [String: Any])?["realitySettings"] as? [String: Any]
+        check(v?.first?.name == "Benim Sunucum" && rs?["publicKey"] as? String == "PUBKEY" && rs?["serverName"] as? String == "www.microsoft.com",
+              "vless:// Reality linki çözülür")
+        check((try? VPNLink.parse(wg))?.first?.kind == .awg, "düz [Interface] yapılandırması okunur")
+        check((try? VPNLink.parse("merhaba dünya")) == nil, "geçersiz link reddedilir")
+        check(VPNLink.snake("HeaderProtectionKey") == "header_protection_key" && VPNLink.snake("Jmin") == "jmin" && VPNLink.snake("S1") == "s1", "parametre adları dönüştürülür")
+        check(VPNPlan.validTx("0x" + String(repeating: "a", count: 64)) && !VPNPlan.validTx("0x1234"), "işlem kodu biçimi denetlenir")
+    }
+    do {
+        let v = Vault.shared
+        let key = VaultCrypto.deriveKey(password: "doğru at pil zımba", salt: Data(repeating: 1, count: 16), iterations: 1000)!
+        let sealed = try! VaultCrypto.seal(Data("gizli".utf8), key: key)
+        check((try? VaultCrypto.open(sealed, key: key)) == Data("gizli".utf8), "AES-256-GCM şifrele/çöz")
+        let wrong = VaultCrypto.deriveKey(password: "yanlış", salt: Data(repeating: 1, count: 16), iterations: 1000)!
+        check((try? VaultCrypto.open(sealed, key: wrong)) == nil, "yanlış parola çözemez")
+        let g = VaultCrypto.generate(length: 24)
+        check(g.count == 24 && VaultCrypto.strength(g) >= 80 && VaultCrypto.strength("123456") < 40, "güçlü şifre üretilir, zayıf şifre tanınır")
+        check(CSV.parse("name,url,username,password\n\"A, B\",https://a.com,u,\"p\"\"q\"\n").last == ["A, B", "https://a.com", "u", "p\"q"], "CSV içe aktarma ayrıştırılır")
+        _ = v
     }
 
     print(failures == 0 ? "\nTüm bütünleşik testler geçti." : "\n\(failures) bütünleşik test başarısız.")

@@ -819,3 +819,91 @@ net.router	الراوتر
 net.privateMAC	هاتف أو حاسوب (عنوان خاص)
 net.new	جديد
 net.devicesHint	تظهر فقط الأجهزة التي تواصل معها الماك أو التي ردّت على «فحص الشبكة». إن رأيت في منزلك جهازًا جديدًا لا تعرفه، فغيّر كلمة مرور Wi-Fi.
+nav.vault	كلمات المرور
+nav.vpn	VPN
+vault.setupTitle	إنشاء خزنة كلمات مرور
+vault.setupBody	تُحفظ كلمات مرورك على هذا الماك مشفّرة بـ AES-256. لا يفتح الخزنة إلا كلمة المرور الرئيسية (أو Touch ID)؛ لا أحد، ولا حتى permwatch، يرى محتواها.
+vault.master	كلمة المرور الرئيسية
+vault.masterAgain	كلمة المرور الرئيسية (مرة أخرى)
+vault.noRecovery	إن نسيت كلمة المرور الرئيسية فلن تُفتح الخزنة؛ لا توجد طريقة استرداد. اكتبها في مكان ما أو اختر جملة طويلة سهلة التذكر.
+vault.create	إنشاء الخزنة
+vault.tooShort	يجب ألا تقل كلمة المرور الرئيسية عن 10 أحرف.
+vault.mismatch	كلمتا المرور غير متطابقتين.
+vault.locked	الخزنة مقفلة
+vault.unlock	فتح القفل
+vault.wrong	كلمة المرور الرئيسية خاطئة.
+vault.authReason	فتح خزنة كلمات المرور
+vault.search	بحث
+vault.add	عنصر جديد
+vault.import	استيراد من المتصفح (CSV)…
+vault.imported	تم استيراد %ld عنصر.
+vault.settings	إعدادات الخزنة…
+vault.lock	قفل
+vault.empty	لا توجد عناصر بعد. أضف عنصرًا بـ«+» أو استورد ملف CSV المصدَّر من متصفحك.
+vault.count	%ld عنصر
+vault.edit	تعديل
+vault.username	اسم المستخدم
+vault.password	كلمة المرور
+vault.url	العنوان
+vault.title	الاسم
+vault.notes	ملاحظات
+vault.copyHint	نسخ (تُمسح من الحافظة بعد 30 ثانية)
+vault.reused	تستخدم كلمة المرور هذه في مكان آخر أيضًا.
+vault.pwnedCheck	مسرّبة؟
+vault.pwned	ظهرت كلمة المرور هذه %ld مرة في بيانات مسرّبة: غيّرها الآن.
+vault.notPwned	غير موجودة في التسريبات المعروفة.
+vault.pwnedHint	تُرسل فقط أول 5 أحرف من بصمة كلمة المرور (Have I Been Pwned)؛ كلمة المرور لا تغادر جهازك.
+vault.delete	حذف
+vault.deleteTitle	حذف هذا العنصر؟
+vault.generate	توليد كلمة مرور قوية
+vault.length	الطول: %ld
+vault.save	حفظ
+vault.touchID	الفتح بـ Touch ID
+vault.touchIDHint	يُحفظ مفتاح الخزنة في سلسلة المفاتيح ولا يُستخدم إلا بعد Touch ID أو كلمة مرور الماك. تُقفل الخزنة تلقائيًا بعد 5 دقائق من عدم النشاط وعند قفل الشاشة.
+vault.changeMaster	تغيير كلمة المرور الرئيسية
+vault.oldMaster	كلمة المرور الرئيسية الحالية
+vault.change	تغيير
+vault.changed	تم تغيير كلمة المرور الرئيسية.
+vault.weak	ضعيفة
+vault.fair	متوسطة
+vault.good	جيدة
+vault.strong	قوية
+vpn.connected	متصل
+vpn.connecting	جارٍ الاتصال…
+vpn.error	تعذّر الاتصال
+vpn.off	غير متصل
+vpn.connect	اتصال
+vpn.disconnect	قطع الاتصال
+vpn.needAdmin	يحتاج VPN إلى وضع المسؤول: فعّله من الإعدادات (تُطلب كلمة مرور الماك مرة واحدة).
+vpn.noEngine	لا يتضمن هذا الإصدار محركات VPN (للمطوّر: app/tools/build_vpn.sh).
+vpn.profiles	الاتصالات
+vpn.noProfiles	لا توجد اتصالات بعد. الصق رابط اتصال أدناه.
+vpn.paid	مدفوع
+vpn.own	خادمي
+vpn.deleteTitle	حذف هذا الاتصال؟
+vpn.addTitle	إضافة رابط اتصال
+vpn.addHint	الصق رابط Amnezia ‏«vpn://» أو رابط Reality ‏«vless://» أو إعداد AmneziaWG.
+vpn.paste	لصق
+vpn.add	إضافة
+vpn.badLink	لم يُتعرّف على الرابط. يجب أن يكون vpn:// من Amnezia أو vless:// أو إعداد [Interface].
+vpn.added	أُضيف %ld اتصال.
+vpn.ownServer	خادمي الخاص
+vpn.planTitle	permwatch VPN — %ld $ سنويًا
+vpn.planBody	VPN سريع يصعب حجبه، يعمل بـ AmneziaWG وXray Reality. بلا سجلات. بعد الدفع يُرسل رابط الاتصال إلى بريدك.
+vpn.freeOwn	مجاني إن كان لديك خادمك الخاص (Amnezia أو Xray): الصق رابطه أعلاه.
+vpn.buy	شراء
+vpn.buyTitle	permwatch VPN · سنة · %ld $
+vpn.buyStep1	1. ادفع
+vpn.copyAddress	نسخ العنوان
+vpn.copied	تم النسخ
+vpn.networkWarn	أرسل فقط عبر شبكة %@؛ الأموال المرسلة عبر شبكة أخرى تضيع.
+vpn.amountStable	أرسل %1$ld %2$@ بالضبط.
+vpn.amountOther	أرسل ما يعادل %ld $ (بسعر وقت الإرسال).
+vpn.buyStep2	2. أبلغ عن الدفع
+vpn.txField	معرّف المعاملة (tx hash)
+vpn.txBad	لا يبدو هذا معرّف معاملة؛ انسخه من تفاصيل المعاملة في محفظتك.
+vpn.contactField	بريدك الإلكتروني أو اسمك في Telegram
+vpn.buyStep3	يفتح «الإبلاغ عن الدفع» رسالة جاهزة في تطبيق البريد؛ اضغط إرسال. عندما يظهر الدفع على السلسلة يُرسل رابط الاتصال إلى هذا العنوان؛ الصقه في «إضافة رابط اتصال».
+vpn.notify	الإبلاغ عن الدفع
+vpn.sent	الرسالة جاهزة؛ لا تنسَ إرسالها.
+vpn.mailIntro	مرحبًا، دفعت مقابل permwatch VPN:

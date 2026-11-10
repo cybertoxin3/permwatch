@@ -6,3 +6,7 @@ app/build/
 !app/Resources/sample-events.jsonl
 tests/test_app
 tests/test_integration
+
+# VPN motorları: app/tools/build_vpn.sh ile kaynaktan derlenir (büyük ikili dosyalar depoya konmaz)
+app/vendor/vpn/amneziawg-go
+app/vendor/vpn/xray

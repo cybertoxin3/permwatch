@@ -312,13 +312,19 @@ var tick = 0
 var lastSig = ""
 var dnsWatch: DNSWatch?
 var dnsError: String?
+let vpn = VPNRunner()
+vpnGlobal = vpn
+signal(SIGTERM) { _ in vpnShutdown(); exit(0) }
 while true {
+    // VPN, permwatch penceresi kapalıyken de bağlı kalır; yalnızca kullanıcı "Bağlantıyı kes" deyince biter.
+    vpn.tick()
     if daemon {
         // Konsoldaki kullanıcı değiştiyse ona geç; permwatch kapalıysa boşta bekle.
         var cs = stat()
         if stat("/dev/console", &cs) == 0, cs.st_uid != owner, cs.st_uid != 0 {
             capture?.stop(); capture = nil; captureError = nil
             dnsWatch?.stop(); dnsWatch = nil; dnsError = nil
+            vpn.shutdown()
             setOwner(cs.st_uid)
         }
         if !appAlive() {
@@ -330,7 +336,7 @@ while true {
         }
     } else if kill(parent, 0) != 0 && errno == ESRCH {
         // Başlatan uygulama kapandıysa çık.
-        capture?.stop(); exit(0)
+        capture?.stop(); vpn.shutdown(); exit(0)
     }
 
     // Paket yakalama: kullanıcı "Yakalamayı Başlat" dediğinde capture.on oluşur.
@@ -402,3 +408,6 @@ while true {
     tick += 1
     sleep(1)
 }
+
+var vpnGlobal: VPNRunner?
+func vpnShutdown() { vpnGlobal?.shutdown() }

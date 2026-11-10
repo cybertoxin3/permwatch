@@ -1,7 +1,7 @@
 import SwiftUI
 
 enum SidebarItem: Hashable {
-    case timeline, alerts, advice, scan, apps, running, security, downloads, network, packets, terminal, settings, shield
+    case timeline, alerts, advice, scan, apps, running, security, downloads, network, packets, terminal, settings, shield, vault, vpn
     case category(Category)
     case loginItems, processes
 }
@@ -57,6 +57,10 @@ struct MainView: View {
                 TerminalSection()
             } else if section == .shield {
                 ShareGuardView()
+            } else if section == .vault {
+                VaultView()
+            } else if section == .vpn {
+                VPNView()
             } else if section == .settings {
                 // Form kendi içinde kayar; ortada, okunabilir genişlikte.
                 SettingsView(embedded: true).frame(maxWidth: .infinity)
@@ -113,6 +117,8 @@ struct MainView: View {
             if Snapshot.section == "terminal" { section = .terminal }
             if Snapshot.section == "settings" { section = .settings }
             if Snapshot.section == "shield" { section = .shield }
+            if Snapshot.section == "vpn" { section = .vpn }
+            if Snapshot.section == "vault" { section = .vault }
             if Snapshot.section == "scan" || Snapshot.section == "scanrun" { section = .scan }
             Snapshot.scheduleIfRequested(store: store, selection: selection)
         }
@@ -144,6 +150,8 @@ struct MainView: View {
         case .terminal: return L("nav.terminal")
         case .settings: return L("nav.settings")
         case .shield: return L("nav.shield")
+        case .vault: return L("nav.vault")
+        case .vpn: return L("nav.vpn")
         case .category(.micCamera): return L("nav.micCamera")
         case .category(.screen): return L("nav.screen")
         case .category(.accessibility): return L("nav.accessibility")
@@ -201,6 +209,8 @@ struct Sidebar: View {
             Label(L("nav.shield"), systemImage: "rectangle.dashed.badge.record").tag(SidebarItem.shield)
             Label(L("nav.scan"), systemImage: "ladybug").badge(scanner.detections.count).tag(SidebarItem.scan)
             Label(L("nav.alerts"), systemImage: "exclamationmark.triangle").badge(store.openAlerts).tag(SidebarItem.alerts)
+            Label(L("nav.vault"), systemImage: "key").tag(SidebarItem.vault)
+            Label(L("nav.vpn"), systemImage: "network.badge.shield.half.filled").tag(SidebarItem.vpn)
 
             Section(L("nav.yourMac")) {
                 Label(L("nav.apps"), systemImage: "square.grid.2x2").tag(SidebarItem.apps)

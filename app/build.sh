@@ -45,7 +45,7 @@ for ARCH in ${=ARCHS}; do
         Sources/*.swift shared/*.swift -lpcap -o "$WORK/$ARCH/permwatch"
     # Yönetici modu yardımcısı (ayrı, küçük, girdisiz bir program)
     swiftc -O -target "$ARCH-apple-macos14" -import-objc-header shared/bridge.h \
-        helper/main.swift shared/*.swift -lpcap -o "$WORK/$ARCH/permwatch-root"
+        helper/*.swift shared/*.swift -lpcap -o "$WORK/$ARCH/permwatch-root"
 done
 for B in permwatch permwatch-root; do
     lipo -create $(for a in ${=ARCHS}; do print -r -- "$WORK/$a/$B"; done) -output "$APP/Contents/MacOS/$B"
@@ -133,6 +133,14 @@ if [[ "$SIGN" != "-" ]]; then
     if [[ "${PERMWATCH_RELEASE:-0}" == 1 ]]; then OPTS+=(--timestamp); else OPTS+=(--timestamp=none); fi
 fi
 codesign --force --sign "$SIGN" "${OPTS[@]}" --identifier com.yusuf.permwatch.root "$APP/Contents/MacOS/permwatch-root"
+# VPN motorları (vendor/vpn, tools/build_vpn.sh ile kaynaktan derlenir): AmneziaWG ve Xray.
+if [[ -x vendor/vpn/amneziawg-go && -x vendor/vpn/xray ]]; then
+    mkdir -p "$APP/Contents/Resources/vpn"
+    for E in amneziawg-go xray; do
+        cp vendor/vpn/$E "$APP/Contents/Resources/vpn/$E"
+        codesign --force --sign "$SIGN" "${OPTS[@]}" --identifier com.yusuf.permwatch.vpn.$E "$APP/Contents/Resources/vpn/$E"
+    done
+fi
 # Sparkle içten dışa: yardımcı programlar, sonra çerçeve.
 SF="$APP/Contents/Frameworks/Sparkle.framework/Versions/B"
 codesign --force --sign "$SIGN" "${OPTS[@]}" "$SF/Autoupdate"

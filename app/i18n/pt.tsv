@@ -819,3 +819,91 @@ net.router	router
 net.privateMAC	telemóvel ou computador (endereço privado)
 net.new	novo
 net.devicesHint	Só aparecem dispositivos com que o Mac comunicou ou que responderam a «Analisar rede». Se vir em casa um dispositivo novo que não reconhece, mude a palavra-passe do Wi-Fi.
+nav.vault	Palavras-passe
+nav.vpn	VPN
+vault.setupTitle	Criar um cofre de palavras-passe
+vault.setupBody	As suas palavras-passe ficam neste Mac, encriptadas com AES-256. Só a palavra-passe mestra (ou Touch ID) abre o cofre; ninguém, nem o permwatch, consegue ver o conteúdo.
+vault.master	Palavra-passe mestra
+vault.masterAgain	Palavra-passe mestra (novamente)
+vault.noRecovery	Se esquecer a palavra-passe mestra, o cofre não pode ser aberto; não há recuperação. Anote-a ou escolha uma frase longa e fácil de lembrar.
+vault.create	Criar cofre
+vault.tooShort	A palavra-passe mestra deve ter pelo menos 10 caracteres.
+vault.mismatch	As palavras-passe não coincidem.
+vault.locked	Cofre bloqueado
+vault.unlock	Desbloquear
+vault.wrong	Palavra-passe mestra errada.
+vault.authReason	abrir o cofre de palavras-passe
+vault.search	Pesquisar
+vault.add	Novo item
+vault.import	Importar do navegador (CSV)…
+vault.imported	%ld itens importados.
+vault.settings	Definições do cofre…
+vault.lock	Bloquear
+vault.empty	Ainda não há itens. Adicione um com «+» ou importe o CSV exportado do navegador.
+vault.count	%ld itens
+vault.edit	Editar
+vault.username	Nome de utilizador
+vault.password	Palavra-passe
+vault.url	Endereço
+vault.title	Nome
+vault.notes	Notas
+vault.copyHint	Copiar (apagada da área de transferência após 30 segundos)
+vault.reused	Usa esta palavra-passe também noutro sítio.
+vault.pwnedCheck	Divulgada?
+vault.pwned	Esta palavra-passe aparece %ld vezes em dados divulgados: mude-a já.
+vault.notPwned	Não encontrada em fugas conhecidas.
+vault.pwnedHint	Só são enviados os 5 primeiros caracteres do hash da palavra-passe (Have I Been Pwned); a palavra-passe nunca sai do Mac.
+vault.delete	Eliminar
+vault.deleteTitle	Eliminar este item?
+vault.generate	Gerar palavra-passe forte
+vault.length	Comprimento: %ld
+vault.save	Guardar
+vault.touchID	Desbloquear com Touch ID
+vault.touchIDHint	A chave do cofre fica no Porta-chaves e só é usada após Touch ID ou a palavra-passe do Mac. O cofre bloqueia-se após 5 minutos de inatividade e ao bloquear o ecrã.
+vault.changeMaster	Alterar palavra-passe mestra
+vault.oldMaster	Palavra-passe mestra atual
+vault.change	Alterar
+vault.changed	Palavra-passe mestra alterada.
+vault.weak	fraca
+vault.fair	razoável
+vault.good	boa
+vault.strong	forte
+vpn.connected	Ligado
+vpn.connecting	A ligar…
+vpn.error	Não foi possível ligar
+vpn.off	Desligado
+vpn.connect	Ligar
+vpn.disconnect	Desligar
+vpn.needAdmin	A VPN precisa do modo de administrador: ative-o nas Definições (a palavra-passe do Mac é pedida uma vez).
+vpn.noEngine	Esta versão não inclui os motores VPN (programador: app/tools/build_vpn.sh).
+vpn.profiles	Ligações
+vpn.noProfiles	Ainda não há ligações. Cole abaixo uma ligação de acesso.
+vpn.paid	paga
+vpn.own	o meu servidor
+vpn.deleteTitle	Eliminar esta ligação?
+vpn.addTitle	Adicionar uma ligação de acesso
+vpn.addHint	Cole uma ligação Amnezia «vpn://», uma ligação Reality «vless://» ou uma configuração AmneziaWG.
+vpn.paste	Colar
+vpn.add	Adicionar
+vpn.badLink	Ligação não reconhecida. Deve ser um vpn:// da Amnezia, um vless:// ou uma configuração [Interface].
+vpn.added	%ld ligações adicionadas.
+vpn.ownServer	O meu servidor
+vpn.planTitle	permwatch VPN — %ld $ por ano
+vpn.planBody	Uma VPN rápida e difícil de bloquear, com AmneziaWG e Xray Reality. Sem registos. Após o pagamento, a ligação de acesso é enviada para o seu e-mail.
+vpn.freeOwn	Grátis se tiver o seu próprio servidor (Amnezia ou Xray): basta colar a ligação acima.
+vpn.buy	Comprar
+vpn.buyTitle	permwatch VPN · 1 ano · %ld $
+vpn.buyStep1	1. Pagar
+vpn.copyAddress	Copiar endereço
+vpn.copied	Copiado
+vpn.networkWarn	Envie apenas na rede %@; o dinheiro enviado noutra rede perde-se.
+vpn.amountStable	Envie exatamente %1$ld %2$@.
+vpn.amountOther	Envie o equivalente a %ld $ (à cotação no momento do envio).
+vpn.buyStep2	2. Comunicar o pagamento
+vpn.txField	ID da transação (tx hash)
+vpn.txBad	Isto não parece um ID de transação; copie-o dos detalhes da transação na sua carteira.
+vpn.contactField	O seu e-mail ou utilizador do Telegram
+vpn.buyStep3	«Comunicar pagamento» abre uma mensagem pronta na app Mail; carregue em enviar. Quando o pagamento aparecer na blockchain, a ligação de acesso é enviada para este endereço; cole-a em «Adicionar uma ligação de acesso».
+vpn.notify	Comunicar pagamento
+vpn.sent	Mensagem preparada; não se esqueça de a enviar.
+vpn.mailIntro	Olá, paguei o permwatch VPN:

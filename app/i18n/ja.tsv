@@ -819,3 +819,91 @@ net.router	ルーター
 net.privateMAC	スマホまたはコンピュータ（プライベートアドレス）
 net.new	新規
 net.devicesHint	Mac が通信した機器、または「ネットワークをスキャン」に応答した機器だけが表示されます。自宅で見知らぬ新しい機器があれば Wi-Fi のパスワードを変更してください。
+nav.vault	パスワード
+nav.vpn	VPN
+vault.setupTitle	パスワード保管庫を作成
+vault.setupBody	パスワードはこの Mac に AES-256 で暗号化して保存されます。保管庫を開けるのはマスターパスワード（または Touch ID）だけで、permwatch を含め誰も中身を見られません。
+vault.master	マスターパスワード
+vault.masterAgain	マスターパスワード（確認）
+vault.noRecovery	マスターパスワードを忘れると保管庫は開けません。復旧手段はありません。書き留めるか、覚えやすい長い文を選んでください。
+vault.create	保管庫を作成
+vault.tooShort	マスターパスワードは 10 文字以上にしてください。
+vault.mismatch	パスワードが一致しません。
+vault.locked	保管庫はロックされています
+vault.unlock	ロック解除
+vault.wrong	マスターパスワードが違います。
+vault.authReason	パスワード保管庫を開く
+vault.search	検索
+vault.add	新規項目
+vault.import	ブラウザから読み込む（CSV）…
+vault.imported	%ld 件を読み込みました。
+vault.settings	保管庫の設定…
+vault.lock	ロック
+vault.empty	項目はまだありません。「+」で追加するか、ブラウザから書き出した CSV を読み込んでください。
+vault.count	%ld 件
+vault.edit	編集
+vault.username	ユーザ名
+vault.password	パスワード
+vault.url	アドレス
+vault.title	名前
+vault.notes	メモ
+vault.copyHint	コピー（30 秒後にクリップボードから消去）
+vault.reused	このパスワードは他の場所でも使われています。
+vault.pwnedCheck	漏えい確認
+vault.pwned	このパスワードは漏えいデータに %ld 回出現しています。すぐに変更してください。
+vault.notPwned	既知の漏えいには見つかりません。
+vault.pwnedHint	送信されるのはパスワードのハッシュの先頭 5 文字だけです（Have I Been Pwned）。パスワード自体は Mac から出ません。
+vault.delete	削除
+vault.deleteTitle	この項目を削除しますか？
+vault.generate	強力なパスワードを生成
+vault.length	長さ：%ld
+vault.save	保存
+vault.touchID	Touch ID でロック解除
+vault.touchIDHint	保管庫の鍵はキーチェーンに保存され、Touch ID または Mac のパスワードの確認後にのみ使われます。5 分間操作がないときや画面ロック時に自動でロックされます。
+vault.changeMaster	マスターパスワードを変更
+vault.oldMaster	現在のマスターパスワード
+vault.change	変更
+vault.changed	マスターパスワードを変更しました。
+vault.weak	弱い
+vault.fair	普通
+vault.good	良い
+vault.strong	強い
+vpn.connected	接続済み
+vpn.connecting	接続中…
+vpn.error	接続できませんでした
+vpn.off	未接続
+vpn.connect	接続
+vpn.disconnect	切断
+vpn.needAdmin	VPN には管理者モードが必要です。設定でオンにしてください（Mac のパスワードを一度だけ求められます）。
+vpn.noEngine	このビルドには VPN エンジンがありません（開発者：app/tools/build_vpn.sh）。
+vpn.profiles	接続
+vpn.noProfiles	接続はまだありません。下に接続リンクを貼り付けてください。
+vpn.paid	有料
+vpn.own	自分のサーバ
+vpn.deleteTitle	この接続を削除しますか？
+vpn.addTitle	接続リンクを追加
+vpn.addHint	Amnezia の「vpn://」リンク、Reality の「vless://」リンク、または AmneziaWG 設定を貼り付けてください。
+vpn.paste	貼り付け
+vpn.add	追加
+vpn.badLink	リンクを認識できません。Amnezia の vpn://、vless://、または [Interface] 設定である必要があります。
+vpn.added	%ld 件の接続を追加しました。
+vpn.ownServer	自分のサーバ
+vpn.planTitle	permwatch VPN — 年額 %ld $
+vpn.planBody	AmneziaWG と Xray Reality を使った、ブロックされにくい高速 VPN。ログなし。支払い後、接続リンクがメールで届きます。
+vpn.freeOwn	自分のサーバ（Amnezia または Xray）があれば無料：上にそのリンクを貼り付けるだけです。
+vpn.buy	購入
+vpn.buyTitle	permwatch VPN · 1 年 · %ld $
+vpn.buyStep1	1. 支払う
+vpn.copyAddress	アドレスをコピー
+vpn.copied	コピーしました
+vpn.networkWarn	%@ ネットワークでのみ送金してください。別のネットワークで送ったお金は失われます。
+vpn.amountStable	ちょうど %1$ld %2$@ を送ってください。
+vpn.amountOther	%ld $ 相当を送ってください（送金時のレート）。
+vpn.buyStep2	2. 支払いを知らせる
+vpn.txField	トランザクション ID（tx hash）
+vpn.txBad	トランザクション ID ではないようです。ウォレットの取引詳細からコピーしてください。
+vpn.contactField	メールアドレスまたは Telegram ユーザ名
+vpn.buyStep3	「支払いを知らせる」を押すとメールアプリに文面が用意されます。送信してください。支払いがチェーン上で確認されると、このアドレスに接続リンクが届きます。「接続リンクを追加」に貼り付けてください。
+vpn.notify	支払いを知らせる
+vpn.sent	メッセージを用意しました。送信を忘れずに。
+vpn.mailIntro	こんにちは。permwatch VPN の代金を支払いました：

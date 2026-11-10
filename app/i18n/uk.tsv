@@ -819,3 +819,91 @@ net.router	роутер
 net.privateMAC	телефон або комп'ютер (приватна адреса)
 net.new	новий
 net.devicesHint	Видно лише пристрої, з якими спілкувався Mac або які відповіли на «Сканувати мережу». Якщо вдома з'явився незнайомий пристрій, змініть пароль Wi-Fi.
+nav.vault	Паролі
+nav.vpn	VPN
+vault.setupTitle	Створити сховище паролів
+vault.setupBody	Паролі зберігаються на цьому Mac у зашифрованому вигляді (AES-256). Відкрити сховище може лише майстер-пароль (або Touch ID); ніхто, зокрема permwatch, не бачить вмісту.
+vault.master	Майстер-пароль
+vault.masterAgain	Майстер-пароль (ще раз)
+vault.noRecovery	Якщо забути майстер-пароль, сховище не відкрити: відновлення немає. Запишіть його або виберіть довгу фразу, яку легко запам'ятати.
+vault.create	Створити сховище
+vault.tooShort	Майстер-пароль має містити щонайменше 10 символів.
+vault.mismatch	Паролі не збігаються.
+vault.locked	Сховище заблоковано
+vault.unlock	Розблокувати
+vault.wrong	Неправильний майстер-пароль.
+vault.authReason	відкрити сховище паролів
+vault.search	Пошук
+vault.add	Новий запис
+vault.import	Імпорт із браузера (CSV)…
+vault.imported	Імпортовано записів: %ld.
+vault.settings	Налаштування сховища…
+vault.lock	Заблокувати
+vault.empty	Записів поки немає. Додайте через «+» або імпортуйте CSV, експортований із браузера.
+vault.count	Записів: %ld
+vault.edit	Змінити
+vault.username	Ім'я користувача
+vault.password	Пароль
+vault.url	Адреса
+vault.title	Назва
+vault.notes	Нотатки
+vault.copyHint	Копіювати (видаляється з буфера через 30 секунд)
+vault.reused	Цей пароль використовується й деінде.
+vault.pwnedCheck	Чи витік?
+vault.pwned	Цей пароль трапляється у витоках %ld разів: змініть його зараз.
+vault.notPwned	У відомих витоках не знайдено.
+vault.pwnedHint	Надсилаються лише перші 5 символів хешу пароля (Have I Been Pwned); сам пароль не покидає Mac.
+vault.delete	Видалити
+vault.deleteTitle	Видалити цей запис?
+vault.generate	Згенерувати надійний пароль
+vault.length	Довжина: %ld
+vault.save	Зберегти
+vault.touchID	Відкривати з Touch ID
+vault.touchIDHint	Ключ сховища зберігається у В'язці ключів і використовується лише після Touch ID або пароля Mac. Сховище блокується після 5 хвилин бездіяльності та під час блокування екрана.
+vault.changeMaster	Змінити майстер-пароль
+vault.oldMaster	Поточний майстер-пароль
+vault.change	Змінити
+vault.changed	Майстер-пароль змінено.
+vault.weak	слабкий
+vault.fair	середній
+vault.good	добрий
+vault.strong	надійний
+vpn.connected	Підключено
+vpn.connecting	Підключення…
+vpn.error	Не вдалося підключитися
+vpn.off	Не підключено
+vpn.connect	Підключити
+vpn.disconnect	Відключити
+vpn.needAdmin	Для VPN потрібен режим адміністратора: увімкніть його в Налаштуваннях (пароль Mac запитають один раз).
+vpn.noEngine	У цій збірці немає VPN-рушіїв (розробнику: app/tools/build_vpn.sh).
+vpn.profiles	Підключення
+vpn.noProfiles	Підключень поки немає. Вставте посилання нижче.
+vpn.paid	платне
+vpn.own	мій сервер
+vpn.deleteTitle	Видалити це підключення?
+vpn.addTitle	Додати посилання підключення
+vpn.addHint	Вставте посилання Amnezia «vpn://», посилання Reality «vless://» або конфігурацію AmneziaWG.
+vpn.paste	Вставити
+vpn.add	Додати
+vpn.badLink	Посилання не розпізнано. Потрібне посилання Amnezia vpn://, vless:// або конфігурація [Interface].
+vpn.added	Додано підключень: %ld.
+vpn.ownServer	Мій сервер
+vpn.planTitle	permwatch VPN — %ld $ на рік
+vpn.planBody	Швидкий VPN, який важко заблокувати: AmneziaWG і Xray Reality. Без журналів. Після оплати посилання для підключення надійде на вашу пошту.
+vpn.freeOwn	Безкоштовно, якщо у вас свій сервер (Amnezia або Xray): просто вставте його посилання вище.
+vpn.buy	Купити
+vpn.buyTitle	permwatch VPN · 1 рік · %ld $
+vpn.buyStep1	1. Оплатіть
+vpn.copyAddress	Скопіювати адресу
+vpn.copied	Скопійовано
+vpn.networkWarn	Надсилайте лише в мережі %@; кошти, надіслані в іншій мережі, буде втрачено.
+vpn.amountStable	Надішліть рівно %1$ld %2$@.
+vpn.amountOther	Надішліть еквівалент %ld $ (за курсом на момент надсилання).
+vpn.buyStep2	2. Повідомте про оплату
+vpn.txField	ID транзакції (tx hash)
+vpn.txBad	Не схоже на ID транзакції; скопіюйте його з деталей транзакції в гаманці.
+vpn.contactField	Ваш e-mail або нік у Telegram
+vpn.buyStep3	«Повідомити про оплату» відкриє готовий лист у поштовій програмі; натисніть «Надіслати». Коли оплата з'явиться в блокчейні, посилання для підключення надійде на цю адресу; вставте його в «Додати посилання підключення».
+vpn.notify	Повідомити про оплату
+vpn.sent	Лист підготовлено; не забудьте надіслати.
+vpn.mailIntro	Вітаю, я оплатив permwatch VPN:

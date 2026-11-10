@@ -819,3 +819,91 @@ net.router	router
 net.privateMAC	phone or computer (private address)
 net.new	new
 net.devicesHint	Only devices your Mac has talked to, or that answered "Scan network", appear. If you see a new device at home you don't recognise, change your Wi-Fi password.
+nav.vault	Passwords
+nav.vpn	VPN
+vault.setupTitle	Create a password vault
+vault.setupBody	Your passwords are stored on this Mac, encrypted with AES-256. Only your master password (or Touch ID) opens the vault; no one, including permwatch, can see inside.
+vault.master	Master password
+vault.masterAgain	Master password (again)
+vault.noRecovery	If you forget the master password the vault can't be opened; there is no recovery. Write it down or choose a long, memorable sentence.
+vault.create	Create vault
+vault.tooShort	The master password must be at least 10 characters.
+vault.mismatch	The passwords don't match.
+vault.locked	Vault locked
+vault.unlock	Unlock
+vault.wrong	Wrong master password.
+vault.authReason	open the password vault
+vault.search	Search
+vault.add	New item
+vault.import	Import from browser (CSV)…
+vault.imported	%ld items imported.
+vault.settings	Vault settings…
+vault.lock	Lock
+vault.empty	No items yet. Add one with "+" or import the CSV file exported from your browser.
+vault.count	%ld items
+vault.edit	Edit
+vault.username	Username
+vault.password	Password
+vault.url	Address
+vault.title	Name
+vault.notes	Notes
+vault.copyHint	Copy (cleared from the clipboard after 30 seconds)
+vault.reused	You use this password somewhere else too.
+vault.pwnedCheck	Leaked?
+vault.pwned	This password appears %ld times in leaked data: change it now.
+vault.notPwned	Not found in known leaks.
+vault.pwnedHint	Only the first 5 characters of the password's hash are sent (Have I Been Pwned); the password never leaves your Mac.
+vault.delete	Delete
+vault.deleteTitle	Delete this item?
+vault.generate	Generate strong password
+vault.length	Length: %ld
+vault.save	Save
+vault.touchID	Unlock with Touch ID
+vault.touchIDHint	The vault key is kept in the Keychain and used only after Touch ID or your Mac password. The vault locks itself after 5 minutes of inactivity and when the screen locks.
+vault.changeMaster	Change master password
+vault.oldMaster	Current master password
+vault.change	Change
+vault.changed	Master password changed.
+vault.weak	weak
+vault.fair	fair
+vault.good	good
+vault.strong	strong
+vpn.connected	Connected
+vpn.connecting	Connecting…
+vpn.error	Couldn't connect
+vpn.off	Not connected
+vpn.connect	Connect
+vpn.disconnect	Disconnect
+vpn.needAdmin	VPN needs administrator mode: turn it on in Settings (your Mac password is asked once).
+vpn.noEngine	This build has no VPN engines (developer: app/tools/build_vpn.sh).
+vpn.profiles	Connections
+vpn.noProfiles	No connections yet. Paste a connection link below.
+vpn.paid	paid
+vpn.own	my server
+vpn.deleteTitle	Delete this connection?
+vpn.addTitle	Add a connection link
+vpn.addHint	Paste an Amnezia "vpn://" link, a "vless://" Reality link or an AmneziaWG configuration.
+vpn.paste	Paste
+vpn.add	Add
+vpn.badLink	Link not recognised. It must be an Amnezia vpn://, a vless:// or an [Interface] configuration.
+vpn.added	%ld connections added.
+vpn.ownServer	My own server
+vpn.planTitle	permwatch VPN — %ld $ a year
+vpn.planBody	A fast VPN that is hard to block, using AmneziaWG and Xray Reality. No logs. After payment your connection link is sent to your email.
+vpn.freeOwn	Free if you have your own server (Amnezia or Xray): just paste its link above.
+vpn.buy	Buy
+vpn.buyTitle	permwatch VPN · 1 year · %ld $
+vpn.buyStep1	1. Pay
+vpn.copyAddress	Copy address
+vpn.copied	Copied
+vpn.networkWarn	Send only on the %@ network; money sent on another network is lost.
+vpn.amountStable	Send exactly %1$ld %2$@.
+vpn.amountOther	Send the equivalent of %ld $ (at the rate when you send).
+vpn.buyStep2	2. Report the payment
+vpn.txField	Transaction ID (tx hash)
+vpn.txBad	This doesn't look like a transaction ID; copy it from the transaction details in your wallet.
+vpn.contactField	Your email or Telegram username
+vpn.buyStep3	Pressing "Report payment" opens a ready message in your mail app; press send. Once the payment is seen on chain, your connection link is sent to this address; paste it into "Add a connection link".
+vpn.notify	Report payment
+vpn.sent	Message prepared; don't forget to send it.
+vpn.mailIntro	Hello, I paid for permwatch VPN:

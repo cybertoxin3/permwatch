@@ -819,3 +819,91 @@ net.router	routeur
 net.privateMAC	téléphone ou ordinateur (adresse privée)
 net.new	nouveau
 net.devicesHint	Seuls les appareils avec lesquels votre Mac a communiqué, ou qui ont répondu à « Analyser le réseau », apparaissent. Si vous voyez chez vous un nouvel appareil inconnu, changez le mot de passe Wi-Fi.
+nav.vault	Mots de passe
+nav.vpn	VPN
+vault.setupTitle	Créer un coffre de mots de passe
+vault.setupBody	Vos mots de passe sont stockés sur ce Mac, chiffrés en AES-256. Seul votre mot de passe principal (ou Touch ID) ouvre le coffre ; personne, pas même permwatch, ne peut voir son contenu.
+vault.master	Mot de passe principal
+vault.masterAgain	Mot de passe principal (à nouveau)
+vault.noRecovery	Si vous oubliez le mot de passe principal, le coffre ne pourra pas être ouvert ; aucune récupération n'est possible. Notez-le ou choisissez une longue phrase facile à retenir.
+vault.create	Créer le coffre
+vault.tooShort	Le mot de passe principal doit comporter au moins 10 caractères.
+vault.mismatch	Les mots de passe ne correspondent pas.
+vault.locked	Coffre verrouillé
+vault.unlock	Déverrouiller
+vault.wrong	Mot de passe principal incorrect.
+vault.authReason	ouvrir le coffre de mots de passe
+vault.search	Rechercher
+vault.add	Nouvel élément
+vault.import	Importer depuis le navigateur (CSV)…
+vault.imported	%ld éléments importés.
+vault.settings	Réglages du coffre…
+vault.lock	Verrouiller
+vault.empty	Aucun élément. Ajoutez-en un avec « + » ou importez le CSV exporté depuis votre navigateur.
+vault.count	%ld éléments
+vault.edit	Modifier
+vault.username	Nom d'utilisateur
+vault.password	Mot de passe
+vault.url	Adresse
+vault.title	Nom
+vault.notes	Notes
+vault.copyHint	Copier (effacé du presse-papiers après 30 secondes)
+vault.reused	Vous utilisez aussi ce mot de passe ailleurs.
+vault.pwnedCheck	Divulgué ?
+vault.pwned	Ce mot de passe apparaît %ld fois dans des fuites : changez-le maintenant.
+vault.notPwned	Absent des fuites connues.
+vault.pwnedHint	Seuls les 5 premiers caractères de l'empreinte du mot de passe sont envoyés (Have I Been Pwned) ; le mot de passe ne quitte jamais votre Mac.
+vault.delete	Supprimer
+vault.deleteTitle	Supprimer cet élément ?
+vault.generate	Générer un mot de passe fort
+vault.length	Longueur : %ld
+vault.save	Enregistrer
+vault.touchID	Déverrouiller avec Touch ID
+vault.touchIDHint	La clé du coffre est conservée dans le trousseau et n'est utilisée qu'après Touch ID ou le mot de passe du Mac. Le coffre se verrouille après 5 minutes d'inactivité et au verrouillage de l'écran.
+vault.changeMaster	Changer le mot de passe principal
+vault.oldMaster	Mot de passe principal actuel
+vault.change	Changer
+vault.changed	Mot de passe principal changé.
+vault.weak	faible
+vault.fair	moyen
+vault.good	bon
+vault.strong	fort
+vpn.connected	Connecté
+vpn.connecting	Connexion…
+vpn.error	Connexion impossible
+vpn.off	Non connecté
+vpn.connect	Se connecter
+vpn.disconnect	Se déconnecter
+vpn.needAdmin	Le VPN nécessite le mode administrateur : activez-le dans les Réglages (le mot de passe du Mac est demandé une fois).
+vpn.noEngine	Cette version ne contient pas les moteurs VPN (développeur : app/tools/build_vpn.sh).
+vpn.profiles	Connexions
+vpn.noProfiles	Aucune connexion. Collez un lien de connexion ci-dessous.
+vpn.paid	payant
+vpn.own	mon serveur
+vpn.deleteTitle	Supprimer cette connexion ?
+vpn.addTitle	Ajouter un lien de connexion
+vpn.addHint	Collez un lien Amnezia « vpn:// », un lien Reality « vless:// » ou une configuration AmneziaWG.
+vpn.paste	Coller
+vpn.add	Ajouter
+vpn.badLink	Lien non reconnu. Il doit s'agir d'un vpn:// Amnezia, d'un vless:// ou d'une configuration [Interface].
+vpn.added	%ld connexions ajoutées.
+vpn.ownServer	Mon propre serveur
+vpn.planTitle	permwatch VPN — %ld $ par an
+vpn.planBody	Un VPN rapide et difficile à bloquer, avec AmneziaWG et Xray Reality. Aucun journal. Après le paiement, votre lien de connexion est envoyé par e-mail.
+vpn.freeOwn	Gratuit si vous avez votre propre serveur (Amnezia ou Xray) : collez simplement son lien ci-dessus.
+vpn.buy	Acheter
+vpn.buyTitle	permwatch VPN · 1 an · %ld $
+vpn.buyStep1	1. Payer
+vpn.copyAddress	Copier l'adresse
+vpn.copied	Copié
+vpn.networkWarn	Envoyez uniquement sur le réseau %@ ; l'argent envoyé sur un autre réseau est perdu.
+vpn.amountStable	Envoyez exactement %1$ld %2$@.
+vpn.amountOther	Envoyez l'équivalent de %ld $ (au cours du moment de l'envoi).
+vpn.buyStep2	2. Signaler le paiement
+vpn.txField	ID de transaction (tx hash)
+vpn.txBad	Cela ne ressemble pas à un ID de transaction ; copiez-le depuis les détails de la transaction dans votre portefeuille.
+vpn.contactField	Votre e-mail ou nom d'utilisateur Telegram
+vpn.buyStep3	« Signaler le paiement » ouvre un message prêt dans votre app Mail ; appuyez sur Envoyer. Dès que le paiement est visible sur la chaîne, votre lien de connexion est envoyé à cette adresse ; collez-le dans « Ajouter un lien de connexion ».
+vpn.notify	Signaler le paiement
+vpn.sent	Message préparé ; n'oubliez pas de l'envoyer.
+vpn.mailIntro	Bonjour, j'ai payé permwatch VPN :

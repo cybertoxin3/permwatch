@@ -819,3 +819,91 @@ net.router	路由器
 net.privateMAC	手机或电脑（私有地址）
 net.new	新
 net.devicesHint	只显示 Mac 通信过或响应“扫描网络”的设备。如果在家中看到不认识的新设备，请更改 Wi-Fi 密码。
+nav.vault	密码
+nav.vpn	VPN
+vault.setupTitle	创建密码库
+vault.setupBody	你的密码以 AES-256 加密保存在这台 Mac 上。只有主密码（或 Touch ID）能打开密码库；包括 permwatch 在内，任何人都看不到其中内容。
+vault.master	主密码
+vault.masterAgain	再次输入主密码
+vault.noRecovery	如果忘记主密码，密码库将无法打开，且无法恢复。请记下来，或选择一句容易记住的长句。
+vault.create	创建密码库
+vault.tooShort	主密码至少需要 10 个字符。
+vault.mismatch	两次输入的密码不一致。
+vault.locked	密码库已锁定
+vault.unlock	解锁
+vault.wrong	主密码错误。
+vault.authReason	打开密码库
+vault.search	搜索
+vault.add	新项目
+vault.import	从浏览器导入（CSV）…
+vault.imported	已导入 %ld 个项目。
+vault.settings	密码库设置…
+vault.lock	锁定
+vault.empty	还没有项目。点“+”添加，或导入从浏览器导出的 CSV 文件。
+vault.count	%ld 个项目
+vault.edit	编辑
+vault.username	用户名
+vault.password	密码
+vault.url	地址
+vault.title	名称
+vault.notes	备注
+vault.copyHint	复制（30 秒后从剪贴板清除）
+vault.reused	你在其他地方也使用了这个密码。
+vault.pwnedCheck	是否泄露？
+vault.pwned	这个密码在泄露数据中出现了 %ld 次：请立即更改。
+vault.notPwned	未在已知泄露中发现。
+vault.pwnedHint	只发送密码哈希的前 5 个字符（Have I Been Pwned）；密码本身不会离开你的 Mac。
+vault.delete	删除
+vault.deleteTitle	删除这个项目？
+vault.generate	生成强密码
+vault.length	长度：%ld
+vault.save	保存
+vault.touchID	使用 Touch ID 解锁
+vault.touchIDHint	密码库密钥保存在钥匙串中，只有在 Touch ID 或 Mac 密码验证后才会使用。闲置 5 分钟或屏幕锁定时，密码库会自动锁定。
+vault.changeMaster	更改主密码
+vault.oldMaster	当前主密码
+vault.change	更改
+vault.changed	主密码已更改。
+vault.weak	弱
+vault.fair	一般
+vault.good	良好
+vault.strong	强
+vpn.connected	已连接
+vpn.connecting	正在连接…
+vpn.error	无法连接
+vpn.off	未连接
+vpn.connect	连接
+vpn.disconnect	断开连接
+vpn.needAdmin	VPN 需要管理员模式：请在设置中开启（只需输入一次 Mac 密码）。
+vpn.noEngine	此版本不含 VPN 引擎（开发者：app/tools/build_vpn.sh）。
+vpn.profiles	连接
+vpn.noProfiles	还没有连接。请在下方粘贴连接链接。
+vpn.paid	付费
+vpn.own	我的服务器
+vpn.deleteTitle	删除此连接？
+vpn.addTitle	添加连接链接
+vpn.addHint	粘贴 Amnezia 的“vpn://”链接、Reality 的“vless://”链接或 AmneziaWG 配置。
+vpn.paste	粘贴
+vpn.add	添加
+vpn.badLink	无法识别链接。必须是 Amnezia vpn://、vless:// 或 [Interface] 配置。
+vpn.added	已添加 %ld 个连接。
+vpn.ownServer	我自己的服务器
+vpn.planTitle	permwatch VPN — 每年 %ld $
+vpn.planBody	使用 AmneziaWG 和 Xray Reality、难以被封锁的快速 VPN。不保留日志。付款后，连接链接会发送到你的邮箱。
+vpn.freeOwn	如果你有自己的服务器（Amnezia 或 Xray）则免费：只需把它的链接粘贴到上方。
+vpn.buy	购买
+vpn.buyTitle	permwatch VPN · 1 年 · %ld $
+vpn.buyStep1	1. 付款
+vpn.copyAddress	复制地址
+vpn.copied	已复制
+vpn.networkWarn	只能通过 %@ 网络发送；通过其他网络发送的资金会丢失。
+vpn.amountStable	请准确发送 %1$ld %2$@。
+vpn.amountOther	请发送等值 %ld $ 的金额（按发送时的汇率）。
+vpn.buyStep2	2. 告知付款
+vpn.txField	交易 ID（tx hash）
+vpn.txBad	这看起来不像交易 ID；请从钱包的交易详情中复制。
+vpn.contactField	你的邮箱或 Telegram 用户名
+vpn.buyStep3	点“告知付款”会在邮件应用中打开一封准备好的邮件；请点发送。付款在链上确认后，连接链接会发送到这个地址；收到后粘贴到“添加连接链接”。
+vpn.notify	告知付款
+vpn.sent	邮件已准备好；别忘了发送。
+vpn.mailIntro	你好，我已支付 permwatch VPN：

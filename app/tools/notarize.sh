@@ -10,6 +10,7 @@ cd "${0:A:h}/.."
 PROFILE=${NOTARY_PROFILE:-permwatch}
 security find-identity -v -p codesigning | grep -q "Developer ID Application" || {
     echo "Developer ID Application sertifikası bulunamadı." >&2; exit 1; }
+[[ -x vendor/vpn/amneziawg-go && -x vendor/vpn/xray ]] || { echo "VPN motorları yok: önce app/tools/build_vpn.sh" >&2; exit 1; }
 PERMWATCH_RELEASE=1 ./build.sh
 VER=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" build/permwatch.app/Contents/Info.plist)
 ZIP=build/permwatch-$VER.zip
