@@ -32,8 +32,12 @@ final class VPNRunner {
         restoreDNS()
     }
 
+    /// Paketteki motorun yolu. Servis olarak başlatıldığında argv[0] yalnızca "permwatch-root" olur;
+    /// bu yüzden çalışan programın gerçek yolu çekirdekten (proc_pidpath) alınır.
     func vpnBin(_ name: String) -> String {
-        let exe = URL(fileURLWithPath: CommandLine.arguments[0]).resolvingSymlinksInPath()
+        var buf = [CChar](repeating: 0, count: 4096)
+        let exePath = proc_pidpath(getpid(), &buf, UInt32(buf.count)) > 0 ? String(cString: buf) : CommandLine.arguments[0]
+        let exe = URL(fileURLWithPath: exePath).resolvingSymlinksInPath()
         return exe.deletingLastPathComponent().deletingLastPathComponent().appendingPathComponent("Resources/vpn/" + name).path
     }
 

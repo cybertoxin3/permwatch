@@ -908,3 +908,10 @@ vpn.notify	Ödemeyi bildir
 vpn.sent	İleti hazırlandı; göndermeyi unutma.
 vpn.mailIntro	Merhaba, permwatch VPN için ödeme yaptım:
 nav.back	Geri
+vpn.sendAmount	Gönderilecek tutar
+vpn.copyAmount	Tutarı kopyala
+vpn.rate	Kur: %1$@ · %2$@ güncellendi (her dakika yenilenir)
+vpn.qrHint	QR kodunu cüzdanınla okut: adres ve tutar kendiliğinden dolar. Elle gönderiyorsan tutarı aynen kopyala.
+vpn.rateFailed	Güncel kur alınamadı; internet bağlantını kontrol et.
+vpn.retry	Tekrar dene
+vpn.rateLoading	Güncel kur alınıyor…

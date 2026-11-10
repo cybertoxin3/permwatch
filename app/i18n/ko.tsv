@@ -908,3 +908,10 @@ vpn.notify	결제 알리기
 vpn.sent	메시지가 준비되었습니다. 보내는 것을 잊지 마세요.
 vpn.mailIntro	안녕하세요, permwatch VPN 비용을 결제했습니다:
 nav.back	뒤로
+vpn.sendAmount	보낼 금액
+vpn.copyAmount	금액 복사
+vpn.rate	시세: %1$@ · %2$@ 업데이트 (매분 갱신)
+vpn.qrHint	지갑으로 QR 코드를 스캔하면 주소와 금액이 자동으로 입력됩니다. 직접 보낼 때는 금액을 정확히 복사하세요.
+vpn.rateFailed	현재 시세를 가져올 수 없습니다. 인터넷 연결을 확인하세요.
+vpn.retry	다시 시도
+vpn.rateLoading	현재 시세를 가져오는 중…

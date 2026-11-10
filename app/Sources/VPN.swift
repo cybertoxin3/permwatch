@@ -318,24 +318,106 @@ final class VPNManager: ObservableObject {
 enum VPNPlan {
     static let priceUSD = 25
     /// README'deki adreslerle aynı (Bana bir kahve ısmarlar mısın?).
-    static let coins: [(name: String, network: String, address: String, stable: Bool)] = [
-        ("USDT", "Ethereum (ERC-20)", "0xCD9ab39db50A830e157776a97bc9Ae21811e3177", true),
-        ("USDC", "Ethereum (ERC-20)", "0xCD9ab39db50A830e157776a97bc9Ae21811e3177", true),
-        ("Bitcoin (BTC)", "SegWit", "bc1qevw8l3pwfahysgmxy0vhv2srnk0dcyze7pggq8", false),
-        ("Ethereum (ETH)", "Ethereum (ERC-20)", "0xCD9ab39db50A830e157776a97bc9Ae21811e3177", false),
-        ("Litecoin (LTC)", "SegWit", "ltc1qx40ryzy34vf5977aq5uk3rpqm7err5jvf7gcwl", false),
-        ("Solana (SOL)", "Solana", "5uwHKnCMFbFpob2ssypd69svUFCYZQePCwZcQfELckAD", false),
-        ("Dogecoin (DOGE)", "Dogecoin", "DTtZ7oJELg9hs43o1g97qVM676H46XorAT", false),
-        ("Monero (XMR)", "Monero", "42tsRvBWbPujgVpQdNy6Ba6ovKNcPkxQBKWn1rYcENDpAPTuvQ2ejxCXcUc5KJQTdkHicn4agR7GnYroSUGQLzVhL93KmTt", false),
+    struct Coin {
+        let name: String
+        let symbol: String
+        let network: String
+        let address: String
+        let geckoID: String?      // nil: dolara sabit (USDT, USDC)
+        let decimals: Int         // gösterilen/ödenen ondalık
+        let token: String?        // ERC-20 sözleşmesi
+        let tokenDecimals: Int
+    }
+
+    /// README'deki adreslerle aynı (Bana bir kahve ısmarlar mısın?).
+    static let coins: [Coin] = [
+        Coin(name: "USDT", symbol: "USDT", network: "Ethereum (ERC-20)", address: "0xCD9ab39db50A830e157776a97bc9Ae21811e3177",
+             geckoID: nil, decimals: 2, token: "0xdAC17F958D2ee523a2206206994597C13D831ec7", tokenDecimals: 6),
+        Coin(name: "USDC", symbol: "USDC", network: "Ethereum (ERC-20)", address: "0xCD9ab39db50A830e157776a97bc9Ae21811e3177",
+             geckoID: nil, decimals: 2, token: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48", tokenDecimals: 6),
+        Coin(name: "Bitcoin (BTC)", symbol: "BTC", network: "Bitcoin (SegWit)", address: "bc1qevw8l3pwfahysgmxy0vhv2srnk0dcyze7pggq8",
+             geckoID: "bitcoin", decimals: 8, token: nil, tokenDecimals: 0),
+        Coin(name: "Ethereum (ETH)", symbol: "ETH", network: "Ethereum", address: "0xCD9ab39db50A830e157776a97bc9Ae21811e3177",
+             geckoID: "ethereum", decimals: 6, token: nil, tokenDecimals: 0),
+        Coin(name: "Litecoin (LTC)", symbol: "LTC", network: "Litecoin (SegWit)", address: "ltc1qx40ryzy34vf5977aq5uk3rpqm7err5jvf7gcwl",
+             geckoID: "litecoin", decimals: 8, token: nil, tokenDecimals: 0),
+        Coin(name: "Solana (SOL)", symbol: "SOL", network: "Solana", address: "5uwHKnCMFbFpob2ssypd69svUFCYZQePCwZcQfELckAD",
+             geckoID: "solana", decimals: 5, token: nil, tokenDecimals: 0),
+        Coin(name: "Dogecoin (DOGE)", symbol: "DOGE", network: "Dogecoin", address: "DTtZ7oJELg9hs43o1g97qVM676H46XorAT",
+             geckoID: "dogecoin", decimals: 2, token: nil, tokenDecimals: 0),
+        Coin(name: "Monero (XMR)", symbol: "XMR", network: "Monero", address: "42tsRvBWbPujgVpQdNy6Ba6ovKNcPkxQBKWn1rYcENDpAPTuvQ2ejxCXcUc5KJQTdkHicn4agR7GnYroSUGQLzVhL93KmTt",
+             geckoID: "monero", decimals: 6, token: nil, tokenDecimals: 0),
     ]
 
+    /// 25 $ karşılığı, gösterilen ondalığa YUKARI yuvarlanmış (eksik ödeme olmasın).
+    static func amount(for c: Coin, usdPrice: Decimal) -> Decimal {
+        guard usdPrice > 0 else { return 0 }
+        var raw = Decimal(priceUSD) / usdPrice, out = Decimal()
+        NSDecimalRound(&out, &raw, c.decimals, .up)
+        return out
+    }
+
+    static func format(_ d: Decimal, decimals: Int) -> String {
+        let f = NumberFormatter()
+        f.locale = Locale(identifier: "en_US_POSIX")
+        f.minimumFractionDigits = min(decimals, 2); f.maximumFractionDigits = decimals
+        f.minimumIntegerDigits = 1; f.usesGroupingSeparator = false
+        return f.string(from: d as NSDecimalNumber) ?? "\(d)"
+    }
+
+    /// En küçük birime çevirir (wei, token birimi): tam sayı metni.
+    static func baseUnits(_ d: Decimal, decimals: Int) -> String {
+        var v = d * pow(Decimal(10), decimals), out = Decimal()
+        NSDecimalRound(&out, &v, 0, .up)
+        return (out as NSDecimalNumber).stringValue
+    }
+
+    /// Cüzdanların okuduğu ödeme bağlantısı: adres + tutar (BIP-21, EIP-681, Solana Pay, Monero).
+    static func paymentURI(_ c: Coin, amount: Decimal) -> String {
+        let amt = format(amount, decimals: c.decimals)
+        if let t = c.token { return "ethereum:\(t)@1/transfer?address=\(c.address)&uint256=\(baseUnits(amount, decimals: c.tokenDecimals))" }
+        switch c.symbol {
+        case "ETH": return "ethereum:\(c.address)@1?value=\(baseUnits(amount, decimals: 18))"
+        case "BTC": return "bitcoin:\(c.address)?amount=\(amt)"
+        case "LTC": return "litecoin:\(c.address)?amount=\(amt)"
+        case "DOGE": return "dogecoin:\(c.address)?amount=\(amt)"
+        case "SOL": return "solana:\(c.address)?amount=\(amt)"
+        case "XMR": return "monero:\(c.address)?tx_amount=\(amt)"
+        default: return c.address
+        }
+    }
+
+    /// Güncel dolar kurları (yalnızca kur indirilir, hiçbir şey gönderilmez). Önce CoinGecko, olmazsa Coinbase.
+    static func fetchPrices() async -> [String: Decimal]? {
+        let ids = coins.compactMap(\.geckoID).joined(separator: ",")
+        if let u = URL(string: "https://api.coingecko.com/api/v3/simple/price?ids=\(ids)&vs_currencies=usd"),
+           let (d, r) = try? await URLSession.shared.data(from: u), (r as? HTTPURLResponse)?.statusCode == 200,
+           let j = (try? JSONSerialization.jsonObject(with: d)) as? [String: [String: Any]] {
+            var out: [String: Decimal] = [:]
+            for (k, v) in j { if let p = v["usd"] as? NSNumber { out[k] = p.decimalValue } }
+            if out.count >= 3 { return out }
+        }
+        // Yedek: Coinbase (1 USD = x coin); Monero yok.
+        guard let u = URL(string: "https://api.coinbase.com/v2/exchange-rates?currency=USD"),
+              let (d, _) = try? await URLSession.shared.data(from: u),
+              let j = (try? JSONSerialization.jsonObject(with: d)) as? [String: Any],
+              let rates = (j["data"] as? [String: Any])?["rates"] as? [String: String] else { return nil }
+        var out: [String: Decimal] = [:]
+        for c in coins where c.geckoID != nil {
+            if let r = rates[c.symbol], let v = Decimal(string: r, locale: Locale(identifier: "en_US_POSIX")), v > 0 { out[c.geckoID!] = 1 / v }
+        }
+        return out.isEmpty ? nil : out
+    }
+
     /// Ödeme bildirimi: permwatch'ın geliştiricisine e-posta (işlem kodu + iletişim adresi). Kullanıcı gönder'e basar.
-    static func notify(coin: String, network: String, tx: String, contact: String) {
+    static func notify(coin: String, network: String, tx: String, contact: String, amount: String = "", rate: String = "") {
         let ver = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "?"
         let body = """
         \(L("vpn.mailIntro"))
 
         Coin: \(coin) (\(network))
+        Amount: \(amount)
+        Rate: \(rate)
         Tx: \(tx)
         Contact: \(contact)
         Plan: permwatch VPN, 1 year, \(priceUSD) USD

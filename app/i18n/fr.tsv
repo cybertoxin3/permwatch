@@ -908,3 +908,10 @@ vpn.notify	Signaler le paiement
 vpn.sent	Message préparé ; n'oubliez pas de l'envoyer.
 vpn.mailIntro	Bonjour, j'ai payé permwatch VPN :
 nav.back	Retour
+vpn.sendAmount	Montant à envoyer
+vpn.copyAmount	Copier le montant
+vpn.rate	Cours : %1$@ · mis à jour %2$@ (actualisé chaque minute)
+vpn.qrHint	Scannez le QR code avec votre portefeuille : l'adresse et le montant se remplissent automatiquement. Si vous envoyez manuellement, copiez le montant exact.
+vpn.rateFailed	Impossible d'obtenir le cours actuel ; vérifiez votre connexion Internet.
+vpn.retry	Réessayer
+vpn.rateLoading	Récupération du cours actuel…

@@ -164,11 +164,24 @@ struct VPNBuyView: View {
     @State private var coin = 0
     @State private var tx = ""
     @State private var contact = ""
-    @State private var copied = false
+    @State private var copied: String?
     @State private var sent = false
+    @State private var prices: [String: Decimal] = [:]
+    @State private var updated: Date?
+    @State private var loading = false
+    @State private var failed = false
+    private let refresh = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
 
-    private var c: (name: String, network: String, address: String, stable: Bool) { VPNPlan.coins[coin] }
+    private var c: VPNPlan.Coin { VPNPlan.coins[coin] }
     private var contactOK: Bool { contact.contains("@") && contact.contains(".") || contact.hasPrefix("@") && contact.count > 3 }
+    /// Coinin dolar fiyatı (sabit paralar 1).
+    private var price: Decimal? { c.geckoID.map { prices[$0] } ?? 1 }
+    private var amount: Decimal? { price.map { VPNPlan.amount(for: c, usdPrice: $0) } }
+    private var amountText: String? { amount.map { VPNPlan.format($0, decimals: c.decimals) } }
+    private var rateText: String {
+        guard let p = price else { return "" }
+        return "1 \(c.symbol) = \(VPNPlan.format(p, decimals: 2)) $"
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 14) {
@@ -178,21 +191,34 @@ struct VPNBuyView: View {
                 ForEach(VPNPlan.coins.indices, id: \.self) { i in Text("\(VPNPlan.coins[i].name) · \(VPNPlan.coins[i].network)").tag(i) }
             }
             .labelsHidden()
-            HStack(alignment: .top, spacing: 14) {
-                if let img = qr(c.address) {
-                    Image(nsImage: img).interpolation(.none).resizable().frame(width: 120, height: 120)
-                        .background(Color.white).clipShape(RoundedRectangle(cornerRadius: 6))
-                }
-                VStack(alignment: .leading, spacing: 6) {
-                    Text(c.address).font(.system(size: 12, design: .monospaced)).textSelection(.enabled).fixedSize(horizontal: false, vertical: true)
-                    Button(copied ? L("vpn.copied") : L("vpn.copyAddress")) {
-                        NSPasteboard.general.clearContents(); NSPasteboard.general.setString(c.address, forType: .string); copied = true
+            if let amt = amount, let amtText = amountText {
+                HStack(alignment: .top, spacing: 14) {
+                    if let img = qr(VPNPlan.paymentURI(c, amount: amt)) {
+                        Image(nsImage: img).interpolation(.none).resizable().frame(width: 140, height: 140)
+                            .background(Color.white).clipShape(RoundedRectangle(cornerRadius: 6))
                     }
-                    .controlSize(.small)
-                    Text(L("vpn.networkWarn", c.network)).font(.system(size: 11.5)).foregroundStyle(.orange).fixedSize(horizontal: false, vertical: true)
-                    Text(c.stable ? L("vpn.amountStable", VPNPlan.priceUSD, c.name) : L("vpn.amountOther", VPNPlan.priceUSD))
-                        .font(.system(size: 11.5)).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text(L("vpn.sendAmount")).font(.system(size: 11.5)).foregroundStyle(.secondary)
+                        HStack(spacing: 8) {
+                            Text("\(amtText) \(c.symbol)").font(.system(size: 20, weight: .bold, design: .monospaced)).textSelection(.enabled)
+                            Button(copied == "amount" ? L("vpn.copied") : L("vpn.copyAmount")) { copy(amtText, "amount") }.controlSize(.small)
+                        }
+                        if c.geckoID != nil {
+                            Text(L("vpn.rate", rateText, updated.map { Fmt.relative($0) } ?? "")).font(.system(size: 11)).foregroundStyle(.secondary)
+                        }
+                        Text(c.address).font(.system(size: 11.5, design: .monospaced)).textSelection(.enabled).fixedSize(horizontal: false, vertical: true)
+                        Button(copied == "address" ? L("vpn.copied") : L("vpn.copyAddress")) { copy(c.address, "address") }.controlSize(.small)
+                        Text(L("vpn.networkWarn", c.network)).font(.system(size: 11.5)).foregroundStyle(.orange).fixedSize(horizontal: false, vertical: true)
+                    }
                 }
+                Text(L("vpn.qrHint")).font(.system(size: 11.5)).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
+            } else if failed || (!prices.isEmpty && price == nil) {
+                HStack {
+                    Label(L("vpn.rateFailed"), systemImage: "wifi.exclamationmark").font(.system(size: 12)).foregroundStyle(.orange)
+                    Button(L("vpn.retry")) { load() }.controlSize(.small)
+                }
+            } else {
+                HStack(spacing: 8) { ProgressView().controlSize(.small); Text(L("vpn.rateLoading")).font(.system(size: 12)).foregroundStyle(.secondary) }
             }
             Divider()
             Text(L("vpn.buyStep2")).font(.system(size: 13, weight: .semibold))
@@ -205,14 +231,33 @@ struct VPNBuyView: View {
                 Spacer()
                 Button(L("confirm.cancel"), action: close).keyboardShortcut(.cancelAction)
                 Button(L("vpn.notify")) {
-                    VPNPlan.notify(coin: c.name, network: c.network, tx: tx.trimmingCharacters(in: .whitespaces), contact: contact)
+                    VPNPlan.notify(coin: c.name, network: c.network, tx: tx.trimmingCharacters(in: .whitespaces), contact: contact,
+                                   amount: "\(amountText ?? "?") \(c.symbol)", rate: rateText + (updated.map { " @ \($0.formatted(.iso8601))" } ?? ""))
                     sent = true
                 }
-                .buttonStyle(.borderedProminent).disabled(!VPNPlan.validTx(tx) || !contactOK)
+                .buttonStyle(.borderedProminent).disabled(!VPNPlan.validTx(tx) || !contactOK || amount == nil)
             }
         }
-        .padding(22).frame(width: 520)
-        .onChange(of: coin) { _, _ in copied = false }
+        .padding(22).frame(width: 540)
+        .onAppear(perform: load)
+        .onReceive(refresh) { _ in load() }
+        .onChange(of: coin) { _, _ in copied = nil }
+    }
+
+    private func load() {
+        guard !loading else { return }
+        loading = true
+        Task {
+            let p = await VPNPlan.fetchPrices()
+            await MainActor.run {
+                loading = false
+                if let p { prices = p; updated = Date(); failed = false } else { failed = prices.isEmpty }
+            }
+        }
+    }
+
+    private func copy(_ s: String, _ what: String) {
+        NSPasteboard.general.clearContents(); NSPasteboard.general.setString(s, forType: .string); copied = what
     }
 
     private func qr(_ s: String) -> NSImage? {

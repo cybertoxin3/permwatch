@@ -908,3 +908,10 @@ vpn.notify	Report payment
 vpn.sent	Message prepared; don't forget to send it.
 vpn.mailIntro	Hello, I paid for permwatch VPN:
 nav.back	Back
+vpn.sendAmount	Amount to send
+vpn.copyAmount	Copy amount
+vpn.rate	Rate: %1$@ · updated %2$@ (refreshed every minute)
+vpn.qrHint	Scan the QR code with your wallet: address and amount are filled in automatically. If you send manually, copy the amount exactly.
+vpn.rateFailed	Couldn't get the current rate; check your internet connection.
+vpn.retry	Try again
+vpn.rateLoading	Getting the current rate…

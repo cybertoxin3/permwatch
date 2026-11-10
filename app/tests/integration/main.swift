@@ -398,6 +398,23 @@ func check(_ cond: Bool, _ name: String) { if cond { print("✓ \(name)") } else
         _ = v
     }
 
+    do {
+        let btc = VPNPlan.coins.first { $0.symbol == "BTC" }!, usdt = VPNPlan.coins.first { $0.symbol == "USDT" }!
+        let eth = VPNPlan.coins.first { $0.symbol == "ETH" }!
+        let a = VPNPlan.amount(for: btc, usdPrice: 97_123.45)
+        check(VPNPlan.format(a, decimals: 8) == "0.00025741" && a * 97_123.45 >= Decimal(VPNPlan.priceUSD), "kripto tutarı yukarı yuvarlanır (eksik ödeme olmaz)")
+        check(VPNPlan.paymentURI(btc, amount: a) == "bitcoin:\(btc.address)?amount=0.00025741", "Bitcoin QR bağlantısı tutarı içerir (BIP-21)")
+        check(VPNPlan.paymentURI(usdt, amount: VPNPlan.amount(for: usdt, usdPrice: 1)).hasSuffix("/transfer?address=\(usdt.address)&uint256=25000000"),
+              "USDT QR bağlantısı token tutarını içerir (EIP-681)")
+        let e = VPNPlan.amount(for: eth, usdPrice: 3_333.33)
+        check(VPNPlan.paymentURI(eth, amount: e) == "ethereum:\(eth.address)@1?value=7501000000000000", "ETH QR bağlantısı wei cinsinden tutarı içerir")
+        let sem = DispatchSemaphore(value: 0)
+        var live: [String: Decimal]?
+        Task.detached { live = await VPNPlan.fetchPrices(); sem.signal() }
+        _ = sem.wait(timeout: .now() + 20)
+        check((live?["bitcoin"] ?? 0) > 1000 && (live?["ethereum"] ?? 0) > 100, "güncel kurlar internetten alınır (BTC \(live?["bitcoin"] ?? 0) $)")
+    }
+
     print(failures == 0 ? "\nTüm bütünleşik testler geçti." : "\n\(failures) bütünleşik test başarısız.")
     exit(failures == 0 ? 0 : 1)
 } }
