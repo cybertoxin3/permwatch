@@ -26,7 +26,6 @@ permwatch keeps a record of every permission change and alerts you the moment so
 ---
 
 
-
 ## You clicked "Allow" and forgot
 
 "Allow screen recording." "Accessibility access required." "Open at login?"
