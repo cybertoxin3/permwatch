@@ -25,15 +25,7 @@ permwatch keeps a record of every permission change and alerts you the moment so
  
 ---
 
-## 🖥️ Knows who is watching your screen
 
-Zoom, Teams, Meet, Discord, AnyDesk, a screen recorder: whatever is recording or sharing your screen, permwatch names it in a small indicator at the top of the screen. It reads this from macOS itself, so it works for any app without a list.
-
-It stays out of the way: joining a class or a meeting is unaffected. But if a share you haven't marked "I know this" is running and you start typing into a **password field** (on any site or app), or open a banking, payment or government site, a full-screen warning stops you before the other side sees your details. One button stops the share; afterwards permwatch tells you what to do.
-
-<p align="center">
-  <img src="docs/images/share_en.png" alt="permwatch screen share warning" width="760">
-</p>
 
 ## You clicked "Allow" and forgot
 
