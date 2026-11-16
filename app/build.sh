@@ -112,6 +112,7 @@ cat > "$APP/Contents/Info.plist" <<EOF
     <key>LSApplicationCategoryType</key><string>public.app-category.utilities</string>
     <key>NSHighResolutionCapable</key><true/>
     $SPARKLE_KEYS
+    <key>NSLocalNetworkUsageDescription</key><string>permwatch, "Ağı tara" dediğinde bağlı olduğun ağdaki cihazları bulmak için yerel ağa küçük paketler gönderir. / permwatch sends small packets on your local network to find connected devices when you choose "Scan network".</string>
     <key>NSAppleEventsUsageDescription</key><string>permwatch, kaldırdığın uygulamaları Çöp Sepeti'ne taşımak için Finder'ı kullanır; uzaktan bağlantı açıkken banka sitesine girdiğinde seni uyarmak için tarayıcının etkin sekmesinin adresine bakar. / permwatch uses Finder to move apps you uninstall to the Trash and, while someone is connected to your Mac remotely, checks the address of the active browser tab to warn you before you use a bank site.</string>
 </dict>
 </plist>

@@ -1047,3 +1047,5 @@ disk.orphans.none	残りファイルは見つかりませんでした。
 disk.orphans.places	%ld か所
 disk.orphans.summary	残り %1$ld 件 · %2$@
 disk.orphans.confirm	%ld 個のアプリの残りファイルをゴミ箱に入れますか？
+net.isolated	%ld 個のアドレスを試しましたが、応答したのはルーターだけでした。このネットワークはおそらく端末同士を分離しています（ゲスト用・寮・ホテルの Wi-Fi で一般的）。そのため他の端末は一覧にできません。相手からもこの Mac は見えません。
+net.scanBlocked	macOS がスキャンをブロックしました：permwatch にローカルネットワーク上の端末へのアクセスが許可されていません。システム設定 › プライバシーとセキュリティ › ローカルネットワーク でオンにしてください。

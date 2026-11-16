@@ -1047,3 +1047,5 @@ disk.orphans.none	Nenhum resto encontrado.
 disk.orphans.places	%ld locais
 disk.orphans.summary	%1$ld restos · %2$@
 disk.orphans.confirm	Mover os restos de %ld apps para o Lixo?
+net.isolated	%ld endereços foram testados e só o roteador respondeu. Esta rede muito provavelmente isola os dispositivos uns dos outros (comum em Wi-Fi de convidados, alojamentos e hotéis), por isso os outros não podem ser listados. Eles também não veem o seu Mac.
+net.scanBlocked	O macOS bloqueou a análise: o permwatch não tem permissão para acessar dispositivos da rede local. Ative em Ajustes do Sistema › Privacidade e Segurança › Rede Local.

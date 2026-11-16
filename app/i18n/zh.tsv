@@ -1047,3 +1047,5 @@ disk.orphans.none	未发现残留文件。
 disk.orphans.places	%ld 个位置
 disk.orphans.summary	%1$ld 个残留 · %2$@
 disk.orphans.confirm	要将 %ld 个应用的残留移到废纸篓吗？
+net.isolated	已尝试 %ld 个地址，只有路由器响应。此网络很可能将设备彼此隔离（访客、宿舍和酒店 Wi-Fi 中很常见），因此无法列出其他设备。它们也看不到你的 Mac。
+net.scanBlocked	macOS 阻止了扫描：permwatch 无权访问本地网络上的设备。请在“系统设置 › 隐私与安全性 › 本地网络”中开启。

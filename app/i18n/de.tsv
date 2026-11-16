@@ -1047,3 +1047,5 @@ disk.orphans.none	Keine Überreste gefunden.
 disk.orphans.places	%ld Orte
 disk.orphans.summary	%1$ld Überreste · %2$@
 disk.orphans.confirm	Überreste von %ld Apps in den Papierkorb legen?
+net.isolated	%ld Adressen wurden geprüft, nur der Router hat geantwortet. Dieses Netzwerk isoliert Geräte höchstwahrscheinlich voneinander (üblich bei Gast-, Wohnheim- und Hotel-WLAN), daher können andere Geräte nicht aufgelistet werden. Sie können deinen Mac auch nicht sehen.
+net.scanBlocked	macOS hat den Scan blockiert: permwatch darf nicht auf Geräte im lokalen Netzwerk zugreifen. Aktiviere es unter Systemeinstellungen › Datenschutz & Sicherheit › Lokales Netzwerk.

@@ -1047,3 +1047,5 @@ disk.orphans.none	No se encontraron restos.
 disk.orphans.places	%ld ubicaciones
 disk.orphans.summary	%1$ld restos · %2$@
 disk.orphans.confirm	¿Mover los restos de %ld apps a la Papelera?
+net.isolated	Se probaron %ld direcciones y solo respondió el router. Es muy probable que esta red aísle los dispositivos entre sí (habitual en Wi-Fi de invitados, residencias y hoteles), así que no se pueden listar los demás. Ellos tampoco ven tu Mac.
+net.scanBlocked	macOS bloqueó el análisis: permwatch no tiene permiso para acceder a los dispositivos de tu red local. Actívalo en Ajustes del Sistema › Privacidad y seguridad › Red local.

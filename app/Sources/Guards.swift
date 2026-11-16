@@ -602,7 +602,10 @@ final class NetworkMonitor: ObservableObject {
     /// rootLsof: yönetici modu açıksa yardımcının root olarak aldığı çıktı (bütün süreçler).
     nonisolated static func collect(rootLsof: String? = nil, dns: [String: (host: String, proc: String)] = [:],
                                     intel: Bool = false) -> [ConnRow] {
-        let out = rootLsof ?? Shell.run("/usr/sbin/lsof", ["-nP", "-i", "-F", "pcfPnT"]).1
+        // Yönetici yardımcısı boş liste döndürdüyse (lsof root altında çalışamadıysa) kendi okumamıza dön:
+        // aksi halde Ağ bölümü tamamen boş kalır.
+        let fromRoot = rootLsof.flatMap { $0.contains("\nn") ? $0 : nil }
+        let out = fromRoot ?? Shell.run("/usr/sbin/lsof", ["-nP", "-i", "-F", "pcfPnT"]).1
         var rows: [ConnRow] = []
         var pid: Int32 = 0, cmd = "", proto = "", name = "", state = "", fd = ""
         var sigCache: [Int32: (String?, String?)] = [:]

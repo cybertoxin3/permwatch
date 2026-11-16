@@ -1047,3 +1047,5 @@ disk.orphans.none	Nessun residuo trovato.
 disk.orphans.places	%ld posizioni
 disk.orphans.summary	%1$ld residui · %2$@
 disk.orphans.confirm	Spostare nel Cestino i residui di %ld app?
+net.isolated	Sono stati provati %ld indirizzi e ha risposto solo il router. Questa rete molto probabilmente isola i dispositivi tra loro (comune nelle Wi-Fi per ospiti, studentati e hotel), quindi gli altri non possono essere elencati. Nemmeno loro vedono il tuo Mac.
+net.scanBlocked	macOS ha bloccato la scansione: permwatch non è autorizzato a raggiungere i dispositivi della rete locale. Attivalo in Impostazioni di Sistema › Privacy e sicurezza › Rete locale.

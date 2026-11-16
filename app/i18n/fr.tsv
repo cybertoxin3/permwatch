@@ -1047,3 +1047,5 @@ disk.orphans.none	Aucun reste trouvé.
 disk.orphans.places	%ld emplacements
 disk.orphans.summary	%1$ld restes · %2$@
 disk.orphans.confirm	Placer les restes de %ld apps dans la corbeille ?
+net.isolated	%ld adresses ont été essayées et seul le routeur a répondu. Ce réseau isole très probablement les appareils les uns des autres (courant sur les Wi-Fi invités, de résidence et d’hôtel) ; les autres appareils ne peuvent donc pas être listés. Ils ne voient pas votre Mac non plus.
+net.scanBlocked	macOS a bloqué l’analyse : permwatch n’est pas autorisé à joindre les appareils du réseau local. Activez-le dans Réglages Système › Confidentialité et sécurité › Réseau local.

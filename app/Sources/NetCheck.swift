@@ -36,6 +36,10 @@ final class NetCheck: ObservableObject {
     @Published private(set) var issues: [Issue] = []
     @Published private(set) var devices: [LanDevice] = []
     @Published private(set) var scanning = false
+    /// Son taramanın özeti: kaç adres denendi, kaçına hiç gönderilemedi (yerel ağ izni yok).
+    @Published private(set) var lastScan: (probed: Int, blocked: Int)?
+    private var ownIP: String?
+    private var netmask: String?
     @Published private(set) var lastCheck: Date?
 
     private var timer: Timer?
@@ -134,6 +138,8 @@ final class NetCheck: ObservableObject {
     private func apply(_ s: Snapshot_) {
         lastCheck = Date()
         iface = s.iface
+        ownIP = s.ownIP
+        netmask = s.netmask
         wifiSecurity = s.security
         gatewayIP = s.gateway
         gatewayMAC = s.arp.first { $0.ip == s.gateway }?.mac
@@ -180,35 +186,68 @@ final class NetCheck: ObservableObject {
 
     /// "Ağı tara": alt ağdaki her adrese tek bir küçük UDP paketi gönderir; yanıt veren cihazlar ARP tablosuna düşer.
     func scan() {
-        guard !scanning, let own = devicesBase() else { return }
+        guard !scanning else { return }
+        let targets = Self.scanTargets(ownIP: ownIP, netmask: netmask, gateway: gatewayIP)
+        guard !targets.isEmpty else { return }
         scanning = true
         Task.detached(priority: .utility) {
+            var blocked = 0
             let fd = socket(AF_INET, SOCK_DGRAM, 0)
             if fd >= 0 {
-                for host in 1...254 {
+                // Büyük ağlarda (binlerce adres) daha sık gönder; küçük ağda yavaş ve nazik.
+                let pause: UInt32 = targets.count > 1024 ? 1000 : 4000
+                for addr in targets {
                     var a = sockaddr_in()
                     a.sin_family = sa_family_t(AF_INET)
                     a.sin_port = in_port_t(9).bigEndian      // "discard" kapısı
-                    inet_pton(AF_INET, own + ".\(host)", &a.sin_addr)
+                    a.sin_addr.s_addr = addr.bigEndian
                     var b: UInt8 = 0
-                    _ = withUnsafePointer(to: &a) { p in
+                    let n = withUnsafePointer(to: &a) { p in
                         p.withMemoryRebound(to: sockaddr.self, capacity: 1) { sendto(fd, &b, 1, 0, $0, socklen_t(MemoryLayout<sockaddr_in>.size)) }
                     }
-                    usleep(4000)
+                    // macOS "Yerel Ağ" izni yoksa gönderim EHOSTUNREACH/EPERM ile reddedilir.
+                    if n < 0, errno == EHOSTUNREACH || errno == EPERM || errno == EACCES { blocked += 1 }
+                    usleep(pause)
                 }
                 close(fd)
             }
-            try? await Task.sleep(nanoseconds: 2_000_000_000)
+            try? await Task.sleep(nanoseconds: 2_500_000_000)
             let snap = NetCheck.read()
-            await MainActor.run { self.scanning = false; self.apply(snap) }
+            let summary = (targets.count, blocked)
+            await MainActor.run { self.scanning = false; self.lastScan = summary; self.apply(snap) }
         }
     }
 
-    /// Kendi IP'mizin ilk üç kümesi (/24 tarama).
-    private func devicesBase() -> String? {
-        guard let gw = gatewayIP else { return nil }
-        let p = gw.split(separator: ".")
-        return p.count == 4 ? p.prefix(3).joined(separator: ".") : nil
+    /// Taranacak adresler: kendi alt ağımızın tamamı (ağ maskesine göre). Çok büyük ağlarda (/18'den geniş)
+    /// kendi adresimizi içeren 16 bin adreslik dilimle sınırlanır. Maske okunamazsa ağ geçidinin /24'ü.
+    nonisolated static func scanTargets(ownIP: String?, netmask: String?, gateway: String?) -> [UInt32] {
+        func ip4(_ s: String?) -> UInt32? {
+            guard let p = s?.split(separator: ".").compactMap({ UInt32($0) }), p.count == 4, p.allSatisfy({ $0 < 256 }) else { return nil }
+            return p[0] << 24 | p[1] << 16 | p[2] << 8 | p[3]
+        }
+        var mask: UInt32 = 0xffff_ff00
+        if let m = netmask {
+            if m.hasPrefix("0x"), let v = UInt32(m.dropFirst(2), radix: 16) { mask = v } else if let v = ip4(m) { mask = v }
+        }
+        guard let base = ip4(ownIP) ?? ip4(gateway) else { return [] }
+        if mask == 0xffff_ffff || mask == 0 { mask = 0xffff_ff00 }
+        mask |= 0xffff_c000                       // en fazla /18 (16 382 adres)
+        let net = base & mask, last = net | ~mask
+        guard last > net + 1 else { return [] }
+        let own = ip4(ownIP)
+        return ((net + 1)..<last).filter { $0 != own }
+    }
+
+    /// Geniş bir tarama yalnızca yönlendiriciyi (ve en çok bir cihazı) bulduysa: ağ büyük olasılıkla
+    /// cihazları birbirinden yalıtıyor (misafir/yurt/otel ağlarındaki "client isolation").
+    var looksIsolated: Bool {
+        guard let s = lastScan, s.probed >= 200, s.blocked < s.probed / 2 else { return false }
+        return devices.filter { !$0.isGateway }.count <= 1
+    }
+
+    var scanBlocked: Bool {
+        guard let s = lastScan, s.probed > 0 else { return false }
+        return s.blocked >= s.probed / 2
     }
 
     func forgetDevices() {
@@ -257,6 +296,13 @@ struct NetCheckCard: View {
                             .background(Color.orange.opacity(0.2), in: Capsule())
                     }
                 }
+            }
+            if net.scanBlocked {
+                Label(L("net.scanBlocked"), systemImage: "hand.raised.fill").font(.system(size: 12)).foregroundStyle(.orange)
+                    .fixedSize(horizontal: false, vertical: true)
+            } else if net.looksIsolated, let s = net.lastScan {
+                Label(L("net.isolated", s.probed), systemImage: "person.2.slash").font(.system(size: 12)).foregroundStyle(.secondary)
+                    .fixedSize(horizontal: false, vertical: true)
             }
             Text(L("net.devicesHint")).font(.system(size: 11)).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
         }

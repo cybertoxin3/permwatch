@@ -1047,3 +1047,5 @@ disk.orphans.none	Kalıntı bulunamadı.
 disk.orphans.places	%ld konum
 disk.orphans.summary	%1$ld kalıntı · %2$@
 disk.orphans.confirm	%ld uygulamanın kalıntıları Çöp Sepeti'ne taşınsın mı?
+net.isolated	%ld adres denendi, yalnızca yönlendirici yanıt verdi. Bu ağ büyük olasılıkla cihazları birbirinden yalıtıyor (misafir, yurt ve otel Wi-Fi'larında yaygın); bu yüzden diğer cihazlar listelenemez. Onlar da senin Mac'ini göremez.
+net.scanBlocked	macOS taramayı engelledi: permwatch'ın yerel ağdaki cihazlara erişim izni yok. Sistem Ayarları › Gizlilik ve Güvenlik › Yerel Ağ bölümünden aç.

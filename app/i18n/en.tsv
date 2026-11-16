@@ -1047,3 +1047,5 @@ disk.orphans.none	No leftovers found.
 disk.orphans.places	%ld locations
 disk.orphans.summary	%1$ld leftovers · %2$@
 disk.orphans.confirm	Move the leftovers of %ld apps to the Trash?
+net.isolated	%ld addresses were tried and only the router answered. This network most likely isolates devices from each other (common on guest, dorm and hotel Wi-Fi), so other devices can’t be listed. They can’t see your Mac either.
+net.scanBlocked	macOS blocked the scan: permwatch isn’t allowed to reach devices on your local network. Turn it on in System Settings › Privacy & Security › Local Network.
