@@ -915,3 +915,135 @@ vpn.qrHint	Scansiona il codice QR con il wallet: indirizzo e importo si compilan
 vpn.rateFailed	Impossibile ottenere il cambio attuale; controlla la connessione a internet.
 vpn.retry	Riprova
 vpn.rateLoading	Recupero del cambio attuale…
+nav.disk	Disco e app
+disk.tab.overview	Panoramica
+disk.tab.apps	App
+disk.tab.junk	Cache e file inutili
+disk.tab.large	File grandi
+disk.tab.orphans	Residui
+disk.scannedAt	Analizzato %@
+disk.rescan	Analizza di nuovo
+disk.capacity	%@ in totale
+disk.free	%@ disponibili
+disk.used	Usato
+disk.purgeable	Eliminabile
+disk.cleanable	Pulibile
+disk.percentUsed	%ld%% usato
+disk.phase.apps	Misurazione delle app…
+disk.phase.leftovers	Ricerca dei dati delle app…
+disk.phase.junk	Ricerca di cache e file inutili…
+disk.phase.orphans	Ricerca dei residui di app eliminate…
+disk.phase.categories	Calcolo della ripartizione dello spazio…
+disk.cat.apps	App
+disk.cat.documents	Documenti
+disk.cat.desktop	Scrivania
+disk.cat.downloads	Download
+disk.cat.pictures	Immagini
+disk.cat.movies	Filmati
+disk.cat.music	Musica
+disk.cat.icloud	iCloud Drive (locale)
+disk.cat.developer	Sviluppo
+disk.cat.mail	Mail
+disk.cat.caches	Cache e log
+disk.cat.trash	Cestino
+disk.cat.system	Sistema e altro
+disk.breakdown	Ripartizione dello spazio
+disk.largestApps	App più grandi
+disk.unusedApps	App non usate da 90 giorni
+disk.unused.none	Tutte le app sono state usate di recente.
+disk.unused.summary	%1$ld app, %2$@ in totale
+disk.never	Mai
+disk.volumes	Volumi
+disk.freeOf	%1$@ liberi su %2$@
+disk.tile.junk	Cache e file inutili
+disk.tile.trash	Cestino
+disk.tile.orphans	Residui di app eliminate
+disk.tile.large	File grandi
+disk.review	Esamina
+disk.find	Trova
+disk.trash.empty	Svuota il Cestino
+disk.trash.confirm	Svuotare il Cestino?
+disk.permanent	Questi file vengono eliminati definitivamente e non possono essere recuperati.
+disk.freed	%@ liberati.
+disk.freedPartial	%1$@ liberati. Impossibile eliminare %2$ld elementi (in uso o protetti da macOS).
+disk.filter.all	Tutte
+disk.filter.large	Oltre 1 GB
+disk.filter.unused	Inutilizzate
+disk.filter.appStore	App Store
+disk.filter.data	Molti dati
+disk.searchApps	Cerca app
+disk.col.name	Nome
+disk.col.app	App
+disk.col.data	Dati
+disk.col.total	Totale
+disk.col.lastUsed	Ultima apertura
+disk.dropHint	Trascina qui un’app per rimuoverla completamente.
+disk.appsSummary	%1$ld app · %2$@
+disk.pickApp	Scegli un’app
+disk.pickApp.body	Vedi ogni file che l’app ha lasciato sul Mac e rimuovila senza lasciare traccia.
+disk.foundItems	%ld elementi trovati
+disk.selectAll	Seleziona tutto
+disk.selectNone	Deseleziona tutto
+disk.searching	Ricerca…
+disk.needsAdmin	Posizione di sistema: verrà chiesta la password di amministratore.
+disk.selectedTotal	Selezionati: %@
+disk.resetApp	Reimposta app
+disk.resetApp.help	Elimina dati e impostazioni dell’app ma la conserva; si riapre come nuova.
+disk.resetApp.confirm	Reimpostare «%@»?
+disk.removeFully	Rimuovi completamente
+disk.remove.body	Verranno rimossi %1$ld elementi (%2$@). Gli elementi della tua Libreria vanno nel Cestino; quelli di sistema vengono eliminati con la password di amministratore.
+disk.group.app	Applicazione
+disk.group.support	Dati dell’app
+disk.group.container	Contenitori
+disk.group.cache	Cache
+disk.group.prefs	Preferenze
+disk.group.state	Stato salvato e recenti
+disk.group.web	Dati web e cookie
+disk.group.launch	Elementi di avvio e helper
+disk.group.plugins	Plug-in ed estensioni
+disk.group.logs	Log e rapporti di arresto
+disk.group.receipts	Ricevute di installazione
+disk.group.other	Altro
+disk.junk.info	Le cache vengono ricreate automaticamente quando servono. Chiudi prima le app per un risultato migliore.
+disk.junk.empty	Nessun file inutile trovato.
+disk.junk.trash	Cestino
+disk.junk.browser	Cache dei browser
+disk.junk.caches	Cache delle app
+disk.junk.logs	Log
+disk.junk.developer	File di sviluppo
+disk.junk.other	Altro
+disk.junk.trashItem	Elementi nel Cestino
+disk.junk.mailDownloads	Allegati di Mail (scaricati)
+disk.junk.iosBackups	Backup di iPhone e iPad
+disk.junk.crashReports	Rapporti di arresto
+disk.note.apple	Cache di macOS: di solito ricreata subito; non selezionata.
+disk.note.archives	Servono per reinviare o simbolizzare le tue build.
+disk.note.simulators	Elimina le app e i dati installati nei simulatori.
+disk.note.docker	Immagine disco di Docker: elimina tutti i container e le immagini.
+disk.note.backups	Qui potrebbe esserci l’unico backup di un dispositivo.
+disk.clean	Pulisci
+disk.clean.confirm	Eliminare %@ di cache e file inutili?
+disk.large.min	Almeno
+disk.large.kind	Tipo
+disk.kind.all	Tutti
+disk.kind.video	Video
+disk.kind.image	Immagini disco e VM
+disk.kind.archive	Archivi e installer
+disk.kind.audio	Audio
+disk.kind.photo	Foto
+disk.kind.ipsw	Firmware dei dispositivi
+disk.kind.other	Altro
+disk.large.scan	Analizza la cartella Inizio
+disk.large.progress	%ld file controllati
+disk.large.none	Ancora nessun file grande
+disk.large.body	Trova i file più grandi nella tua cartella Inizio.
+disk.large.opened	aperto %@
+disk.large.summary	%1$ld file · %2$@
+disk.large.confirm	Spostare %ld file nel Cestino?
+disk.open	Apri
+disk.notMoved	Impossibile spostare %ld elementi.
+disk.orphans.info	Queste cartelle appartengono ad app non più installate. Controlla i nomi prima di rimuoverle: alcune potrebbero appartenere a strumenti da riga di comando o ad app che tieni altrove.
+disk.orphans.none	Nessun residuo trovato.
+disk.orphans.places	%ld posizioni
+disk.orphans.summary	%1$ld residui · %2$@
+disk.orphans.confirm	Spostare nel Cestino i residui di %ld app?

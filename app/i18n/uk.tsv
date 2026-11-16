@@ -915,3 +915,135 @@ vpn.qrHint	Відскануйте QR-код гаманцем: адреса й с
 vpn.rateFailed	Не вдалося отримати поточний курс; перевірте підключення до інтернету.
 vpn.retry	Повторити
 vpn.rateLoading	Отримуємо поточний курс…
+nav.disk	Диск і програми
+disk.tab.overview	Огляд
+disk.tab.apps	Програми
+disk.tab.junk	Кеш і сміття
+disk.tab.large	Великі файли
+disk.tab.orphans	Залишки
+disk.scannedAt	Перевірено %@
+disk.rescan	Перевірити знову
+disk.capacity	усього %@
+disk.free	доступно %@
+disk.used	Зайнято
+disk.purgeable	Очищуване
+disk.cleanable	Можна очистити
+disk.percentUsed	зайнято %ld%%
+disk.phase.apps	Вимірюємо програми…
+disk.phase.leftovers	Шукаємо дані програм…
+disk.phase.junk	Шукаємо кеш і сміття…
+disk.phase.orphans	Шукаємо залишки видалених програм…
+disk.phase.categories	Рахуємо розподіл місця…
+disk.cat.apps	Програми
+disk.cat.documents	Документи
+disk.cat.desktop	Робочий стіл
+disk.cat.downloads	Завантаження
+disk.cat.pictures	Зображення
+disk.cat.movies	Фільми
+disk.cat.music	Музика
+disk.cat.icloud	iCloud Drive (локально)
+disk.cat.developer	Розробка
+disk.cat.mail	Пошта
+disk.cat.caches	Кеш і журнали
+disk.cat.trash	Смітник
+disk.cat.system	Система та інше
+disk.breakdown	Розподіл місця
+disk.largestApps	Найбільші програми
+disk.unusedApps	Не відкривалися 90 днів
+disk.unused.none	Усі програми використовувалися нещодавно.
+disk.unused.summary	%1$ld прогр., усього %2$@
+disk.never	Ніколи
+disk.volumes	Диски
+disk.freeOf	вільно %1$@ з %2$@
+disk.tile.junk	Кеш і сміття
+disk.tile.trash	Смітник
+disk.tile.orphans	Залишки видалених програм
+disk.tile.large	Великі файли
+disk.review	Переглянути
+disk.find	Знайти
+disk.trash.empty	Очистити Смітник
+disk.trash.confirm	Очистити Смітник?
+disk.permanent	Ці файли видаляються назавжди, відновити їх не можна.
+disk.freed	Звільнено %@.
+disk.freedPartial	Звільнено %1$@. Не вдалося видалити об’єктів: %2$ld (використовуються або захищені macOS).
+disk.filter.all	Усі
+disk.filter.large	Понад 1 ГБ
+disk.filter.unused	Невикористовувані
+disk.filter.appStore	App Store
+disk.filter.data	Багато даних
+disk.searchApps	Пошук програм
+disk.col.name	Назва
+disk.col.app	Програма
+disk.col.data	Дані
+disk.col.total	Усього
+disk.col.lastUsed	Останній запуск
+disk.dropHint	Перетягніть програму сюди, щоб видалити її повністю.
+disk.appsSummary	%1$ld прогр. · %2$@
+disk.pickApp	Виберіть програму
+disk.pickApp.body	Перегляньте кожен файл, який програма залишила на Mac, і видаліть її без сліду.
+disk.foundItems	Знайдено об’єктів: %ld
+disk.selectAll	Вибрати все
+disk.selectNone	Зняти вибір
+disk.searching	Пошук…
+disk.needsAdmin	Системна папка: буде запитано пароль адміністратора.
+disk.selectedTotal	Вибрано: %@
+disk.resetApp	Скинути програму
+disk.resetApp.help	Видаляє дані й налаштування програми, але залишає її; вона запуститься як нова.
+disk.resetApp.confirm	Скинути «%@»?
+disk.removeFully	Видалити повністю
+disk.remove.body	Буде видалено об’єктів: %1$ld (%2$@). Об’єкти з вашої Бібліотеки потраплять у Смітник; системні видаляються з паролем адміністратора.
+disk.group.app	Програма
+disk.group.support	Дані програми
+disk.group.container	Контейнери
+disk.group.cache	Кеш
+disk.group.prefs	Налаштування
+disk.group.state	Збережений стан і нещодавні
+disk.group.web	Веб-дані та cookie
+disk.group.launch	Об’єкти автозапуску й помічники
+disk.group.plugins	Плагіни й розширення
+disk.group.logs	Журнали та звіти про збої
+disk.group.receipts	Записи інсталятора
+disk.group.other	Інше
+disk.junk.info	Кеш за потреби створюється знову. Для кращого результату спершу закрийте програми.
+disk.junk.empty	Сміття не знайдено.
+disk.junk.trash	Смітник
+disk.junk.browser	Кеш браузерів
+disk.junk.caches	Кеш програм
+disk.junk.logs	Журнали
+disk.junk.developer	Файли розробки
+disk.junk.other	Інше
+disk.junk.trashItem	Об’єкти у Смітнику
+disk.junk.mailDownloads	Вкладення Пошти (завантажені)
+disk.junk.iosBackups	Резервні копії iPhone та iPad
+disk.junk.crashReports	Звіти про збої
+disk.note.apple	Кеш macOS: зазвичай одразу створюється знову; не вибрано.
+disk.note.archives	Потрібні для повторного надсилання або символікації збірок.
+disk.note.simulators	Видаляє програми й дані в симуляторах.
+disk.note.docker	Образ диска Docker: видаляє всі контейнери та образи.
+disk.note.backups	Тут може бути єдина копія пристрою.
+disk.clean	Очистити
+disk.clean.confirm	Видалити %@ кешу та сміття?
+disk.large.min	Щонайменше
+disk.large.kind	Тип
+disk.kind.all	Усі
+disk.kind.video	Відео
+disk.kind.image	Образи дисків і ВМ
+disk.kind.archive	Архіви та інсталятори
+disk.kind.audio	Аудіо
+disk.kind.photo	Фото
+disk.kind.ipsw	Прошивки пристроїв
+disk.kind.other	Інше
+disk.large.scan	Перевірити домашню папку
+disk.large.progress	Перевірено файлів: %ld
+disk.large.none	Великих файлів поки немає
+disk.large.body	Знаходить найбільші файли в домашній папці.
+disk.large.opened	відкрито %@
+disk.large.summary	%1$ld файлів · %2$@
+disk.large.confirm	Перемістити файли (%ld) у Смітник?
+disk.open	Відкрити
+disk.notMoved	Не вдалося перемістити об’єктів: %ld.
+disk.orphans.info	Ці папки належать програмам, які більше не встановлені. Перевірте назви перед видаленням: деякі можуть належати утилітам командного рядка або програмам в іншому місці.
+disk.orphans.none	Залишків не знайдено.
+disk.orphans.places	місць: %ld
+disk.orphans.summary	%1$ld залишків · %2$@
+disk.orphans.confirm	Перемістити залишки програм (%ld) у Смітник?

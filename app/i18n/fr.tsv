@@ -915,3 +915,135 @@ vpn.qrHint	Scannez le QR code avec votre portefeuille : l'adresse et le montant 
 vpn.rateFailed	Impossible d'obtenir le cours actuel ; vérifiez votre connexion Internet.
 vpn.retry	Réessayer
 vpn.rateLoading	Récupération du cours actuel…
+nav.disk	Disque et apps
+disk.tab.overview	Aperçu
+disk.tab.apps	Apps
+disk.tab.junk	Caches et fichiers inutiles
+disk.tab.large	Gros fichiers
+disk.tab.orphans	Restes
+disk.scannedAt	Analysé %@
+disk.rescan	Réanalyser
+disk.capacity	%@ au total
+disk.free	%@ disponibles
+disk.used	Utilisé
+disk.purgeable	Purgeable
+disk.cleanable	Nettoyable
+disk.percentUsed	%ld %% utilisé
+disk.phase.apps	Mesure des apps…
+disk.phase.leftovers	Recherche des données des apps…
+disk.phase.junk	Recherche des caches et fichiers inutiles…
+disk.phase.orphans	Recherche des restes d’apps supprimées…
+disk.phase.categories	Calcul de la répartition du stockage…
+disk.cat.apps	Apps
+disk.cat.documents	Documents
+disk.cat.desktop	Bureau
+disk.cat.downloads	Téléchargements
+disk.cat.pictures	Images
+disk.cat.movies	Vidéos
+disk.cat.music	Musique
+disk.cat.icloud	iCloud Drive (local)
+disk.cat.developer	Développeur
+disk.cat.mail	Mail
+disk.cat.caches	Caches et journaux
+disk.cat.trash	Corbeille
+disk.cat.system	Système et autres
+disk.breakdown	Répartition du stockage
+disk.largestApps	Apps les plus volumineuses
+disk.unusedApps	Apps inutilisées depuis 90 jours
+disk.unused.none	Toutes les apps ont été utilisées récemment.
+disk.unused.summary	%1$ld apps, %2$@ au total
+disk.never	Jamais
+disk.volumes	Volumes
+disk.freeOf	%1$@ libres sur %2$@
+disk.tile.junk	Caches et fichiers inutiles
+disk.tile.trash	Corbeille
+disk.tile.orphans	Restes d’apps supprimées
+disk.tile.large	Gros fichiers
+disk.review	Examiner
+disk.find	Chercher
+disk.trash.empty	Vider la corbeille
+disk.trash.confirm	Vider la corbeille ?
+disk.permanent	Ces fichiers sont supprimés définitivement et ne peuvent pas être restaurés.
+disk.freed	%@ libérés.
+disk.freedPartial	%1$@ libérés. %2$ld éléments n’ont pas pu être supprimés (en cours d’utilisation ou protégés par macOS).
+disk.filter.all	Toutes
+disk.filter.large	Plus de 1 Go
+disk.filter.unused	Inutilisées
+disk.filter.appStore	App Store
+disk.filter.data	Beaucoup de données
+disk.searchApps	Rechercher des apps
+disk.col.name	Nom
+disk.col.app	App
+disk.col.data	Données
+disk.col.total	Total
+disk.col.lastUsed	Dernière ouverture
+disk.dropHint	Faites glisser une app ici pour la supprimer complètement.
+disk.appsSummary	%1$ld apps · %2$@
+disk.pickApp	Choisissez une app
+disk.pickApp.body	Voyez chaque fichier laissé par l’app sur votre Mac et supprimez-la sans laisser de trace.
+disk.foundItems	%ld éléments trouvés
+disk.selectAll	Tout sélectionner
+disk.selectNone	Ne rien sélectionner
+disk.searching	Recherche…
+disk.needsAdmin	Emplacement système : votre mot de passe administrateur sera demandé.
+disk.selectedTotal	Sélection : %@
+disk.resetApp	Réinitialiser l’app
+disk.resetApp.help	Supprime les données et réglages de l’app mais la conserve ; elle redémarre comme neuve.
+disk.resetApp.confirm	Réinitialiser « %@ » ?
+disk.removeFully	Supprimer complètement
+disk.remove.body	%1$ld éléments (%2$@) seront supprimés. Les éléments de votre bibliothèque vont à la corbeille ; les éléments système sont supprimés avec votre mot de passe administrateur.
+disk.group.app	Application
+disk.group.support	Données de l’app
+disk.group.container	Conteneurs
+disk.group.cache	Caches
+disk.group.prefs	Préférences
+disk.group.state	État enregistré et éléments récents
+disk.group.web	Données web et cookies
+disk.group.launch	Éléments de démarrage et assistants
+disk.group.plugins	Modules et extensions
+disk.group.logs	Journaux et rapports de plantage
+disk.group.receipts	Reçus d’installation
+disk.group.other	Autres
+disk.junk.info	Les caches sont recréés automatiquement si nécessaire. Quittez d’abord les apps pour un meilleur résultat.
+disk.junk.empty	Aucun fichier inutile trouvé.
+disk.junk.trash	Corbeille
+disk.junk.browser	Caches des navigateurs
+disk.junk.caches	Caches des apps
+disk.junk.logs	Journaux
+disk.junk.developer	Fichiers de développement
+disk.junk.other	Autres
+disk.junk.trashItem	Éléments dans la corbeille
+disk.junk.mailDownloads	Pièces jointes Mail (téléchargées)
+disk.junk.iosBackups	Sauvegardes iPhone et iPad
+disk.junk.crashReports	Rapports de plantage
+disk.note.apple	Cache de macOS : généralement recréé aussitôt ; non sélectionné.
+disk.note.archives	Nécessaires pour renvoyer ou symboliser vos builds.
+disk.note.simulators	Supprime les apps et données installées dans les simulateurs.
+disk.note.docker	Image disque Docker : supprime tous les conteneurs et images.
+disk.note.backups	La seule sauvegarde d’un appareil peut se trouver ici.
+disk.clean	Nettoyer
+disk.clean.confirm	Supprimer %@ de caches et fichiers inutiles ?
+disk.large.min	Au moins
+disk.large.kind	Type
+disk.kind.all	Tous
+disk.kind.video	Vidéos
+disk.kind.image	Images disque et VM
+disk.kind.archive	Archives et installeurs
+disk.kind.audio	Audio
+disk.kind.photo	Photos
+disk.kind.ipsw	Firmwares d’appareils
+disk.kind.other	Autres
+disk.large.scan	Analyser le dossier personnel
+disk.large.progress	%ld fichiers vérifiés
+disk.large.none	Aucun gros fichier pour l’instant
+disk.large.body	Trouve les plus gros fichiers de votre dossier personnel.
+disk.large.opened	ouvert %@
+disk.large.summary	%1$ld fichiers · %2$@
+disk.large.confirm	Placer %ld fichiers dans la corbeille ?
+disk.open	Ouvrir
+disk.notMoved	%ld éléments n’ont pas pu être déplacés.
+disk.orphans.info	Ces dossiers appartiennent à des apps qui ne sont plus installées. Vérifiez les noms avant de supprimer : certains peuvent appartenir à des outils en ligne de commande ou à des apps conservées ailleurs.
+disk.orphans.none	Aucun reste trouvé.
+disk.orphans.places	%ld emplacements
+disk.orphans.summary	%1$ld restes · %2$@
+disk.orphans.confirm	Placer les restes de %ld apps dans la corbeille ?

@@ -7,10 +7,12 @@ enum Uninstaller {
     struct Candidate: Identifiable, Hashable {
         var id: String { path }
         let path: String
-        let size: Int64
+        var size: Int64
         let isApp: Bool
         /// Yalnızca ad benzerliğiyle bulundu (başka bir uygulamaya ait olabilir): varsayılan seçili gelmez.
         var byName = false
+        /// Konum türü (app, support, cache, prefs, container, launch, logs, web, state, plugins, receipts, other).
+        var group = "other"
     }
 
     enum Blocked { case system, apple, permwatch, missing }
@@ -60,11 +62,20 @@ enum Uninstaller {
         }
         paths += launchPlists
         var seen = Set<String>()
-        return paths.compactMap { p in
+        var out: [Candidate] = paths.compactMap { p in
             guard !seen.contains(p), fm.fileExists(atPath: p) else { return nil }
             seen.insert(p)
-            return Candidate(path: p, size: size(of: p), isApp: p == appPath, byName: nameBased.contains(p))
+            return Candidate(path: p, size: size(of: p), isApp: p == appPath, byName: nameBased.contains(p),
+                             group: p == appPath ? "app" : "other")
         }
+        // Derin arama (Disk bölümüyle aynı): Group Containers, ByHost, çökme raporları, /Library vb.
+        let lower = Set(seen.map { $0.lowercased() })
+        for c in Leftovers.find(appPath: appPath, index: Leftovers.buildIndex(), others: []) where !lower.contains(c.path.lowercased()) {
+            var c = c
+            c.size = size(of: c.path)
+            out.append(c)
+        }
+        return out
     }
 
     static func size(of path: String) -> Int64 {

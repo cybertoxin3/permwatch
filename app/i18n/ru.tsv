@@ -915,3 +915,135 @@ vpn.qrHint	Отсканируйте QR-код кошельком: адрес и 
 vpn.rateFailed	Не удалось получить текущий курс; проверьте подключение к интернету.
 vpn.retry	Повторить
 vpn.rateLoading	Получаем текущий курс…
+nav.disk	Диск и приложения
+disk.tab.overview	Обзор
+disk.tab.apps	Приложения
+disk.tab.junk	Кэш и мусор
+disk.tab.large	Большие файлы
+disk.tab.orphans	Остатки
+disk.scannedAt	Проверено %@
+disk.rescan	Проверить заново
+disk.capacity	всего %@
+disk.free	доступно %@
+disk.used	Занято
+disk.purgeable	Очищаемое
+disk.cleanable	Можно очистить
+disk.percentUsed	занято %ld%%
+disk.phase.apps	Измеряем приложения…
+disk.phase.leftovers	Ищем данные приложений…
+disk.phase.junk	Ищем кэш и мусор…
+disk.phase.orphans	Ищем остатки удалённых приложений…
+disk.phase.categories	Считаем распределение места…
+disk.cat.apps	Приложения
+disk.cat.documents	Документы
+disk.cat.desktop	Рабочий стол
+disk.cat.downloads	Загрузки
+disk.cat.pictures	Изображения
+disk.cat.movies	Фильмы
+disk.cat.music	Музыка
+disk.cat.icloud	iCloud Drive (локально)
+disk.cat.developer	Разработка
+disk.cat.mail	Почта
+disk.cat.caches	Кэш и журналы
+disk.cat.trash	Корзина
+disk.cat.system	Система и прочее
+disk.breakdown	Распределение места
+disk.largestApps	Самые большие приложения
+disk.unusedApps	Не открывались 90 дней
+disk.unused.none	Все приложения использовались недавно.
+disk.unused.summary	%1$ld прил., всего %2$@
+disk.never	Никогда
+disk.volumes	Диски
+disk.freeOf	свободно %1$@ из %2$@
+disk.tile.junk	Кэш и мусор
+disk.tile.trash	Корзина
+disk.tile.orphans	Остатки удалённых приложений
+disk.tile.large	Большие файлы
+disk.review	Просмотреть
+disk.find	Найти
+disk.trash.empty	Очистить Корзину
+disk.trash.confirm	Очистить Корзину?
+disk.permanent	Эти файлы удаляются навсегда, восстановить их нельзя.
+disk.freed	Освобождено %@.
+disk.freedPartial	Освобождено %1$@. Не удалось удалить объектов: %2$ld (используются или защищены macOS).
+disk.filter.all	Все
+disk.filter.large	Больше 1 ГБ
+disk.filter.unused	Неиспользуемые
+disk.filter.appStore	App Store
+disk.filter.data	Много данных
+disk.searchApps	Поиск приложений
+disk.col.name	Название
+disk.col.app	Приложение
+disk.col.data	Данные
+disk.col.total	Всего
+disk.col.lastUsed	Последний запуск
+disk.dropHint	Перетащите приложение сюда, чтобы удалить его полностью.
+disk.appsSummary	%1$ld прил. · %2$@
+disk.pickApp	Выберите приложение
+disk.pickApp.body	Посмотрите каждый файл, оставленный приложением на Mac, и удалите его без следа.
+disk.foundItems	Найдено объектов: %ld
+disk.selectAll	Выбрать все
+disk.selectNone	Снять выбор
+disk.searching	Поиск…
+disk.needsAdmin	Системная папка: потребуется пароль администратора.
+disk.selectedTotal	Выбрано: %@
+disk.resetApp	Сбросить приложение
+disk.resetApp.help	Удаляет данные и настройки приложения, но оставляет его; оно запустится как новое.
+disk.resetApp.confirm	Сбросить «%@»?
+disk.removeFully	Удалить полностью
+disk.remove.body	Будет удалено объектов: %1$ld (%2$@). Объекты из вашей Библиотеки отправятся в Корзину; системные удаляются с паролем администратора.
+disk.group.app	Программа
+disk.group.support	Данные приложения
+disk.group.container	Контейнеры
+disk.group.cache	Кэш
+disk.group.prefs	Настройки
+disk.group.state	Сохранённое состояние и недавние
+disk.group.web	Веб-данные и cookie
+disk.group.launch	Объекты автозапуска и помощники
+disk.group.plugins	Плагины и расширения
+disk.group.logs	Журналы и отчёты о сбоях
+disk.group.receipts	Записи установщика
+disk.group.other	Прочее
+disk.junk.info	Кэш при необходимости создаётся заново. Для лучшего результата сначала закройте приложения.
+disk.junk.empty	Мусор не найден.
+disk.junk.trash	Корзина
+disk.junk.browser	Кэш браузеров
+disk.junk.caches	Кэш приложений
+disk.junk.logs	Журналы
+disk.junk.developer	Файлы разработки
+disk.junk.other	Прочее
+disk.junk.trashItem	Объекты в Корзине
+disk.junk.mailDownloads	Вложения Почты (загруженные)
+disk.junk.iosBackups	Резервные копии iPhone и iPad
+disk.junk.crashReports	Отчёты о сбоях
+disk.note.apple	Кэш macOS: обычно сразу создаётся заново; не выбран.
+disk.note.archives	Нужны для повторной отправки или символикации сборок.
+disk.note.simulators	Удаляет приложения и данные в симуляторах.
+disk.note.docker	Образ диска Docker: удаляет все контейнеры и образы.
+disk.note.backups	Здесь может быть единственная копия устройства.
+disk.clean	Очистить
+disk.clean.confirm	Удалить %@ кэша и мусора?
+disk.large.min	Не меньше
+disk.large.kind	Тип
+disk.kind.all	Все
+disk.kind.video	Видео
+disk.kind.image	Образы дисков и ВМ
+disk.kind.archive	Архивы и установщики
+disk.kind.audio	Аудио
+disk.kind.photo	Фото
+disk.kind.ipsw	Прошивки устройств
+disk.kind.other	Прочее
+disk.large.scan	Проверить домашнюю папку
+disk.large.progress	Проверено файлов: %ld
+disk.large.none	Больших файлов пока нет
+disk.large.body	Находит самые большие файлы в домашней папке.
+disk.large.opened	открыт %@
+disk.large.summary	%1$ld файлов · %2$@
+disk.large.confirm	Переместить файлы (%ld) в Корзину?
+disk.open	Открыть
+disk.notMoved	Не удалось переместить объектов: %ld.
+disk.orphans.info	Эти папки принадлежат приложениям, которые больше не установлены. Проверьте названия перед удалением: некоторые могут относиться к утилитам командной строки или приложениям в другом месте.
+disk.orphans.none	Остатков не найдено.
+disk.orphans.places	мест: %ld
+disk.orphans.summary	%1$ld остатков · %2$@
+disk.orphans.confirm	Переместить остатки приложений (%ld) в Корзину?

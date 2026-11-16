@@ -61,6 +61,36 @@ enum Snapshot {
             }
             return
         }
+        if section == "disk-dry" {
+            // Disk bölümü kuru çalıştırma: tarar ve sonuçları yazar, hiçbir şey silmez.
+            let d = DiskManager.shared
+            d.scan()
+            @MainActor func wait() {
+                guard !d.scanning else { DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: wait); return }
+                let f = { (b: Int64) in DiskSize.string(b) }
+                for v in d.volumes { print("birim\t\(v.name)\ttoplam \(f(v.total))\tboş \(f(v.availableImportant))\ttemizlenebilir \(f(v.purgeable))") }
+                for c in d.categories { print("kategori\t\(c.id)\t\(f(c.size))") }
+                print("uygulama: \(d.apps.count), toplam \(f(d.appsSize))")
+                for a in d.apps.prefix(12) { print("  \(a.name)\tuyg \(f(a.appSize))\tveri \(f(a.dataSize))\tson \(a.lastUsed.map { Fmt.relative($0) } ?? "-")") }
+                for g in JunkGroup.allCases {
+                    let l = d.junk.filter { $0.group == g }
+                    if !l.isEmpty { print("çöp\t\(g.rawValue)\t\(l.count) öğe\t\(f(l.reduce(0) { $0 + $1.size }))") }
+                }
+                print("temizlenebilir (seçili): \(f(d.cleanable))")
+                print("sahipsiz: \(d.orphans.count), \(f(d.orphanSize))")
+                for o in d.orphans.prefix(15) { print("  \(o.id)\t\(f(o.size))\t\(o.paths.count) yer") }
+                if let app = ProcessInfo.processInfo.environment["PERMWATCH_APP"], let a = d.adopt(app) {
+                    Task {
+                        for c in await d.leftovers(for: a, extraLaunch: store.launchPlists(forApp: app)) {
+                            print("kalıntı\t\(c.group)\t\(c.byName ? "zayıf" : "kesin")\t\(f(c.size))\t\(PathUtil.abbreviate(c.path))")
+                        }
+                        exit(0)
+                    }
+                } else { exit(0) }
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: wait)
+            return
+        }
         if section == "watchtest", let dir = ProcessInfo.processInfo.environment["PERMWATCH_WATCH_TEST"] {
             // İzlenen test klasörüne dosya yazıp taramanın kendiliğinden tetiklendiğini doğrular.
             DispatchQueue.main.asyncAfter(deadline: .now() + 6) {

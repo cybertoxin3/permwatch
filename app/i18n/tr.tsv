@@ -915,3 +915,135 @@ vpn.qrHint	QR kodunu cüzdanınla okut: adres ve tutar kendiliğinden dolar. Ell
 vpn.rateFailed	Güncel kur alınamadı; internet bağlantını kontrol et.
 vpn.retry	Tekrar dene
 vpn.rateLoading	Güncel kur alınıyor…
+nav.disk	Disk ve Uygulamalar
+disk.tab.overview	Genel Bakış
+disk.tab.apps	Uygulamalar
+disk.tab.junk	Önbellek ve Çöp
+disk.tab.large	Büyük Dosyalar
+disk.tab.orphans	Kalıntılar
+disk.scannedAt	Tarandı: %@
+disk.rescan	Yeniden tara
+disk.capacity	toplam %@
+disk.free	%@ boş
+disk.used	Kullanılan
+disk.purgeable	Boşaltılabilir
+disk.cleanable	Temizlenebilir
+disk.percentUsed	%%%ld dolu
+disk.phase.apps	Uygulamalar ölçülüyor…
+disk.phase.leftovers	Uygulama verileri aranıyor…
+disk.phase.junk	Önbellek ve gereksiz dosyalar aranıyor…
+disk.phase.orphans	Silinmiş uygulamaların kalıntıları aranıyor…
+disk.phase.categories	Depolama dağılımı hesaplanıyor…
+disk.cat.apps	Uygulamalar
+disk.cat.documents	Belgeler
+disk.cat.desktop	Masaüstü
+disk.cat.downloads	İndirilenler
+disk.cat.pictures	Resimler
+disk.cat.movies	Filmler
+disk.cat.music	Müzik
+disk.cat.icloud	iCloud Drive (yerel)
+disk.cat.developer	Geliştirici
+disk.cat.mail	Mail
+disk.cat.caches	Önbellek ve günlükler
+disk.cat.trash	Çöp Sepeti
+disk.cat.system	Sistem ve diğer
+disk.breakdown	Depolama dağılımı
+disk.largestApps	En büyük uygulamalar
+disk.unusedApps	90 gündür açılmayan uygulamalar
+disk.unused.none	Tüm uygulamalar yakın zamanda kullanılmış.
+disk.unused.summary	%1$ld uygulama, toplam %2$@
+disk.never	Hiç
+disk.volumes	Diskler
+disk.freeOf	%2$@ alanın %1$@ kadarı boş
+disk.tile.junk	Önbellek ve çöp
+disk.tile.trash	Çöp Sepeti
+disk.tile.orphans	Silinmiş uygulama kalıntıları
+disk.tile.large	Büyük dosyalar
+disk.review	İncele
+disk.find	Bul
+disk.trash.empty	Çöp Sepeti'ni boşalt
+disk.trash.confirm	Çöp Sepeti boşaltılsın mı?
+disk.permanent	Bu dosyalar kalıcı olarak silinir ve geri getirilemez.
+disk.freed	%@ boşaltıldı.
+disk.freedPartial	%1$@ boşaltıldı. %2$ld öğe silinemedi (kullanımda ya da macOS koruyor).
+disk.filter.all	Tümü
+disk.filter.large	1 GB üstü
+disk.filter.unused	Kullanılmayan
+disk.filter.appStore	App Store
+disk.filter.data	Çok veri tutan
+disk.searchApps	Uygulama ara
+disk.col.name	Ad
+disk.col.app	Uygulama
+disk.col.data	Veri
+disk.col.total	Toplam
+disk.col.lastUsed	Son açılış
+disk.dropHint	Tamamen kaldırmak için bir uygulamayı buraya sürükle.
+disk.appsSummary	%1$ld uygulama · %2$@
+disk.pickApp	Bir uygulama seç
+disk.pickApp.body	Uygulamanın Mac'inde bıraktığı her dosyayı gör ve iz bırakmadan kaldır.
+disk.foundItems	%ld öğe bulundu
+disk.selectAll	Tümünü seç
+disk.selectNone	Hiçbirini seçme
+disk.searching	Aranıyor…
+disk.needsAdmin	Sistem konumu: yönetici şifren sorulacak.
+disk.selectedTotal	Seçilen: %@
+disk.resetApp	Uygulamayı sıfırla
+disk.resetApp.help	Uygulamanın verilerini ve ayarlarını siler, uygulamayı bırakır; ilk kurulmuş gibi açılır.
+disk.resetApp.confirm	“%@” sıfırlansın mı?
+disk.removeFully	Tamamen kaldır
+disk.remove.body	%1$ld öğe (%2$@) kaldırılacak. Kitaplığındaki öğeler Çöp Sepeti'ne taşınır; sistem öğeleri yönetici şifrenle silinir.
+disk.group.app	Uygulama
+disk.group.support	Uygulama verileri
+disk.group.container	Kapsayıcılar
+disk.group.cache	Önbellekler
+disk.group.prefs	Tercihler
+disk.group.state	Kayıtlı durum ve son öğeler
+disk.group.web	Web verileri ve çerezler
+disk.group.launch	Başlangıç öğeleri ve yardımcılar
+disk.group.plugins	Eklentiler ve uzantılar
+disk.group.logs	Günlükler ve çökme raporları
+disk.group.receipts	Kurulum kayıtları
+disk.group.other	Diğer
+disk.junk.info	Önbellekler gerektiğinde kendiliğinden yeniden oluşur. En iyi sonuç için önce uygulamaları kapat.
+disk.junk.empty	Gereksiz dosya bulunamadı.
+disk.junk.trash	Çöp Sepeti
+disk.junk.browser	Tarayıcı önbellekleri
+disk.junk.caches	Uygulama önbellekleri
+disk.junk.logs	Günlükler
+disk.junk.developer	Geliştirici dosyaları
+disk.junk.other	Diğer
+disk.junk.trashItem	Çöp Sepeti'ndeki öğeler
+disk.junk.mailDownloads	Mail ekleri (indirilmiş)
+disk.junk.iosBackups	iPhone ve iPad yedekleri
+disk.junk.crashReports	Çökme raporları
+disk.note.apple	macOS önbelleği: genellikle hemen yeniden oluşur; seçili değil.
+disk.note.archives	Derlemelerini yeniden göndermek veya hata ayıklamak için gerekir.
+disk.note.simulators	Simülatörlere kurulu uygulamaları ve verileri siler.
+disk.note.docker	Docker disk görüntüsü: tüm kapsayıcıları ve imajları siler.
+disk.note.backups	Bir cihazın tek yedeği burada olabilir.
+disk.clean	Temizle
+disk.clean.confirm	%@ önbellek ve gereksiz dosya silinsin mi?
+disk.large.min	En az
+disk.large.kind	Tür
+disk.kind.all	Tümü
+disk.kind.video	Videolar
+disk.kind.image	Disk görüntüleri ve sanal makineler
+disk.kind.archive	Arşivler ve kurulum dosyaları
+disk.kind.audio	Ses
+disk.kind.photo	Fotoğraflar
+disk.kind.ipsw	Cihaz yazılımları
+disk.kind.other	Diğer
+disk.large.scan	Ev klasörünü tara
+disk.large.progress	%ld dosya incelendi
+disk.large.none	Henüz büyük dosya listelenmedi
+disk.large.body	Ev klasöründeki en büyük dosyaları bulur.
+disk.large.opened	açıldı: %@
+disk.large.summary	%1$ld dosya · %2$@
+disk.large.confirm	%ld dosya Çöp Sepeti'ne taşınsın mı?
+disk.open	Aç
+disk.notMoved	%ld öğe taşınamadı.
+disk.orphans.info	Bu klasörler artık kurulu olmayan uygulamalara ait. Kaldırmadan önce adlarına bak: bazıları komut satırı araçlarına ya da başka yerde tuttuğun uygulamalara ait olabilir.
+disk.orphans.none	Kalıntı bulunamadı.
+disk.orphans.places	%ld konum
+disk.orphans.summary	%1$ld kalıntı · %2$@
+disk.orphans.confirm	%ld uygulamanın kalıntıları Çöp Sepeti'ne taşınsın mı?

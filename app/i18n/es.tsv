@@ -915,3 +915,135 @@ vpn.qrHint	Escanea el código QR con tu cartera: la dirección y la cantidad se 
 vpn.rateFailed	No se pudo obtener el cambio actual; revisa tu conexión a internet.
 vpn.retry	Reintentar
 vpn.rateLoading	Obteniendo el cambio actual…
+nav.disk	Disco y apps
+disk.tab.overview	Resumen
+disk.tab.apps	Apps
+disk.tab.junk	Cachés y basura
+disk.tab.large	Archivos grandes
+disk.tab.orphans	Restos
+disk.scannedAt	Analizado %@
+disk.rescan	Volver a analizar
+disk.capacity	%@ en total
+disk.free	%@ disponibles
+disk.used	Usado
+disk.purgeable	Purgable
+disk.cleanable	Limpiable
+disk.percentUsed	%ld %% usado
+disk.phase.apps	Midiendo apps…
+disk.phase.leftovers	Buscando datos de apps…
+disk.phase.junk	Buscando cachés y basura…
+disk.phase.orphans	Buscando restos de apps eliminadas…
+disk.phase.categories	Calculando el reparto del almacenamiento…
+disk.cat.apps	Apps
+disk.cat.documents	Documentos
+disk.cat.desktop	Escritorio
+disk.cat.downloads	Descargas
+disk.cat.pictures	Imágenes
+disk.cat.movies	Películas
+disk.cat.music	Música
+disk.cat.icloud	iCloud Drive (local)
+disk.cat.developer	Desarrollo
+disk.cat.mail	Mail
+disk.cat.caches	Cachés y registros
+disk.cat.trash	Papelera
+disk.cat.system	Sistema y otros
+disk.breakdown	Reparto del almacenamiento
+disk.largestApps	Apps más grandes
+disk.unusedApps	Apps sin usar en 90 días
+disk.unused.none	Todas las apps se han usado recientemente.
+disk.unused.summary	%1$ld apps, %2$@ en total
+disk.never	Nunca
+disk.volumes	Volúmenes
+disk.freeOf	%1$@ libres de %2$@
+disk.tile.junk	Cachés y basura
+disk.tile.trash	Papelera
+disk.tile.orphans	Restos de apps eliminadas
+disk.tile.large	Archivos grandes
+disk.review	Revisar
+disk.find	Buscar
+disk.trash.empty	Vaciar la Papelera
+disk.trash.confirm	¿Vaciar la Papelera?
+disk.permanent	Estos archivos se eliminan para siempre y no se pueden recuperar.
+disk.freed	%@ liberados.
+disk.freedPartial	%1$@ liberados. No se pudieron eliminar %2$ld elementos (en uso o protegidos por macOS).
+disk.filter.all	Todas
+disk.filter.large	Más de 1 GB
+disk.filter.unused	Sin usar
+disk.filter.appStore	App Store
+disk.filter.data	Muchos datos
+disk.searchApps	Buscar apps
+disk.col.name	Nombre
+disk.col.app	App
+disk.col.data	Datos
+disk.col.total	Total
+disk.col.lastUsed	Última apertura
+disk.dropHint	Arrastra una app aquí para eliminarla por completo.
+disk.appsSummary	%1$ld apps · %2$@
+disk.pickApp	Elige una app
+disk.pickApp.body	Ve cada archivo que la app dejó en tu Mac y elimínala sin dejar rastro.
+disk.foundItems	%ld elementos encontrados
+disk.selectAll	Seleccionar todo
+disk.selectNone	No seleccionar nada
+disk.searching	Buscando…
+disk.needsAdmin	Ubicación del sistema: se pedirá tu contraseña de administrador.
+disk.selectedTotal	Seleccionado: %@
+disk.resetApp	Restablecer app
+disk.resetApp.help	Borra los datos y ajustes de la app pero la conserva; se abre como nueva.
+disk.resetApp.confirm	¿Restablecer «%@»?
+disk.removeFully	Eliminar por completo
+disk.remove.body	Se eliminarán %1$ld elementos (%2$@). Los de tu biblioteca van a la Papelera; los del sistema se borran con tu contraseña de administrador.
+disk.group.app	Aplicación
+disk.group.support	Datos de la app
+disk.group.container	Contenedores
+disk.group.cache	Cachés
+disk.group.prefs	Preferencias
+disk.group.state	Estado guardado y recientes
+disk.group.web	Datos web y cookies
+disk.group.launch	Ítems de inicio y asistentes
+disk.group.plugins	Complementos y extensiones
+disk.group.logs	Registros e informes de fallos
+disk.group.receipts	Recibos de instalación
+disk.group.other	Otros
+disk.junk.info	Las cachés se regeneran solas cuando hace falta. Cierra las apps antes para un mejor resultado.
+disk.junk.empty	No se encontró basura.
+disk.junk.trash	Papelera
+disk.junk.browser	Cachés de navegadores
+disk.junk.caches	Cachés de apps
+disk.junk.logs	Registros
+disk.junk.developer	Archivos de desarrollo
+disk.junk.other	Otros
+disk.junk.trashItem	Elementos en la Papelera
+disk.junk.mailDownloads	Adjuntos de Mail (descargados)
+disk.junk.iosBackups	Copias de iPhone y iPad
+disk.junk.crashReports	Informes de fallos
+disk.note.apple	Caché de macOS: suele regenerarse al instante; no seleccionada.
+disk.note.archives	Necesarios para reenviar o simbolizar tus compilaciones.
+disk.note.simulators	Borra las apps y datos instalados en los simuladores.
+disk.note.docker	Imagen de disco de Docker: borra todos los contenedores e imágenes.
+disk.note.backups	Aquí puede estar la única copia de un dispositivo.
+disk.clean	Limpiar
+disk.clean.confirm	¿Eliminar %@ de cachés y basura?
+disk.large.min	Al menos
+disk.large.kind	Tipo
+disk.kind.all	Todos
+disk.kind.video	Vídeos
+disk.kind.image	Imágenes de disco y VM
+disk.kind.archive	Archivos comprimidos e instaladores
+disk.kind.audio	Audio
+disk.kind.photo	Fotos
+disk.kind.ipsw	Firmware de dispositivos
+disk.kind.other	Otros
+disk.large.scan	Analizar carpeta de inicio
+disk.large.progress	%ld archivos revisados
+disk.large.none	Aún no hay archivos grandes
+disk.large.body	Encuentra los archivos más grandes de tu carpeta de inicio.
+disk.large.opened	abierto %@
+disk.large.summary	%1$ld archivos · %2$@
+disk.large.confirm	¿Mover %ld archivos a la Papelera?
+disk.open	Abrir
+disk.notMoved	No se pudieron mover %ld elementos.
+disk.orphans.info	Estas carpetas pertenecen a apps que ya no están instaladas. Revisa los nombres antes de eliminar: algunas pueden ser de herramientas de línea de comandos o de apps que guardas en otro sitio.
+disk.orphans.none	No se encontraron restos.
+disk.orphans.places	%ld ubicaciones
+disk.orphans.summary	%1$ld restos · %2$@
+disk.orphans.confirm	¿Mover los restos de %ld apps a la Papelera?

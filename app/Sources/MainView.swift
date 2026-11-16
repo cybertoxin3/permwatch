@@ -1,7 +1,7 @@
 import SwiftUI
 
 enum SidebarItem: Hashable {
-    case timeline, alerts, advice, scan, apps, running, security, downloads, network, packets, terminal, settings, shield, vault, vpn
+    case timeline, alerts, advice, scan, apps, running, security, downloads, network, packets, terminal, settings, shield, vault, vpn, disk
     case category(Category)
     case loginItems, processes
 }
@@ -43,6 +43,8 @@ struct MainView: View {
                 ScanView()
             } else if section == .apps {
                 AppsView()
+            } else if section == .disk {
+                DiskView()
             } else if section == .running {
                 ProcessesView()
             } else if section == .security {
@@ -112,6 +114,7 @@ struct MainView: View {
             monitor.trusted = store.trusted
             DispatchQueue.main.async { selectFirstAlert() }
             if Snapshot.section == "apps" { section = .apps }
+            if Snapshot.section == "disk" { section = .disk }
             if Snapshot.section == "running" { section = .running }
             if Snapshot.section == "packets" { section = .packets }
             if Snapshot.section == "advice" { section = .advice }
@@ -143,6 +146,7 @@ struct MainView: View {
         case .advice: return L("nav.overview")
         case .scan: return L("nav.scan")
         case .apps: return L("nav.apps")
+        case .disk: return L("nav.disk")
         case .running: return L("nav.running")
         case .security: return L("nav.security")
         case .downloads: return L("nav.downloads")
@@ -215,6 +219,7 @@ struct Sidebar: View {
 
             Section(L("nav.yourMac")) {
                 Label(L("nav.apps"), systemImage: "square.grid.2x2").tag(SidebarItem.apps)
+                Label(L("nav.disk"), systemImage: "internaldrive").tag(SidebarItem.disk)
                 if advanced || monitor.suspicious > 0 {
                     Label(L("nav.running"), systemImage: "cpu").badge(monitor.suspicious).tag(SidebarItem.running)
                 }

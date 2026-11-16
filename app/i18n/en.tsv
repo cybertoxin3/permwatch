@@ -915,3 +915,135 @@ vpn.qrHint	Scan the QR code with your wallet: address and amount are filled in a
 vpn.rateFailed	Couldn't get the current rate; check your internet connection.
 vpn.retry	Try again
 vpn.rateLoading	Getting the current rate…
+nav.disk	Disk & Apps
+disk.tab.overview	Overview
+disk.tab.apps	Apps
+disk.tab.junk	Caches & Junk
+disk.tab.large	Large Files
+disk.tab.orphans	Leftovers
+disk.scannedAt	Scanned %@
+disk.rescan	Rescan
+disk.capacity	%@ total
+disk.free	%@ available
+disk.used	Used
+disk.purgeable	Purgeable
+disk.cleanable	Cleanable
+disk.percentUsed	%ld%% used
+disk.phase.apps	Measuring apps…
+disk.phase.leftovers	Finding app data…
+disk.phase.junk	Looking for caches and junk…
+disk.phase.orphans	Looking for leftovers of deleted apps…
+disk.phase.categories	Calculating storage breakdown…
+disk.cat.apps	Apps
+disk.cat.documents	Documents
+disk.cat.desktop	Desktop
+disk.cat.downloads	Downloads
+disk.cat.pictures	Pictures
+disk.cat.movies	Movies
+disk.cat.music	Music
+disk.cat.icloud	iCloud Drive (local)
+disk.cat.developer	Developer
+disk.cat.mail	Mail
+disk.cat.caches	Caches & logs
+disk.cat.trash	Trash
+disk.cat.system	System & other
+disk.breakdown	Storage breakdown
+disk.largestApps	Largest apps
+disk.unusedApps	Apps not used in 90 days
+disk.unused.none	Every app has been used recently.
+disk.unused.summary	%1$ld apps, %2$@ in total
+disk.never	Never
+disk.volumes	Volumes
+disk.freeOf	%1$@ free of %2$@
+disk.tile.junk	Caches & junk
+disk.tile.trash	Trash
+disk.tile.orphans	Leftovers of deleted apps
+disk.tile.large	Large files
+disk.review	Review
+disk.find	Find
+disk.trash.empty	Empty Trash
+disk.trash.confirm	Empty the Trash?
+disk.permanent	These files are deleted permanently and can’t be restored.
+disk.freed	%@ freed.
+disk.freedPartial	%1$@ freed. %2$ld items could not be deleted (in use or protected by macOS).
+disk.filter.all	All
+disk.filter.large	Over 1 GB
+disk.filter.unused	Unused
+disk.filter.appStore	App Store
+disk.filter.data	Lots of data
+disk.searchApps	Search apps
+disk.col.name	Name
+disk.col.app	App
+disk.col.data	Data
+disk.col.total	Total
+disk.col.lastUsed	Last opened
+disk.dropHint	Drag an app here to remove it completely.
+disk.appsSummary	%1$ld apps · %2$@
+disk.pickApp	Select an app
+disk.pickApp.body	See every file the app left on your Mac and remove it without a trace.
+disk.foundItems	%ld items found
+disk.selectAll	Select all
+disk.selectNone	Select none
+disk.searching	Searching…
+disk.needsAdmin	System location: your administrator password will be asked.
+disk.selectedTotal	Selected: %@
+disk.resetApp	Reset app
+disk.resetApp.help	Deletes the app’s data and settings but keeps the app, so it starts like new.
+disk.resetApp.confirm	Reset “%@”?
+disk.removeFully	Remove completely
+disk.remove.body	%1$ld items (%2$@) will be removed. Items in your Library go to the Trash; system items are deleted with your administrator password.
+disk.group.app	Application
+disk.group.support	App data
+disk.group.container	Containers
+disk.group.cache	Caches
+disk.group.prefs	Preferences
+disk.group.state	Saved state & recent items
+disk.group.web	Web data & cookies
+disk.group.launch	Startup items & helpers
+disk.group.plugins	Plug-ins & extensions
+disk.group.logs	Logs & crash reports
+disk.group.receipts	Installer receipts
+disk.group.other	Other
+disk.junk.info	Caches are rebuilt automatically when needed. Quit apps first for the best result.
+disk.junk.empty	No junk found.
+disk.junk.trash	Trash
+disk.junk.browser	Browser caches
+disk.junk.caches	App caches
+disk.junk.logs	Logs
+disk.junk.developer	Developer files
+disk.junk.other	Other
+disk.junk.trashItem	Items in the Trash
+disk.junk.mailDownloads	Mail attachments (downloaded)
+disk.junk.iosBackups	iPhone & iPad backups
+disk.junk.crashReports	Crash reports
+disk.note.apple	macOS cache: usually rebuilt immediately; not selected.
+disk.note.archives	Needed to resubmit or symbolicate your builds.
+disk.note.simulators	Deletes the simulators’ installed apps and data.
+disk.note.docker	Docker disk image: deletes all containers and images.
+disk.note.backups	Your only copy of a device backup may be here.
+disk.clean	Clean
+disk.clean.confirm	Delete %@ of caches and junk?
+disk.large.min	At least
+disk.large.kind	Type
+disk.kind.all	All
+disk.kind.video	Videos
+disk.kind.image	Disk images & VMs
+disk.kind.archive	Archives & installers
+disk.kind.audio	Audio
+disk.kind.photo	Photos
+disk.kind.ipsw	Device firmware
+disk.kind.other	Other
+disk.large.scan	Scan home folder
+disk.large.progress	%ld files checked
+disk.large.none	No large files listed yet
+disk.large.body	Finds the biggest files in your home folder.
+disk.large.opened	opened %@
+disk.large.summary	%1$ld files · %2$@
+disk.large.confirm	Move %ld files to the Trash?
+disk.open	Open
+disk.notMoved	%ld items could not be moved.
+disk.orphans.info	These folders belong to apps that are no longer installed. Check the names before removing: some may belong to command-line tools or apps you keep elsewhere.
+disk.orphans.none	No leftovers found.
+disk.orphans.places	%ld locations
+disk.orphans.summary	%1$ld leftovers · %2$@
+disk.orphans.confirm	Move the leftovers of %ld apps to the Trash?

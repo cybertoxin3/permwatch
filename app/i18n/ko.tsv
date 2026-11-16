@@ -915,3 +915,135 @@ vpn.qrHint	지갑으로 QR 코드를 스캔하면 주소와 금액이 자동으�
 vpn.rateFailed	현재 시세를 가져올 수 없습니다. 인터넷 연결을 확인하세요.
 vpn.retry	다시 시도
 vpn.rateLoading	현재 시세를 가져오는 중…
+nav.disk	디스크 및 앱
+disk.tab.overview	개요
+disk.tab.apps	앱
+disk.tab.junk	캐시 및 불필요한 파일
+disk.tab.large	대용량 파일
+disk.tab.orphans	남은 파일
+disk.scannedAt	검사: %@
+disk.rescan	다시 검사
+disk.capacity	총 %@
+disk.free	%@ 사용 가능
+disk.used	사용됨
+disk.purgeable	제거 가능
+disk.cleanable	정리 가능
+disk.percentUsed	%ld%% 사용 중
+disk.phase.apps	앱 크기 측정 중…
+disk.phase.leftovers	앱 데이터 찾는 중…
+disk.phase.junk	캐시와 불필요한 파일 찾는 중…
+disk.phase.orphans	삭제된 앱의 남은 파일 찾는 중…
+disk.phase.categories	저장 공간 분포 계산 중…
+disk.cat.apps	앱
+disk.cat.documents	문서
+disk.cat.desktop	데스크탑
+disk.cat.downloads	다운로드
+disk.cat.pictures	사진
+disk.cat.movies	동영상
+disk.cat.music	음악
+disk.cat.icloud	iCloud Drive(로컬)
+disk.cat.developer	개발자
+disk.cat.mail	메일
+disk.cat.caches	캐시 및 로그
+disk.cat.trash	휴지통
+disk.cat.system	시스템 및 기타
+disk.breakdown	저장 공간 분포
+disk.largestApps	가장 큰 앱
+disk.unusedApps	90일 동안 사용하지 않은 앱
+disk.unused.none	모든 앱을 최근에 사용했습니다.
+disk.unused.summary	앱 %1$ld개, 총 %2$@
+disk.never	없음
+disk.volumes	볼륨
+disk.freeOf	%2$@ 중 %1$@ 사용 가능
+disk.tile.junk	캐시 및 불필요한 파일
+disk.tile.trash	휴지통
+disk.tile.orphans	삭제된 앱의 남은 파일
+disk.tile.large	대용량 파일
+disk.review	검토
+disk.find	찾기
+disk.trash.empty	휴지통 비우기
+disk.trash.confirm	휴지통을 비우시겠습니까?
+disk.permanent	이 파일들은 영구적으로 삭제되며 복구할 수 없습니다.
+disk.freed	%@ 확보했습니다.
+disk.freedPartial	%1$@ 확보했습니다. 항목 %2$ld개는 삭제할 수 없었습니다(사용 중이거나 macOS가 보호).
+disk.filter.all	전체
+disk.filter.large	1GB 초과
+disk.filter.unused	미사용
+disk.filter.appStore	App Store
+disk.filter.data	데이터 많음
+disk.searchApps	앱 검색
+disk.col.name	이름
+disk.col.app	앱
+disk.col.data	데이터
+disk.col.total	합계
+disk.col.lastUsed	마지막 실행
+disk.dropHint	앱을 여기로 드래그하면 완전히 제거합니다.
+disk.appsSummary	앱 %1$ld개 · %2$@
+disk.pickApp	앱 선택
+disk.pickApp.body	앱이 Mac에 남긴 모든 파일을 확인하고 흔적 없이 제거하세요.
+disk.foundItems	항목 %ld개 찾음
+disk.selectAll	모두 선택
+disk.selectNone	선택 해제
+disk.searching	찾는 중…
+disk.needsAdmin	시스템 위치: 관리자 암호를 묻습니다.
+disk.selectedTotal	선택됨: %@
+disk.resetApp	앱 재설정
+disk.resetApp.help	앱의 데이터와 설정은 지우고 앱은 유지합니다. 새로 설치한 것처럼 실행됩니다.
+disk.resetApp.confirm	‘%@’을(를) 재설정하시겠습니까?
+disk.removeFully	완전히 제거
+disk.remove.body	항목 %1$ld개(%2$@)가 제거됩니다. 라이브러리의 항목은 휴지통으로 이동하고, 시스템 항목은 관리자 암호로 삭제됩니다.
+disk.group.app	응용 프로그램
+disk.group.support	앱 데이터
+disk.group.container	컨테이너
+disk.group.cache	캐시
+disk.group.prefs	환경설정
+disk.group.state	저장된 상태 및 최근 항목
+disk.group.web	웹 데이터 및 쿠키
+disk.group.launch	시동 항목 및 도우미
+disk.group.plugins	플러그인 및 확장 프로그램
+disk.group.logs	로그 및 충돌 보고서
+disk.group.receipts	설치 기록
+disk.group.other	기타
+disk.junk.info	캐시는 필요할 때 자동으로 다시 만들어집니다. 먼저 앱을 종료하면 더 좋습니다.
+disk.junk.empty	불필요한 파일이 없습니다.
+disk.junk.trash	휴지통
+disk.junk.browser	브라우저 캐시
+disk.junk.caches	앱 캐시
+disk.junk.logs	로그
+disk.junk.developer	개발자 파일
+disk.junk.other	기타
+disk.junk.trashItem	휴지통 항목
+disk.junk.mailDownloads	메일 첨부 파일(다운로드됨)
+disk.junk.iosBackups	iPhone 및 iPad 백업
+disk.junk.crashReports	충돌 보고서
+disk.note.apple	macOS 캐시: 보통 바로 다시 만들어지므로 선택하지 않음.
+disk.note.archives	빌드를 다시 제출하거나 심볼화할 때 필요합니다.
+disk.note.simulators	시뮬레이터에 설치된 앱과 데이터를 삭제합니다.
+disk.note.docker	Docker 디스크 이미지: 모든 컨테이너와 이미지를 삭제합니다.
+disk.note.backups	기기의 유일한 백업이 여기에 있을 수 있습니다.
+disk.clean	정리
+disk.clean.confirm	캐시와 불필요한 파일 %@을(를) 삭제하시겠습니까?
+disk.large.min	최소
+disk.large.kind	종류
+disk.kind.all	전체
+disk.kind.video	비디오
+disk.kind.image	디스크 이미지 및 가상 머신
+disk.kind.archive	압축 파일 및 설치 프로그램
+disk.kind.audio	오디오
+disk.kind.photo	사진
+disk.kind.ipsw	기기 펌웨어
+disk.kind.other	기타
+disk.large.scan	홈 폴더 검사
+disk.large.progress	파일 %ld개 확인
+disk.large.none	아직 대용량 파일이 없습니다
+disk.large.body	홈 폴더에서 가장 큰 파일을 찾습니다.
+disk.large.opened	%@ 열림
+disk.large.summary	파일 %1$ld개 · %2$@
+disk.large.confirm	파일 %ld개를 휴지통으로 이동하시겠습니까?
+disk.open	열기
+disk.notMoved	항목 %ld개를 이동할 수 없었습니다.
+disk.orphans.info	이 폴더들은 더 이상 설치되어 있지 않은 앱의 것입니다. 제거하기 전에 이름을 확인하세요. 일부는 명령줄 도구나 다른 곳에 둔 앱의 것일 수 있습니다.
+disk.orphans.none	남은 파일이 없습니다.
+disk.orphans.places	위치 %ld곳
+disk.orphans.summary	남은 파일 %1$ld개 · %2$@
+disk.orphans.confirm	앱 %ld개의 남은 파일을 휴지통으로 이동하시겠습니까?

@@ -915,3 +915,135 @@ vpn.qrHint	Scanne den QR-Code mit deiner Wallet: Adresse und Betrag werden autom
 vpn.rateFailed	Aktueller Kurs nicht verfügbar; prüfe deine Internetverbindung.
 vpn.retry	Erneut versuchen
 vpn.rateLoading	Aktueller Kurs wird geladen…
+nav.disk	Festplatte & Apps
+disk.tab.overview	Übersicht
+disk.tab.apps	Apps
+disk.tab.junk	Caches & Müll
+disk.tab.large	Große Dateien
+disk.tab.orphans	Überreste
+disk.scannedAt	Gescannt %@
+disk.rescan	Erneut scannen
+disk.capacity	%@ gesamt
+disk.free	%@ verfügbar
+disk.used	Belegt
+disk.purgeable	Freigebbar
+disk.cleanable	Bereinigbar
+disk.percentUsed	%ld %% belegt
+disk.phase.apps	Apps werden gemessen …
+disk.phase.leftovers	App-Daten werden gesucht …
+disk.phase.junk	Caches und Müll werden gesucht …
+disk.phase.orphans	Überreste gelöschter Apps werden gesucht …
+disk.phase.categories	Speicheraufteilung wird berechnet …
+disk.cat.apps	Apps
+disk.cat.documents	Dokumente
+disk.cat.desktop	Schreibtisch
+disk.cat.downloads	Downloads
+disk.cat.pictures	Bilder
+disk.cat.movies	Filme
+disk.cat.music	Musik
+disk.cat.icloud	iCloud Drive (lokal)
+disk.cat.developer	Entwickler
+disk.cat.mail	Mail
+disk.cat.caches	Caches & Protokolle
+disk.cat.trash	Papierkorb
+disk.cat.system	System & Sonstiges
+disk.breakdown	Speicheraufteilung
+disk.largestApps	Größte Apps
+disk.unusedApps	Seit 90 Tagen nicht genutzte Apps
+disk.unused.none	Alle Apps wurden kürzlich verwendet.
+disk.unused.summary	%1$ld Apps, insgesamt %2$@
+disk.never	Nie
+disk.volumes	Laufwerke
+disk.freeOf	%1$@ von %2$@ frei
+disk.tile.junk	Caches & Müll
+disk.tile.trash	Papierkorb
+disk.tile.orphans	Überreste gelöschter Apps
+disk.tile.large	Große Dateien
+disk.review	Prüfen
+disk.find	Suchen
+disk.trash.empty	Papierkorb leeren
+disk.trash.confirm	Papierkorb leeren?
+disk.permanent	Diese Dateien werden endgültig gelöscht und können nicht wiederhergestellt werden.
+disk.freed	%@ freigegeben.
+disk.freedPartial	%1$@ freigegeben. %2$ld Objekte konnten nicht gelöscht werden (in Verwendung oder von macOS geschützt).
+disk.filter.all	Alle
+disk.filter.large	Über 1 GB
+disk.filter.unused	Ungenutzt
+disk.filter.appStore	App Store
+disk.filter.data	Viele Daten
+disk.searchApps	Apps suchen
+disk.col.name	Name
+disk.col.app	App
+disk.col.data	Daten
+disk.col.total	Gesamt
+disk.col.lastUsed	Zuletzt geöffnet
+disk.dropHint	Ziehe eine App hierher, um sie vollständig zu entfernen.
+disk.appsSummary	%1$ld Apps · %2$@
+disk.pickApp	Wähle eine App
+disk.pickApp.body	Sieh jede Datei, die die App auf deinem Mac hinterlassen hat, und entferne sie spurlos.
+disk.foundItems	%ld Objekte gefunden
+disk.selectAll	Alle auswählen
+disk.selectNone	Keine auswählen
+disk.searching	Suche …
+disk.needsAdmin	Systemort: Dein Administratorpasswort wird abgefragt.
+disk.selectedTotal	Ausgewählt: %@
+disk.resetApp	App zurücksetzen
+disk.resetApp.help	Löscht Daten und Einstellungen der App, behält aber die App; sie startet wie neu.
+disk.resetApp.confirm	„%@“ zurücksetzen?
+disk.removeFully	Vollständig entfernen
+disk.remove.body	%1$ld Objekte (%2$@) werden entfernt. Objekte in deiner Library kommen in den Papierkorb; Systemobjekte werden mit deinem Administratorpasswort gelöscht.
+disk.group.app	Programm
+disk.group.support	App-Daten
+disk.group.container	Container
+disk.group.cache	Caches
+disk.group.prefs	Einstellungen
+disk.group.state	Gespeicherter Zustand & Verlauf
+disk.group.web	Webdaten & Cookies
+disk.group.launch	Startobjekte & Helfer
+disk.group.plugins	Plug-ins & Erweiterungen
+disk.group.logs	Protokolle & Absturzberichte
+disk.group.receipts	Installationsbelege
+disk.group.other	Sonstiges
+disk.junk.info	Caches werden bei Bedarf automatisch neu erstellt. Beende Apps vorher für das beste Ergebnis.
+disk.junk.empty	Kein Müll gefunden.
+disk.junk.trash	Papierkorb
+disk.junk.browser	Browser-Caches
+disk.junk.caches	App-Caches
+disk.junk.logs	Protokolle
+disk.junk.developer	Entwicklerdateien
+disk.junk.other	Sonstiges
+disk.junk.trashItem	Objekte im Papierkorb
+disk.junk.mailDownloads	Mail-Anhänge (geladen)
+disk.junk.iosBackups	iPhone- & iPad-Backups
+disk.junk.crashReports	Absturzberichte
+disk.note.apple	macOS-Cache: wird meist sofort neu erstellt; nicht ausgewählt.
+disk.note.archives	Nötig, um Builds erneut einzureichen oder zu symbolisieren.
+disk.note.simulators	Löscht die installierten Apps und Daten der Simulatoren.
+disk.note.docker	Docker-Image: löscht alle Container und Images.
+disk.note.backups	Hier liegt evtl. die einzige Sicherung eines Geräts.
+disk.clean	Bereinigen
+disk.clean.confirm	%@ Caches und Müll löschen?
+disk.large.min	Mindestens
+disk.large.kind	Art
+disk.kind.all	Alle
+disk.kind.video	Videos
+disk.kind.image	Disk-Images & VMs
+disk.kind.archive	Archive & Installer
+disk.kind.audio	Audio
+disk.kind.photo	Fotos
+disk.kind.ipsw	Geräte-Firmware
+disk.kind.other	Sonstiges
+disk.large.scan	Benutzerordner scannen
+disk.large.progress	%ld Dateien geprüft
+disk.large.none	Noch keine großen Dateien
+disk.large.body	Findet die größten Dateien in deinem Benutzerordner.
+disk.large.opened	geöffnet %@
+disk.large.summary	%1$ld Dateien · %2$@
+disk.large.confirm	%ld Dateien in den Papierkorb legen?
+disk.open	Öffnen
+disk.notMoved	%ld Objekte konnten nicht bewegt werden.
+disk.orphans.info	Diese Ordner gehören zu Apps, die nicht mehr installiert sind. Prüfe die Namen vor dem Entfernen: Manche gehören evtl. zu Befehlszeilenwerkzeugen oder Apps an anderen Orten.
+disk.orphans.none	Keine Überreste gefunden.
+disk.orphans.places	%ld Orte
+disk.orphans.summary	%1$ld Überreste · %2$@
+disk.orphans.confirm	Überreste von %ld Apps in den Papierkorb legen?

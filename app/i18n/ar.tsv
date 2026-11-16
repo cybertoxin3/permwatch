@@ -915,3 +915,135 @@ vpn.qrHint	امسح رمز QR بمحفظتك: يُملأ العنوان والم
 vpn.rateFailed	تعذّر الحصول على السعر الحالي؛ تحقّق من اتصالك بالإنترنت.
 vpn.retry	إعادة المحاولة
 vpn.rateLoading	جارٍ جلب السعر الحالي…
+nav.disk	القرص والتطبيقات
+disk.tab.overview	نظرة عامة
+disk.tab.apps	التطبيقات
+disk.tab.junk	الذاكرة المؤقتة والملفات غير اللازمة
+disk.tab.large	الملفات الكبيرة
+disk.tab.orphans	البقايا
+disk.scannedAt	تم الفحص %@
+disk.rescan	إعادة الفحص
+disk.capacity	الإجمالي %@
+disk.free	المتاح %@
+disk.used	المستخدم
+disk.purgeable	قابل للإزالة
+disk.cleanable	قابل للتنظيف
+disk.percentUsed	مستخدم %ld%%
+disk.phase.apps	جارٍ قياس التطبيقات…
+disk.phase.leftovers	جارٍ البحث عن بيانات التطبيقات…
+disk.phase.junk	جارٍ البحث عن الذاكرة المؤقتة والملفات غير اللازمة…
+disk.phase.orphans	جارٍ البحث عن بقايا التطبيقات المحذوفة…
+disk.phase.categories	جارٍ حساب توزيع التخزين…
+disk.cat.apps	التطبيقات
+disk.cat.documents	المستندات
+disk.cat.desktop	سطح المكتب
+disk.cat.downloads	التنزيلات
+disk.cat.pictures	الصور
+disk.cat.movies	الأفلام
+disk.cat.music	الموسيقى
+disk.cat.icloud	iCloud Drive (محلي)
+disk.cat.developer	المطوّر
+disk.cat.mail	البريد
+disk.cat.caches	الذاكرة المؤقتة والسجلات
+disk.cat.trash	سلة المهملات
+disk.cat.system	النظام وغيره
+disk.breakdown	توزيع التخزين
+disk.largestApps	أكبر التطبيقات
+disk.unusedApps	تطبيقات لم تُستخدم منذ 90 يومًا
+disk.unused.none	استُخدمت كل التطبيقات مؤخرًا.
+disk.unused.summary	%1$ld تطبيق، الإجمالي %2$@
+disk.never	أبدًا
+disk.volumes	وحدات التخزين
+disk.freeOf	%1$@ متاح من %2$@
+disk.tile.junk	الذاكرة المؤقتة والملفات غير اللازمة
+disk.tile.trash	سلة المهملات
+disk.tile.orphans	بقايا التطبيقات المحذوفة
+disk.tile.large	الملفات الكبيرة
+disk.review	مراجعة
+disk.find	بحث
+disk.trash.empty	إفراغ سلة المهملات
+disk.trash.confirm	هل تريد إفراغ سلة المهملات؟
+disk.permanent	تُحذف هذه الملفات نهائيًا ولا يمكن استعادتها.
+disk.freed	تم تحرير %@.
+disk.freedPartial	تم تحرير %1$@. تعذّر حذف %2$ld عنصر (قيد الاستخدام أو محمي بواسطة macOS).
+disk.filter.all	الكل
+disk.filter.large	أكبر من 1 غ.ب
+disk.filter.unused	غير مستخدمة
+disk.filter.appStore	App Store
+disk.filter.data	بيانات كثيرة
+disk.searchApps	البحث في التطبيقات
+disk.col.name	الاسم
+disk.col.app	التطبيق
+disk.col.data	البيانات
+disk.col.total	الإجمالي
+disk.col.lastUsed	آخر فتح
+disk.dropHint	اسحب تطبيقًا إلى هنا لإزالته بالكامل.
+disk.appsSummary	%1$ld تطبيق · %2$@
+disk.pickApp	اختر تطبيقًا
+disk.pickApp.body	شاهد كل ملف تركه التطبيق على جهاز Mac وأزله دون أثر.
+disk.foundItems	تم العثور على %ld عنصر
+disk.selectAll	تحديد الكل
+disk.selectNone	إلغاء التحديد
+disk.searching	جارٍ البحث…
+disk.needsAdmin	موقع نظام: ستُطلب كلمة سر المسؤول.
+disk.selectedTotal	المحدد: %@
+disk.resetApp	إعادة تعيين التطبيق
+disk.resetApp.help	يحذف بيانات التطبيق وإعداداته ويُبقي التطبيق؛ فيعمل كأنه جديد.
+disk.resetApp.confirm	هل تريد إعادة تعيين ”%@“؟
+disk.removeFully	إزالة بالكامل
+disk.remove.body	ستتم إزالة %1$ld عنصر (%2$@). تنتقل عناصر مكتبتك إلى سلة المهملات، وتُحذف عناصر النظام بكلمة سر المسؤول.
+disk.group.app	التطبيق
+disk.group.support	بيانات التطبيق
+disk.group.container	الحاويات
+disk.group.cache	الذاكرة المؤقتة
+disk.group.prefs	التفضيلات
+disk.group.state	الحالة المحفوظة والعناصر الأخيرة
+disk.group.web	بيانات الويب وملفات تعريف الارتباط
+disk.group.launch	عناصر بدء التشغيل والمساعدات
+disk.group.plugins	المكونات الإضافية والملحقات
+disk.group.logs	السجلات وتقارير الأعطال
+disk.group.receipts	سجلات التثبيت
+disk.group.other	أخرى
+disk.junk.info	تُعاد الذاكرة المؤقتة تلقائيًا عند الحاجة. أغلق التطبيقات أولًا للحصول على أفضل نتيجة.
+disk.junk.empty	لم يتم العثور على ملفات غير لازمة.
+disk.junk.trash	سلة المهملات
+disk.junk.browser	ذاكرة المتصفحات المؤقتة
+disk.junk.caches	ذاكرة التطبيقات المؤقتة
+disk.junk.logs	السجلات
+disk.junk.developer	ملفات المطورين
+disk.junk.other	أخرى
+disk.junk.trashItem	العناصر في سلة المهملات
+disk.junk.mailDownloads	مرفقات البريد (المنزّلة)
+disk.junk.iosBackups	نسخ iPhone وiPad الاحتياطية
+disk.junk.crashReports	تقارير الأعطال
+disk.note.apple	ذاكرة macOS المؤقتة: تُعاد عادةً فورًا؛ غير محددة.
+disk.note.archives	مطلوبة لإعادة إرسال إصداراتك أو ترميزها.
+disk.note.simulators	يحذف التطبيقات والبيانات المثبتة في أجهزة المحاكاة.
+disk.note.docker	صورة قرص Docker: تحذف كل الحاويات والصور.
+disk.note.backups	قد تكون النسخة الاحتياطية الوحيدة لجهاز ما هنا.
+disk.clean	تنظيف
+disk.clean.confirm	هل تريد حذف %@ من الذاكرة المؤقتة والملفات غير اللازمة؟
+disk.large.min	على الأقل
+disk.large.kind	النوع
+disk.kind.all	الكل
+disk.kind.video	الفيديو
+disk.kind.image	صور الأقراص والأجهزة الافتراضية
+disk.kind.archive	الأرشيفات وبرامج التثبيت
+disk.kind.audio	الصوت
+disk.kind.photo	الصور
+disk.kind.ipsw	برامج الأجهزة الثابتة
+disk.kind.other	أخرى
+disk.large.scan	فحص مجلد البيت
+disk.large.progress	تم فحص %ld ملف
+disk.large.none	لا توجد ملفات كبيرة بعد
+disk.large.body	يعثر على أكبر الملفات في مجلد البيت.
+disk.large.opened	فُتح %@
+disk.large.summary	%1$ld ملف · %2$@
+disk.large.confirm	هل تريد نقل %ld ملف إلى سلة المهملات؟
+disk.open	فتح
+disk.notMoved	تعذّر نقل %ld عنصر.
+disk.orphans.info	تعود هذه المجلدات إلى تطبيقات لم تعد مثبتة. تحقّق من الأسماء قبل الإزالة: قد يعود بعضها إلى أدوات سطر الأوامر أو إلى تطبيقات تحتفظ بها في مكان آخر.
+disk.orphans.none	لم يتم العثور على بقايا.
+disk.orphans.places	%ld موقع
+disk.orphans.summary	%1$ld بقايا · %2$@
+disk.orphans.confirm	هل تريد نقل بقايا %ld تطبيق إلى سلة المهملات؟

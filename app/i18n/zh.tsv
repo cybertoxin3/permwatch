@@ -915,3 +915,135 @@ vpn.qrHint	用钱包扫描二维码：地址和金额会自动填写。如果手
 vpn.rateFailed	无法获取当前汇率；请检查网络连接。
 vpn.retry	重试
 vpn.rateLoading	正在获取当前汇率…
+nav.disk	磁盘与应用
+disk.tab.overview	概览
+disk.tab.apps	应用
+disk.tab.junk	缓存与垃圾
+disk.tab.large	大文件
+disk.tab.orphans	残留文件
+disk.scannedAt	扫描于 %@
+disk.rescan	重新扫描
+disk.capacity	共 %@
+disk.free	可用 %@
+disk.used	已用
+disk.purgeable	可清除
+disk.cleanable	可清理
+disk.percentUsed	已用 %ld%%
+disk.phase.apps	正在测量应用…
+disk.phase.leftovers	正在查找应用数据…
+disk.phase.junk	正在查找缓存与垃圾…
+disk.phase.orphans	正在查找已删除应用的残留…
+disk.phase.categories	正在计算存储分布…
+disk.cat.apps	应用
+disk.cat.documents	文稿
+disk.cat.desktop	桌面
+disk.cat.downloads	下载
+disk.cat.pictures	图片
+disk.cat.movies	影片
+disk.cat.music	音乐
+disk.cat.icloud	iCloud 云盘（本地）
+disk.cat.developer	开发者
+disk.cat.mail	邮件
+disk.cat.caches	缓存与日志
+disk.cat.trash	废纸篓
+disk.cat.system	系统与其他
+disk.breakdown	存储分布
+disk.largestApps	最大的应用
+disk.unusedApps	90 天未使用的应用
+disk.unused.none	所有应用最近都用过。
+disk.unused.summary	%1$ld 个应用，共 %2$@
+disk.never	从未
+disk.volumes	宗卷
+disk.freeOf	%2$@ 中可用 %1$@
+disk.tile.junk	缓存与垃圾
+disk.tile.trash	废纸篓
+disk.tile.orphans	已删除应用的残留
+disk.tile.large	大文件
+disk.review	查看
+disk.find	查找
+disk.trash.empty	清倒废纸篓
+disk.trash.confirm	要清倒废纸篓吗？
+disk.permanent	这些文件将被永久删除，无法恢复。
+disk.freed	已释放 %@。
+disk.freedPartial	已释放 %1$@。有 %2$ld 项无法删除（正在使用或受 macOS 保护）。
+disk.filter.all	全部
+disk.filter.large	超过 1 GB
+disk.filter.unused	未使用
+disk.filter.appStore	App Store
+disk.filter.data	数据较多
+disk.searchApps	搜索应用
+disk.col.name	名称
+disk.col.app	应用
+disk.col.data	数据
+disk.col.total	总计
+disk.col.lastUsed	上次打开
+disk.dropHint	将应用拖到这里即可彻底删除。
+disk.appsSummary	%1$ld 个应用 · %2$@
+disk.pickApp	选择一个应用
+disk.pickApp.body	查看应用在 Mac 上留下的每个文件，并不留痕迹地删除它。
+disk.foundItems	找到 %ld 项
+disk.selectAll	全选
+disk.selectNone	全不选
+disk.searching	正在搜索…
+disk.needsAdmin	系统位置：将要求输入管理员密码。
+disk.selectedTotal	已选：%@
+disk.resetApp	重置应用
+disk.resetApp.help	删除应用的数据和设置但保留应用，打开时如同新装。
+disk.resetApp.confirm	要重置“%@”吗？
+disk.removeFully	彻底删除
+disk.remove.body	将删除 %1$ld 项（%2$@）。资源库中的项目会移到废纸篓；系统项目会使用管理员密码删除。
+disk.group.app	应用程序
+disk.group.support	应用数据
+disk.group.container	容器
+disk.group.cache	缓存
+disk.group.prefs	偏好设置
+disk.group.state	已存储状态与最近项目
+disk.group.web	网页数据与 Cookie
+disk.group.launch	启动项与辅助程序
+disk.group.plugins	插件与扩展
+disk.group.logs	日志与崩溃报告
+disk.group.receipts	安装记录
+disk.group.other	其他
+disk.junk.info	缓存会在需要时自动重建。先退出应用效果更好。
+disk.junk.empty	未发现垃圾文件。
+disk.junk.trash	废纸篓
+disk.junk.browser	浏览器缓存
+disk.junk.caches	应用缓存
+disk.junk.logs	日志
+disk.junk.developer	开发者文件
+disk.junk.other	其他
+disk.junk.trashItem	废纸篓中的项目
+disk.junk.mailDownloads	邮件附件（已下载）
+disk.junk.iosBackups	iPhone 与 iPad 备份
+disk.junk.crashReports	崩溃报告
+disk.note.apple	macOS 缓存：通常会立即重建，未选中。
+disk.note.archives	重新提交或符号化构建时需要。
+disk.note.simulators	删除模拟器中安装的应用和数据。
+disk.note.docker	Docker 磁盘映像：删除所有容器和镜像。
+disk.note.backups	设备的唯一备份可能在这里。
+disk.clean	清理
+disk.clean.confirm	要删除 %@ 的缓存与垃圾吗？
+disk.large.min	至少
+disk.large.kind	类型
+disk.kind.all	全部
+disk.kind.video	视频
+disk.kind.image	磁盘映像与虚拟机
+disk.kind.archive	压缩包与安装器
+disk.kind.audio	音频
+disk.kind.photo	照片
+disk.kind.ipsw	设备固件
+disk.kind.other	其他
+disk.large.scan	扫描个人文件夹
+disk.large.progress	已检查 %ld 个文件
+disk.large.none	尚未列出大文件
+disk.large.body	查找个人文件夹中最大的文件。
+disk.large.opened	打开于 %@
+disk.large.summary	%1$ld 个文件 · %2$@
+disk.large.confirm	要将 %ld 个文件移到废纸篓吗？
+disk.open	打开
+disk.notMoved	有 %ld 项无法移动。
+disk.orphans.info	这些文件夹属于已不再安装的应用。删除前请检查名称：有些可能属于命令行工具或存放在别处的应用。
+disk.orphans.none	未发现残留文件。
+disk.orphans.places	%ld 个位置
+disk.orphans.summary	%1$ld 个残留 · %2$@
+disk.orphans.confirm	要将 %ld 个应用的残留移到废纸篓吗？

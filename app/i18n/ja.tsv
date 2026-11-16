@@ -915,3 +915,135 @@ vpn.qrHint	ウォレットで QR コードを読み取ると、アドレスと�
 vpn.rateFailed	現在のレートを取得できませんでした。インターネット接続を確認してください。
 vpn.retry	再試行
 vpn.rateLoading	現在のレートを取得中…
+nav.disk	ディスクとアプリ
+disk.tab.overview	概要
+disk.tab.apps	アプリ
+disk.tab.junk	キャッシュと不要ファイル
+disk.tab.large	大きなファイル
+disk.tab.orphans	残りファイル
+disk.scannedAt	スキャン：%@
+disk.rescan	再スキャン
+disk.capacity	合計 %@
+disk.free	%@ 使用可能
+disk.used	使用済み
+disk.purgeable	パージ可能
+disk.cleanable	削除可能
+disk.percentUsed	%ld%% 使用中
+disk.phase.apps	アプリを計測中…
+disk.phase.leftovers	アプリのデータを検索中…
+disk.phase.junk	キャッシュと不要ファイルを検索中…
+disk.phase.orphans	削除済みアプリの残りファイルを検索中…
+disk.phase.categories	ストレージの内訳を計算中…
+disk.cat.apps	アプリ
+disk.cat.documents	書類
+disk.cat.desktop	デスクトップ
+disk.cat.downloads	ダウンロード
+disk.cat.pictures	ピクチャ
+disk.cat.movies	ムービー
+disk.cat.music	ミュージック
+disk.cat.icloud	iCloud Drive（ローカル）
+disk.cat.developer	デベロッパ
+disk.cat.mail	メール
+disk.cat.caches	キャッシュとログ
+disk.cat.trash	ゴミ箱
+disk.cat.system	システムとその他
+disk.breakdown	ストレージの内訳
+disk.largestApps	大きいアプリ
+disk.unusedApps	90日間使っていないアプリ
+disk.unused.none	すべてのアプリが最近使われています。
+disk.unused.summary	%1$ld 個のアプリ、合計 %2$@
+disk.never	なし
+disk.volumes	ボリューム
+disk.freeOf	%2$@ 中 %1$@ 空き
+disk.tile.junk	キャッシュと不要ファイル
+disk.tile.trash	ゴミ箱
+disk.tile.orphans	削除済みアプリの残り
+disk.tile.large	大きなファイル
+disk.review	確認
+disk.find	検索
+disk.trash.empty	ゴミ箱を空にする
+disk.trash.confirm	ゴミ箱を空にしますか？
+disk.permanent	これらのファイルは完全に削除され、復元できません。
+disk.freed	%@ を解放しました。
+disk.freedPartial	%1$@ を解放しました。%2$ld 項目は削除できませんでした（使用中または macOS が保護）。
+disk.filter.all	すべて
+disk.filter.large	1 GB 超
+disk.filter.unused	未使用
+disk.filter.appStore	App Store
+disk.filter.data	データが多い
+disk.searchApps	アプリを検索
+disk.col.name	名前
+disk.col.app	アプリ
+disk.col.data	データ
+disk.col.total	合計
+disk.col.lastUsed	最後に開いた日
+disk.dropHint	アプリをここにドラッグすると完全に削除できます。
+disk.appsSummary	%1$ld 個のアプリ · %2$@
+disk.pickApp	アプリを選択
+disk.pickApp.body	アプリが Mac に残したすべてのファイルを確認し、跡形もなく削除します。
+disk.foundItems	%ld 項目が見つかりました
+disk.selectAll	すべて選択
+disk.selectNone	選択解除
+disk.searching	検索中…
+disk.needsAdmin	システムの場所：管理者パスワードを求められます。
+disk.selectedTotal	選択：%@
+disk.resetApp	アプリをリセット
+disk.resetApp.help	アプリのデータと設定を削除し、アプリ本体は残します。新品のように起動します。
+disk.resetApp.confirm	「%@」をリセットしますか？
+disk.removeFully	完全に削除
+disk.remove.body	%1$ld 項目（%2$@）を削除します。ライブラリ内の項目はゴミ箱へ、システム項目は管理者パスワードで削除されます。
+disk.group.app	アプリケーション
+disk.group.support	アプリのデータ
+disk.group.container	コンテナ
+disk.group.cache	キャッシュ
+disk.group.prefs	環境設定
+disk.group.state	保存された状態と最近の項目
+disk.group.web	Web データと Cookie
+disk.group.launch	起動項目とヘルパー
+disk.group.plugins	プラグインと機能拡張
+disk.group.logs	ログとクラッシュレポート
+disk.group.receipts	インストール記録
+disk.group.other	その他
+disk.junk.info	キャッシュは必要に応じて自動で再作成されます。先にアプリを終了するとより効果的です。
+disk.junk.empty	不要ファイルは見つかりませんでした。
+disk.junk.trash	ゴミ箱
+disk.junk.browser	ブラウザのキャッシュ
+disk.junk.caches	アプリのキャッシュ
+disk.junk.logs	ログ
+disk.junk.developer	開発用ファイル
+disk.junk.other	その他
+disk.junk.trashItem	ゴミ箱内の項目
+disk.junk.mailDownloads	メールの添付ファイル（ダウンロード済み）
+disk.junk.iosBackups	iPhone と iPad のバックアップ
+disk.junk.crashReports	クラッシュレポート
+disk.note.apple	macOS のキャッシュ：通常すぐ再作成されるため未選択。
+disk.note.archives	ビルドの再提出やシンボル化に必要です。
+disk.note.simulators	シミュレータにインストールしたアプリとデータを削除します。
+disk.note.docker	Docker のディスクイメージ：すべてのコンテナとイメージを削除します。
+disk.note.backups	デバイスの唯一のバックアップがここにある可能性があります。
+disk.clean	クリーンアップ
+disk.clean.confirm	%@ のキャッシュと不要ファイルを削除しますか？
+disk.large.min	最小サイズ
+disk.large.kind	種類
+disk.kind.all	すべて
+disk.kind.video	ビデオ
+disk.kind.image	ディスクイメージと仮想マシン
+disk.kind.archive	アーカイブとインストーラ
+disk.kind.audio	オーディオ
+disk.kind.photo	写真
+disk.kind.ipsw	デバイスのファームウェア
+disk.kind.other	その他
+disk.large.scan	ホームフォルダをスキャン
+disk.large.progress	%ld 個のファイルを確認
+disk.large.none	大きなファイルはまだありません
+disk.large.body	ホームフォルダ内の最も大きいファイルを探します。
+disk.large.opened	%@ に開いた
+disk.large.summary	%1$ld 個のファイル · %2$@
+disk.large.confirm	%ld 個のファイルをゴミ箱に入れますか？
+disk.open	開く
+disk.notMoved	%ld 項目を移動できませんでした。
+disk.orphans.info	これらのフォルダはもうインストールされていないアプリのものです。削除前に名前を確認してください。コマンドラインツールや別の場所にあるアプリのものもあります。
+disk.orphans.none	残りファイルは見つかりませんでした。
+disk.orphans.places	%ld か所
+disk.orphans.summary	残り %1$ld 件 · %2$@
+disk.orphans.confirm	%ld 個のアプリの残りファイルをゴミ箱に入れますか？

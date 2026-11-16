@@ -915,3 +915,135 @@ vpn.qrHint	Leia o código QR com a carteira: endereço e montante são preenchid
 vpn.rateFailed	Não foi possível obter a cotação atual; verifique a ligação à internet.
 vpn.retry	Tentar de novo
 vpn.rateLoading	A obter a cotação atual…
+nav.disk	Disco e apps
+disk.tab.overview	Visão geral
+disk.tab.apps	Apps
+disk.tab.junk	Caches e lixo
+disk.tab.large	Arquivos grandes
+disk.tab.orphans	Restos
+disk.scannedAt	Analisado %@
+disk.rescan	Analisar de novo
+disk.capacity	%@ no total
+disk.free	%@ disponíveis
+disk.used	Usado
+disk.purgeable	Purgável
+disk.cleanable	Limpável
+disk.percentUsed	%ld%% usado
+disk.phase.apps	Medindo apps…
+disk.phase.leftovers	Procurando dados de apps…
+disk.phase.junk	Procurando caches e lixo…
+disk.phase.orphans	Procurando restos de apps apagados…
+disk.phase.categories	Calculando a distribuição do armazenamento…
+disk.cat.apps	Apps
+disk.cat.documents	Documentos
+disk.cat.desktop	Mesa
+disk.cat.downloads	Downloads
+disk.cat.pictures	Imagens
+disk.cat.movies	Filmes
+disk.cat.music	Música
+disk.cat.icloud	iCloud Drive (local)
+disk.cat.developer	Desenvolvimento
+disk.cat.mail	Mail
+disk.cat.caches	Caches e registros
+disk.cat.trash	Lixo
+disk.cat.system	Sistema e outros
+disk.breakdown	Distribuição do armazenamento
+disk.largestApps	Maiores apps
+disk.unusedApps	Apps sem uso há 90 dias
+disk.unused.none	Todos os apps foram usados recentemente.
+disk.unused.summary	%1$ld apps, %2$@ no total
+disk.never	Nunca
+disk.volumes	Volumes
+disk.freeOf	%1$@ livres de %2$@
+disk.tile.junk	Caches e lixo
+disk.tile.trash	Lixo
+disk.tile.orphans	Restos de apps apagados
+disk.tile.large	Arquivos grandes
+disk.review	Revisar
+disk.find	Procurar
+disk.trash.empty	Esvaziar o Lixo
+disk.trash.confirm	Esvaziar o Lixo?
+disk.permanent	Estes arquivos são apagados para sempre e não podem ser recuperados.
+disk.freed	%@ liberados.
+disk.freedPartial	%1$@ liberados. Não foi possível apagar %2$ld itens (em uso ou protegidos pelo macOS).
+disk.filter.all	Todos
+disk.filter.large	Mais de 1 GB
+disk.filter.unused	Sem uso
+disk.filter.appStore	App Store
+disk.filter.data	Muitos dados
+disk.searchApps	Buscar apps
+disk.col.name	Nome
+disk.col.app	App
+disk.col.data	Dados
+disk.col.total	Total
+disk.col.lastUsed	Última abertura
+disk.dropHint	Arraste um app para cá para removê-lo por completo.
+disk.appsSummary	%1$ld apps · %2$@
+disk.pickApp	Escolha um app
+disk.pickApp.body	Veja cada arquivo que o app deixou no seu Mac e remova-o sem deixar rastros.
+disk.foundItems	%ld itens encontrados
+disk.selectAll	Selecionar tudo
+disk.selectNone	Não selecionar nada
+disk.searching	Procurando…
+disk.needsAdmin	Local do sistema: sua senha de administrador será pedida.
+disk.selectedTotal	Selecionado: %@
+disk.resetApp	Redefinir app
+disk.resetApp.help	Apaga os dados e ajustes do app, mas o mantém; ele abre como novo.
+disk.resetApp.confirm	Redefinir “%@”?
+disk.removeFully	Remover por completo
+disk.remove.body	%1$ld itens (%2$@) serão removidos. Itens da sua biblioteca vão para o Lixo; itens do sistema são apagados com sua senha de administrador.
+disk.group.app	Aplicativo
+disk.group.support	Dados do app
+disk.group.container	Contêineres
+disk.group.cache	Caches
+disk.group.prefs	Preferências
+disk.group.state	Estado salvo e recentes
+disk.group.web	Dados da web e cookies
+disk.group.launch	Itens de início e auxiliares
+disk.group.plugins	Plug-ins e extensões
+disk.group.logs	Registros e relatórios de falhas
+disk.group.receipts	Recibos de instalação
+disk.group.other	Outros
+disk.junk.info	Os caches são recriados automaticamente quando necessário. Feche os apps antes para um resultado melhor.
+disk.junk.empty	Nenhum lixo encontrado.
+disk.junk.trash	Lixo
+disk.junk.browser	Caches de navegadores
+disk.junk.caches	Caches de apps
+disk.junk.logs	Registros
+disk.junk.developer	Arquivos de desenvolvimento
+disk.junk.other	Outros
+disk.junk.trashItem	Itens no Lixo
+disk.junk.mailDownloads	Anexos do Mail (baixados)
+disk.junk.iosBackups	Backups de iPhone e iPad
+disk.junk.crashReports	Relatórios de falhas
+disk.note.apple	Cache do macOS: costuma ser recriado na hora; não selecionado.
+disk.note.archives	Necessários para reenviar ou simbolizar suas compilações.
+disk.note.simulators	Apaga os apps e dados instalados nos simuladores.
+disk.note.docker	Imagem de disco do Docker: apaga todos os contêineres e imagens.
+disk.note.backups	O único backup de um dispositivo pode estar aqui.
+disk.clean	Limpar
+disk.clean.confirm	Apagar %@ de caches e lixo?
+disk.large.min	Pelo menos
+disk.large.kind	Tipo
+disk.kind.all	Todos
+disk.kind.video	Vídeos
+disk.kind.image	Imagens de disco e VMs
+disk.kind.archive	Arquivos compactados e instaladores
+disk.kind.audio	Áudio
+disk.kind.photo	Fotos
+disk.kind.ipsw	Firmware de dispositivos
+disk.kind.other	Outros
+disk.large.scan	Analisar pasta de início
+disk.large.progress	%ld arquivos verificados
+disk.large.none	Nenhum arquivo grande ainda
+disk.large.body	Encontra os maiores arquivos da sua pasta de início.
+disk.large.opened	aberto %@
+disk.large.summary	%1$ld arquivos · %2$@
+disk.large.confirm	Mover %ld arquivos para o Lixo?
+disk.open	Abrir
+disk.notMoved	Não foi possível mover %ld itens.
+disk.orphans.info	Estas pastas pertencem a apps que não estão mais instalados. Confira os nomes antes de remover: algumas podem ser de ferramentas de linha de comando ou de apps guardados em outro lugar.
+disk.orphans.none	Nenhum resto encontrado.
+disk.orphans.places	%ld locais
+disk.orphans.summary	%1$ld restos · %2$@
+disk.orphans.confirm	Mover os restos de %ld apps para o Lixo?
