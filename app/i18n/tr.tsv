@@ -1152,3 +1152,11 @@ fw.detail	%1$@ sunucusuna ilk kez bağlandı.%2$@ Bu sunucu engellensin mi (prog
 fw.listed	 ⚠️ %@ listesinde zararlı olarak geçiyor.
 fw.block	Engelle
 fw.allow	İzin ver
+tls.title	TLS sertifika denetimi
+tls.run	%ld sunucuyu denetle
+tls.desc	TLS 1.3'te sertifikalar şifreli gider; bu yüzden permwatch bu yakalamada görülen sunuculara kısaca bağlanır (veri gönderilmez) ve sertifika zincirini macOS ile doğrular. Elle eklenmiş bir köke dayanan zincir, trafiğin araya girilerek okunmasının tipik izidir.
+tls.ok	Geçerli · veren: %1$@ · bitiş: %2$@
+tls.expiring	Geçerli ama yakında bitiyor (%@).
+tls.mitm	Yalnızca bu Mac'e elle eklenmiş bir kök sayesinde güvenilir görünüyor (%@). Bu sunucuya giden trafiğin araya girilerek okunuyor olabilir: Anahtar Zinciri Erişimi › Sistem'e bak ve tanımadığın kökleri kaldır.
+tls.invalid	Geçersiz sertifika: %@
+tls.unreachable	Bağlanılamadı (sunucu kapalı ya da HTTPS değil).

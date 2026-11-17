@@ -1152,3 +1152,11 @@ fw.detail	s’est connecté pour la première fois à %1$@.%2$@ Bloquer ce serve
 fw.listed	 ⚠️ Répertorié comme malveillant par %@.
 fw.block	Bloquer
 fw.allow	Autoriser
+tls.title	Vérification des certificats TLS
+tls.run	Vérifier %ld serveurs
+tls.desc	En TLS 1.3 les certificats sont chiffrés ; permwatch se connecte donc brièvement aux serveurs vus dans cette capture (sans envoyer de données) et vérifie la chaîne avec macOS. Une chaîne aboutissant à une racine ajoutée manuellement est le signe typique d’une interception.
+tls.ok	Valide · émis par %1$@ · expire %2$@
+tls.expiring	Valide mais expire bientôt (%@).
+tls.mitm	Approuvé uniquement grâce à une racine ajoutée à la main sur ce Mac (%@). Votre trafic vers ce serveur pourrait être intercepté : vérifiez Trousseaux d’accès › Système et retirez les racines inconnues.
+tls.invalid	Certificat invalide : %@
+tls.unreachable	Connexion impossible (serveur hors ligne ou pas en HTTPS).

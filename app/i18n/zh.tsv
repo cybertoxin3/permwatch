@@ -1152,3 +1152,11 @@ fw.detail	首次连接到 %1$@。%2$@ 阻止此服务器（并停止该程序）
 fw.listed	 ⚠️ 被 %@ 列为恶意。
 fw.block	阻止
 fw.allow	允许
+tls.title	TLS 证书检查
+tls.run	检查 %ld 个服务器
+tls.desc	TLS 1.3 中证书是加密的，因此 permwatch 会短暂连接此次捕获中出现的服务器（不发送数据），并用 macOS 验证证书链。以手动添加的根证书结尾的证书链是流量被拦截的典型迹象。
+tls.ok	有效 · 颁发者 %1$@ · 到期 %2$@
+tls.expiring	有效但即将到期（%@）。
+tls.mitm	仅因手动添加到此 Mac 的根证书（%@）而受信任。你与此服务器的流量可能被拦截读取：请检查“钥匙串访问 › 系统”，移除不认识的根证书。
+tls.invalid	证书无效：%@
+tls.unreachable	无法连接（服务器离线或不是 HTTPS）。

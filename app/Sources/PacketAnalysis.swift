@@ -1,5 +1,6 @@
 import Darwin
 import Foundation
+import Security
 import SwiftUI
 
 // MARK: - Filtre dili
@@ -382,6 +383,8 @@ struct PacketAnalysisPane: View {
                     ForEach(findings) { f in FindingCard(f: f, show: show) }
                 }
                 Divider()
+                TLSAuditView()
+                Divider()
                 Label(L("pa.stats"), systemImage: "chart.bar.xaxis").font(.system(size: 15, weight: .bold))
                 if !stats.timeline.isEmpty {
                     VStack(alignment: .leading, spacing: 4) {
@@ -638,6 +641,161 @@ final class NetWatchMonitor: ObservableObject {
                                                       section: .packets, focus: .none))
                 }
             }
+        }
+    }
+}
+
+// MARK: - TLS sertifika denetimi
+
+/// TLS 1.3'te sertifika şifreli gider; yakalanan paketlerden okunamaz. Bu yüzden görülen sunuculara kısa bir
+/// TLS el sıkışması yapılır (veri gönderilmez, hemen kesilir) ve zincir macOS'un kendi doğrulamasından geçirilir.
+struct TLSCheck: Identifiable, Hashable {
+    enum Verdict: Int { case ok = 0, expiring = 1, untrustedRoot = 2, invalid = 3, unreachable = 4 }
+    var id: String { host }
+    let host: String
+    let verdict: Verdict
+    let issuer: String?
+    let root: String?
+    let expires: Date?
+    let error: String?
+}
+
+final class TLSProbe: NSObject, URLSessionDelegate, @unchecked Sendable {
+    private var trust: SecTrust?
+
+    /// Sistemin hazır güvendiği kök sertifikalar (kullanıcının sonradan eklediği kökler bunlarda yok).
+    static let systemRoots: Set<Data> = {
+        var out: CFArray?
+        guard SecTrustCopyAnchorCertificates(&out) == errSecSuccess, let list = out as? [SecCertificate] else { return [] }
+        return Set(list.map { SecCertificateCopyData($0) as Data })
+    }()
+
+    func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge,
+                    completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+        if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
+            trust = challenge.protectionSpace.serverTrust
+        }
+        // Sertifikayı aldık: isteği hiç göndermeden kes.
+        completionHandler(.cancelAuthenticationChallenge, nil)
+    }
+
+    static func check(_ host: String) async -> TLSCheck {
+        let probe = TLSProbe()
+        let cfg = URLSessionConfiguration.ephemeral
+        cfg.timeoutIntervalForRequest = 8
+        cfg.urlCache = nil
+        let session = URLSession(configuration: cfg, delegate: probe, delegateQueue: nil)
+        defer { session.invalidateAndCancel() }
+        guard let url = URL(string: "https://\(host)/") else {
+            return TLSCheck(host: host, verdict: .unreachable, issuer: nil, root: nil, expires: nil, error: nil)
+        }
+        var req = URLRequest(url: url)
+        req.httpMethod = "HEAD"
+        _ = try? await session.data(for: req)
+        guard let trust = probe.trust else {
+            return TLSCheck(host: host, verdict: .unreachable, issuer: nil, root: nil, expires: nil, error: nil)
+        }
+        SecTrustSetPolicies(trust, SecPolicyCreateSSL(true, host as CFString))
+        var err: CFError?
+        let valid = SecTrustEvaluateWithError(trust, &err)
+        let chain = (SecTrustCopyCertificateChain(trust) as? [SecCertificate]) ?? []
+        let leaf = chain.first
+        let issuer = chain.count > 1 ? SecCertificateCopySubjectSummary(chain[1]) as String? : nil
+        let anchor = chain.last
+        let rootName = anchor.flatMap { SecCertificateCopySubjectSummary($0) as String? }
+        let systemRoot = anchor.map { systemRoots.contains(SecCertificateCopyData($0) as Data) } ?? false
+        var expires: Date?
+        if let leaf, let vals = SecCertificateCopyValues(leaf, [kSecOIDX509V1ValidityNotAfter] as CFArray, nil) as? [CFString: Any],
+           let na = vals[kSecOIDX509V1ValidityNotAfter] as? [CFString: Any], let n = na[kSecPropertyKeyValue] as? NSNumber {
+            expires = Date(timeIntervalSinceReferenceDate: n.doubleValue)
+        }
+        let verdict: TLSCheck.Verdict
+        if !valid { verdict = .invalid }
+        else if !systemRoot { verdict = .untrustedRoot }
+        else if let e = expires, e.timeIntervalSinceNow < 14 * 86400 { verdict = .expiring }
+        else { verdict = .ok }
+        return TLSCheck(host: host, verdict: verdict, issuer: issuer, root: rootName, expires: expires,
+                        error: valid ? nil : (err.map { CFErrorCopyDescription($0) as String }))
+    }
+}
+
+struct TLSAuditView: View {
+    @EnvironmentObject var cap: PacketMonitor
+    @State private var results: [TLSCheck] = []
+    @State private var running = false
+
+    /// Yakalamada TLS ile konuşulan sunucular (SNI), çok konuşulandan aza; en fazla 25.
+    private var hosts: [String] {
+        var seen = Set<String>(), out: [String] = []
+        for c in cap.conversationList where c.protos.contains("TLS") || c.port == 443 {
+            guard let h = c.host?.lowercased(), h.contains("."), !h.hasSuffix(".local"), seen.insert(h).inserted else { continue }
+            out.append(h)
+            if out.count >= 25 { break }
+        }
+        return out
+    }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            HStack {
+                Label(L("tls.title"), systemImage: "lock.shield").font(.system(size: 15, weight: .bold))
+                Spacer()
+                if running { ProgressView().controlSize(.small) }
+                Button(L("tls.run", hosts.count)) { run() }.disabled(running || hosts.isEmpty)
+            }
+            Text(L("tls.desc")).font(.system(size: 11.5)).foregroundStyle(.secondary).frame(maxWidth: .infinity, alignment: .leading)
+            ForEach(results.sorted { ($0.verdict.rawValue, $0.host) > ($1.verdict.rawValue, $1.host) }) { r in
+                HStack(alignment: .top, spacing: 10) {
+                    Image(systemName: icon(r.verdict)).foregroundStyle(color(r.verdict)).frame(width: 18)
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(r.host).font(.system(size: 12.5, weight: .semibold))
+                        Text(text(r)).font(.system(size: 11.5)).foregroundStyle(.secondary).frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                }
+            }
+        }
+    }
+
+    private func run() {
+        running = true
+        let list = hosts
+        Task {
+            var out: [TLSCheck] = []
+            await withTaskGroup(of: TLSCheck.self) { g in
+                for h in list { g.addTask { await TLSProbe.check(h) } }
+                for await r in g { out.append(r) }
+            }
+            results = out
+            running = false
+        }
+    }
+
+    private func icon(_ v: TLSCheck.Verdict) -> String {
+        switch v {
+        case .ok: return "checkmark.seal.fill"
+        case .expiring: return "clock.badge.exclamationmark"
+        case .untrustedRoot, .invalid: return "xmark.octagon.fill"
+        case .unreachable: return "questionmark.circle"
+        }
+    }
+
+    private func color(_ v: TLSCheck.Verdict) -> Color {
+        switch v {
+        case .ok: return .green
+        case .expiring: return .orange
+        case .untrustedRoot, .invalid: return .red
+        case .unreachable: return .secondary
+        }
+    }
+
+    private func text(_ r: TLSCheck) -> String {
+        let exp = r.expires.map { Fmt.relativeDay.string(from: $0) } ?? "—"
+        switch r.verdict {
+        case .ok: return L("tls.ok", r.issuer ?? "?", exp)
+        case .expiring: return L("tls.expiring", exp)
+        case .untrustedRoot: return L("tls.mitm", r.root ?? "?")
+        case .invalid: return L("tls.invalid", r.error ?? "")
+        case .unreachable: return L("tls.unreachable")
         }
     }
 }

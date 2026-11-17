@@ -1152,3 +1152,11 @@ fw.detail	hat sich zum ersten Mal mit %1$@ verbunden.%2$@ Diesen Server blockier
 fw.listed	 ⚠️ Von %@ als bösartig gelistet.
 fw.block	Blockieren
 fw.allow	Erlauben
+tls.title	TLS-Zertifikatsprüfung
+tls.run	%ld Server prüfen
+tls.desc	In TLS 1.3 sind Zertifikate verschlüsselt. permwatch verbindet sich daher kurz mit den Servern dieser Aufzeichnung (ohne Daten zu senden) und prüft die Kette mit macOS. Eine Kette, die auf einer manuell hinzugefügten Wurzel endet, ist das typische Zeichen für abgefangenen Verkehr.
+tls.ok	Gültig · ausgestellt von %1$@ · läuft ab %2$@
+tls.expiring	Gültig, läuft aber bald ab (%@).
+tls.mitm	Nur dank einer manuell hinzugefügten Wurzel vertrauenswürdig (%@). Dein Verkehr zu diesem Server könnte abgefangen werden: Prüfe Schlüsselbundverwaltung › System und entferne unbekannte Wurzeln.
+tls.invalid	Ungültiges Zertifikat: %@
+tls.unreachable	Keine Verbindung (Server offline oder kein HTTPS).

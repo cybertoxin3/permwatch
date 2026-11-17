@@ -120,6 +120,17 @@ enum Snapshot {
             print("filtre testi '\(q)': \(ps.filter { PacketFilter.matches($0, query: q, names: [:]) }.count)")
             exit(0)
         }
+        if section == "tlscheck" {
+            // TLS denetimi: verilen sunucuları denetler.
+            Task {
+                for h in (ProcessInfo.processInfo.environment["PERMWATCH_HOSTS"] ?? "").split(separator: ",").map(String.init) {
+                    let r = await TLSProbe.check(h)
+                    print("\(h)\t\(r.verdict)\tveren=\(r.issuer ?? "-")\tkök=\(r.root ?? "-")\tbitiş=\(r.expires.map { "\($0)" } ?? "-")\t\(r.error ?? "")")
+                }
+                exit(0)
+            }
+            return
+        }
         if section == "netscan" {
             // "Ağı tara"yı gerçek ağda çalıştırır ve sonucu yazar.
             let n = NetCheck.shared
