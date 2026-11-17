@@ -9,6 +9,9 @@ struct LanDevice: Identifiable, Hashable {
     let mac: String
     let isGateway: Bool
     var isNew: Bool
+    /// Üretici (MAC adresinin ilk yarısından, IEEE listesi) ve cihazın ağa duyurduğu ad.
+    var vendor: String?
+    var name: String?
     /// iPhone/Android/Mac'lerin gizli (rastgele) donanım adresi: yerel olarak atanmış bit.
     var privateMAC: Bool {
         guard let first = mac.split(separator: ":").first, let v = UInt8(first, radix: 16) else { return false }
@@ -45,9 +48,13 @@ final class NetCheck: ObservableObject {
     private var timer: Timer?
     private var busy = false
     private let knownKey = "netKnownDevices"      // [ağ anahtarı: [mac]]
+    /// IP → ad (yerel ters DNS / Bonjour). Bir kez çözülür.
+    private var names: [String: String] = [:]
+    private var resolving = Set<String>()
 
     private init() {
         guard Snapshot.section == nil else { return }
+        Vendors.prepare()
         refresh()
         timer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true) { [weak self] _ in
             MainActor.assumeIsolated { self?.refresh() }
@@ -156,8 +163,10 @@ final class NetCheck: ObservableObject {
         var known = UserDefaults.standard.dictionary(forKey: knownKey) as? [String: [String]] ?? [:]
         let seen = Set(key.flatMap { known[$0] } ?? [])
         let first = seen.isEmpty
-        devices = s.arp.map { LanDevice(ip: $0.ip, mac: $0.mac, isGateway: $0.ip == s.gateway, isNew: !first && !seen.contains($0.mac)) }
+        devices = s.arp.map { LanDevice(ip: $0.ip, mac: $0.mac, isGateway: $0.ip == s.gateway, isNew: !first && !seen.contains($0.mac),
+                                         vendor: Vendors.lookup($0.mac), name: names[$0.ip].flatMap { $0.isEmpty ? nil : $0 }) }
             .sorted { $0.isGateway != $1.isGateway ? $0.isGateway : Self.ipSortKey($0.ip).lexicographicallyPrecedes(Self.ipSortKey($1.ip)) }
+        resolveNames(s.arp.map(\.ip))
         if let key {
             known[key] = Array(seen.union(s.arp.map(\.mac))).sorted()
             UserDefaults.standard.set(known, forKey: knownKey)
@@ -183,6 +192,51 @@ final class NetCheck: ObservableObject {
     }
 
     nonisolated static func ipSortKey(_ ip: String) -> [Int] { ip.split(separator: ".").map { Int($0) ?? 0 } }
+
+    /// Adı bilinmeyen cihazları arka planda çözer (aynı anda en fazla 8), sonra listeyi günceller.
+    private func resolveNames(_ ips: [String]) {
+        let todo = ips.filter { names[$0] == nil && !resolving.contains($0) }.prefix(64)
+        guard !todo.isEmpty else { return }
+        resolving.formUnion(todo)
+        let list = Array(todo)
+        Task.detached(priority: .utility) {
+            var found: [String: String] = [:]
+            await withTaskGroup(of: (String, String?).self) { g in
+                var i = 0
+                for ip in list {
+                    if i >= 8, let r = await g.next(), let n = r.1 { found[r.0] = n }
+                    g.addTask { (ip, NetCheck.reverseName(ip)) }
+                    i += 1
+                }
+                for await r in g { if let n = r.1 { found[r.0] = n } }
+            }
+            let result = found
+            await MainActor.run {
+                for ip in list { self.names[ip] = result[ip] ?? "" }   // boş: çözülemedi, bir daha deneme
+                self.devices = self.devices.map { var d = $0; let n = self.names[d.ip]; d.name = (n?.isEmpty ?? true) ? nil : n; return d }
+                self.resolving.subtract(list)
+            }
+        }
+    }
+
+    /// Yerel ağda ters ad çözümü (mDNSResponder .local adlarını da çözer).
+    nonisolated static func reverseName(_ ip: String) -> String? {
+        var sa = sockaddr_in()
+        sa.sin_len = UInt8(MemoryLayout<sockaddr_in>.size)
+        sa.sin_family = sa_family_t(AF_INET)
+        guard inet_pton(AF_INET, ip, &sa.sin_addr) == 1 else { return nil }
+        var host = [CChar](repeating: 0, count: Int(NI_MAXHOST))
+        let rc = withUnsafePointer(to: &sa) { p in
+            p.withMemoryRebound(to: sockaddr.self, capacity: 1) {
+                getnameinfo($0, socklen_t(MemoryLayout<sockaddr_in>.size), &host, socklen_t(host.count), nil, 0, NI_NAMEREQD)
+            }
+        }
+        guard rc == 0 else { return nil }
+        var n = String(cString: host)
+        if n.hasSuffix(".") { n.removeLast() }
+        if n.hasSuffix(".local") { n = String(n.dropLast(6)) }
+        return n == ip ? nil : n
+    }
 
     /// "Ağı tara": alt ağdaki her adrese tek bir küçük UDP paketi gönderir; yanıt veren cihazlar ARP tablosuna düşer.
     func scan() {
@@ -286,8 +340,16 @@ struct NetCheckCard: View {
                 HStack(spacing: 10) {
                     Image(systemName: d.isGateway ? "wifi.router" : (d.privateMAC ? "iphone" : "desktopcomputer"))
                         .foregroundStyle(.secondary).frame(width: 20)
-                    Text(d.ip).font(.system(size: 12, design: .monospaced))
-                    Text(d.mac).font(.system(size: 11, design: .monospaced)).foregroundStyle(.secondary)
+                    VStack(alignment: .leading, spacing: 1) {
+                        HStack(spacing: 6) {
+                            Text(d.ip).font(.system(size: 12, design: .monospaced))
+                            if let n = d.name { Text(n).font(.system(size: 12, weight: .medium)).lineLimit(1) }
+                        }
+                        HStack(spacing: 6) {
+                            Text(d.mac).font(.system(size: 11, design: .monospaced)).foregroundStyle(.secondary)
+                            if let v = d.vendor { Text(v).font(.system(size: 11)).foregroundStyle(.secondary).lineLimit(1) }
+                        }
+                    }
                     if d.isGateway { Text(L("net.router")).font(.system(size: 11)).foregroundStyle(.secondary) }
                     else if d.privateMAC { Text(L("net.privateMAC")).font(.system(size: 11)).foregroundStyle(.secondary) }
                     Spacer()
@@ -339,5 +401,68 @@ struct NetCheckCard: View {
             if case .arpSpoof(let ip) = i { return L("net.arpSpoofBody", ip) }
         }
         return ""
+    }
+}
+
+// MARK: - Üretici listesi (IEEE OUI)
+
+/// MAC adresinin ilk 3 baytından üretici adı. IEEE'nin resmi listesi bir kez indirilir (yaklaşık 4 MB) ve
+/// ayda bir yenilenir; hiçbir şey gönderilmez. Gizli (rastgele) MAC adreslerinin üreticisi yoktur.
+enum Vendors {
+    static let url = URL(string: "https://standards-oui.ieee.org/oui/oui.csv")!
+    static var path: String { ThreatIntel.dir + "/oui.csv" }
+    private static let lock = NSLock()
+    nonisolated(unsafe) private static var table: [String: String]?
+
+    static func lookup(_ mac: String) -> String? {
+        let parts = mac.lowercased().split(separator: ":")
+        guard parts.count >= 3, let first = UInt8(parts[0], radix: 16), first & 0x02 == 0 else { return nil }
+        let key = parts.prefix(3).map { $0.count == 1 ? "0" + $0 : String($0) }.joined().uppercased()
+        lock.lock(); let t = table; lock.unlock()
+        return t?[key]
+    }
+
+    /// Listeyi yükler; yoksa ya da 30 günden eskiyse indirir.
+    static func prepare() {
+        Task.detached(priority: .utility) {
+            let fm = FileManager.default
+            let age = (try? fm.attributesOfItem(atPath: path)[.modificationDate] as? Date).map { Date().timeIntervalSince($0) } ?? .infinity
+            if age > 30 * 86400 {
+                var req = URLRequest(url: url, timeoutInterval: 60)
+                req.setValue("permwatch", forHTTPHeaderField: "User-Agent")
+                if let (d, r) = try? await URLSession.shared.data(for: req), (r as? HTTPURLResponse)?.statusCode == 200, d.count > 500_000 {
+                    try? fm.createDirectory(atPath: ThreatIntel.dir, withIntermediateDirectories: true)
+                    try? d.write(to: URL(fileURLWithPath: path), options: .atomic)
+                }
+            }
+            guard let text = try? String(contentsOfFile: path, encoding: .utf8) else { return }
+            let t = parse(text)
+            setTable(t)
+            await MainActor.run { NetCheck.shared.refresh() }
+        }
+    }
+
+    private static func setTable(_ t: [String: String]) { lock.lock(); table = t; lock.unlock() }
+
+    /// "MA-L,001122,Örnek A.Ş.,Adres" (ad tırnaklı olabilir).
+    static func parse(_ text: String) -> [String: String] {
+        var out: [String: String] = [:]
+        out.reserveCapacity(40000)
+        // Dosya "\r\n" kullanıyor; Swift bunu tek karakter sayar, bu yüzden her tür satır sonunda böl.
+        for line in text.split(whereSeparator: \.isNewline).dropFirst() {
+            let f = line.split(separator: ",", maxSplits: 2, omittingEmptySubsequences: false)
+            guard f.count == 3, f[1].count == 6 else { continue }
+            var rest = Substring(f[2])
+            var name: Substring
+            if rest.hasPrefix("\"") {
+                rest = rest.dropFirst()
+                name = rest.prefix { $0 != "\"" }
+            } else {
+                name = rest.prefix { $0 != "," }
+            }
+            let n = name.trimmingCharacters(in: .whitespaces)
+            if !n.isEmpty { out[String(f[1]).uppercased()] = n }
+        }
+        return out
     }
 }

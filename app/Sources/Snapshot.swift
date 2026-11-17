@@ -134,13 +134,15 @@ enum Snapshot {
         if section == "netscan" {
             // "Ağı tara"yı gerçek ağda çalıştırır ve sonucu yazar.
             let n = NetCheck.shared
+            Vendors.prepare()
             n.refresh()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 8) {
                 n.scan()
                 @MainActor func wait() {
                     guard !n.scanning else { DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: wait); return }
                     print("denenen: \(n.lastScan?.probed ?? 0), engellenen: \(n.lastScan?.blocked ?? 0), cihaz: \(n.devices.count), yalıtılmış: \(n.looksIsolated), izin yok: \(n.scanBlocked)")
-                    for d in n.devices.prefix(40) { print("  \(d.ip)\t\(d.mac)\t\(d.isGateway ? "yönlendirici" : "")") }
+                    Thread.sleep(forTimeInterval: 3)   // ad çözümü bitsin
+                    for d in n.devices.prefix(40) { print("  \(d.ip)\t\(d.mac)\t\(d.isGateway ? "yönlendirici" : "")\t\(d.vendor ?? "-")\t\(d.name ?? "-")") }
                     exit(0)
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: wait)
