@@ -1209,3 +1209,14 @@ rep.alerts	Eventi ad alto rischio (%ld)
 rep.network	Rete
 rep.devices	Dispositivi visti
 rep.footer	Creato da permwatch su questo Mac. I risultati sono indizi da controlli locali, non prove di compromissione.
+tl.open	Elementi attendibili ed eccezioni…
+tl.title	Elementi attendibili ed eccezioni
+tl.body	Tutto ciò che hai segnato come attendibile, consentito o «Lo riconosco». Non ricevi più avvisi; rimuovi un elemento per essere di nuovo avvisato.
+tl.apps	App attendibili
+tl.firewall	Firewall: programmi consentiti
+tl.intel	Eccezioni server malevoli
+tl.phish	Eccezioni siti falsi
+tl.share	Condivisione schermo: attendibili
+tl.guard	Eccezioni del blocco prima dell’avvio
+tl.empty	Nessuno
+tl.remove	Rimuovi

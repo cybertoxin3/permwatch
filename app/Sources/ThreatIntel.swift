@@ -64,6 +64,12 @@ final class ThreatIntel: ObservableObject {
     }
 
     /// "Bu sunucuyu tanıyorum": bir daha uyarma.
+    func disallow(_ key: String) {
+        allowed.remove(key)
+        UserDefaults.standard.set(Array(allowed), forKey: Self.allowKey)
+        Self.store.setAllowed(allowed)
+    }
+
     func allow(_ key: String) {
         allowed.insert(key)
         UserDefaults.standard.set(Array(allowed), forKey: Self.allowKey)

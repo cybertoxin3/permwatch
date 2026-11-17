@@ -1209,3 +1209,14 @@ rep.alerts	Événements à risque élevé (%ld)
 rep.network	Réseau
 rep.devices	Appareils vus
 rep.footer	Créé par permwatch sur ce Mac. Les constats sont des indices issus de vérifications locales, pas une preuve de compromission.
+tl.open	Éléments approuvés et exceptions…
+tl.title	Éléments approuvés et exceptions
+tl.body	Tout ce que vous avez marqué comme approuvé, autorisé ou « Je le connais ». Plus aucune alerte n’est émise pour eux ; retirez un élément pour être de nouveau averti.
+tl.apps	Apps approuvées
+tl.firewall	Coupe-feu : programmes autorisés
+tl.intel	Exceptions de serveurs malveillants
+tl.phish	Exceptions de faux sites
+tl.share	Partage d’écran : approuvés
+tl.guard	Exceptions du blocage avant lancement
+tl.empty	Aucun
+tl.remove	Retirer

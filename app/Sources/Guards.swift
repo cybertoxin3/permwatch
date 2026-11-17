@@ -587,6 +587,13 @@ final class NetworkMonitor: ObservableObject {
 
     // MARK: İlk kez görülen bağlantılar (imzasız programlar)
 
+    static func disallowProgram(_ program: String) {
+        var list = Set(UserDefaults.standard.stringArray(forKey: fwAllowKey) ?? [])
+        list.remove(program)
+        UserDefaults.standard.set(Array(list), forKey: fwAllowKey)
+        NotificationCenter.default.post(name: .init("permwatch.fwAllowChanged"), object: nil)
+    }
+
     static func allowProgram(_ program: String) {
         var list = Set(UserDefaults.standard.stringArray(forKey: fwAllowKey) ?? [])
         list.insert(program)

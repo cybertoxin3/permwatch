@@ -1209,3 +1209,14 @@ rep.alerts	Eventos de alto riesgo (%ld)
 rep.network	Red
 rep.devices	Dispositivos vistos
 rep.footer	Creado por permwatch en este Mac. Los hallazgos son indicios basados en comprobaciones locales, no pruebas de compromiso.
+tl.open	Elementos de confianza y excepciones…
+tl.title	Elementos de confianza y excepciones
+tl.body	Todo lo que marcaste como de confianza, permitido o «Lo reconozco». Ya no se avisa de ello; quita un elemento para volver a recibir avisos.
+tl.apps	Apps de confianza
+tl.firewall	Cortafuegos: programas permitidos
+tl.intel	Excepciones de servidores maliciosos
+tl.phish	Excepciones de sitios falsos
+tl.share	Compartir pantalla: de confianza
+tl.guard	Excepciones del bloqueo antes de abrir
+tl.empty	Ninguno
+tl.remove	Quitar

@@ -1209,3 +1209,14 @@ rep.alerts	高リスクのイベント（%ld）
 rep.network	ネットワーク
 rep.devices	検出した端末
 rep.footer	この Mac 上で permwatch が作成しました。検出事項はローカルな確認に基づく手がかりであり、侵害の証拠ではありません。
+tl.open	信頼済み項目と例外…
+tl.title	信頼済み項目と例外
+tl.body	信頼済み・許可・「知っている」とした項目の一覧です。これらは警告されなくなっています。再び警告を受けるには削除してください。
+tl.apps	信頼済みアプリ
+tl.firewall	ファイアウォール：許可したプログラム
+tl.intel	悪性サーバの例外
+tl.phish	偽サイトの例外
+tl.share	画面共有：信頼済み
+tl.guard	起動前ブロックの例外
+tl.empty	なし
+tl.remove	削除

@@ -1209,3 +1209,14 @@ rep.alerts	Ereignisse mit hohem Risiko (%ld)
 rep.network	Netzwerk
 rep.devices	Gesehene Geräte
 rep.footer	Von permwatch auf diesem Mac erstellt. Befunde sind Hinweise aus lokalen Prüfungen, kein Beweis für eine Kompromittierung.
+tl.open	Vertrauenswürdige Objekte und Ausnahmen…
+tl.title	Vertrauenswürdige Objekte und Ausnahmen
+tl.body	Alles, was du als vertrauenswürdig, erlaubt oder „Kenne ich“ markiert hast. Dafür gibt es keine Warnungen mehr; entferne einen Eintrag, um wieder gewarnt zu werden.
+tl.apps	Vertrauenswürdige Apps
+tl.firewall	Firewall: erlaubte Programme
+tl.intel	Ausnahmen für bösartige Server
+tl.phish	Ausnahmen für gefälschte Seiten
+tl.share	Bildschirmfreigabe: vertrauenswürdig
+tl.guard	Ausnahmen der Startblockierung
+tl.empty	Keine
+tl.remove	Entfernen

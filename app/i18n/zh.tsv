@@ -1209,3 +1209,14 @@ rep.alerts	高风险事件（%ld）
 rep.network	网络
 rep.devices	发现的设备
 rep.footer	由 permwatch 在此 Mac 上生成。发现内容是基于本地检查的线索，并非已被入侵的证据。
+tl.open	受信任项目与例外…
+tl.title	受信任项目与例外
+tl.body	你标记为受信任、允许或“我认识”的所有内容。它们不再触发警告；移除某项即可重新收到警告。
+tl.apps	受信任的应用
+tl.firewall	防火墙：允许的程序
+tl.intel	恶意服务器例外
+tl.phish	仿冒网站例外
+tl.share	屏幕共享：受信任
+tl.guard	运行前拦截的例外
+tl.empty	无
+tl.remove	移除

@@ -1209,3 +1209,14 @@ rep.alerts	고위험 이벤트(%ld)
 rep.network	네트워크
 rep.devices	발견된 기기
 rep.footer	이 Mac에서 permwatch가 생성했습니다. 발견 사항은 로컬 점검에 근거한 단서이며 침해의 증거가 아닙니다.
+tl.open	신뢰 항목 및 예외…
+tl.title	신뢰 항목 및 예외
+tl.body	신뢰, 허용 또는 ‘알고 있음’으로 표시한 모든 항목입니다. 더 이상 경고하지 않으며, 항목을 제거하면 다시 경고합니다.
+tl.apps	신뢰하는 앱
+tl.firewall	방화벽: 허용된 프로그램
+tl.intel	악성 서버 예외
+tl.phish	가짜 사이트 예외
+tl.share	화면 공유: 신뢰함
+tl.guard	실행 전 차단 예외
+tl.empty	없음
+tl.remove	제거

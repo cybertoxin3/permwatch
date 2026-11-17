@@ -59,6 +59,7 @@ struct SettingsView: View {
     @EnvironmentObject var intel: ThreatIntel
     @EnvironmentObject var realtime: RealtimeGuard
     @ObservedObject private var netWatch = NetWatchMonitor.shared
+    @State private var showTrustList = false
     @ObservedObject private var guardSvc = GuardService.shared
     @ObservedObject private var scam = ShareGuard.shared
     @ObservedObject private var phish = PhishGuard.shared
@@ -104,6 +105,8 @@ struct SettingsView: View {
                 Toggle(L("nw.setting"), isOn: $netWatch.enabled)
                 Text(netWatch.active ? L("nw.active") : L("nw.settingDesc")).font(.system(size: 11)).foregroundStyle(.secondary)
                     .fixedSize(horizontal: false, vertical: true)
+                Button(L("tl.open")) { showTrustList = true }
+                    .sheet(isPresented: $showTrustList) { TrustListView() }
                 Toggle(L("intel.setting"), isOn: $intel.enabled)
                 Text(L("intel.settingDesc")).font(.system(size: 11)).foregroundStyle(.secondary)
                     .fixedSize(horizontal: false, vertical: true)

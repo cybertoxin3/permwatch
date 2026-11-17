@@ -45,6 +45,14 @@ final class Store: ObservableObject {
                 self.scanSystem()
             }
         }
+        // "Güvenilenler" listesinden (Ayarlar) güven kaldırılınca yeniden yükle.
+        NotificationCenter.default.addObserver(forName: .init("permwatch.trustChanged"), object: nil, queue: .main) { [weak self] _ in
+            MainActor.assumeIsolated {
+                guard let self else { return }
+                self.trusted = Set(UserDefaults.standard.stringArray(forKey: Self.trustedKey) ?? [])
+                self.reanalyze(notifyNew: false)
+            }
+        }
         if ProcessInfo.processInfo.environment["PERMWATCH_DEMO"] != nil {
             loadDemo()
         } else {

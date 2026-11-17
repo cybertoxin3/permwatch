@@ -1209,3 +1209,14 @@ rep.alerts	High-risk events (%ld)
 rep.network	Network
 rep.devices	Devices seen
 rep.footer	Created by permwatch on this Mac. Findings are hints based on local checks, not proof of compromise.
+tl.open	Trusted items and exceptions…
+tl.title	Trusted items and exceptions
+tl.body	Everything you marked as trusted, allowed or “I recognise this”. These are no longer warned about; remove an item to be warned again.
+tl.apps	Trusted apps
+tl.firewall	Firewall: allowed programs
+tl.intel	Malicious-server exceptions
+tl.phish	Fake-site exceptions
+tl.share	Screen sharing: trusted
+tl.guard	Block-before-launch exceptions
+tl.empty	None
+tl.remove	Remove

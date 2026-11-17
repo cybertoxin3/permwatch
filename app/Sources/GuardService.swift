@@ -72,6 +72,19 @@ final class GuardService: ObservableObject {
         events.removeAll { $0.path == path }
     }
 
+    /// İzin listesi (çalıştırmadan önce engellemenin istisnaları).
+    var allowList: [String] {
+        (try? String(contentsOfFile: Self.allowPath, encoding: .utf8))?.components(separatedBy: .newlines).filter { $0.hasPrefix("/") } ?? []
+    }
+
+    func disallow(_ path: String) {
+        let list = allowList.filter { $0 != path }
+        try? (list.joined(separator: "\n") + "\n").write(toFile: Self.allowPath, atomically: true, encoding: .utf8)
+        chmod(Self.allowPath, 0o600)
+        RootBridge.pushGuardAllow(list)
+        objectWillChange.send()
+    }
+
     private var statusCache: (SMAppService.Status, Date)?
 
     private func refresh() {

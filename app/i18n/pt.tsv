@@ -1209,3 +1209,14 @@ rep.alerts	Eventos de alto risco (%ld)
 rep.network	Rede
 rep.devices	Dispositivos vistos
 rep.footer	Criado pelo permwatch neste Mac. Os achados são indícios de verificações locais, não prova de comprometimento.
+tl.open	Itens confiáveis e exceções…
+tl.title	Itens confiáveis e exceções
+tl.body	Tudo o que você marcou como confiável, permitido ou “Reconheço”. Não há mais avisos para eles; remova um item para voltar a ser avisado.
+tl.apps	Apps confiáveis
+tl.firewall	Firewall: programas permitidos
+tl.intel	Exceções de servidores maliciosos
+tl.phish	Exceções de sites falsos
+tl.share	Compartilhamento de tela: confiáveis
+tl.guard	Exceções do bloqueio antes de abrir
+tl.empty	Nenhum
+tl.remove	Remover

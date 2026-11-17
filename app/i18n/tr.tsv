@@ -1209,3 +1209,14 @@ rep.alerts	Yüksek riskli olaylar (%ld)
 rep.network	Ağ
 rep.devices	Görülen cihazlar
 rep.footer	Bu Mac'te permwatch tarafından oluşturuldu. Bulgular yerel denetimlere dayanan ipuçlarıdır, ele geçirilmenin kanıtı değildir.
+tl.open	Güvenilenler ve istisnalar…
+tl.title	Güvenilenler ve istisnalar
+tl.body	Güvenilir, izinli ya da “tanıyorum” diye işaretlediğin her şey. Bunlar için artık uyarılmıyorsun; yeniden uyarılmak için kaldır.
+tl.apps	Güvenilen uygulamalar
+tl.firewall	Güvenlik duvarı: izin verilen programlar
+tl.intel	Zararlı sunucu istisnaları
+tl.phish	Sahte site istisnaları
+tl.share	Ekran paylaşımı: güvenilenler
+tl.guard	Çalıştırmadan önce engelleme istisnaları
+tl.empty	Yok
+tl.remove	Kaldır
