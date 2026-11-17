@@ -1168,3 +1168,5 @@ origin.package	Установлено через %1$@ · %2$@
 origin.app	Добавлено в «Программы» · %@
 origin.download	Загружено · %@
 origin.downloadFrom	Загружено с %1$@ · %2$@
+tw.newCert	Новый доверенный корневой сертификат
+tw.newProfile	Новый профиль конфигурации

@@ -1168,3 +1168,5 @@ origin.package	%1$@ ile kuruldu · %2$@
 origin.app	Uygulamalar'a eklendi · %@
 origin.download	İndirildi · %@
 origin.downloadFrom	%1$@ adresinden indirildi · %2$@
+tw.newCert	Yeni güvenilen kök sertifika
+tw.newProfile	Yeni yapılandırma profili

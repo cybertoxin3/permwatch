@@ -1168,3 +1168,5 @@ origin.package	%1$@ によりインストール · %2$@
 origin.app	アプリケーションに追加 · %@
 origin.download	ダウンロード · %@
 origin.downloadFrom	%1$@ からダウンロード · %2$@
+tw.newCert	新しく信頼されたルート証明書
+tw.newProfile	新しい構成プロファイル

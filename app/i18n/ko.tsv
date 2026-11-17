@@ -1168,3 +1168,5 @@ origin.package	%1$@(으)로 설치됨 · %2$@
 origin.app	응용 프로그램에 추가됨 · %@
 origin.download	다운로드됨 · %@
 origin.downloadFrom	%1$@에서 다운로드 · %2$@
+tw.newCert	새로 신뢰된 루트 인증서
+tw.newProfile	새 구성 프로파일

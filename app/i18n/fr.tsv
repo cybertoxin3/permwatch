@@ -1168,3 +1168,5 @@ origin.package	Installé par %1$@ · %2$@
 origin.app	App ajoutée à Applications · %@
 origin.download	Téléchargé · %@
 origin.downloadFrom	Téléchargé depuis %1$@ · %2$@
+tw.newCert	Nouveau certificat racine approuvé
+tw.newProfile	Nouveau profil de configuration

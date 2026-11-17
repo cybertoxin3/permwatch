@@ -1168,3 +1168,5 @@ origin.package	由 %1$@ 安装 · %2$@
 origin.app	已添加到“应用程序” · %@
 origin.download	已下载 · %@
 origin.downloadFrom	从 %1$@ 下载 · %2$@
+tw.newCert	新的受信任根证书
+tw.newProfile	新的配置描述文件

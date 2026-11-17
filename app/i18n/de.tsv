@@ -1168,3 +1168,5 @@ origin.package	Installiert über %1$@ · %2$@
 origin.app	Zu Programme hinzugefügt · %@
 origin.download	Geladen · %@
 origin.downloadFrom	Geladen von %1$@ · %2$@
+tw.newCert	Neues vertrauenswürdiges Stammzertifikat
+tw.newProfile	Neues Konfigurationsprofil
