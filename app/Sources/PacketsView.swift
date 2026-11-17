@@ -41,6 +41,7 @@ struct PacketsView: View {
         .navigationTitle(L("nav.packets"))
         .navigationSubtitle(subtitle)
         .onAppear {
+            rows = Self.compute(cap.packets, filter, cap.names)
             devices = PacketMonitor.devices()
             // Görsel deneme: kayıt dosyasını açıp bir paketi ya da analiz sekmesini göster.
             if Snapshot.section == "packets-file", let f = ProcessInfo.processInfo.environment["PERMWATCH_PCAP"] {
@@ -49,6 +50,18 @@ struct PacketsView: View {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                     tab = t
                     selection = cap.packets.first(where: { $0.proto == "ARP" })?.seq
+                    // Deneme: filtreyi harf harf yazıp sil (donma ölçümü).
+                    if ProcessInfo.processInfo.environment["PERMWATCH_FILTERTEST"] != nil {
+                        let word = "proto:llmnr"
+                        var steps: [String] = (1...word.count).map { String(word.prefix($0)) }
+                        steps += (0..<word.count).reversed().map { String(word.prefix($0)) }
+                        for (i, s) in steps.enumerated() {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1 + Double(i) * 0.25) {
+                                filter = s
+                                FileHandle.standardError.write(Data("filtre: '\(s)' \(Date().timeIntervalSince1970)\n".utf8))
+                            }
+                        }
+                    }
                 }
             }
             if Snapshot.section == "packets", !cap.running {
@@ -58,6 +71,12 @@ struct PacketsView: View {
             applyFocus()
         }
         .onChange(of: center.navToken) { applyFocus() }
+        .onChange(of: filter) { refilter() }
+        .onChange(of: cap.packets.count) { old, new in
+            // Canlı yakalamada az sayıda yeni paket: tablo yerinde güncellensin. Toplu değişiklik (dosya açma,
+            // temizleme, 5000 sınırını aşan akış): tablo baştan kurulsun.
+            refilter(rebuild: new < old || new - old > 200 || rows.count >= 5000, delay: 0.3)
+        }
     }
 
     // MARK: Üst çubuk
@@ -218,16 +237,41 @@ struct PacketsView: View {
 
     // MARK: Paket tablosu
 
-    private var visible: [Packet] {
-        var rows = cap.packets
+    /// Tablodaki satırlar. Her çizimde değil, filtre (yazma bitince) ya da paket listesi değişince hesaplanır.
+    @State private var rows: [Packet] = []
+    /// Filtre değişince tablo baştan kurulur: binlerce satır "eklendi" diye işlenirse tablo her satırın
+    /// yüksekliğini tek tek hesaplıyor ve uygulama donuyordu (ör. proto:llmnr silinince 50 → 5000 satır).
+    @State private var tableID = 0
+    @State private var pendingFilter: DispatchWorkItem?
+
+    private static func compute(_ packets: [Packet], _ filter: String, _ names: [String: String]) -> [Packet] {
+        var list = packets
         let q = filter.trimmingCharacters(in: .whitespaces)
-        if !q.isEmpty { rows = rows.filter { PacketFilter.matches($0, query: q, names: cap.names) } }
+        if !q.isEmpty { list = list.filter { PacketFilter.matches($0, query: q, names: names) } }
         // En yenisi üstte; tablo en fazla 5000 satır çizer (hepsi bellekte ve .pcap'te).
-        return Array(rows.suffix(5000).reversed())
+        return Array(list.suffix(5000).reversed())
+    }
+
+    /// Filtre: yazma bitince (0,25 sn) arka planda süz, sonra tabloyu yeniden kur.
+    private func refilter(rebuild: Bool = true, delay: Double = 0.25) {
+        pendingFilter?.cancel()
+        let (ps, f, n) = (cap.packets, filter, cap.names)
+        let w = DispatchWorkItem {
+            DispatchQueue.global(qos: .userInitiated).async {
+                let r = Self.compute(ps, f, n)
+                DispatchQueue.main.async {
+                    guard f == filter else { return }   // bu arada yine değiştiyse eskisini gösterme
+                    rows = r
+                    if rebuild { tableID += 1 }
+                }
+            }
+        }
+        pendingFilter = w
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: w)
     }
 
     private var packetTable: some View {
-        Table(visible, selection: $selection) {
+        Table(rows, selection: $selection) {
             TableColumn("") { p in
                 let e = Explainer.packet(p, host: cap.names[p.dst], app: p.eproc ?? p.proc ?? "—", signature: cap.signature(for: p.epid ?? p.pid))
                 if e.verdict == .caution || e.verdict == .danger {
@@ -270,6 +314,7 @@ struct PacketsView: View {
             .width(min: 200, ideal: 380)
         }
         .font(.system(size: 11.5))
+        .id(tableID)
     }
 
     private func addr(_ ip: String, _ port: Int?) -> some View {
