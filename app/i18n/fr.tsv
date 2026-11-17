@@ -1145,3 +1145,10 @@ pa.openFileMessage	Ouvrez un fichier de capture (.pcap ou .pcapng, p. ex. de Wir
 pa.fileOpened	Fichier : %@
 pa.fileTruncated	affichage des %1$@ premiers paquets sur %2$@
 pa.loading	Lecture du fichier…
+nw.setting	Surveillance continue du réseau
+nw.settingDesc	Surveille le réseau en arrière-plan contre l’usurpation ARP, les faux serveurs DHCP et les balayages de ports, même sans capture. Seuls ces paquets sont examinés ; rien n’est conservé. Nécessite le mode administrateur.
+nw.active	Actif : surveillance de l’usurpation ARP, des faux DHCP et des balayages de ports.
+fw.detail	s’est connecté pour la première fois à %1$@.%2$@ Bloquer ce serveur (et arrêter le programme), ou l’autoriser désormais ?
+fw.listed	 ⚠️ Répertorié comme malveillant par %@.
+fw.block	Bloquer
+fw.allow	Autoriser

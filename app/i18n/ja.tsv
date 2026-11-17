@@ -1145,3 +1145,10 @@ pa.openFileMessage	キャプチャファイル（.pcap または .pcapng、Wires
 pa.fileOpened	ファイル：%@
 pa.fileTruncated	%2$@ パケット中、最初の %1$@ 件を表示
 pa.loading	ファイルを読み込み中…
+nw.setting	ネットワークの常時監視
+nw.settingDesc	パケットキャプチャがオフでも、ARP スプーフィング、不正な DHCP サーバ、ポートスキャンをバックグラウンドで監視します。対象のパケットだけを調べ、何も保存しません。管理者モードが必要です。
+nw.active	有効：ARP スプーフィング、不正な DHCP、ポートスキャンを監視中。
+fw.detail	が初めて %1$@ に接続しました。%2$@ このサーバをブロック（プログラムも停止）しますか、今後は許可しますか？
+fw.listed	 ⚠️ %@ で悪性として掲載されています。
+fw.block	ブロック
+fw.allow	許可

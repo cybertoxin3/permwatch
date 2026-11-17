@@ -539,6 +539,9 @@ final class NetworkMonitor: ObservableObject {
     init() {
         refresh()
         reschedule()
+        NotificationCenter.default.addObserver(forName: .init("permwatch.fwAllowChanged"), object: nil, queue: .main) { [weak self] _ in
+            MainActor.assumeIsolated { self?.fwAllowed = Set(UserDefaults.standard.stringArray(forKey: NetworkMonitor.fwAllowKey) ?? []) }
+        }
     }
 
     var risky: Int { rows.filter { $0.risk >= .caution }.count }
@@ -584,14 +587,26 @@ final class NetworkMonitor: ObservableObject {
 
     // MARK: İlk kez görülen bağlantılar (imzasız programlar)
 
+    static func allowProgram(_ program: String) {
+        var list = Set(UserDefaults.standard.stringArray(forKey: fwAllowKey) ?? [])
+        list.insert(program)
+        UserDefaults.standard.set(Array(list), forKey: fwAllowKey)
+        NotificationCenter.default.post(name: .init("permwatch.fwAllowChanged"), object: nil)
+    }
+
     private var seenConnections = Set(UserDefaults.standard.stringArray(forKey: "seenConnections") ?? [])
     private var seenBaseline = UserDefaults.standard.bool(forKey: "seenConnectionsBaseline")
 
     /// İmzasız bir program daha önce hiç konuşmadığı bir sunucuya bağlanırsa bildirir. İlk çalıştırmada
     /// mevcut bağlantılar sessizce "bilinen" sayılır.
+    /// Güvenlik duvarı sorusunda "İzin ver" denen programlar: bir daha sorulmaz.
+    static let fwAllowKey = "firewallAllowedPrograms"
+    private var fwAllowed = Set(UserDefaults.standard.stringArray(forKey: NetworkMonitor.fwAllowKey) ?? [])
+
     private func noteFirstSeen(_ rows: [ConnRow]) {
         var added = false
-        for c in rows where (c.signature == "unsigned" || c.signature == "adhoc") && PathUtil.homebrewFormula(c.path) == nil {
+        for c in rows where (c.signature == "unsigned" || c.signature == "adhoc") && PathUtil.homebrewFormula(c.path) == nil
+            && !fwAllowed.contains(c.path ?? c.name) {
             guard let remote = c.remote else { continue }
             let host = remote.components(separatedBy: ":").dropLast().joined(separator: ":").trimmingCharacters(in: CharacterSet(charactersIn: "[]"))
             if host.isEmpty || Conversation.isLocal(host) { continue }
@@ -599,10 +614,21 @@ final class NetworkMonitor: ObservableObject {
             guard seenConnections.insert(key).inserted else { continue }
             added = true
             if seenBaseline {
-                ThreatCenter.shared.report(Threat(id: "first.\(key)", risk: .caution, title: L("net.first.title", c.name),
-                                                  detail: L("net.first.detail", host),
-                                                  iconKey: c.path.map { PathUtil.appBundle($0) ?? $0 }, section: .network,
-                                                  focus: .connection(c.id)))
+                // Güvenlik duvarı sorusu: imzasız program ilk kez bu sunucuya bağlanıyor.
+                let program = c.path ?? c.name, pid = c.pid
+                var t = Threat(id: "first.\(key)", risk: .caution, title: L("net.first.title", c.name),
+                               detail: L("fw.detail", host, ThreatIntel.store.match(ip: host, host: nil).map { L("fw.listed", $0.1) } ?? ""),
+                               iconKey: c.path.map { PathUtil.appBundle($0) ?? $0 }, section: .network,
+                               focus: .connection(c.id))
+                t.actions = [
+                    ThreatAction(title: L("fw.block"), prominent: true) {
+                        // Sunucuyu güvenlik duvarında engelle (yönetici modu) ve bağlantıyı kuran programı durdur.
+                        if !BlockList.shared.contains(host) { BlockList.shared.toggle(host) }
+                        if pid > 0 { kill(pid, SIGTERM) }
+                    },
+                    ThreatAction(title: L("fw.allow")) { NetworkMonitor.allowProgram(program) },
+                ]
+                ThreatCenter.shared.report(t)
             }
         }
         if added { UserDefaults.standard.set(Array(seenConnections.suffix(5000)), forKey: "seenConnections") }

@@ -1145,3 +1145,10 @@ pa.openFileMessage	캡처 파일(.pcap 또는 .pcapng, 예: Wireshark나 tcpdump
 pa.fileOpened	파일: %@
 pa.fileTruncated	패킷 %2$@개 중 처음 %1$@개 표시
 pa.loading	파일 읽는 중…
+nw.setting	네트워크 상시 모니터링
+nw.settingDesc	패킷 캡처가 꺼져 있어도 백그라운드에서 ARP 스푸핑, 가짜 DHCP 서버, 포트 스캔을 감시합니다. 해당 패킷만 살펴보며 아무것도 저장하지 않습니다. 관리자 모드가 필요합니다.
+nw.active	활성: ARP 스푸핑, 가짜 DHCP, 포트 스캔을 감시 중.
+fw.detail	처음으로 %1$@에 연결했습니다.%2$@ 이 서버를 차단(프로그램도 중지)할까요, 앞으로 허용할까요?
+fw.listed	 ⚠️ %@에 악성으로 등재되어 있습니다.
+fw.block	차단
+fw.allow	허용

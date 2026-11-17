@@ -590,3 +590,54 @@ struct StreamView: View {
         })
     }
 }
+
+// MARK: - Sürekli ağ izleme (uygulama tarafı)
+
+/// Yönetici yardımcısının sürekli topladığı ARP/DHCP/SYN özetlerini analiz motorundan geçirir ve yeni
+/// (uyarı ya da kritik) bulguları tehdit penceresinde gösterir. Paket yakalama açık olmasa da çalışır.
+@MainActor
+final class NetWatchMonitor: ObservableObject {
+    static let shared = NetWatchMonitor()
+    static let enabledKey = "netWatch"
+
+    @Published var enabled: Bool = UserDefaults.standard.object(forKey: NetWatchMonitor.enabledKey) as? Bool ?? true {
+        didSet {
+            UserDefaults.standard.set(enabled, forKey: Self.enabledKey)
+            RootBridge.shared.set("netwatch", enabled)
+        }
+    }
+    @Published private(set) var findings: [SecFinding] = []
+    @Published private(set) var lastCheck: Date?
+    private var timer: Timer?
+    private var busy = false
+
+    private init() {
+        RootBridge.shared.set("netwatch", enabled)
+        guard Snapshot.section == nil else { return }
+        timer = Timer.scheduledTimer(withTimeInterval: 20, repeats: true) { _ in
+            MainActor.assumeIsolated { NetWatchMonitor.shared.check() }
+        }
+    }
+
+    var active: Bool { enabled && (RootBridge.shared.data?.netWatchActive ?? false) && RootBridge.shared.active }
+
+    func check() {
+        guard enabled, !busy, let d = RootBridge.shared.data, d.fresh, !d.netPackets.isEmpty else { return }
+        busy = true
+        let ps = d.netPackets
+        Task.detached(priority: .utility) {
+            // Yalnızca saldırı türleri: tarama, zehirlenme, sahte DHCP (bilgi düzeyindekiler uyarı olmaz).
+            let f = PacketAnalyzer.analyze(ps, names: [:]).filter { $0.severity >= .medium }
+            await MainActor.run {
+                self.busy = false
+                self.findings = f
+                self.lastCheck = Date()
+                for x in f {
+                    ThreatCenter.shared.report(Threat(id: "netwatch.\(x.id)", risk: x.severity == .high ? .high : .caution,
+                                                      title: x.title, detail: x.detail, iconKey: nil,
+                                                      section: .packets, focus: .none))
+                }
+            }
+        }
+    }
+}

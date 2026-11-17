@@ -1145,3 +1145,10 @@ pa.openFileMessage	Open a capture file (.pcap or .pcapng, e.g. from Wireshark or
 pa.fileOpened	File: %@
 pa.fileTruncated	showing the first %1$@ of %2$@ packets
 pa.loading	Reading file…
+nw.setting	Continuous network monitoring
+nw.settingDesc	Watches the network in the background for ARP spoofing, rogue DHCP servers and port scans, even when packet capture is off. Only those packets are examined; nothing is stored. Needs admin mode.
+nw.active	Active: watching for ARP spoofing, rogue DHCP and port scans.
+fw.detail	connected to %1$@ for the first time.%2$@ Block this server (and stop the program), or allow it from now on?
+fw.listed	 ⚠️ Listed as malicious by %@.
+fw.block	Block
+fw.allow	Allow

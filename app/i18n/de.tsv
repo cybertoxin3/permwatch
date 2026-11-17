@@ -1145,3 +1145,10 @@ pa.openFileMessage	Öffne eine Aufzeichnung (.pcap oder .pcapng, z. B. aus Wires
 pa.fileOpened	Datei: %@
 pa.fileTruncated	die ersten %1$@ von %2$@ Paketen
 pa.loading	Datei wird gelesen…
+nw.setting	Dauerhafte Netzwerküberwachung
+nw.settingDesc	Überwacht das Netzwerk im Hintergrund auf ARP-Spoofing, falsche DHCP-Server und Portscans, auch ohne Paketaufzeichnung. Nur diese Pakete werden geprüft, nichts wird gespeichert. Benötigt den Admin-Modus.
+nw.active	Aktiv: Überwachung auf ARP-Spoofing, falsches DHCP und Portscans.
+fw.detail	hat sich zum ersten Mal mit %1$@ verbunden.%2$@ Diesen Server blockieren (und das Programm beenden) oder künftig erlauben?
+fw.listed	 ⚠️ Von %@ als bösartig gelistet.
+fw.block	Blockieren
+fw.allow	Erlauben

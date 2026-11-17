@@ -1145,3 +1145,10 @@ pa.openFileMessage	Apri un file di cattura (.pcap o .pcapng, ad es. da Wireshark
 pa.fileOpened	File: %@
 pa.fileTruncated	mostrati i primi %1$@ di %2$@ pacchetti
 pa.loading	Lettura del file…
+nw.setting	Monitoraggio continuo della rete
+nw.settingDesc	Controlla la rete in background contro spoofing ARP, server DHCP falsi e scansioni di porte, anche a cattura spenta. Vengono esaminati solo quei pacchetti; nulla viene salvato. Richiede la modalità amministratore.
+nw.active	Attivo: controllo di spoofing ARP, DHCP falsi e scansioni di porte.
+fw.detail	si è collegato per la prima volta a %1$@.%2$@ Bloccare questo server (e fermare il programma) o consentirlo d’ora in poi?
+fw.listed	 ⚠️ Elencato come malevolo da %@.
+fw.block	Blocca
+fw.allow	Consenti

@@ -227,6 +227,7 @@ final class Control: NSObject, NSXPCListenerDelegate, RootControl, @unchecked Se
         var block: [String] = []
         /// VPN isteği (JSON). Uygulama kapalıyken de geçerli kalır: root'a ait dosyada saklanır.
         var vpn: String?
+        var netwatch = false
         var lastSync = Date.distantPast
     }
     private let lock = NSLock()
@@ -262,6 +263,7 @@ final class Control: NSObject, NSXPCListenerDelegate, RootControl, @unchecked Se
         lock.lock()
         state.capture = j["capture"] as? Bool ?? false
         state.dns = j["dns"] as? Bool ?? false
+        state.netwatch = j["netwatch"] as? Bool ?? false
         state.block = ((j["block"] as? [String]) ?? []).filter(validIP)
         var vpnChanged = false
         if j.keys.contains("vpn") {
@@ -406,6 +408,53 @@ final class Capture {
     }
 }
 
+// MARK: - Sürekli ağ izleme (saldırı belirtileri)
+
+/// Yalnızca saldırı belirtisi taşıyan paketleri dinler: ARP (zehirlenme/tarama), DHCP (sahte sunucu) ve
+/// yanıtsız SYN'ler (port taraması). İçerik saklanmaz; son 600 paketin özeti root.json'a yazılır, analizi
+/// uygulama yapar. Paket yakalamadan bağımsız, hafif ve sürekli çalışır.
+final class NetWatch {
+    private let engine: CaptureEngine
+    private let lock = NSLock()
+    private var ring: [Packet] = []
+
+    init() throws {
+        var lastError = "pktap"
+        for pk in [true, false] {
+            let e = CaptureEngine(device: "pktap,all")
+            e.wantPktap = pk
+            e.filter = "arp or udp port 67 or udp port 68 or tcp"
+            e.storePayload = false
+            e.maxPerSecond = 800
+            do { try e.open(snaplen: 256) } catch { lastError = (error as? CaptureError)?.message ?? "\(error)"; continue }
+            engine = e
+            e.onPacket = { [weak self] p in
+                // Çekirdek süzgeci PKTAP'ta her zaman uygulanamıyor: yalnızca saldırı belirtisi olan türleri tut.
+                guard let self, p.proto == "ARP" || p.proto == "DHCP" || p.tcp == "SYN" else { return }
+                var q = p
+                q.hex = nil; q.pl = nil
+                self.lock.lock()
+                self.ring.append(q)
+                if self.ring.count > 600 { self.ring.removeFirst(self.ring.count - 600) }
+                self.lock.unlock()
+            }
+            e.start()
+            return
+        }
+        throw CaptureError(message: lastError)
+    }
+
+    var snapshot: [[String: Any]] {
+        lock.lock(); let list = ring; lock.unlock()
+        let enc = JSONEncoder()
+        return list.compactMap { p in
+            (try? enc.encode(p)).flatMap { try? JSONSerialization.jsonObject(with: $0) as? [String: Any] }
+        }
+    }
+
+    func stop() { engine.stop() }
+}
+
 // MARK: - DNS izleme (zararlı sunucu kontrolü için: hangi adres hangi alan adına ait)
 
 /// Yalnızca DNS yanıtlarını okur: alan adı → adresler ve soran süreç. Paket içeriği saklanmaz,
@@ -465,6 +514,8 @@ var tick = 0
 var lastSig = ""
 var dnsWatch: DNSWatch?
 var dnsError: String?
+var netWatch: NetWatch?
+var netError: String?
 let vpn = VPNRunner()
 vpnGlobal = vpn
 // XPC: uygulamanın istekleri (yalnızca servis modunda; launchd'nin kayıtlı Mach servisi).
@@ -491,6 +542,7 @@ while true {
         if !appAlive() {
             if capture != nil { capture?.stop(); capture = nil; captureError = nil }
             dnsWatch?.stop(); dnsWatch = nil; dnsError = nil
+            netWatch?.stop(); netWatch = nil; netError = nil
             tick = 0
             sleep(3)
             continue
@@ -522,6 +574,14 @@ while true {
 
     // Uygulama güncellendiyse eski sürümle kalma.
     if tick % 30 == 0, binaryReplaced() { capture?.stop(); dnsWatch?.stop(); vpn.shutdown(); exit(0) }
+
+    // Sürekli ağ izleme (servis modunda, uygulama istediğinde).
+    let netWanted = daemon && control.snapshot().netwatch
+    if netWanted, netWatch == nil, netError == nil {
+        do { netWatch = try NetWatch() } catch { netError = (error as? CaptureError)?.message ?? "\(error)" }
+    } else if !netWanted, netWatch != nil || netError != nil {
+        netWatch?.stop(); netWatch = nil; netError = nil
+    }
 
     // Yavaş değişenler dakikada bir, AYRI iş parçacığında: bu komutlar (özellikle 3 günlük günlük taraması)
     // dakikalarca sürebilir; ana döngüyü tutarlarsa durum dosyası bayatlar ve uygulama yardımcıyı
@@ -584,6 +644,8 @@ while true {
         doc["block"] = blockStatus
         if let w = dnsWatch { doc["dns"] = w.snapshot }
         if let e = dnsError { doc["dnsError"] = e }
+        if let w = netWatch { doc["netwatch"] = w.snapshot }
+        if let e = netError { doc["netwatchError"] = e }
         if let data = try? JSONSerialization.data(withJSONObject: doc) { writeAtomic(data, to: outPath) }
     }
     tick += 1

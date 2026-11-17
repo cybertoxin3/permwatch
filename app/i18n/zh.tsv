@@ -1145,3 +1145,10 @@ pa.openFileMessage	打开捕获文件（.pcap 或 .pcapng，例如来自 Wiresha
 pa.fileOpened	文件：%@
 pa.fileTruncated	显示 %2$@ 个数据包中的前 %1$@ 个
 pa.loading	正在读取文件…
+nw.setting	持续网络监控
+nw.settingDesc	即使未开启抓包，也会在后台监控 ARP 欺骗、伪造 DHCP 服务器和端口扫描。只检查这些数据包，不保存任何内容。需要管理员模式。
+nw.active	已启用：正在监控 ARP 欺骗、伪造 DHCP 和端口扫描。
+fw.detail	首次连接到 %1$@。%2$@ 阻止此服务器（并停止该程序），还是今后允许？
+fw.listed	 ⚠️ 被 %@ 列为恶意。
+fw.block	阻止
+fw.allow	允许

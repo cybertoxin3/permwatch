@@ -1145,3 +1145,10 @@ pa.openFileMessage	İncelemek ve analiz etmek için bir yakalama dosyası aç (.
 pa.fileOpened	Dosya: %@
 pa.fileTruncated	%2$@ paketin ilk %1$@ tanesi gösteriliyor
 pa.loading	Dosya okunuyor…
+nw.setting	Sürekli ağ izleme
+nw.settingDesc	Paket yakalama kapalıyken de ağı arka planda ARP zehirlenmesi, sahte DHCP sunucusu ve port taramasına karşı izler. Yalnızca bu paketlere bakılır, hiçbir şey saklanmaz. Yönetici modu gerekir.
+nw.active	Etkin: ARP zehirlenmesi, sahte DHCP ve port taraması izleniyor.
+fw.detail	%1$@ sunucusuna ilk kez bağlandı.%2$@ Bu sunucu engellensin mi (program da durdurulur), yoksa bundan sonra izin mi verilsin?
+fw.listed	 ⚠️ %@ listesinde zararlı olarak geçiyor.
+fw.block	Engelle
+fw.allow	İzin ver

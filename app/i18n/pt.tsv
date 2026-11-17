@@ -1145,3 +1145,10 @@ pa.openFileMessage	Abra um arquivo de captura (.pcap ou .pcapng, ex. do Wireshar
 pa.fileOpened	Arquivo: %@
 pa.fileTruncated	mostrando os primeiros %1$@ de %2$@ pacotes
 pa.loading	Lendo arquivo…
+nw.setting	Monitoramento contínuo da rede
+nw.settingDesc	Vigia a rede em segundo plano contra falsificação ARP, servidores DHCP falsos e varreduras de portas, mesmo com a captura desligada. Só esses pacotes são examinados; nada é guardado. Requer o modo administrador.
+nw.active	Ativo: vigiando falsificação ARP, DHCP falso e varreduras de portas.
+fw.detail	conectou-se pela primeira vez a %1$@.%2$@ Bloquear este servidor (e parar o programa) ou permitir daqui em diante?
+fw.listed	 ⚠️ Listado como malicioso por %@.
+fw.block	Bloquear
+fw.allow	Permitir

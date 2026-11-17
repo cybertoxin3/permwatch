@@ -13,6 +13,13 @@ enum Focus: Equatable {
     case none
 }
 
+/// Uyarı penceresinde doğrudan yapılabilecek bir işlem (ör. güvenlik duvarı sorusunda "Engelle").
+struct ThreatAction {
+    let title: String
+    var prominent = false
+    let run: @MainActor () -> Void
+}
+
 struct Threat: Identifiable, Equatable {
     let id: String
     let risk: Risk
@@ -21,6 +28,7 @@ struct Threat: Identifiable, Equatable {
     let iconKey: String?
     let section: SidebarItem
     let focus: Focus
+    var actions: [ThreatAction] = []
 
     static func == (a: Threat, b: Threat) -> Bool { a.id == b.id }
 }
@@ -218,9 +226,21 @@ struct ThreatHUD: View {
                         Text(t.title).font(.system(size: 13, weight: .bold)).foregroundStyle(t.risk.color).lineLimit(1)
                         Text(t.detail).font(.system(size: 12)).lineLimit(2).fixedSize(horizontal: false, vertical: true)
                         HStack(spacing: 8) {
-                            Button(L("threat.review")) { center.open(t) }
-                                .buttonStyle(.borderedProminent).tint(t.risk.color)
-                            Button(L("threat.dismiss")) { center.dismiss(t) }
+                            if t.actions.isEmpty {
+                                Button(L("threat.review")) { center.open(t) }
+                                    .buttonStyle(.borderedProminent).tint(t.risk.color)
+                                Button(L("threat.dismiss")) { center.dismiss(t) }
+                            } else {
+                                ForEach(Array(t.actions.enumerated()), id: \.offset) { _, a in
+                                    if a.prominent {
+                                        Button(a.title) { a.run(); center.dismiss(t) }
+                                            .buttonStyle(.borderedProminent).tint(t.risk.color)
+                                    } else {
+                                        Button(a.title) { a.run(); center.dismiss(t) }
+                                    }
+                                }
+                                Button(L("threat.review")) { center.open(t) }.buttonStyle(.link)
+                            }
                         }
                         .controlSize(.small)
                         .padding(.top, 4)

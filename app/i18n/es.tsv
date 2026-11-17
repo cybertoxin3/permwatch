@@ -1145,3 +1145,10 @@ pa.openFileMessage	Abre un archivo de captura (.pcap o .pcapng, p. ej. de Wiresh
 pa.fileOpened	Archivo: %@
 pa.fileTruncated	se muestran los primeros %1$@ de %2$@ paquetes
 pa.loading	Leyendo archivo…
+nw.setting	Supervisión continua de la red
+nw.settingDesc	Vigila la red en segundo plano contra suplantación ARP, servidores DHCP falsos y escaneos de puertos, aunque la captura esté apagada. Solo se examinan esos paquetes; no se guarda nada. Requiere el modo administrador.
+nw.active	Activo: vigilando suplantación ARP, DHCP falso y escaneos de puertos.
+fw.detail	se conectó por primera vez a %1$@.%2$@ ¿Bloquear este servidor (y detener el programa) o permitirlo en adelante?
+fw.listed	 ⚠️ Listado como malicioso por %@.
+fw.block	Bloquear
+fw.allow	Permitir

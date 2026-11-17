@@ -46,6 +46,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         _ = ShareGuard.shared
         _ = PhishGuard.shared
         _ = NetCheck.shared
+        _ = NetWatchMonitor.shared
         ThreatIntel.shared.update()
         guard LoginLaunch.launchedAtLogin else { return }
         // Sessiz başla: ana pencereyi kapat, menü çubuğunda kal.

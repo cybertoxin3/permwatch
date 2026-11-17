@@ -24,6 +24,10 @@ struct RootData {
     var dns: [String: (host: String, proc: String)] = [:]
     var dnsActive = false
     var dnsError: String?
+    /// Sürekli ağ izlemenin topladığı son paket özetleri (ARP, DHCP, SYN).
+    var netPackets: [Packet] = []
+    var netWatchActive = false
+    var netWatchError: String?
 
     var fresh: Bool { Date().timeIntervalSince(ts) < 20 }
 }
@@ -326,6 +330,11 @@ final class RootBridge: ObservableObject {
             for e in list { if let ip = e["ip"] as? String, let h = e["host"] as? String { r.dns[ip] = (h, e["proc"] as? String ?? "") } }
         }
         r.dnsError = j["dnsError"] as? String
+        if let list = j["netwatch"] as? [[String: Any]], let d = try? JSONSerialization.data(withJSONObject: list) {
+            r.netPackets = (try? JSONDecoder().decode([Packet].self, from: d)) ?? []
+            r.netWatchActive = true
+        }
+        r.netWatchError = j["netwatchError"] as? String
         if let c = j["capture"] as? [String: Any] {
             r.captureActive = c["active"] as? Bool ?? false
             r.captureDevice = c["device"] as? String
