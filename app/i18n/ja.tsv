@@ -1170,3 +1170,11 @@ origin.download	ダウンロード · %@
 origin.downloadFrom	%1$@ からダウンロード · %2$@
 tw.newCert	新しく信頼されたルート証明書
 tw.newProfile	新しい構成プロファイル
+upd.apps.title	%ld 個のアプリが最新ではありません
+upd.apps.body	古いバージョンには既知のセキュリティホールがあることが多いです。「重要」のアプリ（ブラウザ、メッセンジャー、パスワード管理、ウォレットなど）は最も狙われるので、先に更新してください。最新バージョンは Homebrew の公開アプリ一覧から取得します。
+upd.apps.critical	重要
+upd.apps.copyBrew	brew コマンドをコピー
+upd.apps.appStore	App Store
+upd.apps.open	開く
+upd.apps.openHelp	多くのアプリは開くと自動で更新を案内します（多くはアプリメニュー › アップデートを確認）。
+upd.apps.review	一覧を表示

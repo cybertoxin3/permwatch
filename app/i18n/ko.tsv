@@ -1170,3 +1170,11 @@ origin.download	다운로드됨 · %@
 origin.downloadFrom	%1$@에서 다운로드 · %2$@
 tw.newCert	새로 신뢰된 루트 인증서
 tw.newProfile	새 구성 프로파일
+upd.apps.title	앱 %ld개가 최신 버전이 아닙니다
+upd.apps.body	오래된 버전에는 알려진 보안 취약점이 있는 경우가 많습니다. ‘중요’로 표시된 앱(브라우저, 메신저, 암호 관리자, 지갑 등)이 가장 많이 공격받으니 먼저 업데이트하세요. 최신 버전 정보는 Homebrew의 공개 앱 목록에서 가져옵니다.
+upd.apps.critical	중요
+upd.apps.copyBrew	brew 명령 복사
+upd.apps.appStore	App Store
+upd.apps.open	열기
+upd.apps.openHelp	대부분의 앱은 열면 스스로 업데이트를 제안합니다(보통 앱 메뉴 › 업데이트 확인).
+upd.apps.review	목록 보기

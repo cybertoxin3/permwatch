@@ -1170,3 +1170,11 @@ origin.download	نُزّل · %@
 origin.downloadFrom	نُزّل من %1$@ · %2$@
 tw.newCert	شهادة جذر موثوقة جديدة
 tw.newProfile	ملف تعريف تهيئة جديد
+upd.apps.title	%ld تطبيق غير محدّث
+upd.apps.body	غالبًا ما تحتوي الإصدارات القديمة على ثغرات أمنية معروفة. التطبيقات المعلَّمة «حرج» (المتصفحات، المراسلة، مدير كلمات السر، المحافظ…) هي الأكثر استهدافًا؛ حدّثها أولًا. تأتي أحدث الإصدارات من قائمة تطبيقات Homebrew العامة.
+upd.apps.critical	حرج
+upd.apps.copyBrew	نسخ أمر brew
+upd.apps.appStore	App Store
+upd.apps.open	فتح
+upd.apps.openHelp	تعرض معظم التطبيقات التحديث بنفسها عند فتحها (غالبًا من قائمة التطبيق › التحقق من التحديثات).
+upd.apps.review	عرض القائمة

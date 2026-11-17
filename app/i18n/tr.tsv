@@ -1170,3 +1170,11 @@ origin.download	İndirildi · %@
 origin.downloadFrom	%1$@ adresinden indirildi · %2$@
 tw.newCert	Yeni güvenilen kök sertifika
 tw.newProfile	Yeni yapılandırma profili
+upd.apps.title	%ld uygulama güncel değil
+upd.apps.body	Eski sürümlerde çoğu zaman bilinen güvenlik açıkları bulunur. "Kritik" işaretli uygulamalar (tarayıcılar, mesajlaşma, parola yöneticileri, cüzdanlar…) en çok saldırıya uğrayanlardır; önce onları güncelle. En son sürümler Homebrew'un herkese açık uygulama listesinden alınır.
+upd.apps.critical	Kritik
+upd.apps.copyBrew	brew komutunu kopyala
+upd.apps.appStore	App Store
+upd.apps.open	Aç
+upd.apps.openHelp	Çoğu uygulama açılınca güncellemeyi kendisi önerir (genellikle uygulama menüsü › Güncellemeleri Denetle).
+upd.apps.review	Listeyi göster

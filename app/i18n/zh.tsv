@@ -1170,3 +1170,11 @@ origin.download	已下载 · %@
 origin.downloadFrom	从 %1$@ 下载 · %2$@
 tw.newCert	新的受信任根证书
 tw.newProfile	新的配置描述文件
+upd.apps.title	%ld 个应用不是最新版本
+upd.apps.body	旧版本常有已知的安全漏洞。标为“关键”的应用（浏览器、聊天工具、密码管理器、钱包等）最常遭到攻击，请优先更新。最新版本信息来自 Homebrew 的公开应用列表。
+upd.apps.critical	关键
+upd.apps.copyBrew	复制 brew 命令
+upd.apps.appStore	App Store
+upd.apps.open	打开
+upd.apps.openHelp	大多数应用在打开时会自行提示更新（通常在应用菜单 › 检查更新）。
+upd.apps.review	显示列表

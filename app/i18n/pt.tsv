@@ -1170,3 +1170,11 @@ origin.download	Baixado · %@
 origin.downloadFrom	Baixado de %1$@ · %2$@
 tw.newCert	Novo certificado raiz confiável
 tw.newProfile	Novo perfil de configuração
+upd.apps.title	%ld apps estão desatualizados
+upd.apps.body	Versões antigas costumam ter falhas de segurança conhecidas. Apps marcados como “Crítico” (navegadores, mensageiros, gerenciadores de senhas, carteiras…) são os mais atacados; atualize-os primeiro. As versões mais recentes vêm da lista pública de apps do Homebrew.
+upd.apps.critical	Crítico
+upd.apps.copyBrew	Copiar comando brew
+upd.apps.appStore	App Store
+upd.apps.open	Abrir
+upd.apps.openHelp	A maioria dos apps oferece a atualização ao abrir (geralmente no menu do app › Verificar Atualizações).
+upd.apps.review	Mostrar lista

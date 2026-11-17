@@ -118,6 +118,8 @@ struct AdviceView: View {
     @State private var message: String?
     @State private var confirm: AdviceItem?
     @State private var crash = CrashReports.unseen()
+    @ObservedObject private var appUpdates = AppUpdates.shared
+    @State private var showUpdates = false
     @Environment(\.openWindow) private var openWindow
 
     var body: some View {
@@ -155,6 +157,7 @@ struct AdviceView: View {
             Text(confirm?.confirmText ?? L("adv.revokeConfirm"))
         }
         .onChange(of: store.apps.count) { advisor.refresh(apps: store.apps) }
+        .sheet(isPresented: $showUpdates) { AppUpdatesSheet() }
         .onAppear {
             advisor.refresh(apps: store.apps); posture.refresh()
             if checks.lastRun == nil { runChecks() }
@@ -283,6 +286,14 @@ struct AdviceView: View {
                                  openWindow(id: "report"); NSApp.activate(ignoringOtherApps: true)
                              }),
                              secondary: (L("crash.ignore"), { CrashReports.markSeen(); crash = nil })))
+        }
+        if !appUpdates.outdated.isEmpty {
+            let crit = appUpdates.outdated.filter(\.critical)
+            out.append(.init(id: "appUpdates", verdict: crit.isEmpty ? .info : .caution, icon: "arrow.triangle.2.circlepath",
+                             title: L("upd.apps.title", appUpdates.outdated.count),
+                             body: appUpdates.outdated.prefix(6).map { "\($0.name) \($0.installed) → \($0.latest)" }.joined(separator: "\n")
+                                 + (appUpdates.outdated.count > 6 ? "\n…" : ""),
+                             primary: (L("upd.apps.review"), { showUpdates = true })))
         }
         if store.needsFullDiskAccess || downloads.needsFullDisk {
             out.append(.init(id: "fda", verdict: .danger, icon: "lock.shield", title: L("fda.one.title"), body: L("fda.one.body"),

@@ -1170,3 +1170,11 @@ origin.download	Téléchargé · %@
 origin.downloadFrom	Téléchargé depuis %1$@ · %2$@
 tw.newCert	Nouveau certificat racine approuvé
 tw.newProfile	Nouveau profil de configuration
+upd.apps.title	%ld apps ne sont pas à jour
+upd.apps.body	Les anciennes versions ont souvent des failles connues. Les apps marquées « Critique » (navigateurs, messageries, gestionnaires de mots de passe, portefeuilles…) sont les plus attaquées ; mettez-les à jour d’abord. Les dernières versions proviennent de la liste publique d’apps de Homebrew.
+upd.apps.critical	Critique
+upd.apps.copyBrew	Copier la commande brew
+upd.apps.appStore	App Store
+upd.apps.open	Ouvrir
+upd.apps.openHelp	La plupart des apps proposent la mise à jour à l’ouverture (souvent menu de l’app › Rechercher des mises à jour).
+upd.apps.review	Afficher la liste

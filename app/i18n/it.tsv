@@ -1170,3 +1170,11 @@ origin.download	Scaricato · %@
 origin.downloadFrom	Scaricato da %1$@ · %2$@
 tw.newCert	Nuovo certificato radice attendibile
 tw.newProfile	Nuovo profilo di configurazione
+upd.apps.title	%ld app non sono aggiornate
+upd.apps.body	Le versioni vecchie hanno spesso falle di sicurezza note. Le app segnate “Critica” (browser, messaggistica, gestori di password, wallet…) sono le più attaccate; aggiornale per prime. Le ultime versioni provengono dall’elenco pubblico di app di Homebrew.
+upd.apps.critical	Critica
+upd.apps.copyBrew	Copia comando brew
+upd.apps.appStore	App Store
+upd.apps.open	Apri
+upd.apps.openHelp	La maggior parte delle app propone l’aggiornamento all’apertura (spesso menu dell’app › Controlla aggiornamenti).
+upd.apps.review	Mostra elenco

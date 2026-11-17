@@ -1170,3 +1170,11 @@ origin.download	Downloaded · %@
 origin.downloadFrom	Downloaded from %1$@ · %2$@
 tw.newCert	New trusted root certificate
 tw.newProfile	New configuration profile
+upd.apps.title	%ld apps are out of date
+upd.apps.body	Old versions often have known security holes. Apps marked “Critical” (browsers, messengers, password managers, wallets…) are attacked most; update them first. Latest versions come from Homebrew's public app list.
+upd.apps.critical	Critical
+upd.apps.copyBrew	Copy brew command
+upd.apps.appStore	App Store
+upd.apps.open	Open
+upd.apps.openHelp	Most apps offer the update themselves when opened (often under the app menu › Check for Updates).
+upd.apps.review	Show list

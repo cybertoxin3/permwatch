@@ -1170,3 +1170,11 @@ origin.download	Geladen · %@
 origin.downloadFrom	Geladen von %1$@ · %2$@
 tw.newCert	Neues vertrauenswürdiges Stammzertifikat
 tw.newProfile	Neues Konfigurationsprofil
+upd.apps.title	%ld Apps sind veraltet
+upd.apps.body	Alte Versionen haben oft bekannte Sicherheitslücken. Als „Kritisch“ markierte Apps (Browser, Messenger, Passwortmanager, Wallets…) werden am häufigsten angegriffen; aktualisiere sie zuerst. Die neuesten Versionen stammen aus der öffentlichen App-Liste von Homebrew.
+upd.apps.critical	Kritisch
+upd.apps.copyBrew	brew-Befehl kopieren
+upd.apps.appStore	App Store
+upd.apps.open	Öffnen
+upd.apps.openHelp	Die meisten Apps bieten das Update beim Öffnen selbst an (oft im App-Menü › Nach Updates suchen).
+upd.apps.review	Liste zeigen

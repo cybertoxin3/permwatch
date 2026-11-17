@@ -146,6 +146,15 @@ enum Snapshot {
             }
             return
         }
+        if section == "appupdates" {
+            Task {
+                let l = await AppUpdates.compute()
+                print("güncel olmayan: \(l.count)")
+                for u in l { print("  \(u.critical ? "KRİTİK" : "      ") \(u.name) \(u.installed) → \(u.latest) [\(u.token)]\(u.viaBrew ? " brew" : "")\(u.appStore ? " appstore" : "")") }
+                exit(0)
+            }
+            return
+        }
         if section == "netscan" {
             // "Ağı tara"yı gerçek ağda çalıştırır ve sonucu yazar.
             let n = NetCheck.shared
