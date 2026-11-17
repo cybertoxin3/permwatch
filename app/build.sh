@@ -17,8 +17,15 @@ elif [[ "${PERMWATCH_RELEASE:-0}" == 1 || "${UNIVERSAL:-0}" == 1 ]]; then ARCHS=
 else ARCHS=$NATIVE; fi
 mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
 
+# SwiftUI makro eklentisi yalnızca Xcode'da var: Command Line Tools seçiliyse ve Xcode kuruluysa onu kullan.
+if [[ -z "${DEVELOPER_DIR:-}" && -d /Applications/Xcode.app/Contents/Developer \
+      && "$(xcode-select -p 2>/dev/null)" != /Applications/Xcode.app/* ]]; then
+    export DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer
+fi
+
 ST_SRC=(vendor/SwiftTerm/Sources/**/*.swift)
-ST_KEY=$(cat "${ST_SRC[@]}" | shasum | cut -c1-16)
+# Derleyici sürümü de anahtarda: başka bir Swift ile derlenmiş modül içe aktarılamaz.
+ST_KEY=$( (cat "${ST_SRC[@]}"; swiftc --version 2>&1) | shasum | cut -c1-16)
 Y_KEY=$(cat vendor/yara/libyara/**/*.(c|h) vendor/yara/build_libyara.sh | shasum | cut -c1-16)
 for ARCH in ${=ARCHS}; do
     # SwiftTerm (vendor/, MIT): terminal bölümü. Mimari başına önbellekli statik modül.
@@ -72,6 +79,7 @@ cat > "$APP/Contents/Library/LaunchDaemons/com.yusuf.permwatch.root.plist" <<PLI
 <dict>
     <key>Label</key><string>com.yusuf.permwatch.root</string>
     <key>BundleProgram</key><string>Contents/MacOS/permwatch-root</string>
+    <key>MachServices</key><dict><key>com.yusuf.permwatch.root.xpc</key><true/></dict>
     <key>ProgramArguments</key><array><string>permwatch-root</string><string>--daemon</string></array>
     <key>AssociatedBundleIdentifiers</key><array><string>com.yusuf.permwatch</string></array>
     <key>RunAtLoad</key><true/>
@@ -155,7 +163,7 @@ if [[ "${PERMWATCH_RELEASE:-0}" != 1 && -f "$GUARD_PROFILE" && -n "$DEV_SIGN" ]]
     G="$APP/Contents/Library/Guard/permwatch-guard.app"
     mkdir -p "$G/Contents/MacOS"
     swiftc -O -target "$ARCH-apple-macos14" -import-objc-header guard/bridge.h -Xcc -I"vendor/yara/libyara/include" \
-        -L "$Y_DIR" -lyara guard/main.swift -lEndpointSecurity -lbsm -o "$G/Contents/MacOS/permwatch-guard"
+        -L "$Y_DIR" -lyara guard/main.swift shared/RootXPC.swift -lEndpointSecurity -lbsm -o "$G/Contents/MacOS/permwatch-guard"
     cat > "$G/Contents/Info.plist" <<GPLIST
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -188,6 +196,7 @@ GENT
 <plist version="1.0"><dict>
     <key>Label</key><string>com.yusuf.permwatch.guard</string>
     <key>BundleProgram</key><string>Contents/Library/Guard/permwatch-guard.app/Contents/MacOS/permwatch-guard</string>
+    <key>MachServices</key><dict><key>com.yusuf.permwatch.guard.xpc</key><true/></dict>
     <key>AssociatedBundleIdentifiers</key><array><string>com.yusuf.permwatch</string></array>
     <key>RunAtLoad</key><true/>
     <key>KeepAlive</key><true/>

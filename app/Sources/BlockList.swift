@@ -9,7 +9,10 @@ final class BlockList: ObservableObject {
 
     @Published private(set) var ips: [String] = []
 
-    private init() { load() }
+    private init() {
+        load()
+        RootBridge.shared.set("block", ips)
+    }
 
     func load() {
         let text = (try? String(contentsOf: Self.url, encoding: .utf8)) ?? ""
@@ -39,6 +42,7 @@ final class BlockList: ObservableObject {
     func remove(_ ip: String) { ips.removeAll { $0 == ip }; save() }
 
     private func save() {
+        RootBridge.shared.set("block", ips)
         try? FileManager.default.createDirectory(at: Self.url.deletingLastPathComponent(), withIntermediateDirectories: true)
         try? (ips.joined(separator: "\n") + "\n").write(to: Self.url, atomically: true, encoding: .utf8)
         try? FileManager.default.setAttributes([.posixPermissions: 0o600], ofItemAtPath: Self.url.path)

@@ -28,11 +28,14 @@ struct Packet: Codable, Identifiable, Hashable {
     var hex: String?            // çerçevenin ilk baytları
     /// Uygulama verisinin (başlıklardan sonrası) arabellekteki başlangıcı; dosyaya yazılmaz.
     var payloadStart: Int?
+    /// Uygulama verisinin `hex` içindeki bayt konumu (yalnızca içerik saklanıyorsa). "Akışı izle" bununla
+    /// başlıkları atlayıp yalnızca gönderilen veriyi gösterir.
+    var pl: Int?
 
     var id: Int { seq }
 
     enum CodingKeys: String, CodingKey {
-        case seq, ts, pid, proc, epid, eproc, iface, dir, l3, proto, src, dst, sport, dport, len, info, host, dns, tcp, flags, hex
+        case seq, ts, pid, proc, epid, eproc, iface, dir, l3, proto, src, dst, sport, dport, len, info, host, dns, tcp, flags, hex, pl
     }
 }
 
@@ -50,6 +53,7 @@ enum PacketParser {
         var frame = 0
         guard var p = parseFrame(link: link, b, wire: wire, ts: ts, seq: seq, frame: &frame) else { return nil }
         let full = ["ARP", "ICMP", "ICMPv6"].contains(p.proto)
+        if payload, let s = p.payloadStart, s >= frame { p.pl = s - frame }
         let end = payload ? b.count : (p.payloadStart ?? (full ? b.count : min(b.count, frame + 40)))
         p.payloadStart = end
         p.hex = Reader(b).hex(frame, max(0, min(payload ? 1024 : 160, end - frame)))

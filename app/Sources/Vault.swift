@@ -223,7 +223,14 @@ final class Vault: ObservableObject {
         guard let k = key, var f = file, let body = try? VaultCrypto.seal(JSONEncoder().encode(items), key: k) else { return }
         f.items = body
         file = f
-        try? write()
+        do { try write() } catch {
+            // Sessizce kaybolmasın: kayıt diske yazılamadı (disk dolu, izin yok…).
+            let a = NSAlert()
+            a.alertStyle = .critical
+            a.messageText = error.localizedDescription
+            a.informativeText = PathUtil.abbreviate(Self.path)
+            a.runModal()
+        }
     }
 
     private func write() throws {

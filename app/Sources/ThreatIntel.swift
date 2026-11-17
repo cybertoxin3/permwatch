@@ -53,6 +53,7 @@ final class ThreatIntel: ObservableObject {
 
     /// Yönetici yardımcısına "DNS yanıtlarını izle" bayrağı (yalnızca bu özellik açıkken).
     func syncFlag() {
+        RootBridge.shared.set("dns", enabled)
         let fm = FileManager.default
         if enabled {
             try? fm.createDirectory(atPath: (Self.dnsFlag as NSString).deletingLastPathComponent, withIntermediateDirectories: true)

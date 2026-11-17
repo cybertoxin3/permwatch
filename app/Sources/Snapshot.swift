@@ -61,6 +61,65 @@ enum Snapshot {
             }
             return
         }
+        if section == "fullscan" {
+            // Tam tarama izleme: 15 sn'de bir ilerleme, bakılan/taranan dosya ve o anki yol.
+            let m = MalwareScanner.shared
+            m.start(.full)
+            let t0 = Date()
+            Timer.scheduledTimer(withTimeInterval: 15, repeats: true) { _ in
+                MainActor.assumeIsolated {
+                    let line = String(format: "%5.0f sn  %%%.1f  bakılan %d  taranan %d  okunamayan %d  %@",
+                                      Date().timeIntervalSince(t0), max(0, m.progress) * 100, m.examined, m.scanned, m.unreadable, m.current)
+                    print(line); fflush(stdout)
+                    if !m.running { print("BİTTİ"); exit(0) }
+                }
+            }
+            return
+        }
+        if section == "scanprobe" {
+            // Yavaşlık ölçümü: klasörler için listeleme + tür kontrolü süresi, dosyalar için YARA tarama süresi.
+            Thread.detachNewThread {
+                let engine = YaraEngine.shared
+                _ = engine.load()
+                for p in (ProcessInfo.processInfo.environment["PERMWATCH_PROBE"] ?? "").split(separator: "|").map(String.init) {
+                    var isDir: ObjCBool = false
+                    FileManager.default.fileExists(atPath: p, isDirectory: &isDir)
+                    let t = Date()
+                    if isDir.boolValue {
+                        var n = 0, s = 0, slowest = (0.0, "")
+                        Targets.walk(p, maxDepth: 40, executablesOnly: false) { f in
+                            n += 1
+                            let t1 = Date()
+                            if Targets.isScannable(f) { s += 1 }
+                            let d = Date().timeIntervalSince(t1)
+                            if d > slowest.0 { slowest = (d, f) }
+                        }
+                        print(String(format: "KLASÖR %6.1f sn  dosya %d  taranacak %d  en yavaş açılan %.1f sn %@", Date().timeIntervalSince(t), n, s, slowest.0, slowest.1))
+                    } else {
+                        let r = engine.scan(p)
+                        print(String(format: "DOSYA  %6.1f sn  %@  %@", Date().timeIntervalSince(t), r == nil ? "okunamadı/zaman aşımı" : "ok", p))
+                    }
+                    fflush(stdout)
+                }
+                exit(0)
+            }
+            return
+        }
+        if section == "pcapanalyze", let f = ProcessInfo.processInfo.environment["PERMWATCH_PCAP"] {
+            // Kayıt dosyasını analiz motorundan geçirir ve bulguları yazar.
+            let (ps, total, err) = PacketMonitor.readPcap(URL(fileURLWithPath: f), limit: 20000)
+            if let err { print("hata: \(err)"); exit(1) }
+            print("okunan: \(ps.count)/\(total) paket, içerikli: \(ps.filter { $0.pl != nil }.count)")
+            for x in PacketAnalyzer.analyze(ps, names: [:]) {
+                print("[\(x.severity.label)] \(x.title) — \(x.count) — \(x.technique ?? "-")")
+                print("    \(x.detail.replacingOccurrences(of: "\n", with: " | "))")
+            }
+            let st = PacketStats.compute(ps, names: [:])
+            print("protokoller: " + st.protocols.prefix(8).map { "\($0.name)=\($0.packets)" }.joined(separator: " "))
+            let q = "proto:arp -who"
+            print("filtre testi '\(q)': \(ps.filter { PacketFilter.matches($0, query: q, names: [:]) }.count)")
+            exit(0)
+        }
         if section == "netscan" {
             // "Ağı tara"yı gerçek ağda çalıştırır ve sonucu yazar.
             let n = NetCheck.shared

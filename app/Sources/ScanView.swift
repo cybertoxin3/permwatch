@@ -104,7 +104,11 @@ struct ScanView: View {
 
     private var progress: some View {
         VStack(alignment: .leading, spacing: 6) {
-            if scanner.progress < 0 { ProgressView().progressViewStyle(.linear) } else { ProgressView(value: scanner.progress) }
+            HStack(spacing: 8) {
+                ProgressView(value: max(0, min(1, scanner.progress))).progressViewStyle(.linear)
+                Text("%\(Int((max(0, min(1, scanner.progress)) * 100).rounded()))").font(.system(size: 11.5)).monospacedDigit()
+                    .foregroundStyle(.secondary).frame(width: 38, alignment: .trailing)
+            }
             HStack {
                 Text(scanner.examined > 0 ? L("scan.progressFull", scanner.examined.formatted(), scanner.scanned.formatted())
                                           : L("scan.progress", scanner.scanned.formatted())).monospacedDigit()

@@ -116,7 +116,7 @@ struct MainView: View {
             if Snapshot.section == "apps" { section = .apps }
             if Snapshot.section == "disk" { section = .disk }
             if Snapshot.section == "running" { section = .running }
-            if Snapshot.section == "packets" { section = .packets }
+            if Snapshot.section == "packets" || Snapshot.section == "packets-file" { section = .packets }
             if Snapshot.section == "advice" { section = .advice }
             if Snapshot.section == "terminal" { section = .terminal }
             if Snapshot.section == "settings" { section = .settings }
@@ -259,6 +259,10 @@ struct Sidebar: View {
                 status
             }
             .padding(12)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            // Liste kaydırılınca satırlar bu alanın arkasından görünmesin: opak (bulanık) zemin + üstte ince çizgi.
+            .background(.bar)
+            .overlay(alignment: .top) { Divider() }
         }
     }
 
@@ -384,6 +388,11 @@ struct FullDiskAccessView: View {
             HStack(spacing: 12) {
                 Button(L("fda.open")) { store.openFullDiskAccessSettings() }
                     .buttonStyle(.borderedProminent)
+                // Listeye sürükleyip bırakmak için: permwatch.app'i Finder'da seçili göster.
+                Button(L("action.showInFinder")) {
+                    NSWorkspace.shared.activateFileViewerSelecting([URL(fileURLWithPath: Bundle.main.bundlePath)])
+                    store.openFullDiskAccessSettings()
+                }
                 Button(L("menu.loadDemo")) { store.loadDemo() }
             }
             .controlSize(.large)

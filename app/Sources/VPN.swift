@@ -224,6 +224,8 @@ final class VPNManager: ObservableObject {
         profiles = Self.load()
         if selected == nil { selected = profiles.first?.id }
         connectedID = Self.readWantID()
+        // Yardımcıya (XPC) hangi bağlantının istendiğini bildir; profil artık yoksa bağlantıyı kes.
+        RootBridge.shared.set("vpn", connectedID.flatMap { id in profiles.first { $0.id == id }?.request() })
         guard Snapshot.section == nil else { return }
         timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { [weak self] _ in
             MainActor.assumeIsolated { self?.poll() }
@@ -257,6 +259,7 @@ final class VPNManager: ObservableObject {
         try? FileManager.default.createDirectory(atPath: dir, withIntermediateDirectories: true, attributes: [.posixPermissions: 0o700])
         FileManager.default.createFile(atPath: Self.wantPath, contents: d, attributes: [.posixPermissions: 0o600])
         connectedID = p.id
+        RootBridge.shared.set("vpn", p.request())
         state = .connecting
         error = nil
         if !RootBridge.shared.active { RootBridge.shared.enable() }
@@ -264,6 +267,7 @@ final class VPNManager: ObservableObject {
 
     func disconnect() {
         try? FileManager.default.removeItem(atPath: Self.wantPath)
+        RootBridge.shared.set("vpn", nil)
         connectedID = nil
         state = .off
     }

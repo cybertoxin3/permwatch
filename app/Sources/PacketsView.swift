@@ -7,7 +7,8 @@ struct PacketsView: View {
     @EnvironmentObject var center: ThreatCenter
     @State private var filter = ""
     @State private var selection: Int?
-    @State private var showConversations = false
+    /// 0: paketler, 1: konuşmalar, 2: güvenlik analizi
+    @State private var tab = 0
     @State private var devices: [String] = []
 
     var body: some View {
@@ -21,14 +22,18 @@ struct PacketsView: View {
             if !cap.packets.isEmpty { insights; Divider() }
             if cap.packets.isEmpty {
                 emptyState
-            } else if showConversations {
+            } else if tab == 1 {
                 ConversationsPane(rows: conversations)
+            } else if tab == 2 {
+                PacketAnalysisPane { q in filter = q; tab = 0; selection = nil }
             } else {
                 HStack(spacing: 0) {
                     packetTable
                     if let p = cap.packets.last(where: { $0.seq == selection }) {
                         Divider()
-                        PacketDetail(p: p).frame(width: 380)
+                        PacketDetail(p: p) { q in filter = q }
+                            .frame(width: 420)
+                            .clipped()
                     }
                 }
             }
@@ -37,6 +42,15 @@ struct PacketsView: View {
         .navigationSubtitle(subtitle)
         .onAppear {
             devices = PacketMonitor.devices()
+            // Görsel deneme: kayıt dosyasını açıp bir paketi ya da analiz sekmesini göster.
+            if Snapshot.section == "packets-file", let f = ProcessInfo.processInfo.environment["PERMWATCH_PCAP"] {
+                cap.load(URL(fileURLWithPath: f))
+                let t = Int(ProcessInfo.processInfo.environment["PERMWATCH_PKTTAB"] ?? "0") ?? 0
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    tab = t
+                    selection = cap.packets.first(where: { $0.proto == "ARP" })?.seq
+                }
+            }
             if Snapshot.section == "packets", !cap.running {
                 cap.start()
                 DispatchQueue.main.asyncAfter(deadline: .now() + 5) { cap.stop() }
@@ -64,12 +78,16 @@ struct PacketsView: View {
                     Button { cap.start() } label: { Label(L("pkt.start"), systemImage: "record.circle") }
                         .buttonStyle(.borderedProminent)
                 }
-                Picker("", selection: $showConversations) {
-                    Text(L("pkt.packets")).tag(false)
-                    Text(L("pkt.conversations")).tag(true)
+                Picker("", selection: $tab) {
+                    Text(L("pkt.packets")).tag(0)
+                    Text(L("pkt.conversations")).tag(1)
+                    Text(L("pa.tab")).tag(2)
                 }
-                .pickerStyle(.segmented).labelsHidden().frame(width: 220)
+                .pickerStyle(.segmented).labelsHidden().frame(width: 330)
                 Spacer()
+                Button { cap.openFile(); selection = nil } label: { Label(L("pa.openFile"), systemImage: "folder") }
+                    .disabled(cap.loadingFile)
+                    .help(L("pa.openFileMessage"))
                 Button { cap.clear(); selection = nil } label: { Image(systemName: "trash") }
                     .help(L("pkt.clear")).disabled(cap.packets.isEmpty)
                 Menu {
@@ -95,11 +113,22 @@ struct PacketsView: View {
             HStack(spacing: 8) {
                 Image(systemName: "line.3.horizontal.decrease.circle").foregroundStyle(.secondary)
                 TextField(L("pkt.filter"), text: $filter).textFieldStyle(.roundedBorder)
+                    .help(L("pa.filterHelp"))
+                if !filter.isEmpty {
+                    Button { filter = "" } label: { Image(systemName: "xmark.circle.fill") }
+                        .buttonStyle(.plain).foregroundStyle(.secondary).help(L("pa.clearFilter"))
+                }
                 if cap.running {
                     Circle().fill(Color.red).frame(width: 7, height: 7)
                     Text(L("pkt.capturing")).font(.system(size: 11, weight: .semibold)).foregroundStyle(.red)
                 }
                 Text(modeText).font(.system(size: 11)).foregroundStyle(.secondary).lineLimit(1)
+            }
+            if let f = cap.openedFile {
+                Label(L("pa.fileOpened", f.lastPathComponent) + (cap.fileNote.map { " · " + $0 } ?? ""), systemImage: "doc")
+                    .font(.system(size: 11)).foregroundStyle(.secondary).lineLimit(1).truncationMode(.middle)
+            } else if cap.loadingFile {
+                HStack(spacing: 6) { ProgressView().controlSize(.mini); Text(L("pa.loading")).font(.system(size: 11)) }
             }
             if let e = cap.noProcessInfo, cap.running {
                 Label(L("pkt.noPktap", e), systemImage: "exclamationmark.triangle")
@@ -136,7 +165,7 @@ struct PacketsView: View {
             Label(L("pkt.insight.encrypted", "\(pct)%"), systemImage: "lock.fill")
                 .foregroundStyle(pct >= 80 ? Color.green : Color.orange)
                 .help(L("pkt.insight.encryptedHelp"))
-            Button { filter = ""; showConversations = true } label: {
+            Button { filter = ""; tab = 1 } label: {
                 Label(L("pkt.insight.trackers", trackers.count.formatted()), systemImage: "eye.trianglebadge.exclamationmark")
             }
             .buttonStyle(.plain).foregroundStyle(trackers.isEmpty ? Color.secondary : Color.orange)
@@ -190,16 +219,9 @@ struct PacketsView: View {
     // MARK: Paket tablosu
 
     private var visible: [Packet] {
-        let tokens = filter.lowercased().split(separator: " ").map(String.init)
         var rows = cap.packets
-        if !tokens.isEmpty {
-            rows = rows.filter { p in
-                let hay = [p.proc, p.eproc, p.src, p.dst, cap.names[p.src], cap.names[p.dst], p.proto, p.l3, p.info, p.host,
-                           p.sport.map(String.init), p.dport.map(String.init), p.iface]
-                    .compactMap { $0?.lowercased() }
-                return tokens.allSatisfy { t in hay.contains { $0.contains(t) } }
-            }
-        }
+        let q = filter.trimmingCharacters(in: .whitespaces)
+        if !q.isEmpty { rows = rows.filter { PacketFilter.matches($0, query: q, names: cap.names) } }
         // En yenisi üstte; tablo en fazla 5000 satır çizer (hepsi bellekte ve .pcap'te).
         return Array(rows.suffix(5000).reversed())
     }
@@ -274,7 +296,7 @@ struct PacketsView: View {
     }
 
     private func applyFocus() {
-        if case .packet(let s) = center.navFocus { filter = ""; showConversations = false; selection = s }
+        if case .packet(let s) = center.navFocus { filter = ""; tab = 0; selection = s }
     }
 }
 
@@ -367,10 +389,14 @@ struct ConversationsTable: View {
 struct PacketDetail: View {
     @EnvironmentObject var cap: PacketMonitor
     let p: Packet
+    /// Filtre uygula (ör. "Bu akışı filtrele").
+    var apply: (String) -> Void = { _ in }
+    @State private var showStream = false
 
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 14) {
+                actions
                 ExplanationCard(e: Explainer.packet(p, host: cap.names[p.dst], app: p.eproc ?? p.proc ?? L("x.someApp"), signature: cap.signature(for: p.epid ?? p.pid)))
                 group(L("pkt.frame")) {
                     row(L("col.no"), String(p.seq))
@@ -408,8 +434,15 @@ struct PacketDetail: View {
                 }
                 if let hex = p.hex, !hex.isEmpty {
                     group(L("pkt.bytes")) {
-                        Text(Self.dump(hex)).font(.system(size: 10.5, design: .monospaced)).textSelection(.enabled)
-                            .fixedSize(horizontal: true, vertical: false)
+                        // Satırlar kırılmasın ama panel genişlemesin: döküm kendi içinde yatay kayar.
+                        ScrollView(.horizontal) {
+                            Text(Self.dump(hex)).font(.system(size: 10.5, design: .monospaced)).textSelection(.enabled)
+                                .fixedSize(horizontal: true, vertical: false)
+                                .padding(.bottom, 6)
+                        }
+                        if let pl = p.pl, pl * 2 < hex.count {
+                            Text(L("pa.payloadAt", pl)).font(.system(size: 10.5)).foregroundStyle(.secondary)
+                        }
                     }
                 }
             }
@@ -417,7 +450,40 @@ struct PacketDetail: View {
             .frame(maxWidth: .infinity, alignment: .leading)
         }
         .background(Color(nsColor: .underPageBackgroundColor).opacity(0.25))
+        .sheet(isPresented: $showStream) { StreamView(anchor: p).environmentObject(cap) }
     }
+
+    /// İnceleme kısayolları.
+    private var actions: some View {
+        FlowLayout(spacing: 6) {
+            if p.sport != nil {
+                Button { showStream = true } label: { Label(L("pa.followStream"), systemImage: "arrow.left.arrow.right") }
+                Button(L("pa.filterStream")) { apply(PacketFilter.stream(of: p)) }
+            }
+            Button(L("pa.filterIP", p.dst.isEmpty ? p.src : p.dst)) { apply("ip:" + (Conversation.isLocal(p.dst) ? p.src : p.dst)) }
+            Button(L("pa.filterProto", p.proto)) { apply("proto:" + p.proto.lowercased()) }
+            Menu(L("pa.more")) {
+                Button(L("pa.copyHex")) { copy(p.hex ?? "") }
+                Button(L("pa.copySummary")) {
+                    copy("#\(p.seq) \(p.proto) \(p.src):\(p.sport ?? 0) → \(p.dst):\(p.dport ?? 0) \(p.len)B \(p.info)")
+                }
+                let remote = Conversation.isLocal(p.dst) ? p.src : p.dst
+                if !Conversation.isLocal(remote), !remote.isEmpty {
+                    Divider()
+                    Button(L("pa.lookupAbuse")) { open("https://www.abuseipdb.com/check/\(remote)") }
+                    Button(L("pa.lookupVT")) { open("https://www.virustotal.com/gui/ip-address/\(remote)") }
+                    Button(L("pa.lookupShodan")) { open("https://www.shodan.io/host/\(remote)") }
+                }
+            }
+            .fixedSize()
+            let remote = Conversation.isLocal(p.dst) ? p.src : p.dst
+            if !remote.isEmpty, !Conversation.isLocal(remote) { BlockButton(ip: remote) }
+        }
+        .controlSize(.small)
+    }
+
+    private func copy(_ t: String) { NSPasteboard.general.clearContents(); NSPasteboard.general.setString(t, forType: .string) }
+    private func open(_ u: String) { if let url = URL(string: u) { NSWorkspace.shared.open(url) } }
 
     private func group<C: View>(_ title: String, @ViewBuilder _ c: () -> C) -> some View {
         VStack(alignment: .leading, spacing: 5) {

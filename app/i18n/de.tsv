@@ -915,6 +915,7 @@ vpn.qrHint	Scanne den QR-Code mit deiner Wallet: Adresse und Betrag werden autom
 vpn.rateFailed	Aktueller Kurs nicht verfügbar; prüfe deine Internetverbindung.
 vpn.retry	Erneut versuchen
 vpn.rateLoading	Aktueller Kurs wird geladen…
+vpn.otherVPN	Ein anderes VPN ist verbunden (%@). Zwei VPNs gleichzeitig gehen nicht: trenne zuerst das andere.
 nav.disk	Festplatte & Apps
 disk.tab.overview	Übersicht
 disk.tab.apps	Apps
@@ -1049,3 +1050,98 @@ disk.orphans.summary	%1$ld Überreste · %2$@
 disk.orphans.confirm	Überreste von %ld Apps in den Papierkorb legen?
 net.isolated	%ld Adressen wurden geprüft, nur der Router hat geantwortet. Dieses Netzwerk isoliert Geräte höchstwahrscheinlich voneinander (üblich bei Gast-, Wohnheim- und Hotel-WLAN), daher können andere Geräte nicht aufgelistet werden. Sie können deinen Mac auch nicht sehen.
 net.scanBlocked	macOS hat den Scan blockiert: permwatch darf nicht auf Geräte im lokalen Netzwerk zugreifen. Aktiviere es unter Systemeinstellungen › Datenschutz & Sicherheit › Lokales Netzwerk.
+disk.clearCache	Cache leeren
+disk.clearCache.confirm	Cache von „%@“ leeren?
+disk.clearCache.help	Löscht nur die Caches der App. App, Daten und Einstellungen bleiben.
+disk.trashSelected	Auswahl löschen
+disk.trashAll	Alle löschen
+reset.manual	macOS lässt Apps die Berechtigungen gelöschter Apps nicht mehr entfernen. Wähle auf der geöffneten Seite der Systemeinstellungen „%@“ aus und entferne es mit der Taste −.
+pa.tab	Sicherheitsanalyse
+pa.title	Sicherheitsanalyse
+pa.based	Basierend auf %@ erfassten Paketen
+pa.none	In diesen Paketen wurde keine verdächtige Aktivität gefunden.
+pa.stats	Statistik
+pa.timeline	Pakete im Zeitverlauf (%ld s)
+pa.protocols	Protokolle
+pa.talkers	Größte Gesprächspartner
+pa.processes	Prozesse
+pa.ports	Ports
+pa.showPackets	Pakete zeigen (%@)
+pa.packetsCount	%@ Pakete
+pa.sev.0	Info
+pa.sev.1	Warnung
+pa.sev.2	Kritisch
+pa.filterHelp	Filterbegriffe: ip:1.2.3.4  src:  dst:  port:443  proto:dns  proc:chrome  host:google  dir:in/out  flag:syn  len>1000  -ausschließen. Einfache Wörter durchsuchen alles.
+pa.clearFilter	Filter löschen
+pa.followStream	Stream folgen
+pa.filterStream	Diesen Stream filtern
+pa.filterIP	%@ filtern
+pa.filterProto	%@ filtern
+pa.more	Mehr
+pa.copyHex	Hex kopieren
+pa.copySummary	Zusammenfassung kopieren
+pa.lookupAbuse	Bei AbuseIPDB nachschlagen
+pa.lookupVT	Bei VirusTotal nachschlagen
+pa.lookupShodan	Bei Shodan nachschlagen
+pa.payloadAt	Anwendungsdaten beginnen bei Byte %ld.
+pa.stream.title	Stream folgen
+pa.stream.out	Gesendet: %@
+pa.stream.in	Empfangen: %@
+pa.stream.noPayload	Paketinhalte wurden in dieser Aufzeichnung nicht gespeichert, nur Header sind sichtbar. Starte den Admin-Helfer neu und zeichne erneut auf.
+pa.stream.copy	Inhalt kopieren
+pa.arpScan.title	Netzwerkscan von %@
+pa.arpScan.body	Dieses Gerät fragte nach der Hardwareadresse von %ld IPs: Es kartiert alle Geräte im Netz.
+pa.arpScan.mine	Dieser Mac fragte nach %ld IPs (wahrscheinlich „Netzwerk scannen“ von permwatch).
+pa.arpScan.advice	Wenn du das Gerät nicht kennst, suche es in der Geräteliste deines Routers. Im Heimnetz ist ein Gerät, das alles scannt, ungewöhnlich.
+pa.arpScan.mineAdvice	Nichts zu tun, wenn du den Scan selbst gestartet hast.
+pa.arpSpoof.title	Mögliches ARP-Spoofing: %@
+pa.arpSpoof.body	Mehrere Hardwareadressen beanspruchten diese IP: %@. Jemand könnte sie imitieren, um Verkehr abzufangen (Man-in-the-Middle).
+pa.arpSpoof.advice	Ist es die Adresse deines Routers, trenne dich vom Netz und prüfe den Router; im öffentlichen WLAN nutze ein VPN.
+pa.arpMulti.title	Ein Gerät beansprucht viele IPs: %@
+pa.arpMulti.body	Diese Hardwareadresse antwortete für %1$ld IPs (%2$@). Normal für Router oder VPN-Gateways, sonst evtl. Man-in-the-Middle.
+pa.portScan.title	Portscan: %1$@ → %2$@
+pa.portScan.body	Verbindungsversuche zu %1$ld verschiedenen Ports (%2$@).
+pa.portScan.adviceIn	Etwas sucht offene Dienste auf deinem Mac. Schalte die Firewall ein (Systemeinstellungen › Netzwerk › Firewall) und blockiere die Adresse.
+pa.portScan.adviceOut	Prüfe, welcher Prozess das sendet: Ohne bewusst genutztes Sicherheitstool könnte sich Malware verbreiten.
+pa.sweep.title	Netzwerk-Sweep: %1$@ → Port %2$@
+pa.sweep.body	%1$ld verschiedene Geräte auf Port %2$@ getestet.
+pa.creds.title	Passwort unverschlüsselt gesendet
+pa.creds.body	%1$ld Pakete enthielten ein Passwort oder Login im Klartext (%2$@). Jeder im Netz kann es lesen.
+pa.creds.advice	Ändere das Passwort und nutze den Dienst nicht unverschlüsselt (HTTPS, SFTP, IMAPS…).
+pa.plain.title	Unverschlüsselter Verkehr
+pa.plain.body	%1$@-Verkehr, den jeder im Netz lesen kann: %2$@.
+pa.plain.advice	Nutze die verschlüsselte Variante dieser Dienste (HTTPS statt HTTP usw.).
+pa.dhcp.title	Mehrere DHCP-Server
+pa.dhcp.body	Mehr als ein Gerät verteilt Netzwerkeinstellungen: %@. Ein falscher DHCP-Server kann deinen ganzen Verkehr umleiten.
+pa.dhcp.advice	Kennst du den zweiten Server nicht, informiere den Netzwerkadmin; im Heimnetz prüfe deinen Router.
+pa.llmnr.title	LLMNR-/NetBIOS-Namensanfragen
+pa.llmnr.body	%ld Namensanfragen wurden gesendet. In feindlichen Netzen beantworten Tools wie Responder sie, um Windows/SMB-Passwort-Hashes zu stehlen.
+pa.llmnr.advice	Im Heimnetz meist harmlos. In geteilten Netzen nicht per einfachem Namen mit Freigaben verbinden.
+pa.dnsOdd.title	Ungewöhnliche DNS-Namen
+pa.dnsOdd.body	%1$ld Anfragen nach sehr langen oder zufälligen Namen, z. B.:\n%2$@\nSo sehen DNS-Tunneling und von Malware erzeugte Domains aus.
+pa.dnsOdd.advice	Prüfe den anfragenden Prozess; CDNs und manche Apps nutzen auch Zufallsnamen.
+pa.dnsMany.title	Viele Subdomains von %@
+pa.dnsMany.body	%ld verschiedene Subdomains wurden abgefragt. Daten lassen sich in Subdomains verstecken (DNS-Tunneling).
+pa.intel.title	Bekannter bösartiger Server: %@
+pa.intel.body	Gelistet bei %1$@. %2$ld Pakete gingen an oder kamen von ihm.
+pa.intel.advice	Blockiere den Server und scanne den Prozess, der ihn kontaktiert hat.
+pa.badPort.title	Verdächtige Ports
+pa.badPort.body	Verkehr auf Ports, die oft von Hintertüren, IRC-Bots oder Tor genutzt werden: %@.
+pa.badPort.advice	Prüfe den Prozess; blockiere die Adresse, wenn du sie nicht kennst.
+pa.beacon.title	Regelmäßige Meldungen: %@
+pa.beacon.body	Verbindet sich alle ~%2$ld s mit %1$@ (%3$ld-mal). Malware meldet sich so bei ihrem Steuerserver; Update-Prüfungen auch.
+pa.beacon.advice	Kennst du App oder Server nicht, blockiere sie und scanne die App.
+pa.upload.title	Großer Upload: %@
+pa.upload.body	%1$@ an %2$@ gesendet.
+pa.upload.advice	Stelle sicher, dass es ein erwartetes Backup oder eine Synchronisierung ist; sonst könnten Daten abfließen.
+pa.icmp.title	Große ICMP-Pakete
+pa.icmp.body	%ld Ping-Pakete enthielten ungewöhnlich viele Daten. ICMP kann missbraucht werden, um Daten an Firewalls vorbeizuschleusen.
+pa.icmp.advice	Meist harmlos (Netztests); hält es an, finde den Absender.
+pa.dnsPlain.title	Unverschlüsseltes DNS
+pa.dnsPlain.body	%1$ld DNS-Anfragen gingen im Klartext hinaus (an %2$@). Dein Netzbetreiber sieht jede aufgerufene Seite.
+pa.dnsPlain.advice	Aktiviere verschlüsseltes DNS (DNS over HTTPS/TLS) oder nutze ein VPN.
+pa.openFile	Datei öffnen
+pa.openFileMessage	Öffne eine Aufzeichnung (.pcap oder .pcapng, z. B. aus Wireshark oder tcpdump), um sie zu untersuchen.
+pa.fileOpened	Datei: %@
+pa.fileTruncated	die ersten %1$@ von %2$@ Paketen
+pa.loading	Datei wird gelesen…

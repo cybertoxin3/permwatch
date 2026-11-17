@@ -5,6 +5,7 @@
 //
 // Girdi yok, komut almaz. Root olarak launchd (SMAppService) tarafından çalıştırılır.
 import Foundation
+import Security
 
 let dataDir = "/Library/Application Support/permwatch"
 let statusPath = dataDir + "/guard.json"
@@ -40,27 +41,36 @@ final class Rules: @unchecked Sendable {
 
     static let xprotect = "/Library/Apple/System/Library/CoreServices/XProtect.bundle/Contents/Resources"
 
-    /// Güncel Elastic kuralları (kullanıcının indirdikleri, güvenilirse) ya da uygulamayla gelenler.
-    static func extraDir(user: ConsoleUser?) -> String? {
-        if let u = user {
-            let d = u.home + "/Library/Application Support/permwatch/intel/rules"
-            if trustedFile(d, owner: u.uid), !((try? FileManager.default.contentsOfDirectory(atPath: d)) ?? []).filter({ $0.hasSuffix(".yar") }).isEmpty { return d }
-        }
+    /// Uygulamayla gelen Elastic kuralları: HER ZAMAN yüklenir.
+    static func bundledDir() -> String? {
         // permwatch.app/Contents/Library/Guard/permwatch-guard.app → permwatch.app/Contents/Resources
         let contents = ((Bundle.main.bundlePath as NSString).deletingLastPathComponent as NSString).deletingLastPathComponent
         let d = (contents as NSString).deletingLastPathComponent + "/Resources/rules/elastic"
         return FileManager.default.fileExists(atPath: d) ? d : nil
     }
 
-    func reload(user: ConsoleUser?) {
+    /// Kullanıcının indirdiği güncel kurallar: yalnızca EK olarak yüklenir. (Kullanıcı klasörüne her program
+    /// yazabildiği için bunlar uygulamayla gelen kuralların yerine geçemez; en kötü ihtimalle fazladan engeller.)
+    static func userDir(user: ConsoleUser?) -> String? {
+        guard let u = user else { return nil }
+        let d = u.home + "/Library/Application Support/permwatch/intel/rules"
+        return trustedFile(d, owner: u.uid) ? d : nil
+    }
+
+    /// Kurallar gerçekten değiştiyse true (çağıran, çekirdekteki izin önbelleğini temizler).
+    @discardableResult
+    func reload(user: ConsoleUser?) -> Bool {
         var files = ["XProtect.yara", "XPScripts.yr"].map { Self.xprotect + "/" + $0 }.filter { FileManager.default.fileExists(atPath: $0) }
         let apple = files.count
-        if let d = Self.extraDir(user: user) {
-            files += ((try? FileManager.default.contentsOfDirectory(atPath: d)) ?? []).filter { $0.hasSuffix(".yar") }.sorted().map { d + "/" + $0 }
+        var userFiles = Set<String>()
+        for d in [Self.bundledDir(), Self.userDir(user: user)].compactMap({ $0 }) {
+            let list = ((try? FileManager.default.contentsOfDirectory(atPath: d)) ?? []).filter { $0.hasSuffix(".yar") }.sorted().map { d + "/" + $0 }
+            if d != Self.bundledDir() { userFiles.formUnion(list) }
+            files += list
         }
         let key = files.map { f in "\(f):\((try? FileManager.default.attributesOfItem(atPath: f))?[.modificationDate] as? Date ?? .distantPast)" }.joined()
         pthread_rwlock_rdlock(&rw); let same = key == stamp && rules != nil; pthread_rwlock_unlock(&rw)
-        if same { return }
+        if same { return false }
         func compiles(_ path: String) -> Bool {
             var c: UnsafeMutablePointer<YR_COMPILER>?
             guard yr_compiler_create(&c) == ERROR_SUCCESS, let c else { return false }
@@ -70,16 +80,17 @@ final class Rules: @unchecked Sendable {
             return yr_compiler_add_file(c, fp, "t", path) == 0
         }
         var comp: UnsafeMutablePointer<YR_COMPILER>?
-        guard yr_compiler_create(&comp) == ERROR_SUCCESS, let comp else { return }
+        guard yr_compiler_create(&comp) == ERROR_SUCCESS, let comp else { return false }
         defer { yr_compiler_destroy(comp) }
         for (i, f) in files.enumerated() where i < apple || compiles(f) {
             guard let fp = fopen(f, "r") else { continue }
-            let ns = i == 0 ? "xprotect" : (i == 1 && apple == 2 ? "scripts" : "elastic." + ((f as NSString).lastPathComponent as NSString).deletingPathExtension)
+            let base = ((f as NSString).lastPathComponent as NSString).deletingPathExtension
+            let ns = i == 0 ? "xprotect" : (i == 1 && apple == 2 ? "scripts" : (userFiles.contains(f) ? "user." : "elastic.") + base)
             _ = yr_compiler_add_file(comp, fp, ns, f)
             fclose(fp)
         }
         var compiled: UnsafeMutablePointer<YR_RULES>?
-        guard yr_compiler_get_rules(comp, &compiled) == ERROR_SUCCESS, let compiled else { return }
+        guard yr_compiler_get_rules(comp, &compiled) == ERROR_SUCCESS, let compiled else { return false }
         var n = 0
         var r = compiled.pointee.rules_table
         while let cur = r, (cur.pointee.flags & Int32(RULE_FLAGS_NULL)) == 0 { n += 1; r = cur + 1 }
@@ -87,6 +98,7 @@ final class Rules: @unchecked Sendable {
         if let old = rules { yr_rules_destroy(old) }
         rules = compiled; stamp = key; count = n
         pthread_rwlock_unlock(&rw)
+        return true
     }
 
     private final class Box { var hit: (String, String)? }
@@ -131,13 +143,64 @@ var blocked = 0
 var scanned = 0
 var lastError: String?
 
+/// "Tanıyorum" denen yollar: root'a ait dosyada tutulur; yalnızca imzası doğrulanmış uygulama (XPC) değiştirebilir.
+/// (Eskiden kullanıcının klasöründeydi: oraya kendi yolunu yazan bir zararlı engellemeden kurtulabiliyordu.)
+let allowStore = dataDir + "/guard-allow.txt"
+
 func readAllowList() {
-    guard let u = user else { allowed = []; return }
-    let p = u.home + "/Library/Application Support/permwatch/guard-allow.txt"
-    guard trustedFile(p, owner: u.uid), let t = try? String(contentsOfFile: p, encoding: .utf8) else { allowed = []; return }
+    var st = stat()
+    guard lstat(allowStore, &st) == 0, st.st_uid == 0, (st.st_mode & S_IFMT) == S_IFREG,
+          let t = try? String(contentsOfFile: allowStore, encoding: .utf8) else {
+        stateLock.lock(); allowed = []; stateLock.unlock(); return
+    }
     let set = Set(t.components(separatedBy: .newlines).filter { $0.hasPrefix("/") })
     stateLock.lock(); allowed = set; stateLock.unlock()
 }
+
+let ownTeam: String? = {
+    var me: SecCode?
+    guard SecCodeCopySelf([], &me) == errSecSuccess, let me, SecCodeCheckValidity(me, [], nil) == errSecSuccess else { return nil }
+    var st: SecStaticCode?
+    guard SecCodeCopyStaticCode(me, [], &st) == errSecSuccess, let st else { return nil }
+    var info: CFDictionary?
+    guard SecCodeCopySigningInformation(st, SecCSFlags(rawValue: kSecCSSigningInformation), &info) == errSecSuccess,
+          let d = info as? [String: Any], let t = d[kSecCodeInfoTeamIdentifier as String] as? String,
+          t.allSatisfy({ $0.isLetter || $0.isNumber }) else { return nil }
+    return t
+}()
+
+final class AllowControl: NSObject, NSXPCListenerDelegate, RootControl, @unchecked Sendable {
+    func listener(_ listener: NSXPCListener, shouldAcceptNewConnection c: NSXPCConnection) -> Bool {
+        guard let team = ownTeam, let u = consoleUser(), c.effectiveUserIdentifier == u.uid else { return false }
+        c.setCodeSigningRequirement(RootXPC.clientRequirement(team: team))
+        c.exportedInterface = NSXPCInterface(with: RootControl.self)
+        c.exportedObject = self
+        c.resume()
+        return true
+    }
+
+    /// {"allow": ["/yol", …]} — izin listesinin tamamı.
+    func sync(_ data: Data, reply: @escaping (Bool) -> Void) {
+        guard data.count < 256 * 1024, let j = (try? JSONSerialization.jsonObject(with: data)) as? [String: Any],
+              let list = j["allow"] as? [String] else { reply(false); return }
+        let paths = list.filter { $0.hasPrefix("/") && !$0.contains("\n") && $0.count < 4096 }.prefix(5000)
+        let text = Data((paths.joined(separator: "\n") + "\n").utf8)
+        try? FileManager.default.createDirectory(atPath: dataDir, withIntermediateDirectories: true, attributes: [.posixPermissions: 0o755])
+        let fd = open(allowStore + ".tmp", O_WRONLY | O_CREAT | O_TRUNC | O_NOFOLLOW, 0o600)
+        guard fd >= 0 else { reply(false); return }
+        _ = text.withUnsafeBytes { write(fd, $0.baseAddress, text.count) }
+        fchown(fd, 0, 0); fchmod(fd, 0o600)
+        close(fd)
+        rename(allowStore + ".tmp", allowStore)
+        readAllowList()
+        reply(true)
+    }
+}
+
+let allowControl = AllowControl()
+let allowListener = NSXPCListener(machServiceName: RootXPC.guardService)
+allowListener.delegate = allowControl
+allowListener.resume()
 
 func writeOwned(_ data: Data, to path: String, append: Bool) {
     try? FileManager.default.createDirectory(atPath: dataDir, withIntermediateDirectories: true, attributes: [.posixPermissions: 0o755])
@@ -220,7 +283,10 @@ func decide(_ client: OpaquePointer, _ m: UnsafePointer<es_message_t>) {
         stateLock.lock(); scanned += 1; stateLock.unlock()
         // Süre kilitten sonra hesaplanır; yanıt için en az 1 saniye pay bırakılır.
         if let hit = rules.scan(path, timeout: { secondsLeft(m) - 1.0 }) {
-            stateLock.lock(); denyCache[key] = hit; stateLock.unlock()
+            stateLock.lock()
+            if denyCache.count > 4096 { denyCache.removeAll() }   // sınırsız büyümesin
+            denyCache[key] = hit
+            stateLock.unlock()
             verdict = (path, hit.rule, hit.name)
             break
         }
@@ -281,8 +347,10 @@ while true {
     sleep(5)
     tick += 1
     let u = consoleUser()
-    if u?.uid != user?.uid { user = u; rules.reload(user: user) }
+    // Yeni kurallar yüklendiyse çekirdekte önbelleğe alınmış "izin ver" kararlarını sil: aksi halde yeni
+    // tanınan bir zararlı, dosyası değişene kadar sorulmadan çalışmaya devam eder.
+    if u?.uid != user?.uid { user = u; if rules.reload(user: user) { es_clear_cache(client) } }
     readAllowList()
-    if tick % 120 == 0 { rules.reload(user: user) }
+    if tick % 120 == 0, rules.reload(user: user) { es_clear_cache(client) }
     writeStatus(active: true)
 }

@@ -20,6 +20,7 @@ final class VPNRunner {
     private var since: Date?
     private var error: String?
     private var hostRoute: (ip: String, gw: String)?
+    private var summary: [String: Any] = [:]
     private let dnsBackupPath = outDir + "/vpn-dns-backup.json"
     private let workDir = outDir + "/vpn"
 
@@ -61,6 +62,8 @@ final class VPNRunner {
     func shutdown() { stop(); writeState() }
 
     private func readWant() -> String? {
+        // Servis modunda istek yalnızca imzası doğrulanmış uygulamadan (XPC) gelir.
+        if daemon { return control.snapshot().vpn }
         var st = stat()
         guard lstat(wantPath, &st) == 0, st.st_uid == owner, (st.st_mode & S_IFMT) == S_IFREG, st.st_size < 256 * 1024,
               let d = FileManager.default.contents(atPath: wantPath) else { return nil }
@@ -78,6 +81,8 @@ final class VPNRunner {
         try? FileManager.default.createDirectory(atPath: workDir, withIntermediateDirectories: true, attributes: [.posixPermissions: 0o700])
         let dns = ((j["dns"] as? [String]) ?? []).filter(isIP).prefix(2)
         do {
+            // Başka bir VPN bütün trafiği alıyorsa (0/1 yönlendirmesi bir utun'da) iki tünel çakışır.
+            if let other = otherVPNInterface() { throw VPNError.msg("other-vpn:\(other)") }
             switch k {
             case "awg": try startAWG(j)
             case "xray": try startXray(j)
@@ -92,6 +97,7 @@ final class VPNRunner {
     }
 
     private func stop() {
+        saveLast()
         if let p = process, p.isRunning {
             p.terminate()
             for _ in 0..<20 where p.isRunning { usleep(100_000) }
@@ -121,6 +127,7 @@ final class VPNRunner {
         let name = freeUtun()
         let bin = vpnBin("amneziawg-go")
         guard FileManager.default.isExecutableFile(atPath: bin) else { throw VPNError.msg("engine missing") }
+        guard signedByUs(bin) else { throw VPNError.msg("engine signature invalid") }
         let p = Process()
         p.executableURL = URL(fileURLWithPath: bin)
         p.arguments = ["-f", name]
@@ -150,7 +157,9 @@ final class VPNRunner {
         _ = run("/sbin/ifconfig", [name, "mtu", String(mtu)])
         var has6 = false
         for cidr in addrs {
-            let parts = cidr.split(separator: "/"), addr = String(parts[0])
+            let parts = cidr.split(separator: "/")
+            guard let first = parts.first else { continue }   // boş adres yardımcıyı çökertmesin
+            let addr = String(first)
             guard isIP(addr) else { continue }
             if addr.contains(":") {
                 has6 = true
@@ -224,9 +233,10 @@ final class VPNRunner {
             let vnext = (s["vnext"] as? [[String: Any]])?.first ?? (s["servers"] as? [[String: Any]])?.first
             server = (vnext?["address"] as? String) ?? (s["address"] as? String) ?? ""
         }
+        summary = Self.summarize(out)
         let name = freeUtun()
         let config: [String: Any] = [
-            "log": ["loglevel": "warning"],
+            "log": ["loglevel": "warning", "access": "none"],
             "inbounds": [[
                 "tag": "tun", "protocol": "tun",
                 "settings": ["name": name, "mtu": 1500, "autoSystemRoutingTable": ["0.0.0.0/0", "::/0"], "autoOutboundsInterface": "auto"],
@@ -238,18 +248,20 @@ final class VPNRunner {
         FileManager.default.createFile(atPath: path, contents: data, attributes: [.posixPermissions: 0o600])
         let bin = vpnBin("xray")
         guard FileManager.default.isExecutableFile(atPath: bin) else { throw VPNError.msg("engine missing") }
+        guard signedByUs(bin) else { throw VPNError.msg("engine signature invalid") }
         let p = Process()
         p.executableURL = URL(fileURLWithPath: bin)
         p.arguments = ["run", "-c", path]
         p.environment = ["XRAY_LOCATION_ASSET": workDir]
-        let errPipe = Pipe()
-        p.standardOutput = FileHandle.nullDevice; p.standardError = errPipe
+        let logPath = workDir + "/xray.log"
+        FileManager.default.createFile(atPath: logPath, contents: nil, attributes: [.posixPermissions: 0o600])
+        let logHandle = FileHandle(forWritingAtPath: logPath)
+        p.standardOutput = logHandle ?? FileHandle.nullDevice; p.standardError = logHandle ?? FileHandle.nullDevice
         try p.run()
         process = p
         for _ in 0..<50 where !interfaceExists(name) && p.isRunning { usleep(100_000) }
         guard p.isRunning, interfaceExists(name) else {
-            let e = String(data: errPipe.fileHandleForReading.availableData, encoding: .utf8) ?? ""
-            throw VPNError.msg("Xray did not start: \(e.suffix(160))")
+            throw VPNError.msg("Xray did not start: \(logTail().suffix(200))")
         }
         iface = name
     }
@@ -283,8 +295,51 @@ final class VPNRunner {
 
     // MARK: Durum
 
+    /// Son bağlantı denemesinin tanı bilgisi (bağlantı kısa sürse de sonradan okunabilsin).
+    private func saveLast() {
+        guard current != nil || error != nil else { return }
+        var doc: [String: Any] = ["ts": Date().timeIntervalSince1970, "kind": kind, "server": server, "state": stateText(),
+                                  "config": summary, "log": logTail()]
+        if let s = since { doc["since"] = s.timeIntervalSince1970; doc["seconds"] = Int(Date().timeIntervalSince(s)) }
+        if let i = iface { doc["bytes"] = ifaceBytes(i) }
+        if let e = error { doc["error"] = e }
+        if let data = try? JSONSerialization.data(withJSONObject: doc) { writeAtomic(data, to: outDir + "/vpn-last.json") }
+    }
+
+    /// Tanı için yapılandırmanın biçimi: gizli değerler (kimlik, anahtarlar) yazılmaz, yalnızca uzunlukları.
+    static func summarize(_ out: [String: Any]) -> [String: Any] {
+        var r: [String: Any] = ["protocol": out["protocol"] ?? "?", "keys": Array(out.keys).sorted()]
+        let st = out["settings"] as? [String: Any] ?? [:]
+        if let v = (st["vnext"] as? [[String: Any]])?.first {
+            r["port"] = v["port"] ?? "?"
+            r["users"] = ((v["users"] as? [[String: Any]]) ?? []).map { u in
+                ["flow": u["flow"] ?? "", "encryption": u["encryption"] ?? "", "idLen": (u["id"] as? String)?.count ?? 0, "keys": Array(u.keys).sorted()] as [String: Any]
+            }
+        } else { r["settingsKeys"] = Array(st.keys).sorted() }
+        let ss = out["streamSettings"] as? [String: Any] ?? [:]
+        r["network"] = ss["network"] ?? ""
+        r["security"] = ss["security"] ?? ""
+        r["streamKeys"] = Array(ss.keys).sorted()
+        if let rs = ss["realitySettings"] as? [String: Any] {
+            var m: [String: Any] = [:]
+            for (k, v) in rs {
+                if ["serverName", "fingerprint", "spiderX", "show"].contains(k) { m[k] = v }
+                else { m[k + "Len"] = (v as? String)?.count ?? -1 }
+            }
+            r["reality"] = m
+        }
+        return r
+    }
+
+    /// Motor kaydının son satırları (yalnızca uyarı ve hatalar; sunucu adresleri dışında kişisel bilgi yok).
+    private func logTail() -> String {
+        guard let d = FileManager.default.contents(atPath: workDir + "/xray.log"), let t = String(data: d.suffix(4096), encoding: .utf8) else { return "" }
+        return t.split(separator: "\n").filter { !$0.contains(" accepted ") }.suffix(10).joined(separator: "\n")
+    }
+
     private func writeState() {
         var doc: [String: Any] = ["ts": Date().timeIntervalSince1970, "state": stateText(), "kind": kind, "server": server]
+        if kind == "xray", current != nil { doc["log"] = logTail(); doc["config"] = summary }
         if let i = iface { doc["iface"] = i; doc["bytes"] = ifaceBytes(i) }
         if let s = since { doc["since"] = s.timeIntervalSince1970 }
         if let e = error { doc["error"] = e }
@@ -307,6 +362,18 @@ final class VPNRunner {
     }
 
     // MARK: Yardımcılar
+
+    /// İnternete giden trafik şu an başka bir tünelden mi geçiyor?
+    private func otherVPNInterface() -> String? {
+        for line in run("/sbin/route", ["-n", "get", "1.1.1.1"]).split(separator: "\n") {
+            let l = line.trimmingCharacters(in: .whitespaces)
+            if l.hasPrefix("interface:") {
+                let i = l.dropFirst(10).trimmingCharacters(in: .whitespaces)
+                return i.hasPrefix("utun") || i.hasPrefix("ipsec") || i.hasPrefix("ppp") ? i : nil
+            }
+        }
+        return nil
+    }
 
     private func freeUtun() -> String {
         let used = Set(run("/sbin/ifconfig", ["-l"]).split(separator: " ").map { $0.trimmingCharacters(in: .whitespacesAndNewlines) })

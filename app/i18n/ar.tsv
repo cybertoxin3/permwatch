@@ -915,6 +915,7 @@ vpn.qrHint	امسح رمز QR بمحفظتك: يُملأ العنوان والم
 vpn.rateFailed	تعذّر الحصول على السعر الحالي؛ تحقّق من اتصالك بالإنترنت.
 vpn.retry	إعادة المحاولة
 vpn.rateLoading	جارٍ جلب السعر الحالي…
+vpn.otherVPN	هناك VPN آخر متصل (%@). لا يعمل اتصالا VPN معًا: افصل الآخر أولًا.
 nav.disk	القرص والتطبيقات
 disk.tab.overview	نظرة عامة
 disk.tab.apps	التطبيقات
@@ -1049,3 +1050,98 @@ disk.orphans.summary	%1$ld بقايا · %2$@
 disk.orphans.confirm	هل تريد نقل بقايا %ld تطبيق إلى سلة المهملات؟
 net.isolated	تمت تجربة %ld عنوان ولم يستجب سوى الموجّه. على الأرجح تعزل هذه الشبكة الأجهزة عن بعضها (شائع في شبكات الضيوف والسكن والفنادق)، لذا لا يمكن عرض الأجهزة الأخرى. وهي أيضًا لا ترى جهاز Mac الخاص بك.
 net.scanBlocked	حظر macOS الفحص: لا يملك permwatch إذنًا للوصول إلى الأجهزة على شبكتك المحلية. فعّله من إعدادات النظام › الخصوصية والأمن › الشبكة المحلية.
+disk.clearCache	مسح الذاكرة المؤقتة
+disk.clearCache.confirm	هل تريد مسح الذاكرة المؤقتة لـ ”%@“؟
+disk.clearCache.help	يحذف الذاكرة المؤقتة للتطبيق فقط. يبقى التطبيق وبياناته وإعداداته.
+disk.trashSelected	حذف المحدد
+disk.trashAll	حذف الكل
+reset.manual	لم يعد macOS يسمح للتطبيقات بإزالة أذونات التطبيقات المحذوفة. في صفحة إعدادات النظام التي فُتحت، حدّد ”%@“ وأزله بالزر −.
+pa.tab	تحليل الأمان
+pa.title	تحليل الأمان
+pa.based	بناءً على %@ حزمة ملتقطة
+pa.none	لم يُعثر على نشاط مريب في هذه الحزم.
+pa.stats	الإحصاءات
+pa.timeline	الحزم عبر الزمن (%ld ث)
+pa.protocols	البروتوكولات
+pa.talkers	أكثر العناوين اتصالًا
+pa.processes	العمليات
+pa.ports	المنافذ
+pa.showPackets	عرض الحزم (%@)
+pa.packetsCount	%@ حزمة
+pa.sev.0	معلومة
+pa.sev.1	تحذير
+pa.sev.2	حرج
+pa.filterHelp	شروط التصفية: ip:1.2.3.4  src:  dst:  port:443  proto:dns  proc:chrome  host:google  dir:in/out  flag:syn  len>1000  -استبعاد. الكلمات العادية تبحث في كل شيء.
+pa.clearFilter	مسح التصفية
+pa.followStream	تتبّع التدفق
+pa.filterStream	تصفية هذا التدفق
+pa.filterIP	تصفية %@
+pa.filterProto	تصفية %@
+pa.more	المزيد
+pa.copyHex	نسخ الست عشري
+pa.copySummary	نسخ الملخص
+pa.lookupAbuse	البحث في AbuseIPDB
+pa.lookupVT	البحث في VirusTotal
+pa.lookupShodan	البحث في Shodan
+pa.payloadAt	تبدأ بيانات التطبيق عند البايت %ld.
+pa.stream.title	تتبّع التدفق
+pa.stream.out	المُرسل: %@
+pa.stream.in	المُستلم: %@
+pa.stream.noPayload	لم يُحفظ محتوى الحزم في هذا الالتقاط؛ تظهر الترويسات فقط. أعد تشغيل مساعد المسؤول والتقط من جديد.
+pa.stream.copy	نسخ المحتوى
+pa.arpScan.title	فحص للشبكة من %@
+pa.arpScan.body	سأل هذا الجهاز عن العنوان الفعلي لـ %ld عنوان IP: إنه يرسم خريطة لكل أجهزة الشبكة.
+pa.arpScan.mine	سأل جهاز Mac هذا عن %ld عنوان IP (غالبًا ميزة «فحص الشبكة» في permwatch).
+pa.arpScan.advice	إن لم تتعرف على الجهاز فابحث عنه في قائمة أجهزة الموجّه. في الشبكة المنزلية هذا غير معتاد.
+pa.arpScan.mineAdvice	لا شيء عليك إن كنت بدأت الفحص بنفسك.
+pa.arpSpoof.title	احتمال انتحال ARP: %@
+pa.arpSpoof.body	ادّعت عدة عناوين فعلية هذا العنوان: %@. قد ينتحله شخص لاعتراض حركة المرور (هجوم الوسيط).
+pa.arpSpoof.advice	إن كان عنوان الموجّه فاقطع الاتصال وافحص الموجّه؛ وفي شبكات Wi-Fi العامة استخدم VPN.
+pa.arpMulti.title	جهاز واحد يدّعي عناوين كثيرة: %@
+pa.arpMulti.body	أجاب هذا العنوان الفعلي عن %1$ld عنوان IP (%2$@). طبيعي للموجّه أو بوابة VPN؛ وإلا فقد يكون هجوم وسيط.
+pa.portScan.title	فحص منافذ: %1$@ ← %2$@
+pa.portScan.body	محاولات اتصال بـ %1$ld منفذ مختلف (%2$@).
+pa.portScan.adviceIn	هناك من يبحث عن خدمات مفتوحة على جهازك. فعّل جدار الحماية (إعدادات النظام › الشبكة › جدار الحماية) واحظر هذا العنوان.
+pa.portScan.adviceOut	تحقق من العملية المرسِلة: إن لم تكن تشغّل أداة أمان عمدًا فقد تكون برمجية خبيثة تنتشر.
+pa.sweep.title	مسح للشبكة: %1$@ ← المنفذ %2$@
+pa.sweep.body	جُرّب %1$ld جهاز على المنفذ %2$@.
+pa.creds.title	أُرسلت كلمة سر دون تشفير
+pa.creds.body	حملت %1$ld حزمة كلمة سر أو بيانات دخول كنص صريح (%2$@). يمكن لأي شخص على الشبكة قراءتها.
+pa.creds.advice	غيّر كلمة السر ولا تستخدم هذه الخدمة دون تشفير (HTTPS وSFTP وIMAPS…).
+pa.plain.title	حركة مرور غير مشفرة
+pa.plain.body	حركة %1$@ يمكن لأي شخص على الشبكة قراءتها: %2$@.
+pa.plain.advice	استخدم النسخة المشفرة من هذه الخدمات (HTTPS بدل HTTP وهكذا).
+pa.dhcp.title	عدة خوادم DHCP
+pa.dhcp.body	يوزّع أكثر من جهاز إعدادات الشبكة: %@. خادم DHCP مزيف يمكنه تحويل كل حركة مرورك.
+pa.dhcp.advice	إن لم تعرف الخادم الثاني فأبلغ مسؤول الشبكة؛ وفي المنزل افحص الموجّه.
+pa.llmnr.title	استعلامات أسماء LLMNR / NetBIOS
+pa.llmnr.body	بُثّ %ld استعلام اسم. في الشبكات العدائية تجيب أدوات مثل Responder لسرقة تجزئات كلمات سر Windows/SMB.
+pa.llmnr.advice	غالبًا غير ضار في المنزل. في الشبكات المشتركة تجنب الاتصال بالمجلدات المشتركة باسم بسيط.
+pa.dnsOdd.title	أسماء DNS غير عادية
+pa.dnsOdd.body	%1$ld استعلام لأسماء طويلة جدًا أو عشوائية، مثل:\n%2$@\nهكذا تبدو أنفاق DNS والنطاقات التي تولّدها البرمجيات الخبيثة.
+pa.dnsOdd.advice	تحقق من العملية التي أجرت الاستعلامات؛ شبكات CDN وبعض التطبيقات تستخدم أسماء عشوائية أيضًا.
+pa.dnsMany.title	نطاقات فرعية كثيرة لـ %@
+pa.dnsMany.body	استُعلم عن %ld نطاق فرعي مختلف. يمكن إخفاء البيانات في النطاقات الفرعية (نفق DNS).
+pa.intel.title	خادم خبيث معروف: %@
+pa.intel.body	مدرج في %1$@. ذهبت إليه أو جاءت منه %2$ld حزمة.
+pa.intel.advice	احظر هذا الخادم وافحص العملية التي اتصلت به.
+pa.badPort.title	منافذ مريبة
+pa.badPort.body	حركة على منافذ تستخدمها غالبًا الأبواب الخلفية وروبوتات IRC وTor: %@.
+pa.badPort.advice	تحقق من العملية التي تستخدمها؛ واحظر العنوان إن لم تعرفه.
+pa.beacon.title	اتصالات منتظمة: %@
+pa.beacon.body	يتصل بـ %1$@ كل ~%2$ld ث تقريبًا (%3$ld مرة). هكذا تتواصل البرمجيات الخبيثة مع خادم التحكم؛ وكذلك عمليات التحقق من التحديثات.
+pa.beacon.advice	إن لم تعرف التطبيق أو الخادم فاحظره وافحص التطبيق.
+pa.upload.title	رفع كبير: %@
+pa.upload.body	أُرسل %1$@ إلى %2$@.
+pa.upload.advice	تأكد أنه نسخ احتياطي أو مزامنة متوقعة؛ وإلا فقد تكون بيانات تُسرَّب.
+pa.icmp.title	حزم ICMP كبيرة
+pa.icmp.body	حملت %ld حزمة ping بيانات كبيرة على غير العادة. يمكن إساءة استخدام ICMP لتهريب البيانات عبر جدران الحماية.
+pa.icmp.advice	غالبًا غير ضار (اختبارات شبكة)؛ إن استمر فابحث عن المرسِل.
+pa.dnsPlain.title	DNS غير مشفر
+pa.dnsPlain.body	خرج %1$ld استعلام DNS كنص صريح (إلى %2$@). يرى مشغّل الشبكة كل موقع تبحث عنه.
+pa.dnsPlain.advice	فعّل DNS المشفر (DNS over HTTPS/TLS) أو استخدم VPN.
+pa.openFile	فتح ملف
+pa.openFileMessage	افتح ملف التقاط (‎.pcap أو ‎.pcapng، مثلًا من Wireshark أو tcpdump) لفحصه وتحليله.
+pa.fileOpened	الملف: %@
+pa.fileTruncated	عرض أول %1$@ من %2$@ حزمة
+pa.loading	جارٍ قراءة الملف…

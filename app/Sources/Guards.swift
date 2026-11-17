@@ -111,9 +111,20 @@ struct DownloadItem: Identifiable, Equatable {
 /// Tam Disk Erişimi: tek izin, her klasör. Verilmeden İndirilenler/Masaüstü/Belgeler'e dokunmak
 /// macOS'un her klasör için ayrı ayrı izin sormasına yol açar; o yüzden önce bu denetlenir.
 enum FullDisk {
+    /// Tam Disk Erişimi var mı? Yalnızca bu izinle okunabilen yerlerden biri açılabiliyorsa vardır.
+    /// Tek bir dosyaya güvenilmez: yeni macOS sürümlerinde kullanıcının TCC veritabanı eski yerinde
+    /// bulunmuyor (izin olsa da "dosya yok" döner) ve sınama hep başarısız olup sahte uyarı üretiyordu.
     nonisolated static var granted: Bool {
-        let fd = Darwin.open(NSHomeDirectory() + "/Library/Application Support/com.apple.TCC/TCC.db", O_RDONLY)
-        if fd >= 0 { Darwin.close(fd); return true }
+        let home = NSHomeDirectory()
+        for p in [home + "/Library/Application Support/com.apple.TCC/TCC.db",
+                  "/Library/Application Support/com.apple.TCC/TCC.db"] {
+            let fd = Darwin.open(p, O_RDONLY)
+            if fd >= 0 { Darwin.close(fd); return true }
+        }
+        // Klasör listeleme: izin yoksa EPERM ile reddedilir.
+        for d in [home + "/Library/Safari", home + "/Library/Mail"] {
+            if let dir = opendir(d) { closedir(dir); return true }
+        }
         return false
     }
     static func openSettings() {

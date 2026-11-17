@@ -915,6 +915,7 @@ vpn.qrHint	ウォレットで QR コードを読み取ると、アドレスと�
 vpn.rateFailed	現在のレートを取得できませんでした。インターネット接続を確認してください。
 vpn.retry	再試行
 vpn.rateLoading	現在のレートを取得中…
+vpn.otherVPN	別の VPN が接続されています（%@）。2 つの VPN は同時に使えません。先にもう一方を切断してください。
 nav.disk	ディスクとアプリ
 disk.tab.overview	概要
 disk.tab.apps	アプリ
@@ -1049,3 +1050,98 @@ disk.orphans.summary	残り %1$ld 件 · %2$@
 disk.orphans.confirm	%ld 個のアプリの残りファイルをゴミ箱に入れますか？
 net.isolated	%ld 個のアドレスを試しましたが、応答したのはルーターだけでした。このネットワークはおそらく端末同士を分離しています（ゲスト用・寮・ホテルの Wi-Fi で一般的）。そのため他の端末は一覧にできません。相手からもこの Mac は見えません。
 net.scanBlocked	macOS がスキャンをブロックしました：permwatch にローカルネットワーク上の端末へのアクセスが許可されていません。システム設定 › プライバシーとセキュリティ › ローカルネットワーク でオンにしてください。
+disk.clearCache	キャッシュを消去
+disk.clearCache.confirm	「%@」のキャッシュを消去しますか？
+disk.clearCache.help	アプリのキャッシュだけを削除します。アプリ本体、データ、設定は残ります。
+disk.trashSelected	選択項目を削除
+disk.trashAll	すべて削除
+reset.manual	macOS では、削除したアプリの許可をアプリから取り消せなくなりました。開いたシステム設定のページで「%@」を選択し、− ボタンで削除してください。
+pa.tab	セキュリティ分析
+pa.title	セキュリティ分析
+pa.based	キャプチャした %@ パケットに基づく
+pa.none	これらのパケットに不審な動きは見つかりませんでした。
+pa.stats	統計
+pa.timeline	時間ごとのパケット（%ld 秒）
+pa.protocols	プロトコル
+pa.talkers	通信量の多い相手
+pa.processes	プロセス
+pa.ports	ポート
+pa.showPackets	パケットを表示（%@）
+pa.packetsCount	%@ パケット
+pa.sev.0	情報
+pa.sev.1	警告
+pa.sev.2	重大
+pa.filterHelp	フィルタ条件：ip:1.2.3.4  src:  dst:  port:443  proto:dns  proc:chrome  host:google  dir:in/out  flag:syn  len>1000  -除外。普通の単語はすべてを検索します。
+pa.clearFilter	フィルタを消去
+pa.followStream	ストリームを追跡
+pa.filterStream	このストリームで絞り込む
+pa.filterIP	%@ で絞り込む
+pa.filterProto	%@ で絞り込む
+pa.more	その他
+pa.copyHex	16進をコピー
+pa.copySummary	概要をコピー
+pa.lookupAbuse	AbuseIPDB で調べる
+pa.lookupVT	VirusTotal で調べる
+pa.lookupShodan	Shodan で調べる
+pa.payloadAt	アプリケーションデータは %ld バイト目から始まります。
+pa.stream.title	ストリームを追跡
+pa.stream.out	送信：%@
+pa.stream.in	受信：%@
+pa.stream.noPayload	このキャプチャではパケットの内容が保存されていないため、ヘッダのみ表示されます。管理者ヘルパーを再起動してもう一度キャプチャしてください。
+pa.stream.copy	内容をコピー
+pa.arpScan.title	%@ によるネットワークスキャン
+pa.arpScan.body	この端末は %ld 個の IP のハードウェアアドレスを問い合わせました：ネットワーク上の全端末を洗い出しています。
+pa.arpScan.mine	この Mac が %ld 個の IP のアドレスを問い合わせました（おそらく permwatch の「ネットワークをスキャン」）。
+pa.arpScan.advice	見覚えのない端末なら、ルーターの端末一覧で確認してください。家庭のネットワークで全体をスキャンする端末は普通ではありません。
+pa.arpScan.mineAdvice	自分でスキャンを開始した場合は対応不要です。
+pa.arpSpoof.title	ARP スプーフィングの可能性：%@
+pa.arpSpoof.body	複数のハードウェアアドレスがこの IP を名乗りました：%@。通信を傍受するためになりすましている可能性があります（中間者攻撃）。
+pa.arpSpoof.advice	ルーターのアドレスなら、このネットワークから切断してルーターを確認してください。公衆 Wi-Fi では VPN を使いましょう。
+pa.arpMulti.title	1 台の端末が多数の IP を名乗っています：%@
+pa.arpMulti.body	このハードウェアアドレスは %1$ld 個の IP（%2$@）に応答しました。ルーターや VPN ゲートウェイなら正常、それ以外は中間者攻撃の可能性があります。
+pa.portScan.title	ポートスキャン：%1$@ → %2$@
+pa.portScan.body	%1$ld 個の異なるポートへの接続試行（%2$@）。
+pa.portScan.adviceIn	何者かが Mac の開いているサービスを探しています。ファイアウォールをオンにし（システム設定 › ネットワーク › ファイアウォール）、このアドレスをブロックしてください。
+pa.portScan.adviceOut	送信元のプロセスを確認してください。意図してセキュリティツールを使っていなければ、拡散中のマルウェアかもしれません。
+pa.sweep.title	ネットワーク掃引：%1$@ → ポート %2$@
+pa.sweep.body	ポート %2$@ で %1$ld 台の端末を試しました。
+pa.creds.title	パスワードが暗号化されずに送信されました
+pa.creds.body	%1$ld 個のパケットがパスワードやログインを平文で運びました（%2$@）。ネットワーク上の誰でも読めます。
+pa.creds.advice	そのパスワードを変更し、このサービスを暗号化なしで使わないでください（HTTPS、SFTP、IMAPS など）。
+pa.plain.title	暗号化されていない通信
+pa.plain.body	ネットワーク上の誰でも読める %1$@ 通信：%2$@。
+pa.plain.advice	これらのサービスの暗号化版を使ってください（HTTP ではなく HTTPS など）。
+pa.dhcp.title	複数の DHCP サーバ
+pa.dhcp.body	複数の端末がネットワーク設定を配布しています：%@。不正な DHCP サーバはすべての通信を横取りできます。
+pa.dhcp.advice	2 台目のサーバに心当たりがなければ管理者に知らせてください。家庭ならルーターを確認してください。
+pa.llmnr.title	LLMNR / NetBIOS 名前問い合わせ
+pa.llmnr.body	%ld 件の名前問い合わせがブロードキャストされました。悪意あるネットワークでは Responder などのツールがこれに応答し、Windows/SMB のパスワードハッシュを盗みます。
+pa.llmnr.advice	家庭では通常無害です。共有ネットワークでは単純な名前で共有フォルダに接続しないでください。
+pa.dnsOdd.title	不自然な DNS 名
+pa.dnsOdd.body	非常に長い、またはランダムに見える名前への問い合わせが %1$ld 件、例：\n%2$@\nDNS トンネリングやマルウェアが生成したドメインはこう見えます。
+pa.dnsOdd.advice	問い合わせたプロセスを確認してください。CDN や一部のアプリもランダムな名前を使います。
+pa.dnsMany.title	%@ のサブドメインが多数
+pa.dnsMany.body	%ld 個の異なるサブドメインが問い合わせられました。サブドメインにデータを隠せます（DNS トンネリング）。
+pa.intel.title	既知の悪性サーバ：%@
+pa.intel.body	%1$@ に掲載。%2$ld 個のパケットが送受信されました。
+pa.intel.advice	このサーバをブロックし、接続したプロセスをスキャンしてください。
+pa.badPort.title	不審なポート
+pa.badPort.body	バックドア、IRC ボット、Tor がよく使うポートでの通信：%@。
+pa.badPort.advice	使用しているプロセスを確認し、心当たりがなければアドレスをブロックしてください。
+pa.beacon.title	定期的な接続：%@
+pa.beacon.body	%1$@ に約 %2$ld 秒ごとに接続しています（%3$ld 回）。マルウェアは指令サーバにこのように通信します。アップデート確認も同様です。
+pa.beacon.advice	アプリやサーバに心当たりがなければブロックし、アプリをスキャンしてください。
+pa.upload.title	大きなアップロード：%@
+pa.upload.body	%2$@ へ %1$@ を送信しました。
+pa.upload.advice	想定どおりのバックアップや同期か確認してください。そうでなければデータが持ち出されている可能性があります。
+pa.icmp.title	大きな ICMP パケット
+pa.icmp.body	%ld 個の ping パケットが異常に大きなデータを運びました。ICMP はファイアウォールを越えてデータを持ち出すのに悪用されることがあります。
+pa.icmp.advice	通常は無害です（ネットワークテスト）。続くようなら送信元を探してください。
+pa.dnsPlain.title	暗号化されていない DNS
+pa.dnsPlain.body	%1$ld 件の DNS 問い合わせが平文で送信されました（宛先 %2$@）。回線事業者は調べたサイトをすべて見られます。
+pa.dnsPlain.advice	暗号化 DNS（DNS over HTTPS/TLS）をオンにするか VPN を使ってください。
+pa.openFile	ファイルを開く
+pa.openFileMessage	キャプチャファイル（.pcap または .pcapng、Wireshark や tcpdump など）を開いて調べます。
+pa.fileOpened	ファイル：%@
+pa.fileTruncated	%2$@ パケット中、最初の %1$@ 件を表示
+pa.loading	ファイルを読み込み中…

@@ -53,6 +53,10 @@ final class PacketMonitor: ObservableObject {
     private var flows: [String: (out: Int, inb: Int, warned: Bool)] = [:]
     /// Paket geldikçe güncellenen konuşmalar ve özet sayaçları (ekran her yenilemede yeniden hesaplamasın).
     @Published private(set) var conversations: [String: Conversation] = [:]
+    /// Açılan kayıt dosyası (canlı yakalama yerine .pcap'ten okunduysa).
+    @Published private(set) var openedFile: URL?
+    @Published private(set) var loadingFile = false
+    @Published private(set) var fileNote: String?
     @Published private(set) var encryptedBytes = 0
     @Published private(set) var transportBytes = 0
 
@@ -71,6 +75,7 @@ final class PacketMonitor: ObservableObject {
     }
 
     var pcapURL: URL? {
+        if let f = openedFile, !running { return f }
         switch mode {
         case .root: return URL(fileURLWithPath: RootBridge.pcapPath)
         case .local: return Self.localPcap
@@ -88,6 +93,7 @@ final class PacketMonitor: ObservableObject {
     /// çalışır. Yönetici modu kapalıysa önce macOS'un şifre penceresi açılır, yardımcı hazır olunca başlar.
     func start() {
         guard !running, !waitingForRoot else { return }
+        if openedFile != nil { clear() }
         error = nil
         lastSaved = nil
         saveError = nil
@@ -122,6 +128,7 @@ final class PacketMonitor: ObservableObject {
         try? FileManager.default.createDirectory(at: Self.userDir, withIntermediateDirectories: true)
         FileManager.default.createFile(atPath: Self.flagURL.path, contents: Data("payload=1".utf8),
                                        attributes: [.posixPermissions: 0o600])
+        RootBridge.shared.set("capture", true)
         tail = Tail(path: RootBridge.packetsPath, notBefore: startedAt)
         mode = .root
         device = "pktap"
@@ -135,6 +142,7 @@ final class PacketMonitor: ObservableObject {
         let wasRunning = running
         if wasRunning { stoppedAt = Date() }
         try? FileManager.default.removeItem(at: Self.flagURL)
+        RootBridge.shared.set("capture", false)
         engine?.stop()
         engine = nil
         timer?.invalidate()
@@ -230,7 +238,62 @@ final class PacketMonitor: ObservableObject {
         if p.runModal() == .OK, let u = p.url { saveFolder = u.path }
     }
 
+    // MARK: Kayıt dosyası aç (.pcap / .pcapng)
+
+    func openFile() {
+        let p = NSOpenPanel()
+        p.allowedContentTypes = []
+        p.allowsOtherFileTypes = true
+        p.message = L("pa.openFileMessage")
+        if p.runModal() == .OK, let u = p.url { load(u) }
+    }
+
+    func load(_ url: URL) {
+        if running { stop() }
+        clear()
+        loadingFile = true
+        fileNote = nil
+        let limit = maxRows
+        Task.detached(priority: .userInitiated) {
+            let (list, total, err) = PacketMonitor.readPcap(url, limit: limit)
+            await MainActor.run {
+                self.loadingFile = false
+                if let err { self.error = err; return }
+                self.error = nil
+                self.openedFile = url
+                self.ingest(list)
+                self.fileNote = total > list.count ? L("pa.fileTruncated", list.count.formatted(), total.formatted()) : nil
+            }
+        }
+    }
+
+    /// libpcap ile dosyayı okur ve canlı yakalamayla aynı ayrıştırıcıdan geçirir (içerik dahil).
+    /// Dönen: (paketler — en fazla limit, dosyadaki toplam, hata).
+    nonisolated static func readPcap(_ url: URL, limit: Int) -> ([Packet], Int, String?) {
+        var err = [CChar](repeating: 0, count: Int(PCAP_ERRBUF_SIZE))
+        guard let h = pcap_open_offline(url.path, &err) else { return ([], 0, String(cString: err)) }
+        defer { pcap_close(h) }
+        let link = pcap_datalink(h)
+        var out: [Packet] = []
+        var total = 0
+        var hdr: UnsafeMutablePointer<pcap_pkthdr>?
+        var data: UnsafePointer<UInt8>?
+        while pcap_next_ex(h, &hdr, &data) == 1 {
+            guard let hdr, let data else { continue }
+            total += 1
+            guard out.count < limit else { continue }
+            let ts = Double(hdr.pointee.ts.tv_sec) + Double(hdr.pointee.ts.tv_usec) / 1e6
+            let buf = UnsafeRawBufferPointer(start: data, count: Int(hdr.pointee.caplen))
+            if let p = PacketParser.parse(link: link, buf, wire: Int(hdr.pointee.len), ts: ts, seq: total, payload: true) {
+                out.append(p)
+            }
+        }
+        return (out, total, nil)
+    }
+
     func clear() {
+        openedFile = nil
+        fileNote = nil
         packets.removeAll()
         flows.removeAll()
         conversations.removeAll()

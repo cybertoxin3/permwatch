@@ -15,7 +15,7 @@ enum DiskPalette {
 struct DiskView: View {
     @ObservedObject var disk = DiskManager.shared
     @EnvironmentObject var store: Store
-    @State fileprivate var tab: DiskTab = .overview
+    @State fileprivate var tab: DiskTab = ProcessInfo.processInfo.environment["PERMWATCH_DISKTAB"].flatMap(DiskTab.init(rawValue:)) ?? .overview
     @State private var appSelection: DiskApp.ID?
     /// Ziyaret edilen sekmeler: Geri / Esc / ⌘[ bir öncekine döner.
     @State fileprivate var history: [DiskTab] = []
@@ -53,6 +53,7 @@ struct DiskView: View {
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .clipped()
         }
     }
 
@@ -456,11 +457,13 @@ struct AppRemovalPane: View {
     @State private var loading = true
     @State private var resetPermissions = true
     @State private var working = false
-    @State private var confirm: Mode?
+    @State private var confirming = false
+    /// Onay penceresi kapanırken sıfırlanmaz: düğme hangi işlem için açıldıysa onu çalıştırır.
+    @State private var mode: Mode = .remove
     @State private var result: String?
     @State private var blocked: Uninstaller.Blocked?
 
-    enum Mode { case remove, reset }
+    enum Mode { case remove, reset, cache }
 
     static let groupOrder = ["app", "support", "container", "cache", "prefs", "state", "web", "launch", "plugins", "logs", "receipts", "other"]
 
@@ -522,10 +525,13 @@ struct AppRemovalPane: View {
                 Spacer()
                 Button { NSWorkspace.shared.selectFile(app.path, inFileViewerRootedAtPath: "") } label: { Image(systemName: "magnifyingglass") }
                     .help(L("action.showInFinder"))
-                Button(L("disk.resetApp")) { confirm = .reset }
+                Button(L("disk.clearCache")) { mode = .cache; confirming = true }
+                    .disabled(working || loading || cacheItems.isEmpty)
+                    .help(L("disk.clearCache.help"))
+                Button(L("disk.resetApp")) { mode = .reset; confirming = true }
                     .disabled(working || loading || blocked != nil || selectedData.isEmpty)
                     .help(L("disk.resetApp.help"))
-                Button(L("disk.removeFully"), role: .destructive) { confirm = .remove }
+                Button(L("disk.removeFully"), role: .destructive) { mode = .remove; confirming = true }
                     .buttonStyle(.borderedProminent).tint(.red)
                     .disabled(working || loading || blocked != nil || !selected.contains(app.path))
             }
@@ -537,13 +543,18 @@ struct AppRemovalPane: View {
             selected = Set(items.filter { !$0.byName }.map(\.id))
             loading = false
         }
-        .confirmationDialog(confirm == .reset ? L("disk.resetApp.confirm", app.name) : L("uninstall.title", app.name),
-                            isPresented: Binding(get: { confirm != nil }, set: { if !$0 { confirm = nil } })) {
-            Button(confirm == .reset ? L("disk.resetApp") : L("disk.removeFully"), role: .destructive) {
-                run(keepApp: confirm == .reset)
+        .confirmationDialog(dialogTitle, isPresented: $confirming) {
+            switch mode {
+            case .reset: Button(L("disk.resetApp"), role: .destructive) { run(keepApp: true) }
+            case .cache: Button(L("disk.clearCache"), role: .destructive) { run(keepApp: true, only: cacheItems) }
+            case .remove: Button(L("disk.removeFully"), role: .destructive) { run(keepApp: false) }
             }
         } message: {
-            Text(L("disk.remove.body", selectedCount(confirm == .reset), DiskSize.string(confirm == .reset ? selectedDataSize : selectedSize)))
+            switch mode {
+            case .reset: Text(L("disk.remove.body", selectedData.count, DiskSize.string(selectedDataSize)))
+            case .cache: Text(L("disk.remove.body", cacheItems.count, DiskSize.string(cacheItems.reduce(0) { $0 + $1.size })))
+            case .remove: Text(L("disk.remove.body", selected.count, DiskSize.string(selectedSize)))
+            }
         }
     }
 
@@ -576,7 +587,15 @@ struct AppRemovalPane: View {
     private var selectedSize: Int64 { items.filter { selected.contains($0.id) }.reduce(0) { $0 + $1.size } }
     private var selectedData: [Uninstaller.Candidate] { items.filter { selected.contains($0.id) && !$0.isApp } }
     private var selectedDataSize: Int64 { selectedData.reduce(0) { $0 + $1.size } }
-    private func selectedCount(_ dataOnly: Bool) -> Int { dataOnly ? selectedData.count : selected.count }
+    /// Uygulamaya kesin ait önbellekler (ada göre zayıf eşleşenler hariç).
+    private var cacheItems: [Uninstaller.Candidate] { items.filter { $0.group == "cache" && !$0.byName && !$0.isApp } }
+    private var dialogTitle: String {
+        switch mode {
+        case .reset: return L("disk.resetApp.confirm", app.name)
+        case .cache: return L("disk.clearCache.confirm", app.name)
+        case .remove: return L("uninstall.title", app.name)
+        }
+    }
 
     private func metric(_ k: String, _ v: String) -> some View {
         VStack(alignment: .leading, spacing: 1) {
@@ -585,9 +604,9 @@ struct AppRemovalPane: View {
         }
     }
 
-    private func run(keepApp: Bool) {
+    private func run(keepApp: Bool, only: [Uninstaller.Candidate]? = nil) {
         working = true
-        let chosen = keepApp ? selectedData : items.filter { selected.contains($0.id) }
+        let chosen = only ?? (keepApp ? selectedData : items.filter { selected.contains($0.id) })
         let system = chosen.filter { !$0.isApp && Leftovers.isSystem($0.path) }.map(\.path)
         let user = chosen.filter { $0.isApp || !Leftovers.isSystem($0.path) }
         // Önce uygulama ve yardımcıları kapansın ki dosyaları yeniden yazmasınlar.
@@ -595,13 +614,15 @@ struct AppRemovalPane: View {
             for r in NSRunningApplication.runningApplications(withBundleIdentifier: id) { r.terminate() }
         }
         let sysFailed = DiskManager.removeSystemItems(system)
-        store.uninstall(user, key: app.path, resetPermissions: resetPermissions) { msg in
+        // Yalnızca önbellek temizlenirken izinlere dokunma.
+        store.uninstall(user, key: app.path, resetPermissions: only == nil && resetPermissions) { msg in
             working = false
             let fm = FileManager.default
             let left = chosen.filter { fm.fileExists(atPath: $0.path) }
             result = sysFailed.isEmpty ? msg : msg + "\n" + L("uninstall.failed", sysFailed.map(PathUtil.abbreviate).joined(separator: ", "))
             items.removeAll { c in chosen.contains(c) && !left.contains(c) }
             selected = selected.intersection(items.map(\.id))
+            if only != nil { return }   // önbellek: uygulama listede kalır
             if left.isEmpty || keepApp { disk.forget(app, keptApp: keepApp || fm.fileExists(atPath: app.path)) }
         }
     }
@@ -813,6 +834,7 @@ struct DiskLargeTab: View {
 struct DiskOrphansTab: View {
     @EnvironmentObject var disk: DiskManager
     @State private var selected = Set<String>()
+    @State private var expanded = Set<String>()
     @State private var confirm = false
     @State private var message: String?
 
@@ -820,38 +842,70 @@ struct DiskOrphansTab: View {
         VStack(spacing: 0) {
             HStack(alignment: .top) {
                 Image(systemName: "exclamationmark.triangle").foregroundStyle(.orange)
+                // Spacer ile yan yana "dikeyde sabit" metin çok dar bir genişlik alıp yüzlerce satıra
+                // uzuyor ve sekmenin üstünü/altını (Tümünü seç, Sil) pencerenin dışına itiyordu.
                 Text(L("disk.orphans.info")).font(.system(size: 12)).foregroundStyle(.secondary)
-                    .fixedSize(horizontal: false, vertical: true)
-                Spacer()
+                    .frame(maxWidth: .infinity, alignment: .leading)
             }
             .padding(.horizontal, 16).padding(.vertical, 8)
             if disk.orphans.isEmpty {
                 if disk.scanning { ProgressView(disk.phase).frame(maxHeight: .infinity) }
                 else { ContentUnavailableView(L("disk.orphans.none"), systemImage: "checkmark.seal") }
             } else {
-                List(disk.orphans) { o in
-                    Toggle(isOn: Binding(get: { selected.contains(o.id) },
-                                         set: { if $0 { selected.insert(o.id) } else { selected.remove(o.id) } })) {
-                        DisclosureGroup {
+                HStack(spacing: 10) {
+                    Button(allSelected ? L("disk.selectNone") : L("disk.selectAll")) {
+                        selected = allSelected ? [] : Set(disk.orphans.map(\.id))
+                    }
+                    Text(L("disk.selectedTotal", DiskSize.string(selectedSize))).font(.system(size: 12)).foregroundStyle(.secondary)
+                    Spacer()
+                    Button(L("disk.trashSelected"), role: .destructive) { confirm = true }
+                        .disabled(selected.isEmpty)
+                    Button(L("disk.trashAll"), role: .destructive) {
+                        selected = Set(disk.orphans.map(\.id))
+                        confirm = true
+                    }
+                    .buttonStyle(.borderedProminent).tint(.red)
+                }
+                .padding(.horizontal, 16).padding(.bottom, 8)
+                Divider()
+                // Not: satırı Toggle + DisclosureGroup ile kurmak listeyi içeriği kadar uzatıp (kaydırmasız)
+                // başlığı ve düğmeleri pencerenin dışına itiyordu; açılır kısım elle yönetiliyor.
+                ScrollView {
+                    LazyVStack(alignment: .leading, spacing: 0) {
+                    ForEach(disk.orphans) { o in
+                        HStack(spacing: 8) {
+                            Toggle("", isOn: Binding(get: { selected.contains(o.id) },
+                                                     set: { if $0 { selected.insert(o.id) } else { selected.remove(o.id) } }))
+                                .labelsHidden()
+                            Button {
+                                if expanded.contains(o.id) { expanded.remove(o.id) } else { expanded.insert(o.id) }
+                            } label: {
+                                Image(systemName: expanded.contains(o.id) ? "chevron.down" : "chevron.right")
+                                    .font(.system(size: 10, weight: .semibold)).frame(width: 14)
+                            }
+                            .buttonStyle(.plain).foregroundStyle(.secondary)
+                            Image(systemName: "shippingbox").foregroundStyle(.purple)
+                            VStack(alignment: .leading, spacing: 1) {
+                                Text(o.id).font(.system(size: 12.5, weight: .medium)).lineLimit(1)
+                                Text(L("disk.orphans.places", o.paths.count)).font(.system(size: 10.5)).foregroundStyle(.secondary)
+                            }
+                            Spacer()
+                            Text(DiskSize.string(o.size)).font(.system(size: 12)).monospacedDigit().foregroundStyle(.secondary)
+                        }
+                        .padding(.horizontal, 16).padding(.vertical, 6)
+                        if expanded.contains(o.id) {
                             ForEach(o.paths, id: \.self) { p in
                                 Text(PathUtil.abbreviate(p)).font(.system(size: 10.5, design: .monospaced))
                                     .foregroundStyle(.secondary).lineLimit(1).truncationMode(.middle)
+                                    .padding(.leading, 76).padding(.trailing, 16).padding(.vertical, 2)
                                     .contextMenu { Button(L("action.showInFinder")) { NSWorkspace.shared.selectFile(p, inFileViewerRootedAtPath: "") } }
                             }
-                        } label: {
-                            HStack {
-                                Image(systemName: "shippingbox").foregroundStyle(.purple)
-                                VStack(alignment: .leading, spacing: 1) {
-                                    Text(o.id).font(.system(size: 12.5, weight: .medium)).lineLimit(1)
-                                    Text(L("disk.orphans.places", o.paths.count)).font(.system(size: 10.5)).foregroundStyle(.secondary)
-                                }
-                                Spacer()
-                                Text(DiskSize.string(o.size)).font(.system(size: 12)).monospacedDigit().foregroundStyle(.secondary)
-                            }
                         }
+                        Divider().padding(.leading, 16)
+                    }
                     }
                 }
-                .listStyle(.inset)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
             Divider()
             HStack {
@@ -880,6 +934,7 @@ struct DiskOrphansTab: View {
     }
 
     private var selectedSize: Int64 { disk.orphans.filter { selected.contains($0.id) }.reduce(0) { $0 + $1.size } }
+    private var allSelected: Bool { !disk.orphans.isEmpty && selected.count >= disk.orphans.count }
 }
 
 // MARK: - Küçük parçalar

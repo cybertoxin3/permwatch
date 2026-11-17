@@ -72,7 +72,7 @@ ev.tcc.granted	%1$@ → %2$@ granted
 ev.tcc.limited	%1$@ → %2$@ limited
 ev.tcc.revoked	%1$@ → %2$@ removed
 fda.body	permwatch reads the macOS privacy database (TCC) to show which app has which permission, and checks your startup items. Nothing leaves your Mac. Turn on permwatch under Full Disk Access in System Settings.
-fda.hint	If permwatch is already in the list, turn it off and on again: macOS ties the permission to this exact build.
+fda.hint	The list may already show “permwatch” turned on: that entry can belong to permwatch's background services, not the app itself. If this screen stays, press + in the list and add the permwatch app (or drag it in from Finder), then reopen permwatch.
 fda.open	Open Privacy Settings
 fda.title	Full Disk Access needed
 field.addedBy	Added by
@@ -915,6 +915,7 @@ vpn.qrHint	Scan the QR code with your wallet: address and amount are filled in a
 vpn.rateFailed	Couldn't get the current rate; check your internet connection.
 vpn.retry	Try again
 vpn.rateLoading	Getting the current rate…
+vpn.otherVPN	Another VPN is connected (%@). Two VPNs can't run at once: disconnect the other one first.
 nav.disk	Disk & Apps
 disk.tab.overview	Overview
 disk.tab.apps	Apps
@@ -1049,3 +1050,98 @@ disk.orphans.summary	%1$ld leftovers · %2$@
 disk.orphans.confirm	Move the leftovers of %ld apps to the Trash?
 net.isolated	%ld addresses were tried and only the router answered. This network most likely isolates devices from each other (common on guest, dorm and hotel Wi-Fi), so other devices can’t be listed. They can’t see your Mac either.
 net.scanBlocked	macOS blocked the scan: permwatch isn’t allowed to reach devices on your local network. Turn it on in System Settings › Privacy & Security › Local Network.
+disk.clearCache	Clear cache
+disk.clearCache.confirm	Clear the cache of “%@”?
+disk.clearCache.help	Deletes only the app’s caches. The app, its data and settings stay.
+disk.trashSelected	Delete selected
+disk.trashAll	Delete all
+reset.manual	macOS no longer lets apps remove permissions of deleted apps. In the System Settings page that just opened, select “%@” and remove it with the − button.
+pa.tab	Security Analysis
+pa.title	Security analysis
+pa.based	Based on %@ captured packets
+pa.none	No suspicious activity found in these packets.
+pa.stats	Statistics
+pa.timeline	Packets over time (%ld s)
+pa.protocols	Protocols
+pa.talkers	Top talkers
+pa.processes	Processes
+pa.ports	Ports
+pa.showPackets	Show packets (%@)
+pa.packetsCount	%@ packets
+pa.sev.0	Info
+pa.sev.1	Warning
+pa.sev.2	Critical
+pa.filterHelp	Filter terms: ip:1.2.3.4  src:  dst:  port:443  proto:dns  proc:chrome  host:google  dir:in/out  flag:syn  len>1000  -exclude. Plain words search everything.
+pa.clearFilter	Clear filter
+pa.followStream	Follow stream
+pa.filterStream	Filter this stream
+pa.filterIP	Filter %@
+pa.filterProto	Filter %@
+pa.more	More
+pa.copyHex	Copy hex
+pa.copySummary	Copy summary
+pa.lookupAbuse	Look up on AbuseIPDB
+pa.lookupVT	Look up on VirusTotal
+pa.lookupShodan	Look up on Shodan
+pa.payloadAt	Application data starts at byte %ld.
+pa.stream.title	Follow Stream
+pa.stream.out	Sent: %@
+pa.stream.in	Received: %@
+pa.stream.noPayload	Packet contents were not saved for this capture, so only headers are shown. Restart the admin helper and capture again to see contents.
+pa.stream.copy	Copy contents
+pa.arpScan.title	Network scan from %@
+pa.arpScan.body	This device asked for the hardware address of %ld different IPs: it is mapping every device on the network.
+pa.arpScan.mine	This Mac asked for the address of %ld IPs (most likely permwatch's “Scan network”).
+pa.arpScan.advice	If you don't recognise this device, find it in your router's device list. On a home network, a device scanning everything is unusual.
+pa.arpScan.mineAdvice	Nothing to do if you started a network scan yourself.
+pa.arpSpoof.title	Possible ARP spoofing: %@
+pa.arpSpoof.body	Several hardware addresses claimed this IP: %@. Someone may be impersonating it to intercept traffic (man-in-the-middle).
+pa.arpSpoof.advice	If this is your router's address, disconnect from this network and check your router; on public Wi-Fi use a VPN.
+pa.arpMulti.title	One device claims many IPs: %@
+pa.arpMulti.body	This hardware address answered for %1$ld IPs (%2$@). Normal for a router or VPN gateway; otherwise it can be a man-in-the-middle.
+pa.portScan.title	Port scan: %1$@ → %2$@
+pa.portScan.body	Connection attempts to %1$ld different ports (%2$@).
+pa.portScan.adviceIn	Something is probing your Mac for open services. Turn on the firewall (System Settings › Network › Firewall) and block this address.
+pa.portScan.adviceOut	Check which process sends these: unless you run a security tool on purpose, this may be malware spreading.
+pa.sweep.title	Network sweep: %1$@ → port %2$@
+pa.sweep.body	Tried %1$ld different devices on port %2$@.
+pa.creds.title	Password sent unencrypted
+pa.creds.body	%1$ld packets carried a password or login in plain text (%2$@). Anyone on the network can read it.
+pa.creds.advice	Change that password and stop using this service without encryption (HTTPS, SFTP, IMAPS…).
+pa.plain.title	Unencrypted traffic
+pa.plain.body	%1$@ traffic that anyone on the network can read: %2$@.
+pa.plain.advice	Prefer the encrypted version of these services (HTTPS instead of HTTP and so on).
+pa.dhcp.title	Several DHCP servers
+pa.dhcp.body	More than one device is handing out network settings: %@. A rogue DHCP server can redirect all your traffic.
+pa.dhcp.advice	If you don't know the second server, tell the network administrator; on your home network check your router.
+pa.llmnr.title	LLMNR / NetBIOS name queries
+pa.llmnr.body	%ld name queries were broadcast. On a hostile network, tools like Responder answer these to steal Windows/SMB password hashes.
+pa.llmnr.advice	Mostly harmless on a home network. On shared networks avoid connecting to shared folders by plain name.
+pa.dnsOdd.title	Unusual DNS names
+pa.dnsOdd.body	%1$ld queries for very long or random-looking names, e.g.:\n%2$@\nThis is how DNS tunnelling and malware-generated domains look.
+pa.dnsOdd.advice	Check the process that made these queries; CDNs and some apps also use random names.
+pa.dnsMany.title	Many subdomains of %@
+pa.dnsMany.body	%ld different subdomains were queried. Data can be hidden in subdomains (DNS tunnelling).
+pa.intel.title	Known malicious server: %@
+pa.intel.body	Listed by %1$@. %2$ld packets went to or came from it.
+pa.intel.advice	Block this server and scan the process that contacted it.
+pa.badPort.title	Suspicious ports
+pa.badPort.body	Traffic on ports often used by backdoors, IRC bots or Tor: %@.
+pa.badPort.advice	Check which process uses them; block the address if you don't recognise it.
+pa.beacon.title	Regular check-ins: %@
+pa.beacon.body	Connects to %1$@ every ~%2$ld s (%3$ld times). Malware command-and-control often “beacons” like this; update checks can too.
+pa.beacon.advice	If you don't recognise the app or the server, block it and scan the app.
+pa.upload.title	Large upload: %@
+pa.upload.body	Sent %1$@ to %2$@.
+pa.upload.advice	Make sure this is a backup or file sync you expect; otherwise it may be data being exfiltrated.
+pa.icmp.title	Large ICMP packets
+pa.icmp.body	%ld ping packets carried unusually large data. ICMP can be abused to smuggle data past firewalls.
+pa.icmp.advice	Usually harmless (network tests); if it continues, find the sender.
+pa.dnsPlain.title	Unencrypted DNS
+pa.dnsPlain.body	%1$ld DNS queries went out in plain text (to %2$@). Your network operator can see every site you look up.
+pa.dnsPlain.advice	Turn on encrypted DNS (DNS over HTTPS/TLS) or use a VPN.
+pa.openFile	Open file
+pa.openFileMessage	Open a capture file (.pcap or .pcapng, e.g. from Wireshark or tcpdump) to inspect and analyse it.
+pa.fileOpened	File: %@
+pa.fileTruncated	showing the first %1$@ of %2$@ packets
+pa.loading	Reading file…

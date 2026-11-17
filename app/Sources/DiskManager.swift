@@ -301,7 +301,11 @@ enum Leftovers {
     }
 
     /// Bir yol sistem konumunda mı (silmek için yönetici izni gerekir)?
-    static func isSystem(_ p: String) -> Bool { !p.hasPrefix(home + "/") && !p.hasSuffix(".app") }
+    /// Ev klasörü dışında olup kullanıcının kendisinin silebildiği yerler (ör. /var/folders altındaki
+    /// kişisel önbellekler) sistem sayılmaz: şifre sorulmaz, Çöp Sepeti'ne gider.
+    static func isSystem(_ p: String) -> Bool {
+        !p.hasPrefix(home + "/") && !p.hasSuffix(".app") && !FileManager.default.isDeletableFile(atPath: p)
+    }
 }
 
 // MARK: - Yönetici

@@ -49,11 +49,6 @@ struct PermwatchApp: App {
                 .onAppear {
                     theme.apply()
                     store.requestNotificationPermission()
-                    RealtimeGuard.shared.start()
-                    _ = ShareGuard.shared
-                    _ = PhishGuard.shared
-                    _ = NetCheck.shared
-                    ThreatIntel.shared.update()
                 }
         }
         .defaultSize(width: 1360, height: 820)

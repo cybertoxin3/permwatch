@@ -321,13 +321,24 @@ final class Store: ObservableObject {
     func revoke(services: [String?], key: String) -> (ok: Bool, message: String) {
         guard let id = bundleID(forKey: key) else { return (false, L("reset.noBundle")) }
         var failures: [String] = []
+        var manual: String?
         for s in services {
             let svc = s.map { $0.replacingOccurrences(of: "kTCCService", with: "") } ?? "All"
             let (ok, out) = TCCReset.reset(service: svc, bundleID: id)
-            if !ok { failures.append(out.trimmingCharacters(in: .whitespacesAndNewlines)) }
+            if !ok {
+                failures.append(out.trimmingCharacters(in: .whitespacesAndNewlines))
+                // Uygulama silinmişse yeni macOS sürümleri izni programla sıfırlatmıyor: ilgili ayar sayfasını aç,
+                // kullanıcı satırı "−" ile kaldırsın.
+                if manual == nil, out.contains("No such bundle identifier") { manual = s ?? "" }
+            }
         }
         scanSystem()
-        return failures.isEmpty ? (true, L("reset.done")) : (false, L("reset.failed", failures.joined(separator: "; ")))
+        if failures.isEmpty { return (true, L("reset.done")) }
+        if let svc = manual {
+            if let u = Text10n.settingsURL(service: svc.isEmpty ? "kTCCServiceAccessibility" : svc) { NSWorkspace.shared.open(u) }
+            return (false, L("reset.manual", id))
+        }
+        return (false, L("reset.failed", failures.joined(separator: "; ")))
     }
 
     func uninstall(_ items: [Uninstaller.Candidate], key: String, resetPermissions: Bool,

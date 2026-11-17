@@ -41,6 +41,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationDidFinishLaunching(_ notification: Notification) {
+        // Korumalar pencereye bağlı olmasın: pencere hiç açılmasa da (girişte gizli başlangıç) çalışsınlar.
+        RealtimeGuard.shared.start()
+        _ = ShareGuard.shared
+        _ = PhishGuard.shared
+        _ = NetCheck.shared
+        ThreatIntel.shared.update()
         guard LoginLaunch.launchedAtLogin else { return }
         // Sessiz başla: ana pencereyi kapat, menü çubuğunda kal.
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {

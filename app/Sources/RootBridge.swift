@@ -80,7 +80,70 @@ final class RootBridge: ObservableObject {
             }
         }
         beat()
-        heartbeat = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { _ in beat() }
+        heartbeat = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { _ in
+            beat()
+            MainActor.assumeIsolated { RootBridge.shared.push() }
+        }
+        push()
+    }
+
+    // MARK: XPC (servis modu): istekler yalnızca bu kanaldan, imza doğrulamasıyla gider
+
+    private var connection: NSXPCConnection?
+    private var pushFailures = 0
+    private var reregistered = false
+    /// Yardımcıdan istenen durum. "vpn" anahtarı yalnızca VPN yöneticisi bir şey söyledikten sonra gönderilir
+    /// (yoksa açılışta, uygulama kapalıyken de süren bir VPN bağlantısı yanlışlıkla kesilebilirdi).
+    private var desired: [String: Any] = ["capture": false, "dns": false, "block": [String]()]
+
+    func set(_ key: String, _ value: Any?) {
+        desired[key] = value ?? NSNull()
+        push()
+    }
+
+    func push() {
+        guard serviceAvailable, enabledPreference, Snapshot.section == nil || Snapshot.section == "packets",
+              let data = try? JSONSerialization.data(withJSONObject: desired) else { return }
+        let c: NSXPCConnection
+        if let existing = connection { c = existing } else {
+            c = NSXPCConnection(machServiceName: RootXPC.rootService, options: .privileged)
+            c.remoteObjectInterface = NSXPCInterface(with: RootControl.self)
+            c.invalidationHandler = { DispatchQueue.main.async { RootBridge.shared.connection = nil } }
+            c.resume()
+            connection = c
+        }
+        let proxy = c.remoteObjectProxyWithErrorHandler { _ in
+            DispatchQueue.main.async { RootBridge.shared.pushFailed() }
+        } as? RootControl
+        proxy?.sync(data) { ok in
+            DispatchQueue.main.async { if ok { RootBridge.shared.pushFailures = 0 } }
+        }
+    }
+
+    /// Kanala ulaşılamıyor. Güncellemeden önce kaydedilmiş servisin tanımında XPC kanalı yoktur (launchd tanımı
+    /// yalnızca kayıt sırasında okur): bir kez kaydı yenile.
+    private func pushFailed() {
+        connection?.invalidate()
+        connection = nil
+        pushFailures += 1
+        guard pushFailures >= 3, !reregistered, service.status == .enabled else { return }
+        reregistered = true
+        try? service.unregister()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            do { try self.service.register() } catch { self.lastError = error.localizedDescription }
+            if self.service.status == .requiresApproval { self.waitingApproval = true; SMAppService.openSystemSettingsLoginItems() }
+            self.pushFailures = 0
+        }
+    }
+
+    /// Koruma servisinin izin listesi (yalnızca imzası doğrulanmış uygulama değiştirebilir).
+    nonisolated static func pushGuardAllow(_ paths: [String]) {
+        guard let data = try? JSONSerialization.data(withJSONObject: ["allow": paths]) else { return }
+        let c = NSXPCConnection(machServiceName: RootXPC.guardService, options: .privileged)
+        c.remoteObjectInterface = NSXPCInterface(with: RootControl.self)
+        c.resume()
+        let proxy = c.remoteObjectProxyWithErrorHandler { _ in c.invalidate() } as? RootControl
+        proxy?.sync(data) { _ in c.invalidate() }
     }
 
     private func stopHeartbeat() {

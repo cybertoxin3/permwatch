@@ -31,6 +31,10 @@ final class GuardService: ObservableObject {
         // Önceki oturumda okunan olayları yeniden uyarı olarak gösterme.
         readOffset = UInt64(UserDefaults.standard.integer(forKey: seenKey))
         guard available else { return }
+        // Eski sürümün kullanıcı klasöründeki listesini servise bir kez aktar.
+        if let old = try? String(contentsOfFile: Self.allowPath, encoding: .utf8) {
+            RootBridge.pushGuardAllow(old.components(separatedBy: .newlines).filter { $0.hasPrefix("/") })
+        }
         refresh()
         timer = Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { [weak self] _ in
             MainActor.assumeIsolated { self?.refresh() }
@@ -63,6 +67,8 @@ final class GuardService: ObservableObject {
         try? FileManager.default.createDirectory(atPath: (Self.allowPath as NSString).deletingLastPathComponent, withIntermediateDirectories: true)
         try? (list.joined(separator: "\n") + "\n").write(toFile: Self.allowPath, atomically: true, encoding: .utf8)
         chmod(Self.allowPath, 0o600)
+        // Servis bu listeyi artık yalnızca XPC'den alır (kendi root dosyasında tutar).
+        RootBridge.pushGuardAllow(list)
         events.removeAll { $0.path == path }
     }
 

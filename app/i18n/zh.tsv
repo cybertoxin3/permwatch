@@ -915,6 +915,7 @@ vpn.qrHint	用钱包扫描二维码：地址和金额会自动填写。如果手
 vpn.rateFailed	无法获取当前汇率；请检查网络连接。
 vpn.retry	重试
 vpn.rateLoading	正在获取当前汇率…
+vpn.otherVPN	已连接另一个 VPN（%@）。两个 VPN 不能同时运行：请先断开另一个。
 nav.disk	磁盘与应用
 disk.tab.overview	概览
 disk.tab.apps	应用
@@ -1049,3 +1050,98 @@ disk.orphans.summary	%1$ld 个残留 · %2$@
 disk.orphans.confirm	要将 %ld 个应用的残留移到废纸篓吗？
 net.isolated	已尝试 %ld 个地址，只有路由器响应。此网络很可能将设备彼此隔离（访客、宿舍和酒店 Wi-Fi 中很常见），因此无法列出其他设备。它们也看不到你的 Mac。
 net.scanBlocked	macOS 阻止了扫描：permwatch 无权访问本地网络上的设备。请在“系统设置 › 隐私与安全性 › 本地网络”中开启。
+disk.clearCache	清除缓存
+disk.clearCache.confirm	要清除“%@”的缓存吗？
+disk.clearCache.help	仅删除应用的缓存。应用、数据和设置都会保留。
+disk.trashSelected	删除所选
+disk.trashAll	全部删除
+reset.manual	macOS 不再允许应用移除已删除应用的权限。请在刚打开的“系统设置”页面中选择“%@”，然后点按 − 按钮移除。
+pa.tab	安全分析
+pa.title	安全分析
+pa.based	基于 %@ 个已捕获的数据包
+pa.none	这些数据包中未发现可疑活动。
+pa.stats	统计
+pa.timeline	随时间分布的数据包（%ld 秒）
+pa.protocols	协议
+pa.talkers	通信最多的地址
+pa.processes	进程
+pa.ports	端口
+pa.showPackets	显示数据包（%@）
+pa.packetsCount	%@ 个数据包
+pa.sev.0	信息
+pa.sev.1	警告
+pa.sev.2	严重
+pa.filterHelp	过滤条件：ip:1.2.3.4  src:  dst:  port:443  proto:dns  proc:chrome  host:google  dir:in/out  flag:syn  len>1000  -排除。普通词会搜索所有内容。
+pa.clearFilter	清除过滤
+pa.followStream	追踪流
+pa.filterStream	过滤此流
+pa.filterIP	过滤 %@
+pa.filterProto	过滤 %@
+pa.more	更多
+pa.copyHex	复制十六进制
+pa.copySummary	复制摘要
+pa.lookupAbuse	在 AbuseIPDB 查询
+pa.lookupVT	在 VirusTotal 查询
+pa.lookupShodan	在 Shodan 查询
+pa.payloadAt	应用数据从第 %ld 字节开始。
+pa.stream.title	追踪流
+pa.stream.out	已发送：%@
+pa.stream.in	已接收：%@
+pa.stream.noPayload	此次捕获未保存数据包内容，只显示报头。请重启管理员助手后重新捕获。
+pa.stream.copy	复制内容
+pa.arpScan.title	来自 %@ 的网络扫描
+pa.arpScan.body	此设备询问了 %ld 个 IP 的硬件地址：它在摸清网络上的所有设备。
+pa.arpScan.mine	此 Mac 询问了 %ld 个 IP 的地址（很可能是 permwatch 的“扫描网络”）。
+pa.arpScan.advice	如果不认识此设备，请在路由器的设备列表中查找。家庭网络中扫描所有设备的情况并不常见。
+pa.arpScan.mineAdvice	如果是你自己发起的扫描，则无需处理。
+pa.arpSpoof.title	可能的 ARP 欺骗：%@
+pa.arpSpoof.body	多个硬件地址声称拥有此 IP：%@。可能有人冒充它以拦截流量（中间人攻击）。
+pa.arpSpoof.advice	如果这是路由器地址，请断开此网络并检查路由器；在公共 Wi-Fi 上请使用 VPN。
+pa.arpMulti.title	一台设备声称拥有多个 IP：%@
+pa.arpMulti.body	此硬件地址为 %1$ld 个 IP（%2$@）作答。对路由器或 VPN 网关属正常；否则可能是中间人攻击。
+pa.portScan.title	端口扫描：%1$@ → %2$@
+pa.portScan.body	尝试连接 %1$ld 个不同端口（%2$@）。
+pa.portScan.adviceIn	有人在探测你 Mac 上开放的服务。请开启防火墙（系统设置 › 网络 › 防火墙）并阻止此地址。
+pa.portScan.adviceOut	检查是哪个进程发出的：如果你没有有意运行安全工具，可能是正在传播的恶意软件。
+pa.sweep.title	网络扫描：%1$@ → 端口 %2$@
+pa.sweep.body	在端口 %2$@ 上尝试了 %1$ld 台设备。
+pa.creds.title	密码未加密发送
+pa.creds.body	%1$ld 个数据包以明文携带密码或登录信息（%2$@）。网络上的任何人都能读取。
+pa.creds.advice	更改该密码，不要在无加密的情况下使用此服务（HTTPS、SFTP、IMAPS…）。
+pa.plain.title	未加密流量
+pa.plain.body	网络上任何人都能读取的 %1$@ 流量：%2$@。
+pa.plain.advice	请使用这些服务的加密版本（用 HTTPS 代替 HTTP 等）。
+pa.dhcp.title	多个 DHCP 服务器
+pa.dhcp.body	不止一台设备在分发网络设置：%@。伪造的 DHCP 服务器可以劫持你的全部流量。
+pa.dhcp.advice	如果不认识第二台服务器，请告知网络管理员；在家请检查路由器。
+pa.llmnr.title	LLMNR / NetBIOS 名称查询
+pa.llmnr.body	广播了 %ld 个名称查询。在恶意网络中，Responder 等工具会应答以窃取 Windows/SMB 密码哈希。
+pa.llmnr.advice	在家庭网络中通常无害。在共享网络中避免用简单名称连接共享文件夹。
+pa.dnsOdd.title	异常的 DNS 名称
+pa.dnsOdd.body	%1$ld 个查询针对很长或看似随机的名称，例如：\n%2$@\nDNS 隧道和恶意软件生成的域名就是这样的。
+pa.dnsOdd.advice	检查发起查询的进程；CDN 和一些应用也使用随机名称。
+pa.dnsMany.title	%@ 的大量子域名
+pa.dnsMany.body	查询了 %ld 个不同的子域名。数据可以藏在子域名中（DNS 隧道）。
+pa.intel.title	已知恶意服务器：%@
+pa.intel.body	被 %1$@ 列出。有 %2$ld 个数据包往返于它。
+pa.intel.advice	阻止此服务器并扫描连接它的进程。
+pa.badPort.title	可疑端口
+pa.badPort.body	在后门、IRC 机器人或 Tor 常用端口上的流量：%@。
+pa.badPort.advice	检查使用这些端口的进程；如果不认识，阻止该地址。
+pa.beacon.title	定期连接：%@
+pa.beacon.body	大约每 %2$ld 秒连接一次 %1$@（共 %3$ld 次）。恶意软件会这样向控制服务器“报到”；更新检查也会如此。
+pa.beacon.advice	如果不认识该应用或服务器，请阻止它并扫描应用。
+pa.upload.title	大量上传：%@
+pa.upload.body	向 %2$@ 发送了 %1$@。
+pa.upload.advice	确认这是预期的备份或文件同步；否则可能有数据被窃取。
+pa.icmp.title	大型 ICMP 数据包
+pa.icmp.body	%ld 个 ping 数据包携带了异常大的数据。ICMP 可能被滥用来绕过防火墙夹带数据。
+pa.icmp.advice	通常无害（网络测试）；如果持续，请找出发送方。
+pa.dnsPlain.title	未加密的 DNS
+pa.dnsPlain.body	%1$ld 个 DNS 查询以明文发出（发往 %2$@）。你的网络运营商能看到你查询的每个网站。
+pa.dnsPlain.advice	开启加密 DNS（DNS over HTTPS/TLS）或使用 VPN。
+pa.openFile	打开文件
+pa.openFileMessage	打开捕获文件（.pcap 或 .pcapng，例如来自 Wireshark 或 tcpdump）进行检查和分析。
+pa.fileOpened	文件：%@
+pa.fileTruncated	显示 %2$@ 个数据包中的前 %1$@ 个
+pa.loading	正在读取文件…

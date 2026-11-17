@@ -57,7 +57,10 @@ struct VPNView: View {
                 if on, let s = vpn.since {
                     Text("\(Fmt.relative(s)) · ↓ \(bytes(vpn.rx)) ↑ \(bytes(vpn.tx))").font(.system(size: 12)).foregroundStyle(.secondary).monospacedDigit()
                 }
-                if vpn.state == .error, let e = vpn.error { Text(e).font(.system(size: 12)).foregroundStyle(.red).lineLimit(2) }
+                if vpn.state == .error, let e = vpn.error {
+                    Text(e.hasPrefix("other-vpn:") ? L("vpn.otherVPN", String(e.dropFirst(10))) : e)
+                        .font(.system(size: 12)).foregroundStyle(.red).lineLimit(3).fixedSize(horizontal: false, vertical: true)
+                }
                 if vpn.connectedID != nil, !root.active { Text(L("vpn.needAdmin")).font(.system(size: 12)).foregroundStyle(.orange) }
             }
             Spacer()

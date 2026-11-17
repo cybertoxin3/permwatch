@@ -72,7 +72,7 @@ ev.tcc.granted	%1$@ → %2$@ izni verildi
 ev.tcc.limited	%1$@ → %2$@ sınırlı izin
 ev.tcc.revoked	%1$@ → %2$@ izni kaldırıldı
 fda.body	permwatch, hangi uygulamanın hangi izne sahip olduğunu göstermek için macOS gizlilik veritabanını (TCC) okur ve başlangıç öğelerini kontrol eder. Hiçbir veri Mac'inden çıkmaz. Sistem Ayarları'nda Tam Disk Erişimi altında permwatch'ı aç.
-fda.hint	permwatch listede zaten varsa kapatıp yeniden aç: macOS izni uygulamanın bu derlemesine bağlar.
+fda.hint	Listede “permwatch” zaten açık görünebilir: o kayıt uygulamanın kendisine değil, permwatch'ın arka plan servislerine ait olabilir. Bu ekran gitmiyorsa listede + düğmesine basıp permwatch uygulamasını ekle (ya da Finder'dan sürükle), sonra permwatch'ı yeniden aç.
 fda.open	Gizlilik Ayarlarını Aç
 fda.title	Tam Disk Erişimi gerekli
 field.addedBy	Ekleyen süreç
@@ -915,6 +915,7 @@ vpn.qrHint	QR kodunu cüzdanınla okut: adres ve tutar kendiliğinden dolar. Ell
 vpn.rateFailed	Güncel kur alınamadı; internet bağlantını kontrol et.
 vpn.retry	Tekrar dene
 vpn.rateLoading	Güncel kur alınıyor…
+vpn.otherVPN	Başka bir VPN bağlı (%@). İki VPN aynı anda çalışamaz: önce diğerinin bağlantısını kes.
 nav.disk	Disk ve Uygulamalar
 disk.tab.overview	Genel Bakış
 disk.tab.apps	Uygulamalar
@@ -1049,3 +1050,98 @@ disk.orphans.summary	%1$ld kalıntı · %2$@
 disk.orphans.confirm	%ld uygulamanın kalıntıları Çöp Sepeti'ne taşınsın mı?
 net.isolated	%ld adres denendi, yalnızca yönlendirici yanıt verdi. Bu ağ büyük olasılıkla cihazları birbirinden yalıtıyor (misafir, yurt ve otel Wi-Fi'larında yaygın); bu yüzden diğer cihazlar listelenemez. Onlar da senin Mac'ini göremez.
 net.scanBlocked	macOS taramayı engelledi: permwatch'ın yerel ağdaki cihazlara erişim izni yok. Sistem Ayarları › Gizlilik ve Güvenlik › Yerel Ağ bölümünden aç.
+disk.clearCache	Önbelleği temizle
+disk.clearCache.confirm	“%@” önbelleği temizlensin mi?
+disk.clearCache.help	Yalnızca uygulamanın önbelleklerini siler. Uygulama, verileri ve ayarları kalır.
+disk.trashSelected	Seçilenleri sil
+disk.trashAll	Tümünü sil
+reset.manual	macOS artık silinmiş uygulamaların izinlerini programla kaldırmaya izin vermiyor. Açılan Sistem Ayarları sayfasında “%@” satırını seçip − düğmesiyle kaldır.
+pa.tab	Güvenlik Analizi
+pa.title	Güvenlik analizi
+pa.based	Yakalanan %@ pakete göre
+pa.none	Bu paketlerde şüpheli bir etkinlik bulunamadı.
+pa.stats	İstatistikler
+pa.timeline	Zamana göre paketler (%ld sn)
+pa.protocols	Protokoller
+pa.talkers	En çok konuşanlar
+pa.processes	Süreçler
+pa.ports	Kapılar
+pa.showPackets	Paketleri göster (%@)
+pa.packetsCount	%@ paket
+pa.sev.0	Bilgi
+pa.sev.1	Uyarı
+pa.sev.2	Kritik
+pa.filterHelp	Filtre terimleri: ip:1.2.3.4  src:  dst:  port:443  proto:dns  proc:chrome  host:google  dir:in/out  flag:syn  len>1000  -hariç. Düz kelimeler her yerde arar.
+pa.clearFilter	Filtreyi temizle
+pa.followStream	Akışı izle
+pa.filterStream	Bu akışı filtrele
+pa.filterIP	%@ filtrele
+pa.filterProto	%@ filtrele
+pa.more	Diğer
+pa.copyHex	Hex'i kopyala
+pa.copySummary	Özeti kopyala
+pa.lookupAbuse	AbuseIPDB'de ara
+pa.lookupVT	VirusTotal'da ara
+pa.lookupShodan	Shodan'da ara
+pa.payloadAt	Uygulama verisi %ld. bayttan başlıyor.
+pa.stream.title	Akışı İzle
+pa.stream.out	Gönderilen: %@
+pa.stream.in	Alınan: %@
+pa.stream.noPayload	Bu yakalamada paket içerikleri kaydedilmemiş; yalnızca başlıklar görünüyor. İçeriği görmek için yönetici yardımcısını yeniden başlatıp yeniden yakala.
+pa.stream.copy	İçeriği kopyala
+pa.arpScan.title	%@ ağı tarıyor
+pa.arpScan.body	Bu cihaz %ld farklı IP'nin donanım adresini sordu: ağdaki her cihazı çıkarıyor.
+pa.arpScan.mine	Bu Mac %ld IP'nin adresini sordu (büyük olasılıkla permwatch'ın "Ağı tara" özelliği).
+pa.arpScan.advice	Bu cihazı tanımıyorsan yönlendiricinin cihaz listesinde bul. Ev ağında her şeyi tarayan bir cihaz olağan değildir.
+pa.arpScan.mineAdvice	Taramayı sen başlattıysan yapılacak bir şey yok.
+pa.arpSpoof.title	Olası ARP zehirlenmesi: %@
+pa.arpSpoof.body	Bu IP'yi birden çok donanım adresi sahiplendi: %@. Biri trafiği ele geçirmek için onu taklit ediyor olabilir (araya girme).
+pa.arpSpoof.advice	Bu yönlendiricinin adresiyse ağdan çık ve yönlendiriciyi kontrol et; ortak Wi-Fi'da VPN kullan.
+pa.arpMulti.title	Bir cihaz çok sayıda IP sahipleniyor: %@
+pa.arpMulti.body	Bu donanım adresi %1$ld IP için yanıt verdi (%2$@). Yönlendirici ya da VPN ağ geçidi için olağandır; değilse araya girme olabilir.
+pa.portScan.title	Port taraması: %1$@ → %2$@
+pa.portScan.body	%1$ld farklı kapıya bağlantı denendi (%2$@).
+pa.portScan.adviceIn	Biri Mac'inde açık servis arıyor. Güvenlik duvarını aç (Sistem Ayarları › Ağ › Güvenlik Duvarı) ve bu adresi engelle.
+pa.portScan.adviceOut	Bunu hangi sürecin gönderdiğine bak: bilerek bir güvenlik aracı çalıştırmıyorsan yayılan bir zararlı olabilir.
+pa.sweep.title	Ağ taraması: %1$@ → %2$@ kapısı
+pa.sweep.body	%2$@ kapısında %1$ld farklı cihaz denendi.
+pa.creds.title	Parola şifresiz gönderildi
+pa.creds.body	%1$ld paket parolayı ya da girişi açık metin olarak taşıdı (%2$@). Ağdaki herkes okuyabilir.
+pa.creds.advice	O parolayı değiştir ve bu servisi şifresiz kullanma (HTTPS, SFTP, IMAPS…).
+pa.plain.title	Şifresiz trafik
+pa.plain.body	Ağdaki herkesin okuyabileceği %1$@ trafiği: %2$@.
+pa.plain.advice	Bu servislerin şifreli sürümünü tercih et (HTTP yerine HTTPS vb.).
+pa.dhcp.title	Birden fazla DHCP sunucusu
+pa.dhcp.body	Ağ ayarlarını birden fazla cihaz dağıtıyor: %@. Sahte bir DHCP sunucusu tüm trafiğini başka yere yönlendirebilir.
+pa.dhcp.advice	İkinci sunucuyu tanımıyorsan ağ yöneticisine bildir; ev ağındaysan yönlendiricini kontrol et.
+pa.llmnr.title	LLMNR / NetBIOS ad sorguları
+pa.llmnr.body	%ld ad sorgusu herkese yayınlandı. Kötü niyetli bir ağda Responder gibi araçlar bunlara yanıt verip Windows/SMB parola özetlerini çalabilir.
+pa.llmnr.advice	Ev ağında çoğunlukla zararsız. Ortak ağlarda paylaşılan klasörlere düz adla bağlanma.
+pa.dnsOdd.title	Olağandışı DNS adları
+pa.dnsOdd.body	Çok uzun ya da rastgele görünen adlar için %1$ld sorgu, örneğin:\n%2$@\nDNS tünelleme ve zararlıların ürettiği alan adları böyle görünür.
+pa.dnsOdd.advice	Bu sorguları yapan sürece bak; CDN'ler ve bazı uygulamalar da rastgele adlar kullanır.
+pa.dnsMany.title	%@ için çok sayıda alt alan adı
+pa.dnsMany.body	%ld farklı alt alan adı soruldu. Veri alt alan adlarına gizlenebilir (DNS tünelleme).
+pa.intel.title	Bilinen zararlı sunucu: %@
+pa.intel.body	%1$@ listesinde. %2$ld paket ona gitti ya da ondan geldi.
+pa.intel.advice	Bu sunucuyu engelle ve ona bağlanan süreci tara.
+pa.badPort.title	Şüpheli kapılar
+pa.badPort.body	Arka kapıların, IRC botlarının ya da Tor'un sık kullandığı kapılarda trafik: %@.
+pa.badPort.advice	Bunları hangi sürecin kullandığına bak; tanımıyorsan adresi engelle.
+pa.beacon.title	Düzenli bağlantı: %@
+pa.beacon.body	%1$@ adresine yaklaşık %2$ld sn'de bir bağlanıyor (%3$ld kez). Zararlıların komuta sunucusuna "haber vermesi" böyle görünür; güncelleme denetimleri de böyle olabilir.
+pa.beacon.advice	Uygulamayı ya da sunucuyu tanımıyorsan engelle ve uygulamayı tara.
+pa.upload.title	Büyük yükleme: %@
+pa.upload.body	%2$@ adresine %1$@ gönderdi.
+pa.upload.advice	Bunun beklediğin bir yedekleme ya da dosya eşitlemesi olduğundan emin ol; değilse veri dışarı sızdırılıyor olabilir.
+pa.icmp.title	Büyük ICMP paketleri
+pa.icmp.body	%ld ping paketi olağandışı büyüklükte veri taşıdı. ICMP, veriyi güvenlik duvarlarından kaçırmak için kötüye kullanılabilir.
+pa.icmp.advice	Genellikle zararsızdır (ağ testleri); sürerse göndereni bul.
+pa.dnsPlain.title	Şifresiz DNS
+pa.dnsPlain.body	%1$ld DNS sorgusu açık metin olarak gitti (%2$@ adresine). Ağ sağlayıcın baktığın her siteyi görebilir.
+pa.dnsPlain.advice	Şifreli DNS'i (DNS over HTTPS/TLS) aç ya da VPN kullan.
+pa.openFile	Dosya aç
+pa.openFileMessage	İncelemek ve analiz etmek için bir yakalama dosyası aç (.pcap ya da .pcapng; ör. Wireshark ya da tcpdump'tan).
+pa.fileOpened	Dosya: %@
+pa.fileTruncated	%2$@ paketin ilk %1$@ tanesi gösteriliyor
+pa.loading	Dosya okunuyor…
