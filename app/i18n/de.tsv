@@ -1160,3 +1160,11 @@ tls.expiring	Gültig, läuft aber bald ab (%@).
 tls.mitm	Nur dank einer manuell hinzugefügten Wurzel vertrauenswürdig (%@). Dein Verkehr zu diesem Server könnte abgefangen werden: Prüfe Schlüsselbundverwaltung › System und entferne unbekannte Wurzeln.
 tls.invalid	Ungültiges Zertifikat: %@
 tls.unreachable	Keine Verbindung (Server offline oder kein HTTPS).
+origin.title	Wahrscheinliche Herkunft
+origin.none	Um diese Zeit wurde nichts installiert, hinzugefügt oder geladen.
+origin.note	Anhand des Zeitpunkts: was kurz vor dem Erscheinen dieses Eintrags installiert, hinzugefügt oder geladen wurde.
+origin.owner	Teil dieser App · hinzugefügt %@
+origin.package	Installiert über %1$@ · %2$@
+origin.app	Zu Programme hinzugefügt · %@
+origin.download	Geladen · %@
+origin.downloadFrom	Geladen von %1$@ · %2$@

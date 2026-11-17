@@ -1160,3 +1160,11 @@ tls.expiring	유효하지만 곧 만료됩니다(%@).
 tls.mitm	이 Mac에 수동으로 추가된 루트(%@) 때문에만 신뢰됩니다. 이 서버로 가는 트래픽이 가로채여 읽힐 수 있습니다. 키체인 접근 › 시스템을 확인하고 모르는 루트를 제거하세요.
 tls.invalid	잘못된 인증서: %@
 tls.unreachable	연결할 수 없습니다(서버가 꺼져 있거나 HTTPS가 아님).
+origin.title	추정 출처
+origin.none	그 무렵 설치·추가·다운로드된 것이 없습니다.
+origin.note	시간 기준 추정: 이 항목이 나타나기 직전에 설치·추가·다운로드된 것.
+origin.owner	이 앱의 일부 · 추가됨 %@
+origin.package	%1$@(으)로 설치됨 · %2$@
+origin.app	응용 프로그램에 추가됨 · %@
+origin.download	다운로드됨 · %@
+origin.downloadFrom	%1$@에서 다운로드 · %2$@

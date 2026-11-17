@@ -1160,3 +1160,11 @@ tls.expiring	Geçerli ama yakında bitiyor (%@).
 tls.mitm	Yalnızca bu Mac'e elle eklenmiş bir kök sayesinde güvenilir görünüyor (%@). Bu sunucuya giden trafiğin araya girilerek okunuyor olabilir: Anahtar Zinciri Erişimi › Sistem'e bak ve tanımadığın kökleri kaldır.
 tls.invalid	Geçersiz sertifika: %@
 tls.unreachable	Bağlanılamadı (sunucu kapalı ya da HTTPS değil).
+origin.title	Muhtemel kaynak
+origin.none	O sıralarda kurulan, eklenen ya da indirilen bir şey yok.
+origin.note	Zamanlamaya dayanır: bu öğe görünmeden kısa süre önce kurulan, eklenen ya da indirilenler.
+origin.owner	Bu uygulamanın parçası · eklenme: %@
+origin.package	%1$@ ile kuruldu · %2$@
+origin.app	Uygulamalar'a eklendi · %@
+origin.download	İndirildi · %@
+origin.downloadFrom	%1$@ adresinden indirildi · %2$@

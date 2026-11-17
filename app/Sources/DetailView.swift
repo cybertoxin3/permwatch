@@ -58,6 +58,8 @@ struct DetailView: View {
                     }
                 }
 
+                if item.kind == .btmAdd { OriginSection(item: item) }
+
                 chainView
                 actions
             }
@@ -77,6 +79,7 @@ struct DetailView: View {
                     Text("•")
                     Text(r.text).fixedSize(horizontal: false, vertical: true)
                 }
+
                 .font(.system(size: 12))
             }
         }

@@ -1160,3 +1160,11 @@ tls.expiring	Valid but expires soon (%@).
 tls.mitm	Trusted only because of a root added to this Mac by hand (%@). Your traffic to this server may be intercepted and read: check Keychain Access › System and remove roots you don't recognise.
 tls.invalid	Invalid certificate: %@
 tls.unreachable	Could not connect (server offline or not HTTPS).
+origin.title	Likely origin
+origin.none	Nothing was installed, added or downloaded around that time.
+origin.note	Based on timing: what was installed, added or downloaded shortly before this item appeared.
+origin.owner	Part of this app · added %@
+origin.package	Installed by %1$@ · %2$@
+origin.app	App added to Applications · %@
+origin.download	Downloaded · %@
+origin.downloadFrom	Downloaded from %1$@ · %2$@

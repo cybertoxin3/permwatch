@@ -131,6 +131,21 @@ enum Snapshot {
             }
             return
         }
+        if section == "origin" {
+            // Kalıcılık kaynağı: son giriş öğesi olayları için ipuçlarını yazar.
+            DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
+                let adds = store.items.filter { $0.kind == .btmAdd }.sorted { $0.date > $1.date }.prefix(6)
+                print("giriş öğesi olayı: \(store.items.filter { $0.kind == .btmAdd }.count)")
+                for it in adds {
+                    print("• \(it.title) — \(it.date) — \(it.removablePlist ?? it.revealPath ?? "-")")
+                    for h in Origin.hints(itemDate: it.date, plist: it.removablePlist ?? it.revealPath, appKey: it.appKey).prefix(4) {
+                        print("     \(h.kind): \(h.title) | \(h.detail)")
+                    }
+                }
+                exit(0)
+            }
+            return
+        }
         if section == "netscan" {
             // "Ağı tara"yı gerçek ağda çalıştırır ve sonucu yazar.
             let n = NetCheck.shared

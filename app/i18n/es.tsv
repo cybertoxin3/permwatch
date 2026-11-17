@@ -1160,3 +1160,11 @@ tls.expiring	Válido pero caduca pronto (%@).
 tls.mitm	De confianza solo por una raíz añadida a mano a este Mac (%@). Tu tráfico a este servidor podría estar interceptado: revisa Acceso a Llaveros › Sistema y elimina raíces que no reconozcas.
 tls.invalid	Certificado no válido: %@
 tls.unreachable	No se pudo conectar (servidor apagado o sin HTTPS).
+origin.title	Origen probable
+origin.none	No se instaló, añadió ni descargó nada en ese momento.
+origin.note	Según el momento: lo instalado, añadido o descargado poco antes de que apareciera este elemento.
+origin.owner	Parte de esta app · añadida %@
+origin.package	Instalado por %1$@ · %2$@
+origin.app	App añadida a Aplicaciones · %@
+origin.download	Descargado · %@
+origin.downloadFrom	Descargado de %1$@ · %2$@

@@ -1160,3 +1160,11 @@ tls.expiring	有效但即将到期（%@）。
 tls.mitm	仅因手动添加到此 Mac 的根证书（%@）而受信任。你与此服务器的流量可能被拦截读取：请检查“钥匙串访问 › 系统”，移除不认识的根证书。
 tls.invalid	证书无效：%@
 tls.unreachable	无法连接（服务器离线或不是 HTTPS）。
+origin.title	可能的来源
+origin.none	那段时间没有安装、添加或下载任何内容。
+origin.note	根据时间推断：此项目出现前不久安装、添加或下载的内容。
+origin.owner	属于此应用 · 添加于 %@
+origin.package	由 %1$@ 安装 · %2$@
+origin.app	已添加到“应用程序” · %@
+origin.download	已下载 · %@
+origin.downloadFrom	从 %1$@ 下载 · %2$@
