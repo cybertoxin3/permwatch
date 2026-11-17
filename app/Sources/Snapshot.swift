@@ -165,6 +165,17 @@ enum Snapshot {
             }
             return
         }
+        if section == "report", let out = ProcessInfo.processInfo.environment["PERMWATCH_REPORT"] {
+            // Raporu doğrudan dosyaya yazar (kaydetme penceresi olmadan).
+            let posture = SecurityPosture(), checks = SecurityChecks()
+            posture.refresh()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
+                let h = SecurityReport.html(posture: posture, checks: checks, scanner: MalwareScanner.shared, store: store)
+                print(SecurityReport.exportPDF(h, to: URL(fileURLWithPath: out)) ? "pdf yazıldı" : "pdf yazılamadı")
+                exit(0)
+            }
+            return
+        }
         if section == "netscan" {
             // "Ağı tara"yı gerçek ağda çalıştırır ve sonucu yazar.
             let n = NetCheck.shared

@@ -1190,3 +1190,22 @@ leak.failed	Prüfung nicht möglich (Dienst nicht erreichbar oder Limit); späte
 leak.advice	Für betroffene Adressen: Ändere die Passwörter dieser Konten (und überall, wo du sie wiederverwendet hast), aktiviere die Zwei-Faktor-Authentifizierung und sei bei Phishing-Mails besonders vorsichtig.
 vault.csvTrash.title	CSV-Datei in den Papierkorb legen?
 vault.csvTrash.body	„%@“ enthält deine Passwörter im Klartext. Da sie jetzt im verschlüsselten Tresor sind, wird die Datei nicht mehr benötigt. Leere danach auch den Papierkorb.
+rep.button	Bericht
+rep.help	Sicherheitsbericht dieses Macs als PDF sichern (wird nur auf diesem Mac erstellt).
+rep.file	sicherheitsbericht
+rep.title	Sicherheitsbericht
+rep.posture	Sicherheitseinstellungen
+rep.on	Ein
+rep.off	Aus
+rep.warn	Prüfen
+rep.findings	Befunde (Mac prüfen)
+rep.notRun	Noch nicht ausgeführt.
+rep.none	Nichts zu melden.
+rep.danger	Kritisch
+rep.caution	Warnung
+rep.malware	Malware-Scan
+rep.lastScan	Letzter Scan: %1$@ · %2$@ Dateien geprüft
+rep.alerts	Ereignisse mit hohem Risiko (%ld)
+rep.network	Netzwerk
+rep.devices	Gesehene Geräte
+rep.footer	Von permwatch auf diesem Mac erstellt. Befunde sind Hinweise aus lokalen Prüfungen, kein Beweis für eine Kompromittierung.

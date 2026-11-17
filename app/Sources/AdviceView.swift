@@ -150,6 +150,12 @@ struct AdviceView: View {
             .frame(maxWidth: .infinity)
         }
         .navigationTitle(L("nav.overview"))
+        .toolbar {
+            Button { SecurityReport.save(posture: posture, checks: checks, scanner: scanner, store: store) } label: {
+                Label(L("rep.button"), systemImage: "doc.richtext")
+            }
+            .help(L("rep.help"))
+        }
         .confirmationDialog(confirm?.title ?? "", isPresented: Binding(get: { confirm != nil }, set: { if !$0 { confirm = nil } })) {
             Button(confirm?.primary?.title ?? L("adv.revoke"), role: .destructive) { confirm?.primary?.run(); confirm = nil }
             Button(L("confirm.cancel"), role: .cancel) { confirm = nil }

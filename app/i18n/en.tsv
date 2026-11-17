@@ -1190,3 +1190,22 @@ leak.failed	Could not check (service unreachable or rate limited); try again lat
 leak.advice	For leaked addresses: change the password of those accounts (and anywhere you reused it), turn on two-factor authentication and be extra careful with phishing emails.
 vault.csvTrash.title	Move the CSV file to the Trash?
 vault.csvTrash.body	“%@” holds your passwords in plain text. Now that they are in the encrypted vault, the file is no longer needed. Remember to empty the Trash as well.
+rep.button	Report
+rep.help	Save a security report of this Mac as PDF (created only on this Mac).
+rep.file	security-report
+rep.title	Security report
+rep.posture	Security settings
+rep.on	On
+rep.off	Off
+rep.warn	Check
+rep.findings	Findings (Check My Mac)
+rep.notRun	Not run yet.
+rep.none	Nothing to report.
+rep.danger	Critical
+rep.caution	Warning
+rep.malware	Malware scan
+rep.lastScan	Last scan: %1$@ · %2$@ files scanned
+rep.alerts	High-risk events (%ld)
+rep.network	Network
+rep.devices	Devices seen
+rep.footer	Created by permwatch on this Mac. Findings are hints based on local checks, not proof of compromise.

@@ -1190,3 +1190,22 @@ leak.failed	Vérification impossible (service injoignable ou limite atteinte) ; 
 leak.advice	Pour les adresses touchées : changez le mot de passe de ces comptes (et partout où vous l’avez réutilisé), activez l’authentification à deux facteurs et méfiez-vous des e-mails d’hameçonnage.
 vault.csvTrash.title	Placer le fichier CSV dans la corbeille ?
 vault.csvTrash.body	« %@ » contient vos mots de passe en clair. Maintenant qu’ils sont dans le coffre chiffré, le fichier n’est plus utile. Pensez aussi à vider la corbeille.
+rep.button	Rapport
+rep.help	Enregistrer un rapport de sécurité de ce Mac en PDF (créé uniquement sur ce Mac).
+rep.file	rapport-securite
+rep.title	Rapport de sécurité
+rep.posture	Réglages de sécurité
+rep.on	Activé
+rep.off	Désactivé
+rep.warn	À vérifier
+rep.findings	Constats (Vérifier mon Mac)
+rep.notRun	Pas encore effectué.
+rep.none	Rien à signaler.
+rep.danger	Critique
+rep.caution	Avertissement
+rep.malware	Analyse anti-malware
+rep.lastScan	Dernière analyse : %1$@ · %2$@ fichiers analysés
+rep.alerts	Événements à risque élevé (%ld)
+rep.network	Réseau
+rep.devices	Appareils vus
+rep.footer	Créé par permwatch sur ce Mac. Les constats sont des indices issus de vérifications locales, pas une preuve de compromission.

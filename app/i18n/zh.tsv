@@ -1190,3 +1190,22 @@ leak.failed	无法检查（服务不可用或请求过多），请稍后再试�
 leak.advice	对于已泄露的地址：更改这些账户的密码（以及所有复用此密码的地方），开启双重认证，并格外警惕钓鱼邮件。
 vault.csvTrash.title	要将 CSV 文件移到废纸篓吗？
 vault.csvTrash.body	“%@”以明文保存了你的密码。既然已存入加密密码库，这个文件就不再需要了。别忘了清倒废纸篓。
+rep.button	报告
+rep.help	将此 Mac 的安全报告存为 PDF（仅在此 Mac 上生成）。
+rep.file	security-report
+rep.title	安全报告
+rep.posture	安全设置
+rep.on	开启
+rep.off	关闭
+rep.warn	需检查
+rep.findings	发现（检查我的 Mac）
+rep.notRun	尚未运行。
+rep.none	无可报告内容。
+rep.danger	严重
+rep.caution	警告
+rep.malware	恶意软件扫描
+rep.lastScan	上次扫描：%1$@ · 已扫描 %2$@ 个文件
+rep.alerts	高风险事件（%ld）
+rep.network	网络
+rep.devices	发现的设备
+rep.footer	由 permwatch 在此 Mac 上生成。发现内容是基于本地检查的线索，并非已被入侵的证据。

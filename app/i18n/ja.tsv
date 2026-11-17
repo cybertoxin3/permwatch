@@ -1190,3 +1190,22 @@ leak.failed	確認できませんでした（サービスに接続できない�
 leak.advice	漏えいしたアドレスは、そのアカウントのパスワード（使い回した場所すべて）を変更し、2 段階認証を有効にして、フィッシングメールに特に注意してください。
 vault.csvTrash.title	CSV ファイルをゴミ箱に入れますか？
 vault.csvTrash.body	「%@」にはパスワードが平文で入っています。暗号化された保管庫に取り込んだので、このファイルはもう不要です。ゴミ箱も空にしてください。
+rep.button	レポート
+rep.help	この Mac のセキュリティレポートを PDF で保存（この Mac 上でのみ作成）。
+rep.file	security-report
+rep.title	セキュリティレポート
+rep.posture	セキュリティ設定
+rep.on	オン
+rep.off	オフ
+rep.warn	要確認
+rep.findings	検出事項（Mac をチェック）
+rep.notRun	まだ実行していません。
+rep.none	報告事項はありません。
+rep.danger	重大
+rep.caution	警告
+rep.malware	マルウェアスキャン
+rep.lastScan	最終スキャン：%1$@ · %2$@ 個のファイルを検査
+rep.alerts	高リスクのイベント（%ld）
+rep.network	ネットワーク
+rep.devices	検出した端末
+rep.footer	この Mac 上で permwatch が作成しました。検出事項はローカルな確認に基づく手がかりであり、侵害の証拠ではありません。

@@ -1190,3 +1190,22 @@ leak.failed	No se pudo comprobar (servicio inaccesible o límite); inténtalo m�
 leak.advice	Para las direcciones filtradas: cambia la contraseña de esas cuentas (y donde la reutilizaste), activa la verificación en dos pasos y extrema la precaución con correos de phishing.
 vault.csvTrash.title	¿Mover el archivo CSV a la Papelera?
 vault.csvTrash.body	«%@» guarda tus contraseñas en texto plano. Ahora que están en la bóveda cifrada, el archivo ya no hace falta. Recuerda vaciar también la Papelera.
+rep.button	Informe
+rep.help	Guardar un informe de seguridad de este Mac en PDF (solo se crea en este Mac).
+rep.file	informe-seguridad
+rep.title	Informe de seguridad
+rep.posture	Ajustes de seguridad
+rep.on	Activado
+rep.off	Desactivado
+rep.warn	Revisar
+rep.findings	Hallazgos (Comprobar mi Mac)
+rep.notRun	Aún no se ha ejecutado.
+rep.none	Nada que informar.
+rep.danger	Crítico
+rep.caution	Aviso
+rep.malware	Análisis de malware
+rep.lastScan	Último análisis: %1$@ · %2$@ archivos analizados
+rep.alerts	Eventos de alto riesgo (%ld)
+rep.network	Red
+rep.devices	Dispositivos vistos
+rep.footer	Creado por permwatch en este Mac. Los hallazgos son indicios basados en comprobaciones locales, no pruebas de compromiso.

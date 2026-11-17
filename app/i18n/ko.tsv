@@ -1190,3 +1190,22 @@ leak.failed	확인할 수 없습니다(서비스에 연결할 수 없거나 요�
 leak.advice	유출된 주소는 해당 계정의 암호(재사용한 모든 곳 포함)를 바꾸고, 2단계 인증을 켜고, 피싱 메일에 특히 주의하세요.
 vault.csvTrash.title	CSV 파일을 휴지통으로 이동하시겠습니까?
 vault.csvTrash.body	‘%@’에는 암호가 평문으로 들어 있습니다. 이제 암호화된 보관함에 있으므로 이 파일은 필요 없습니다. 휴지통도 비우세요.
+rep.button	보고서
+rep.help	이 Mac의 보안 보고서를 PDF로 저장(이 Mac에서만 생성).
+rep.file	security-report
+rep.title	보안 보고서
+rep.posture	보안 설정
+rep.on	켬
+rep.off	끔
+rep.warn	확인 필요
+rep.findings	발견 사항(내 Mac 확인)
+rep.notRun	아직 실행하지 않았습니다.
+rep.none	보고할 내용이 없습니다.
+rep.danger	위험
+rep.caution	경고
+rep.malware	악성 코드 검사
+rep.lastScan	마지막 검사: %1$@ · 파일 %2$@개 검사
+rep.alerts	고위험 이벤트(%ld)
+rep.network	네트워크
+rep.devices	발견된 기기
+rep.footer	이 Mac에서 permwatch가 생성했습니다. 발견 사항은 로컬 점검에 근거한 단서이며 침해의 증거가 아닙니다.

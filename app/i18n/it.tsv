@@ -1190,3 +1190,22 @@ leak.failed	Impossibile controllare (servizio non raggiungibile o limite); ripro
 leak.advice	Per gli indirizzi coinvolti: cambia la password di quegli account (e ovunque l’hai riutilizzata), attiva l’autenticazione a due fattori e fai attenzione alle email di phishing.
 vault.csvTrash.title	Spostare il file CSV nel Cestino?
 vault.csvTrash.body	«%@» contiene le tue password in chiaro. Ora che sono nell’archivio cifrato, il file non serve più. Ricorda di svuotare anche il Cestino.
+rep.button	Rapporto
+rep.help	Salva un rapporto di sicurezza di questo Mac in PDF (creato solo su questo Mac).
+rep.file	rapporto-sicurezza
+rep.title	Rapporto di sicurezza
+rep.posture	Impostazioni di sicurezza
+rep.on	Attivo
+rep.off	Disattivo
+rep.warn	Da controllare
+rep.findings	Risultati (Controlla il mio Mac)
+rep.notRun	Non ancora eseguito.
+rep.none	Niente da segnalare.
+rep.danger	Critico
+rep.caution	Avviso
+rep.malware	Scansione malware
+rep.lastScan	Ultima scansione: %1$@ · %2$@ file analizzati
+rep.alerts	Eventi ad alto rischio (%ld)
+rep.network	Rete
+rep.devices	Dispositivi visti
+rep.footer	Creato da permwatch su questo Mac. I risultati sono indizi da controlli locali, non prove di compromissione.

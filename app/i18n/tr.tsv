@@ -1190,3 +1190,22 @@ leak.failed	Denetlenemedi (servise ulaşılamadı ya da hız sınırı); sonra y
 leak.advice	Sızan adresler için: o hesapların şifresini (ve aynı şifreyi kullandığın her yeri) değiştir, iki adımlı doğrulamayı aç ve oltalama e-postalarına karşı daha dikkatli ol.
 vault.csvTrash.title	CSV dosyası Çöp Sepeti'ne taşınsın mı?
 vault.csvTrash.body	“%@” şifrelerini düz metin olarak tutuyor. Artık şifreli kasada oldukları için dosyaya gerek yok. Çöp Sepeti'ni de boşaltmayı unutma.
+rep.button	Rapor
+rep.help	Bu Mac'in güvenlik raporunu PDF olarak kaydet (yalnızca bu Mac'te oluşturulur).
+rep.file	guvenlik-raporu
+rep.title	Güvenlik raporu
+rep.posture	Güvenlik ayarları
+rep.on	Açık
+rep.off	Kapalı
+rep.warn	Kontrol et
+rep.findings	Bulgular (Mac'imi Kontrol Et)
+rep.notRun	Henüz çalıştırılmadı.
+rep.none	Bildirilecek bir şey yok.
+rep.danger	Kritik
+rep.caution	Uyarı
+rep.malware	Zararlı taraması
+rep.lastScan	Son tarama: %1$@ · %2$@ dosya tarandı
+rep.alerts	Yüksek riskli olaylar (%ld)
+rep.network	Ağ
+rep.devices	Görülen cihazlar
+rep.footer	Bu Mac'te permwatch tarafından oluşturuldu. Bulgular yerel denetimlere dayanan ipuçlarıdır, ele geçirilmenin kanıtı değildir.

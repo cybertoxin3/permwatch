@@ -1190,3 +1190,22 @@ leak.failed	Não foi possível verificar (serviço indisponível ou limite); ten
 leak.advice	Para endereços vazados: troque a senha dessas contas (e onde a reutilizou), ative a autenticação de dois fatores e redobre o cuidado com e-mails de phishing.
 vault.csvTrash.title	Mover o arquivo CSV para o Lixo?
 vault.csvTrash.body	“%@” guarda suas senhas em texto puro. Agora que estão no cofre criptografado, o arquivo não é mais necessário. Lembre-se de esvaziar o Lixo também.
+rep.button	Relatório
+rep.help	Salvar um relatório de segurança deste Mac em PDF (criado só neste Mac).
+rep.file	relatorio-seguranca
+rep.title	Relatório de segurança
+rep.posture	Configurações de segurança
+rep.on	Ativado
+rep.off	Desativado
+rep.warn	Verificar
+rep.findings	Achados (Verificar meu Mac)
+rep.notRun	Ainda não executado.
+rep.none	Nada a relatar.
+rep.danger	Crítico
+rep.caution	Aviso
+rep.malware	Verificação de malware
+rep.lastScan	Última verificação: %1$@ · %2$@ arquivos verificados
+rep.alerts	Eventos de alto risco (%ld)
+rep.network	Rede
+rep.devices	Dispositivos vistos
+rep.footer	Criado pelo permwatch neste Mac. Os achados são indícios de verificações locais, não prova de comprometimento.
