@@ -1178,3 +1178,15 @@ upd.apps.appStore	App Store
 upd.apps.open	열기
 upd.apps.openHelp	대부분의 앱은 열면 스스로 업데이트를 제안합니다(보통 앱 메뉴 › 업데이트 확인).
 upd.apps.review	목록 보기
+leak.menu	이메일 유출 확인…
+leak.title	이메일 유출 확인
+leak.privacy	암호 확인과 달리 이메일 주소 자체가 XposedOrNot(무료 유출 데이터베이스)로 전송됩니다. 보관함의 다른 정보는 이 Mac 밖으로 나가지 않습니다.
+leak.extra	확인할 다른 주소(선택, 쉼표로 구분)
+leak.willCheck	주소 %ld개를 확인합니다.
+leak.run	확인
+leak.found	유출 %ld건에서 발견:
+leak.clean	알려진 유출에서 발견되지 않았습니다.
+leak.failed	확인할 수 없습니다(서비스에 연결할 수 없거나 요청 제한). 나중에 다시 시도하세요.
+leak.advice	유출된 주소는 해당 계정의 암호(재사용한 모든 곳 포함)를 바꾸고, 2단계 인증을 켜고, 피싱 메일에 특히 주의하세요.
+vault.csvTrash.title	CSV 파일을 휴지통으로 이동하시겠습니까?
+vault.csvTrash.body	‘%@’에는 암호가 평문으로 들어 있습니다. 이제 암호화된 보관함에 있으므로 이 파일은 필요 없습니다. 휴지통도 비우세요.

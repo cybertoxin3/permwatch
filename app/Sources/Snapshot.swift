@@ -155,6 +155,16 @@ enum Snapshot {
             }
             return
         }
+        if section == "emailleak" {
+            Task {
+                for e in ["test@example.com", "nonexistent-zq81x@example.org"] {
+                    let r = await EmailLeaks.check(e)
+                    print("\(e): \(r.failed ? "hata" : "\((r.breaches ?? []).count) sızıntı") \((r.breaches ?? []).prefix(5).joined(separator: ", "))")
+                }
+                exit(0)
+            }
+            return
+        }
         if section == "netscan" {
             // "Ağı tara"yı gerçek ağda çalıştırır ve sonucu yazar.
             let n = NetCheck.shared

@@ -1178,3 +1178,15 @@ upd.apps.appStore	App Store
 upd.apps.open	開く
 upd.apps.openHelp	多くのアプリは開くと自動で更新を案内します（多くはアプリメニュー › アップデートを確認）。
 upd.apps.review	一覧を表示
+leak.menu	メールアドレスの漏えいを確認…
+leak.title	メールアドレスの漏えい確認
+leak.privacy	パスワード確認とは異なり、メールアドレス自体が XposedOrNot（無料の漏えいデータベース）に送信されます。保管庫のそれ以外の情報はこの Mac から出ません。
+leak.extra	ほかに確認するアドレス（任意、カンマ区切り）
+leak.willCheck	%ld 件のアドレスを確認します。
+leak.run	確認
+leak.found	%ld 件の漏えいで見つかりました：
+leak.clean	既知の漏えいには見つかりませんでした。
+leak.failed	確認できませんでした（サービスに接続できないか回数制限）。後でもう一度お試しください。
+leak.advice	漏えいしたアドレスは、そのアカウントのパスワード（使い回した場所すべて）を変更し、2 段階認証を有効にして、フィッシングメールに特に注意してください。
+vault.csvTrash.title	CSV ファイルをゴミ箱に入れますか？
+vault.csvTrash.body	「%@」にはパスワードが平文で入っています。暗号化された保管庫に取り込んだので、このファイルはもう不要です。ゴミ箱も空にしてください。

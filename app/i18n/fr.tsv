@@ -1178,3 +1178,15 @@ upd.apps.appStore	App Store
 upd.apps.open	Ouvrir
 upd.apps.openHelp	La plupart des apps proposent la mise à jour à l’ouverture (souvent menu de l’app › Rechercher des mises à jour).
 upd.apps.review	Afficher la liste
+leak.menu	Rechercher les e-mails dans les fuites…
+leak.title	Vérification des fuites d’e-mail
+leak.privacy	Contrairement à la vérification des mots de passe, l’adresse e-mail elle-même est envoyée à XposedOrNot (une base de fuites gratuite). Rien d’autre de votre coffre ne quitte ce Mac.
+leak.extra	Autres adresses à vérifier (facultatif, séparées par des virgules)
+leak.willCheck	%ld adresses seront vérifiées.
+leak.run	Vérifier
+leak.found	Trouvé dans %ld fuites :
+leak.clean	Absent des fuites connues.
+leak.failed	Vérification impossible (service injoignable ou limite atteinte) ; réessayez plus tard.
+leak.advice	Pour les adresses touchées : changez le mot de passe de ces comptes (et partout où vous l’avez réutilisé), activez l’authentification à deux facteurs et méfiez-vous des e-mails d’hameçonnage.
+vault.csvTrash.title	Placer le fichier CSV dans la corbeille ?
+vault.csvTrash.body	« %@ » contient vos mots de passe en clair. Maintenant qu’ils sont dans le coffre chiffré, le fichier n’est plus utile. Pensez aussi à vider la corbeille.

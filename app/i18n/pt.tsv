@@ -1178,3 +1178,15 @@ upd.apps.appStore	App Store
 upd.apps.open	Abrir
 upd.apps.openHelp	A maioria dos apps oferece a atualização ao abrir (geralmente no menu do app › Verificar Atualizações).
 upd.apps.review	Mostrar lista
+leak.menu	Procurar e-mails em vazamentos…
+leak.title	Verificação de vazamento de e-mail
+leak.privacy	Diferente da verificação de senhas, o próprio endereço de e-mail é enviado ao XposedOrNot (um banco de vazamentos gratuito). Nada mais do seu cofre sai deste Mac.
+leak.extra	Outros endereços (opcional, separados por vírgula)
+leak.willCheck	%ld endereços serão verificados.
+leak.run	Verificar
+leak.found	Encontrado em %ld vazamentos:
+leak.clean	Não encontrado em vazamentos conhecidos.
+leak.failed	Não foi possível verificar (serviço indisponível ou limite); tente mais tarde.
+leak.advice	Para endereços vazados: troque a senha dessas contas (e onde a reutilizou), ative a autenticação de dois fatores e redobre o cuidado com e-mails de phishing.
+vault.csvTrash.title	Mover o arquivo CSV para o Lixo?
+vault.csvTrash.body	“%@” guarda suas senhas em texto puro. Agora que estão no cofre criptografado, o arquivo não é mais necessário. Lembre-se de esvaziar o Lixo também.

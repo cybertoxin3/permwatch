@@ -1178,3 +1178,15 @@ upd.apps.appStore	App Store
 upd.apps.open	打开
 upd.apps.openHelp	大多数应用在打开时会自行提示更新（通常在应用菜单 › 检查更新）。
 upd.apps.review	显示列表
+leak.menu	检查电子邮件是否泄露…
+leak.title	电子邮件泄露检查
+leak.privacy	与密码检查不同，电子邮件地址本身会发送到 XposedOrNot（免费的泄露数据库）。密码库中的其他内容不会离开此 Mac。
+leak.extra	其他要检查的地址（可选，用逗号分隔）
+leak.willCheck	将检查 %ld 个地址。
+leak.run	检查
+leak.found	在 %ld 次泄露中发现：
+leak.clean	未在已知泄露中发现。
+leak.failed	无法检查（服务不可用或请求过多），请稍后再试。
+leak.advice	对于已泄露的地址：更改这些账户的密码（以及所有复用此密码的地方），开启双重认证，并格外警惕钓鱼邮件。
+vault.csvTrash.title	要将 CSV 文件移到废纸篓吗？
+vault.csvTrash.body	“%@”以明文保存了你的密码。既然已存入加密密码库，这个文件就不再需要了。别忘了清倒废纸篓。

@@ -1178,3 +1178,15 @@ upd.apps.appStore	App Store
 upd.apps.open	Open
 upd.apps.openHelp	Most apps offer the update themselves when opened (often under the app menu › Check for Updates).
 upd.apps.review	Show list
+leak.menu	Check emails for leaks…
+leak.title	Email leak check
+leak.privacy	Unlike the password check, the email address itself is sent to XposedOrNot (a free breach database). Nothing else from your vault leaves this Mac.
+leak.extra	Other addresses to check (optional, comma separated)
+leak.willCheck	%ld addresses will be checked.
+leak.run	Check
+leak.found	Found in %ld breaches:
+leak.clean	Not found in known breaches.
+leak.failed	Could not check (service unreachable or rate limited); try again later.
+leak.advice	For leaked addresses: change the password of those accounts (and anywhere you reused it), turn on two-factor authentication and be extra careful with phishing emails.
+vault.csvTrash.title	Move the CSV file to the Trash?
+vault.csvTrash.body	“%@” holds your passwords in plain text. Now that they are in the encrypted vault, the file is no longer needed. Remember to empty the Trash as well.

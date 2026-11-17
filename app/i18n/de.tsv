@@ -1178,3 +1178,15 @@ upd.apps.appStore	App Store
 upd.apps.open	Öffnen
 upd.apps.openHelp	Die meisten Apps bieten das Update beim Öffnen selbst an (oft im App-Menü › Nach Updates suchen).
 upd.apps.review	Liste zeigen
+leak.menu	E-Mails auf Lecks prüfen…
+leak.title	E-Mail-Leck-Prüfung
+leak.privacy	Anders als bei der Passwortprüfung wird die E-Mail-Adresse selbst an XposedOrNot (eine kostenlose Leck-Datenbank) gesendet. Sonst verlässt nichts aus deinem Tresor diesen Mac.
+leak.extra	Weitere Adressen (optional, durch Komma getrennt)
+leak.willCheck	%ld Adressen werden geprüft.
+leak.run	Prüfen
+leak.found	In %ld Lecks gefunden:
+leak.clean	In bekannten Lecks nicht gefunden.
+leak.failed	Prüfung nicht möglich (Dienst nicht erreichbar oder Limit); später erneut versuchen.
+leak.advice	Für betroffene Adressen: Ändere die Passwörter dieser Konten (und überall, wo du sie wiederverwendet hast), aktiviere die Zwei-Faktor-Authentifizierung und sei bei Phishing-Mails besonders vorsichtig.
+vault.csvTrash.title	CSV-Datei in den Papierkorb legen?
+vault.csvTrash.body	„%@“ enthält deine Passwörter im Klartext. Da sie jetzt im verschlüsselten Tresor sind, wird die Datei nicht mehr benötigt. Leere danach auch den Papierkorb.

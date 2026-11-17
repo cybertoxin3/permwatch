@@ -1178,3 +1178,15 @@ upd.apps.appStore	App Store
 upd.apps.open	Aç
 upd.apps.openHelp	Çoğu uygulama açılınca güncellemeyi kendisi önerir (genellikle uygulama menüsü › Güncellemeleri Denetle).
 upd.apps.review	Listeyi göster
+leak.menu	E-postaları sızıntılarda ara…
+leak.title	E-posta sızıntı denetimi
+leak.privacy	Şifre denetiminin aksine, e-posta adresinin kendisi XposedOrNot'a (ücretsiz bir sızıntı veritabanı) gönderilir. Kasandan başka hiçbir şey bu Mac'ten çıkmaz.
+leak.extra	Denetlenecek başka adresler (isteğe bağlı, virgülle)
+leak.willCheck	%ld adres denetlenecek.
+leak.run	Denetle
+leak.found	%ld sızıntıda bulundu:
+leak.clean	Bilinen sızıntılarda bulunmadı.
+leak.failed	Denetlenemedi (servise ulaşılamadı ya da hız sınırı); sonra yeniden dene.
+leak.advice	Sızan adresler için: o hesapların şifresini (ve aynı şifreyi kullandığın her yeri) değiştir, iki adımlı doğrulamayı aç ve oltalama e-postalarına karşı daha dikkatli ol.
+vault.csvTrash.title	CSV dosyası Çöp Sepeti'ne taşınsın mı?
+vault.csvTrash.body	“%@” şifrelerini düz metin olarak tutuyor. Artık şifreli kasada oldukları için dosyaya gerek yok. Çöp Sepeti'ni de boşaltmayı unutma.

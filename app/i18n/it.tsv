@@ -1178,3 +1178,15 @@ upd.apps.appStore	App Store
 upd.apps.open	Apri
 upd.apps.openHelp	La maggior parte delle app propone l’aggiornamento all’apertura (spesso menu dell’app › Controlla aggiornamenti).
 upd.apps.review	Mostra elenco
+leak.menu	Cerca email nelle violazioni…
+leak.title	Controllo violazioni email
+leak.privacy	A differenza del controllo password, l’indirizzo email stesso viene inviato a XposedOrNot (un database gratuito di violazioni). Nient’altro del tuo archivio lascia questo Mac.
+leak.extra	Altri indirizzi (facoltativo, separati da virgola)
+leak.willCheck	Verranno controllati %ld indirizzi.
+leak.run	Controlla
+leak.found	Trovato in %ld violazioni:
+leak.clean	Non trovato in violazioni note.
+leak.failed	Impossibile controllare (servizio non raggiungibile o limite); riprova più tardi.
+leak.advice	Per gli indirizzi coinvolti: cambia la password di quegli account (e ovunque l’hai riutilizzata), attiva l’autenticazione a due fattori e fai attenzione alle email di phishing.
+vault.csvTrash.title	Spostare il file CSV nel Cestino?
+vault.csvTrash.body	«%@» contiene le tue password in chiaro. Ora che sono nell’archivio cifrato, il file non serve più. Ricorda di svuotare anche il Cestino.

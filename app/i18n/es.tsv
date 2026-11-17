@@ -1178,3 +1178,15 @@ upd.apps.appStore	App Store
 upd.apps.open	Abrir
 upd.apps.openHelp	La mayoría de las apps ofrecen la actualización al abrirse (a menudo en el menú de la app › Buscar actualizaciones).
 upd.apps.review	Mostrar lista
+leak.menu	Buscar correos en filtraciones…
+leak.title	Comprobación de filtraciones de correo
+leak.privacy	A diferencia de la comprobación de contraseñas, la dirección de correo se envía a XposedOrNot (una base de filtraciones gratuita). Nada más de tu bóveda sale de este Mac.
+leak.extra	Otras direcciones (opcional, separadas por comas)
+leak.willCheck	Se comprobarán %ld direcciones.
+leak.run	Comprobar
+leak.found	Encontrado en %ld filtraciones:
+leak.clean	No aparece en filtraciones conocidas.
+leak.failed	No se pudo comprobar (servicio inaccesible o límite); inténtalo más tarde.
+leak.advice	Para las direcciones filtradas: cambia la contraseña de esas cuentas (y donde la reutilizaste), activa la verificación en dos pasos y extrema la precaución con correos de phishing.
+vault.csvTrash.title	¿Mover el archivo CSV a la Papelera?
+vault.csvTrash.body	«%@» guarda tus contraseñas en texto plano. Ahora que están en la bóveda cifrada, el archivo ya no hace falta. Recuerda vaciar también la Papelera.

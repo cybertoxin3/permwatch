@@ -106,6 +106,8 @@ struct VaultListView: View {
     @State private var editing: VaultItem?
     @State private var importResult: String?
     @State private var showSettings = false
+    @State private var showLeaks = false
+    @State private var importedFile: URL?
 
     private var filtered: [VaultItem] {
         let q = search.lowercased()
@@ -128,6 +130,7 @@ struct VaultListView: View {
                         .help(L("vault.add"))
                     Menu {
                         Button(L("vault.import")) { importCSV() }
+                        Button(L("leak.menu")) { showLeaks = true }
                         Button(L("vault.settings")) { showSettings = true }
                         Divider()
                         Button(L("vault.lock")) { vault.lock() }
@@ -172,6 +175,14 @@ struct VaultListView: View {
         }
         .sheet(item: $editing) { it in VaultEditView(item: it) { saved in if let s = saved { vault.save(s); selection = s.id }; editing = nil } }
         .sheet(isPresented: $showSettings) { VaultSettingsView { showSettings = false } }
+        .sheet(isPresented: $showLeaks) { EmailLeakSheet() }
+        // İçe aktarılan CSV şifreleri düz metin olarak içerir: diskte bırakma.
+        .confirmationDialog(L("vault.csvTrash.title"), isPresented: Binding(get: { importedFile != nil }, set: { if !$0 { importedFile = nil } })) {
+            Button(L("uninstall.confirm"), role: .destructive) {
+                if let u = importedFile { NSWorkspace.shared.recycle([u]) { _, _ in } }
+                importedFile = nil
+            }
+        } message: { Text(L("vault.csvTrash.body", importedFile?.lastPathComponent ?? "")) }
     }
 
     private func importCSV() {
@@ -180,6 +191,7 @@ struct VaultListView: View {
         guard p.runModal() == .OK, let u = p.url, let t = try? String(contentsOf: u, encoding: .utf8) else { return }
         let n = vault.importCSV(t)
         importResult = L("vault.imported", n)
+        if n > 0 { importedFile = u }
     }
 }
 
@@ -362,6 +374,95 @@ struct BackBar: View {
             .buttonStyle(.borderless)
             .keyboardShortcut(.cancelAction)
             Spacer()
+        }
+    }
+}
+
+// MARK: - E-posta sızıntı denetimi
+
+/// XposedOrNot (ücretsiz, anahtarsız). Şifre denetiminin aksine adresin kendisi gönderilir: bu yüzden yalnızca
+/// kullanıcı açıkça istediğinde, ne gönderileceği yazılı olarak çalışır.
+enum EmailLeaks {
+    struct Result: Identifiable { var id: String { email }; let email: String; let breaches: [String]?; let failed: Bool }
+
+    static func check(_ email: String) async -> Result {
+        guard let enc = email.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed),
+              let url = URL(string: "https://api.xposedornot.com/v1/check-email/\(enc)") else {
+            return Result(email: email, breaches: nil, failed: true)
+        }
+        var req = URLRequest(url: url, timeoutInterval: 20)
+        req.setValue("permwatch", forHTTPHeaderField: "User-Agent")
+        guard let (d, r) = try? await URLSession.shared.data(for: req), let code = (r as? HTTPURLResponse)?.statusCode else {
+            return Result(email: email, breaches: nil, failed: true)
+        }
+        let j = (try? JSONSerialization.jsonObject(with: d)) as? [String: Any]
+        if code == 404 || (j?["Error"] as? String) == "Not found" { return Result(email: email, breaches: [], failed: false) }
+        guard code == 200, let b = j?["breaches"] as? [[String]] else { return Result(email: email, breaches: nil, failed: true) }
+        return Result(email: email, breaches: b.flatMap { $0 }, failed: false)
+    }
+}
+
+struct EmailLeakSheet: View {
+    @ObservedObject var vault = Vault.shared
+    @Environment(\.dismiss) private var dismiss
+    @State private var extra = ""
+    @State private var results: [EmailLeaks.Result] = []
+    @State private var running = false
+
+    private var emails: [String] {
+        var s = Set(vault.items.map { $0.username.trimmingCharacters(in: .whitespaces).lowercased() }.filter { $0.contains("@") && $0.contains(".") })
+        for e in extra.split(whereSeparator: { $0 == "," || $0 == " " || $0.isNewline }) where e.contains("@") { s.insert(e.lowercased()) }
+        return s.sorted()
+    }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text(L("leak.title")).font(.system(size: 16, weight: .bold))
+            Label(L("leak.privacy"), systemImage: "hand.raised").font(.system(size: 12)).foregroundStyle(.orange)
+                .fixedSize(horizontal: false, vertical: true)
+            TextField(L("leak.extra"), text: $extra).textFieldStyle(.roundedBorder)
+            Text(L("leak.willCheck", emails.count)).font(.system(size: 11.5)).foregroundStyle(.secondary)
+            List(results) { r in
+                VStack(alignment: .leading, spacing: 3) {
+                    HStack {
+                        Image(systemName: r.failed ? "questionmark.circle" : ((r.breaches ?? []).isEmpty ? "checkmark.seal.fill" : "exclamationmark.triangle.fill"))
+                            .foregroundStyle(r.failed ? Color.secondary : ((r.breaches ?? []).isEmpty ? Color.green : Color.red))
+                        Text(r.email).font(.system(size: 12.5, weight: .semibold)).textSelection(.enabled)
+                    }
+                    if r.failed { Text(L("leak.failed")).font(.system(size: 11.5)).foregroundStyle(.secondary) }
+                    else if let b = r.breaches, !b.isEmpty {
+                        Text(L("leak.found", b.count)).font(.system(size: 11.5)).foregroundStyle(.red)
+                        Text(b.prefix(40).joined(separator: ", ") + (b.count > 40 ? "…" : "")).font(.system(size: 11)).foregroundStyle(.secondary)
+                            .textSelection(.enabled)
+                    } else { Text(L("leak.clean")).font(.system(size: 11.5)).foregroundStyle(.secondary) }
+                }
+                .padding(.vertical, 2)
+            }
+            .listStyle(.inset)
+            if results.contains(where: { !($0.breaches ?? []).isEmpty }) {
+                Text(L("leak.advice")).font(.system(size: 12)).fixedSize(horizontal: false, vertical: true)
+            }
+            HStack {
+                if running { ProgressView().controlSize(.small) }
+                Spacer()
+                Button(L("common.ok")) { dismiss() }
+                Button(L("leak.run")) { run() }.buttonStyle(.borderedProminent).disabled(running || emails.isEmpty)
+            }
+        }
+        .padding(18)
+        .frame(width: 600, height: 540)
+    }
+
+    private func run() {
+        running = true
+        results = []
+        let list = emails
+        Task {
+            for e in list {
+                results.append(await EmailLeaks.check(e))
+                try? await Task.sleep(nanoseconds: 1_200_000_000)   // servisin hız sınırına saygı
+            }
+            running = false
         }
     }
 }
