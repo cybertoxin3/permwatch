@@ -20,6 +20,7 @@ permwatch keeps a record of every permission change and alerts you the moment so
 
 <sub>Apple Silicon & Intel · macOS 14 or later · free</sub><br>
 <sub>Open the zip and drag **permwatch** to your Applications folder.</sub>
+<sub>Or with Homebrew: <code>brew tap cybertoxin3/permwatch https://github.com/cybertoxin3/permwatch</code> then <code>brew install --cask permwatch</code></sub>
 
 </div>
  
